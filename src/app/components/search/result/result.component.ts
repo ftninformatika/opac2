@@ -42,5 +42,4 @@ export class ResultComponent implements OnInit {
       });
     });
   }
-
 }
