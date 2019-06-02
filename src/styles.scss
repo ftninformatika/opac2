@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+body { font-family: 'Source Sans Pro', sans-serif; }
+
+.no-box-shadow > div {
+  box-shadow: unset !important;
+}
+.no-box-shadow {
+  box-shadow: unset !important;
+}
+
+.carousel-item.active {
+  display: flex !important;
+}
+
+div.book-tabs {
+  div.container-fluid {
+    padding-left: 0px;
+    padding-right: 16px;
+
+    ul.nav {
+      background-color: white;
+      border-bottom: 1px black solid;
+    }
+
+    .nav.classic-tabs {
+      margin: 0;
+      li a {
+        padding: 20px 24px !important;
+        background-color: white;
+        color: black;
+      }
+      li a.active {
+        color: black !important;
+      }
+    }
+
+    p strong {
+      font-weight: bold;
+    }
+  }
+}
