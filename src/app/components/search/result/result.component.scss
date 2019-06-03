@@ -1,0 +1,19 @@
+.card {
+  box-shadow: unset !important;
+}
+
+.fixed-height {
+  height: 270px;
+}
+
+.fixed-width {
+  max-width: 150px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  text-decoration: underline;
+}

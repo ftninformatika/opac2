@@ -17,6 +17,7 @@ import { BookCarouselComponent } from './components/home/book-carousel/book-caro
 import { ReadMoreComponent } from './components/book/read-more/read-more.component';
 import { SearchMainComponent } from './components/search/search-main/search-main.component';
 import { ResultComponent } from './components/search/result/result.component';
+import { LoginComponent } from './components/profile/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ResultComponent } from './components/search/result/result.component';
     BookCarouselComponent,
     ReadMoreComponent,
     SearchMainComponent,
-    ResultComponent
+    ResultComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

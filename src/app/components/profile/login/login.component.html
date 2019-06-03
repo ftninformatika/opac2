@@ -1,0 +1,31 @@
+<div class="full-bg-img mask flex-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
+        <div class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
+          <div class="card-body">
+            <div class="form-header primary-color-dark">
+              <h3><mdb-icon fas icon="user" class="mt-2 mb-2"></mdb-icon> Пријава</h3>
+            </div>
+            <form [formGroup]="loginForm">
+              <div class="md-form">
+                <mdb-icon far icon="envelope" class="dark-grey-text"></mdb-icon>
+                <input type="text" id="orangeForm-email" class="form-control" formControlName="email" mdbInputDirective>
+                <label for="orangeForm-email" class="">Email</label>
+              </div>
+              <div class="md-form">
+                <mdb-icon fas icon="lock" class="dark-grey-text"></mdb-icon>
+                <input type="password" id="orangeForm-pass" class="form-control" formControlName="password" mdbInputDirective>
+                <label for="orangeForm-pass" class="">Лозинка</label>
+              </div>
+              <div class="text-center">
+                <button class="btn primary-color-dark white-text btn-lg waves-effect waves-light" mdbWavesEffect (click)="login()">Пријави се</button>
+                <button class="btn secondary-color btn-lg white-text waves-effect waves-light" mdbWavesEffect (click)="forgotPassword()">Заборавих лозинку</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
