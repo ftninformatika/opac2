@@ -18,6 +18,10 @@ import { ReadMoreComponent } from './components/book/read-more/read-more.compone
 import { SearchMainComponent } from './components/search/search-main/search-main.component';
 import { ResultComponent } from './components/search/result/result.component';
 import { LoginComponent } from './components/profile/login/login.component';
+import { ProfileComponent } from './components/profile/profile/profile.component';
+import { ShelfComponent } from './components/profile/shelf/shelf.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { LoginComponent } from './components/profile/login/login.component';
     ReadMoreComponent,
     SearchMainComponent,
     ResultComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    ShelfComponent,
+    HistoryComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
