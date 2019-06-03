@@ -1,3 +1,21 @@
-<p>
-  shelf works!
-</p>
+<div class="d-flex flex-wrap flex-sm-wrap">
+  <mdb-card class="my-3 container fixed-height fixed-width" *ngFor="let book of shelf">
+    <mdb-card-body class="row">
+      <div class="col-4" *ngIf="book.imageUrl">
+        <a [routerLink]="['/book', book.id]"><mdb-card-img src="{{book.imageUrl}}"></mdb-card-img></a>
+      </div>
+      <div class="col">
+        <mdb-card-title>
+          <h4 [routerLink]="['/book', book.id]" class="pointer">{{book.title}}</h4>
+          <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer">{{book.subtitle}}</h5>
+          <p>
+          <span *ngFor="let author of book.authors; let last = last">
+            <em>{{author}}</em><span *ngIf="!last">, </span>
+          </span>
+          </p>
+        </mdb-card-title>
+        <p>{{book.publisher}}, {{book.year}}</p>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>

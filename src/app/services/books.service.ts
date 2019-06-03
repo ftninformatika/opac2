@@ -185,4 +185,8 @@ export class BooksService {
   public search(query: any[]): Observable<Book[]> {
     return of(this.searchHits);
   }
+
+  public getAllBooks(): Observable<Book[]> {
+    return of(this.books);
+  }
 }
