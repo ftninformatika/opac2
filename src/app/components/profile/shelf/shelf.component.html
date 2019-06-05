@@ -1,5 +1,6 @@
-<div class="d-flex flex-wrap flex-sm-wrap">
-  <mdb-card class="my-3 container fixed-height fixed-width" *ngFor="let book of shelf">
+<h4>Моја полица</h4>
+<div class="d-flex flex-wrap flex-sm-wrap shelf-container">
+  <mdb-card class="my-2 container fixed-height fixed-width" *ngFor="let book of shelf">
     <mdb-card-body class="row">
       <div class="col-4" *ngIf="book.imageUrl">
         <a [routerLink]="['/book', book.id]"><mdb-card-img src="{{book.imageUrl}}"></mdb-card-img></a>

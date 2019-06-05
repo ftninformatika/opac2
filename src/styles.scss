@@ -1,12 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-body { font-family: 'Source Sans Pro', sans-serif; }
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #eeeeee;
+}
 
-.no-box-shadow > div {
+.no-box-shadow {
+  background-color: transparent !important;
   box-shadow: unset !important;
 }
-.no-box-shadow {
+
+.no-box-shadow > div {
+  background-color: transparent !important;
   box-shadow: unset !important;
+}
+
+.container.card {
+  background-color: transparent !important;
 }
 
 .carousel-item.active {
@@ -19,7 +29,7 @@ div.book-tabs {
     padding-right: 16px;
 
     ul.nav {
-      background-color: white;
+      background-color: transparent;
       border-bottom: 1px black solid;
     }
 
@@ -27,7 +37,7 @@ div.book-tabs {
       margin: 0;
       li a {
         padding: 20px 24px !important;
-        background-color: white;
+        background-color: transparent;
         color: black;
       }
       li a.active {
@@ -39,4 +49,18 @@ div.book-tabs {
       font-weight: bold;
     }
   }
+}
+
+.shelf-container .card {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.result-filter {
+  background-color: transparent;
+}
+
+.carousel-transparent > * > .card {
+  background-color: transparent;
 }
