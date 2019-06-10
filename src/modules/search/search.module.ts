@@ -4,6 +4,7 @@ import { ResultPage } from './pages/result/result.page';
 import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
+import { BookResultBrief } from './components/book-result-brief/book-result-brief.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { SearchRoutes } from './search.routes';
     RouterModule.forChild(SearchRoutes)
   ],
   declarations: [
+    BookResultBrief,
     SearchMainPage,
     ResultPage
   ]
