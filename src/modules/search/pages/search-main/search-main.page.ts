@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PrefixesService } from '../../../../core/services/prefixes.service';
+import { PrefixesService } from '../../../core/services/prefixes.service';
 
 @Component({
   selector: 'app-search-main',
-  templateUrl: './search-main.component.html',
-  styleUrls: ['./search-main.component.scss']
+  templateUrl: './search-main.page.html',
+  styleUrls: ['./search-main.page.scss']
 })
-export class SearchMainComponent implements OnInit {
+export class SearchMainPage implements OnInit {
 
   searchForm: FormGroup;
   isPrefixCoded: boolean[] = [false, false, false, false, false];
@@ -134,6 +134,6 @@ export class SearchMainComponent implements OnInit {
           operator: null});
       }
     }
-    this.router.navigate(['/result'], {queryParams: {query: JSON.stringify(query)}});
+    this.router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(query)}});
   }
 }

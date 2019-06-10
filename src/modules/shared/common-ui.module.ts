@@ -3,11 +3,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
   AutoCompleterModule,
-  ButtonsModule, CardsFreeModule, CardsModule,
+  ButtonsModule, CardsFreeModule, CarouselModule,
   CheckboxModule,
   IconsModule,
   InputsModule,
-  NavbarModule
+  NavbarModule, SelectModule, TabsModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +23,10 @@ import { CommonModule } from '@angular/common';
     NavbarModule,
     CardsFreeModule,
     IconsModule,
-    CommonModule
+    CarouselModule,
+    TabsModule,
+    CommonModule,
+    SelectModule
   ]
 })
 export class CommonUiModule { }

@@ -36,12 +36,12 @@
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             <mdb-icon fas icon="user"></mdb-icon> Мој налог<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/login']" [queryParams]="{next: router.url}">Пријава</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/profile']">Профил</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/shelf']">Моја полица</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/history']">Историја члана</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/login']" [queryParams]="{next: router.url}">Пријава</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/profile']">Профил</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/shelf']">Моја полица</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/history']">Историја члана</a>
             <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/change-password']">Промена лозинке</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/change-password']">Промена лозинке</a>
             <div class="divider dropdown-divider"></div>
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">Одјава</a>
           </div>
@@ -50,6 +50,7 @@
     </links>
   </mdb-navbar>
 </header>
+
 
 <main>
   <div class="container-fluid py-4">

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, Input, ViewChild } from '@angular/core';
-import { Book } from '../../../../core/models/book';
+import { Book } from '../../../core/models/book';
 import { CarouselComponent } from 'ng-uikit-pro-standard';
 
 @Component({

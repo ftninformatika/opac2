@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from '../../../../core/services/books.service';
+import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Book } from '../../../../core/models/book';
+import { Book } from '../../../core/models/book';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss']
+  templateUrl: './result.page.html',
+  styleUrls: ['./result.page.scss']
 })
-export class ResultComponent implements OnInit {
+export class ResultPage implements OnInit {
 
   searchResult: Book[];
   vrstaGradjeForm: FormGroup;

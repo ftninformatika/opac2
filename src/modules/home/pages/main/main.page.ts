@@ -1,13 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Book } from '../../../../core/models/book';
-import { BooksService } from '../../../../core/services/books.service';
+import { Book } from '../../../core/models/book';
+import { BooksService } from '../../../core/services/books.service';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  templateUrl: './main.page.html',
+  styleUrls: ['./main.page.scss']
 })
-export class MainComponent implements OnInit {
+export class MainPage implements OnInit {
 
   constructor(private booksService: BooksService) { }
 
