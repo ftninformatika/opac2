@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShelfComponent } from './shelf.component';
+import { ChangePasswordPage } from './change-password.page';
 
-describe('ShelfComponent', () => {
-  let component: ShelfComponent;
-  let fixture: ComponentFixture<ShelfComponent>;
+describe('ChangePasswordPage', () => {
+  let component: ChangePasswordPage;
+  let fixture: ComponentFixture<ChangePasswordPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShelfComponent ]
+      declarations: [ ChangePasswordPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShelfComponent);
+    fixture = TestBed.createComponent(ChangePasswordPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

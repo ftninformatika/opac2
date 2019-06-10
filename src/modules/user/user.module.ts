@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ShelfComponent } from './shelf/shelf.component';
-import { HistoryComponent } from './history/history.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoginPage } from './pages/login/login.page';
+import { ProfilePage } from './pages/profile/profile.page';
+import { ShelfPage } from './pages/shelf/shelf.page';
+import { HistoryPage } from './pages/history/history.page';
+import { ChangePasswordPage } from './pages/change-password/change-password.page';
 import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
+import { CommonUiModule } from '../shared/common-ui.module';
 
 @NgModule({
   imports: [
-    RouterModule.forChild(UserRoutes)
+    CommonUiModule,
+    RouterModule.forChild(UserRoutes),
   ],
   declarations: [
-    // LoginComponent,
-    ProfileComponent,
-    // ShelfComponent,
-    // HistoryComponent,
-    // ChangePasswordComponent
+    LoginPage,
+    ProfilePage,
+    ShelfPage,
+    HistoryPage,
+    ChangePasswordPage
   ]
 })
 export class UserModule {}

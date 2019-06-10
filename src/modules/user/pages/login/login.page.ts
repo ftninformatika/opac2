@@ -1,14 +1,14 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsersService }                       from '../../core/services/users.service';
-import { ActivatedRoute, Router }             from '@angular/router';
+import { UsersService } from '../../../core/services/users.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
   nextUrl: string;

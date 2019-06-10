@@ -4,11 +4,6 @@ import { MainComponent } from './components/home/main/main.component';
 import { BookComponent } from './components/book/book/book.component';
 import { SearchMainComponent } from './components/search/search-main/search-main.component';
 import { ResultComponent } from './components/search/result/result.component';
-import { LoginComponent } from '../user/login/login.component';
-import { ProfileComponent } from '../user/profile/profile.component';
-import { ShelfComponent } from '../user/shelf/shelf.component';
-import { HistoryComponent } from '../user/history/history.component';
-import { ChangePasswordComponent } from '../user/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -24,19 +19,19 @@ const routes: Routes = [
     path: 'user', loadChildren: './../user/user.module#UserModule'
   },
   // {
-  //   path: 'login', component: LoginComponent
+  //   path: 'login', component: LoginPage
   // },
   // {
-  //   path: 'profile', component: ProfileComponent
+  //   path: 'profile', component: ProfilePage
   // },
   // {
-  //   path: 'shelf', component: ShelfComponent
+  //   path: 'shelf', component: ShelfPage
   // },
   // {
-  //   path: 'history', component: HistoryComponent
+  //   path: 'history', component: HistoryPage
   // },
   // {
-  //   path: 'change-password', component: ChangePasswordComponent
+  //   path: 'change-password', component: ChangePasswordPage
   // },
   {
     path: '', pathMatch: 'full', component: MainComponent
