@@ -5,6 +5,7 @@ import { BookCarouselComponent } from './components/book-carousel/book-carousel.
 import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
+import { BookCard2Component } from './components/book-card2/book-card2.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { HomeRoutes } from './home.routes';
     RouterModule.forChild(HomeRoutes)
   ],
   declarations: [
+    BookCard2Component,
     MainPage,
     BookCardComponent,
     BookCarouselComponent
