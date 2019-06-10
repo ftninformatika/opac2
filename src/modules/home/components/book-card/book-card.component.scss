@@ -2,14 +2,18 @@
   box-shadow: unset !important;
 }
 
-.fixed-height {
-  height: 300px;
-}
+.book-card-container-class {
 
-.pointer {
-  cursor: pointer;
-}
+  .fixed-height {
+    height: 300px;
+  }
 
-.pointer:hover {
-  text-decoration: underline;
+  .pointer {
+    cursor: pointer;
+  }
+
+  .pointer:hover {
+    text-decoration: underline;
+  }
+
 }

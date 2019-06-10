@@ -1,19 +1,21 @@
-<mdb-card class="my-1 container">
-  <mdb-card-body class="row fixed-height">
-    <div class="col-4" *ngIf="book.imageUrl">
-      <a [routerLink]="['/book', book.id]"><mdb-card-img src="{{book.imageUrl}}"></mdb-card-img></a>
-    </div>
-    <div class="col">
-      <mdb-card-title>
-        <h4 [routerLink]="['/book', book.id]" class="pointer">{{book.title}}</h4>
-        <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer">{{book.subtitle}}</h5>
-        <p>
-          <span *ngFor="let author of book.authors; let last = last">
-            <em>{{author}}</em><span *ngIf="!last">, </span>
-          </span>
-        </p>
-      </mdb-card-title>
-      <p>{{book.publisher}}, {{book.year}}</p>
-    </div>
-  </mdb-card-body>
-</mdb-card>
+<div class="book-card-container-class">
+  <mdb-card class="my-1 container">
+    <mdb-card-body class="row fixed-height">
+      <div class="col-4" *ngIf="book.imageUrl">
+        <a [routerLink]="['/book', book.id]" class="book-cover-img"><mdb-card-img src="{{book.imageUrl}}"></mdb-card-img></a>
+      </div>
+      <div class="col">
+        <mdb-card-title>
+          <h4 [routerLink]="['/book', book.id]" class="pointer">{{book.title}}</h4>
+          <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer">{{book.subtitle}}</h5>
+          <p>
+            <span *ngFor="let author of book.authors; let last = last">
+              <em>{{author}}</em><span *ngIf="!last">, </span>
+            </span>
+          </p>
+        </mdb-card-title>
+        <p>{{book.publisher}}, {{book.year}}</p>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>
