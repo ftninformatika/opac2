@@ -1,34 +1,9 @@
-<div class="book-card2-container-class">
-  <div class="col-md-4">
-    <!--Card-->
-    <mdb-card cascade="true" narrower="true">
-      <!--Card image-->
-      <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-        <mdb-card-img src="{{book.imageUrl}}"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-      <!--/Card image-->
-      <mdb-card-body cascade="true" class="text-center">
-        <!--Card content-->
-        <h5 class="blue-text">
-          <i class="fas fa-book"></i> {{book.title}}</h5>
-        <!--Title-->
-        <h4 class="card-title">
-          <span *ngFor="let author of book.authors; let last = last">
-            <em>{{author}}</em><span *ngIf="!last">, </span>
-          </span>
-        </h4>
-        <mdb-card-text>
-          {{book.subtitle}}
-        </mdb-card-text>
-      </mdb-card-body>
-      <!--/.Card content-->
-      <div class="card-footer text-muted text-center mt-4">
-        {{book.publisher}}, {{book.year}}
-      </div>
-    </mdb-card>
-    <!--/.Card-->
+<div class="book-card2-container-class view overlay zoom" xmlns="http://www.w3.org/1999/html">
+  <img src="{{book.imageUrl}}" class="img-fluid">
+  <div class="mask flex-center waves-effect waves-light rgba-blue-strong">
+    <p class="white-text">
+      <b>{{book.title}}</b><br>
+      {{book.publisher}}
+    </p>
   </div>
 </div>

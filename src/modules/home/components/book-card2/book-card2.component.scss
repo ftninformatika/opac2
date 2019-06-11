@@ -1,3 +1,11 @@
-book-card2 {
-  
+@import '../../../../styles/common';
+
+.book-card2-container-class {
+  border-radius: 5px;
+  max-width: 250px;
+  @include fluidType(width, 180, 250);
+}
+
+.book-card2-container-class:hover {
+
 }
