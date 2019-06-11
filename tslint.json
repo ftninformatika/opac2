@@ -6,7 +6,7 @@
     "deprecation": {
       "severity": "warn"
     },
-    "component-class-suffix": true,
+    "component-class-suffix": false,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "directive-selector": [
@@ -66,6 +66,14 @@
       true,
       "as-needed"
     ],
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    },
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [

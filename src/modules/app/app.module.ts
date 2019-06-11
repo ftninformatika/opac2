@@ -10,6 +10,8 @@ import { AppPage } from './pages/app/app.page';
 import { CoreModule } from '../core/core.module';
 import { CommonUiModule } from '../shared/common-ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from '../core/states/user/user.state';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule,
+    NgxsModule.forRoot([UserState])
   ],
   providers: [
     MDBSpinningPreloader,

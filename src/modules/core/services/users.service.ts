@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BooksService } from './books.service';
 import { Book } from '../models/book';
+import { IUserModel } from '../models/circ/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class UsersService {
 
   public getShelf(email: string): Observable<Book[]> {
     return this.booksService.getAllBooks();
+  }
+  
+  public getMockUser(): Observable<IUserModel> {
+    return null;
   }
 }

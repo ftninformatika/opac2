@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~7.2.15",
     "@angular/router": "~7.2.15",
     "@fortawesome/fontawesome-free": "^5.8.2",
+    "@ngxs/logger-plugin": "^3.4.3-dev.master-3528deb",
+    "@ngxs/store": "^3.4.3-dev.master-3528deb",
     "@types/chart.js": "^2.7.53",
     "chart.js": "^2.5.0",
     "easy-pie-chart": "^2.1.7",
