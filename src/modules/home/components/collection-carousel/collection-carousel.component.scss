@@ -1,0 +1,26 @@
+.collection-carousel-wrapper {
+  height: 300px;
+  width: 100%;
+  //background: aquamarine;
+
+  .title{
+    background: red;
+  }
+
+  .left-arrow {
+    margin-top: 70px;
+    cursor: pointer;
+    //background: yellow;
+  }
+  .left-arrow:hover {
+    opacity: 0.5;
+  }
+  .right-arrow {
+    margin-top: 70px;
+    cursor: pointer;
+    //background: burlywood;
+  }
+  .right-arrow:hover {
+    opacity: 0.5;
+  }
+}

@@ -1,40 +1,42 @@
-<mdb-card class="my-2 no-box-shadow">
-  <div class="fixed-action-btn left-carousel-button">
-    <a class="btn-floating waves-light primary-color" mdbWavesEffect (click)="previousSlide()">
-      <mdb-icon fas icon="chevron-left"></mdb-icon>
-    </a>
-  </div>
-  <div class="fixed-action-btn right-carousel-button">
-    <a class="btn-floating waves-light primary-color" mdbWavesEffect (click)="nextSlide()">
-      <mdb-icon fas icon="chevron-right"></mdb-icon>
-    </a>
-  </div>
-  <mdb-card-body class="carousel-wrapper">
-    <mdb-card-title>
-      <h1 class="title">{{title}}</h1>
-    </mdb-card-title>
-    <mdb-carousel #carousel [animation]="'slide'" [ngSwitch]="carouselDisplayMode" [isControls]="false" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'" [interval]="'0'">
-      <ng-container *ngSwitchCase="'single'">
-        <div class="single-carousel">
-        <mdb-carousel-item *ngFor="let book of books">
-            <book-card2 [book]="book"></book-card2>
-        </mdb-carousel-item>
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'multiple'">
-        <mdb-carousel-item *ngFor="let item of slides; let i = index">
-          <div class="px-0"
-               [ngClass]="{
-               'd-none d-md-block': cardIndex !== 0,
-               'col-4': chunkSize == 2,
-               'col-md-4': chunkSize == 3,
-               'col-md-3': chunkSize == 4,
-               'col-xl-3': chunkSize == 5}"
-               *ngFor="let book of item; let cardIndex = index">
-            <book-card2 [book]="book"></book-card2>
+<div class="book-collection-carousel-wrapper">
+  <mdb-card class="my-2 no-box-shadow">
+    <div class="fixed-action-btn left-carousel-button">
+      <a class="btn-floating waves-light primary-color" mdbWavesEffect (click)="previousSlide()">
+        <mdb-icon fas icon="chevron-left"></mdb-icon>
+      </a>
+    </div>
+    <div class="fixed-action-btn right-carousel-button">
+      <a class="btn-floating  primary-color" mdbWavesEffect (click)="nextSlide()">
+        <mdb-icon fas icon="chevron-right"></mdb-icon>
+      </a>
+    </div>
+    <mdb-card-body class="carousel-wrapper">
+      <mdb-card-title>
+        <h1 class="title">{{title}}</h1>
+      </mdb-card-title>
+      <mdb-carousel #carousel [animation]="'slide'" [ngSwitch]="carouselDisplayMode" [isControls]="false" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'" [interval]="'0'">
+        <ng-container *ngSwitchCase="'single'">
+          <div class="single-carousel row justify-content-start">
+          <mdb-carousel-item *ngFor="let book of books">
+              <book-card2 [book]="book"></book-card2>
+          </mdb-carousel-item>
           </div>
-        </mdb-carousel-item>
-      </ng-container>
-    </mdb-carousel>
-  </mdb-card-body>
-</mdb-card>
+        </ng-container>
+        <ng-container *ngSwitchCase="'multiple'">
+          <mdb-carousel-item *ngFor="let item of slides; let i = index">
+            <div class="px-0"
+                 [ngClass]="{
+                 'd-md-block': cardIndex !== 0,
+                 'col-md-6': chunkSize == 2,
+                 'col-md-4': chunkSize == 3,
+                 'col-md-3': chunkSize == 4,
+                 'col-md-2': chunkSize == 5}"
+                 *ngFor="let book of item; let cardIndex = index">
+              <book-card2 [book]="book"></book-card2>
+            </div>
+          </mdb-carousel-item>
+        </ng-container>
+      </mdb-carousel>
+    </mdb-card-body>
+  </mdb-card>
+</div>

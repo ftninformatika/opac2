@@ -1,0 +1,19 @@
+<div class="collection-carousel-wrapper d-flex flex-column">
+  <div class="title p-2">
+    <h2>
+      {{title}}
+    </h2>
+  </div>
+  <div class="carousel-content d-flex flex-row justify-content-between ">
+    <div class="p-1 left-arrow">
+      <mdb-icon fas icon="caret-left" size="3x"></mdb-icon>
+    </div>
+    <div class="p-10 books-slide" *ngFor="let b of books">
+      <book-card2 [book]="b"></book-card2>
+    </div>
+    <div class="p-1 right-arrow">
+      <mdb-icon fas icon="caret-right" size="3x"></mdb-icon>
+    </div>
+  </div>
+  <div class="title p-1">******</div>
+</div>

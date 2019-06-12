@@ -8,9 +8,10 @@ import { CarouselComponent } from 'ng-uikit-pro-standard';
   styleUrls: ['book-collection-carousel.component.scss']
 })
 export class BookCollectionCarouselComponent implements OnInit {
-  CAROUSEL_BREAKPOINT_SM = 576;
-  CAROUSEL_BREAKPOINT_MD = 768;
-  CAROUSEL_BREAKPOINT_LG = 1200;
+  CAROUSEL_BREAKPOINT_XS = 576;
+  CAROUSEL_BREAKPOINT_S = 768;
+  CAROUSEL_BREAKPOINT_MD = 1200;
+  CAROUSEL_BREAKPOINT_XL = 1460;
   carouselDisplayMode = 'multiple';
 
   @Input() title: string;
@@ -21,31 +22,31 @@ export class BookCollectionCarouselComponent implements OnInit {
 
   slides: any = [[]];
   chunkSize = 4;
-
-  public chunk(arr, chunkSize) {
+  chunk(arr, chunkSize) {
     const R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
       R.push(arr.slice(i, i + chunkSize));
     }
     return R;
   }
-
-  public ngOnInit() {
+  ngOnInit() {
     this.slides = this.chunk(this.books, this.chunkSize);
     this.onWindowResize();
   }
 
   @HostListener('window:resize')
   public onWindowResize() {
-    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_SM) {
+    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_XS) {
       this.carouselDisplayMode = 'single';
     } else {
       this.carouselDisplayMode = 'multiple';
       const oldChunkSize = this.chunkSize;
-      if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_MD) {
+      if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_S) {
         this.chunkSize = 2;
-      } else if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_LG) {
+      } else if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_MD) {
         this.chunkSize = 3;
+      } else if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_XL) {
+        this.chunkSize = 4;
       } else {
         this.chunkSize = 4;
       }
@@ -53,10 +54,9 @@ export class BookCollectionCarouselComponent implements OnInit {
         this.slides = this.chunk(this.books, this.chunkSize);
       }
     }
-    console.log(this.chunkSize);
   }
 
-  public previousSlide(): void {
+  previousSlide(): void {
     this.carousel.previousSlide();
   }
 

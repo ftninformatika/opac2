@@ -2,26 +2,32 @@
 
 .book-card2-container-wrapper {
   border-radius: 3px;
-  max-width: 210px;
-  @include fluidType(width, 180, 210);
+  max-width: 121px;
+  @include fluidType(width, 100, 121);
 
   img {
     width: 100%;
     height: auto;
-    max-width: 210px;
+    max-width: 121px;
   }
 
   .book-title {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
+    font-size: 16px;
   }
 
   .book-authors {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
+    font-size: 14px;
   }
 
+
+
   .book-pub-info {
+    text-align: center;
+    font-size: 14px;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
