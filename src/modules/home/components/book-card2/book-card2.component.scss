@@ -1,11 +1,31 @@
 @import '../../../../styles/common';
 
-.book-card2-container-class {
+.book-card2-container-wrapper {
   border-radius: 5px;
-  max-width: 250px;
-  @include fluidType(width, 180, 250);
-}
+  max-width: 210px;
+  @include fluidType(width, 180, 210);
 
-.book-card2-container-class:hover {
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 210px;
+    //@include fluidType(width, 180, 220);
+  }
 
+  .book-title {
+    margin-top: 30px;
+  }
+
+  .book-authors {
+    margin-top: 30px;
+  }
+
+  .book-pub-info {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }

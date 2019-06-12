@@ -1,9 +1,19 @@
-<div class="book-card2-container-class view overlay zoom" xmlns="http://www.w3.org/1999/html">
-  <img src="{{book.imageUrl}}" class="img-fluid">
-  <div class="mask flex-center waves-effect waves-light rgba-blue-strong">
-    <p class="white-text">
-      <b>{{book.title}}</b><br>
-      {{book.publisher}}
-    </p>
-  </div>
+<div class="book-card2-container-wrapper view overlay " xmlns="http://www.w3.org/1999/html">
+  <a [routerLink]="['/book', book.id]">
+    <img src="{{book.imageUrl}}" class="img-fluid">
+    <div class="mask waves-effect waves-light rgba-white-strong">
+      <h2 class="book-title dark-grey-text" align="center">
+        <u>{{book.title}}</u>
+      </h2>
+      <h3 class="book-authors dark-grey-text" align="center">
+        <span *ngFor="let a of book.authors">
+          <i><u>{{a}}</u></i><br>
+        </span>
+      </h3>
+      <p class="book-pub-info" align="center">
+        <span>{{book.publisher}}</span>,
+        <span> {{book.year}}</span>
+      </p>
+    </div>
+  </a>
 </div>
