@@ -8,8 +8,9 @@ import { CarouselComponent } from 'ng-uikit-pro-standard';
   styleUrls: ['book-collection-carousel.component.scss']
 })
 export class BookCollectionCarouselComponent implements OnInit {
-  CAROUSEL_BREAKPOINT_1 = 768;
-  CAROUSEL_BREAKPOINT_2 = 1200;
+  CAROUSEL_BREAKPOINT_SM = 576;
+  CAROUSEL_BREAKPOINT_MD = 768;
+  CAROUSEL_BREAKPOINT_LG = 1200;
   carouselDisplayMode = 'multiple';
 
   @Input() title: string;
@@ -36,12 +37,14 @@ export class BookCollectionCarouselComponent implements OnInit {
 
   @HostListener('window:resize')
   public onWindowResize() {
-    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_1) {
+    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_SM) {
       this.carouselDisplayMode = 'single';
     } else {
       this.carouselDisplayMode = 'multiple';
       const oldChunkSize = this.chunkSize;
-      if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_2) {
+      if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_MD) {
+        this.chunkSize = 2;
+      } else if (window.innerWidth <= this.CAROUSEL_BREAKPOINT_LG) {
         this.chunkSize = 3;
       } else {
         this.chunkSize = 4;
@@ -50,6 +53,7 @@ export class BookCollectionCarouselComponent implements OnInit {
         this.slides = this.chunk(this.books, this.chunkSize);
       }
     }
+    console.log(this.chunkSize);
   }
 
   public previousSlide(): void {

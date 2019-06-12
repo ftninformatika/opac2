@@ -1,7 +1,7 @@
 @import '../../../../styles/common';
 
 .book-card2-container-wrapper {
-  border-radius: 5px;
+  border-radius: 3px;
   max-width: 210px;
   @include fluidType(width, 180, 210);
 
@@ -9,14 +9,15 @@
     width: 100%;
     height: auto;
     max-width: 210px;
-    //@include fluidType(width, 180, 220);
   }
 
   .book-title {
+    text-align: center;
     margin-top: 30px;
   }
 
   .book-authors {
+    text-align: center;
     margin-top: 30px;
   }
 

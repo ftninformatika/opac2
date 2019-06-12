@@ -2,10 +2,10 @@
   <a [routerLink]="['/book', book.id]">
     <img src="{{book.imageUrl}}" class="img-fluid">
     <div class="mask waves-effect waves-light rgba-white-strong">
-      <h2 class="book-title dark-grey-text" align="center">
-        <u>{{book.title}}</u>
+      <h2 class="book-title dark-grey-text" >
+        <u><b>{{book.title}}</b></u>
       </h2>
-      <h3 class="book-authors dark-grey-text" align="center">
+      <h3 class="book-authors dark-grey-text" >
         <span *ngFor="let a of book.authors">
           <i><u>{{a}}</u></i><br>
         </span>

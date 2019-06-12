@@ -11,7 +11,7 @@
   </div>
   <mdb-card-body class="carousel-wrapper">
     <mdb-card-title>
-      <h1 align="center">{{title}}</h1>
+      <h1 class="title">{{title}}</h1>
     </mdb-card-title>
     <mdb-carousel #carousel [animation]="'slide'" [ngSwitch]="carouselDisplayMode" [isControls]="false" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'" [interval]="'0'">
       <ng-container *ngSwitchCase="'single'">
@@ -21,11 +21,16 @@
         </mdb-carousel-item>
         </div>
       </ng-container>
-
       <ng-container *ngSwitchCase="'multiple'">
         <mdb-carousel-item *ngFor="let item of slides; let i = index">
           <div class="px-0"
-               [ngClass]="{'d-none d-md-block': cardIndex !== 0,'col-md-6': chunkSize == 2, 'col-md-4': chunkSize == 3, 'col-md-3': chunkSize == 4}" *ngFor="let book of item; let cardIndex = index">
+               [ngClass]="{
+               'd-none d-md-block': cardIndex !== 0,
+               'col-4': chunkSize == 2,
+               'col-md-4': chunkSize == 3,
+               'col-md-3': chunkSize == 4,
+               'col-xl-3': chunkSize == 5}"
+               *ngFor="let book of item; let cardIndex = index">
             <book-card2 [book]="book"></book-card2>
           </div>
         </mdb-carousel-item>
