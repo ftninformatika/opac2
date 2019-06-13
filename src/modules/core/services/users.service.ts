@@ -24,7 +24,7 @@ export class UsersService {
   public getShelf(email: string): Observable<Book[]> {
     return this.booksService.getAllBooks();
   }
-  
+
   public getMockUser(): Observable<IUserModel> {
     return null;
   }

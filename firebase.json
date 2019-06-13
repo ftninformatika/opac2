@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/opac2",
+    "public": "./dist/opac2",
     "ignore": [
       "firebase.json",
       "**/.*",

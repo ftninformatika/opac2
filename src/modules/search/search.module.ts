@@ -5,6 +5,7 @@ import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { BookResultBrief } from './components/book-result-brief/book-result-brief.component';
+import { BookResultCard } from './components/book-result-card/book-result-card.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { BookResultBrief } from './components/book-result-brief/book-result-brie
     RouterModule.forChild(SearchRoutes)
   ],
   declarations: [
+    BookResultCard,
     BookResultBrief,
     SearchMainPage,
     ResultPage

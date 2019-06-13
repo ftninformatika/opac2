@@ -39,7 +39,6 @@ export class CollectionCarouselComponent implements OnInit {
 
   @HostListener('window:resize')
   public onWindowResize() {
-    console.log(window.innerWidth);
     if (window.innerWidth >= DEVICE_WIDTH_BREAKPOINTS._8_BOOKS) {
       this.chunkSize = 8;
     } else if (window.innerWidth >= DEVICE_WIDTH_BREAKPOINTS._7_BOOKS) {
@@ -84,6 +83,4 @@ export class CollectionCarouselComponent implements OnInit {
     if (this.activeSlideIndex < this.lastSlide) { this.activeSlideIndex++; }
     this.animateDirection = ANIMATE_DIRECTION.LEFT;
   }
-
-  public dummy() {console.log("asdsad");}
 }

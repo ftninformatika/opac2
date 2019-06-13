@@ -1,0 +1,16 @@
+.top-menu-wrapper {
+  header { height: auto !important; }
+
+  .navbar-search-field { width: 100% !important; }
+  .navbar-search-form { width: 45% !important; }
+
+  @media screen and (max-width: 1172px) {
+    .full-library-name { display: none; }
+    .short-library-name { display: block; }
+  }
+  @media not screen and (max-width: 1172px) {
+    .full-library-name { display: block; }
+    .short-library-name { display: none; }
+  }
+
+}

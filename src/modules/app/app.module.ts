@@ -12,9 +12,11 @@ import { CommonUiModule } from '../shared/common-ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from '../core/states/user/user.state';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
+    TopMenuComponent,
     AppPage
   ],
   imports: [
