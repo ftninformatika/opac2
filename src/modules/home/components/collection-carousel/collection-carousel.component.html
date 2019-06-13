@@ -4,7 +4,7 @@
       {{title}}
     </h2>
   </div>
-  <div class="carousel-content d-flex flex-row justify-content-between">
+  <div class="carousel-content d-flex flex-row justify-content-between" (swiperight)="previousSlide()" (swipeleft)="nextSlide()">
     <div class="p-1 left-arrow position-sticky">
       <mdb-icon fas icon="caret-left" size="3x" *ngIf="activeSlideIndex != 0" (click)="previousSlide()"></mdb-icon>
     </div>

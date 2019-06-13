@@ -1,5 +1,6 @@
-import { Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../core/models/book';
+
 
 export enum DEVICE_WIDTH_BREAKPOINTS {
   _8_BOOKS = 1250,
@@ -11,11 +12,6 @@ export enum DEVICE_WIDTH_BREAKPOINTS {
   _2_BOOKS = 370
 }
 
-export enum DEVICE_PREVIEW {
-  WEB = 'web',
-  MOBILE = 'mobile'
-}
-
 export enum ANIMATE_DIRECTION {
   LEFT = 'left',
   RIGHT = 'right'
@@ -25,14 +21,14 @@ export enum ANIMATE_DIRECTION {
   selector: 'collection-carousel',
   templateUrl: 'collection-carousel.component.html',
   styleUrls: ['collection-carousel.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollectionCarouselComponent implements OnInit {
   @Input() books: Book[];
   @Input() title: string;
   public slides: any = [[]];
   public chunkSize = 7;
-  public devicePreviewMode = DEVICE_PREVIEW.WEB;
   public activeSlideIndex = 0;
   public lastSlide = 0;
   public animateDirection;
@@ -60,7 +56,6 @@ export class CollectionCarouselComponent implements OnInit {
       this.chunkSize = 2;
     } else {
       this.chunkSize = 1;
-      this.devicePreviewMode = DEVICE_PREVIEW.MOBILE;
     }
     this.slides = this.chunk(this.books, this.chunkSize);
     this.lastSlide = this.slides.length - 1;
@@ -75,7 +70,10 @@ export class CollectionCarouselComponent implements OnInit {
     return R;
   }
 
-  public changeSlide(index: number) { this.activeSlideIndex = index; }
+  public changeSlide(index: number) {
+    this.animateDirection = index <= this.activeSlideIndex ? ANIMATE_DIRECTION.RIGHT : ANIMATE_DIRECTION.LEFT;
+    this.activeSlideIndex = index;
+  }
 
   public previousSlide() {
     if (this.activeSlideIndex > 0) { this.activeSlideIndex--; }
@@ -86,4 +84,6 @@ export class CollectionCarouselComponent implements OnInit {
     if (this.activeSlideIndex < this.lastSlide) { this.activeSlideIndex++; }
     this.animateDirection = ANIMATE_DIRECTION.LEFT;
   }
+
+  public dummy() {console.log("asdsad");}
 }
