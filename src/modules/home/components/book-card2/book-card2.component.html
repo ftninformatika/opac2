@@ -1,18 +1,18 @@
 <div class="book-card2-container-wrapper view overlay " xmlns="http://www.w3.org/1999/html">
   <a [routerLink]="['/book', book.id]">
-    <img src="{{book.imageUrl}}" class="img-fluid">
+    <img src="{{book.imageUrl}}" class="img-fluid slideInRight">
     <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
-      <h2 class="book-title dark-grey-text" >
+      <h2 class="book-title black-text" >
         <u><b>{{book.title}}</b></u>
       </h2>
-      <h3 class="book-authors dark-grey-text" >
+      <h3 class="book-authors black-text" >
         <span *ngFor="let a of book.authors">
           <i><u>{{a}}</u></i><br>
         </span>
       </h3>
       <p class="book-pub-info">
-        <span>{{book.publisher}}</span>,
-        <span> {{book.year}}</span>
+        <span class="black-text">{{book.publisher}}</span>,
+        <span class="black-text"> {{book.year}}</span>
       </p>
     </div>
   </a>

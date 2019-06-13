@@ -1,16 +1,14 @@
 .collection-carousel-wrapper {
   height: 300px;
   width: 100%;
-  //background: aquamarine;
 
   .title{
-    background: red;
+    //background: red;
   }
 
   .left-arrow {
     margin-top: 70px;
     cursor: pointer;
-    //background: yellow;
   }
   .left-arrow:hover {
     opacity: 0.5;
@@ -22,5 +20,19 @@
   }
   .right-arrow:hover {
     opacity: 0.5;
+  }
+
+  .books-slide {
+  }
+
+  .slide-circles {
+    margin-top: 30px;
+    div.selected-slide {
+      margin-left: 0.75%;
+    }
+    .selected-slide:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
   }
 }
