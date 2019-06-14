@@ -17,7 +17,7 @@
                  placeholder="Потражи..."
                  aria-label="Потражи">
           <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)">
-            <mdb-option *ngFor="let book of results | async" [value]="'book.id'">
+            <mdb-option *ngFor="let book of results | async" [value]="book.id">
               <div class="d-flex flex-column">
                 <strong>{{book.title}}</strong>
                 <small>{{book.authors}}</small>

@@ -9,6 +9,11 @@
   .left-arrow {
     margin-top: 70px;
     cursor: pointer;
+    //a {
+    //  height: 32px;
+    //  width: 32px;
+    //  line-height: 50px;
+    //}
   }
   .left-arrow:hover {
     opacity: 0.5;
@@ -16,7 +21,10 @@
   .right-arrow {
     margin-top: 70px;
     cursor: pointer;
-    //background: burlywood;
+    //a {
+    //  height: 32px;
+    //  width: 32px;
+    //}
   }
   .right-arrow:hover {
     opacity: 0.5;
@@ -25,10 +33,25 @@
   .books-slide {
   }
 
+  .inactive-slide {
+    height: 12px;
+    width: 12px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .active-slide {
+    height: 12px;
+    width: 12px;
+  }
+
   .slide-circles {
     margin-top: 30px;
     div.selected-slide {
       margin-left: 0.75%;
+      height: 16px;
+      width: 16px;
     }
     .selected-slide:hover {
       opacity: 0.5;

@@ -6,20 +6,28 @@
   </div>
   <div class="carousel-content d-flex flex-row justify-content-between" (swiperight)="previousSlide()" (swipeleft)="nextSlide()">
     <div class="p-1 left-arrow position-sticky">
-      <mdb-icon fas icon="caret-left" size="3x" *ngIf="activeSlideIndex != 0" (click)="previousSlide()"></mdb-icon>
+      <a mdbBtn floating="true" size="sm" gradient="blue" mdbWavesEffect *ngIf="activeSlideIndex != 0" (click)="previousSlide()">
+        <mdb-icon fas icon="angle-left"></mdb-icon>
+      </a>
+<!--      <mdb-icon fas icon="caret-left" size="3x" *ngIf="activeSlideIndex != 0" (click)="previousSlide()"></mdb-icon>-->
     </div>
     <div class="p-10 books-slide animated" [ngClass]="{'slideInRight': animateDirection=='left', 'slideInLeft': animateDirection=='right'}"
          *ngFor="let b of slides[activeSlideIndex]">
       <book-card2 [book]="b"></book-card2>
     </div>
     <div class="p-1 right-arrow position-sticky">
-      <mdb-icon fas icon="caret-right" size="3x" *ngIf="activeSlideIndex != lastSlide" (click)="nextSlide()"></mdb-icon>
+      <a mdbBtn floating="true" size="sm" gradient="blue" mdbWavesEffect *ngIf="activeSlideIndex != lastSlide" (click)="nextSlide()">
+        <mdb-icon fas icon="angle-right"></mdb-icon>
+      </a>
+<!--      <mdb-icon fas icon="caret-right" size="3x" *ngIf="activeSlideIndex != lastSlide" (click)="nextSlide()"></mdb-icon>-->
     </div>
   </div>
   <div class="slide-circles p-1 d-flex flex-row justify-content-center">
     <div *ngFor="let item of slides; let i = index" class="selected-slide">
-      <mdb-icon icon="circle fa-xs" *ngIf="activeSlideIndex!=i" fas (click)="changeSlide(i)"></mdb-icon>
-      <mdb-icon icon="circle fa" *ngIf="activeSlideIndex==i" far (click)="changeSlide(i)"></mdb-icon>
+      <a mdbBtn floating="true" size="sm" class="inactive-slide" gradient="blue" mdbWavesEffect *ngIf="activeSlideIndex!=i" fas (click)="changeSlide(i)"></a>
+      <a mdbBtn floating="true" size="sm" class="active-slide" gradient="white" mdbWavesEffect *ngIf="activeSlideIndex==i" far (click)="changeSlide(i)"></a>
+<!--      <mdb-icon icon="circle fa-xs" *ngIf="activeSlideIndex!=i" fas (click)="changeSlide(i)"></mdb-icon>-->
+<!--      <mdb-icon icon="circle fa" *ngIf="activeSlideIndex==i" far (click)="changeSlide(i)"></mdb-icon>-->
     </div>
   </div>
 </div>
