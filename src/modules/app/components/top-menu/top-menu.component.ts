@@ -41,7 +41,8 @@ export class TopMenuComponent {
   }
 
   public onAutoCompleteSelect(event) {
-    const bookId: number = +event.text;
+    console.log(event);
+    const bookId: number = + event.text;
     this.searchText = '';
     this._router.navigate(['/book', bookId]);
   }

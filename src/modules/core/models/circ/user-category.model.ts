@@ -1,5 +1,5 @@
 export interface IUserCategoryModel {
-  decription: string;
+  description: string;
   titlesNo: number;
   period: number;
   maxPeriod: number;

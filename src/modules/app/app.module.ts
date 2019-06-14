@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from '../core/states/user/user.state';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule,
-    NgxsModule.forRoot([UserState])
+    NgxsModule.forRoot([UserState]),
+    NgxsStoragePluginModule.forRoot()
   ],
   providers: [
     MDBSpinningPreloader,

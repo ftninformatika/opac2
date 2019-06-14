@@ -8,10 +8,12 @@ import { HomeRoutes } from './home.routes';
 import { BookCard2Component } from './components/book-card2/book-card2.component';
 import { BookCollectionCarouselComponent } from './components/book-collection-carousel/book-collection-carousel.component';
 import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
     CommonUiModule,
+    CoreModule,
     RouterModule.forChild(HomeRoutes)
   ],
   declarations: [

@@ -1,16 +1,14 @@
 import { IUserModel } from '../../models/circ/user.model';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
-import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export interface IUserStateModel {
-  loggedIn: boolean;
   accessToken: string;
   userData: IUserModel;
 }
 
 export const InitialState: IUserStateModel = {
-  loggedIn: false,
   accessToken: null,
   userData: null
 };
@@ -27,10 +25,7 @@ export class SignInAction {
 
 export class SignOutAction {
   static readonly type = '[User] Sing Out User';
-  public username: string;
-  public constructor(username: string) {
-    this.username = username;
-  }
+  public constructor() {}
 }
 
 @State<IUserStateModel>({
@@ -40,13 +35,29 @@ export class SignOutAction {
 export class UserState {
   private readonly _userService: UsersService;
 
+  @Selector()
+  public static token(state: IUserStateModel) { return state.accessToken; }
+
   public constructor(userService: UsersService) {
     this._userService = userService;
   }
 
-  @Action(SignInAction, {cancelUncompleted: true})
-  public signIn(ctx: StateContext<UserState>, action: SignInAction) {}
+  @Action(SignInAction)
+  public signIn(ctx: StateContext<IUserStateModel>, authCredentials: {username: string, password: string}) {
+    this._userService.getMockUser().subscribe(
+        (user: IUserModel) => {
+          const newState: IUserStateModel = {
+            accessToken: 'dummyjwt123',
+            userData: user
+          };
+          ctx.patchState(newState);
+        },
+      error1 => { alert('handle me!'); }
+      );
+  }
 
   @Action([SignOutAction])
-  public signOut(ctx: StateContext<UserState>, action: SignOutAction) {}
+  public signOut(ctx: StateContext<IUserStateModel>, action: SignOutAction) {
+    ctx.setState(InitialState);
+  }
 }
