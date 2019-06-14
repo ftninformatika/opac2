@@ -3,6 +3,8 @@ import { BooksService } from '../../../core/services/books.service';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Book } from '../../../core/models/book';
+import { Select, Store } from '@ngxs/store';
+import { UserState } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'top-menu',
@@ -12,12 +14,15 @@ import { Book } from '../../../core/models/book';
 export class TopMenuComponent {
   private readonly _bookService: BooksService;
   private readonly _router: Router;
+  private readonly _store: Store;
   public searchText: string;
   public results: Observable<Book[]>;
+  @Select(UserState) user;
 
-  public constructor(booksService: BooksService, router: Router) {
+  public constructor(booksService: BooksService, router: Router, store: Store) {
     this._bookService = booksService;
     this._router = router;
+    this._store = store;
   }
 
   public searchEntries(term: string): Observable<Book[]> {

@@ -33,11 +33,11 @@
           <li class="nav-item advanced-search-button">
             <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['/search']"><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</a>
           </li>
-          <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              <mdb-icon fas icon="user"></mdb-icon> Мој налог<span class="caret"></span></a>
+          <li class="nav-item dropdown" dropdown *ngIf="(user | async)?.userData != null">
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
+              <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
+            </a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/login']" [queryParams]="{next: _router.url}">Пријава</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/shelf']">Моја полица</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/history']">Историја члана</a>
@@ -46,6 +46,9 @@
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">Одјава</a>
             </div>
+          </li>
+          <li class="nav-item" *ngIf="(user | async)?.userData == null">
+            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['/user/login']">Пријава<mdb-icon fas icon="sign-in-alt"></mdb-icon></a>
           </li>
         </ul>
       </links>
