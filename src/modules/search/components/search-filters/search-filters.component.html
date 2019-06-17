@@ -1,0 +1,38 @@
+<div class="search-filters-wrapper">
+  <mdb-card class="mr-4 mb-4 result-filter">
+    <mdb-card-body>
+      <mdb-accordion [multiple]="true">
+        <mdb-accordion-item [collapsed]="false">
+          <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <form [formGroup]="lokacijaForm">
+              <mdb-checkbox formControlName="bgb">Централна</mdb-checkbox>
+              <mdb-checkbox formControlName="stariGrad">Стари Град</mdb-checkbox>
+              <mdb-checkbox formControlName="savskiVenac">Савски Венац</mdb-checkbox>
+            </form>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <mdb-accordion-item>
+          <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <form [formGroup]="vrstaGradjeForm">
+              <mdb-checkbox formControlName="monografske">монографске</mdb-checkbox>
+              <mdb-checkbox formControlName="serijske">серијске</mdb-checkbox>
+            </form>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <mdb-accordion-item>
+          <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <form [formGroup]="jezikForm">
+              <mdb-checkbox formControlName="srp">српски</mdb-checkbox>
+              <mdb-checkbox formControlName="eng">енглески</mdb-checkbox>
+            </form>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+      </mdb-accordion>
+    </mdb-card-body>
+  </mdb-card>
+</div>

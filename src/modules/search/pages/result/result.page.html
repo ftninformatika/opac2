@@ -1,43 +1,34 @@
-<div class="d-flex flex-sm-column flex-md-row">
-  <mdb-card class="mr-4 mb-4 result-filter">
-    <mdb-card-body>
-      <mdb-accordion [multiple]="true">
-        <mdb-accordion-item [collapsed]="false">
-          <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="lokacijaForm">
-              <mdb-checkbox formControlName="bgb">Централна</mdb-checkbox>
-              <mdb-checkbox formControlName="stariGrad">Стари Град</mdb-checkbox>
-              <mdb-checkbox formControlName="savskiVenac">Савски Венац</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
+<div class="result-page-wrapper">
+<!--  <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="filtersModal.show()" mdbWavesEffect>Launch demo modal</button>-->
+  <ng-template #searchFilters>
+    <search-filters></search-filters>
+  </ng-template>
 
-        <mdb-accordion-item>
-          <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="vrstaGradjeForm">
-              <mdb-checkbox formControlName="monografske">монографске</mdb-checkbox>
-              <mdb-checkbox formControlName="serijske">серијске</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
-
-        <mdb-accordion-item>
-          <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="jezikForm">
-              <mdb-checkbox formControlName="srp">српски</mdb-checkbox>
-              <mdb-checkbox formControlName="eng">енглески</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
-      </mdb-accordion>
-    </mdb-card-body>
-  </mdb-card>
-  <div class="flex-1 mr-4">
-    <mdb-card *ngFor="let book of searchResult; let i = index; let last = last" class="mb-3">
-      <book-result-brief [book]="book"></book-result-brief>
-    </mdb-card>
+  <div class="d-flex flex-md-row">
+    <ng-container *ngTemplateOutlet="deviceWidth != 'lte_sm' ? searchFilters : ''"></ng-container>
+    <div class="flex-1 mr-4">
+      <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
+      <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
+      <mdb-card *ngFor="let book of searchResult; let i = index; let last = last" class="mb-3">
+        <book-result-brief [book]="book"></book-result-brief>
+      </mdb-card>
+    </div>
   </div>
+  <div mdbModal #filtersModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="filtersModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Одаберите филтере:</h4>
+        </div>
+        <div class="modal-body">
+          <ng-container *ngTemplateOutlet="searchFilters"></ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="filtersModal.hide()" mdbWavesEffect>Затвори</button>
+        </div>
+      </div>
+    </div>
 </div>

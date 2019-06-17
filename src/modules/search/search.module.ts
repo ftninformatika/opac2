@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { BookResultBrief } from './components/book-result-brief/book-result-brief.component';
 import { BookResultCard } from './components/book-result-card/book-result-card.component';
+import { SearchFiltersComponent } from './components/search-filters/search-filters.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { BookResultCard } from './components/book-result-card/book-result-card.c
     RouterModule.forChild(SearchRoutes)
   ],
   declarations: [
+    SearchFiltersComponent,
     BookResultCard,
     BookResultBrief,
     SearchMainPage,

@@ -6,7 +6,7 @@ import {
   ButtonsModule, CardsFreeModule, CarouselModule,
   CheckboxModule,
   IconsModule,
-  InputsModule,
+  InputsModule, ModalModule,
   NavbarModule, SelectModule, TabsModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,8 @@ import { CommonModule } from '@angular/common';
     CarouselModule,
     TabsModule,
     CommonModule,
-    SelectModule
+    SelectModule,
+    ModalModule
   ]
 })
 export class CommonUiModule { }

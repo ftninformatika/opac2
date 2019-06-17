@@ -1,19 +1,40 @@
-.card {
-  box-shadow: unset !important;
-}
+.result-page-wrapper {
 
-.fixed-height {
-  height: 270px;
-}
+  .filters-modal-btn {
+    margin-bottom: 10px;
+    width: 97.5%;
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.8;
+  }
 
-.fixed-width {
-  max-width: 150px;
-}
+  .filters-modal-btn:hover {
+    opacity: 1;
+  }
 
-.pointer {
-  cursor: pointer;
-}
+  .separator {
+    border-bottom: gray solid 1.5px;
+    margin-bottom: 10px;
+    opacity: 0.2;
+  }
 
-.pointer:hover {
-  text-decoration: underline;
+  .card {
+    box-shadow: unset !important;
+  }
+
+  .fixed-height {
+    height: 270px;
+  }
+
+  .fixed-width {
+    max-width: 150px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .pointer:hover {
+    text-decoration: underline;
+  }
 }
