@@ -2,18 +2,9 @@
   height: 330px;
   width: 100%;
 
-  .title{
-    //background: red;
-  }
-
   .left-arrow {
     margin-top: 70px;
     cursor: pointer;
-    //a {
-    //  height: 32px;
-    //  width: 32px;
-    //  line-height: 50px;
-    //}
   }
   .left-arrow:hover {
     opacity: 0.5;
@@ -21,16 +12,14 @@
   .right-arrow {
     margin-top: 70px;
     cursor: pointer;
-    //a {
-    //  height: 32px;
-    //  width: 32px;
-    //}
   }
+
   .right-arrow:hover {
     opacity: 0.5;
   }
 
-  .books-slide {
+  .no-btn {
+    width: 64.15px;
   }
 
   .inactive-slide {

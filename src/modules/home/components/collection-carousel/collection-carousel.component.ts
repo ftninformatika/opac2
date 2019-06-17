@@ -9,7 +9,7 @@ export enum DEVICE_WIDTH_BREAKPOINTS {
   _5_BOOKS = 780,
   _4_BOOKS = 650,
   _3_BOOKS = 520,
-  _2_BOOKS = 370
+  _2_BOOKS = 415
 }
 
 export enum ANIMATE_DIRECTION {
