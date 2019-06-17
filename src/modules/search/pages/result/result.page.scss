@@ -3,12 +3,13 @@
   .filters-modal-btn {
     margin-top: 5px;
     margin-bottom: 10px;
-    width: 97.5%;
+    width: 98%;
     font-size: 16px;
     font-weight: 600;
     position: sticky;
     top: 0;
     z-index: 1;
+    border-radius: 10px;
   }
 
   .filters-modal-btn:hover {

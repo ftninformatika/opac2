@@ -19,13 +19,16 @@
     text-decoration: underline;
   }
 
+  .book-cover > img {
+    width: 200px;
+  }
+
   @media (max-width: 576px) {
     h4 {font-size: 17px}
     h5 {font-size: 15px}
     span {font-size: 15px}
-    .book-cover>img {width: 100px}
+    .book-cover > img {width: 100px}
     .fixed-height {height: 200px}
-    .publisher {font-size: 14px}
   }
 
   @media (max-width: 476px) {
@@ -34,10 +37,13 @@
     span {font-size: 14px}
     .book-cover>img {width: 90px}
     .fixed-height {height: 185px}
-    .publisher {font-size: 13px}
   }
 
   .publisher {
+    text-align: center;
+    font-size: 13px;
+    position: absolute;
     bottom: 0;
+    margin-bottom: 30px;
   }
 }
