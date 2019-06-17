@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Book } from '../../../core/models/book';
 import { Select, Store } from '@ngxs/store';
-import { UserState } from '../../../core/states/user/user.state';
+import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'top-menu',
@@ -50,5 +50,10 @@ export class TopMenuComponent {
     const bookId: number = + event.text;
     this.searchText = '';
     this._router.navigate(['/book', bookId]);
+  }
+
+  public signOut() {
+    this._store.dispatch(new SignOutAction());
+    this._router.navigate(['']);
   }
 }

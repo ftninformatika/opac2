@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { UserState } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  private readonly _store: Store;
+  @Select(UserState) userState;
 
-  ngOnInit() {
+  public constructor(store: Store) {
+    this._store = store;
   }
+
+  public ngOnInit() { }
 
 }

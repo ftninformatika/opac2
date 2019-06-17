@@ -42,6 +42,7 @@ export class UserState {
     this._userService = userService;
   }
 
+  // TODO: change this later
   @Action(SignInAction)
   public signIn(ctx: StateContext<IUserStateModel>, authCredentials: {username: string, password: string}) {
     this._userService.getMockUser().subscribe(
