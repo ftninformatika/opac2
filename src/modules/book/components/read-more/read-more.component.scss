@@ -1,17 +1,19 @@
-div.read-more {
-  position: relative;
-}
+.read-more-wrapper {
+  div.read-more {
+    position: relative;
+  }
 
-div.collapsed {
-  height: 200px;
-  overflow: hidden;
-}
+  div.collapsed {
+    height: 200px;
+    overflow: hidden;
+  }
 
-div.expand {
-  position: absolute;
-  bottom: 0px;
-  right: 16px;
-  background-color: #eeeeee;
-  cursor: pointer;
-  padding: 5px;
+  div.expand {
+    position: absolute;
+    bottom: 0px;
+    right: 16px;
+    background-color: #eeeeee;
+    cursor: pointer;
+    padding: 5px;
+  }
 }

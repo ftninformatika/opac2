@@ -7,7 +7,7 @@
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
-      <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
+      <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()" >Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <mdb-card *ngFor="let book of searchResult; let i = index; let last = last" class="mb-3">
         <book-result-brief [book]="book"></book-result-brief>

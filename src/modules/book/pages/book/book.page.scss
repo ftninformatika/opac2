@@ -1,7 +1,10 @@
-.author-link:hover {
-  text-decoration: underline !important;
-}
-p.unimarc {
-  font-family: 'Fira Mono', monospace;
-  font-size: smaller;
+.book-page-wrapper {
+  .author-link:hover {
+    text-decoration: underline !important;
+  }
+
+  p.unimarc {
+    font-family: 'Fira Mono', monospace;
+    font-size: smaller;
+  }
 }

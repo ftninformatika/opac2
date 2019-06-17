@@ -1,11 +1,14 @@
 .result-page-wrapper {
 
   .filters-modal-btn {
+    margin-top: 5px;
     margin-bottom: 10px;
     width: 97.5%;
     font-size: 16px;
     font-weight: 600;
-    opacity: 0.8;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
   .filters-modal-btn:hover {
