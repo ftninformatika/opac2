@@ -4,12 +4,12 @@ import { Book } from '../../../core/models/book';
 
 export enum DEVICE_WIDTH_BREAKPOINTS {
   _8_BOOKS = 1250,
-  _7_BOOKS = 1050,
-  _6_BOOKS = 850,
-  _5_BOOKS = 780,
-  _4_BOOKS = 650,
-  _3_BOOKS = 520,
-  _2_BOOKS = 415
+  _7_BOOKS = 1200,
+  _6_BOOKS = 950,
+  _5_BOOKS = 850,
+  _4_BOOKS = 716,
+  _3_BOOKS = 580,
+  _2_BOOKS = 450
 }
 
 export enum ANIMATE_DIRECTION {
