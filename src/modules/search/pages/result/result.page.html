@@ -1,9 +1,7 @@
 <div class="result-page-wrapper">
-<!--  <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="filtersModal.show()" mdbWavesEffect>Launch demo modal</button>-->
   <ng-template #searchFilters>
     <search-filters></search-filters>
   </ng-template>
-
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">

@@ -1,19 +1,43 @@
-.card {
-  box-shadow: unset !important;
-}
+.book-result-brief-wrapper {
+  .card {
+    box-shadow: unset !important;
+  }
 
-.fixed-height {
-  height: 270px;
-}
+  .fixed-height {
+    height: 270px;
+  }
 
-.fixed-width {
-  max-width: 150px;
-}
+  .fixed-width {
+    max-width: 150px;
+  }
 
-.pointer {
-  cursor: pointer;
-}
+  .pointer {
+    cursor: pointer;
+  }
 
-.pointer:hover {
-  text-decoration: underline;
+  .pointer:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 576px) {
+    h4 {font-size: 17px}
+    h5 {font-size: 15px}
+    span {font-size: 15px}
+    .book-cover>img {width: 100px}
+    .fixed-height {height: 200px}
+    .publisher {font-size: 14px}
+  }
+
+  @media (max-width: 476px) {
+    h4 {font-size: 16px}
+    h5 {font-size: 14px}
+    span {font-size: 14px}
+    .book-cover>img {width: 90px}
+    .fixed-height {height: 185px}
+    .publisher {font-size: 13px}
+  }
+
+  .publisher {
+    bottom: 0;
+  }
 }
