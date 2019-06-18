@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '../../../core/models/book';
@@ -6,7 +6,8 @@ import { Book } from '../../../core/models/book';
 @Component({
   selector: 'app-book',
   templateUrl: './book.page.html',
-  styleUrls: ['./book.page.scss']
+  styleUrls: ['./book.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BookPage implements OnInit {
 
