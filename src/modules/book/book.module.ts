@@ -5,6 +5,7 @@ import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { ItemsAvailabilityCardComponent } from './components/items-availability-card/items-availability-card.component';
+import { Book2Page } from './pages/book2/book2.page';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { ItemsAvailabilityCardComponent } from './components/items-availability-
   declarations: [
     ItemsAvailabilityCardComponent,
     BookPage,
+    Book2Page,
     ReadMoreComponent
   ]
 })

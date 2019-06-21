@@ -1,0 +1,28 @@
+.book2-page-wrapper {
+  .main-container {
+    flex-direction: row;
+    @media only screen and (max-width: 680px) {
+      flex-direction: column-reverse;
+    }
+    .book-container {
+      @media only screen and (max-width: 880px) {
+        dt {font-size: 14px; }
+        dd {font-size: 13px; }
+      }
+      @media only screen and (max-width: 680px) {
+        h3 {font-size: 16px; }
+        h5 {font-size: 15px; }
+        .author-link {font-size: 14px; }
+        .publisher {font-size: 14px; }
+        .unimarc {font-size: 14px; }
+      }
+    }
+
+    .other-container {
+      width: 50%;
+      @media only screen and (max-width: 680px) {
+        width: 100%;
+      }
+    }
+  }
+}
