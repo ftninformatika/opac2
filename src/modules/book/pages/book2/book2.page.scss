@@ -33,6 +33,15 @@
       width: 50%;
       @media only screen and (max-width: 680px) {
         width: 100%;
+        h5 {font-size: 16px; }
+        p {font-size: 14px; }
+        a {
+          font-size: 10px;
+          height: 35px;
+          line-height: 10px;
+          width: 100px;
+        }
+
       }
     }
   }
