@@ -27,7 +27,6 @@
           </mdb-auto-completer>
         </div>
       </form>
-
       <links>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item advanced-search-button">
@@ -37,7 +36,7 @@
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
-            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/shelf']">Моја полица</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/history']">Историја члана</a>
