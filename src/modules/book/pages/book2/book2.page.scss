@@ -16,6 +16,17 @@
         .publisher {font-size: 14px; }
         .unimarc {font-size: 14px; }
       }
+
+      .publisher {
+        margin-top: 70px;
+      }
+
+      div.book-tabs div.container-fluid ul.nav {
+        border-bottom: none;
+        a.nav-link {
+          color: white;
+        }
+      }
     }
 
     .other-container {

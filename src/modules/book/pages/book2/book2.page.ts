@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../core/models/book';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,7 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'book2-page',
   templateUrl: 'book2.page.html',
-  styleUrls: ['book2.page.scss']
+  styleUrls: ['book2.page.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Book2Page implements OnInit {
   private readonly _booksService: BooksService;
