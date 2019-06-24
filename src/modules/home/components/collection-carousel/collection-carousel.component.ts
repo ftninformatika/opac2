@@ -35,7 +35,6 @@ export class CollectionCarouselComponent implements OnInit {
 
   public ngOnInit(): void {
     this.onWindowResize();
-    console.log(this.books);
   }
 
   @HostListener('window:resize')

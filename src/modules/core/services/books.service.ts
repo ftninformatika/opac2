@@ -1,11 +1,78 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import { Observable, of } from 'rxjs';
+import { ILendingViewModel } from '../models/circ/lending/lending-view.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
+
+  lendings: ILendingViewModel[] = [
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    },
+    {
+      userId: '00000004914',
+      ctlgNo: '01000035987',
+      location: 'Odrasli',
+      lendDate: new Date(''),
+      returnDate: new Date(),
+      title: 'Tri praseta',
+      published: 'Laguna, 2011'
+    }
+  ];
 
   books: Book[] = [
     {
@@ -50,6 +117,7 @@ export class BooksService {
       id: 6,
       title: 'Norse Mythology',
       authors: ['Neil Gaiman'],
+      // tslint:disable-next-line:max-line-length
       imageUrl: 'https://pro2-bar-s3-cdn-cf3.myportfolio.com/560d16623f9c2df9615744dfab551b3d/e50c016f-b6a8-4666-8fb8-fe6bd5fd9fec_rw_1920.jpeg?h=dc627898fc5eac88aa791fb2b124ecbd',
       publisher: 'W.W. Norton',
       year: 2017,
@@ -57,6 +125,7 @@ export class BooksService {
       id: 7,
       title: 'The CEO Who Lost His Head',
       authors: ['Aditya Sinha'],
+      // tslint:disable-next-line:max-line-length
       imageUrl: 'https://www.ishankhosla.com/sites/default/files/styles/masonry200width/public/book-cover-design-india-18-06-2017.jpg?itok=krCrtN14',
       publisher: 'PAN',
       year: 2016,
@@ -188,5 +257,9 @@ export class BooksService {
 
   public getAllBooks(): Observable<Book[]> {
     return of(this.books);
+  }
+
+  public getDummyLendingViews(): ILendingViewModel[] {
+    return this.lendings;
   }
 }

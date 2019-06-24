@@ -1,3 +1,96 @@
-<p>
-  history works!
-</p>
+<mdb-card cascade="true" narrower="true">
+  <!--Card image-->
+  <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+    <div>
+      <button mdbBtn color="white" outline="true" rounded="true" size="sm" type="button" class="px-2" mdbWavesEffect>
+        <mdb-icon fas icon="th-large" class="mt-0"></mdb-icon>
+      </button>
+      <button mdbBtn color="white" outline="true" rounded="true" size="sm" type="button" class="px-2" mdbWavesEffect>
+        <mdb-icon fas icon="columns" class="mt-0"></mdb-icon>
+      </button>
+    </div>
+
+    <a href="" class="white-text mx-3">Историја задужења</a>
+
+    <div>
+<!--      <button type="button" mdbBtn color="white" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>-->
+<!--        <mdb-icon fas icon="pencil-alt" class="mt-0"></mdb-icon>-->
+<!--      </button>-->
+<!--      <button type="button" mdbBtn color="white" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>-->
+<!--        <mdb-icon fas icon="times" class="mt-0"></mdb-icon>-->
+<!--      </button>-->
+<!--      <button type="button" mdbBtn color="white" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>-->
+<!--        <mdb-icon fas fas icon="info-circle-circle" class="mt-0"></mdb-icon>-->
+<!--      </button>-->
+    </div>
+
+  </div>
+  <!--/Card image-->
+
+  <div class="px-4">
+
+    <div class="table-wrapper table-responsive w-auto">
+      <!--Table-->
+      <table class="mb-0" mdbTable hover="true">
+
+        <!--Table head-->
+        <thead>
+        <tr>
+          <th>
+            <mdb-icon fas icon="angle-down"></mdb-icon>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('title')">Наслов
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('author')">Аутор
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('lendDate')">Датум изнајмљивања
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('location')">Место
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('published')">Издавач
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th class="th-sm">
+            <a (click)="sortBy('returnDate')">Датум враћања
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+        </tr>
+        </thead>
+        <!--Table head-->
+
+        <!--Table body-->
+        <tbody>
+        <tr *ngFor="let row of allLendings;let i = index">
+          <th scope="row">
+            <mdb-icon fas icon="book" class="mr-2 blue-text"></mdb-icon>
+          </th>
+          <td>{{row.title}}</td>
+          <td>{{row.author}}</td>
+          <td>{{row.lendDate}}</td>
+          <td>{{row.location}}</td>
+          <td>{{row.published}}</td>
+          <td>{{row.returnDate}}</td>
+        </tr>
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+  </div>
+</mdb-card>
