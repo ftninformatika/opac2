@@ -17,8 +17,7 @@ export class BookCard2Component implements OnInit {
     this._router = router;
   }
 
-  public ngOnInit() {
-  }
+  public ngOnInit() {}
 
   public gotoBook(id: number) {
     this._router.navigate(['/book', id]);

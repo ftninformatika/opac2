@@ -12,7 +12,7 @@ export class BooksService {
       id: 1,
       title: 'Fred The Lonely Monster',
       authors: ['Anne Lowinsky'],
-      imageUrl: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png',
+      // imageUrl: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png',
       publisher: 'Create Media',
       year: 2019,
     }, {
