@@ -5,6 +5,7 @@ const routes: Routes = [
   { path: 'book', loadChildren: './../book/book.module#BookModule' },
   { path: 'search', loadChildren: './../search/search.module#SearchModule' },
   { path: 'user', loadChildren: './../user/user.module#UserModule' },
+  { path: 'error', loadChildren: './../errors/errors.module#ErrorsModule' },
   { path: '', pathMatch: 'full', loadChildren: './../home/home.module#HomeModule' },
 ];
 
