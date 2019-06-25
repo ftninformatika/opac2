@@ -1,76 +1,78 @@
-<form [formGroup]="searchForm">
-  <div class="row">
-    <div class="col-md-3 col-xl-2 offset-xl-2">
-      <mdb-select [options]="prefixList" formControlName="prefix1" (selected)="selectedPrefix($event, 0)"></mdb-select>
+<div class="search-main-page-wrapper">
+  <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="col-md-3 col-xl-2 offset-xl-2">
+        <mdb-select [options]="prefixList" formControlName="prefix1" (selected)="selectedPrefix($event, 0)"></mdb-select>
+      </div>
+      <div class="col-md-5" *ngIf="!isPrefixCoded[0]">
+        <input mdbInput type="text" class="form-control" formControlName="content1"/>
+      </div>
+      <div class="col-md-5" *ngIf="isPrefixCoded[0]">
+        <mdb-select [options]="contentCoders[0]" formControlName="content1coder"></mdb-select>
+      </div>
+      <div class="col-md-2 col-xl-1">
+        <mdb-select [options]="operatorList" formControlName="operator1"></mdb-select>
+      </div>
     </div>
-    <div class="col-md-5" *ngIf="!isPrefixCoded[0]">
-      <input mdbInput type="text" class="form-control" formControlName="content1"/>
+    <div class="row mt-3">
+      <div class="col-md-3 col-xl-2 offset-xl-2">
+        <mdb-select [options]="prefixList" formControlName="prefix2" (selected)="selectedPrefix($event, 1)"></mdb-select>
+      </div>
+      <div class="col-md-5" *ngIf="!isPrefixCoded[1]">
+        <input mdbInput type="text" class="form-control" formControlName="content2"/>
+      </div>
+      <div class="col-md-5" *ngIf="isPrefixCoded[1]">
+        <mdb-select [options]="contentCoders[1]" formControlName="content2coder"></mdb-select>
+      </div>
+      <div class="col-md-2 col-xl-1">
+        <mdb-select [options]="operatorList" formControlName="operator2"></mdb-select>
+      </div>
     </div>
-    <div class="col-md-5" *ngIf="isPrefixCoded[0]">
-      <mdb-select [options]="contentCoders[0]" formControlName="content1coder"></mdb-select>
+    <div class="row mt-3">
+      <div class="col-md-3 col-xl-2 offset-xl-2">
+        <mdb-select [options]="prefixList" formControlName="prefix3" (selected)="selectedPrefix($event, 2)"></mdb-select>
+      </div>
+      <div class="col-md-5" *ngIf="!isPrefixCoded[2]">
+        <input mdbInput type="text" class="form-control" formControlName="content3"/>
+      </div>
+      <div class="col-md-5" *ngIf="isPrefixCoded[2]">
+        <mdb-select [options]="contentCoders[2]" formControlName="content3coder"></mdb-select>
+      </div>
+      <div class="col-md-2 col-xl-1">
+        <mdb-select [options]="operatorList" formControlName="operator3"></mdb-select>
+      </div>
     </div>
-    <div class="col-md-2 col-xl-1">
-      <mdb-select [options]="operatorList" formControlName="operator1"></mdb-select>
+    <div class="row mt-3">
+      <div class="col-md-3 col-xl-2 offset-xl-2">
+        <mdb-select [options]="prefixList" formControlName="prefix4" (selected)="selectedPrefix($event, 3)"></mdb-select>
+      </div>
+      <div class="col-md-5" *ngIf="!isPrefixCoded[3]">
+        <input mdbInput type="text" class="form-control" formControlName="content4"/>
+      </div>
+      <div class="col-md-5" *ngIf="isPrefixCoded[3]">
+        <mdb-select [options]="contentCoders[3]" formControlName="content4coder"></mdb-select>
+      </div>
+      <div class="col-md-2 col-xl-1">
+        <mdb-select [options]="operatorList" formControlName="operator4"></mdb-select>
+      </div>
     </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-3 col-xl-2 offset-xl-2">
-      <mdb-select [options]="prefixList" formControlName="prefix2" (selected)="selectedPrefix($event, 1)"></mdb-select>
+    <div class="row mt-3">
+      <div class="col-md-3 col-xl-2 offset-xl-2">
+        <mdb-select [options]="prefixList" formControlName="prefix5" (selected)="selectedPrefix($event, 4)"></mdb-select>
+      </div>
+      <div class="col-md-5" *ngIf="!isPrefixCoded[4]">
+        <input mdbInput type="text" class="form-control" formControlName="content5"/>
+      </div>
+      <div class="col-md-5" *ngIf="isPrefixCoded[4]">
+        <mdb-select [options]="contentCoders[4]" formControlName="content5coder"></mdb-select>
+      </div>
     </div>
-    <div class="col-md-5" *ngIf="!isPrefixCoded[1]">
-      <input mdbInput type="text" class="form-control" formControlName="content2"/>
+    <div class="row mt-3">
+      <div class="col-md-10 text-right">
+        <button type="button" mdbBtn color="primary" mdbWavesEffect (click)="onSubmit()">
+          <mdb-icon fas icon="search" class="mr-1"></mdb-icon> Претражи
+        </button>
+      </div>
     </div>
-    <div class="col-md-5" *ngIf="isPrefixCoded[1]">
-      <mdb-select [options]="contentCoders[1]" formControlName="content2coder"></mdb-select>
-    </div>
-    <div class="col-md-2 col-xl-1">
-      <mdb-select [options]="operatorList" formControlName="operator2"></mdb-select>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-3 col-xl-2 offset-xl-2">
-      <mdb-select [options]="prefixList" formControlName="prefix3" (selected)="selectedPrefix($event, 2)"></mdb-select>
-    </div>
-    <div class="col-md-5" *ngIf="!isPrefixCoded[2]">
-      <input mdbInput type="text" class="form-control" formControlName="content3"/>
-    </div>
-    <div class="col-md-5" *ngIf="isPrefixCoded[2]">
-      <mdb-select [options]="contentCoders[2]" formControlName="content3coder"></mdb-select>
-    </div>
-    <div class="col-md-2 col-xl-1">
-      <mdb-select [options]="operatorList" formControlName="operator3"></mdb-select>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-3 col-xl-2 offset-xl-2">
-      <mdb-select [options]="prefixList" formControlName="prefix4" (selected)="selectedPrefix($event, 3)"></mdb-select>
-    </div>
-    <div class="col-md-5" *ngIf="!isPrefixCoded[3]">
-      <input mdbInput type="text" class="form-control" formControlName="content4"/>
-    </div>
-    <div class="col-md-5" *ngIf="isPrefixCoded[3]">
-      <mdb-select [options]="contentCoders[3]" formControlName="content4coder"></mdb-select>
-    </div>
-    <div class="col-md-2 col-xl-1">
-      <mdb-select [options]="operatorList" formControlName="operator4"></mdb-select>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-3 col-xl-2 offset-xl-2">
-      <mdb-select [options]="prefixList" formControlName="prefix5" (selected)="selectedPrefix($event, 4)"></mdb-select>
-    </div>
-    <div class="col-md-5" *ngIf="!isPrefixCoded[4]">
-      <input mdbInput type="text" class="form-control" formControlName="content5"/>
-    </div>
-    <div class="col-md-5" *ngIf="isPrefixCoded[4]">
-      <mdb-select [options]="contentCoders[4]" formControlName="content5coder"></mdb-select>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-10 text-right">
-      <button type="button" mdbBtn color="primary" mdbWavesEffect (click)="onSubmit()">
-        <mdb-icon fas icon="search" class="mr-1"></mdb-icon> Претражи
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
