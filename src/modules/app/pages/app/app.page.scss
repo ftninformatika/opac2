@@ -1,8 +1,17 @@
 .app-page-wrapper {
+  main {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    //height: 100%;
+    width: 100%;
+  }
+
   footer {
-    //position: revert;
-    margin-top: 200px;
+    //position: absolute;
+    //margin-bottom: -100px;
     bottom: 0;
     width: 100%;
+    left:0;
   }
 }
