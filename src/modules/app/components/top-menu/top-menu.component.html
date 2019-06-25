@@ -7,12 +7,12 @@
           <span class="short-library-name">БГБ</span>
         </a>
       </mdb-navbar-brand>
-
-      <form class="form-inline waves-light navbar-search-form" mdbWavesEffect>
+      <form class="form-inline waves-light navbar-search-form">
         <div class="md-form my-0 flex-grow-1">
           <input type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field"
                  [(ngModel)]="searchText"
-                 (input)="onChange()"
+                 (input)="getFilteredData()"
+                 (ngModelChange)="onChange()"
                  [mdbAutoCompleter]="auto"
                  placeholder="Потражи..."
                  aria-label="Потражи">
