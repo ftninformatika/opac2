@@ -14,6 +14,7 @@ import { NgxsModule } from '@ngxs/store';
 import { UserState } from '../core/states/user/user.state';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
   imports: [
     CoreModule,
     CommonUiModule,
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),

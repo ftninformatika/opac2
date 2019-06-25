@@ -5,10 +5,10 @@ import { BookCarouselComponent } from './components/book-carousel/book-carousel.
 import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
-import { BookCard2Component } from './components/book-card2/book-card2.component';
 import { BookCollectionCarouselComponent } from './components/book-collection-carousel/book-collection-carousel.component';
 import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
 import { CoreModule } from '../core/core.module';
+import { BookCard2Component } from './components/book-card2/book-card2.component';
 
 @NgModule({
   imports: [
@@ -23,6 +23,9 @@ import { CoreModule } from '../core/core.module';
     MainPage,
     BookCardComponent,
     BookCarouselComponent
+  ],
+  exports: [
+    BookCard2Component
   ]
 })
 export class HomeModule { }

@@ -7,9 +7,11 @@ import { ChangePasswordPage } from './pages/change-password/change-password.page
 import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { CommonUiModule } from '../shared/common-ui.module';
+import { HomeModule } from '../home/home.module';
 
 @NgModule({
   imports: [
+    HomeModule,
     CommonUiModule,
     RouterModule.forChild(UserRoutes),
   ],

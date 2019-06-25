@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../core/models/book';
 import { Router } from '@angular/router';
+import { Book } from '../../../core/models/book';
 
 @Component({
   selector: 'book-card2',
