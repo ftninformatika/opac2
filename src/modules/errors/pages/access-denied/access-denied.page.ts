@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
 @Component({
   selector: 'access-denied-page',
-  templateUrl: 'access-denied-page.html',
-  styleUrls: ['access-denied-page.scss'],
+  templateUrl: 'access-denied.page.html',
+  styleUrls: ['access-denied.page.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
