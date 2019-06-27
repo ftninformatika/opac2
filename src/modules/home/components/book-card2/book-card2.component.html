@@ -1,6 +1,8 @@
 <div class="book-card2-container-wrapper view overlay " xmlns="http://www.w3.org/1999/html">
   <a [routerLink]="['/book', book.id]">
-    <img src="{{book.imageUrl}}" class="img-fluid slideInRight" onError="this.src='../../../../assets/book/nocover.jpg';">
+    <img data-src="{{book.imageUrl}}" class="img-fluid slideInRight"
+         onError="this.src='../../../../assets/book/nocover.jpg';"
+          alt="{{book.title}}">
     <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
       <h2 class="book-title black-text" >
         <u><b>{{book.title}}</b></u>
