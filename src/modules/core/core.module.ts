@@ -3,21 +3,20 @@ import { BooksService } from './services/books.service';
 import { PrefixesService } from './services/prefixes.service';
 import { UsersService } from './services/users.service';
 import { AuthGuard } from './guards/auth.guard';
-import { TranslateLazyPipe } from './pipes/translate-lazy.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [
-    TranslateLazyPipe
+  imports: [
+    TranslateModule
   ],
   providers: [
     BooksService,
     PrefixesService,
     UsersService,
-    AuthGuard,
-    TranslateLazyPipe
+    AuthGuard
   ],
   exports: [
-    TranslateLazyPipe
+    TranslateModule
   ]
 })
 export class CoreModule {}

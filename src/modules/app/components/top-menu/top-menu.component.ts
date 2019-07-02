@@ -7,7 +7,6 @@ import { Select, Store } from '@ngxs/store';
 import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 import { TranslateService } from '@ngx-translate/core';
 import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
-import { ChangeLanguageAction } from '../../../core/states/localization/localization.state';
 
 @Component({
   selector: 'top-menu',
@@ -62,8 +61,6 @@ export class TopMenuComponent {
   }
 
   public changeLanguage() {
-    this._store.dispatch(new ChangeLanguageAction(ELocalizationLanguage.US_ENGLISH));
     this._translateService.use(ELocalizationLanguage.US_ENGLISH);
-    console.log(this._translateService.getLangs());
   }
 }

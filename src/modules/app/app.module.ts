@@ -18,7 +18,6 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { LocalizationState } from '../core/states/localization/localization.state';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,7 @@ import { LocalizationState } from '../core/states/localization/localization.stat
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule,
-    NgxsModule.forRoot([UserState, LocalizationState]),
+    NgxsModule.forRoot([UserState]),
     NgxsStoragePluginModule.forRoot()
   ],
   providers: [
