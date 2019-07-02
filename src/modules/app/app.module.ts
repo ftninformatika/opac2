@@ -15,6 +15,10 @@ import { UserState } from '../core/states/user/user.state';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { SharedModule } from '../shared/shared.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { LocalizationState } from '../core/states/localization/localization.state';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,13 @@ import { SharedModule } from '../shared/shared.module';
     AppPage
   ],
   imports: [
+    TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+    }),
     CoreModule,
     CommonUiModule,
     SharedModule,
@@ -29,12 +40,16 @@ import { SharedModule } from '../shared/shared.module';
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule,
-    NgxsModule.forRoot([UserState]),
+    NgxsModule.forRoot([UserState, LocalizationState]),
     NgxsStoragePluginModule.forRoot()
   ],
   providers: [
-    MDBSpinningPreloader,
+    MDBSpinningPreloader
   ],
   bootstrap: [AppPage]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

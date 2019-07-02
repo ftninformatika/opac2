@@ -1,7 +1,6 @@
 import { IUserModel } from '../../models/circ/user.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
-import { tap } from 'rxjs/operators';
 
 export interface IUserStateModel {
   accessToken: string;

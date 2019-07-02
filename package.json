@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~7.2.15",
     "@angular/router": "~7.2.15",
     "@fortawesome/fontawesome-free": "^5.8.2",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "@ngxs/logger-plugin": "^3.4.3-dev.master-3528deb",
     "@ngxs/storage-plugin": "^3.4.3",
     "@ngxs/store": "^3.4.3-dev.master-3528deb",

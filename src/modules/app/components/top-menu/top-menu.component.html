@@ -32,6 +32,9 @@
           <li class="nav-item advanced-search-button">
             <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['/search']"><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</a>
           </li>
+          <li class="nav-item">
+            <button (click)="changeLanguage()">EN</button>
+          </li>
           <li class="nav-item dropdown" dropdown *ngIf="(user | async)?.userData != null">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
