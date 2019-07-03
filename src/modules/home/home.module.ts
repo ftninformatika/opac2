@@ -9,12 +9,16 @@ import { BookCollectionCarouselComponent } from './components/book-collection-ca
 import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
 import { CoreModule } from '../core/core.module';
 import { BookCard2Component } from './components/book-card2/book-card2.component';
+import { intersectionObserverPreset, LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
     CommonUiModule,
     CoreModule,
-    RouterModule.forChild(HomeRoutes)
+    RouterModule.forChild(HomeRoutes),
+    LazyLoadImageModule.forRoot({
+      preset: intersectionObserverPreset
+    })
   ],
   declarations: [
     CollectionCarouselComponent,

@@ -18,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { LazyLoadImageDirective } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HttpClient } from '@angular/common/http';
     NgxsStoragePluginModule.forRoot()
   ],
   providers: [
+    LazyLoadImageDirective,
     MDBSpinningPreloader
   ],
   bootstrap: [AppPage]

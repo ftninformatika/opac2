@@ -10,6 +10,7 @@ import {
   NavbarModule, PopoverModule, SelectModule, TabsModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
+import { LazyLoadImageDirective } from 'ng-lazyload-image';
 
 @NgModule({
   exports: [
@@ -28,7 +29,10 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     SelectModule,
     ModalModule,
-    PopoverModule
+    PopoverModule,
+  ],
+  providers: [
+    LazyLoadImageDirective
   ]
 })
 export class CommonUiModule { }
