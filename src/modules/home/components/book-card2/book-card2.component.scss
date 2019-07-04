@@ -12,6 +12,15 @@
     max-width: 121px;
   }
 
+  img.ng-lazyloaded {
+    animation: fadein .5s;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0.3; }
+    to   { opacity: 1; }
+  }
+
   .no-image-container {
     height: 192px;
   }
