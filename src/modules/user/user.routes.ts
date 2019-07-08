@@ -5,6 +5,7 @@ import { LoginPage } from './pages/login/login.page';
 import { HistoryPage } from './pages/history/history.page';
 import { ChangePasswordPage } from './pages/change-password/change-password.page';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { ActivateAccountPage } from './pages/activate-account/activate-account.page';
 
 export const UserRoutes: Routes = [
   {
@@ -28,6 +29,12 @@ export const UserRoutes: Routes = [
   },
   {
     path: 'change-password',
-    component: ChangePasswordPage
+    component: ChangePasswordPage,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'activate-account:activateToken',
+    component: ActivateAccountPage,
+    canActivate: [AuthGuard]
   }
 ];

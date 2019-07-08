@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { CommonUiModule } from '../shared/common-ui.module';
 import { HomeModule } from '../home/home.module';
+import { ActivateAccountPage } from './pages/activate-account/activate-account.page';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { HomeModule } from '../home/home.module';
     RouterModule.forChild(UserRoutes),
   ],
   declarations: [
+    ActivateAccountPage,
     LoginPage,
     ProfilePage,
     ShelfPage,
