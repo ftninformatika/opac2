@@ -3,11 +3,16 @@ import { Observable, of } from 'rxjs';
 import { BooksService } from './books.service';
 import { Book } from '../models/book';
 import { EAge, EGender, IUserModel } from '../models/circ/user.model';
+import { HttpClient } from '@angular/common/http';
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+
+  private readonly _booksService: BooksService;
+  private readonly _httpClient: HttpClient;
 
   user: IUserModel = {
     _id : '5ad219dee966de47694e40a2',
@@ -88,7 +93,10 @@ export class UsersService {
     ]
   };
 
-  public constructor(private booksService: BooksService) { }
+  public constructor(booksService: BooksService, httpClient) {
+    this._booksService = booksService;
+    this._httpClient = httpClient;
+  }
 
   public login(email: string, password: string): Observable<boolean> {
     // TODO: real implementation
@@ -101,10 +109,15 @@ export class UsersService {
   }
 
   public getShelf(email: string): Observable<Book[]> {
-    return this.booksService.getAllBooks();
+    return this._booksService.getAllBooks();
   }
 
   public getMockUser(): Observable<IUserModel> {
     return of(this.user);
+  }
+
+  // TODO: implement
+  public activateAccount(): Observable<boolean> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, 'asdasda') as Observable<boolean>;
   }
 }
