@@ -1,8 +1,8 @@
 <div class="book2-page-wrapper">
-  <div class="main-container d-flex">
+  <div class="main-container d-flex flex-container">
     <div class="book-container p-2 container-fluid">
       <div class="flex-1">
-        <div class="d-flex">
+        <div class="d-flex book-info">
           <div class="mr-3">
             <img data-src="{{book.imageUrl}}" height="200" onError="this.src='../../../../assets/book/nocover.jpg';"/>
           </div>
@@ -16,6 +16,9 @@
             </p>
             <p class="publisher">{{book.publisher}}, {{book.year}}.</p>
           </div>
+        </div>
+        <div class="items-sm mt-4">
+        <items-availability-card ></items-availability-card>
         </div>
         <div class="d-flex flex-column">
           <div class="mb-2">

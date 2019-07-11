@@ -1,8 +1,19 @@
 .book2-page-wrapper {
   .main-container {
     flex-direction: row;
+    .items-sm {
+      visibility: hidden;
+      display: none;
+    }
     @media only screen and (max-width: 680px) {
+      .book-info {
+        margin-bottom: 30px;
+      }
       flex-direction: column-reverse;
+      .items-sm {
+        visibility: visible;
+        display: contents;
+      }
     }
     .book-container {
       @media only screen and (max-width: 880px) {
@@ -42,6 +53,9 @@
           width: 100px;
         }
         side-misc {
+          display: none;
+        }
+        items-availability-card {
           display: none;
         }
       }
