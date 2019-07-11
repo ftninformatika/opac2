@@ -3,7 +3,7 @@ import { Book } from '../../../core/models/book';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-book-card',
+  selector: 'book-card',
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
 export class BookCardComponent implements OnInit {
 
   @Input() book: Book;
+  private readonly _router: Router;
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
+  public constructor(router: Router) {
+    this._router = router;
   }
 
-  gotoBook(id: number) {
-    this.router.navigate(['/book', id]);
+  public ngOnInit() {}
+
+  public gotoBook(id: number) {
+    this._router.navigate(['/book', id]);
   }
 }

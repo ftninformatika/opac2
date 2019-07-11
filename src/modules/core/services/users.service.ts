@@ -93,7 +93,7 @@ export class UsersService {
     ]
   };
 
-  public constructor(booksService: BooksService, httpClient) {
+  public constructor(booksService: BooksService, httpClient: HttpClient) {
     this._booksService = booksService;
     this._httpClient = httpClient;
   }
@@ -116,8 +116,8 @@ export class UsersService {
     return of(this.user);
   }
 
-  // TODO: implement
-  public activateAccount(): Observable<boolean> {
-    return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, 'asdasda') as Observable<boolean>;
-  }
+  // // TODO: implement
+  // public activateAccount(): Observable<boolean> {
+  //   return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, 'asdasda') as Observable<boolean>;
+  // }
 }

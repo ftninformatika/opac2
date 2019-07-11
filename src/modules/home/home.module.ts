@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
-import { MainPage } from './pages/main/main.page';
+import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
+import { intersectionObserverPreset, LazyLoadImageModule } from 'ng-lazyload-image';
 import { BookCardComponent } from './components/book-card/book-card.component';
-import { BookCarouselComponent } from './components/book-carousel/book-carousel.component';
 import { CommonUiModule } from '../shared/common-ui.module';
+import { MainPage } from './pages/main/main.page';
+import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
-import { BookCollectionCarouselComponent } from './components/book-collection-carousel/book-collection-carousel.component';
-import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
-import { CoreModule } from '../core/core.module';
-import { BookCard2Component } from './components/book-card2/book-card2.component';
-import { intersectionObserverPreset, LazyLoadImageModule } from 'ng-lazyload-image';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -22,14 +19,11 @@ import { intersectionObserverPreset, LazyLoadImageModule } from 'ng-lazyload-ima
   ],
   declarations: [
     CollectionCarouselComponent,
-    BookCollectionCarouselComponent,
-    BookCard2Component,
-    MainPage,
     BookCardComponent,
-    BookCarouselComponent
+    MainPage
   ],
   exports: [
-    BookCard2Component
+    BookCardComponent
   ]
 })
 export class HomeModule { }

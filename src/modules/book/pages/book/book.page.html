@@ -1,116 +1,119 @@
-<div class="book-page-wrapper">
-  <div class="d-flex" *ngIf="book">
-    <div class="flex-1">
-      <div class="d-flex">
-        <div class="mr-3" *ngIf="book.imageUrl">
-          <img src="{{book.imageUrl}}" height="200"/>
-        </div>
-        <div class="flex-1">
-          <h3 class="h3-responsive">{{book.title}}</h3>
-          <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
-          <p>
+<div class="book2-page-wrapper">
+  <div class="main-container d-flex">
+    <div class="book-container p-2 container-fluid">
+      <div class="flex-1">
+        <div class="d-flex">
+          <div class="mr-3">
+            <img data-src="{{book.imageUrl}}" height="200" onError="this.src='../../../../assets/book/nocover.jpg';"/>
+          </div>
+          <div class="flex-1">
+            <h3 class="h3-responsive">{{book.title}}</h3>
+            <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
+            <p>
             <span *ngFor="let author of book.authors; let last = last">
               <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
             </span>
-          </p>
-          <p class="publisher">{{book.publisher}}, {{book.year}}.</p>
+            </p>
+            <p class="publisher">{{book.publisher}}, {{book.year}}.</p>
+          </div>
         </div>
-      </div>
-      <div class="d-flex flex-column">
-        <div class="mb-4">
-          <read-more>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat lacus sit amet tempor vulputate. Nunc leo sem, placerat at congue non, fermentum et diam. Ut egestas, ligula vitae fermentum finibus, ante purus suscipit purus, a euismod orci leo ac arcu. Suspendisse dolor nisi, varius a quam a, varius convallis massa. Donec commodo viverra interdum. Sed id interdum sem, vel ultrices felis. Donec gravida ipsum aliquet sapien varius, vel hendrerit mi fringilla. Sed fermentum a odio vel molestie. Mauris risus quam, sagittis volutpat tincidunt ut, mollis ut purus.
-            </p>
-            <p>
-              Nullam malesuada quam non egestas pellentesque. Maecenas vitae neque condimentum, ullamcorper erat vitae, vehicula nisl. Nunc pretium dictum dapibus. Aliquam nec mollis orci. Curabitur sit amet mattis arcu, id molestie quam. Duis porta nulla ut enim rhoncus tempor. Nam ac euismod ante, ac lacinia nibh. Nunc ac lacus non metus sollicitudin tristique. In fermentum tellus pretium nulla facilisis aliquet. Cras id luctus erat. In non leo nec tellus pellentesque aliquam. Integer ut ligula id enim dapibus porta in vitae elit.
-            </p>
-            <p>
-              Morbi porta porta fringilla. Donec nunc odio, feugiat at euismod ut, tincidunt at ipsum. Vestibulum consectetur vitae arcu nec finibus. Praesent id placerat enim. Quisque quam augue, sollicitudin eget libero vitae, dapibus ullamcorper est. Nullam imperdiet lorem mauris, ut accumsan nisl pharetra non. Vestibulum arcu justo, posuere vitae metus eget, fringilla malesuada arcu. In congue erat ut quam molestie, eget pharetra enim dictum. Nulla in lectus quis ligula condimentum egestas. Mauris ultricies suscipit nisl vel lacinia. Etiam accumsan lobortis aliquet. Sed scelerisque finibus purus sed malesuada. Maecenas erat neque, ornare sed eros eget, fermentum euismod metus. Vivamus nec aliquet erat.
-            </p>
-            <p>
-              Nam hendrerit nulla facilisis faucibus ullamcorper. Integer ultricies posuere elit, eget luctus arcu luctus euismod. Ut porttitor massa venenatis consectetur blandit. Curabitur sit amet tempus ligula, eu iaculis ante. Cras purus nisl, dictum quis nisi vitae, consectetur mollis nisl. Suspendisse vel pulvinar nisi. Nulla nisl nulla, mollis eget elementum in, aliquam quis nunc.
-            </p>
-            <p>
-              Donec a dictum lacus. Sed sit amet aliquam sem. Morbi ac scelerisque magna. Vestibulum convallis magna eu quam hendrerit mattis. Phasellus efficitur fermentum lorem ac lacinia. In libero ante, dignissim non sem ut, sollicitudin cursus tellus. Aenean rutrum elit facilisis, gravida enim sit amet, faucibus nunc. Sed lobortis feugiat purus a rutrum. Aenean at ex at dui ornare tincidunt. Quisque quis maximus magna, eu euismod dui. Nunc id tortor tellus. Etiam vestibulum finibus porta. Phasellus in ligula ex. Duis in arcu ultrices, viverra turpis ac, sagittis elit.
-            </p>
-          </read-more>
-        </div>
-        <div class="book-tabs">
-          <mdb-tabset [buttonClass]="'md-tabs tabs-3'" >
-            <mdb-tab heading="Детаљи">
-              <div class="row">
-                <div class="col-12 mt-2">
-                  <dl class="row">
-                    <dt class="col-sm-2">Наслов</dt>
-                    <dd class="col-sm-10">{{book.title}}</dd>
+        <div class="d-flex flex-column">
+          <div class="mb-2">
+            <read-more>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat lacus sit amet tempor vulputate. Nunc leo sem, placerat at congue non, fermentum et diam. Ut egestas, ligula vitae fermentum finibus, ante purus suscipit purus, a euismod orci leo ac arcu. Suspendisse dolor nisi, varius a quam a, varius convallis massa. Donec commodo viverra interdum. Sed id interdum sem, vel ultrices felis. Donec gravida ipsum aliquet sapien varius, vel hendrerit mi fringilla. Sed fermentum a odio vel molestie. Mauris risus quam, sagittis volutpat tincidunt ut, mollis ut purus.
+              </p>
+              <p>
+                Nullam malesuada quam non egestas pellentesque. Maecenas vitae neque condimentum, ullamcorper erat vitae, vehicula nisl. Nunc pretium dictum dapibus. Aliquam nec mollis orci. Curabitur sit amet mattis arcu, id molestie quam. Duis porta nulla ut enim rhoncus tempor. Nam ac euismod ante, ac lacinia nibh. Nunc ac lacus non metus sollicitudin tristique. In fermentum tellus pretium nulla facilisis aliquet. Cras id luctus erat. In non leo nec tellus pellentesque aliquam. Integer ut ligula id enim dapibus porta in vitae elit.
+              </p>
+              <p>
+                Morbi porta porta fringilla. Donec nunc odio, feugiat at euismod ut, tincidunt at ipsum. Vestibulum consectetur vitae arcu nec finibus. Praesent id placerat enim. Quisque quam augue, sollicitudin eget libero vitae, dapibus ullamcorper est. Nullam imperdiet lorem mauris, ut accumsan nisl pharetra non. Vestibulum arcu justo, posuere vitae metus eget, fringilla malesuada arcu. In congue erat ut quam molestie, eget pharetra enim dictum. Nulla in lectus quis ligula condimentum egestas. Mauris ultricies suscipit nisl vel lacinia. Etiam accumsan lobortis aliquet. Sed scelerisque finibus purus sed malesuada. Maecenas erat neque, ornare sed eros eget, fermentum euismod metus. Vivamus nec aliquet erat.
+              </p>
+              <p>
+                Nam hendrerit nulla facilisis faucibus ullamcorper. Integer ultricies posuere elit, eget luctus arcu luctus euismod. Ut porttitor massa venenatis consectetur blandit. Curabitur sit amet tempus ligula, eu iaculis ante. Cras purus nisl, dictum quis nisi vitae, consectetur mollis nisl. Suspendisse vel pulvinar nisi. Nulla nisl nulla, mollis eget elementum in, aliquam quis nunc.
+              </p>
+              <p>
+                Donec a dictum lacus. Sed sit amet aliquam sem. Morbi ac scelerisque magna. Vestibulum convallis magna eu quam hendrerit mattis. Phasellus efficitur fermentum lorem ac lacinia. In libero ante, dignissim non sem ut, sollicitudin cursus tellus. Aenean rutrum elit facilisis, gravida enim sit amet, faucibus nunc. Sed lobortis feugiat purus a rutrum. Aenean at ex at dui ornare tincidunt. Quisque quis maximus magna, eu euismod dui. Nunc id tortor tellus. Etiam vestibulum finibus porta. Phasellus in ligula ex. Duis in arcu ultrices, viverra turpis ac, sagittis elit.
+              </p>
+            </read-more>
+          </div>
+          <div class="book-tabs">
+            <mdb-tabset [buttonClass]="'md-tabs tabs-3  blue'" >
+              <mdb-tab heading="Детаљи">
+                <div class="row">
+                  <div class="col-12 mt-2">
+                    <dl class="row">
+                      <dt class="col-sm-2">Наслов</dt>
+                      <dd class="col-sm-10">{{book.title}}</dd>
 
-                    <dt class="col-sm-2" *ngIf="book.subtitle">Поднаслов</dt>
-                    <dd class="col-sm-10" *ngIf="book.subtitle">{{book.subtitle}}</dd>
+                      <dt class="col-sm-2" *ngIf="book.subtitle">Поднаслов</dt>
+                      <dd class="col-sm-10" *ngIf="book.subtitle">{{book.subtitle}}</dd>
 
-                    <dt class="col-sm-2" *ngIf="book.authors">Аутори</dt>
-                    <dd class="col-sm-10" *ngIf="book.authors">{{book.authors}}</dd>
-                    <!--<dd class="col-sm-9 offset-sm-3">Dodatni autori ako ce svaki ici u poseban red</dd>-->
+                      <dt class="col-sm-2" *ngIf="book.authors">Аутори</dt>
+                      <dd class="col-sm-10" *ngIf="book.authors">{{book.authors}}</dd>
+                      <!--<dd class="col-sm-9 offset-sm-3">Dodatni autori ako ce svaki ici u poseban red</dd>-->
 
-                    <dt class="col-sm-2" *ngIf="book.publisher">Издавач</dt>
-                    <dd class="col-sm-10" *ngIf="book.publisher">{{book.publisher}}</dd>
+                      <dt class="col-sm-2" *ngIf="book.publisher">Издавач</dt>
+                      <dd class="col-sm-10" *ngIf="book.publisher">{{book.publisher}}</dd>
 
-                    <dt class="col-sm-2" *ngIf="book.year">Година</dt>
-                    <dd class="col-sm-10" *ngIf="book.year">{{book.year}}</dd>
-                  </dl>
+                      <dt class="col-sm-2" *ngIf="book.year">Година</dt>
+                      <dd class="col-sm-10" *ngIf="book.year">{{book.year}}</dd>
+                    </dl>
+                  </div>
                 </div>
-              </div>
-            </mdb-tab>
-            <mdb-tab heading="ISBD">
-              <div class="row">
-                <div class="col-12 mt-2">
-                  <p>
-                    <strong>HERIS, Robert</strong><br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arhangelsk / Robert Heris ; preveo Nikola Jordanov. - Beograd : Laguna, 2007 (Beograd : Margo-art). - 382 str. ; 20 cm
-                  </p>
-                  <p>
-                    Prevod dela: Archangel / Robert Harris. - Tiraž 1.500. - Beleška o piscu: str. [383].
-                  </p>
-                  <p>
-                    ISBN 978-86-7436-653-0 (broš.)<br/>
-                    821.111-31
-                  </p>
+              </mdb-tab>
+              <mdb-tab heading="ISBD">
+                <div class="row">
+                  <div class="col-12 mt-2">
+                    <p>
+                      <strong>HERIS, Robert</strong><br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arhangelsk / Robert Heris ; preveo Nikola Jordanov. - Beograd : Laguna, 2007 (Beograd : Margo-art). - 382 str. ; 20 cm
+                    </p>
+                    <p>
+                      Prevod dela: Archangel / Robert Harris. - Tiraž 1.500. - Beleška o piscu: str. [383].
+                    </p>
+                    <p>
+                      ISBN 978-86-7436-653-0 (broš.)<br/>
+                      821.111-31
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </mdb-tab>
-            <mdb-tab heading="UNIMARC">
-              <div class="row">
-                <div class="col-12 mt-2">
-                  <p class="unimarc">
-                    <strong>001</strong> ##  <strong>[7]</strong>ba  <strong>[a]</strong>c  <strong>[b]</strong>a  <strong>[c]</strong>m  <strong>[d]</strong>0  <strong>[e]</strong>171148<br/>
-                    <strong>010</strong> ##  <strong>[a]</strong>978-86-7436-653-0<br/>
-                    <strong>100</strong> ##  <strong>[c]</strong>2007  <strong>[h]</strong>srp<br/>
-                    <strong>101</strong> 1#  <strong>[a]</strong>srp  <strong>[c]</strong>eng<br/>
-                    <strong>102</strong> ##  <strong>[a]</strong>srb<br/>
-                    <strong>105</strong> ##  <strong>[f]</strong>a<br/>
-                    <strong>200</strong> 0#  <strong>[a]</strong>Arhangelsk  <strong>[f]</strong>Robert Heris  <strong>[g]</strong>preveo Nikola Jordanov<br/>
-                    <strong>210</strong> ##  <strong>[a]</strong>Beograd  <strong>[c]</strong>Laguna  <strong>[d]</strong>2007<br/>
-                    <strong>215</strong> ##  <strong>[a]</strong>382 str.  <strong>[d]</strong>20 cm<br/>
-                    <strong>300</strong> ##  <strong>[a]</strong>Prevod dela: Archangel / Robert Harris<br/>
-                    <strong>300</strong> ##  <strong>[a]</strong>Beleška o piscu: str. [383]<br/>
-                    <strong>300</strong> ##  <strong>[a]</strong>Beleške uz tekst<br/>
-                    <strong>474</strong> ##  <strong>[1]</strong>0<br/>
-                    <strong>500</strong> 10  <strong>[a]</strong>Archangel<br/>
-                    <strong>675</strong> ##  <strong>[a]</strong>821.111-311.6  <strong>[b]</strong>821.111-311.6<br/>
-                    <strong>700</strong> #1  <strong>[4]</strong>070  <strong>[a]</strong>HERIS  <strong>[b]</strong>Robert<br/>
-                    <strong>702</strong> 11  <strong>[4]</strong>730  <strong>[a]</strong>JORDANOV  <strong>[b]</strong>Nikola<br/>
-                    <strong>900</strong> #3  <strong>[a]</strong>HARRIS  <strong>[b]</strong>Robert<br/>
-                    <strong>900</strong> #9  <strong>[a]</strong>HARIS  <strong>[b]</strong>Robert<br/>
-                  </p>
+              </mdb-tab>
+              <mdb-tab heading="UNIMARC">
+                <div class="row">
+                  <div class="col-12 mt-2">
+                    <p class="unimarc">
+                      <strong>001</strong> ##  <strong>[7]</strong>ba  <strong>[a]</strong>c  <strong>[b]</strong>a  <strong>[c]</strong>m  <strong>[d]</strong>0  <strong>[e]</strong>171148<br/>
+                      <strong>010</strong> ##  <strong>[a]</strong>978-86-7436-653-0<br/>
+                      <strong>100</strong> ##  <strong>[c]</strong>2007  <strong>[h]</strong>srp<br/>
+                      <strong>101</strong> 1#  <strong>[a]</strong>srp  <strong>[c]</strong>eng<br/>
+                      <strong>102</strong> ##  <strong>[a]</strong>srb<br/>
+                      <strong>105</strong> ##  <strong>[f]</strong>a<br/>
+                      <strong>200</strong> 0#  <strong>[a]</strong>Arhangelsk  <strong>[f]</strong>Robert Heris  <strong>[g]</strong>preveo Nikola Jordanov<br/>
+                      <strong>210</strong> ##  <strong>[a]</strong>Beograd  <strong>[c]</strong>Laguna  <strong>[d]</strong>2007<br/>
+                      <strong>215</strong> ##  <strong>[a]</strong>382 str.  <strong>[d]</strong>20 cm<br/>
+                      <strong>300</strong> ##  <strong>[a]</strong>Prevod dela: Archangel / Robert Harris<br/>
+                      <strong>300</strong> ##  <strong>[a]</strong>Beleška o piscu: str. [383]<br/>
+                      <strong>300</strong> ##  <strong>[a]</strong>Beleške uz tekst<br/>
+                      <strong>474</strong> ##  <strong>[1]</strong>0<br/>
+                      <strong>500</strong> 10  <strong>[a]</strong>Archangel<br/>
+                      <strong>675</strong> ##  <strong>[a]</strong>821.111-311.6  <strong>[b]</strong>821.111-311.6<br/>
+                      <strong>700</strong> #1  <strong>[4]</strong>070  <strong>[a]</strong>HERIS  <strong>[b]</strong>Robert<br/>
+                      <strong>702</strong> 11  <strong>[4]</strong>730  <strong>[a]</strong>JORDANOV  <strong>[b]</strong>Nikola<br/>
+                      <strong>900</strong> #3  <strong>[a]</strong>HARRIS  <strong>[b]</strong>Robert<br/>
+                      <strong>900</strong> #9  <strong>[a]</strong>HARIS  <strong>[b]</strong>Robert<br/>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </mdb-tab>
-          </mdb-tabset>
+              </mdb-tab>
+            </mdb-tabset>
+          </div>
         </div>
       </div>
     </div>
-    <div class="d-flex">
+    <div class="other-container p-2 container-fluid">
       <items-availability-card></items-availability-card>
+      <side-misc></side-misc>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@
     </div>
     <div class="p-10 books-slide animated" [ngClass]="{'slideInRight': animateDirection=='left', 'slideInLeft': animateDirection=='right'}"
          *ngFor="let b of slides[activeSlideIndex]">
-      <book-card2 [book]="b"></book-card2>
+      <book-card [book]="b"></book-card>
     </div>
     <div class="p-1 right-arrow position-sticky">
       <a mdbBtn floating="true" size="sm" gradient="blue" mdbWavesEffect *ngIf="activeSlideIndex != lastSlide" (click)="nextSlide()">

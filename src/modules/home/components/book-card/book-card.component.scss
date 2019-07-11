@@ -1,19 +1,54 @@
-.card {
-  box-shadow: unset !important;
-}
+@import '../../../../styles/common';
 
-.book-card-container-class {
+.book-card2-container-wrapper {
+  border-radius: 3px;
+  width: 121px;
+  max-width: 121px;
+  @include fluidType(width, 100, 121);
 
-  .fixed-height {
-    height: 25rem;
+  img {
+    width: 121px;
+    height: auto;
+    max-width: 121px;
   }
 
-  .pointer {
-    cursor: pointer;
+  img.ng-lazyloaded {
+    animation: fadein .5s;
   }
 
-  .pointer:hover {
-    text-decoration: underline;
+  @keyframes fadein {
+    from { opacity: 0.3; }
+    to   { opacity: 1; }
   }
 
+  .no-image-container {
+    height: 192px;
+  }
+
+  .book-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .book-authors {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .rgba-white-strong, .rgba-white-strong:after {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .book-pub-info {
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }

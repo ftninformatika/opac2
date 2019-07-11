@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../../core/services/users.service';
-import { first, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'activate-acount-page',
@@ -12,12 +11,12 @@ export class ActivateAccountPage implements OnInit {
 
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
-  private readonly _userService: UsersService;
+  // private readonly _userService: UsersService;
   
-  public constructor(activatedRoute: ActivatedRoute, router: Router, userService: UsersService) {
+  public constructor(activatedRoute: ActivatedRoute, router: Router) {
     this._activatedRoute = activatedRoute;
     this._router = router;
-    this._userService = userService;
+    // this._userService = userService;
   }
 
   public ngOnInit(): void {

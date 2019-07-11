@@ -1,10 +1,50 @@
-.book-page-wrapper {
-  .author-link:hover {
-    text-decoration: underline !important;
-  }
+.book2-page-wrapper {
+  .main-container {
+    flex-direction: row;
+    @media only screen and (max-width: 680px) {
+      flex-direction: column-reverse;
+    }
+    .book-container {
+      @media only screen and (max-width: 880px) {
+        dt {font-size: 14px; }
+        dd {font-size: 13px; }
+      }
+      @media only screen and (max-width: 680px) {
+        h3 {font-size: 16px; }
+        h5 {font-size: 15px; }
+        .author-link {font-size: 14px; }
+        .publisher {font-size: 14px; }
+        .unimarc {font-size: 14px; }
+      }
 
-  p.unimarc {
-    font-family: 'Fira Mono', monospace;
-    font-size: smaller;
+      .publisher {
+        margin-top: 70px;
+      }
+
+      div.book-tabs div.container-fluid ul.nav {
+        border-bottom: none;
+        a.nav-link {
+          color: white;
+        }
+      }
+    }
+
+    .other-container {
+      width: 40%;
+      @media only screen and (max-width: 680px) {
+        width: 100%;
+        h5 {font-size: 16px; }
+        p {font-size: 14px; }
+        a {
+          font-size: 10px;
+          height: 35px;
+          line-height: 10px;
+          width: 100px;
+        }
+        side-misc {
+          display: none;
+        }
+      }
+    }
   }
 }
