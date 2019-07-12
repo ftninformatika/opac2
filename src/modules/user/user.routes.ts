@@ -33,8 +33,7 @@ export const UserRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'activate-account:activateToken',
-    component: ActivateAccountPage,
-    canActivate: [AuthGuard]
+    path: 'activate-account/:activateToken',
+    component: ActivateAccountPage
   }
 ];

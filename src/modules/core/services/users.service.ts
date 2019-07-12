@@ -116,6 +116,10 @@ export class UsersService {
     return of(this.user);
   }
 
+  // public getUserByActivationToken(activationToken: string): IUserModel {
+  //    return this._httpClient.post(ApiEndpointConfig.Paths.user.getMemberByActivationToken, activationToken) as IUserModel;
+  // }
+
   // // TODO: implement
   // public activateAccount(): Observable<boolean> {
   //   return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, 'asdasda') as Observable<boolean>;
