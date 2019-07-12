@@ -8,18 +8,20 @@
     <mdb-card-body class="px-lg-5 pt-0">
       <form class="text-center" style="color: #757575;">
         <p class="mt-2">
-          Унесите жељену лозинку
+          Унесите жељену лозинку за:<br> {{libraryMember.username}}
         </p>
         <div class="md-form">
-          <input type="password" id="materialLoginFormPassword1" class="form-control" mdbInput>
+          <input type="password" id="materialLoginFormPassword1" class="form-control" mdbInput [(ngModel)]="this.pass1" name="pass1" (ngModelChange)="changed1($event)">
           <label for="materialLoginFormPassword1">Лозинка</label>
         </div>
         <div class="md-form">
-          <input type="password" id="materialLoginFormPassword2" class="form-control" mdbInput>
+          <input type="password" id="materialLoginFormPassword2" class="form-control" mdbInput [(ngModel)]="this.pass2" name="pass2" (ngModelChange)="changed2($event)">
           <label for="materialLoginFormPassword2">Поновите лозинку</label>
         </div>
-        <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-                type="submit">Активирајте налог</button>
+        <button mdbBtn color="info" outline="false" rounded="true" block="true"
+                class="my-4 waves-effect z-depth-0" mdbWavesEffect
+                [disabled]="!isValid"
+                type="submit" (click)="activateAccount()" >Активирајте налог</button>
       </form>
     </mdb-card-body>
   </mdb-card>

@@ -5,6 +5,7 @@ import { Book } from '../models/book';
 import { EAge, EGender, IUserModel } from '../models/circ/user.model';
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { ILibraryMember } from '../models/library-member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -116,9 +117,9 @@ export class UsersService {
     return of(this.user);
   }
 
-  // public getUserByActivationToken(activationToken: string): IUserModel {
-  //    return this._httpClient.post(ApiEndpointConfig.Paths.user.getMemberByActivationToken, activationToken) as IUserModel;
-  // }
+  public getUserByActivationToken(activationToken: string): Observable<ILibraryMember> {
+     return this._httpClient.post(ApiEndpointConfig.Paths.user.getMemberByActivationToken, activationToken) as Observable<ILibraryMember>;
+  }
 
   // // TODO: implement
   // public activateAccount(): Observable<boolean> {
