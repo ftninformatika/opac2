@@ -8,7 +8,7 @@ export class ApiEndpointConfig {
     user: {
       auth: `${ApiEndpointConfig.Origin}/mematuh`,
       getMemberByActivationToken: `${ApiEndpointConfig.Origin}/library_members/get_member_by_activation_token`,
-      activateAccount: `${ApiEndpointConfig.Origin}/activate-account`
+      activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`
     }
   };
 }

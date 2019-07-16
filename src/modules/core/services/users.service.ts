@@ -121,8 +121,7 @@ export class UsersService {
      return this._httpClient.post(ApiEndpointConfig.Paths.user.getMemberByActivationToken, activationToken) as Observable<ILibraryMember>;
   }
 
-  // // TODO: implement
-  // public activateAccount(): Observable<boolean> {
-  //   return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, 'asdasda') as Observable<boolean>;
-  // }
+  public activateAccount(member: ILibraryMember): Observable<boolean> {
+        return this._httpClient.post(ApiEndpointConfig.Paths.user.activateAccount, member) as Observable<boolean>;
+  }
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +38,7 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ToastModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule,
     NgxsModule.forRoot([UserState]),

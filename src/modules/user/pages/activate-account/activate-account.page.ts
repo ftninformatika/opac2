@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../../core/services/users.service';
 import { ILibraryMember } from '../../../core/models/library-member.model';
 import { EPasswordCodes, MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 import { Subject, } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'activate-acount-page',
@@ -17,6 +18,7 @@ export class ActivateAccountPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _userService: UsersService;
+  private readonly _toastService: ToastService;
   private libraryMember: ILibraryMember;
   private pass1Changed: Subject<string> = new Subject<string>();
   private pass2Changed: Subject<string> = new Subject<string>();
@@ -25,19 +27,21 @@ export class ActivateAccountPage implements OnInit {
   public pass2: string;
   public isValid: boolean;
 
-  public constructor(activatedRoute: ActivatedRoute, router: Router, userService: UsersService) {
+  public constructor(activatedRoute: ActivatedRoute, router: Router, userService: UsersService, toastService: ToastService) {
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._userService = userService;
+    this._toastService = toastService;
+    this.libraryMember = null;
     this.isValid = false;
     this.pass1 = '';
     this.pass2 = '';
     this.pass1Changed.pipe(
-      debounceTime(300),
+      debounceTime(650),
       distinctUntilChanged()
     ).subscribe(() => this.validatePasswords());
     this.pass2Changed.pipe(
-      debounceTime(300),
+      debounceTime(650),
       distinctUntilChanged()
     ).subscribe(() => this.validatePasswords());
   }
@@ -55,22 +59,36 @@ export class ActivateAccountPage implements OnInit {
   }
 
   public activateAccount(): void {
-    console.log(this.pass1, this.pass2);
-    alert(this.validatePasswords());
+    if (this.validatePasswords() === EPasswordCodes.PasswordsMatch) {
+      this.libraryMember.password = this.pass1;
+      this._userService.activateAccount(this.libraryMember).subscribe(
+        response => {
+          if (response) {
+            this._toastService.success('Успешно сте активирали OPAC налог, можете се пријавити!', 'Успешно');
+            this._router.navigate(['/user/login']);
+          } else {
+            this._toastService.warning('Дошло је до грешке приликом активације налога!');
+          }
+        },
+        () => {
+          this._toastService.warning('Дошло је до грешке приликом активације налога!');
+        }
+      );
+    } else {
+      this._toastService
+        .info('Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!');
+    }
   }
 
   public validatePasswords(): EPasswordCodes {
-    console.log('validating');
     const reg = new RegExp(MinimumPasswordStrengthRegex);
     if (!this.pass1 && !this.pass2) {
       this.isValid = false;
       return EPasswordCodes.PasswordEmpty;
-    }
-    if (this.pass1 !== this.pass2) {
+    } else if (this.pass1 !== this.pass2) {
       this.isValid = false;
       return EPasswordCodes.PasswordsDontMatch;
-    }
-    if (reg.test(this.pass1) && reg.test(this.pass2)) {
+    } else  if (reg.test(this.pass1) && reg.test(this.pass2)) {
       this.isValid = true;
       return EPasswordCodes.PasswordsMatch;
     } else {
