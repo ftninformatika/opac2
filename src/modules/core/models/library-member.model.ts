@@ -8,3 +8,8 @@ export interface ILibraryMember {
   profileActivated: boolean;
   authToken?: string;
 }
+
+export interface ILoginDto {
+  username: string;
+  password: string;
+}

@@ -5,7 +5,8 @@ import { Book } from '../models/book';
 import { EAge, EGender, IUserModel } from '../models/circ/user.model';
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
-import { ILibraryMember } from '../models/library-member.model';
+import { ILibraryMember, ILoginDto } from '../models/library-member.model';
+import { IMemberWrapper } from '../models/member-wrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -99,9 +100,8 @@ export class UsersService {
     this._httpClient = httpClient;
   }
 
-  public login(email: string, password: string): Observable<boolean> {
-    // TODO: real implementation
-    return of(true);
+  public login(loginDto: ILoginDto): Observable<IMemberWrapper> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.auth, loginDto) as Observable<IMemberWrapper>;
   }
 
   public forgotPassword(email: string): Observable<boolean> {

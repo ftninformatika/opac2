@@ -6,7 +6,7 @@ export class ApiEndpointConfig {
 
   public static Paths = {
     user: {
-      auth: `${ApiEndpointConfig.Origin}/mematuh`,
+      auth: `${ApiEndpointConfig.Origin}/memauth`,
       getMemberByActivationToken: `${ApiEndpointConfig.Origin}/library_members/get_member_by_activation_token`,
       activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`
     }

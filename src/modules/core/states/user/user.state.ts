@@ -1,15 +1,20 @@
 import { IUserModel } from '../../models/circ/user.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
+import { ILibraryMember } from '../../models/library-member.model';
+import { IMemberWrapper } from '../../models/member-wrapper';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 export interface IUserStateModel {
   accessToken: string;
   userData: IUserModel;
+  user: ILibraryMember;
 }
 
 export const InitialState: IUserStateModel = {
   accessToken: null,
-  userData: null
+  userData: null,
+  user: null
 };
 
 export class SignInAction {
@@ -33,27 +38,42 @@ export class SignOutAction {
 })
 export class UserState {
   private readonly _userService: UsersService;
+  private readonly _toastService: ToastService;
 
   @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
 
-  public constructor(userService: UsersService) {
-    this._userService = userService;
+  @Selector()
+  public static library(state: IUserStateModel) {
+    if (state.user && state.user.libraryPrefix) {
+      return state.user.libraryPrefix;
+    }
+    return null;
   }
 
-  // TODO: change this later
+  public constructor(userService: UsersService, toastService: ToastService) {
+    this._userService = userService;
+    this._toastService = toastService;
+  }
+
   @Action(SignInAction)
-  public signIn(ctx: StateContext<IUserStateModel>, authCredentials: {username: string, password: string}) {
-    this._userService.getMockUser().subscribe(
-        (user: IUserModel) => {
-          const newState: IUserStateModel = {
-            accessToken: 'dummyjwt123',
-            userData: user
-          };
-          ctx.patchState(newState);
-        },
-      error1 => { alert('handle me!'); }
-      );
+  public signIn(ctx: StateContext<IUserStateModel>, action: SignInAction) {
+    this._userService.login(action).subscribe(
+      (response: IMemberWrapper) => {
+        if (!response.member || !response.libraryMember || !response.libraryMember.authToken) {
+          this._toastService.warning('Нешто је пошло по злу!');
+          return;
+        }
+        ctx.patchState({
+          userData: response.member,
+          user: response.libraryMember,
+          accessToken: response.libraryMember.authToken
+        });
+      },
+    () => {
+      this._toastService.warning('Серверска грешка приликом пријављивања!');
+    }
+    );
   }
 
   @Action([SignOutAction])

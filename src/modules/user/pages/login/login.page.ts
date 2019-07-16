@@ -4,6 +4,8 @@ import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { SignInAction } from '../../../core/states/user/user.state';
+import { ILoginDto } from '../../../core/models/library-member.model';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +19,17 @@ export class LoginPage implements OnInit {
   private readonly _router: Router;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _store: Store;
+  private readonly _toastService: ToastService;
   public loginForm: FormGroup;
   public nextUrl: string;
 
-  constructor(formBuilder: FormBuilder, usersService: UsersService, router: Router, activatedRoute: ActivatedRoute, store: Store) {
+  public constructor(formBuilder: FormBuilder, usersService: UsersService, router: Router,
+                     activatedRoute: ActivatedRoute, store: Store, toastService: ToastService) {
     this._formBuilder = formBuilder;
     this._usersService = usersService;
     this._router = router;
     this._activatedRoute = activatedRoute;
+    this._toastService = toastService;
     this._store = store;
   }
 
@@ -39,19 +44,22 @@ export class LoginPage implements OnInit {
   }
 
   public login(): void {
-    const email = this.loginForm.value.email.trim();
-    const password = this.loginForm.value.password.trim();
-    this._usersService.login(email, password).subscribe(data => {
-      if (data) {
-        if (this.nextUrl) {
-          this._router.navigate([this.nextUrl]);
-        } else {
-          this._router.navigate(['/']);
-        }
-      } else {
-        // TODO: message "email+password is invalid"
-      }
-    });
+    const loginDto: ILoginDto = {
+      username: this.loginForm.value.email.trim(),
+      password: this.loginForm.value.password.trim()
+    };
+    this._store.dispatch(new SignInAction(loginDto.username, loginDto.password));
+    // this._usersService.login(loginDto).subscribe(data => {
+    //   if (data) {
+    //     if (this.nextUrl) {
+    //       this._router.navigate([this.nextUrl]);
+    //     } else {
+    //       this._router.navigate(['/']);
+    //     }
+    //   } else {
+    //     this._toastService.warning('Погрешно корисничко име или лозинка!');
+    //   }
+    // });
   }
 
   public forgotPassword(): void {
