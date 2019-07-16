@@ -4,6 +4,7 @@ import { UsersService } from '../../services/users.service';
 import { ILibraryMember } from '../../models/library-member.model';
 import { IMemberWrapper } from '../../models/member-wrapper';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { Router } from '@angular/router';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -39,6 +40,7 @@ export class SignOutAction {
 export class UserState {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
+  private readonly _router: Router;
 
   @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
@@ -51,9 +53,10 @@ export class UserState {
     return null;
   }
 
-  public constructor(userService: UsersService, toastService: ToastService) {
+  public constructor(userService: UsersService, toastService: ToastService, router: Router) {
     this._userService = userService;
     this._toastService = toastService;
+    this._router = router;
   }
 
   @Action(SignInAction)
@@ -69,6 +72,7 @@ export class UserState {
           user: response.libraryMember,
           accessToken: response.libraryMember.authToken
         });
+        this._router.navigate(['/']);
       },
     () => {
       this._toastService.warning('Серверска грешка приликом пријављивања!');
