@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../../core/services/users.service';
-import { ILibraryMember } from '../../../core/models/library-member.model';
+import { ILibraryMember } from '../../../../models/library-member.model';
 import { EPasswordCodes, MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 import { Subject, } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';

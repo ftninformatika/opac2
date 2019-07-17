@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BooksService } from './books.service';
-import { Book } from '../models/book';
-import { EAge, EGender, IUserModel } from '../models/circ/user.model';
+import { Book } from '../../../models/book';
+import { EAge, EGender, IUserModel } from '../../../models/circ/user.model';
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
-import { ILibraryMember, ILoginDto } from '../models/library-member.model';
-import { IMemberWrapper } from '../models/member-wrapper';
+import { ILibraryMember, ILoginDto } from '../../../models/library-member.model';
+import { IMemberWrapper } from '../../../models/member-wrapper';
 
 @Injectable({
   providedIn: 'root'

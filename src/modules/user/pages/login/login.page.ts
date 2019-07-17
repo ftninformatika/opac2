@@ -4,7 +4,7 @@ import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { SignInAction } from '../../../core/states/user/user.state';
-import { ILoginDto } from '../../../core/models/library-member.model';
+import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({

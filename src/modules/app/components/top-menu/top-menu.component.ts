@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 import { Select, Store } from '@ngxs/store';
 import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 import { TranslateService } from '@ngx-translate/core';

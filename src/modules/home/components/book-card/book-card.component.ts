@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 import { Router } from '@angular/router';
 
 @Component({

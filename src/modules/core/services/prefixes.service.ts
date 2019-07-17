@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Coder, Prefix } from '../models/prefix';
+import { Coder, Prefix } from '../../../models/prefix';
 
 @Injectable({
   providedIn: 'root'

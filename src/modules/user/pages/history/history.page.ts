@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
-import { ILendingViewModel } from '../../../core/models/circ/lending/lending-view.model';
+import { ILendingViewModel } from '../../../../models/circ/lending/lending-view.model';
 
 @Component({
   selector: 'app-history',

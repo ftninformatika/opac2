@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../models/book';
+import { Book } from '../../../models/book';
 import { Observable, of } from 'rxjs';
-import { ILendingViewModel } from '../models/circ/lending/lending-view.model';
+import { ILendingViewModel } from '../../../models/circ/lending/lending-view.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 
 
 export enum DEVICE_WIDTH_BREAKPOINTS {

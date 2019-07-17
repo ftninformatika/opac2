@@ -1,10 +1,11 @@
-import { IUserModel } from '../../models/circ/user.model';
+import { IUserModel } from '../../../../models/circ/user.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
-import { ILibraryMember } from '../../models/library-member.model';
-import { IMemberWrapper } from '../../models/member-wrapper';
+import { ILibraryMember } from '../../../../models/library-member.model';
+import { IMemberWrapper } from '../../../../models/member-wrapper';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -41,6 +42,7 @@ export class UserState {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
   private readonly _router: Router;
+  private readonly _translateService: TranslateService;
 
   @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
@@ -53,10 +55,12 @@ export class UserState {
     return null;
   }
 
-  public constructor(userService: UsersService, toastService: ToastService, router: Router) {
+  // TODO: i18n toast messages using translate service
+  public constructor(userService: UsersService, toastService: ToastService, router: Router, translateService: TranslateService) {
     this._userService = userService;
     this._toastService = toastService;
     this._router = router;
+    this._translateService = translateService;
   }
 
   @Action(SignInAction)

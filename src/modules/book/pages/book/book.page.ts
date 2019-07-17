@@ -1,4 +1,4 @@
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';

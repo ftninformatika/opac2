@@ -1,7 +1,7 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',

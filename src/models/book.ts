@@ -12,6 +12,46 @@ export interface Record {
   id: number;
   fields?: Field[];
   primerci?: Primerak[];
+  godine?: Godina[];
+}
+
+export interface Godina {
+  godinaID?: number;
+  invBroj: string;
+  datumRacuna?: Date;
+  dobavljac?: string;
+  cena?: number;
+  finansijer?: string;
+  datumInventarisanja?: Date;
+  sigFormat?: string;
+  sigPodlokacija?: string;
+  sigIntOznaka?: string;
+  sigDublet?: string;
+  sigNumerusCurens?: string;
+  sigNumeracija?: string;
+  sigUDK?: string;
+  povez?: string;
+  nacinNabavke?: string;
+  odeljenje?: string;
+  napomene?: string;
+  godiste?: string;
+  godina?: string;
+  broj?: string;
+  dostupnost?: string;
+  inventator?: string;
+  sveske?: Sveska[];
+}
+
+export interface Sveska {
+  sveskaID?: number;
+  invBroj?: string;
+  status?: string;
+  datumStatusa?: Date;
+  signatura?: string;
+  cena?: number;
+  brojSveske?: string;
+  knjiga?: string;
+  inventator?: string;
 }
 
 export interface Field {

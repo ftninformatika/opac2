@@ -1,4 +1,4 @@
-import { Book } from '../../../core/models/book';
+import { Book } from '../../../../models/book';
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 @Component({
