@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { SignInAction } from '../../../core/states/user/user.state';
 import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +36,8 @@ export class LoginPage implements OnInit {
 
   public ngOnInit() {
     this.loginForm = this._formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(MinimumPasswordStrengthRegex)]],
     });
     this._activatedRoute.queryParamMap.subscribe(params => {
       this.nextUrl = params.get('next');
@@ -48,18 +49,11 @@ export class LoginPage implements OnInit {
       username: this.loginForm.value.email.trim(),
       password: this.loginForm.value.password.trim()
     };
+    if (this.loginForm.invalid || !this.loginForm.touched) {
+      this._toastService.warning('Унесите исправну e-mail адресу и лозинку!');
+      return;
+    }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password));
-    // this._usersService.login(loginDto).subscribe(data => {
-    //   if (data) {
-    //     if (this.nextUrl) {
-    //       this._router.navigate([this.nextUrl]);
-    //     } else {
-    //       this._router.navigate(['/']);
-    //     }
-    //   } else {
-    //     this._toastService.warning('Погрешно корисничко име или лозинка!');
-    //   }
-    // });
   }
 
   public forgotPassword(): void {
