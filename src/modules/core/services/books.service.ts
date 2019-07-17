@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { Book } from '../../../models/book';
 import { Observable, of } from 'rxjs';
 import { ILendingViewModel } from '../../../models/circ/lending/lending-view.model';
+import { IPrefixValue } from '../../../models/prefix-value';
+import { HttpClient } from '@angular/common/http';
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
+  private readonly _httpClient: HttpClient;
+  
   lendings: ILendingViewModel[] = [
     {
       userId: '00000004914',
@@ -277,7 +282,8 @@ export class BooksService {
   public searchHits: Book[];
   public allBooks: Book[];
 
-  constructor() {
+  constructor(httpClient: HttpClient) {
+    this._httpClient = httpClient;
     this.newBooks = this.books.filter(book => book.id < 100);
     this.recommendedBooks = this.books.filter(book => book.id > 100 && book.id < 200);
     this.searchHits = this.books.filter(book => book.id > 200);
@@ -310,5 +316,9 @@ export class BooksService {
 
   public getDummyLendingViews(): ILendingViewModel[] {
     return this.lendings;
+  }
+
+  public searchAutoComplete(query: string): Observable<IPrefixValue[]> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.search.autocomplete, query) as Observable<IPrefixValue[]>;
   }
 }

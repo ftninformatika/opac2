@@ -9,6 +9,9 @@ export class ApiEndpointConfig {
       auth: `${ApiEndpointConfig.Origin}/memauth`,
       getMemberByActivationToken: `${ApiEndpointConfig.Origin}/library_members/get_member_by_activation_token`,
       activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`
+    },
+    search: {
+      autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`
     }
   };
 }

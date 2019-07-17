@@ -12,12 +12,17 @@ export class MainPage implements OnInit {
   public recommendedBooks: Book[];
   public newBooks: Book[];
 
-  constructor(booksService: BooksService) {
+  public constructor(booksService: BooksService) {
     this._booksService = booksService;
   }
 
   public ngOnInit(): void {
     this.newBooks = this._booksService.getNewBooks();
     this.recommendedBooks = this._booksService.getRecommendedBooks();
+    this._booksService.searchAutoComplete('asdas').subscribe(
+      resp => {
+        console.log(resp);
+      }
+    );
   }
 }
