@@ -9,7 +9,9 @@ export interface Book {
 }
 
 export interface Record {
+  _id: string;
   id: number;
+  rn: number;
   fields?: Field[];
   primerci?: Primerak[];
   godine?: Godina[];

@@ -9,5 +9,4 @@ import { Book } from '../../../../models/book';
 })
 export class BookResultBrief {
   @Input() book: Book;
-
 }

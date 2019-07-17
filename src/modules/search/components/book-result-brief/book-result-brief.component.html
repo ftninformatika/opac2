@@ -1,7 +1,14 @@
 <div class="book-result-brief-wrapper">
   <mdb-card-body class="d-flex fixed-height">
     <div class="fixed-width" *ngIf="book.imageUrl">
-      <a [routerLink]="['/book', book.id]"><mdb-card-img src="{{book.imageUrl}}" class="book-cover"></mdb-card-img></a>
+      <a [routerLink]="['/book', book.id]">
+        <mdb-card-img src="{{book.imageUrl}}" class="book-cover"></mdb-card-img>
+      </a>
+    </div>
+    <div class="fixed-width" *ngIf="!book.imageUrl">
+      <a [routerLink]="['/book', book.id]">
+        <mdb-card-img src="../../../../assets/book/nocover.jpg" class="book-cover"></mdb-card-img>
+      </a>
     </div>
     <div class="flex-1 ml-3">
       <mdb-card-title>

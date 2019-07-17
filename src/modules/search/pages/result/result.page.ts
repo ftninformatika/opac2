@@ -32,7 +32,7 @@ export class ResultPage implements OnInit {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
         const query = JSON.parse(params.get('query'));
-        this._booksService.search(query).subscribe(data => {
+        this._booksService.getAllBooks().subscribe(data => {
           this.searchResult = data;
         });
     });

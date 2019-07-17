@@ -5,7 +5,6 @@ import { CommonUiModule } from '../shared/common-ui.module';
 import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { BookResultBrief } from './components/book-result-brief/book-result-brief.component';
-import { BookResultCard } from './components/book-result-card/book-result-card.component';
 import { SearchFiltersComponent } from './components/search-filters/search-filters.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { SearchFiltersComponent } from './components/search-filters/search-filte
   ],
   declarations: [
     SearchFiltersComponent,
-    BookResultCard,
     BookResultBrief,
     SearchMainPage,
     ResultPage

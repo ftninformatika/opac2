@@ -223,16 +223,65 @@ export class BooksService {
       publisher: 'Spiegel & Grau',
       year: 2018,
     }
+    , {
+      id: 306,
+      title: 'Genesiseeee',
+      subtitle: 'The Deep Origin of Societies',
+      authors: ['Edward Wilson'],
+      imageUrl: 'https://secure.syndetics.com/index.aspx?isbn=9781631495540/MC.GIF&client=sepup&type=xw12&oclc=',
+      publisher: 'Liveright Publishing Corporation',
+      year: 2019,
+    }, {
+      id: 307,
+      title: 'The Human Swarmeee',
+      subtitle: 'How Our Societies Arise, Thrive, and Fall',
+      authors: ['Mark Moffett'],
+      imageUrl: 'https://secure.syndetics.com/index.aspx?isbn=9780465055685/MC.GIF&client=sepup&type=xw12&oclc=',
+      publisher: 'Basic Books',
+      year: 2019,
+    }, {
+      id: 408,
+      title: 'Something',
+      authors: ['Neil MacGregor'],
+      imageUrl: 'https://secure.syndetics.com/index.aspx?isbn=9780670022700/MC.GIF&client=sepup&type=xw12&oclc=',
+      publisher: 'Viking',
+      year: 2011,
+    }, {
+      id: 401,
+      title: 'Sapiens',
+      subtitle: 'A Brief History of Humankind',
+      authors: ['Yuval Noah Harari'],
+      imageUrl: 'http://static.harpercollins.com/harperimages/isbn/large/7/9780062316097.jpg',
+      publisher: 'Harper Collins',
+      year: 2015,
+    }, {
+      id: 402,
+      title: 'Deuseeeee',
+      subtitle: 'A Brief History of Tomoroorow',
+      authors: ['Yuval Noah Harari'],
+      imageUrl: 'https://secure.syndetics.com/index.aspx?isbn=9780062464316/MC.GIF&client=sepup&type=xw12&oclc=',
+      publisher: 'Harper Collins',
+      year: 2017,
+    }, {
+      id: 403,
+      title: '21uigbiygy',
+      authors: ['Yuval Noah Harari'],
+      imageUrl: 'https://secure.syndetics.com/index.aspx?isbn=9780525512172/MC.GIF&client=sepup&type=xw12&oclc=',
+      publisher: 'Spiegel & Grau',
+      year: 2018,
+    }
   ];
 
-  newBooks: Book[];
-  recommendedBooks: Book[];
-  searchHits: Book[];
+  public newBooks: Book[];
+  public recommendedBooks: Book[];
+  public searchHits: Book[];
+  public allBooks: Book[];
 
   constructor() {
     this.newBooks = this.books.filter(book => book.id < 100);
     this.recommendedBooks = this.books.filter(book => book.id > 100 && book.id < 200);
     this.searchHits = this.books.filter(book => book.id > 200);
+    this.allBooks = this.books;
   }
 
   public getNewBooks(): Book[] {
