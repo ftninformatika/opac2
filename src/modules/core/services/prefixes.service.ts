@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Coder, Prefix } from '../../../models/prefix';
+import { Coder, PrefixModel } from '../../../models/prefix';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class PrefixesService {
     }
   ];
 
-  prefixes: Prefix[] = [
+  prefixes: PrefixModel[] = [
     {
       code: 'AU',
       name: 'Аутор'
@@ -41,11 +41,11 @@ export class PrefixesService {
 
   constructor() { }
 
-  getPrefixes(): Prefix[] {
+  getPrefixes(): PrefixModel[] {
     return this.prefixes;
   }
 
-  getPrefix(code: string): Prefix {
+  getPrefix(code: string): PrefixModel {
     return this.prefixes.find(prefix => prefix.code === code);
   }
 }

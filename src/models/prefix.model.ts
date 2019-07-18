@@ -1,4 +1,4 @@
-export interface Prefix {
+export interface PrefixModel {
   code: string;
   name: string;
   coder?: Coder[];

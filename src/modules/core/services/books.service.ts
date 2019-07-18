@@ -12,7 +12,7 @@ import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 export class BooksService {
 
   private readonly _httpClient: HttpClient;
-  
+
   lendings: ILendingViewModel[] = [
     {
       userId: '00000004914',

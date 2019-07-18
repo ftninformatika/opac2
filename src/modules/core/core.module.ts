@@ -6,15 +6,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AutocompletePrefixPipe } from './pipes/autocomplete-prefix.pipe';
 
 @NgModule({
   imports: [
     TranslateModule
   ],
-  // declarations: {
-  //   AutocompletePrefixPipe
-  // },
   providers: [
     BooksService,
     PrefixesService,
@@ -28,7 +24,6 @@ import { AutocompletePrefixPipe } from './pipes/autocomplete-prefix.pipe';
   ],
   exports: [
     TranslateModule,
-    // AutocompletePrefixPipe
   ]
 })
 export class CoreModule {}
