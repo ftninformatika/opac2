@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Book } from '../../../../models/book';
 import { Select, Store } from '@ngxs/store';
 import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 import { TranslateService } from '@ngx-translate/core';
 import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { IPrefixValue } from '../../../../models/prefix-value';
 
 @Component({
   selector: 'top-menu',
@@ -18,8 +20,10 @@ export class TopMenuComponent {
   private readonly _router: Router;
   private readonly _store: Store;
   private readonly _translateService: TranslateService;
+  private searchTextChanged: Subject<string> = new Subject<string>();
   public searchText: string;
-  public results: Observable<Book[]>;
+  // public results: Observable<Book[]>;
+  public results: Observable<IPrefixValue[]>;
   @Select(UserState) user;
 
   public constructor(booksService: BooksService, router: Router, store: Store, translateService: TranslateService) {
@@ -27,6 +31,14 @@ export class TopMenuComponent {
     this._router = router;
     this._store = store;
     this._translateService = translateService;
+    this.searchTextChanged.pipe(
+      debounceTime(850),
+      distinctUntilChanged()
+    ).subscribe(query => {
+      this._bookService.searchAutoComplete(query).subscribe(
+        (resp: IPrefixValue[]) => this.results = of(resp)
+      );
+    });
   }
 
   public searchEntries(term: string): Observable<Book[]> {
@@ -34,11 +46,11 @@ export class TopMenuComponent {
   }
 
   public getFilteredData() {
-    this.results = this.searchEntries(this.searchText);
+    this.searchTextChanged.next(this.searchText);
   }
 
   public emptySearchResults() {
-    this.results = of([] as Book[]);
+    this.results = of ([] as IPrefixValue[]);
   }
 
   public onChange() {

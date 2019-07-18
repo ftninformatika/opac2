@@ -19,10 +19,5 @@ export class MainPage implements OnInit {
   public ngOnInit(): void {
     this.newBooks = this._booksService.getNewBooks();
     this.recommendedBooks = this._booksService.getRecommendedBooks();
-    this._booksService.searchAutoComplete('asdas').subscribe(
-      resp => {
-        console.log(resp);
-      }
-    );
   }
 }
