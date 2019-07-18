@@ -20,11 +20,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';
 import { environment } from '../../environments/environment';
+import { LibraryRouteComponent } from './library-route.component';
 
 @NgModule({
   declarations: [
     TopMenuComponent,
-    AppPage
+    AppPage,
+    LibraryRouteComponent
   ],
   imports: [
     NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
