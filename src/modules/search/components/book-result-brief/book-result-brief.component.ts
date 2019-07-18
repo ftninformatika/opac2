@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../../models/book';
+import { Book } from '../../../../models/book.model';
 
 @Component({
   selector: 'book-result-brief',

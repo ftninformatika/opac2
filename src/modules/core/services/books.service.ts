@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../../../models/book';
 import { Observable, of } from 'rxjs';
 import { ILendingViewModel } from '../../../models/circ/lending/lending-view.model';
-import { IPrefixValue } from '../../../models/prefix-value';
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { Book } from '../../../models/book.model';
+import { IPrefixValue } from '../../../models/prefix-value.model';
 
 @Injectable({
   providedIn: 'root'

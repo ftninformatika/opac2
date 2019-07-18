@@ -2,9 +2,9 @@ import { IUserModel } from '../../../../models/circ/user.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
 import { ILibraryMember } from '../../../../models/library-member.model';
-import { IMemberWrapper } from '../../../../models/member-wrapper';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { TranslateService } from '@ngx-translate/core';
+import { IMemberWrapper } from '../../../../models/member-wrapper.model';
 
 export interface IUserStateModel {
   accessToken: string;
