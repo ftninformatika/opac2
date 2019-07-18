@@ -76,7 +76,6 @@ export class UserState {
           user: response.libraryMember,
           accessToken: response.libraryMember.authToken
         });
-        this._router.navigate(['/']);
       },
     () => {
       this._toastService.warning('Серверска грешка приликом пријављивања!');

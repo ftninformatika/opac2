@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { SignInAction } from '../../../core/states/user/user.state';
+import { InitialState, IUserStateModel, SignInAction } from '../../../core/states/user/user.state';
 import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
@@ -53,7 +53,13 @@ export class LoginPage implements OnInit {
       this._toastService.warning('Унесите исправну e-mail адресу и лозинку!');
       return;
     }
-    this._store.dispatch(new SignInAction(loginDto.username, loginDto.password));
+    this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
+      (res: IUserStateModel) => {
+        if (res !== InitialState) {
+          this._router.navigate(['/']);
+        }
+      }
+    );
   }
 
   public forgotPassword(): void {

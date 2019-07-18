@@ -1,4 +1,8 @@
 {
+  "authors":"Аутор",
+  "titles":"Наслов",
+  "keywords":"Кљ. реч",
+  "publishers":"Издавач",
   "main.page.title": "Насловна страница",
   "top-menu.profile": "Профил",
   "top-menu.advanced-search": "Напредна претрага"

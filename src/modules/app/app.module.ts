@@ -19,6 +19,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     AppPage
   ],
   imports: [
+    NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
+    NgxsStoragePluginModule.forRoot(),
     TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
@@ -40,9 +43,7 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
-    AppRoutingModule,
-    NgxsModule.forRoot([UserState]),
-    NgxsStoragePluginModule.forRoot()
+    AppRoutingModule
   ],
   providers: [
     LazyLoadImageDirective,
