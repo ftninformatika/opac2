@@ -1,6 +1,6 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
 
 export enum EDeviceWidth {
@@ -12,7 +12,8 @@ export enum EDeviceWidth {
 @Component({
   selector: 'app-result',
   templateUrl: './result.page.html',
-  styleUrls: ['./result.page.scss']
+  styleUrls: ['./result.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResultPage implements OnInit {
 
