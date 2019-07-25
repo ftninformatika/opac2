@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LibraryRouteComponent } from './library-route.component';
 const routes: Routes = [
-  { path: ':lib', component: LibraryRouteComponent,  children: [
+  { path: '', children: [
       { path: '', pathMatch: 'full', loadChildren: './../home/home.module#HomeModule' },
       { path: 'book', loadChildren: './../book/book.module#BookModule' },
       { path: 'search', loadChildren: './../search/search.module#SearchModule' },

@@ -19,7 +19,7 @@
           <mdb-auto-completer #auto="mdbAutoCompleter">
             <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
               <div class="d-flex flex-column">
-                <strong>{{pv.value}}<b> [{{pv.prefName | translate}}]</b></strong>
+                <strong>{{pv.value}}<b>[{{pv.prefName | translate}}]</b></strong>
               </div>
             </mdb-option>
           </mdb-auto-completer>
@@ -28,7 +28,7 @@
       <links>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item advanced-search-button">
-            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['/search']"><mdb-icon fas icon="tasks"></mdb-icon>{{'top-menu.advanced-search' | translate}}</a>
+            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['search']"><mdb-icon fas icon="tasks"></mdb-icon>{{'top-menu.advanced-search' | translate}}</a>
           </li>
 <!--          TODO: put change language dropdown-->
 <!--          <button (click)="changeLanguage()">EN</button>-->
@@ -37,17 +37,17 @@
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/profile']">{{'top-menu.profile' | translate}}</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/shelf']">Моја полица</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/history']">Историја члана</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">{{'top-menu.profile' | translate}}</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја члана</a>
               <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/user/change-password']">Промена лозинке</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
             </div>
           </li>
           <li class="nav-item" *ngIf="(user | async)?.userData == null">
-            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['/user/login']">Пријава<mdb-icon fas icon="sign-in-alt"></mdb-icon></a>
+            <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['user/login']">Пријава<mdb-icon fas icon="sign-in-alt"></mdb-icon></a>
           </li>
         </ul>
       </links>
