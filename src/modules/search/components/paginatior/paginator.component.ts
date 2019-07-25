@@ -7,4 +7,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginatorComponent {}
+export class PaginatorComponent {
+  // public totalPages: number;
+  // public currentPage: number;
+
+  public constructor() {
+    // this.currentPage = 0;
+    // this.totalPages = 0;
+  }
+
+}

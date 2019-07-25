@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrefixesService } from '../../../core/services/prefixes.service';
+import { ISearchModel } from '../../../../models/search/search.model';
 
 @Component({
   selector: 'app-search-main',
@@ -9,22 +10,47 @@ import { PrefixesService } from '../../../core/services/prefixes.service';
   styleUrls: ['./search-main.page.scss']
 })
 export class SearchMainPage implements OnInit {
-
-  searchForm: FormGroup;
-  isPrefixCoded: boolean[] = [false, false, false, false, false];
-  contentCoders: any[] = [[], [], [], [], []];
-
-  prefixList: any[];
-  operatorList: any[];
-
-  constructor(private prefixesService: PrefixesService,
-              private formBuilder: FormBuilder,
-              private router: Router) { }
-
-  ngOnInit() {
-    this.prefixList = this.prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
+  
+  private readonly _prefixesService: PrefixesService;
+  private readonly _formBuilder: FormBuilder;
+  private readonly _router: Router;
+  public searchForm: FormGroup;
+  public isPrefixCoded: boolean[] = [false, false, false, false, false];
+  public contentCoders: any[] = [[], [], [], [], []];
+  
+  public prefixList: any[];
+  public operatorList: any[];
+  public searchModel: ISearchModel;
+  
+  public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router) {
+    this._prefixesService = prefixesService;
+    this._formBuilder = formBuilder;
+    this._router = router;
+    this.searchModel = {
+      branches: [],
+      departments: [],
+      oper1: '',
+      oper2: '',
+      oper3: '',
+      oper4: '',
+      pref1: '',
+      pref2: '',
+      pref3: '',
+      pref4: '',
+      pref5: '',
+      sort: '',
+      text1: '',
+      text2: '',
+      text3: '',
+      text4: '',
+      text5: ''
+    };
+  }
+  
+  public ngOnInit() {
+    this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
     this.operatorList = ['AND', 'OR', 'NOT'].map(elem => ({value: elem, label: elem}));
-    this.searchForm = this.formBuilder.group({
+    this.searchForm = this._formBuilder.group({
       prefix1: ['AU', Validators.required],
       content1: [''],
       content1coder: [''],
@@ -46,9 +72,9 @@ export class SearchMainPage implements OnInit {
       content5coder: [''],
     });
   }
-
-  selectedPrefix(item, index: number): void {
-    const prefix = this.prefixesService.getPrefix(item.value);
+  
+  public selectedPrefix(item, index: number): void {
+    const prefix = this._prefixesService.getPrefix(item.value);
     if (prefix.coder) {
       this.contentCoders[index] = prefix.coder.map(coder => ({value: coder.code, label: coder.name}));
       this.isPrefixCoded[index] = true;
@@ -56,84 +82,72 @@ export class SearchMainPage implements OnInit {
       this.isPrefixCoded[index] = false;
     }
   }
-
-  onSubmit() {
+  
+  public onSubmit() {
     const query = [];
     if (this.isPrefixCoded[0]) {
       if (this.searchForm.value.content1coder) {
-        query.push({
-          prefix: this.searchForm.value.prefix1,
-          content: this.searchForm.value.content1coder,
-          operator: this.searchForm.value.operator1});
+        this.searchModel.pref1 = this.searchForm.value.prefix1;
+        this.searchModel.text1 = this.searchForm.value.content1coder;
+        this.searchModel.oper1 = this.searchForm.value.operator1;
       }
     } else {
       if (this.searchForm.value.content1.trim()) {
-        query.push({
-          prefix: this.searchForm.value.prefix1,
-          content: this.searchForm.value.content1.trim(),
-          operator: this.searchForm.value.operator1});
+        this.searchModel.pref1 = this.searchForm.value.prefix1;
+        this.searchModel.text1 = this.searchForm.value.content1.trim();
+        this.searchModel.oper1 = this.searchForm.value.operator1;
       }
     }
     if (this.isPrefixCoded[1]) {
       if (this.searchForm.value.content2coder) {
-        query.push({
-          prefix: this.searchForm.value.prefix2,
-          content: this.searchForm.value.content2coder,
-          operator: this.searchForm.value.operator2});
+        this.searchModel.pref2 = this.searchForm.value.prefix2;
+        this.searchModel.text2 = this.searchForm.value.content2coder;
+        this.searchModel.oper2 = this.searchForm.value.operator2;
       }
     } else {
       if (this.searchForm.value.content2.trim()) {
-        query.push({
-          prefix: this.searchForm.value.prefix2,
-          content: this.searchForm.value.content2.trim(),
-          operator: this.searchForm.value.operator2});
+        this.searchModel.pref2 = this.searchForm.value.prefix2;
+        this.searchModel.text2 = this.searchForm.value.content2.trim();
+        this.searchModel.oper2 = this.searchForm.value.operator2;
       }
     }
     if (this.isPrefixCoded[2]) {
       if (this.searchForm.value.content3coder) {
-        query.push({
-          prefix: this.searchForm.value.prefix3,
-          content: this.searchForm.value.content3coder,
-          operator: this.searchForm.value.operator3});
+        this.searchModel.pref3 = this.searchForm.value.prefix3;
+        this.searchModel.text3 = this.searchForm.value.content3coder;
+        this.searchModel.oper3 = this.searchForm.value.operator3;
       }
     } else {
       if (this.searchForm.value.content3.trim()) {
-        query.push({
-          prefix: this.searchForm.value.prefix3,
-          content: this.searchForm.value.content3.trim(),
-          operator: this.searchForm.value.operator3});
+        this.searchModel.pref3 = this.searchForm.value.prefix3;
+        this.searchModel.text3 = this.searchForm.value.content3.trim();
+        this.searchModel.oper3 = this.searchForm.value.operator3;
       }
     }
     if (this.isPrefixCoded[3]) {
       if (this.searchForm.value.content4coder) {
-        query.push({
-          prefix: this.searchForm.value.prefix4,
-          content: this.searchForm.value.content4coder,
-          operator: this.searchForm.value.operator4});
+        this.searchModel.pref4 = this.searchForm.value.prefix4;
+        this.searchModel.text4 = this.searchForm.value.content4coder;
+        this.searchModel.oper4 = this.searchForm.value.operator4;
       }
     } else {
       if (this.searchForm.value.content4.trim()) {
-        query.push({
-          prefix: this.searchForm.value.prefix4,
-          content: this.searchForm.value.content4.trim(),
-          operator: this.searchForm.value.operator4});
+        this.searchModel.pref4 = this.searchForm.value.prefix4;
+        this.searchModel.text4 = this.searchForm.value.content4.trim();
+        this.searchModel.oper4 = this.searchForm.value.operator4;
       }
     }
     if (this.isPrefixCoded[4]) {
       if (this.searchForm.value.content5coder) {
-        query.push({
-          prefix: this.searchForm.value.prefix5,
-          content: this.searchForm.value.content5coder,
-          operator: this.searchForm.value.operator5});
+        this.searchModel.pref5 = this.searchForm.value.prefix5;
+        this.searchModel.text5 = this.searchForm.value.content5coder;
       }
     } else {
       if (this.searchForm.value.content5.trim()) {
-        query.push({
-          prefix: this.searchForm.value.prefix5,
-          content: this.searchForm.value.content5.trim(),
-          operator: null});
+        this.searchModel.pref5 = this.searchForm.value.prefix5;
+        this.searchModel.text5 = this.searchForm.value.content5.trim();
       }
     }
-    this.router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(query)}});
+    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel)}});
   }
 }
