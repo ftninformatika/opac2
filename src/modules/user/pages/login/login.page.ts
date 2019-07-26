@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { InitialState, IUserStateModel, SignInAction } from '../../../core/states/user/user.state';
+import { InitialUserState, IUserStateModel, SignInAction } from '../../../core/states/user/user.state';
 import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
     }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
       (res: IUserStateModel) => {
-        if (res !== InitialState) {
+        if (res !== InitialUserState) {
           this._router.navigate(['/']);
         }
       }

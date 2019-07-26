@@ -12,7 +12,7 @@ export interface IUserStateModel {
   user: ILibraryMember;
 }
 
-export const InitialState: IUserStateModel = {
+export const InitialUserState: IUserStateModel = {
   accessToken: null,
   userData: null,
   user: null
@@ -35,7 +35,7 @@ export class SignOutAction {
 
 @State<IUserStateModel>({
   name: 'USER_STATE',
-  defaults: InitialState
+  defaults: InitialUserState
 })
 export class UserState {
   private readonly _userService: UsersService;
@@ -82,6 +82,6 @@ export class UserState {
 
   @Action([SignOutAction])
   public signOut(ctx: StateContext<IUserStateModel>, action: SignOutAction) {
-    ctx.setState(InitialState);
+    ctx.setState(InitialUserState);
   }
 }

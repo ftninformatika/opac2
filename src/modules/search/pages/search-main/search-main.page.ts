@@ -10,18 +10,18 @@ import { ISearchModel } from '../../../../models/search/search.model';
   styleUrls: ['./search-main.page.scss']
 })
 export class SearchMainPage implements OnInit {
-  
+
   private readonly _prefixesService: PrefixesService;
   private readonly _formBuilder: FormBuilder;
   private readonly _router: Router;
   public searchForm: FormGroup;
   public isPrefixCoded: boolean[] = [false, false, false, false, false];
   public contentCoders: any[] = [[], [], [], [], []];
-  
+
   public prefixList: any[];
   public operatorList: any[];
   public searchModel: ISearchModel;
-  
+
   public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router) {
     this._prefixesService = prefixesService;
     this._formBuilder = formBuilder;
@@ -46,7 +46,7 @@ export class SearchMainPage implements OnInit {
       text5: ''
     };
   }
-  
+
   public ngOnInit() {
     this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
     this.operatorList = ['AND', 'OR', 'NOT'].map(elem => ({value: elem, label: elem}));
@@ -72,7 +72,7 @@ export class SearchMainPage implements OnInit {
       content5coder: [''],
     });
   }
-  
+
   public selectedPrefix(item, index: number): void {
     const prefix = this._prefixesService.getPrefix(item.value);
     if (prefix.coder) {
@@ -82,7 +82,7 @@ export class SearchMainPage implements OnInit {
       this.isPrefixCoded[index] = false;
     }
   }
-  
+
   public onSubmit() {
     const query = [];
     if (this.isPrefixCoded[0]) {

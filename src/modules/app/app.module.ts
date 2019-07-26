@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';
 import { environment } from '../../environments/environment';
 import { LibraryRouteComponent } from './library-route.component';
+import { ConfigState } from '../core/states/config/config.state';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { LibraryRouteComponent } from './library-route.component';
     LibraryRouteComponent
   ],
   imports: [
-    NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([UserState, ConfigState], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot(),
     TranslateModule.forRoot({
     loader: {

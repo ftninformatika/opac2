@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LibraryInterceptor } from './interceptors/library.interceptor';
 
 @NgModule({
   imports: [
@@ -19,6 +20,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LibraryInterceptor,
       multi: true
     }
   ],
