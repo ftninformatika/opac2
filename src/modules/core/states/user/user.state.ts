@@ -1,7 +1,7 @@
 import { IUserModel } from '../../../../models/circ/user.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UsersService } from '../../services/users.service';
-import { ILibraryMember } from '../../../../models/library-member.model';
+import { EAuthority, ILibraryMember } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { TranslateService } from '@ngx-translate/core';
 import { IMemberWrapper } from '../../../../models/member-wrapper.model';
@@ -52,6 +52,21 @@ export class UserState {
     }
     return null;
   }
+
+  @Selector()
+  public static roles(state: IUserStateModel) {
+    if (state.user && state.user.authorities) {
+      return state.user.authorities;
+    }
+    return null;
+  }
+
+  @Selector()
+  public static admin(state: IUserStateModel): boolean {
+    return (state.user && state.user.authorities
+      && state.user.authorities.includes(EAuthority.LibraryAdmin));
+  }
+
 
   // TODO: i18n toast messages using translate service
   public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService) {

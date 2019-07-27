@@ -7,9 +7,15 @@ export interface ILibraryMember {
   activationToken: string;
   profileActivated: boolean;
   authToken?: string;
+  authorities: string[];
 }
 
 export interface ILoginDto {
   username: string;
   password: string;
+}
+
+export enum EAuthority {
+  LibraryMember = 'ROLE_USER',
+  LibraryAdmin = 'ROLE_ADMIN'
 }
