@@ -22,6 +22,7 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
 import { environment } from '../../environments/environment';
 import { LibraryRouteComponent } from './library-route.component';
 import { ConfigState } from '../core/states/config/config.state';
+import { AdvancedSearchState } from '../core/states/search/advanced-search.state';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { ConfigState } from '../core/states/config/config.state';
     LibraryRouteComponent
   ],
   imports: [
-    NgxsModule.forRoot([UserState, ConfigState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([UserState, ConfigState, AdvancedSearchState], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot(),
     TranslateModule.forRoot({
     loader: {

@@ -25,5 +25,5 @@ export class ConfigState {
 
   @Selector()
   public static library(state: IConfigStateModel) { return state.library; }
-
+// TODO: add other config parameters and implement state actions
 }

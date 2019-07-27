@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrefixesService } from '../../../core/services/prefixes.service';
 import { ISearchModel } from '../../../../models/search/search.model';
+import { Store } from '@ngxs/store';
+import { AdvancedSearchState } from '../../../core/states/search/advanced-search.state';
 
 @Component({
   selector: 'app-search-main',
@@ -14,6 +16,7 @@ export class SearchMainPage implements OnInit {
   private readonly _prefixesService: PrefixesService;
   private readonly _formBuilder: FormBuilder;
   private readonly _router: Router;
+  private readonly _store: Store;
   public searchForm: FormGroup;
   public isPrefixCoded: boolean[] = [false, false, false, false, false];
   public contentCoders: any[] = [[], [], [], [], []];
@@ -22,10 +25,11 @@ export class SearchMainPage implements OnInit {
   public operatorList: any[];
   public searchModel: ISearchModel;
 
-  public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router) {
+  public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router, store: Store) {
     this._prefixesService = prefixesService;
     this._formBuilder = formBuilder;
     this._router = router;
+    this._store = store;
     this.searchModel = {
       branches: [],
       departments: [],
@@ -149,5 +153,8 @@ export class SearchMainPage implements OnInit {
       }
     }
     this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel)}});
+  }
+
+  private populateSearch(searchModel: ISearchModel): void {
   }
 }
