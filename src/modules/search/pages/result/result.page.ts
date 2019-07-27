@@ -1,8 +1,7 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, EventEmitter, HostListener, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
-import { ISearchModel } from '../../../../models/search/search.model';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -23,8 +22,6 @@ export class ResultPage implements OnInit {
   private readonly _router: Router;
   public searchResult: Book[];
   public deviceWidth = EDeviceWidth.GT_SM;
-  public searchQuery: ISearchModel;
-  @Output() modifySearchEvent = new EventEmitter<ISearchModel>();
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router) {
     this._booksService = booksService;
@@ -35,7 +32,7 @@ export class ResultPage implements OnInit {
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
-        this.searchQuery = JSON.parse(params.get('query'));
+        const searchQuery = JSON.parse(params.get('query'));
         this._booksService.getAllBooks().subscribe(data => {
           this.searchResult = data;
         });
@@ -46,9 +43,5 @@ export class ResultPage implements OnInit {
   @HostListener('window:resize')
   public onWindowResize() {
     if (window.innerWidth >= 768) { this.deviceWidth = EDeviceWidth.GT_SM; } else { this.deviceWidth = EDeviceWidth.LTE_SM; }
-  }
-
-  public modifySearch() {
-    this.modifySearchEvent.emit(this.searchQuery);
   }
 }

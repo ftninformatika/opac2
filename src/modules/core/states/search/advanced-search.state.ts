@@ -48,7 +48,7 @@ export class AdvancedSearchState {
 
 
   @Action(ChangeSearchParametersAction)
-  public changeSearchParamtersAction(ctx: StateContext<IAdvancedSearchState>, action: ChangeSearchParametersAction) {
+  public changeSearchParametersAction(ctx: StateContext<IAdvancedSearchState>, action: ChangeSearchParametersAction) {
     ctx.patchState(
       { search: action.searchModel}
     );
