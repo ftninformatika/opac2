@@ -1,20 +1,20 @@
 import { LibraryConfigurationService } from '../core/services/library-configuration.service';
 import { ILibraryConfigurationModel } from '../../models/library-configuration.model';
+import { ChangeConfigAction, ConfigState } from '../core/states/config/config.state';
+import { SignOutAction } from '../core/states/user/user.state';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'library-route',
-  template: `<router-outlet></router-outlet>`
+  template: ``
 })
 export class LibraryRouteComponent implements OnInit {
   private readonly _libConfigService: LibraryConfigurationService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _store: Store;
   private readonly _router: Router;
-  public libConfigs: ILibraryConfigurationModel[];
-  public paramLib = 'bgb';
 
   public constructor(libConfigService: LibraryConfigurationService,
                      store: Store, activatedRoute: ActivatedRoute, router: Router) {
@@ -28,12 +28,13 @@ export class LibraryRouteComponent implements OnInit {
     const paramLib = this._activatedRoute.snapshot.paramMap.get('lib');
     this._libConfigService.getMockLibraryConfigs().subscribe(
       (configs: ILibraryConfigurationModel[]) => {
-        this.libConfigs = configs;
         if (configs.some(e => e.libraryName === paramLib)) {
-          this.paramLib = paramLib;
+          if (this._store.selectSnapshot(ConfigState.library) !== paramLib) {
+            this._store.dispatch(SignOutAction);
+            this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib)));
+          }
         }
-        console.log(this.paramLib);
-        this._router.navigate([this.paramLib]);
+        this._router.navigate(['/']);
       }
     );
   }

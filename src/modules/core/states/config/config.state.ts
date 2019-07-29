@@ -1,19 +1,26 @@
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ILibraryConfigurationModel } from '../../../../models/library-configuration.model';
+import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
 
 export interface IConfigStateModel {
-  library: string;
+  libConfig: ILibraryConfigurationModel;
 }
 
 export const InitialConfigState: IConfigStateModel = {
-  library: 'bgb'
+  libConfig: {
+    libraryName: 'bgb',
+    locale: ELocalizationLanguage.SERBIAN_CYRILIC,
+    libraryFullName: 'Библиотека града Београда',
+    shortName: 'БГБ'
+  }
 };
 
 export class ChangeConfigAction {
   static readonly type = '[Config] Change Config Action';
-  public library: string;
+  public libConf: ILibraryConfigurationModel;
 
-  public constructor(library: string) {
-    this.library = library;
+  public constructor(libConfig: ILibraryConfigurationModel) {
+    this.libConf = libConfig;
   }
 }
 
@@ -24,6 +31,19 @@ export class ChangeConfigAction {
 export class ConfigState {
 
   @Selector()
-  public static library(state: IConfigStateModel) { return state.library; }
-// TODO: add other config parameters and implement state actions
+  public static library(state: IConfigStateModel) {
+    if (state.libConfig && state.libConfig.libraryName) {
+      return state.libConfig.libraryName;
+    }
+    return 'bgb';
+  }
+
+  @Action(ChangeConfigAction)
+  public changeConfigAction(ctx: StateContext<IConfigStateModel>, action: ChangeConfigAction): void {
+    ctx.patchState(
+      {
+        libConfig: action.libConf
+      }
+    );
+  }
 }

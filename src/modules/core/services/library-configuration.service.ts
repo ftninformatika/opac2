@@ -13,17 +13,23 @@ export class LibraryConfigurationService {
     {
       libraryName: 'bgb',
       libraryFullName: 'Библиотека града Београда',
-      locale: 'sr_Cyrl_RS'
+      shortName: 'БГБ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'bg-primary'
     },
     {
       libraryName: 'gbns',
       libraryFullName: 'Градска библиотека Новог Сада',
-      locale: 'sr_Cyrl_RS'
+      shortName: 'ГБНС',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'red'
     },
     {
       libraryName: 'bs',
       libraryFullName: 'Библиотека шабачка',
-      locale: 'sr_Cyrl_RS'
+      shortName: 'БШ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
     }
   ];
 

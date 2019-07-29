@@ -9,6 +9,7 @@ import { ELocalizationLanguage } from '../../../../config/localization-laguage.e
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { Book } from '../../../../models/book.model';
+import { ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'top-menu',
@@ -22,9 +23,9 @@ export class TopMenuComponent {
   private readonly _translateService: TranslateService;
   private searchTextChanged: Subject<string> = new Subject<string>();
   public searchText: string;
-  // public results: Observable<Book[]>;
   public results: Observable<IPrefixValue[]>;
   @Select(UserState) user;
+  @Select(ConfigState) configState;
 
   public constructor(booksService: BooksService, router: Router, store: Store, translateService: TranslateService) {
     this._bookService = booksService;

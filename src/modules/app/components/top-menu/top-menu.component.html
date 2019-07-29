@@ -1,10 +1,11 @@
 <div class="top-menu-wrapper">
   <header>
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark
+{{(configState | async)?.libConfig?.navbarColor === null ? 'bg-primary' : (configState | async)?.libConfig?.navbarColor}}" [containerInside]="false">
       <mdb-navbar-brand>
         <a class="navbar-brand" [routerLink]="'/'">
-          <span class="full-library-name">Библиотека града Београда</span>
-          <span class="short-library-name">БГБ</span>
+          <span class="full-library-name">{{(configState | async)?.libConfig?.libraryFullName}}</span>
+          <span class="short-library-name">{{(configState | async)?.libConfig?.shortName}}</span>
         </a>
       </mdb-navbar-brand>
       <form class="form-inline waves-light navbar-search-form">
