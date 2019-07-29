@@ -1,6 +1,6 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
 
 export enum EDeviceWidth {

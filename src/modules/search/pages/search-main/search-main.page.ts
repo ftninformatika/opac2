@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { PrefixesService } from '../../../core/services/prefixes.service';
 import { ISearchModel } from '../../../../models/search/search.model';
 import { Store } from '@ngxs/store';
-import { AdvancedSearchState } from '../../../core/states/search/advanced-search.state';
 
 @Component({
   selector: 'app-search-main',

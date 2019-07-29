@@ -19,7 +19,7 @@
           <mdb-auto-completer #auto="mdbAutoCompleter">
             <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
               <div class="d-flex flex-column">
-                <strong>{{pv.value}}<b>[{{pv.prefName | translate}}]</b></strong>
+                <strong>{{pv.value}}&nbsp;<b>[{{pv.prefName | translate}}]</b></strong>
               </div>
             </mdb-option>
           </mdb-auto-completer>

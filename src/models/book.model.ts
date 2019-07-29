@@ -10,7 +10,8 @@ export interface Book {
 
 export interface Record {
   _id: string;
-  id: number;
+  id: number; // TODO: ovo ukloniti
+  commonBookUid?: number;
   rn: number;
   fields?: Field[];
   primerci?: Primerak[];
