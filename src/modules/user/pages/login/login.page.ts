@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { InitialUserState, IUserStateModel, SignInAction } from '../../../core/states/user/user.state';
+import { SignInAction, SignOutAction } from '../../../core/states/user/user.state';
 import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 import { LibraryConfigurationService } from '../../../core/services/library-configuration.service';
 import { ILibraryConfigurationModel } from '../../../../models/library-configuration.model';
-import { ChangeConfigAction } from '../../../core/states/config/config.state';
+import { ChangeConfigAction, ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'app-login',
@@ -60,7 +60,31 @@ export class LoginPage implements OnInit {
       return;
     }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
-      () => this._router.navigate(['/'])
+      res => {
+        this._libConfService.getMockLibraryConfigs().subscribe(
+          (configs: ILibraryConfigurationModel[]) => {
+            if (!res.USER_STATE || !res.USER_STATE.user || !res.USER_STATE.user.libraryPrefix) {
+              this._toastService.warning('Грешка при пријављивању корисника!');
+              this._store.dispatch(new SignOutAction());
+            } else {
+              const usrLib = res.USER_STATE.user.libraryPrefix;
+              if (configs.some(e => e.libraryName === usrLib)) {
+                if (this._store.selectSnapshot(ConfigState.library) !== usrLib) {
+                  this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === usrLib)));
+                }
+                this._router.navigate(['/']);
+              } else {
+                this._toastService.warning('Грешка при пријављивању корисника!');
+                this._store.dispatch(new SignOutAction());
+              }
+            }
+          },
+          () => {
+            this._toastService.warning('Грешка приликом пријављивања!');
+            this._store.dispatch(new SignOutAction());
+          }
+        );
+      }
     );
   }
 

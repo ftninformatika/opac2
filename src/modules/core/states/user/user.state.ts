@@ -76,23 +76,23 @@ export class UserState {
   }
 
   @Action(SignInAction)
-  public signIn(ctx: StateContext<IUserStateModel>, action: SignInAction) {
-    this._userService.login(action).subscribe(
-      (response: IMemberWrapper) => {
-        if (!response.member || !response.libraryMember || !response.libraryMember.authToken) {
+  public async signIn(ctx: StateContext<IUserStateModel>, action: SignInAction) {
+    let response: IMemberWrapper = null;
+    try {
+      response = await this._userService.login(action).toPromise();
+    } catch (e) {
+      this._toastService.warning('Погрешна e-mail адреса или лозинка!');
+      return;
+    }
+    if (!response.member || !response.libraryMember || !response.libraryMember.authToken) {
           this._toastService.warning('Нешто је пошло по злу!');
           return;
         }
-        ctx.patchState({
+    ctx.patchState({
           userData: response.member,
           user: response.libraryMember,
           accessToken: response.libraryMember.authToken
         });
-      },
-    () => {
-      this._toastService.warning('Серверска грешка приликом пријављивања!');
-    }
-    );
   }
 
   @Action([SignOutAction])

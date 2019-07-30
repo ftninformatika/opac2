@@ -30,7 +30,7 @@
       <links>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item advanced-search-button">
-            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['search']"><mdb-icon fas icon="tasks"></mdb-icon>{{'top-menu.advanced-search' | translate}}</a>
+            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['search']"><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</a>
           </li>
 <!--          TODO: put change language dropdown-->
 <!--          <button (click)="changeLanguage()">EN</button>-->
@@ -39,7 +39,7 @@
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">{{'top-menu.profile' | translate}}</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја члана</a>
               <div class="divider dropdown-divider"></div>
