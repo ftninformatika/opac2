@@ -28,15 +28,15 @@ import { NgxsModule } from '@ngxs/store';
     LibraryRouteComponent
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     NgxsModule.forRoot([UserState, ConfigState], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot(),
-    TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }
-    }),
     CoreModule,
     CommonUiModule,
     SharedModule,

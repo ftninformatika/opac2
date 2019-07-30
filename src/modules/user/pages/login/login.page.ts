@@ -7,6 +7,9 @@ import { InitialUserState, IUserStateModel, SignInAction } from '../../../core/s
 import { ILoginDto } from '../../../../models/library-member.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
+import { LibraryConfigurationService } from '../../../core/services/library-configuration.service';
+import { ILibraryConfigurationModel } from '../../../../models/library-configuration.model';
+import { ChangeConfigAction } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'app-login',
@@ -21,17 +24,20 @@ export class LoginPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _store: Store;
   private readonly _toastService: ToastService;
+  private readonly _libConfService: LibraryConfigurationService;
   public loginForm: FormGroup;
   public nextUrl: string;
 
   public constructor(formBuilder: FormBuilder, usersService: UsersService, router: Router,
-                     activatedRoute: ActivatedRoute, store: Store, toastService: ToastService) {
+                     activatedRoute: ActivatedRoute, store: Store,
+                     toastService: ToastService, libConfService: LibraryConfigurationService) {
     this._formBuilder = formBuilder;
     this._usersService = usersService;
     this._router = router;
     this._activatedRoute = activatedRoute;
     this._toastService = toastService;
     this._store = store;
+    this._libConfService = libConfService;
   }
 
   public ngOnInit() {
@@ -54,11 +60,7 @@ export class LoginPage implements OnInit {
       return;
     }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
-      (res: IUserStateModel) => {
-        if (res !== InitialUserState) {
-          this._router.navigate(['/']);
-        }
-      }
+      () => this._router.navigate(['/'])
     );
   }
 

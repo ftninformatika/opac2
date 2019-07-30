@@ -1,7 +1,8 @@
-<div class="top-menu-wrapper">
+<div class="top-menu-wrapper" [hidden]="hidden">
   <header>
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark
-{{(configState | async)?.libConfig?.navbarColor === null ? 'bg-primary' : (configState | async)?.libConfig?.navbarColor}}" [containerInside]="false">
+                {{(configState | async)?.libConfig?.navbarColor === undefined ? 'bg-primary' : (configState | async)?.libConfig?.navbarColor}}"
+                [containerInside]="false">
       <mdb-navbar-brand>
         <a class="navbar-brand" [routerLink]="'/'">
           <span class="full-library-name">{{(configState | async)?.libConfig?.libraryFullName}}</span>
@@ -17,9 +18,9 @@
                  [mdbAutoCompleter]="auto"
                  placeholder="Потражи..."
                  aria-label="Потражи">
-          <mdb-auto-completer #auto="mdbAutoCompleter">
+          <mdb-auto-completer #auto="mdbAutoCompleter" (click)="onAutoCompleteSelect($event)">
             <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column" >
                 <strong>{{pv.value}}&nbsp;<b>[{{pv.prefName | translate}}]</b></strong>
               </div>
             </mdb-option>

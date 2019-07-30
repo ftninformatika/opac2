@@ -24,6 +24,7 @@ export class TopMenuComponent {
   private searchTextChanged: Subject<string> = new Subject<string>();
   public searchText: string;
   public results: Observable<IPrefixValue[]>;
+  public hidden = false;
   @Select(UserState) user;
   @Select(ConfigState) configState;
 
@@ -63,9 +64,7 @@ export class TopMenuComponent {
   }
 
   public onAutoCompleteSelect(event) {
-    const bookId: number = + event.text;
-    this.searchText = '';
-    this._router.navigate(['/book', bookId]);
+    console.log(event);
   }
 
   public signOut() {
