@@ -1,6 +1,13 @@
 <div class="result-page-wrapper">
   <search-top-nav></search-top-nav>
-  <paginator></paginator>
+  <pagination-controls [id]="'paginatorId'"
+                       [maxSize]="5"
+                       [directionLinks]="true"
+                       [responsive]="true"
+                       [previousLabel]="'Претходна'"
+                       [nextLabel]="'Следећа'"
+                       (pageChange)="onPageChange($event)">
+  </pagination-controls>
   <ng-template #searchFilters>
     <search-filters></search-filters>
   </ng-template>
@@ -9,9 +16,16 @@
     <div class="flex-1 mr-4">
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()" >Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
-      <mdb-card *ngFor="let book of searchResult; let i = index; let last = last" class="mb-3">
-        <book-result-brief [book]="book"></book-result-brief>
-      </mdb-card>
+      <ng-container *ngIf="resultPage">
+        <mdb-card *ngFor="let book of searchResult | paginate:
+        {id: 'paginatorId',
+        itemsPerPage: resultPage.size,
+        currentPage: resultPage.number,
+        totalItems: resultPage.totalElements}"
+                  class="mb-3">
+          <book-result-brief [book]="book"></book-result-brief>
+        </mdb-card>
+      </ng-container>
     </div>
   </div>
   <div mdbModal #filtersModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
@@ -32,5 +46,14 @@
       </div>
     </div>
   </div>
-  <paginator></paginator>
+<!--  <paginator *ngIf="resultPage" [empty]="resultPage.empty" [first]="resultPage.first" [last]="resultPage.last"-->
+<!--  [pageNumber]="resultPage.number" [totalPages]="resultPage.totalPages"></paginator>-->
+  <pagination-controls [id]="'paginatorId'"
+                       [maxSize]="5"
+                       [directionLinks]="true"
+                       [responsive]="true"
+                       [previousLabel]="'Претходна'"
+                       [nextLabel]="'Следећа'"
+                       (pageChange)="onPageChange($event)">
+  </pagination-controls>
 </div>

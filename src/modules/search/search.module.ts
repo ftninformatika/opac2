@@ -9,10 +9,12 @@ import { SearchFiltersComponent } from './components/search-filters/search-filte
 import { PaginatorComponent } from './components/paginatior/paginator.component';
 import { SearchTopNavComponent } from './components/search-top-nav/search-top-nav.component';
 import { CoreModule } from '../core/core.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonUiModule,
+    NgxPaginationModule,
     RouterModule.forChild(SearchRoutes),
     CoreModule
   ],

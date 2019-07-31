@@ -8,10 +8,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LibraryInterceptor } from './interceptors/library.interceptor';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
+import { FillArrayPipe } from './pipes/fill-array.pipe';
 
 @NgModule({
   declarations: [
-    ShortenStringPipe
+    ShortenStringPipe,
+    FillArrayPipe
   ],
   imports: [
     TranslateModule
@@ -35,6 +37,7 @@ import { ShortenStringPipe } from './pipes/shorten-string.pipe';
   exports: [
     TranslateModule,
     ShortenStringPipe,
+    FillArrayPipe
   ]
 })
 export class CoreModule {}

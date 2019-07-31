@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'paginator',
@@ -8,12 +8,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None
 })
 export class PaginatorComponent {
-  // public totalPages: number;
-  // public currentPage: number;
-
-  public constructor() {
-    // this.currentPage = 0;
-    // this.totalPages = 0;
-  }
+  @Input() totalPages: number;
+  @Input() first: boolean;
+  @Input() last: boolean;
+  @Input() empty: boolean;
+  @Input() pageNumber: boolean; // Current page
 
 }

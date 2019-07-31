@@ -25,8 +25,11 @@ export class ResultPage implements OnInit {
   private readonly _router: Router;
   private readonly _toastService: ToastService;
   public searchModel: ISearchModel;
+  public resultPage: IResultPage;
   public searchResult: Book[];
   public deviceWidth = EDeviceWidth.GT_SM;
+  public currentPage: number;
+  public pageSize: number;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, toastService: ToastService) {
     this._booksService = booksService;
@@ -34,6 +37,8 @@ export class ResultPage implements OnInit {
     this._router = router;
     this._toastService = toastService;
     this.searchModel = null;
+    this.currentPage = 0;
+    this.pageSize = 10;
   }
 
   public ngOnInit() {
@@ -48,9 +53,16 @@ export class ResultPage implements OnInit {
         // });
         this._booksService.search(this.searchModel).subscribe(
           (res: IResultPage) => {
-            console.log(res);
-            this.searchResult = res.content;
-          }
+            if (!res) {
+              this._toastService.warning('Нема резултата за задате параметре претраге!');
+              this._router.navigate(['/']);
+            } else {
+              this.resultPage = res;
+              console.log(res);
+              this.searchResult = res.content;
+            }
+          },
+          () => this._router.navigate(['/'])
         );
     });
     this.onWindowResize();
@@ -59,5 +71,25 @@ export class ResultPage implements OnInit {
   @HostListener('window:resize')
   public onWindowResize() {
     if (window.innerWidth >= 768) { this.deviceWidth = EDeviceWidth.GT_SM; } else { this.deviceWidth = EDeviceWidth.LTE_SM; }
+  }
+
+  public onPageChange($event: number) {
+    const onPage = $event - 1;
+    if (onPage < 0) {
+      return;
+    }
+    this._booksService.search(this.searchModel, onPage, this.pageSize).subscribe(
+      (res: IResultPage) => {
+        if (!res) {
+          this._toastService.warning('Нема резултата за задате параметре претраге!');
+          this._router.navigate(['/']);
+        } else {
+          this.resultPage = res;
+          console.log(res);
+          this.searchResult = res.content;
+        }
+      },
+      () => this._router.navigate(['/'])
+    );
   }
 }
