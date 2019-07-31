@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { Book } from '../../../models/book.model';
 import { IPrefixValue } from '../../../models/prefix-value.model';
+import { IResultPage } from '../../../models/page.model';
+import { ISearchModel } from '../../../models/search/search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -290,6 +292,7 @@ export class BooksService {
     this.allBooks = this.books;
   }
 
+  // TODO: remove all dummy service methods after impl
   public getNewBooks(): Book[] {
     return this.newBooks;
   }
@@ -302,11 +305,11 @@ export class BooksService {
     return of(this.searchHits);
   }
 
-  public getBookById(id: number): Observable<Book> {
+  public getBookByIdDummy(id: number): Observable<Book> {
     return of(this.books.find(book => book.id === id));
   }
 
-  public search(query: any[]): Observable<Book[]> {
+  public searchDummy(query: any[]): Observable<Book[]> {
     return of(this.searchHits);
   }
 
@@ -317,8 +320,14 @@ export class BooksService {
   public getDummyLendingViews(): ILendingViewModel[] {
     return this.lendings;
   }
+  // -----------------------------------------------
 
-  public searchAutoComplete(query: string): Observable<IPrefixValue[]> {
+  public search(searchModel: ISearchModel, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
+    return this._httpClient
+      .post(`${ApiEndpointConfig.Paths.search.main}?pageNumber=${pageNumber}&pageSize=${pageSize}`, searchModel) as Observable<IResultPage>;
+  }
+
+  public autocomplete(query: string): Observable<IPrefixValue[]> {
     return this._httpClient.post(ApiEndpointConfig.Paths.search.autocomplete, query) as Observable<IPrefixValue[]>;
   }
 }

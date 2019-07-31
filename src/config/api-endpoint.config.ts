@@ -11,7 +11,8 @@ export class ApiEndpointConfig {
       activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`
     },
     search: {
-      autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`
+      autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`,
+      main: `${ApiEndpointConfig.Origin}/opac/search`,
     }
   };
 }

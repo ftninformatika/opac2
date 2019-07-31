@@ -2,6 +2,9 @@ import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
+import { ISearchModel } from '../../../../models/search/search.model';
+import { ToastService } from 'ng-uikit-pro-standard';
+import { IResultPage } from '../../../../models/page.model';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -20,22 +23,35 @@ export class ResultPage implements OnInit {
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
+  private readonly _toastService: ToastService;
+  public searchModel: ISearchModel;
   public searchResult: Book[];
   public deviceWidth = EDeviceWidth.GT_SM;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router) {
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, toastService: ToastService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
+    this._toastService = toastService;
+    this.searchModel = null;
   }
 
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
-        const searchQuery = JSON.parse(params.get('query'));
-        this._booksService.getAllBooks().subscribe(data => {
-          this.searchResult = data;
-        });
+        this.searchModel = JSON.parse(params.get('query'));
+        if (this.searchModel === null) {
+          this._router.navigate(['/']);
+        }
+        // this._booksService.getAllBooks().subscribe(data => {
+        //   this.searchResult = data;
+        // });
+        this._booksService.search(this.searchModel).subscribe(
+          (res: IResultPage) => {
+            console.log(res);
+            this.searchResult = res.content;
+          }
+        );
     });
     this.onWindowResize();
   }

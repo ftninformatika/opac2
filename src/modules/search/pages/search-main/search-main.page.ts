@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PrefixesService } from '../../../core/services/prefixes.service';
 import { ISearchModel } from '../../../../models/search/search.model';
 import { Store } from '@ngxs/store';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-search-main',
@@ -16,26 +17,28 @@ export class SearchMainPage implements OnInit {
   private readonly _formBuilder: FormBuilder;
   private readonly _router: Router;
   private readonly _store: Store;
+  private readonly _toastService: ToastService;
+  
   public searchForm: FormGroup;
   public isPrefixCoded: boolean[] = [false, false, false, false, false];
   public contentCoders: any[] = [[], [], [], [], []];
-
   public prefixList: any[];
   public operatorList: any[];
   public searchModel: ISearchModel;
 
-  public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router, store: Store) {
+  public constructor(prefixesService: PrefixesService, formBuilder: FormBuilder, router: Router, store: Store, toastService: ToastService) {
     this._prefixesService = prefixesService;
     this._formBuilder = formBuilder;
     this._router = router;
     this._store = store;
+    this._toastService = toastService;
     this.searchModel = {
       branches: [],
       departments: [],
-      oper1: '',
-      oper2: '',
-      oper3: '',
-      oper4: '',
+      oper1: 'AND',
+      oper2: 'AND',
+      oper3: 'AND',
+      oper4: 'AND',
       pref1: '',
       pref2: '',
       pref3: '',
@@ -87,7 +90,20 @@ export class SearchMainPage implements OnInit {
   }
 
   public onSubmit() {
-    const query = [];
+    this.populateSearch();
+    if (!this.validateSearchModel()) {
+      this._toastService.warning('Молимо вас унесите вредности претраге.');
+      return;
+    }
+    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel)}});
+  }
+
+  public validateSearchModel(): boolean {
+    return (!(this.searchModel.text1 === '' && this.searchModel.text2 === '' && this.searchModel.text3 === '' &&
+      this.searchModel.text4 === '' && this.searchModel.text5 === ''));
+  }
+
+  private populateSearch() {
     if (this.isPrefixCoded[0]) {
       if (this.searchForm.value.content1coder) {
         this.searchModel.pref1 = this.searchForm.value.prefix1;
@@ -151,9 +167,5 @@ export class SearchMainPage implements OnInit {
         this.searchModel.text5 = this.searchForm.value.content5.trim();
       }
     }
-    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel)}});
-  }
-
-  private populateSearch(searchModel: ISearchModel): void {
   }
 }

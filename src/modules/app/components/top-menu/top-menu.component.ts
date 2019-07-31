@@ -37,7 +37,7 @@ export class TopMenuComponent {
       debounceTime(850),
       distinctUntilChanged()
     ).subscribe(query => {
-      this._bookService.searchAutoComplete(query).subscribe(
+      this._bookService.autocomplete(query).subscribe(
         (resp: IPrefixValue[]) => this.results = of(resp)
       );
     });

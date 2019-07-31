@@ -1,11 +1,25 @@
 export interface Book {
-  id: number;
+  id?: number; // remove
+  _id?: string; // mongoId of record
+  pubType?: EPubType; // make this mandatory?
+  authors?: string[];
   title: string;
   subtitle?: string;
-  authors?: string[];
-  imageUrl?: string;
   publisher?: string;
-  year?: number;
+  publishYear?: string;
+  publishPlace?: string;
+  isbn?: string;
+  issn?: string;
+  pagesCount?: string;
+  dimensions?: string;
+  imageUrl?: string;
+  description?: string;
+  year?: number; // remove this
+}
+
+export enum EPubType {
+  Monograph = 1,
+  Serial = 2
 }
 
 export interface Record {

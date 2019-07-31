@@ -25,7 +25,7 @@ export class BookPage implements OnInit {
   public ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params => {
       const bookId = + params.get('id');
-      this._booksService.getBookById(bookId).subscribe(
+      this._booksService.getBookByIdDummy(bookId).subscribe(
         data => {
           if (!data) {
             this._router.navigate(['/error/not-found']);
