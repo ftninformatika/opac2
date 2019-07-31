@@ -6,7 +6,8 @@
                        [responsive]="true"
                        [previousLabel]="'Претходна'"
                        [nextLabel]="'Следећа'"
-                       (pageChange)="onPageChange($event)">
+                       (pageChange)="onPageChange($event)"
+                        class="col">
   </pagination-controls>
   <ng-template #searchFilters>
     <search-filters></search-filters>
@@ -20,7 +21,7 @@
         <mdb-card *ngFor="let book of searchResult | paginate:
         {id: 'paginatorId',
         itemsPerPage: resultPage.size,
-        currentPage: resultPage.number,
+        currentPage: currentPage,
         totalItems: resultPage.totalElements}"
                   class="mb-3">
           <book-result-brief [book]="book"></book-result-brief>

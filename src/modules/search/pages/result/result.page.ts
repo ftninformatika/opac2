@@ -37,7 +37,7 @@ export class ResultPage implements OnInit {
     this._router = router;
     this._toastService = toastService;
     this.searchModel = null;
-    this.currentPage = 0;
+    this.currentPage = 1; // Pagination from 1, backend pagination is from 0
     this.pageSize = 10;
   }
 
@@ -74,22 +74,28 @@ export class ResultPage implements OnInit {
   }
 
   public onPageChange($event: number) {
-    const onPage = $event - 1;
-    if (onPage < 0) {
+    if ($event < 1) {
       return;
     }
-    this._booksService.search(this.searchModel, onPage, this.pageSize).subscribe(
+    this._booksService.search(this.searchModel, $event - 1, this.pageSize).subscribe(
       (res: IResultPage) => {
         if (!res) {
           this._toastService.warning('Нема резултата за задате параметре претраге!');
           this._router.navigate(['/']);
         } else {
           this.resultPage = res;
-          console.log(res);
           this.searchResult = res.content;
+          this.currentPage = this.resultPage.number + 1;
         }
       },
       () => this._router.navigate(['/'])
     );
+  }
+
+  public onPageSizeChange(size: number) {
+    if (size < 0) {
+      return;
+    }
+    this.pageSize = size;
   }
 }
