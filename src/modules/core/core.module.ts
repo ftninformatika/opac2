@@ -7,8 +7,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LibraryInterceptor } from './interceptors/library.interceptor';
+import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 
 @NgModule({
+  declarations: [
+    ShortenStringPipe
+  ],
   imports: [
     TranslateModule
   ],
@@ -30,6 +34,7 @@ import { LibraryInterceptor } from './interceptors/library.interceptor';
   ],
   exports: [
     TranslateModule,
+    ShortenStringPipe,
   ]
 })
 export class CoreModule {}

@@ -7,7 +7,7 @@ import {
   CheckboxModule,
   IconsModule,
   InputsModule, ModalModule,
-  NavbarModule, PopoverModule, SelectModule, TabsModule
+  NavbarModule, PopoverModule, SelectModule, TabsModule, TooltipModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';
@@ -30,6 +30,7 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     SelectModule,
     ModalModule,
     PopoverModule,
+    TooltipModule
   ],
   providers: [
     LazyLoadImageDirective

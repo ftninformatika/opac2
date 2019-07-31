@@ -12,15 +12,23 @@
     </div>
     <div class="flex-1 ml-3">
       <mdb-card-title>
-        <h4 [routerLink]="['/book', book.id]" class="pointer title">{{book.title}}</h4>
-        <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer">{{book.subtitle}}</h5>
+        <h4 [routerLink]="['/book', book.id]" class="pointer title" [mdbTooltip]="book.title">{{book.title | shortenString:35}}</h4>
+        <div class="pub-type">
+          <div *ngIf="book.pubType === 1">
+            <mdb-icon fas icon="book"></mdb-icon> монографија
+          </div>
+          <div *ngIf="book.pubType === 2">
+            <mdb-icon fas icon="scroll"></mdb-icon> серијска
+          </div>
+        </div>
+        <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer" >{{book.subtitle | shortenString:25}}</h5>
         <p>
-          <span *ngFor="let author of book.authors; let last = last">
-            <em>{{author}}</em><span *ngIf="!last">, </span>
+          <span>
+            <em>{{authors | shortenString:25}}</em>
           </span>
         </p>
       </mdb-card-title>
-      <div class="publisher">{{book.publisher}}, {{book.year}}</div>
+      <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
   </mdb-card-body>
 </div>
