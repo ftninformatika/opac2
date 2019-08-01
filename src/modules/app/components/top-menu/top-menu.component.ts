@@ -49,14 +49,10 @@ export class TopMenuComponent {
     if (!this.searchText || this.searchText === '') {
       return;
     }
-    if (this.selectedAc && this.searchText === this.selectedAc.value) {
-      const searchModel = SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc);
-      console.log(searchModel);
-      this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel)}});
-    } else {
-      const searchModel = SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
-      this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel)}});
-    }
+    const searchModel = (this.selectedAc && this.searchText === this.selectedAc.value)
+      ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
+        SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
+    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel)}});
   }
 
   public getFilteredData() {
