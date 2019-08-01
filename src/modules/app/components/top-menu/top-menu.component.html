@@ -16,11 +16,12 @@
                  (input)="getFilteredData()"
                  (ngModelChange)="onChange()"
                  [mdbAutoCompleter]="auto"
+                 (keyup.enter)="search()"
                  placeholder="Потражи..."
                  aria-label="Потражи">
-          <mdb-auto-completer #auto="mdbAutoCompleter" (click)="onAutoCompleteSelect($event)">
-            <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
-              <div class="d-flex flex-column" >
+          <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)">
+            <mdb-option *ngFor="let pv of results | async" [value]="pv.value" >
+              <div class="d-flex flex-column">
                 <strong>{{pv.value}}&nbsp;<b>[{{pv.prefName | translate}}]</b></strong>
               </div>
             </mdb-option>

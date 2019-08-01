@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
 import { PrefixesService } from '../../../core/services/prefixes.service';
-import { ISearchModel } from '../../../../models/search/search.model';
-import { Store } from '@ngxs/store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-search-main',
@@ -18,7 +18,7 @@ export class SearchMainPage implements OnInit {
   private readonly _router: Router;
   private readonly _store: Store;
   private readonly _toastService: ToastService;
-  
+
   public searchForm: FormGroup;
   public isPrefixCoded: boolean[] = [false, false, false, false, false];
   public contentCoders: any[] = [[], [], [], [], []];
@@ -32,25 +32,7 @@ export class SearchMainPage implements OnInit {
     this._router = router;
     this._store = store;
     this._toastService = toastService;
-    this.searchModel = {
-      branches: [],
-      departments: [],
-      oper1: 'AND',
-      oper2: 'AND',
-      oper3: 'AND',
-      oper4: 'AND',
-      pref1: '',
-      pref2: '',
-      pref3: '',
-      pref4: '',
-      pref5: '',
-      sort: '',
-      text1: '',
-      text2: '',
-      text3: '',
-      text4: '',
-      text5: ''
-    };
+    this.searchModel = ISearchModelInitial;
   }
 
   public ngOnInit() {

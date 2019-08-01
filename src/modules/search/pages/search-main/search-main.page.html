@@ -5,7 +5,7 @@
         <mdb-select [options]="prefixList" formControlName="prefix1" (selected)="selectedPrefix($event, 0)"></mdb-select>
       </div>
       <div class="col-md-5" *ngIf="!isPrefixCoded[0]">
-        <input mdbInput type="text" class="form-control" formControlName="content1"/>
+        <input mdbInput type="text" class="form-control" formControlName="content1" (keyup.enter)="onSubmit()"/>
       </div>
       <div class="col-md-5" *ngIf="isPrefixCoded[0]">
         <mdb-select [options]="contentCoders[0]" formControlName="content1coder"></mdb-select>
@@ -19,7 +19,7 @@
         <mdb-select [options]="prefixList" formControlName="prefix2" (selected)="selectedPrefix($event, 1)"></mdb-select>
       </div>
       <div class="col-md-5" *ngIf="!isPrefixCoded[1]">
-        <input mdbInput type="text" class="form-control" formControlName="content2"/>
+        <input mdbInput type="text" class="form-control" formControlName="content2" (keyup.enter)="onSubmit()"/>
       </div>
       <div class="col-md-5" *ngIf="isPrefixCoded[1]">
         <mdb-select [options]="contentCoders[1]" formControlName="content2coder"></mdb-select>
@@ -33,7 +33,7 @@
         <mdb-select [options]="prefixList" formControlName="prefix3" (selected)="selectedPrefix($event, 2)"></mdb-select>
       </div>
       <div class="col-md-5" *ngIf="!isPrefixCoded[2]">
-        <input mdbInput type="text" class="form-control" formControlName="content3"/>
+        <input mdbInput type="text" class="form-control" formControlName="content3" (keyup.enter)="onSubmit()"/>
       </div>
       <div class="col-md-5" *ngIf="isPrefixCoded[2]">
         <mdb-select [options]="contentCoders[2]" formControlName="content3coder"></mdb-select>
@@ -47,7 +47,7 @@
         <mdb-select [options]="prefixList" formControlName="prefix4" (selected)="selectedPrefix($event, 3)"></mdb-select>
       </div>
       <div class="col-md-5" *ngIf="!isPrefixCoded[3]">
-        <input mdbInput type="text" class="form-control" formControlName="content4"/>
+        <input mdbInput type="text" class="form-control" formControlName="content4" (keyup.enter)="onSubmit()"/>
       </div>
       <div class="col-md-5" *ngIf="isPrefixCoded[3]">
         <mdb-select [options]="contentCoders[3]" formControlName="content4coder"></mdb-select>
@@ -61,7 +61,7 @@
         <mdb-select [options]="prefixList" formControlName="prefix5" (selected)="selectedPrefix($event, 4)"></mdb-select>
       </div>
       <div class="col-md-5" *ngIf="!isPrefixCoded[4]">
-        <input mdbInput type="text" class="form-control" formControlName="content5"/>
+        <input mdbInput type="text" class="form-control" formControlName="content5" (keyup.enter)="onSubmit()"/>
       </div>
       <div class="col-md-5" *ngIf="isPrefixCoded[4]">
         <mdb-select [options]="contentCoders[4]" formControlName="content5coder"></mdb-select>

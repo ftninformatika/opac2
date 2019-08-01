@@ -17,3 +17,23 @@ export interface ISearchModel {
   departments: string[];
   branches: string[];
 }
+
+export const ISearchModelInitial: ISearchModel = {
+  branches: [],
+  departments: [],
+  oper1: 'AND',
+  oper2: 'AND',
+  oper3: 'AND',
+  oper4: 'AND',
+  pref1: '',
+  pref2: '',
+  pref3: '',
+  pref4: '',
+  pref5: '',
+  sort: '',
+  text1: '',
+  text2: '',
+  text3: '',
+  text4: '',
+  text5: ''
+}

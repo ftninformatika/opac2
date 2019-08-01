@@ -8,8 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IPrefixValue } from '../../../../models/prefix-value.model';
-import { Book } from '../../../../models/book.model';
 import { ConfigState } from '../../../core/states/config/config.state';
+import { SearchUtil } from '../../../../utils/animations/search-util';
 
 @Component({
   selector: 'top-menu',
@@ -25,6 +25,7 @@ export class TopMenuComponent {
   public searchText: string;
   public results: Observable<IPrefixValue[]>;
   public hidden = false;
+  public selectedAc: IPrefixValue;
   @Select(UserState) user;
   @Select(ConfigState) configState;
 
@@ -33,6 +34,7 @@ export class TopMenuComponent {
     this._router = router;
     this._store = store;
     this._translateService = translateService;
+    this.selectedAc = null;
     this.searchTextChanged.pipe(
       debounceTime(850),
       distinctUntilChanged()
@@ -43,8 +45,18 @@ export class TopMenuComponent {
     });
   }
 
-  public searchEntries(term: string): Observable<Book[]> {
-    return this._bookService.simpleSearch(term);
+  public search() {
+    if (!this.searchText || this.searchText === '') {
+      return;
+    }
+    if (this.selectedAc && this.searchText === this.selectedAc.value) {
+      const searchModel = SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc);
+      console.log(searchModel);
+      this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel)}});
+    } else {
+      const searchModel = SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
+      this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel)}});
+    }
   }
 
   public getFilteredData() {
@@ -64,7 +76,15 @@ export class TopMenuComponent {
   }
 
   public onAutoCompleteSelect(event) {
-    console.log(event);
+    this.results.subscribe(
+      (res: IPrefixValue[]) => {
+        // Autocomplete result list always returns distinct values, so we can do this
+        this.selectedAc = res.find(e => e.value === event.text);
+        if (this.selectedAc) {
+          this.searchText = this.selectedAc.value;
+        }
+      }
+    );
   }
 
   public signOut() {
