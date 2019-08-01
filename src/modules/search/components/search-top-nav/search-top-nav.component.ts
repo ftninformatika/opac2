@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'search-top-nav',
@@ -7,5 +7,15 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class SearchTopNavComponent {
+  @Output() pageSizeChanged = new EventEmitter<number>();
+  @Input() pageSize: number;
 
+  public constructor() {
+    this.pageSize = 10;
+  }
+
+  public changePageSize(val: number) {
+    this.pageSize = val;
+    this.pageSizeChanged.emit(this.pageSize);
+  }
 }

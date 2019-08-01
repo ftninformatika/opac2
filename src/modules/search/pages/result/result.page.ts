@@ -52,16 +52,7 @@ export class ResultPage implements OnInit {
         //   this.searchResult = data;
         // });
         this._booksService.search(this.searchModel).subscribe(
-          (res: IResultPage) => {
-            if (!res) {
-              this._toastService.warning('Нема резултата за задате параметре претраге!');
-              this._router.navigate(['/']);
-            } else {
-              this.resultPage = res;
-              console.log(res);
-              this.searchResult = res.content;
-            }
-          },
+          (res: IResultPage) => this.populateResultPage(res),
           () => this._router.navigate(['/'])
         );
     });
@@ -78,16 +69,7 @@ export class ResultPage implements OnInit {
       return;
     }
     this._booksService.search(this.searchModel, $event - 1, this.pageSize).subscribe(
-      (res: IResultPage) => {
-        if (!res) {
-          this._toastService.warning('Нема резултата за задате параметре претраге!');
-          this._router.navigate(['/']);
-        } else {
-          this.resultPage = res;
-          this.searchResult = res.content;
-          this.currentPage = this.resultPage.number + 1;
-        }
-      },
+      (res: IResultPage) => this.populateResultPage(res),
       () => this._router.navigate(['/'])
     );
   }
@@ -97,5 +79,20 @@ export class ResultPage implements OnInit {
       return;
     }
     this.pageSize = size;
+    this._booksService.search(this.searchModel, this.currentPage - 1, this.pageSize).subscribe(
+      (res: IResultPage) => this.populateResultPage(res),
+      () => this._router.navigate(['/'])
+    );
+  }
+
+  private populateResultPage(res: IResultPage): void {
+    if (!res) {
+      this._toastService.warning('Нема резултата за задате параметре претраге!');
+      this._router.navigate(['/']);
+    } else {
+      this.resultPage = res;
+      this.searchResult = res.content;
+      this.currentPage = this.resultPage.number + 1;
+    }
   }
 }
