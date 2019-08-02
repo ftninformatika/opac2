@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
 
 @Component({
   selector: 'app-search-main',
@@ -141,8 +142,8 @@ export class SearchMainPage implements OnInit {
     this.searchForm = this._formBuilder.group(SearchFormModelInitial);
     this.inputSm$.subscribe(
       (sm: ISearchModel) => {
-        // Minimum indicator that ISearchModel is passed
-        if (sm.pref1) {
+        // Minimum indicator that ISearchModel is passed and we dont modify autocomplete search results
+        if (sm.pref1 && sm.pref1 !== EAutoCompletePrefixes.PUBLISHERS) {
           const sfM = new SearchFormModel();
           sfM.partialInitFromSearchModel(sm);
           this.populateFormContentFromModel(sm, sfM);
