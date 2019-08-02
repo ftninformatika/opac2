@@ -1,6 +1,7 @@
 <div class="result-page-wrapper">
   <search-top-nav [pageSize]="pageOptions.pageSize"
-  (pageSizeChanged)="onPageSizeChange($event)"></search-top-nav>
+  (pageSizeChanged)="onPageSizeChange($event)"
+  (modifySearch)="modifySearch()"></search-top-nav>
   <pagination-controls [id]="'paginatorId'"
                        [maxSize]="5"
                        [directionLinks]="true"

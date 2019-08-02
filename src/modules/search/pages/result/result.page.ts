@@ -2,7 +2,7 @@ import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
-import { ISearchModel } from '../../../../models/search/search.model';
+import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { IResultPage } from '../../../../models/page.model';
 import { Location } from '@angular/common';
@@ -86,6 +86,10 @@ export class ResultPage implements OnInit {
       (res: IResultPage) => this.populateResultPage(res),
       () => this._router.navigate(['/'])
     );
+  }
+
+  public modifySearch() {
+    this._router.navigate(['/search'], {state: ISearchModelInitial});
   }
 
   private populateResultPage(res: IResultPage): void {

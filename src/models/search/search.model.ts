@@ -36,4 +36,4 @@ export const ISearchModelInitial: ISearchModel = {
   text3: '',
   text4: '',
   text5: ''
-}
+};
