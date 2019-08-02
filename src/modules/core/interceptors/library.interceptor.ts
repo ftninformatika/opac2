@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Store } from '@ngxs/store';
-import { UserState } from '../states/user/user.state';
 import { ConfigState } from '../states/config/config.state';
+import { UserState } from '../states/user/user.state';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LibraryInterceptor implements HttpInterceptor {

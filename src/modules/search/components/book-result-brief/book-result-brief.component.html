@@ -30,5 +30,13 @@
       </mdb-card-title>
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
+    <div class="reserve-shelf-buttons ml-auto">
+      <button mdbBtn type="button" color="primary" mdbWavesEffect>
+        <mdb-icon fas icon="check-square" class="mr-1"></mdb-icon><span>Резервиши</span>
+      </button>
+      <button mdbBtn type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon><span>На полицу</span>
+      </button>
+    </div>
   </mdb-card-body>
 </div>
