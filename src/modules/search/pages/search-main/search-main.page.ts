@@ -5,6 +5,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options';
 
 @Component({
   selector: 'app-search-main',
@@ -77,7 +78,8 @@ export class SearchMainPage implements OnInit {
       this._toastService.warning('Молимо вас унесите вредности претраге.');
       return;
     }
-    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel)}});
+    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel),
+        pageOptions: JSON.stringify(IResultPageOptionsInitial)}});
   }
 
   public validateSearchModel(): boolean {
