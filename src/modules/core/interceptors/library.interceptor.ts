@@ -17,12 +17,12 @@ export class LibraryInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const memberLibrary = this._store.selectSnapshot(UserState.library);
     if (memberLibrary) {
-      return;
+      return next.handle(req);
     }
 
     const library = this._store.selectSnapshot(ConfigState.library);
     if (!library) {
-      return;
+      throw new Error('Global attr library is not set properly!');
     }
 
     req = req.clone({
