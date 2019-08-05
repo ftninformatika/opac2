@@ -30,7 +30,8 @@ export class TopMenuComponent {
   @Select(UserState) user;
   @Select(ConfigState) configState;
 
-  public constructor(booksService: BooksService, router: Router, store: Store, translateService: TranslateService) {
+  public constructor(booksService: BooksService, router: Router, store: Store,
+                     translateService: TranslateService) {
     this._bookService = booksService;
     this._router = router;
     this._store = store;
@@ -54,7 +55,7 @@ export class TopMenuComponent {
       ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
         SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
     this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel),
-        pageOptions: JSON.stringify(IResultPageOptionsInitial)}});
+        pageOptions: JSON.stringify({...IResultPageOptionsInitial})}});
   }
 
   public getFilteredData() {

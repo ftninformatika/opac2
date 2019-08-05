@@ -1,6 +1,6 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
 import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
 import { ToastService } from 'ng-uikit-pro-standard';
@@ -20,7 +20,7 @@ export enum EDeviceWidth {
   styleUrls: ['./result.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ResultPage implements OnInit {
+export class ResultPage implements OnInit, OnDestroy {
 
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
@@ -62,6 +62,10 @@ export class ResultPage implements OnInit {
     this.onWindowResize();
   }
 
+  public ngOnDestroy() {
+    this.searchModel = null;
+  }
+
   @HostListener('window:resize')
   public onWindowResize() {
     if (window.innerWidth >= 768) { this.deviceWidth = EDeviceWidth.GT_SM; } else { this.deviceWidth = EDeviceWidth.LTE_SM; }
@@ -89,7 +93,7 @@ export class ResultPage implements OnInit {
   }
 
   public modifySearch() {
-    this._router.navigate(['/search'], {state: ISearchModelInitial});
+    this._router.navigate(['/search'], {state: {...ISearchModelInitial}});
   }
 
   private populateResultPage(res: IResultPage): void {

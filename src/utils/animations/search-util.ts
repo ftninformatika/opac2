@@ -11,7 +11,7 @@ export class SearchUtil {
     if (!text || text === '') {
       return null;
     }
-    const retVal = ISearchModelInitial;
+    const retVal = {...ISearchModelInitial};
     if (SearchUtil.isIPrefVal(text)) {
       text = text as IPrefixValue;
       const pref = this.getPrefFromACPref(text.prefName);

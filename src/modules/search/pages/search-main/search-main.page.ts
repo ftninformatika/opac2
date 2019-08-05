@@ -41,10 +41,10 @@ export class SearchMainPage implements OnInit {
     this._formBuilder = formBuilder;
     this._router = router;
     this._store = store;
-    this.searchModel = ISearchModelInitial;
   }
 
   public ngOnInit() {
+    this.searchModel = {...ISearchModelInitial};
     this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
     this.operatorList = ['AND', 'OR', 'NOT'].map(elem => ({value: elem, label: elem}));
     this.inputSm$ = this._activatedRoute.paramMap.pipe( map(() => window.history.state as ISearchModel));
@@ -139,7 +139,7 @@ export class SearchMainPage implements OnInit {
   }
 
   private initSearchForm() {
-    this.searchForm = this._formBuilder.group(SearchFormModelInitial);
+    this.searchForm = this._formBuilder.group({...SearchFormModelInitial});
     this.inputSm$.subscribe(
       (sm: ISearchModel) => {
         // Minimum indicator that ISearchModel is passed and we dont modify autocomplete search results
