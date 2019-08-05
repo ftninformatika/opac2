@@ -93,7 +93,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public modifySearch() {
-    this._router.navigate(['/search'], {state: {...ISearchModelInitial}});
+    this._router.navigate(['/search'], {state: this.searchModel});
   }
 
   private populateResultPage(res: IResultPage): void {
