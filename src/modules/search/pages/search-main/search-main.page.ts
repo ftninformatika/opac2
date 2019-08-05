@@ -1,5 +1,4 @@
 import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
-import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options';
 import { SearchFormModel, SearchFormModelInitial } from '../../../../models/search-form-model';
 import { PrefixesService } from '../../../core/services/prefixes.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,6 +9,7 @@ import { Store } from '@ngxs/store';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 
 @Component({
   selector: 'app-search-main',
@@ -68,7 +68,7 @@ export class SearchMainPage implements OnInit {
       return;
     }
     this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(this.searchModel),
-        pageOptions: JSON.stringify(IResultPageOptionsInitial)}});
+        pageOptions: JSON.stringify({...IResultPageOptionsInitial})}});
   }
 
   public validateSearchModel(): boolean {

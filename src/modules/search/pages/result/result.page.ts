@@ -6,7 +6,8 @@ import { ISearchModel, ISearchModelInitial } from '../../../../models/search/sea
 import { ToastService } from 'ng-uikit-pro-standard';
 import { IResultPage } from '../../../../models/page.model';
 import { Location } from '@angular/common';
-import { IResultPageOptions } from '../../../../models/search/result-page-options';
+import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
+import { SearchService } from '../../../core/services/search.service';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -24,6 +25,7 @@ export class ResultPage implements OnInit, OnDestroy {
 
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
+  private readonly _searchService: SearchService;
   private readonly _router: Router;
   private readonly _toastService: ToastService;
   private readonly _location: Location;
@@ -34,12 +36,13 @@ export class ResultPage implements OnInit, OnDestroy {
   public pageOptions: IResultPageOptions;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
-                     router: Router, toastService: ToastService, loaction: Location) {
+                     router: Router, toastService: ToastService, loaction: Location, searchService: SearchService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._toastService = toastService;
     this._location = loaction;
+    this._searchService = searchService;
     this.searchModel = null;
   }
 
@@ -106,6 +109,7 @@ export class ResultPage implements OnInit, OnDestroy {
       this.pageOptions.currentPage = this.resultPage.number + 1;
       const smString = JSON.stringify(this.searchModel);
       const optionsString = JSON.stringify(this.pageOptions);
+      this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions}).subscribe(a => console.log(a));
       // This is used to change route params in order to enable link share on specific page, size...
       this._location.replaceState(
         `/search/result?query=${smString}&pageOptions=${optionsString}`);

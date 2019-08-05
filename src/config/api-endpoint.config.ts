@@ -13,6 +13,7 @@ export class ApiEndpointConfig {
     search: {
       autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`,
       main: `${ApiEndpointConfig.Origin}/opac/search`,
+      getFilters: `${ApiEndpointConfig.Origin}/opac/search/getFilters`
     }
   };
 }

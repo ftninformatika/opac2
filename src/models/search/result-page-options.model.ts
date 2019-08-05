@@ -1,11 +1,20 @@
+import { ISearchModel } from './search.model';
+import { IFilters } from '../filter.model';
+
 export interface IResultPageOptions {
   pageSize: number;
   currentPage: number;
+  filters: IFilters[];
   // TODO: implement later
-  filters: any[];
   sort: any;
   previewType: any;
 }
+
+export interface IResultPageFilterRequest {
+  searchModel?: ISearchModel;
+  options: IResultPageOptions;
+}
+
 
 export const IResultPageOptionsInitial: IResultPageOptions = {
   pageSize: 10,

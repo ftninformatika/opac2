@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchUtil } from '../../../../utils/animations/search-util';
-import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 
 @Component({
   selector: 'top-menu',
@@ -48,7 +48,7 @@ export class TopMenuComponent {
   }
 
   public search() {
-    if (!this.searchText || this.searchText === '') {
+    if (!this.searchText || this.searchText === '' || this.searchText.length < 3) {
       return;
     }
     const searchModel = (this.selectedAc && this.searchText === this.selectedAc.value)
