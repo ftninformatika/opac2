@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { SearchService } from '../../../core/services/search.service';
+import { IResultPageFilterRequest } from '../../../../models/search/result-page-options.model';
 
 @Component({
   selector: 'search-filters',
@@ -9,13 +9,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['search-filters.component.scss']
 })
 export class SearchFiltersComponent implements OnInit {
-
+  @Input() searchFilterReq: IResultPageFilterRequest;
+  private readonly _searchService: SearchService;
   public formBuilder: FormBuilder;
   public vrstaGradjeForm: FormGroup;
   public jezikForm: FormGroup;
   public lokacijaForm: FormGroup;
+  public filtersLoaded = false;
 
-  public constructor(formBuilder: FormBuilder) {
+  public constructor(formBuilder: FormBuilder, searchService: SearchService) {
+    this._searchService = searchService;
     this.formBuilder = formBuilder;
   }
 
@@ -33,6 +36,7 @@ export class SearchFiltersComponent implements OnInit {
       stariGrad: false,
       savskiVenac: false,
     });
+    this._searchService.getFilters(this.searchFilterReq).subscribe(() => this.filtersLoaded = true);
   }
 
 }

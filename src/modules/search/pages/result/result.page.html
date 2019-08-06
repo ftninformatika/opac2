@@ -12,7 +12,7 @@
                         class="col">
   </pagination-controls>
   <ng-template #searchFilters>
-    <search-filters></search-filters>
+    <search-filters [searchFilterReq]="{searchModel: searchModel, options: pageOptions}"></search-filters>
   </ng-template>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>

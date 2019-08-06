@@ -36,12 +36,12 @@ export class ResultPage implements OnInit, OnDestroy {
   public pageOptions: IResultPageOptions;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
-                     router: Router, toastService: ToastService, loaction: Location, searchService: SearchService) {
+                     router: Router, toastService: ToastService, location: Location, searchService: SearchService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._toastService = toastService;
-    this._location = loaction;
+    this._location = location;
     this._searchService = searchService;
     this.searchModel = null;
   }
@@ -58,7 +58,10 @@ export class ResultPage implements OnInit, OnDestroy {
           this.onPageChange(this.pageOptions.currentPage);
         }
         this._booksService.search(this.searchModel).subscribe(
-          (res: IResultPage) => this.populateResultPage(res),
+          (res: IResultPage) => {
+            this.populateResultPage(res);
+            this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions}).subscribe(a => console.log(a));
+            },
           () => this._router.navigate(['/'])
         );
     });
@@ -109,7 +112,6 @@ export class ResultPage implements OnInit, OnDestroy {
       this.pageOptions.currentPage = this.resultPage.number + 1;
       const smString = JSON.stringify(this.searchModel);
       const optionsString = JSON.stringify(this.pageOptions);
-      this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions}).subscribe(a => console.log(a));
       // This is used to change route params in order to enable link share on specific page, size...
       this._location.replaceState(
         `/search/result?query=${smString}&pageOptions=${optionsString}`);
