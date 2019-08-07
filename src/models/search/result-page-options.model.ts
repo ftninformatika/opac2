@@ -4,7 +4,7 @@ import { IFilters } from '../filter.model';
 export interface IResultPageOptions {
   pageSize: number;
   currentPage: number;
-  filters: IFilters[];
+  filters: IFilters;
   // TODO: implement later
   sort: any;
   previewType: any;

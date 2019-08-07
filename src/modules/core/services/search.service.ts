@@ -17,7 +17,6 @@ export class SearchService {
   }
 
   public getFilters(pageFilterRequest: IResultPageFilterRequest): Observable<IFilters> {
-    console.log(pageFilterRequest);
     return this._httpClient.post(ApiEndpointConfig.Paths.search.getFilters, pageFilterRequest) as Observable<IFilters>;
   }
 

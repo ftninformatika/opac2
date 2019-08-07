@@ -1,41 +1,70 @@
 <div class="search-filters-wrapper">
   <mdb-card class="mr-4 mb-4 result-filter">
     <mdb-card-body>
-      <mdb-accordion [multiple]="true">
-        <mdb-accordion-item [collapsed]="false">
-          <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="lokacijaForm">
-              <mdb-checkbox formControlName="bgb">Централна</mdb-checkbox>
-              <mdb-checkbox formControlName="stariGrad">Стари Град</mdb-checkbox>
-              <mdb-checkbox formControlName="savskiVenac">Савски Венац</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
+      <div class="text-center" *ngIf="!filtersLoaded">
+        <h5>Учитавање филтера</h5>
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <ng-container *ngIf="filtersLoaded">
+        <mdb-accordion [multiple]="true">
+          <mdb-accordion-item [collapsed]="false">
+            <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="locationForm" *ngIf="filters.locations">
+                <mdb-checkbox *ngFor="let i of filters.locations" formControlName="{{i.filter.value}}">{{i.filter.value + ' - ' + i.filter.label + '(' + i.filter.count + ')'}}</mdb-checkbox>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
 
-        <mdb-accordion-item>
-          <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="vrstaGradjeForm">
-              <mdb-checkbox formControlName="monografske">монографске</mdb-checkbox>
-              <mdb-checkbox formControlName="serijske">серијске</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
+          <mdb-accordion-item>
+            <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="pubTypeForm" *ngIf="filters.pubTypes">
+                <mdb-checkbox *ngFor="let i of filters.pubTypes" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
 
-        <mdb-accordion-item>
-          <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <form [formGroup]="jezikForm">
-              <mdb-checkbox formControlName="srp">српски</mdb-checkbox>
-              <mdb-checkbox formControlName="eng">енглески</mdb-checkbox>
-            </form>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
-      </mdb-accordion>
+          <mdb-accordion-item>
+            <mdb-accordion-item-head>Аутор &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="authorsForm" *ngIf="filters.authors">
+                <mdb-checkbox *ngFor="let i of filters.authors | slice:0:15" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <a *ngIf="filters.pubYears.length > 15">
+                  <span style="color: blue">
+                    Прикажи све...
+                  </span>
+                </a>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
+
+          <mdb-accordion-item>
+            <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="languageForm" *ngIf="filters.languages">
+                <mdb-checkbox *ngFor="let i of filters.languages" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
+
+          <mdb-accordion-item>
+            <mdb-accordion-item-head>Година &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="pubYearForm" *ngIf="filters.pubYears">
+                <mdb-checkbox *ngFor="let i of filters.pubYears | slice:0:15" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <a *ngIf="filters.pubYears.length > 15">
+                  <span style="color: blue">
+                    Прикажи све...
+                  </span>
+                </a>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
+        </mdb-accordion>
+      </ng-container>
     </mdb-card-body>
   </mdb-card>
-  <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
 </div>
