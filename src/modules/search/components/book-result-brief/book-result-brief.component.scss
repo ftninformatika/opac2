@@ -27,6 +27,8 @@
     display: flex;
     flex-direction: column;
     button {
+      margin-top: 0;
+      margin-right: 0;
       height: 60px;
       width: 180px;
       font-size: 16px;
@@ -56,9 +58,11 @@
     h5 {font-size: 15px}
     span {font-size: 15px}
     .reserve-shelf-buttons > button {
-      height: 60px;
-      width: 120px;
-      font-size: 12px;
+      height: 42px;
+      width: 80px;
+      span {
+        display: none;
+      }
     }
     .book-cover > img {width: 100px}
     .fixed-height {height: 200px}
@@ -82,8 +86,8 @@
     }
     .pub-type {font-size: 10px}
     .reserve-shelf-buttons > button {
-      height: 40px;
-      width: 40px;
+      height: 38px;
+      width: 60px;
       span {
         display: none;
       }

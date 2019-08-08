@@ -12,7 +12,7 @@
                         class="col">
   </pagination-controls>
   <ng-template #searchFilters>
-    <search-filters [searchFilterReq]="{searchModel: searchModel, options: pageOptions}"></search-filters>
+    <search-filters [filters]="pageOptions.filters"></search-filters>
   </ng-template>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
@@ -31,14 +31,14 @@
       </ng-container>
     </div>
   </div>
-  <div mdbModal #filtersModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div mdbModal #filtersModal="mdbModal" style="overflow-y: auto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close pull-right" aria-label="Close" (click)="filtersModal.hide()">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title w-100" id="myModalLabel">Одаберите филтере:</h4>
+          <h4 class="modal-title w-100" id="myModalLabel">Одаберите филтере</h4>
         </div>
         <div class="modal-body">
           <ng-container *ngTemplateOutlet="searchFilters"></ng-container>

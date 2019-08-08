@@ -60,11 +60,10 @@ export class ResultPage implements OnInit, OnDestroy {
         this._booksService.search(this.searchModel).subscribe(
           (res: IResultPage) => {
             this.populateResultPage(res);
-            // this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
-            //   .subscribe(a => {
-            //     this.pageOptions.filters = a;
-            //     console.log(a);
-            //   });
+            this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
+              .subscribe(a => {
+                this.pageOptions.filters = a;
+              });
             },
           () => this._router.navigate(['/'])
         );
