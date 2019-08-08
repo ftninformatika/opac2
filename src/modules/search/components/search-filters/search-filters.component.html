@@ -13,7 +13,12 @@
             <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="locationForm" >
-                <mdb-checkbox *ngFor="let i of filters.locations" formControlName="{{i.filter.value}}">{{(i.filter.value + ' - ' + i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let i of filters.locations" formControlName="{{i.filter.value}}"
+                  [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                  (change)="selectionChanged(i.filter, 0)"
+                >
+                  {{(i.filter.value + ' - ' + i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}
+                </mdb-checkbox>
                 <a *ngIf="subLocationsExist">
                   <span style="color: blue" (click)="moreFilters(filters.locations, 'Локације');basicModal.show();">
                     Прикажи са подлокацијама
@@ -27,7 +32,11 @@
             <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="pubTypeForm" >
-                <mdb-checkbox *ngFor="let i of filters.pubTypes" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let i of filters.pubTypes" formControlName="{{i.filter.value}}"
+                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              (change)="selectionChanged(i.filter, 1)">
+                  {{i.filter.label + ' (' + i.filter.count + ')'}}
+                </mdb-checkbox>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -36,7 +45,11 @@
             <mdb-accordion-item-head>Аутор &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="authorsForm">
-                <mdb-checkbox *ngFor="let i of filters.authors | slice:0:15" formControlName="{{i.filter.value}}">{{(i.filter.label | shortenString: 17) + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let i of filters.authors | slice:0:15" formControlName="{{i.filter.value}}"
+                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              (change)="selectionChanged(i.filter, 2)">
+                  {{(i.filter.label | shortenString: 17) + ' (' + i.filter.count + ')'}}
+                </mdb-checkbox>
                 <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.authors, 'Аутори');basicModal.show();">
                   <span style="color: blue">
                     Прикажи све...
@@ -50,7 +63,11 @@
             <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="languageForm" >
-                <mdb-checkbox *ngFor="let i of filters.languages" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let i of filters.languages" formControlName="{{i.filter.value}}"
+                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              (change)="selectionChanged(i.filter, 3)">
+                  {{i.filter.label + ' (' + i.filter.count + ')'}}
+                </mdb-checkbox>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -59,7 +76,11 @@
             <mdb-accordion-item-head>Година &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="pubYearForm">
-                <mdb-checkbox *ngFor="let i of filters.pubYears | slice:0:15" formControlName="{{i.filter.value}}">{{i.filter.label + ' (' + i.filter.count + ')'}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let i of filters.pubYears | slice:0:15" formControlName="{{i.filter.value}}"
+                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              (change)="selectionChanged(i.filter, 4)">
+                  {{i.filter.label + ' (' + i.filter.count + ')'}}
+                </mdb-checkbox>
                 <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.pubYears, 'Година');basicModal.show();">
                   <span style="color: blue">
                     Прикажи све...

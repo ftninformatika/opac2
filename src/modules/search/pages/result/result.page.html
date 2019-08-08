@@ -12,7 +12,7 @@
                         class="col">
   </pagination-controls>
   <ng-template #searchFilters>
-    <search-filters [filters]="pageOptions.filters"></search-filters>
+    <search-filters [filters]="resultedFilters" (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>

@@ -8,6 +8,8 @@ import { IResultPage } from '../../../../models/page.model';
 import { Location } from '@angular/common';
 import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
 import { SearchService } from '../../../core/services/search.service';
+import { IFilterItem, IFiltersRes } from '../../../../models/search/filter.model';
+import { EFilterType } from '../../components/search-filters/search-filters.component';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -34,6 +36,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public searchResult: Book[];
   public deviceWidth = EDeviceWidth.GT_SM;
   public pageOptions: IResultPageOptions;
+  public resultedFilters: IFiltersRes;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService) {
@@ -44,6 +47,13 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location = location;
     this._searchService = searchService;
     this.searchModel = null;
+    this.resultedFilters = {
+      locations: null,
+      authors: null,
+      languages: null,
+      pubYears: null,
+      pubTypes: null
+    };
   }
 
   public ngOnInit() {
@@ -62,7 +72,8 @@ export class ResultPage implements OnInit, OnDestroy {
             this.populateResultPage(res);
             this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
               .subscribe(a => {
-                this.pageOptions.filters = a;
+                this.resultedFilters = a;
+                // this.pageOptions.filters = a;
               });
             },
           () => this._router.navigate(['/'])
@@ -88,6 +99,17 @@ export class ResultPage implements OnInit, OnDestroy {
       (res: IResultPage) => this.populateResultPage(res),
       () => this._router.navigate(['/'])
     );
+  }
+
+  public filterResults(filterItem: {item: IFilterItem, type: EFilterType}) {
+    console.log(filterItem);
+    switch (filterItem.type) {
+      case EFilterType.LOCATION: this.pageOptions.filters.locations.push(filterItem.item.value); break;
+      case EFilterType.PUB_TYPE: this.pageOptions.filters.pubTypes.push(filterItem.item.value); break;
+      case EFilterType.AUTHOR: this.pageOptions.filters.authors.push(filterItem.item.value); break;
+      case EFilterType.LANGUAGE: this.pageOptions.filters.languages.push(filterItem.item.value); break;
+      case EFilterType.PUB_YEAR: this.pageOptions.filters.pubYears.push(filterItem.item.value); break;
+    }
   }
 
   public onPageSizeChange(size: any) {

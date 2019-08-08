@@ -1,9 +1,16 @@
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { IResultPageFilterRequest } from '../../../../models/search/result-page-options.model';
+import { IFilter, IFilterItem, IFiltersRes } from '../../../../models/search/filter.model';
 import { SearchService } from '../../../core/services/search.service';
-import { IFilter, IFilters } from '../../../../models/filter.model';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
+
+export enum EFilterType {
+  LOCATION = 0,
+  PUB_TYPE = 1,
+  AUTHOR = 2,
+  LANGUAGE = 3,
+  PUB_YEAR = 4
+}
 
 @Component({
   selector: 'search-filters',
@@ -12,7 +19,8 @@ import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
 })
 export class SearchFiltersComponent implements OnChanges {
   @Input() searchFilterReq: IResultPageFilterRequest;
-  @Input() filters: IFilters;
+  @Input() filters: IFiltersRes;
+  @Output() filterSelected = new EventEmitter<{item: IFilterItem, type: EFilterType}>();
   private readonly _searchService: SearchService;
   public formBuilder: FormBuilder;
   public authorsForm: FormGroup;
@@ -53,6 +61,11 @@ export class SearchFiltersComponent implements OnChanges {
     this.filtersToExpand = filters;
   }
 
+  public selectionChanged(filterItem: IFilterItem, filterType: EFilterType): void {
+    console.log(filterItem, filterType);
+    this.filterSelected.emit({item: filterItem, type: filterType});
+  }
+
   private populateForms(): void {
     this.locationForm = this.formBuilder.group(this.filterArrayToFormObj(this.filters.locations));
     this.authorsForm = this.formBuilder.group(this.filterArrayToFormObj(this.filters.authors));
@@ -62,8 +75,10 @@ export class SearchFiltersComponent implements OnChanges {
   }
 
   private filterArrayToFormObj(fiArr: IFilter[]): any {
-    const retVal = {};
-    fiArr.map(e => e.filter).forEach(e => retVal[e.value] = e.checked);
+    const retVal = {
+      disabled: undefined
+    };
+    fiArr.map(e => e.filter).forEach(e => {retVal[e.value] = e.checked; retVal.disabled = !e.checked; });
     return retVal;
   }
 

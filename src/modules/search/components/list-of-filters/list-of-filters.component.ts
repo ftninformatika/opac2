@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { IFilter } from '../../../../models/filter.model';
+import { IFilter } from '../../../../models/search/filter.model';
 
 @Component({
   selector: 'list-of-filters',

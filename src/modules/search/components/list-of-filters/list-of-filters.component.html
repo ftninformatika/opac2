@@ -10,14 +10,14 @@
   <ng-container *ngIf="loaded">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4" *ngFor="let f of filters">
+        <div class="col-sm-4 col-md-3" *ngFor="let f of filters">
           <a>
             <span style="color: blue;">{{f.children === null ? '' : f.filter.value + ' - '}}{{f.filter.label}}&nbsp;<strong style="color:darkblue;">({{f.filter.count}})</strong></span>
           </a>
           <ng-container *ngIf="f.children">
-            <div *ngFor="let c of f.children" class="ml-1">
+            <div *ngFor="let c of f.children" class="ml-2">
               <a>
-                <span style="color: darkolivegreen;">{{c.value + ' - ' + c.label}}&nbsp;<strong style="color:darkgreen;">({{c.count}})</strong></span>
+                <span style="color: darkolivegreen;">{{c.value + ' - ' + c.label}}&nbsp;<strong style="color:darkblue;">({{c.count}})</strong></span>
               </a>
             </div>
           </ng-container>

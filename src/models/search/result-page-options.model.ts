@@ -1,10 +1,10 @@
 import { ISearchModel } from './search.model';
-import { IFilters } from '../filter.model';
+import { IFiltersReq } from './filter.model';
 
 export interface IResultPageOptions {
   pageSize: number;
   currentPage: number;
-  filters: IFilters;
+  filters: IFiltersReq;
   // TODO: implement later
   sort: any;
   previewType: any;
@@ -15,11 +15,17 @@ export interface IResultPageFilterRequest {
   options: IResultPageOptions;
 }
 
-
 export const IResultPageOptionsInitial: IResultPageOptions = {
   pageSize: 10,
   currentPage: 1,
-  filters: null,
+  filters: {
+    pubTypes: [],
+    pubYears: [],
+    languages: [],
+    authors: [],
+    locations: [],
+    subLocations: []
+  },
   sort: null,
   previewType: null
 };

@@ -1,4 +1,4 @@
-export interface IFilters {
+export interface IFiltersRes {
   locations: IFilter[];
   authors: IFilter[];
   pubTypes: IFilter[];
@@ -17,4 +17,13 @@ export interface IFilterItem {
   value: string;
   checked: boolean;
   count: number;
+}
+
+export interface IFiltersReq {
+  locations: string[];
+  subLocations: string[];
+  authors: string[];
+  pubTypes: string[];
+  languages: string[];
+  pubYears: string[];
 }
