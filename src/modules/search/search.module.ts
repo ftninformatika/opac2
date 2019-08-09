@@ -1,3 +1,4 @@
+import { SelectedFiltersComponent } from './components/selected-filters/selected-filters.component';
 import { ListOfFiltersComponent } from './components/list-of-filters/list-of-filters.component';
 import { SearchFiltersComponent } from './components/search-filters/search-filters.component';
 import { BookResultBrief } from './components/book-result-brief/book-result-brief.component';
@@ -19,6 +20,7 @@ import { NgModule } from '@angular/core';
     CoreModule
   ],
   declarations: [
+    SelectedFiltersComponent,
     ListOfFiltersComponent,
     SearchTopNavComponent,
     SearchFiltersComponent,

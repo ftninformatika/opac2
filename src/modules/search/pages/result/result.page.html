@@ -1,25 +1,26 @@
 <div class="result-page-wrapper">
-  <search-top-nav [pageSize]="pageOptions.pageSize"
-  (pageSizeChanged)="onPageSizeChange($event)"
-  (modifySearch)="modifySearch()"></search-top-nav>
-  <pagination-controls [id]="'paginatorId'"
-                       [maxSize]="5"
-                       [directionLinks]="true"
-                       [responsive]="true"
-                       [previousLabel]="'Претходна'"
-                       [nextLabel]="'Следећа'"
-                       (pageChange)="onPageChange($event)"
-                        class="col">
-  </pagination-controls>
   <ng-template #searchFilters>
-    <search-filters [filters]="resultedFilters" (filterSelected)="filterResults($event)"></search-filters>
+    <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded" (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
+  <selected-filters [selectedFilters]="selectedFilters"></selected-filters>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()" >Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
+        <search-top-nav [pageSize]="pageOptions.pageSize"
+                        (pageSizeChanged)="onPageSizeChange($event)"
+                        (modifySearch)="modifySearch()"></search-top-nav>
+        <pagination-controls [id]="'paginatorId'"
+                             [maxSize]="5"
+                             [directionLinks]="true"
+                             [responsive]="true"
+                             [previousLabel]="'Претходна'"
+                             [nextLabel]="'Следећа'"
+                             (pageChange)="onPageChange($event)"
+                             class="col">
+        </pagination-controls>
         <mdb-card *ngFor="let book of searchResult | paginate:
         {id: 'paginatorId',
         itemsPerPage: pageOptions.pageSize,
@@ -28,6 +29,14 @@
                   class="mb-3">
           <book-result-brief [book]="book"></book-result-brief>
         </mdb-card>
+        <pagination-controls [id]="'paginatorId'"
+                             [maxSize]="5"
+                             [directionLinks]="true"
+                             [responsive]="true"
+                             [previousLabel]="'Претходна'"
+                             [nextLabel]="'Следећа'"
+                             (pageChange)="onPageChange($event)">
+        </pagination-controls>
       </ng-container>
     </div>
   </div>
@@ -49,12 +58,4 @@
       </div>
     </div>
   </div>
-  <pagination-controls [id]="'paginatorId'"
-                       [maxSize]="5"
-                       [directionLinks]="true"
-                       [responsive]="true"
-                       [previousLabel]="'Претходна'"
-                       [nextLabel]="'Следећа'"
-                       (pageChange)="onPageChange($event)">
-  </pagination-controls>
 </div>

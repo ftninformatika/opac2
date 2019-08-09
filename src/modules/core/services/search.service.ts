@@ -1,4 +1,4 @@
-import { IResultPageFilterRequest } from '../../../models/search/result-page-options.model';
+import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { IFiltersRes } from '../../../models/search/filter.model';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class SearchService {
     this._httpClient = httpClient;
   }
 
-  public getFilters(pageFilterRequest: IResultPageFilterRequest): Observable<IFiltersRes> {
+  public getFilters(pageFilterRequest: IResultPageSearchRequest): Observable<IFiltersRes> {
     return this._httpClient.post(ApiEndpointConfig.Paths.search.getFilters, pageFilterRequest) as Observable<IFiltersRes>;
   }
 

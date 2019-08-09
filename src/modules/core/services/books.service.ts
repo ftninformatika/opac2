@@ -7,6 +7,7 @@ import { Book } from '../../../models/book.model';
 import { IPrefixValue } from '../../../models/prefix-value.model';
 import { IResultPage } from '../../../models/page.model';
 import { ISearchModel } from '../../../models/search/search.model';
+import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
 
 @Injectable({
   providedIn: 'root'
@@ -322,7 +323,7 @@ export class BooksService {
   }
   // -----------------------------------------------
 
-  public search(searchModel: ISearchModel, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
+  public search(searchModel: IResultPageSearchRequest, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
     return this._httpClient
       .post(`${ApiEndpointConfig.Paths.search.main}?pageNumber=${pageNumber}&pageSize=${pageSize}`, searchModel) as Observable<IResultPage>;
   }

@@ -10,7 +10,7 @@ export interface IResultPageOptions {
   previewType: any;
 }
 
-export interface IResultPageFilterRequest {
+export interface IResultPageSearchRequest {
   searchModel?: ISearchModel;
   options: IResultPageOptions;
 }

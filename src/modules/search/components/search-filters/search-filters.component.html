@@ -14,13 +14,13 @@
             <mdb-accordion-item-body>
               <form [formGroup]="locationForm" >
                 <mdb-checkbox *ngFor="let i of filters.locations" formControlName="{{i.filter.value}}"
-                  [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                  [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                   (change)="selectionChanged(i.filter, 0)"
                 >
                   {{(i.filter.value + ' - ' + i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}
                 </mdb-checkbox>
                 <a *ngIf="subLocationsExist">
-                  <span style="color: blue" (click)="moreFilters(filters.locations, 'Локације');basicModal.show();">
+                  <span style="color: blue" (click)="moreFilters(filters.locations, 'Локације', 0);basicModal.show();">
                     Прикажи са подлокацијама
                   </span>
                 </a>
@@ -28,12 +28,12 @@
             </mdb-accordion-item-body>
           </mdb-accordion-item>
 
-          <mdb-accordion-item *ngIf="filters.pubTypes && filters.pubTypes.length > 0">
+          <mdb-accordion-item [collapsed]="collapsedFilter[1]" *ngIf="filters.pubTypes && filters.pubTypes.length > 0">
             <mdb-accordion-item-head>Врста грађе &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="pubTypeForm" >
                 <mdb-checkbox *ngFor="let i of filters.pubTypes" formControlName="{{i.filter.value}}"
-                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                               (change)="selectionChanged(i.filter, 1)">
                   {{i.filter.label + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
@@ -41,16 +41,16 @@
             </mdb-accordion-item-body>
           </mdb-accordion-item>
 
-          <mdb-accordion-item *ngIf="filters.authors && filters.authors.length > 0">
+          <mdb-accordion-item [collapsed]="collapsedFilter[2]" *ngIf="filters.authors && filters.authors.length > 0">
             <mdb-accordion-item-head>Аутор &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="authorsForm">
                 <mdb-checkbox *ngFor="let i of filters.authors | slice:0:15" formControlName="{{i.filter.value}}"
-                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                               (change)="selectionChanged(i.filter, 2)">
                   {{(i.filter.label | shortenString: 17) + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.authors, 'Аутори');basicModal.show();">
+                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.authors, 'Аутори', 2);basicModal.show();">
                   <span style="color: blue">
                     Прикажи све...
                   </span>
@@ -59,12 +59,12 @@
             </mdb-accordion-item-body>
           </mdb-accordion-item>
 
-          <mdb-accordion-item *ngIf="filters.languages && filters.languages.length > 0">
+          <mdb-accordion-item [collapsed]="collapsedFilter[3]" *ngIf="filters.languages && filters.languages.length > 0">
             <mdb-accordion-item-head>Језик </mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="languageForm" >
                 <mdb-checkbox *ngFor="let i of filters.languages" formControlName="{{i.filter.value}}"
-                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                               (change)="selectionChanged(i.filter, 3)">
                   {{i.filter.label + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
@@ -72,16 +72,16 @@
             </mdb-accordion-item-body>
           </mdb-accordion-item>
 
-          <mdb-accordion-item *ngIf="filters.pubYears && filters.pubYears.length > 0">
+          <mdb-accordion-item [collapsed]="collapsedFilter[4]" *ngIf="filters.pubYears && filters.pubYears.length > 0">
             <mdb-accordion-item-head>Година &nbsp;&nbsp;&nbsp;</mdb-accordion-item-head>
             <mdb-accordion-item-body>
               <form [formGroup]="pubYearForm">
                 <mdb-checkbox *ngFor="let i of filters.pubYears | slice:0:15" formControlName="{{i.filter.value}}"
-                              [checked]="i.filter.checked" [disabled]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                               (change)="selectionChanged(i.filter, 4)">
                   {{i.filter.label + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.pubYears, 'Година');basicModal.show();">
+                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.pubYears, 'Година', 4);basicModal.show();">
                   <span style="color: blue">
                     Прикажи све...
                   </span>
@@ -94,40 +94,18 @@
     </mdb-card-body>
   </mdb-card>
 
-<!--  <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Launch demo modal</button>-->
-<!--  <div style="overflow-y: auto;" mdbModal #basicModal="mdbModal" class="more-filters-modal modal fade bottom" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"-->
-<!--       aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">-->
-<!--            <span aria-hidden="true">×</span>-->
-<!--          </button>-->
-<!--          <h4 class="modal-title w-100" id="myModalLabel">{{filtersMoreLabel}}</h4>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          <list-of-filters [filters]="filtersToExpand"></list-of-filters>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Затвори" (click)="basicModal.hide()" mdbWavesEffect>Close</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>{{filtersMoreLabel}}</button >-->
   <div style="overflow-y: auto; background: #eeeeee" mdbModal #basicModal="mdbModal" class="modal fade top" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
          aria-hidden="true">
     <div class="modal-dialog modal-fluid modal-full-height modal-top" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">{{filtersMoreLabel}}</h4>
         </div>
         <div class="modal-body">
-          <list-of-filters [filters]="filtersToExpand"></list-of-filters>
+          <list-of-filters [filters]="filtersToExpand" [type]="activeFilterModal" (filterChosen)="selectionChanged($event.item, $event.type);basicModal.hide();"></list-of-filters>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Затвори</button>
