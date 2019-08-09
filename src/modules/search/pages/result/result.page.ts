@@ -145,7 +145,6 @@ export class ResultPage implements OnInit, OnDestroy {
           .subscribe(a => {
             this.resultedFilters = a;
             this.filtersLoaded = true;
-            this.populateSelectedFilters(this.resultedFilters);
           });
       },
       () => this._router.navigate(['/'])
@@ -167,6 +166,61 @@ export class ResultPage implements OnInit, OnDestroy {
       this.populateLocation();
       window.scroll(0, 0);
     }
+  }
+
+  public removeSelectedFilter(filterItem: {item: IFilterItem, type: EFilterType}) {
+    if (!filterItem) {
+      return;
+    }
+    switch (filterItem.type) {
+      case EFilterType.AUTHOR: {
+        this.resultedFilters.authors.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
+        const i = this.pageOptions.filters.authors.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.authors.splice(i, 1);
+        }
+      }
+                               break;
+      case EFilterType.LOCATION: {
+        this.resultedFilters.locations.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
+        const i = this.pageOptions.filters.locations.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.locations.splice(i, 1);
+        }
+      }
+                                 break;
+      case EFilterType.LANGUAGE: {
+        this.resultedFilters.languages.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
+        const i = this.pageOptions.filters.languages.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.languages.splice(i, 1);
+        }
+      }
+                                 break;
+      case EFilterType.PUB_TYPE: {
+        this.resultedFilters.pubTypes.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
+        const i = this.pageOptions.filters.pubTypes.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.pubTypes.splice(i, 1);
+        }
+      }                          break;
+      case EFilterType.PUB_YEAR: {
+        this.resultedFilters.pubYears.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
+        const i = this.pageOptions.filters.pubYears.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.pubYears.splice(i, 1);
+        }
+      }                          break;
+      case EFilterType.SUB_LOCATION: {
+        this.resultedFilters.locations.forEach(l => l.children.find(e => e.value === filterItem.item.value).checked = false);
+        const i = this.pageOptions.filters.subLocations.indexOf(filterItem.item.value);
+        if (i !== -1) {
+          this.pageOptions.filters.subLocations.splice(i, 1);
+        }
+      }                              break;
+      default: return;
+    }
+    this.searchWithFilters();
   }
 
   private populateSelectedFilters(filters: IFiltersRes) {

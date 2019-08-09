@@ -11,12 +11,12 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4 col-md-3" *ngFor="let f of filters">
-          <a (click)="onChoseFilter(f.filter, type)">
+          <a (click)="f.filter.checked = true;onChoseFilter(f.filter, type)">
             <span style="color: blue;">{{f.children === null ? '' : f.filter.value + ' - '}}{{f.filter.label}}&nbsp;<strong style="color:darkblue;">({{f.filter.count}})</strong></span>
           </a>
           <ng-container *ngIf="f.children">
             <div *ngFor="let c of f.children" class="ml-2">
-              <a (click)="onChoseFilter(c, 5)">
+              <a (click)="c.checked = true;onChoseFilter(c, 5)">
                 <span style="color: darkolivegreen;">{{c.value + ' - ' + c.label}}&nbsp;<strong style="color:darkblue;">({{c.count}})</strong></span>
               </a>
             </div>

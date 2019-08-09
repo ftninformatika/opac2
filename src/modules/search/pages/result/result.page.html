@@ -2,7 +2,13 @@
   <ng-template #searchFilters>
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded" (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-  <selected-filters [selectedFilters]="selectedFilters"></selected-filters>
+  <div class="ml-3 mb-2">
+    <a  style="color: cadetblue" (click)="modifySearch()">
+      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
+      &nbsp;Измена претраге
+    </a>
+  </div>
+  <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
@@ -11,7 +17,8 @@
       <ng-container *ngIf="resultPage">
         <search-top-nav [pageSize]="pageOptions.pageSize"
                         (pageSizeChanged)="onPageSizeChange($event)"
-                        (modifySearch)="modifySearch()"></search-top-nav>
+                        >
+        </search-top-nav>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"

@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { IFilterItem } from '../../../../models/search/filter.model';
 import { EFilterType } from '../search-filters/search-filters.component';
 
@@ -10,8 +10,11 @@ import { EFilterType } from '../search-filters/search-filters.component';
 })
 export class SelectedFiltersComponent {
   @Input() selectedFilters: {item: IFilterItem, type: EFilterType}[];
+  @Output() removeSelectedFilter = new EventEmitter<{item: IFilterItem, type: EFilterType}>();
 
   public removeFilter(f: {item: IFilterItem, type: EFilterType}) {
-    f.item.checked = false;
+    const i = this.selectedFilters.indexOf(f);
+    this.selectedFilters.splice(i, 1);
+    this.removeSelectedFilter.emit(f);
   }
 }

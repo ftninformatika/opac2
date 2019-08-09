@@ -1,14 +1,13 @@
 <div class="selected-filters-component-wrapper mr-4">
   <nav class="navbar navbar-toggleable-xl navbar-inverse">
-      <a class="" href="#">
-        <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
-        &nbsp;Измена претраге
-      </a>
       <div *ngIf="selectedFilters.length > 0">
         <span class="mr-2">Одабрани филтери:&nbsp;</span>
-        <div class="chip" color="cyan" *ngFor="let f of selectedFilters" [mdbTooltip]="f.item.label">
+        <div class="chip mt-1" color="cyan" *ngFor="let f of selectedFilters | slice:0:9" [mdbTooltip]="f.item.label">
           {{f.item.label | shortenString:14}}
           <mdb-icon fas icon="times" class="close" (click)="removeFilter(f)"></mdb-icon>
+        </div>
+        <div *ngIf="selectedFilters.length > 9">
+          <a><span style="color: blue;">Остали...</span></a>
         </div>
       </div>
       <div *ngIf="selectedFilters.length === 0" style="color: darkslategrey">
