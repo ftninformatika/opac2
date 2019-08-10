@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
-import { IFilterItem, IFiltersRes } from '../../../../models/search/filter.model';
+import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { SearchService } from '../../../core/services/search.service';
 import { ISearchModel } from '../../../../models/search/search.model';
 import { BooksService } from '../../../core/services/books.service';
@@ -39,7 +39,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public deviceWidth = EDeviceWidth.GT_SM;
   public pageOptions: IResultPageOptions;
   public resultedFilters: IFiltersRes;
-  public selectedFilters: {item: IFilterItem, type: EFilterType}[];
+  public selectedFilters: ISelectedFilter[];
   public filtersLoaded: boolean;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
@@ -109,15 +109,15 @@ export class ResultPage implements OnInit, OnDestroy {
     );
   }
 
-  public filterResults(filterItem: {item: IFilterItem, type: EFilterType}) {
+  public filterResults(filterItem: ISelectedFilter) {
     this.addRemoveSelectedFilters(filterItem);
     switch (filterItem.type) {
-      case EFilterType.LOCATION: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.locations); break;
-      case EFilterType.PUB_TYPE: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.pubTypes); break;
-      case EFilterType.AUTHOR: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.authors); break;
-      case EFilterType.LANGUAGE: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.languages); break;
-      case EFilterType.PUB_YEAR: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.pubYears); break;
-      case EFilterType.SUB_LOCATION: ArrayUtils.pushOrRemoveFromArr(filterItem.item.value, this.pageOptions.filters.subLocations); break;
+      case EFilterType.LOCATION: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.locations); break;
+      case EFilterType.PUB_TYPE: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.pubTypes); break;
+      case EFilterType.AUTHOR: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.authors); break;
+      case EFilterType.LANGUAGE: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.languages); break;
+      case EFilterType.PUB_YEAR: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.pubYears); break;
+      case EFilterType.SUB_LOCATION: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subLocations); break;
       default: return;
     }
     this.searchWithFilters();
@@ -135,7 +135,7 @@ export class ResultPage implements OnInit, OnDestroy {
     );
   }
 
-  private addRemoveSelectedFilters(filterItem: {item: IFilterItem, type: EFilterType}) {
+  private addRemoveSelectedFilters(filterItem: ISelectedFilter) {
     const el = this.selectedFilters.find(e => e.item.value === filterItem.item.value);
     let index = -1;
     if (el) {
@@ -167,18 +167,12 @@ export class ResultPage implements OnInit, OnDestroy {
     if (this.selectedFilters.length !== 0) {
       return;
     }
-    this.resultedFilters.locations.filter(e => this.pageOptions.filters.locations.find(r => r === e.filter.value))
-      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.LOCATION}));
-    this.resultedFilters.pubYears.filter(e => this.pageOptions.filters.pubYears.find(r => r === e.filter.value))
-      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.PUB_YEAR}));
-    this.resultedFilters.pubTypes.filter(e => this.pageOptions.filters.pubTypes.find(r => r === e.filter.value))
-      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.PUB_TYPE}));
-    this.resultedFilters.languages.filter(e => this.pageOptions.filters.languages.find(r => r === e.filter.value))
-      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.LANGUAGE}));
-    this.resultedFilters.authors.filter(e => this.pageOptions.filters.authors.find(r => r === e.filter.value))
-      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.AUTHOR}));
-    this.resultedFilters.locations.forEach(l => l.children.filter(e => this.pageOptions.filters.subLocations.find(r => r === e.value))
-      .forEach(e => this.selectedFilters.push({item: e, type: EFilterType.SUB_LOCATION})));
+    this.pageOptions.filters.authors.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.subLocations.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.locations.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.languages.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.pubTypes.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.pubYears.forEach(e => this.selectedFilters.push(e));
   }
 
   public modifySearch() {
@@ -198,53 +192,63 @@ export class ResultPage implements OnInit, OnDestroy {
     }
   }
 
-  // TODO: make filters in pageOptions FilterItems, less complicated bindings and initializeing selected filter tags
-  public removeSelectedFilter(filterItem: {item: IFilterItem, type: EFilterType}) {
+  public removeSelectedFilter(filterItem: ISelectedFilter) {
     if (!filterItem) {
       return;
     }
     switch (filterItem.type) {
       case EFilterType.AUTHOR: {
-        this.resultedFilters.authors.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
-        const i = this.pageOptions.filters.authors.indexOf(filterItem.item.value);
+        this.resultedFilters.authors.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.authors.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.authors.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.authors.splice(i, 1);
         }
       }
                                break;
       case EFilterType.LOCATION: {
-        this.resultedFilters.locations.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
-        const i = this.pageOptions.filters.locations.indexOf(filterItem.item.value);
+        this.resultedFilters.locations.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.locations.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.locations.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.locations.splice(i, 1);
         }
       }
                                  break;
       case EFilterType.LANGUAGE: {
-        this.resultedFilters.languages.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
-        const i = this.pageOptions.filters.languages.indexOf(filterItem.item.value);
+        this.resultedFilters.languages.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.languages.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.languages.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.languages.splice(i, 1);
         }
       }
                                  break;
       case EFilterType.PUB_TYPE: {
-        this.resultedFilters.pubTypes.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
-        const i = this.pageOptions.filters.pubTypes.indexOf(filterItem.item.value);
+        this.resultedFilters.pubTypes.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.pubTypes.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.pubTypes.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.pubTypes.splice(i, 1);
         }
       }                          break;
       case EFilterType.PUB_YEAR: {
-        this.resultedFilters.pubYears.find(e => e.filter.value === filterItem.item.value).filter.checked = false;
-        const i = this.pageOptions.filters.pubYears.indexOf(filterItem.item.value);
+        this.resultedFilters.pubYears.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.pubYears.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.pubYears.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.pubYears.splice(i, 1);
         }
       }                          break;
       case EFilterType.SUB_LOCATION: {
-        this.resultedFilters.locations.forEach(l => l.children.find(e => e.value === filterItem.item.value).checked = false);
-        const i = this.pageOptions.filters.subLocations.indexOf(filterItem.item.value);
+        this.resultedFilters.locations.forEach(l => {
+          const sl = l.children.find(f => f.value === filterItem.item.value);
+          if (sl) {
+            sl.checked = false;
+          }
+        });
+        const e = this.pageOptions.filters.subLocations.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.subLocations.indexOf(e);
         if (i !== -1) {
           this.pageOptions.filters.subLocations.splice(i, 1);
         }

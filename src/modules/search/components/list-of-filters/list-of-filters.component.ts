@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import { IFilter, IFilterItem } from '../../../../models/search/filter.model';
+import { IFilter, IFilterItem, ISelectedFilter } from '../../../../models/search/filter.model';
 import { EFilterType } from '../search-filters/search-filters.component';
 
 @Component({
@@ -21,7 +21,7 @@ import { EFilterType } from '../search-filters/search-filters.component';
 export class ListOfFiltersComponent implements OnChanges {
   @Input() filters: IFilter[];
   @Input() type: EFilterType;
-  @Output() filterChosen = new EventEmitter<{item: IFilterItem, type: EFilterType}>();
+  @Output() filterChosen = new EventEmitter<ISelectedFilter>();
   public loaded: boolean;
 
   public constructor() {

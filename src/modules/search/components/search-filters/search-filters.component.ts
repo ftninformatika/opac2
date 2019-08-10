@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { IResultPageSearchRequest } from '../../../../models/search/result-page-options.model';
-import { IFilter, IFilterItem, IFiltersRes } from '../../../../models/search/filter.model';
+import { IFilter, IFilterItem, IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { SearchService } from '../../../core/services/search.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -22,7 +22,7 @@ export class SearchFiltersComponent implements OnChanges {
   @Input() searchFilterReq: IResultPageSearchRequest;
   @Input() filters: IFiltersRes;
   @Input() filtersLoaded: boolean;
-  @Output() filterSelected = new EventEmitter<{item: IFilterItem, type: EFilterType}>();
+  @Output() filterSelected = new EventEmitter<ISelectedFilter>();
   private readonly _searchService: SearchService;
 
   public formBuilder: FormBuilder;

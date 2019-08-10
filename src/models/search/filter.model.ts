@@ -1,3 +1,5 @@
+import { EFilterType } from '../../modules/search/components/search-filters/search-filters.component';
+
 export interface IFiltersRes {
   locations: IFilter[];
   authors: IFilter[];
@@ -12,6 +14,11 @@ export interface IFilter {
   children?: IFilterItem[];
 }
 
+export interface ISelectedFilter {
+  item: IFilterItem;
+  type: EFilterType;
+}
+
 export interface IFilterItem {
   label: string;
   value: string;
@@ -20,10 +27,10 @@ export interface IFilterItem {
 }
 
 export interface IFiltersReq {
-  locations: string[];
-  subLocations: string[];
-  authors: string[];
-  pubTypes: string[];
-  languages: string[];
-  pubYears: string[];
+  locations: ISelectedFilter[];
+  subLocations: ISelectedFilter[];
+  authors: ISelectedFilter[];
+  pubTypes: ISelectedFilter[];
+  languages: ISelectedFilter[];
+  pubYears: ISelectedFilter[];
 }
