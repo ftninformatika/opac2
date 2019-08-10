@@ -73,7 +73,19 @@ export class ResultPage implements OnInit, OnDestroy {
         if (this.pageOptions && this.pageOptions.currentPage) {
           this.onPageChange(this.pageOptions.currentPage);
         }
-        this.searchWithFilters();
+        this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
+          (res: IResultPage) => {
+            this.populateResultPage(res);
+            this.filtersLoaded = false;
+            this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
+              .subscribe(a => {
+                this.resultedFilters = a;
+                this.filtersLoaded = true;
+                this.initSelectedFilters();
+              });
+          },
+          () => this._router.navigate(['/'])
+        );
     });
     this.onWindowResize();
   }
@@ -122,7 +134,7 @@ export class ResultPage implements OnInit, OnDestroy {
       () => this._router.navigate(['/'])
     );
   }
-  // TODO: debug and solve this
+
   private addRemoveSelectedFilters(filterItem: {item: IFilterItem, type: EFilterType}) {
     const el = this.selectedFilters.find(e => e.item.value === filterItem.item.value);
     let index = -1;
@@ -151,6 +163,24 @@ export class ResultPage implements OnInit, OnDestroy {
     );
   }
 
+  private initSelectedFilters() {
+    if (this.selectedFilters.length !== 0) {
+      return;
+    }
+    this.resultedFilters.locations.filter(e => this.pageOptions.filters.locations.find(r => r === e.filter.value))
+      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.LOCATION}));
+    this.resultedFilters.pubYears.filter(e => this.pageOptions.filters.pubYears.find(r => r === e.filter.value))
+      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.PUB_YEAR}));
+    this.resultedFilters.pubTypes.filter(e => this.pageOptions.filters.pubTypes.find(r => r === e.filter.value))
+      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.PUB_TYPE}));
+    this.resultedFilters.languages.filter(e => this.pageOptions.filters.languages.find(r => r === e.filter.value))
+      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.LANGUAGE}));
+    this.resultedFilters.authors.filter(e => this.pageOptions.filters.authors.find(r => r === e.filter.value))
+      .forEach(e => this.selectedFilters.push({item: e.filter, type: EFilterType.AUTHOR}));
+    this.resultedFilters.locations.forEach(l => l.children.filter(e => this.pageOptions.filters.subLocations.find(r => r === e.value))
+      .forEach(e => this.selectedFilters.push({item: e, type: EFilterType.SUB_LOCATION})));
+  }
+
   public modifySearch() {
     this._router.navigate(['/search'], {state: this.searchModel});
   }
@@ -168,6 +198,7 @@ export class ResultPage implements OnInit, OnDestroy {
     }
   }
 
+  // TODO: make filters in pageOptions FilterItems, less complicated bindings and initializeing selected filter tags
   public removeSelectedFilter(filterItem: {item: IFilterItem, type: EFilterType}) {
     if (!filterItem) {
       return;
@@ -223,20 +254,11 @@ export class ResultPage implements OnInit, OnDestroy {
     this.searchWithFilters();
   }
 
-  private populateSelectedFilters(filters: IFiltersRes) {
-    filters.locations.filter(l => l.filter.checked).map(l => {
-      return {
-        item: l.filter,
-        type: EFilterType.LOCATION
-      };
-    })
-      .forEach(l => this.addRemoveSelectedFilters(l));
-  }
-
   private populateLocation() {
     const smString = JSON.stringify(this.searchModel);
     const optionsString = JSON.stringify(this.pageOptions);
     // This is used to change route params in order to enable link share on specific page, size...
+    // TODO: make some share link button for this, to remove this abomination from address bar
     this._location.replaceState(
       `/search/result?query=${smString}&pageOptions=${optionsString}`);
   }
