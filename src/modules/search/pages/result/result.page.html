@@ -19,6 +19,7 @@
                         (pageSizeChanged)="onPageSizeChange($event)"
                         >
         </search-top-nav>
+        <h5 style="font-size: 16px;" align="center">Укупно резултата:&nbsp;{{resultPage.totalElements}}</h5>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"

@@ -31,10 +31,10 @@
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
     <div class="reserve-shelf-buttons ml-auto">
-      <button mdbBtn type="button" color="primary" mdbWavesEffect>
-        <mdb-icon fas icon="check-square" class="mr-1"></mdb-icon><span>Резервиши</span>
+      <button mdbBtn type="button" color="primary" [mdbTooltip]="'Резервиши'">
+        <mdb-icon fas icon="check-square" class="mr-1" ></mdb-icon><span>Резервиши</span>
       </button>
-      <button mdbBtn type="button" color="default" mdbWavesEffect>
+      <button mdbBtn type="button" color="default" size="sm" [mdbTooltip]="'На полицу'">
         <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon><span>На полицу</span>
       </button>
     </div>

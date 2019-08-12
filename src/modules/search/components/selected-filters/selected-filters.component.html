@@ -7,7 +7,16 @@
           <mdb-icon fas icon="times" class="close" (click)="removeFilter(f)"></mdb-icon>
         </div>
         <div *ngIf="selectedFilters.length > 9">
-          <a><span style="color: blue;">Остали...</span></a>
+          <a><span style="color: blue;" class="mr-2" (click)="showOthers = !showOthers">
+            Остали
+            <mdb-icon fas icon="{{showOthers? 'toggle-on' : 'toggle-off'}}"></mdb-icon>
+          </span></a>
+          <ng-container *ngIf="showOthers">
+            <div  class="chip mt-1" color="cyan" *ngFor="let f of selectedFilters | slice:9:selectedFilters.length" [mdbTooltip]="f.item.label">
+              {{f.item.label | shortenString:14}}
+              <mdb-icon fas icon="times" class="close" (click)="removeFilter(f)"></mdb-icon>
+            </div>
+          </ng-container>
         </div>
       </div>
       <div *ngIf="selectedFilters.length === 0" style="color: darkslategrey">

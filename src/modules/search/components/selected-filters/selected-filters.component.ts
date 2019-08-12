@@ -10,6 +10,7 @@ import { ISelectedFilter } from '../../../../models/search/filter.model';
 export class SelectedFiltersComponent {
   @Input() selectedFilters: ISelectedFilter[];
   @Output() removeSelectedFilter = new EventEmitter<ISelectedFilter>();
+  public showOthers = false;
 
   public removeFilter(f: ISelectedFilter) {
     const i = this.selectedFilters.indexOf(f);

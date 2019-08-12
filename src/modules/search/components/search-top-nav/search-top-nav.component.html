@@ -2,10 +2,10 @@
   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
     <links>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            По страни:
-        </li>
         <li class="nav-item ml-2">
+          <span>По страни:</span>
+<!--        </li>-->
+<!--        <li class="nav-item ml-2">-->
           <select class="browser-default custom-select" (change)="onChangePageSize($event.target.value)">
             <option value=10 [selected]="pageSize === 10">10</option>
             <option value=20 [selected]="pageSize === 20">20</option>
@@ -16,9 +16,6 @@
     </links>
     <links>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-<!--          <a class="nav-link waves-light" mdbWavesEffect (click)="onModifySearch()">Измени претрагу</a>-->
-        </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect>Начин приказа</a>
         </li>
