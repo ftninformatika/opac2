@@ -11,6 +11,7 @@ import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchUtil } from '../../../../utils/animations/search-util';
 import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
+import { CryptoUtils } from '../../../../utils/crypto.utils';
 
 @Component({
   selector: 'top-menu',
@@ -54,8 +55,9 @@ export class TopMenuComponent {
     const searchModel = (this.selectedAc && this.searchText === this.selectedAc.value)
       ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
         SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
-    this._router.navigate(['/search/result'], {queryParams: {query: JSON.stringify(searchModel),
-        pageOptions: JSON.stringify({...IResultPageOptionsInitial})}});
+    const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify({...IResultPageOptionsInitial})}`;
+    const encodedURI = CryptoUtils.encryptData(uriChunk);
+    this._router.navigate(['/search/result'], {queryParams: {hash: encodedURI}});
   }
 
   public getFilteredData() {

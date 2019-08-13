@@ -5,6 +5,7 @@ import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.m
 import { SearchService } from '../../../core/services/search.service';
 import { ISearchModel } from '../../../../models/search/search.model';
 import { BooksService } from '../../../core/services/books.service';
+import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { IResultPage } from '../../../../models/page.model';
 import { ArrayUtils } from '../../../../utils/array.utils';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,6 +27,8 @@ export enum EDeviceWidth {
 })
 export class ResultPage implements OnInit, OnDestroy {
 
+
+  public static readonly PagePath = 'search/result?';
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _searchService: SearchService;
@@ -50,28 +53,26 @@ export class ResultPage implements OnInit, OnDestroy {
     this._toastService = toastService;
     this._location = location;
     this._searchService = searchService;
-    this.searchModel = null;
-    this.filtersLoaded = false;
-    this.selectedFilters = [];
-    this.resultedFilters = {
-      locations: null,
-      authors: null,
-      languages: null,
-      pubYears: null,
-      pubTypes: null
-    };
+    this.initValues();
   }
 
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
-        this.pageOptions = JSON.parse(params.get('pageOptions'));
-        this.searchModel = JSON.parse(params.get('query'));
-        if (this.searchModel === null) {
+        try {
+          let hashString = params.get('hash');
+          hashString = CryptoUtils.decryptData(hashString);
+          const paramsChunks = hashString.split('&');
+          const queryChunk = paramsChunks[0].split('=')[1];
+          const pageOptionsCh = paramsChunks[1].split('=')[1];
+          this.pageOptions = JSON.parse(pageOptionsCh);
+          this.searchModel = JSON.parse(queryChunk);
+        } catch (e) {
+          console.error(e.toString());
           this._router.navigate(['/']);
         }
-        if (this.pageOptions && this.pageOptions.currentPage) {
-          this.onPageChange(this.pageOptions.currentPage);
+        if (this.searchModel === null) {
+          this._router.navigate(['/']);
         }
         this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
           (res: IResultPage) => {
@@ -91,7 +92,20 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+    this.initValues();
+  }
+
+  private initValues() {
     this.searchModel = null;
+    this.filtersLoaded = false;
+    this.selectedFilters = [];
+    this.resultedFilters = {
+      locations: null,
+      authors: null,
+      languages: null,
+      pubYears: null,
+      pubTypes: null
+    };
   }
 
   @HostListener('window:resize')
@@ -261,9 +275,8 @@ export class ResultPage implements OnInit, OnDestroy {
   private populateLocation() {
     const smString = JSON.stringify(this.searchModel);
     const optionsString = JSON.stringify(this.pageOptions);
-    // This is used to change route params in order to enable link share on specific page, size...
-    // TODO: make some share link button for this, to remove this abomination from address bar
-    this._location.replaceState(
-      `/search/result?query=${smString}&pageOptions=${optionsString}`);
+    const uriChunk = `query=${smString}&pageOptions=${optionsString}`;
+    const encoded = CryptoUtils.encryptData(uriChunk);
+    this._location.replaceState(`/${ResultPage.PagePath}hash=${encoded}`);
   }
 }

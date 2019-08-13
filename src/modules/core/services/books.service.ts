@@ -324,6 +324,9 @@ export class BooksService {
   // -----------------------------------------------
 
   public search(searchModel: IResultPageSearchRequest, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
+    if (searchModel && searchModel.options && searchModel.options.currentPage && searchModel.options.currentPage > 0 && pageNumber === 0) {
+      pageNumber = searchModel.options.currentPage - 1;
+    }
     return this._httpClient
       .post(`${ApiEndpointConfig.Paths.search.main}?pageNumber=${pageNumber}&pageSize=${pageSize}`, searchModel) as Observable<IResultPage>;
   }
