@@ -17,7 +17,7 @@
                   [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                   (change)="selectionChanged(i.filter, 0)"
                 >
-                  {{(i.filter.value + ' - ' + i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}
+                  {{(i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}
                 </mdb-checkbox>
                 <a *ngIf="subLocationsExist">
                   <span style="color: blue" (click)="moreFilters(filters.locations, 'Локације', 0);basicModal.show();">

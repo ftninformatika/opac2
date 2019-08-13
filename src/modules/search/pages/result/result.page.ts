@@ -71,10 +71,18 @@ export class ResultPage implements OnInit, OnDestroy {
           console.error(e.toString());
           this._router.navigate(['/']);
         }
-        if (this.searchModel === null) {
+        if (this.searchModel === null || this.pageOptions === null) {
           this._router.navigate(['/']);
         }
-        this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
+        let pageNum = 0;
+        let pageSize = 10;
+        if (this.pageOptions.currentPage > 0) {
+          pageNum = this.pageOptions.currentPage - 1;
+        }
+        if (this.pageOptions.pageSize !== 10) {
+          pageSize = this.pageOptions.pageSize;
+        }
+        this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}, pageNum, pageSize).subscribe(
           (res: IResultPage) => {
             this.populateResultPage(res);
             this.filtersLoaded = false;

@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
-import { BooksService } from '../../../core/services/books.service';
-import { Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { SignOutAction, UserState } from '../../../core/states/user/user.state';
-import { TranslateService } from '@ngx-translate/core';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { IPrefixValue } from '../../../../models/prefix-value.model';
+import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchUtil } from '../../../../utils/animations/search-util';
-import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
+import { IPrefixValue } from '../../../../models/prefix-value.model';
+import { BooksService } from '../../../core/services/books.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, of, Subject } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'top-menu',
