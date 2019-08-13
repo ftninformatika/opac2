@@ -12,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
+import { Store } from '@ngxs/store';
+import { ChangeConfigAction, ConfigState } from '../../../core/states/config/config.state';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -27,7 +29,6 @@ export enum EDeviceWidth {
 })
 export class ResultPage implements OnInit, OnDestroy {
 
-
   public static readonly PagePath = 'search/result?';
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
@@ -35,6 +36,7 @@ export class ResultPage implements OnInit, OnDestroy {
   private readonly _router: Router;
   private readonly _toastService: ToastService;
   private readonly _location: Location;
+  private readonly _store: Store;
 
   public searchModel: ISearchModel;
   public resultPage: IResultPage;
@@ -44,15 +46,18 @@ export class ResultPage implements OnInit, OnDestroy {
   public resultedFilters: IFiltersRes;
   public selectedFilters: ISelectedFilter[];
   public filtersLoaded: boolean;
+  public lib: string;
+
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
-                     router: Router, toastService: ToastService, location: Location, searchService: SearchService) {
+                     router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._toastService = toastService;
     this._location = location;
     this._searchService = searchService;
+    this._store = store;
     this.initValues();
   }
 
@@ -73,6 +78,9 @@ export class ResultPage implements OnInit, OnDestroy {
         }
         if (this.searchModel === null || this.pageOptions === null) {
           this._router.navigate(['/']);
+        }
+        if (this.pageOptions.lib && this.pageOptions.lib !== this.lib) {
+        //  TODO: change config state
         }
         let pageNum = 0;
         let pageSize = 10;
@@ -104,6 +112,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   private initValues() {
+    const library = this._store.selectSnapshot(ConfigState.library);
     this.searchModel = null;
     this.filtersLoaded = false;
     this.selectedFilters = [];

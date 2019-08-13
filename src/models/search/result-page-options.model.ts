@@ -8,6 +8,7 @@ export interface IResultPageOptions {
   // TODO: implement later
   sort: any;
   previewType: any;
+  lib: string;
 }
 
 export interface IResultPageSearchRequest {
@@ -27,5 +28,6 @@ export const IResultPageOptionsInitial: IResultPageOptions = {
     subLocations: []
   },
   sort: null,
-  previewType: null
+  previewType: null,
+  lib: null
 };

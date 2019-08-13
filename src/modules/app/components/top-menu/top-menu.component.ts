@@ -55,7 +55,10 @@ export class TopMenuComponent {
     const searchModel = (this.selectedAc && this.searchText === this.selectedAc.value)
       ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
         SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
-    const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify({...IResultPageOptionsInitial})}`;
+    const pageOptions = {...IResultPageOptionsInitial};
+    const library = this._store.selectSnapshot(ConfigState.library);
+    pageOptions.lib = library;
+    const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
     this._router.navigate(['/search/result'], {queryParams: {hash: encodedURI}});
   }

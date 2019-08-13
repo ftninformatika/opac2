@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
 import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
+import { ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'app-search-main',
@@ -68,7 +69,10 @@ export class SearchMainPage implements OnInit {
       this._toastService.warning('Молимо вас унесите вредности претраге.');
       return;
     }
-    const uriChunk = `query=${JSON.stringify(this.searchModel)}&pageOptions=${JSON.stringify({...IResultPageOptionsInitial})}`;
+    const pageOptions = {...IResultPageOptionsInitial};
+    const library = this._store.selectSnapshot(ConfigState.library);
+    pageOptions.lib = library;
+    const uriChunk = `query=${JSON.stringify(this.searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
     this._router.navigate(['/search/result'], {queryParams: {hash: encodedURI}});
   }
