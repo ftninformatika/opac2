@@ -22,7 +22,7 @@
           </div>
         </div>
         <h5 *ngIf="book.subtitle" [routerLink]="['/book', book.id]" class="pointer" >{{book.subtitle | shortenString:25}}</h5>
-        <p>
+        <p [mdbTooltip]="book.authors">
           <span>
             <em>{{authors | shortenString:25}}</em>
           </span>
