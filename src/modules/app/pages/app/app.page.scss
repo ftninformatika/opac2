@@ -1,4 +1,9 @@
 .app-page-wrapper {
+  toast-container > mdb-toast-component.opacity,
+  toast-container > mdb-toast-component.opacity > div {
+    opacity: 1 !important;
+  }
+
   main {
     position: relative;
     padding: 0;

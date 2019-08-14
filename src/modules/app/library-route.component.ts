@@ -4,6 +4,7 @@ import { ChangeConfigAction, ConfigState } from '../core/states/config/config.st
 import { SignOutAction } from '../core/states/user/user.state';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -16,6 +17,8 @@ export class LibraryRouteComponent implements OnInit {
   private readonly _store: Store;
   private readonly _router: Router;
 
+  public nextUrl: string;
+
   public constructor(libConfigService: LibraryConfigurationService,
                      store: Store, activatedRoute: ActivatedRoute, router: Router) {
     this._libConfigService = libConfigService;
@@ -25,8 +28,25 @@ export class LibraryRouteComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this._activatedRoute.paramMap
+      .pipe(
+      map(() => window.history.state.proceedUrl),
+      take(1)
+    ).subscribe(
+      nexUrl => {
+        if (nexUrl) {
+        this.nextUrl = nexUrl;
+        }
+        this.changeLibConfig();
+      },
+      () => this.changeLibConfig()
+    );
+  }
+
+  private changeLibConfig() {
     const paramLib = this._activatedRoute.snapshot.paramMap.get('lib');
-    this._libConfigService.getMockLibraryConfigs().subscribe(
+    this._libConfigService.getMockLibraryConfigs()
+      .subscribe(
       (configs: ILibraryConfigurationModel[]) => {
         if (configs.some(e => e.libraryName === paramLib)) {
           if (this._store.selectSnapshot(ConfigState.library) !== paramLib) {
@@ -34,8 +54,13 @@ export class LibraryRouteComponent implements OnInit {
             this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib)));
           }
         }
-        this._router.navigate(['/']);
+        if (this.nextUrl) {
+          this._router.navigateByUrl(`/${this.nextUrl}`);
+        } else {
+          this._router.navigate(['/']);
+        }
       }
     );
   }
+
 }

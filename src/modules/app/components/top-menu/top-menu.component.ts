@@ -60,7 +60,7 @@ export class TopMenuComponent {
     pageOptions.lib = library;
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
-    this._router.navigate(['/search/result'], {queryParams: {hash: encodedURI}});
+    this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
   }
 
   public getFilteredData() {

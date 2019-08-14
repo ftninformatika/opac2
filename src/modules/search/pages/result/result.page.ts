@@ -2,6 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@
 import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
+import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchService } from '../../../core/services/search.service';
 import { ISearchModel } from '../../../../models/search/search.model';
 import { BooksService } from '../../../core/services/books.service';
@@ -13,7 +14,6 @@ import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
-import { ChangeConfigAction, ConfigState } from '../../../core/states/config/config.state';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -47,6 +47,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public selectedFilters: ISelectedFilter[];
   public filtersLoaded: boolean;
   public lib: string;
+  public searchPageUrl: string;
 
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
@@ -65,22 +66,26 @@ export class ResultPage implements OnInit, OnDestroy {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
         try {
-          let hashString = params.get('hash');
-          hashString = CryptoUtils.decryptData(hashString);
-          const paramsChunks = hashString.split('&');
+          const hashString = params.get('s');
+          const decryptedString = CryptoUtils.decryptData(hashString);
+          const paramsChunks = decryptedString.split('&');
           const queryChunk = paramsChunks[0].split('=')[1];
           const pageOptionsCh = paramsChunks[1].split('=')[1];
           this.pageOptions = JSON.parse(pageOptionsCh);
           this.searchModel = JSON.parse(queryChunk);
+          this.searchPageUrl = `${ResultPage.PagePath}s=${hashString}`;
         } catch (e) {
           console.error(e.toString());
           this._router.navigate(['/']);
+          return;
         }
         if (this.searchModel === null || this.pageOptions === null) {
           this._router.navigate(['/']);
+          return;
         }
         if (this.pageOptions.lib && this.pageOptions.lib !== this.lib) {
-        //  TODO: change config state
+          this._router.navigate([`/${this.pageOptions.lib}`], {state: {proceedUrl : this.searchPageUrl}});
+          return;
         }
         let pageNum = 0;
         let pageSize = 10;
@@ -112,7 +117,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   private initValues() {
-    const library = this._store.selectSnapshot(ConfigState.library);
+    this.lib = this._store.selectSnapshot(ConfigState.library);
     this.searchModel = null;
     this.filtersLoaded = false;
     this.selectedFilters = [];
@@ -294,6 +299,7 @@ export class ResultPage implements OnInit, OnDestroy {
     const optionsString = JSON.stringify(this.pageOptions);
     const uriChunk = `query=${smString}&pageOptions=${optionsString}`;
     const encoded = CryptoUtils.encryptData(uriChunk);
-    this._location.replaceState(`/${ResultPage.PagePath}hash=${encoded}`);
+    this.searchPageUrl = `/${ResultPage.PagePath}s=${encoded}`;
+    this._location.replaceState(this.searchPageUrl);
   }
 }

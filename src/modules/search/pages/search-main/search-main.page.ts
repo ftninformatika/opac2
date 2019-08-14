@@ -1,17 +1,17 @@
-import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { SearchFormModel, SearchFormModelInitial } from '../../../../models/search-form-model';
+import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
+import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
 import { PrefixesService } from '../../../core/services/prefixes.service';
+import { ConfigState } from '../../../core/states/config/config.state';
+import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Component, OnInit } from '@angular/core';
+import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
-import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
-import { CryptoUtils } from '../../../../utils/crypto.utils';
-import { ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'app-search-main',
@@ -70,11 +70,10 @@ export class SearchMainPage implements OnInit {
       return;
     }
     const pageOptions = {...IResultPageOptionsInitial};
-    const library = this._store.selectSnapshot(ConfigState.library);
-    pageOptions.lib = library;
+    pageOptions.lib = this._store.selectSnapshot(ConfigState.library);
     const uriChunk = `query=${JSON.stringify(this.searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
-    this._router.navigate(['/search/result'], {queryParams: {hash: encodedURI}});
+    this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
   }
 
   public validateSearchModel(): boolean {
@@ -82,7 +81,6 @@ export class SearchMainPage implements OnInit {
       this.searchModel.text4 === '' && this.searchModel.text5 === ''));
   }
 
-  // TODO: refactor this later to something more mind pleasing
   private populateSearchModel() {
     this.searchModel.pref1 = this.searchForm.value.prefix1;
     this.searchModel.pref2 = this.searchForm.value.prefix2;
@@ -146,7 +144,9 @@ export class SearchMainPage implements OnInit {
 
   private initSearchForm() {
     this.searchForm = this._formBuilder.group({...SearchFormModelInitial});
-    this.inputSm$.subscribe(
+    this.inputSm$
+      .pipe(take(1))
+      .subscribe(
       (sm: ISearchModel) => {
         // Minimum indicator that ISearchModel is passed and we dont modify autocomplete search results
         if (sm.pref1 && sm.pref1 !== EAutoCompletePrefixes.PUBLISHERS) {
