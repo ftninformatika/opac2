@@ -14,6 +14,7 @@ import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
+import { SearchUtil } from '../../../../utils/animations/search-util';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -46,8 +47,9 @@ export class ResultPage implements OnInit, OnDestroy {
   public resultedFilters: IFiltersRes;
   public selectedFilters: ISelectedFilter[];
   public filtersLoaded: boolean;
-  public lib: string;
   public searchPageUrl: string;
+  public youSearchedText: string;
+  public lib: string;
 
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
@@ -87,6 +89,7 @@ export class ResultPage implements OnInit, OnDestroy {
           this._router.navigate([`/${this.pageOptions.lib}`], {state: {proceedUrl : this.searchPageUrl}});
           return;
         }
+        this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel);
         let pageNum = 0;
         let pageSize = 10;
         if (this.pageOptions.currentPage > 0) {
@@ -117,6 +120,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   private initValues() {
+    this.youSearchedText = '';
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this.searchModel = null;
     this.filtersLoaded = false;

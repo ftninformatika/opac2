@@ -50,4 +50,29 @@ export class SearchUtil {
       case EAutoCompletePrefixes.PUBLISHERS: return 'PU';
     }
   }
+
+  public static getYouSearchedStringFromSearchModel(sm: ISearchModel): string {
+    let retVal = '';
+    if (!sm) {
+      return retVal;
+    }
+    const texts: string[] = [];
+    if (sm.text1 && sm.text1.trim() !== '') {
+      texts.push(sm.text1);
+    }
+    if (sm.text2 && sm.text2.trim() !== '' && texts.indexOf(sm.text2) === -1) {
+      texts.push(sm.text2);
+    }
+    if (sm.text3 && sm.text3.trim() !== '' && texts.indexOf(sm.text3) === -1) {
+      texts.push(sm.text3);
+    }
+    if (sm.text4 && sm.text4.trim() !== '' && texts.indexOf(sm.text4) === -1) {
+      texts.push(sm.text4);
+    }
+    if (sm.text5 && sm.text5.trim() !== '' && texts.indexOf(sm.text5) === -1) {
+      texts.push(sm.text5);
+    }
+    retVal = texts.join(', ');
+    return retVal;
+  }
 }

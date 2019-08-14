@@ -2,8 +2,11 @@
   <ng-template #searchFilters>
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded" (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-  <div class="ml-3 mb-2">
-    <a  style="color: cadetblue" (click)="modifySearch()">
+  <div class="ml-2 mb-2">
+    <span>
+      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>
+    </span>
+    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">
       <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
       &nbsp;Измена претраге
     </a>
