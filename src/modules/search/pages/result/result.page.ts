@@ -15,6 +15,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { SearchUtil } from '../../../../utils/animations/search-util';
+import { ISort } from '../../../../models/search/sort.model';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -171,6 +172,19 @@ export class ResultPage implements OnInit, OnDestroy {
     this._booksService.search({searchModel: this.searchModel, options: this.pageOptions},
       this.pageOptions.currentPage - 1, this.pageOptions.pageSize).subscribe(
       (res: IResultPage) => this.populateResultPage(res),
+      () => this._router.navigate(['/'])
+    );
+  }
+
+  public onSortChanged(newSort: ISort) {
+    if (!newSort || (newSort.ascending === this.pageOptions.sort.ascending && newSort.type === this.pageOptions.sort.type)) {
+      return;
+    }
+    this.pageOptions.sort = newSort;
+    this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
+      (res: IResultPage) => {
+        this.populateResultPage(res);
+      },
       () => this._router.navigate(['/'])
     );
   }

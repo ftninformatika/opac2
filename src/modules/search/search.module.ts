@@ -11,13 +11,15 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { NgModule } from '@angular/core';
+import { DropdownModule } from 'ng-uikit-pro-standard';
 
 @NgModule({
   imports: [
     CommonUiModule,
     NgxPaginationModule,
     RouterModule.forChild(SearchRoutes),
-    CoreModule
+    CoreModule,
+    DropdownModule
   ],
   declarations: [
     SelectedFiltersComponent,

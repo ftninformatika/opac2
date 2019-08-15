@@ -2,4 +2,8 @@
   #navbarCollapse {
     height: auto !important;
   }
+
+  .no-caret::after {
+      display: none !important;
+  }
 }

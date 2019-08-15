@@ -1,12 +1,13 @@
 import { ISearchModel } from './search.model';
 import { IFiltersReq } from './filter.model';
+import { ISort, ISortInitial } from './sort.model';
 
 export interface IResultPageOptions {
   pageSize: number;
   currentPage: number;
   filters: IFiltersReq;
   // TODO: implement later
-  sort: any;
+  sort: ISort;
   previewType: any;
   lib: string;
 }
@@ -27,7 +28,7 @@ export const IResultPageOptionsInitial: IResultPageOptions = {
     locations: [],
     subLocations: []
   },
-  sort: null,
+  sort: {...ISortInitial},
   previewType: null,
   lib: null
 };

@@ -323,9 +323,10 @@ export class BooksService {
   }
   // -----------------------------------------------
 
-  public search(searchModel: IResultPageSearchRequest, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
+  public search(searchRequest: IResultPageSearchRequest, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
     return this._httpClient
-      .post(`${ApiEndpointConfig.Paths.search.main}?pageNumber=${pageNumber}&pageSize=${pageSize}`, searchModel) as Observable<IResultPage>;
+      .post
+      (`${ApiEndpointConfig.Paths.search.main}?pageNumber=${pageNumber}&pageSize=${pageSize}`, searchRequest) as Observable<IResultPage>;
   }
 
   public autocomplete(query: string): Observable<IPrefixValue[]> {

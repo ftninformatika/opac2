@@ -1,26 +1,74 @@
 <div class="search-top-nav-component-wrapper">
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
+  <mdb-navbar SideClass="navbar navbar-expand-sm navbar-light blue-grey lighten-5">
     <links>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item ml-2">
-          <span>По страни:</span>
-<!--        </li>-->
-<!--        <li class="nav-item ml-2">-->
-          <select class="browser-default custom-select" (change)="onChangePageSize($event.target.value)">
-            <option value=10 [selected]="pageSize === 10">10</option>
-            <option value=20 [selected]="pageSize === 20">20</option>
-            <option value=50 [selected]="pageSize === 50">50</option>
-          </select>
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            По страни:&nbsp;{{pageSize}}<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(10)">10</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(20)">20</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(50)">50</a>
+          </div>
         </li>
       </ul>
     </links>
     <links>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto ml-auto">
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Начин приказа</a>
+          <a class="nav-link">
+            <mdb-icon fas icon="table" size="lg"></mdb-icon>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Сортирај</a>
+          <a class="nav-link">
+            <mdb-icon fas icon="book-open" size="lg"></mdb-icon>
+          </a>
+        </li>
+      </ul>
+    </links>
+    <links>
+      <ul class="navbar-nav ml-auto " >
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light no-caret" mdbWavesEffect>
+            <mdb-icon fas icon="caret-down"></mdb-icon>
+            Сортирање:&nbsp;&nbsp;{{sortTitle}}
+            <mdb-icon fas icon="{{sort.ascending ? 'long-arrow-alt-up' : 'long-arrow-alt-down'}}"></mdb-icon>
+          </a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_AUTHOR, true)">
+              <mdb-icon fas icon="chevron-up"></mdb-icon>
+              &nbsp;Аутор
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_AUTHOR, false)">
+              <mdb-icon fas icon="chevron-down"></mdb-icon>
+              &nbsp;Аутор
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_TITLE, true)">
+              <mdb-icon fas icon="chevron-up"></mdb-icon>
+              &nbsp;Наслов
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_TITLE, false)">
+              <mdb-icon fas icon="chevron-down"></mdb-icon>
+              &nbsp;Наслов
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_YEAR, true)">
+              <mdb-icon fas icon="chevron-up"></mdb-icon>
+              &nbsp;Година
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_YEAR, false)">
+              <mdb-icon fas icon="chevron-down"></mdb-icon>
+              &nbsp;Година
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_PUBLISHER, true)">
+              <mdb-icon fas icon="chevron-up"></mdb-icon>
+              &nbsp;Издавач
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_PUBLISHER, false)">
+              <mdb-icon fas icon="chevron-down"></mdb-icon>
+              &nbsp;Издавач
+            </a>
+          </div>
         </li>
       </ul>
     </links>

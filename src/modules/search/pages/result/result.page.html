@@ -1,6 +1,7 @@
 <div class="result-page-wrapper">
   <ng-template #searchFilters>
-    <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded" (filterSelected)="filterResults($event)"></search-filters>
+    <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded"
+                    (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
   <div class="ml-2 mb-2">
     <span>
@@ -20,6 +21,8 @@
       <ng-container *ngIf="resultPage">
         <search-top-nav [pageSize]="pageOptions.pageSize"
                         (pageSizeChanged)="onPageSizeChange($event)"
+                        [sort]="pageOptions.sort"
+                        (sortChanged)="onSortChanged($event)"
                         >
         </search-top-nav>
         <h5 style="font-size: 16px;" align="center">Укупно резултата:&nbsp;{{resultPage.totalElements}}</h5>

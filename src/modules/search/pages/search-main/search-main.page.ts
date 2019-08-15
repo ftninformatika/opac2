@@ -21,11 +21,11 @@ import { Observable } from 'rxjs';
 export class SearchMainPage implements OnInit {
 
   private readonly _prefixesService: PrefixesService;
+  private readonly _activatedRoute: ActivatedRoute;
+  private readonly _toastService: ToastService;
   private readonly _formBuilder: FormBuilder;
   private readonly _router: Router;
   private readonly _store: Store;
-  private readonly _toastService: ToastService;
-  private readonly _activatedRoute: ActivatedRoute;
 
   public searchForm: FormGroup;
   public isPrefixCoded: boolean[] = [false, false, false, false, false];
