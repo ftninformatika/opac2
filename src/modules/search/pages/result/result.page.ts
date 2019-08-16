@@ -5,8 +5,10 @@ import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.m
 import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchService } from '../../../core/services/search.service';
 import { ISearchModel } from '../../../../models/search/search.model';
+import { SearchUtil } from '../../../../utils/animations/search-util';
 import { BooksService } from '../../../core/services/books.service';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
+import { ISort } from '../../../../models/search/sort.model';
 import { IResultPage } from '../../../../models/page.model';
 import { ArrayUtils } from '../../../../utils/array.utils';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,8 +16,6 @@ import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
-import { SearchUtil } from '../../../../utils/animations/search-util';
-import { ISort } from '../../../../models/search/sort.model';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -51,7 +51,6 @@ export class ResultPage implements OnInit, OnDestroy {
   public searchPageUrl: string;
   public youSearchedText: string;
   public lib: string;
-
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {

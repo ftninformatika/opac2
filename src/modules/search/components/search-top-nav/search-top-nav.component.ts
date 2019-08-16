@@ -14,6 +14,7 @@ export class SearchTopNavComponent implements OnChanges {
   @Output() sortChanged = new EventEmitter<ISort>();
   @Input() sort: ISort;
   public sortTitle: string;
+  public ascending: boolean;
 
   private SortType = ESortType;
 
@@ -27,6 +28,7 @@ export class SearchTopNavComponent implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    this.ascending = this.sort.ascending;
     this.sortTitle = this.getSortTitle();
   }
 

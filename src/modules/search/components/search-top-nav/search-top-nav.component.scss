@@ -3,6 +3,11 @@
     height: auto !important;
   }
 
+  .asc-btn {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
   .no-caret::after {
       display: none !important;
   }
