@@ -17,11 +17,13 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="btn-group" role="group">
-            <button mdbBtn size="sm">
-              <mdb-icon fas icon="table" ></mdb-icon>
+            <button mdbBtn size="sm" (click)="onViewTypeChanged(false)" color="{{tableViewSelected ? '' : 'primary'}}"
+            [mdbTooltip]="'Картични приказ'">
+              <mdb-icon fas icon="book-open" ></mdb-icon>
             </button>
-            <button mdbBtn size="sm">
-              <mdb-icon fas icon="book-open"></mdb-icon>
+            <button mdbBtn size="sm" (click)="onViewTypeChanged(true)" color="{{tableViewSelected ? 'primary' : ''}}"
+            [mdbTooltip]="'Табеларни приказ'">
+              <mdb-icon fas icon="table"></mdb-icon>
             </button>
           </div>
         </li>

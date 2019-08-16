@@ -9,12 +9,14 @@ import { ESortType, ISort } from '../../../../models/search/sort.model';
 })
 export class SearchTopNavComponent implements OnChanges {
   @Output() pageSizeChanged = new EventEmitter<number>();
-  @Input() pageSize: number;
-
   @Output() sortChanged = new EventEmitter<ISort>();
+  @Output() viewTypeChanged = new EventEmitter<boolean>();
+  @Input() tableViewType: boolean;
+  @Input() pageSize: number;
   @Input() sort: ISort;
   public sortTitle: string;
   public ascending: boolean;
+  public tableViewSelected: boolean;
 
   private SortType = ESortType;
 
@@ -27,7 +29,15 @@ export class SearchTopNavComponent implements OnChanges {
     this.sortChanged.emit({type: typeV, ascending: ascendingV});
   }
 
+  public onViewTypeChanged(tableView: boolean) {
+    if (tableView !== this.tableViewType) {
+      this.tableViewSelected = tableView;
+      this.viewTypeChanged.emit(tableView);
+    }
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
+    this.tableViewSelected = this.tableViewType;
     this.ascending = this.sort.ascending;
     this.sortTitle = this.getSortTitle();
   }

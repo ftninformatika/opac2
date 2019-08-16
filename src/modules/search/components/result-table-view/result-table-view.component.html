@@ -1,0 +1,28 @@
+<div class="result-table-view-component-wrapper">
+  <ng-container *ngIf="books">
+    <table mdbTable striped="true">
+      <thead class="black white-text">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Наслов</th>
+          <th scope="col">Аутор</th>
+          <th scope="col">Издавач</th>
+          <th scope="col">Година</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr mdbTableRow *ngFor="let b of books | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions.pageSize,
+          currentPage: pageOptions.currentPage,
+          totalItems: totalItems}; let i = index">
+          <th scope="row">{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}</th>
+          <td>{{b.title | shortenString: 20}}</td>
+          <td>{{b.authors[0] | shortenString: 20}}</td>
+          <td>{{b.publisher | shortenString: 20}}</td>
+          <td>{{b.publishYear | shortenString: 20}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>

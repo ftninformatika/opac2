@@ -51,6 +51,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public searchPageUrl: string;
   public youSearchedText: string;
   public lib: string;
+  public tableView: boolean;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
@@ -61,6 +62,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location = location;
     this._searchService = searchService;
     this._store = store;
+    this.tableView = true;
     this.initValues();
   }
 
@@ -186,6 +188,10 @@ export class ResultPage implements OnInit, OnDestroy {
       },
       () => this._router.navigate(['/'])
     );
+  }
+
+  public onViewTypeChanged(event: boolean) {
+    this.tableView = event;
   }
 
   private addRemoveSelectedFilters(filterItem: ISelectedFilter) {

@@ -3,28 +3,30 @@
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded"
                     (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-  <div class="ml-2 mb-2">
-    <span>
-      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>
-    </span>
-    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">
-      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
-      &nbsp;Измена претраге
-    </a>
-  </div>
+<!--  <div class="ml-2 mb-2">-->
+<!--    <span>-->
+<!--      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>-->
+<!--    </span>-->
+<!--&lt;!&ndash;    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">&ndash;&gt;-->
+<!--&lt;!&ndash;      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;      &nbsp;Измена претраге&ndash;&gt;-->
+<!--&lt;!&ndash;    </a>&ndash;&gt;-->
+<!--  </div>-->
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
+  <search-top-nav [pageSize]="pageOptions.pageSize"
+                  (pageSizeChanged)="onPageSizeChange($event)"
+                  [sort]="pageOptions.sort"
+                  (sortChanged)="onSortChanged($event)"
+                  [tableViewType]="tableView"
+                  (viewTypeChanged)="onViewTypeChanged($event)"
+  >
+  </search-top-nav>
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
-        <search-top-nav [pageSize]="pageOptions.pageSize"
-                        (pageSizeChanged)="onPageSizeChange($event)"
-                        [sort]="pageOptions.sort"
-                        (sortChanged)="onSortChanged($event)"
-                        >
-        </search-top-nav>
         <h5 style="font-size: 16px;" align="center">Укупно резултата:&nbsp;{{resultPage.totalElements}}</h5>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
@@ -35,14 +37,22 @@
                              (pageChange)="onPageChange($event)"
                              class="col">
         </pagination-controls>
-        <mdb-card *ngFor="let book of searchResult | paginate:
-        {id: 'paginatorId',
-        itemsPerPage: pageOptions.pageSize,
-        currentPage: pageOptions.currentPage,
-        totalItems: resultPage.totalElements}"
-                  class="mb-3">
-          <book-result-brief [book]="book"></book-result-brief>
-        </mdb-card>
+        <ng-container *ngIf="!tableView">
+          <mdb-card *ngFor="let book of searchResult | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions.pageSize,
+          currentPage: pageOptions.currentPage,
+          totalItems: resultPage.totalElements}"
+                    class="mb-3">
+              <book-result-brief [book]= "book"></book-result-brief>
+          </mdb-card>
+        </ng-container>
+        <ng-container *ngIf="tableView">
+          <result-table-view
+          [books]="searchResult"
+          [pageOptions]="pageOptions"
+          [totalItems]="resultPage.totalElements"></result-table-view>
+        </ng-container>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"
