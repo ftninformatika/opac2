@@ -3,15 +3,15 @@
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded"
                     (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-<!--  <div class="ml-2 mb-2">-->
-<!--    <span>-->
-<!--      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>-->
-<!--    </span>-->
-<!--&lt;!&ndash;    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">&ndash;&gt;-->
-<!--&lt;!&ndash;      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;      &nbsp;Измена претраге&ndash;&gt;-->
-<!--&lt;!&ndash;    </a>&ndash;&gt;-->
-<!--  </div>-->
+  <div class="ml-2 mb-2">
+    <span>
+      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>
+    </span>
+    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">
+      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
+      &nbsp;Измена претраге
+    </a>
+  </div>
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
   <search-top-nav [pageSize]="pageOptions.pageSize"
                   (pageSizeChanged)="onPageSizeChange($event)"
