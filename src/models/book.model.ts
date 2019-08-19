@@ -14,6 +14,7 @@ export interface Book {
   dimensions?: string;
   imageUrl?: string;
   description?: string;
+  record?: Record;
   year?: number; // remove this
 }
 
@@ -24,7 +25,7 @@ export enum EPubType {
 
 export interface Record {
   _id: string;
-  id: number; // TODO: ovo ukloniti
+  id?: number; // TODO: ovo ukloniti
   commonBookUid?: number;
   rn: number;
   fields?: Field[];
@@ -75,13 +76,14 @@ export interface Field {
   name: string;
   ind1: string;
   ind2: string;
-  subfields?: Subfield[];
+  subfields: Subfield[];
 }
 
 export interface Subfield {
   name: string;
-  content?: string;
-  secondaryField?: Field;
+  content: string;
+  secField: Field;
+  subsubfields: Subfield[];
 }
 
 export interface Primerak {

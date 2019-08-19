@@ -9,8 +9,7 @@ export class ShortenStringPipe implements PipeTransform {
     if (!value || !size || size === 0 || value.length <= size) {
       return value;
     }
-    const retVal = value.slice(0, size) + '...';
-    return retVal;
+    return value.slice(0, size) + '...';
   }
 
 }

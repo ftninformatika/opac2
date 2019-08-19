@@ -6,11 +6,13 @@ import { BookRoutes } from './book.routes';
 import { ItemsAvailabilityCardComponent } from './components/items-availability-card/items-availability-card.component';
 import { BookPage } from './pages/book/book.page';
 import { SideMiscComponent } from './components/side-misc/side-misc';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
     CommonUiModule,
-    RouterModule.forChild(BookRoutes)
+    RouterModule.forChild(BookRoutes),
+    CoreModule
   ],
   declarations: [
     ItemsAvailabilityCardComponent,

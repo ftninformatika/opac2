@@ -9,11 +9,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LibraryInterceptor } from './interceptors/library.interceptor';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 import { FillArrayPipe } from './pipes/fill-array.pipe';
+import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
 
 @NgModule({
   declarations: [
     ShortenStringPipe,
-    FillArrayPipe
+    FillArrayPipe,
+    MakeIndicatorPipe
   ],
   imports: [
     TranslateModule
@@ -37,7 +39,8 @@ import { FillArrayPipe } from './pipes/fill-array.pipe';
   exports: [
     TranslateModule,
     ShortenStringPipe,
-    FillArrayPipe
+    FillArrayPipe,
+    MakeIndicatorPipe
   ]
 })
 export class CoreModule {}

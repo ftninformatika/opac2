@@ -332,4 +332,8 @@ export class BooksService {
   public autocomplete(query: string): Observable<IPrefixValue[]> {
     return this._httpClient.post(ApiEndpointConfig.Paths.search.autocomplete, query) as Observable<IPrefixValue[]>;
   }
+
+  public getBook(_id: string): Observable<Book> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.book.main, _id) as Observable<Book>;
+  }
 }

@@ -2,7 +2,7 @@ import { IResultPageOptionsInitial } from '../../../../models/search/result-page
 import { ELocalizationLanguage } from '../../../../config/localization-laguage.enum';
 import { SignOutAction, UserState } from '../../../core/states/user/user.state';
 import { ConfigState } from '../../../core/states/config/config.state';
-import { SearchUtil } from '../../../../utils/animations/search-util';
+import { SearchUtil } from '../../../../utils/search-util';
 import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { BooksService } from '../../../core/services/books.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';

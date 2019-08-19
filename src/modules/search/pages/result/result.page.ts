@@ -5,7 +5,7 @@ import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.m
 import { ConfigState } from '../../../core/states/config/config.state';
 import { SearchService } from '../../../core/services/search.service';
 import { ISearchModel } from '../../../../models/search/search.model';
-import { SearchUtil } from '../../../../utils/animations/search-util';
+import { SearchUtil } from '../../../../utils/search-util';
 import { BooksService } from '../../../core/services/books.service';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { ISort } from '../../../../models/search/sort.model';
@@ -182,7 +182,8 @@ export class ResultPage implements OnInit, OnDestroy {
       return;
     }
     this.pageOptions.sort = newSort;
-    this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
+    this._booksService.search({searchModel: this.searchModel, options: this.pageOptions},
+      0, this.pageOptions.pageSize).subscribe(
       (res: IResultPage) => {
         this.populateResultPage(res);
       },

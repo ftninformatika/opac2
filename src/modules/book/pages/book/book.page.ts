@@ -1,14 +1,13 @@
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
 
 @Component({
   selector: 'book-page',
   templateUrl: 'book.page.html',
   styleUrls: ['book.page.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None
 })
 export class BookPage implements OnInit {
   private readonly _booksService: BooksService;
@@ -24,13 +23,14 @@ export class BookPage implements OnInit {
 
   public ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params => {
-      const bookId = + params.get('id');
-      this._booksService.getBookByIdDummy(bookId).subscribe(
+      const bookId = params.get('id');
+      this._booksService.getBook(bookId).subscribe(
         data => {
           if (!data) {
             this._router.navigate(['/error/not-found']);
           } else {
             this.book = data;
+            console.log(this.book);
           }
         },
         () => this._router.navigate(['/error/not-found']));

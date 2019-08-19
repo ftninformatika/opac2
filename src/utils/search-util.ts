@@ -1,5 +1,5 @@
-import { ISearchModel, ISearchModelInitial } from '../../models/search/search.model';
-import { EAutoCompletePrefixes, IPrefixValue } from '../../models/prefix-value.model';
+import { ISearchModel, ISearchModelInitial } from '../models/search/search.model';
+import { EAutoCompletePrefixes, IPrefixValue } from '../models/prefix-value.model';
 
 export class SearchUtil {
 
