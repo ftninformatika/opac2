@@ -10,12 +10,14 @@ import { LibraryInterceptor } from './interceptors/library.interceptor';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 import { FillArrayPipe } from './pipes/fill-array.pipe';
 import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
+import { BookCoverDirective } from './directives/book-cover.directive';
 
 @NgModule({
   declarations: [
     ShortenStringPipe,
     FillArrayPipe,
-    MakeIndicatorPipe
+    MakeIndicatorPipe,
+    BookCoverDirective
   ],
   imports: [
     TranslateModule
@@ -40,7 +42,8 @@ import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
     TranslateModule,
     ShortenStringPipe,
     FillArrayPipe,
-    MakeIndicatorPipe
+    MakeIndicatorPipe,
+    BookCoverDirective
   ]
 })
 export class CoreModule {}
