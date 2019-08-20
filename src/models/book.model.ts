@@ -1,7 +1,7 @@
 export interface Book {
   id?: number; // remove
   _id?: string; // mongoId of record
-  pubType?: EPubType; // make this mandatory?
+  pubType?: EPubType;
   authors?: string[];
   title: string;
   subtitle?: string;
@@ -16,13 +16,29 @@ export interface Book {
   udk?: string;
   imageUrl?: string;
   description?: string;
+  items?: RecordItem[];
   record?: Record;
   year?: number; // Remove this later
+}
+
+export interface RecordItem {
+  location: string;
+  locCode: string;
+  signature: string;
+  status: ERecordItemStatus;
+  invNum: string;
 }
 
 export enum EPubType {
   Monograph = 1,
   Serial = 2
+}
+
+export enum ERecordItemStatus {
+  Borrowed = 'BORROWED',
+  Free= 'FREE',
+  NotLendable = 'NOT_LENDABLE',
+  NotShowable = 'NOT_SHOWABLE'
 }
 
 export class Record {

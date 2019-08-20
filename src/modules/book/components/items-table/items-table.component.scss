@@ -1,0 +1,16 @@
+.items-table-component-wrapper {
+  width: 100%;
+
+  @media (max-width: 576px) {
+    td, th {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 448px) {
+    td, th {
+      font-size: 10px;
+      padding: 2px;
+    }
+  }
+}

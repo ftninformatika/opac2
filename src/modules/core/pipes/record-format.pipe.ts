@@ -53,7 +53,6 @@ export class RecordFormatPipe implements PipeTransform{
         const pr: Primerak[] = book.record.primerci;
         if (pr && pr.length > 0) {
           const p: Primerak = pr.sort((p0, p1) => p0.invBroj.localeCompare(p1.invBroj))[0];
-          console.log(p);
           if (p.sigIntOznaka && p.sigIntOznaka.trim() !== '') {
             fs += p.sigIntOznaka;
           }

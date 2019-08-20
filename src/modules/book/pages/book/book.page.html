@@ -30,7 +30,7 @@
               </read-more>
             </div>
             <div class="book-tabs">
-              <mdb-tabset [buttonClass]="'md-tabs tabs-3  blue'" >
+              <mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3  blue'" >
                 <mdb-tab heading="Детаљи">
                   <div class="row">
                     <div class="col-12 mt-2">
@@ -141,6 +141,9 @@
         <items-availability-card></items-availability-card>
         <side-misc></side-misc>
       </div>
+    </div>
+    <div class=" ml-3" *ngIf="book.items && book.items.length > 0">
+      <items-table [items]="book.items"></items-table>
     </div>
   </ng-container>
 </div>
