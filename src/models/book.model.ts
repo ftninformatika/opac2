@@ -12,10 +12,12 @@ export interface Book {
   issn?: string;
   pagesCount?: string;
   dimensions?: string;
+  notes?: string;
+  udk?: string;
   imageUrl?: string;
   description?: string;
   record?: Record;
-  year?: number; // remove this
+  year?: number; // Remove this later
 }
 
 export enum EPubType {
@@ -23,14 +25,20 @@ export enum EPubType {
   Serial = 2
 }
 
-export interface Record {
+export class Record {
   _id: string;
-  id?: number; // TODO: ovo ukloniti
   commonBookUid?: number;
   rn: number;
   fields?: Field[];
   primerci?: Primerak[];
   godine?: Godina[];
+
+  public getSubFieldContent(sf: string): string {
+    if (!sf || !this.fields || sf.length !== 4) {
+      return null;
+    }
+    return this.fields.find(f => f.name === sf.substring(0, 3)).subfields.find(s => s.name === sf.substring(3, 4)).content;
+  }
 }
 
 export interface Godina {

@@ -2,6 +2,7 @@ import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
+import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
 
 @Component({
   selector: 'book-page',
@@ -14,6 +15,7 @@ export class BookPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   public book: Book;
+  private RecordFormatType = ERecordFormatType;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router) {
     this._booksService = booksService;

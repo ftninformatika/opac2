@@ -11,13 +11,15 @@ import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 import { FillArrayPipe } from './pipes/fill-array.pipe';
 import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
 import { BookCoverDirective } from './directives/book-cover.directive';
+import { RecordFormatPipe } from './pipes/record-format.pipe';
 
 @NgModule({
   declarations: [
     ShortenStringPipe,
     FillArrayPipe,
     MakeIndicatorPipe,
-    BookCoverDirective
+    BookCoverDirective,
+    RecordFormatPipe
   ],
   imports: [
     TranslateModule
@@ -43,7 +45,8 @@ import { BookCoverDirective } from './directives/book-cover.directive';
     ShortenStringPipe,
     FillArrayPipe,
     MakeIndicatorPipe,
-    BookCoverDirective
+    BookCoverDirective,
+    RecordFormatPipe
   ]
 })
 export class CoreModule {}

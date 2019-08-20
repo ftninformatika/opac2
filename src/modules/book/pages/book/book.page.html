@@ -35,21 +35,55 @@
                   <div class="row">
                     <div class="col-12 mt-2">
                       <dl class="row">
-                        <dt class="col-sm-2">Наслов</dt>
-                        <dd class="col-sm-10">{{book.title}}</dd>
+                        <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
+                          <dt class="col-sm-2">Аутори</dt>
+                          <dd class="col-sm-10">{{book.authors}}</dd>
+                        </ng-container>
 
-                        <dt class="col-sm-2" *ngIf="book.subtitle">Поднаслов</dt>
-                        <dd class="col-sm-10" *ngIf="book.subtitle">{{book.subtitle}}</dd>
+                        <ng-container *ngIf="book.title">
+                          <dt class="col-sm-2">Наслов</dt>
+                          <dd class="col-sm-10">{{book.title}}</dd>
+                        </ng-container>
 
-                        <dt class="col-sm-2" *ngIf="book.authors">Аутори</dt>
-                        <dd class="col-sm-10" *ngIf="book.authors">{{book.authors}}</dd>
-                        <!--<dd class="col-sm-9 offset-sm-3">Dodatni autori ako ce svaki ici u poseban red</dd>-->
+<!--                        TODO: URL(polje 856)-->
+                        <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
+                          <dt class="col-sm-2" >О издавачу</dt>
+                          <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</dd>
+                        </ng-container>
 
-                        <dt class="col-sm-2" *ngIf="book.publisher">Издавач</dt>
-                        <dd class="col-sm-10" *ngIf="book.publisher">{{book.publisher}}</dd>
+                        <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO">
+                          <dt class="col-sm-2" >Физички опис</dt>
+                          <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
+                        </ng-container>
 
-                        <dt class="col-sm-2" *ngIf="book.year">Година</dt>
-                        <dd class="col-sm-10" *ngIf="book.year">{{book.year}}</dd>
+                        <ng-container *ngIf="book.notes">
+                          <dt class="col-sm-2">Напомене</dt>
+                          <dd class="col-sm-10">{{book.notes}}</dd>
+                        </ng-container>
+
+                        <ng-container *ngIf="book.isbn">
+                          <dt class="col-sm-2">ISBN</dt>
+                          <dd class="col-sm-10">{{book.isbn}}</dd>
+                        </ng-container>
+
+                        <ng-container *ngIf="book.issn">
+                          <dt class="col-sm-2">ISSN</dt>
+                          <dd class="col-sm-10">{{book.issn}}</dd>
+                        </ng-container>
+
+                        <ng-container *ngIf="book.udk">
+                          <dt class="col-sm-2">UDK</dt>
+                          <dd class="col-sm-10">{{book.udk}}</dd>
+                        </ng-container>
+
+                        <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO">
+                          <dt class="col-sm-2">Сигнатура I</dt>
+                          <dd class="col-sm-10">
+                            {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
+                            <span><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
+                          </dd>
+                        </ng-container>
+
                       </dl>
                     </div>
                   </div>
