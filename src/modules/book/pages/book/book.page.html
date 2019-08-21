@@ -7,7 +7,7 @@
             <div class="mr-3">
               <img data-src="{{book.imageUrl}}"
                    height="200"
-                   onError="this.src='../../../../assets/book/nocover.jpg';"/>
+                   onError="this.src='../../../../assets/book/nocover/1.jpg';"/>
             </div>
             <div class="flex-1">
               <h3 class="h3-responsive">{{book.title}}</h3>
@@ -30,7 +30,7 @@
               </read-more>
             </div>
             <div class="book-tabs">
-              <mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3  blue'" >
+              <mdb-tabset [buttonClass]="'md-tabs tabs-3  blue'" >
                 <mdb-tab heading="Детаљи">
                   <div class="row">
                     <div class="col-12 mt-2">
@@ -142,8 +142,24 @@
         <side-misc></side-misc>
       </div>
     </div>
-    <div class=" ml-3" *ngIf="book.items && book.items.length > 0">
-      <items-table [items]="book.items"></items-table>
+    <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne1">
+          <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+             aria-controls="collapseOne1">
+            <h5 class="mb-0">
+              Локације <i class="fas fa-angle-down rotate-icon"></i>
+            </h5>
+          </a>
+        </div>
+        <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+          <div class="card-body">
+            <div class="" *ngIf="book.items && book.items.length > 0">
+              <items-table [items]="book.items"></items-table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>

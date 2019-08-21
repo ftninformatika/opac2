@@ -1,9 +1,9 @@
+import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
-import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
-import { TabsetComponent } from 'ng-uikit-pro-standard';
+import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 
 @Component({
   selector: 'book-page',
@@ -11,18 +11,19 @@ import { TabsetComponent } from 'ng-uikit-pro-standard';
   styleUrls: ['book.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BookPage implements OnInit, AfterViewInit {
+export class BookPage implements OnInit {
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   public book: Book;
   private RecordFormatType = ERecordFormatType;
-  @ViewChild('staticTabs', { static: true }) staticTabs: TabsetComponent;
+  public errImgUrl: string;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
+    this.errImgUrl = BookCoverUtils.getBlankBookCover();
   }
 
   public ngOnInit(): void {
@@ -41,7 +42,4 @@ export class BookPage implements OnInit, AfterViewInit {
     });
   }
 
-  public ngAfterViewInit(): void {
-    // this.staticTabs.setActiveTab(2);
-  }
 }

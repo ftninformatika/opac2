@@ -1,11 +1,14 @@
 .search-top-nav-component-wrapper {
+  display: flex;
+  justify-content: space-between;
+
   #navbarCollapse {
     height: auto !important;
   }
 
   .asc-btn {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .no-caret::after {

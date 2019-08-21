@@ -7,7 +7,7 @@
     </div>
     <div class="fixed-width" *ngIf="!book.imageUrl">
       <a [routerLink]="['/book', book._id]">
-        <mdb-card-img src="../../../../assets/book/nocover.jpg" class="book-cover"></mdb-card-img>
+        <mdb-card-img src="{{errImg}}" class="book-cover"></mdb-card-img>
       </a>
     </div>
     <div class="flex-1 ml-3">

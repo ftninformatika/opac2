@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Book } from '../../../../models/book.model';
+import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 
 @Component({
   selector: 'book-result-brief',
@@ -11,10 +12,12 @@ export class BookResultBrief implements OnInit {
   @Input() book: Book;
   public authors: string;
   public publishInfo: string;
+  public errImg;
 
   public constructor() {
     this.authors = '';
     this.publishInfo = '';
+    this.errImg = BookCoverUtils.getBlankBookCover();
   }
 
   public ngOnInit(): void {

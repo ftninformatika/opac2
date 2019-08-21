@@ -1,63 +1,50 @@
-<div class="search-top-nav-component-wrapper">
-  <mdb-navbar SideClass="navbar navbar-expand-sm navbar-light blue-grey lighten-5">
-    <links>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown" dropdown>
-          <button mdbBtn dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" size="sm">
-            По страни:&nbsp;{{pageSize}}<span class="caret"></span></button>
-          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(10)">10</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(20)">20</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onChangePageSize(50)">50</a>
-          </div>
-        </li>
-      </ul>
-    </links>
-    <links>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <div class="btn-group" role="group">
-            <button mdbBtn size="sm" (click)="onViewTypeChanged(false)" color="{{tableViewSelected ? '' : 'primary'}}"
-            [mdbTooltip]="'Картични приказ'">
-              <mdb-icon fas icon="book-open" ></mdb-icon>
-            </button>
-            <button mdbBtn size="sm" (click)="onViewTypeChanged(true)" color="{{tableViewSelected ? 'primary' : ''}}"
-            [mdbTooltip]="'Табеларни приказ'">
-              <mdb-icon fas icon="table"></mdb-icon>
-            </button>
-          </div>
-        </li>
-      </ul>
-    </links>
-    <links>
-      <ul class="navbar-nav ml-auto" >
-        <li class="nav-item dropdown" dropdown>
-          <div class="nav-link btn-group" role="group" >
-            <button mdbBtn dropdownToggle mdbWavesEffect class="dropdown-toggle waves-light no-caret" size="sm">
-              <mdb-icon fas icon="caret-down"></mdb-icon>
-              Сортирај:&nbsp;&nbsp;{{sortTitle}}
-            </button>
-            <button mdbBtn class="asc-btn" color="default" outline="true" size="sm" (click)="ascending = !ascending;onSortChange(sort.type, ascending)">
-              <mdb-icon fas icon="{{ascending ? 'long-arrow-alt-up' : 'long-arrow-alt-down'}}"
-              [mdbTooltip]="ascending ? 'Растуће' : 'Опадајуће'"></mdb-icon>
-            </button>
-          </div>
-          <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_AUTHOR, ascending)">
-              &nbsp;Аутор
-            </a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_TITLE, ascending)">
-              &nbsp;Наслов
-            </a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_YEAR, ascending)">
-              &nbsp;Година
-            </a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_PUBLISHER, ascending)">
-              &nbsp;Издавач
-            </a>
-          </div>
-        </li>
-      </ul>
-    </links>
-  </mdb-navbar>
+<div class="search-top-nav-component-wrapper mb-4 mr-4">
+  <div class="btn-group" mdbDropdown>
+    <button mdbBtn dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light">
+      По страни:&nbsp;{{pageSize}}<span class="caret"></span></button>
+    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+      <a class="dropdown-item waves-light" (click)="onChangePageSize(10)">10</a>
+      <a class="dropdown-item waves-light" (click)="onChangePageSize(20)">20</a>
+      <a class="dropdown-item waves-light" (click)="onChangePageSize(50)">50</a>
+    </div>
+  </div>
+  <div>
+    <div class="btn-group" role="group">
+      <button mdbBtn (click)="onViewTypeChanged(false)" color="{{tableViewSelected ? '' : 'primary'}}"
+      [mdbTooltip]="'Картични приказ'">
+        <mdb-icon fas icon="book-open" ></mdb-icon>
+      </button>
+      <button mdbBtn (click)="onViewTypeChanged(true)" color="{{tableViewSelected ? 'primary' : ''}}"
+      [mdbTooltip]="'Табеларни приказ'">
+        <mdb-icon fas icon="table"></mdb-icon>
+      </button>
+    </div>
+  </div>
+  <div class="btn-group" mdbDropdown>
+    <div role="group">
+      <button mdbBtn dropdownToggle class="dropdown-toggle waves-light no-caret">
+        <mdb-icon fas icon="caret-down"></mdb-icon>
+        Сортирај:&nbsp;&nbsp;{{sortTitle}}
+      </button>
+      <button mdbBtn class="asc-btn" color="default" outline="true" (click)="ascending = !ascending;onSortChange(sort.type, ascending)">
+        <mdb-icon fas icon="{{ascending ? 'long-arrow-alt-up' : 'long-arrow-alt-down'}}"
+        [mdbTooltip]="ascending ? 'Растуће' : 'Опадајуће'"></mdb-icon>
+      </button>
+    </div>
+
+    <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
+      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_AUTHOR, ascending)">
+        &nbsp;Аутор
+      </a>
+      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_TITLE, ascending)">
+        &nbsp;Наслов
+      </a>
+      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_YEAR, ascending)">
+        &nbsp;Година
+      </a>
+      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_PUBLISHER, ascending)">
+        &nbsp;Издавач
+      </a>
+    </div>
+  </div>
 </div>
