@@ -1,10 +1,10 @@
-import { IUserModel } from '../../../../models/circ/user.model';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { UsersService } from '../../services/users.service';
 import { EAuthority, ILibraryMember } from '../../../../models/library-member.model';
-import { ToastService } from 'ng-uikit-pro-standard';
-import { TranslateService } from '@ngx-translate/core';
 import { IMemberWrapper } from '../../../../models/member-wrapper.model';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { IUserModel } from '../../../../models/circ/user.model';
+import { UsersService } from '../../services/users.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -25,6 +25,14 @@ export class SignInAction {
   public constructor(username: string, password: string) {
    this.username = username;
    this.password = password;
+  }
+}
+
+export class AddToShelfAction {
+  static readonly type = '[User] Add To Shelf';
+  public bookId: string;
+  public constructor(bookId: string) {
+    this.bookId = bookId;
   }
 }
 
@@ -67,6 +75,14 @@ export class UserState {
       && state.user.authorities.includes(EAuthority.LibraryAdmin));
   }
 
+  @Selector()
+  public static username(state: IUserStateModel): string {
+    if (state.user && state.user.username ) {
+      return state.user.username;
+    } else {
+      return null;
+    }
+  }
 
   // TODO: i18n toast messages using translate service
   public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService) {
@@ -78,6 +94,7 @@ export class UserState {
   @Action(SignInAction)
   public async signIn(ctx: StateContext<IUserStateModel>, action: SignInAction) {
     let response: IMemberWrapper = null;
+    this._toastService.clear();
     try {
       response = await this._userService.login(action).toPromise();
     } catch (e) {
@@ -99,4 +116,40 @@ export class UserState {
   public signOut(ctx: StateContext<IUserStateModel>, action: SignOutAction) {
     ctx.setState(InitialUserState);
   }
+
+  @Action(AddToShelfAction)
+  public async addToShelf(ctx: StateContext<IUserStateModel>, action: AddToShelfAction) {
+    const state = ctx.getState();
+    this._toastService.clear();
+    const libraryMember = state.user;
+    if (!action || !action.bookId) {
+      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      return;
+    }
+    if (!libraryMember || !libraryMember.username) {
+      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      return;
+    }
+    const _email = libraryMember.username;
+    if (libraryMember.myBookshelfBooks.indexOf(action.bookId) !== -1) {
+      this._toastService.warning('Ова књига се већ налази на Вашој полици.');
+      return;
+    }
+    let response = false;
+    try {
+      response = await this._userService.addToShelf({email: _email, bookId: action.bookId}).toPromise();
+    } catch (e) {
+      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      return;
+    }
+    if (!response) {
+      this._toastService.warning('Серверска грешка при покушају додавања књиге на полицу!');
+      return;
+    }
+    libraryMember.myBookshelfBooks.push(action.bookId);
+    ctx.patchState({user: libraryMember});
+    this._toastService.success('Књига додата на полицу');
+    return;
+  }
+
 }

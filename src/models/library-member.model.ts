@@ -8,6 +8,7 @@ export interface ILibraryMember {
   profileActivated: boolean;
   authToken?: string;
   authorities: string[];
+  myBookshelfBooks?: string[];
 }
 
 export interface ILoginDto {

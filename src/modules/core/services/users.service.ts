@@ -109,12 +109,16 @@ export class UsersService {
     return of(true);
   }
 
-  public getShelf(email: string): Observable<Book[]> {
-    return this._booksService.getAllBooks();
-  }
-
   public getMockUser(): Observable<IUserModel> {
     return of(this.user);
+  }
+
+  public getShelf(email: string): Observable<Book[]> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.getShelf, email) as Observable<Book[]>;
+  }
+
+  public addToShelf(addToShelfDto: {email: string, bookId: string}): Observable<boolean> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.addToShelf, addToShelfDto) as Observable<boolean>;
   }
 
   public getUserByActivationToken(activationToken: string): Observable<ILibraryMember> {
