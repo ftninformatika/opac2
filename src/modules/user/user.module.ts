@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
-import { LoginPage } from './pages/login/login.page';
-import { ProfilePage } from './pages/profile/profile.page';
-import { ShelfPage } from './pages/shelf/shelf.page';
-import { HistoryPage } from './pages/history/history.page';
+import { AdminCollectionsPage } from './pages/admin-collections/admin-collections.page';
+import { ActivateAccountPage } from './pages/activate-account/activate-account.page';
 import { ChangePasswordPage } from './pages/change-password/change-password.page';
+import { CommonUiModule } from '../shared/common-ui.module';
+import { HistoryPage } from './pages/history/history.page';
+import { ProfilePage } from './pages/profile/profile.page';
+import { LoginPage } from './pages/login/login.page';
+import { ShelfPage } from './pages/shelf/shelf.page';
+import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
-import { CommonUiModule } from '../shared/common-ui.module';
-import { HomeModule } from '../home/home.module';
-import { ActivateAccountPage } from './pages/activate-account/activate-account.page';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ActivateAccountPage } from './pages/activate-account/activate-account.p
     RouterModule.forChild(UserRoutes),
   ],
   declarations: [
+    AdminCollectionsPage,
     ActivateAccountPage,
     LoginPage,
     ProfilePage,

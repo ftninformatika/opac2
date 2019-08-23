@@ -121,6 +121,10 @@ export class UsersService {
     return this._httpClient.post(ApiEndpointConfig.Paths.user.addToShelf, addToShelfDto) as Observable<boolean>;
   }
 
+  public removeFromShelf(shelfDto: {email: string, bookId: string}): Observable<boolean> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.removeFromShelf, shelfDto) as Observable<boolean>;
+  }
+
   public getUserByActivationToken(activationToken: string): Observable<ILibraryMember> {
      return this._httpClient.post(ApiEndpointConfig.Paths.user.getMemberByActivationToken, activationToken) as Observable<ILibraryMember>;
   }

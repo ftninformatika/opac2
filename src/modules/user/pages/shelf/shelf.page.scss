@@ -1,19 +1,48 @@
-.card {
-  box-shadow: unset !important;
-}
+.shelf-page-wrapper {
+  .card {
+    box-shadow: unset !important;
+  }
 
-.fixed-height {
-  height: auto;
-}
+  .card:hover {
+    .remove-from-shelf{
+      display: block;
+    }
+  }
 
-.fixed-width {
-  width: auto;
-}
+  .fixed-height {
+    height: auto;
+  }
 
-.pointer {
-  cursor: pointer;
-}
+  .fixed-width {
+    width: auto;
+  }
 
-.pointer:hover {
-  text-decoration: underline;
+  .pointer {
+    cursor: pointer;
+  }
+
+  .pointer:hover {
+    text-decoration: underline;
+  }
+
+  .holder {
+
+  }
+  .remove-from-shelf:hover {
+    cursor: pointer;
+    opacity: 0.95;
+  }
+
+  .remove-from-shelf {
+    //background: white;
+    position: absolute;
+    opacity: 0.6;
+    top: 2px;
+    right: 2px;
+    z-index: 56;
+    display: none;
+
+  }
+
+
 }

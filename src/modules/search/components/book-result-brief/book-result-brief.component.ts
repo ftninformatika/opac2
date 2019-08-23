@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../../models/book.model';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
+import { Book } from '../../../../models/book.model';
+import { Store } from '@ngxs/store';
+import { AddToShelfAction } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'book-result-brief',
@@ -10,11 +12,13 @@ import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 })
 export class BookResultBrief implements OnInit {
   @Input() book: Book;
+  private readonly _store: Store;
   public authors: string;
   public publishInfo: string;
   public errImg;
 
-  public constructor() {
+  public constructor(store: Store) {
+    this._store = store;
     this.authors = '';
     this.publishInfo = '';
     this.errImg = BookCoverUtils.getBlankBookCover();
@@ -30,6 +34,10 @@ export class BookResultBrief implements OnInit {
       return;
     }
     this.authors = this.book.authors.join(', ');
+  }
+
+  public onShelf(bookId: string) {
+    this._store.dispatch(new AddToShelfAction(bookId));
   }
 
   private packPublisherInfo() {

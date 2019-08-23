@@ -1,7 +1,7 @@
 <div class="result-table-view-component-wrapper">
   <ng-container *ngIf="books">
-    <table mdbTable class="table table-dark">
-      <thead class="black white-text">
+    <table mdbTable class="table table-striped table-responsive-md table-responsive-sm">
+      <thead class="blue white-text">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Наслов</th>
@@ -15,7 +15,9 @@
           {id: 'paginatorId',
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
-          totalItems: totalItems}; let i = index" class="book-row">
+          totalItems: totalItems}; let i = index" class="book-row"
+          [routerLink]="['/book', b._id]"
+        >
           <th scope="row">{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}</th>
           <td>{{b.title | shortenString: 20}}</td>
           <td>{{b.authors[0] | shortenString: 20}}</td>

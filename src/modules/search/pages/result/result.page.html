@@ -3,31 +3,38 @@
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded"
                     (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-  <div class="ml-2 mb-2">
+  <div class="ml-2 mb-2 d-flex flex-md-row">
     <span>
-      Тражили сте:&nbsp;<span class="ml-2" style="color: darkslategrey">{{youSearchedText}}</span>
+      <span *ngIf="resultPage && resultPage.totalElements" style="font-weight: 600">
+      УКУПНО РЕЗУЛТАТА:&nbsp;{{resultPage.totalElements}}
+      </span>
+      <span class="ml-4" style="color: darkslategrey">
+      Тражили сте:&nbsp;{{youSearchedText}}
+      </span>
     </span>
-    <a  class="float-right mr-4" style="color: cadetblue" (click)="modifySearch()">
+  </div>
+  <div class="ml-2 mb-2">
+    <a  style="color: cadetblue" (click)="modifySearch()">
       <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
       &nbsp;Измена претраге
     </a>
   </div>
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
-  <search-top-nav [pageSize]="pageOptions.pageSize"
-                  (pageSizeChanged)="onPageSizeChange($event)"
-                  [sort]="pageOptions.sort"
-                  (sortChanged)="onSortChanged($event)"
-                  [tableViewType]="tableView"
-                  (viewTypeChanged)="onViewTypeChanged($event)"
-  >
-  </search-top-nav>
+
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
-        <h5 style="font-size: 16px;" align="center">Укупно резултата:&nbsp;{{resultPage.totalElements}}</h5>
+        <search-top-nav [pageSize]="pageOptions.pageSize"
+                        (pageSizeChanged)="onPageSizeChange($event)"
+                        [sort]="pageOptions.sort"
+                        (sortChanged)="onSortChanged($event)"
+                        [tableViewType]="tableView"
+                        (viewTypeChanged)="onViewTypeChanged($event)"
+        >
+        </search-top-nav>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"
@@ -59,7 +66,8 @@
                              [responsive]="true"
                              [previousLabel]="'Претходна'"
                              [nextLabel]="'Следећа'"
-                             (pageChange)="onPageChange($event)">
+                             (pageChange)="onPageChange($event)"
+        >
         </pagination-controls>
       </ng-container>
     </div>

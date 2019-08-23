@@ -1,6 +1,18 @@
 .result-table-view-component-wrapper {
   .book-row:hover {
-    background: cadetblue;
+    background: linear-gradient(#7e94ff, #b2bae2);
     cursor: pointer;
+  }
+  @media (max-width: 576px) {
+    td, th {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 448px) {
+    td, th {
+      font-size: 12px;
+      padding: 2px;
+    }
   }
 }

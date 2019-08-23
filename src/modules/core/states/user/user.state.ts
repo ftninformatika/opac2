@@ -28,6 +28,12 @@ export class SignInAction {
   }
 }
 
+export class SignOutAction {
+  static readonly type = '[User] Sing Out User';
+  public constructor() {}
+}
+
+
 export class AddToShelfAction {
   static readonly type = '[User] Add To Shelf';
   public bookId: string;
@@ -36,9 +42,12 @@ export class AddToShelfAction {
   }
 }
 
-export class SignOutAction {
-  static readonly type = '[User] Sing Out User';
-  public constructor() {}
+export class RemoveFromShelfAction {
+  static readonly type = '[User] Remove From Shelf';
+  public bookId: string;
+  public constructor(bookId: string) {
+    this.bookId = bookId;
+  }
 }
 
 @State<IUserStateModel>({
@@ -84,7 +93,6 @@ export class UserState {
     }
   }
 
-  // TODO: i18n toast messages using translate service
   public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService) {
     this._userService = userService;
     this._toastService = toastService;
@@ -112,7 +120,7 @@ export class UserState {
         });
   }
 
-  @Action([SignOutAction])
+  @Action(SignOutAction)
   public signOut(ctx: StateContext<IUserStateModel>, action: SignOutAction) {
     ctx.setState(InitialUserState);
   }
@@ -132,7 +140,7 @@ export class UserState {
     }
     const _email = libraryMember.username;
     if (libraryMember.myBookshelfBooks.indexOf(action.bookId) !== -1) {
-      this._toastService.warning('Ова књига се већ налази на Вашој полици.');
+      this._toastService.info('Ова књига се већ налази на Вашој полици.');
       return;
     }
     let response = false;
@@ -149,6 +157,40 @@ export class UserState {
     libraryMember.myBookshelfBooks.push(action.bookId);
     ctx.patchState({user: libraryMember});
     this._toastService.success('Књига додата на полицу');
+    return;
+  }
+
+  @Action(RemoveFromShelfAction)
+  public async removeFromShelf(ctx: StateContext<IUserStateModel>, action: RemoveFromShelfAction) {
+    const libraryMember = ctx.getState().user;
+    if (!action || !action.bookId) {
+      this._toastService.warning('Грешка при покушају брисања књиге са полице!');
+      return;
+    }
+    if (!libraryMember || !libraryMember.username) {
+      this._toastService.warning('Грешка при покушају брисања књиге са полице!');
+      return;
+    }
+    const _email = libraryMember.username;
+    const index = libraryMember.myBookshelfBooks.indexOf(action.bookId);
+    if (index === -1) {
+      this._toastService.info('Грешка при покушају склањања књиге са полице!');
+      return;
+    }
+    let response = false;
+    try {
+      response = await this._userService.removeFromShelf({email: _email, bookId: action.bookId}).toPromise();
+    } catch (e) {
+      this._toastService.warning('Грешка при покушају склањања књиге са полице!');
+      return;
+    }
+    if (!response) {
+      this._toastService.warning('Серверска грешка при покушају склањања књиге са полице!');
+      return;
+    }
+    delete libraryMember.myBookshelfBooks[index];
+    ctx.patchState({user: libraryMember});
+    this._toastService.success('Kњига склоњена са полице');
     return;
   }
 

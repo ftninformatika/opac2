@@ -1,6 +1,6 @@
-<div class="search-top-nav-component-wrapper mb-4 mr-4">
+<div class="search-top-nav-component-wrapper">
   <div class="btn-group" mdbDropdown>
-    <button mdbBtn dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light">
+    <button mdbBtn dropdownToggle class="nav-link dropdown-toggle waves-light" size="md">
       По страни:&nbsp;{{pageSize}}<span class="caret"></span></button>
     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
       <a class="dropdown-item waves-light" (click)="onChangePageSize(10)">10</a>
@@ -11,38 +11,38 @@
   <div>
     <div class="btn-group" role="group">
       <button mdbBtn (click)="onViewTypeChanged(false)" color="{{tableViewSelected ? '' : 'primary'}}"
-      [mdbTooltip]="'Картични приказ'">
+      [mdbTooltip]="'Картични приказ'" size="md">
         <mdb-icon fas icon="book-open" ></mdb-icon>
       </button>
       <button mdbBtn (click)="onViewTypeChanged(true)" color="{{tableViewSelected ? 'primary' : ''}}"
-      [mdbTooltip]="'Табеларни приказ'">
+      [mdbTooltip]="'Табеларни приказ'" size="md">
         <mdb-icon fas icon="table"></mdb-icon>
       </button>
     </div>
   </div>
   <div class="btn-group" mdbDropdown>
     <div role="group">
-      <button mdbBtn dropdownToggle class="dropdown-toggle waves-light no-caret">
+      <button mdbBtn dropdownToggle class="dropdown-toggle waves-light no-caret" size="md">
         <mdb-icon fas icon="caret-down"></mdb-icon>
         Сортирај:&nbsp;&nbsp;{{sortTitle}}
       </button>
-      <button mdbBtn class="asc-btn" color="default" outline="true" (click)="ascending = !ascending;onSortChange(sort.type, ascending)">
+      <button mdbBtn class="asc-btn" color="default" outline="true" (click)="ascending = !ascending;onSortChange(sort.type, ascending)" size="md">
         <mdb-icon fas icon="{{ascending ? 'long-arrow-alt-up' : 'long-arrow-alt-down'}}"
         [mdbTooltip]="ascending ? 'Растуће' : 'Опадајуће'"></mdb-icon>
       </button>
     </div>
 
     <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
-      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_AUTHOR, ascending)">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, ascending)">
         &nbsp;Аутор
       </a>
-      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_TITLE, ascending)">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_TITLE, ascending)">
         &nbsp;Наслов
       </a>
-      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_YEAR, ascending)">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_YEAR, ascending)">
         &nbsp;Година
       </a>
-      <a class="dropdown-item waves-light" mdbWavesEffect (click)="onSortChange(SortType.SORT_PUBLISHER, ascending)">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_PUBLISHER, ascending)">
         &nbsp;Издавач
       </a>
     </div>
