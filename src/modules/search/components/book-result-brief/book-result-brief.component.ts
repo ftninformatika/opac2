@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { Book } from '../../../../models/book.model';
 import { Store } from '@ngxs/store';
-import { AddToShelfAction } from '../../../core/states/user/user.state';
+import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'book-result-brief',
@@ -16,6 +16,7 @@ export class BookResultBrief implements OnInit {
   public authors: string;
   public publishInfo: string;
   public errImg;
+  public booksOnShelf: string[];
 
   public constructor(store: Store) {
     this._store = store;
@@ -25,6 +26,7 @@ export class BookResultBrief implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
     this.packAuthors();
     this.packPublisherInfo();
   }
@@ -36,8 +38,14 @@ export class BookResultBrief implements OnInit {
     this.authors = this.book.authors.join(', ');
   }
 
-  public onShelf(bookId: string) {
-    this._store.dispatch(new AddToShelfAction(bookId));
+  public async removeFromShelf(bookId: string) {
+    await this._store.dispatch(new RemoveFromShelfAction(bookId)).toPromise();
+    this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
+  }
+
+  public async onShelf(bookId: string) {
+    await this._store.dispatch(new AddToShelfAction(bookId)).toPromise();
+    this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
   private packPublisherInfo() {

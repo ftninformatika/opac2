@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsersService } from '../../../core/services/users.service';
 import { Book } from '../../../../models/book.model';
-import { Store } from '@ngxs/store';
+import { Actions, ofActionCompleted, ofActionSuccessful, Store } from '@ngxs/store';
 import { RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
 
 @Component({
@@ -14,10 +14,10 @@ export class ShelfPage implements OnInit {
 
   private readonly _userService: UsersService;
   private readonly _store: Store;
-  private email: string;
+  private readonly email: string;
   public shelf: Book[];
 
-  constructor(userService: UsersService, store: Store) {
+  constructor(userService: UsersService, store: Store,  private actions$: Actions) {
     this._userService = userService;
     this._store = store;
     this.shelf = [];
@@ -31,8 +31,8 @@ export class ShelfPage implements OnInit {
     this.getShelf();
   }
 
-  public removeFromShelf(bookId: string) {
-    this._store.dispatch(new RemoveFromShelfAction(bookId));
+  public async removeFromShelf(bookId: string) {
+    await this._store.dispatch(new RemoveFromShelfAction(bookId)).toPromise();
     this.getShelf();
   }
 

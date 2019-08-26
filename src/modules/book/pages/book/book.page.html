@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="items-sm mt-4">
-          <items-availability-card ></items-availability-card>
+          <items-availability-card [bookId]="book._id"></items-availability-card>
           </div>
           <div class="d-flex flex-column">
             <div class="mb-2">
@@ -140,7 +140,6 @@
         <side-misc></side-misc>
       </div>
     </div>
-<!--    <div class="row accordion-gradient-bcg d-flex justify-content-center">-->
       <mdb-accordion>
         <mdb-accordion-item [collapsed]="false">
           <mdb-accordion-item-head>
@@ -155,6 +154,5 @@
           </mdb-accordion-item-body>
         </mdb-accordion-item>
       </mdb-accordion>
-<!--    </div>-->
   </div>
 </div>

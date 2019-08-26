@@ -10,11 +10,13 @@
   </div>
   <div>
     <div class="btn-group" role="group">
-      <button mdbBtn (click)="onViewTypeChanged(false)" color="{{tableViewSelected ? '' : 'primary'}}"
+      <button mdbBtn (click)="onViewTypeChanged(false)"
+              [ngClass]="!tableViewType ? 'btn-primary' : ''"
       [mdbTooltip]="'Картични приказ'" size="md">
         <mdb-icon fas icon="book-open" ></mdb-icon>
       </button>
-      <button mdbBtn (click)="onViewTypeChanged(true)" color="{{tableViewSelected ? 'primary' : ''}}"
+      <button mdbBtn (click)="onViewTypeChanged(true)"
+              [ngClass]="tableViewType ? 'btn-primary' : ''"
       [mdbTooltip]="'Табеларни приказ'" size="md">
         <mdb-icon fas icon="table"></mdb-icon>
       </button>

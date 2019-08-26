@@ -5,6 +5,7 @@ import { IUserModel } from '../../../../models/circ/user.model';
 import { UsersService } from '../../services/users.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { Router } from '@angular/router';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -58,6 +59,7 @@ export class UserState {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
   private readonly _translateService: TranslateService;
+  private readonly _router: Router;
 
   @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
@@ -93,10 +95,20 @@ export class UserState {
     }
   }
 
-  public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService) {
+  @Selector()
+  public static bookshelfBooksIds(state: IUserStateModel): string[] {
+    if (state.user && state.user.myBookshelfBooks && state.user.myBookshelfBooks.length > 0) {
+      return state.user.myBookshelfBooks;
+    } else {
+      return [];
+    }
+}
+
+  public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService, router: Router) {
     this._userService = userService;
     this._toastService = toastService;
     this._translateService = translateService;
+    this._router = router;
   }
 
   @Action(SignInAction)
@@ -129,7 +141,12 @@ export class UserState {
   public async addToShelf(ctx: StateContext<IUserStateModel>, action: AddToShelfAction) {
     const state = ctx.getState();
     this._toastService.clear();
-    const libraryMember = state.user;
+    const libraryMember = {...state.user};
+    if (!ctx.getState().user) {
+      this._router.navigate(['/user/login']);
+      return;
+    }
+    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks]
     if (!action || !action.bookId) {
       this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
       return;
@@ -162,7 +179,12 @@ export class UserState {
 
   @Action(RemoveFromShelfAction)
   public async removeFromShelf(ctx: StateContext<IUserStateModel>, action: RemoveFromShelfAction) {
-    const libraryMember = ctx.getState().user;
+    const libraryMember = {...ctx.getState().user};
+    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
+    if (!ctx.getState().user) {
+      this._router.navigate(['/user/login']);
+      return;
+    }
     if (!action || !action.bookId) {
       this._toastService.warning('Грешка при покушају брисања књиге са полице!');
       return;
@@ -188,10 +210,10 @@ export class UserState {
       this._toastService.warning('Серверска грешка при покушају склањања књиге са полице!');
       return;
     }
-    delete libraryMember.myBookshelfBooks[index];
+    libraryMember.myBookshelfBooks.splice(index, 1);
     ctx.patchState({user: libraryMember});
     this._toastService.success('Kњига склоњена са полице');
-    return;
+    return true;
   }
 
 }

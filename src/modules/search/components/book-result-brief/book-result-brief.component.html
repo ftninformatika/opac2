@@ -34,8 +34,11 @@
       <button mdbBtn type="button" color="primary" [mdbTooltip]="'Резервиши'">
         <mdb-icon fas icon="check-square" class="mr-1" ></mdb-icon><span>Резервиши</span>
       </button>
-      <button mdbBtn type="button" color="default" size="sm" [mdbTooltip]="'На полицу'" (click)="onShelf(book._id)">
+      <button mdbBtn type="button" color="default" size="sm" *ngIf="booksOnShelf.indexOf(book._id) === -1" [mdbTooltip]="'На полицу'" (click)="onShelf(book._id)">
         <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon><span>На полицу</span>
+      </button>
+      <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
+        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon><span>Склони са полице</span>
       </button>
     </div>
   </mdb-card-body>

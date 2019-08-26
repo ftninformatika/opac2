@@ -30,10 +30,8 @@ export class SearchTopNavComponent implements OnChanges {
   }
 
   public onViewTypeChanged(tableView: boolean) {
-    if (tableView !== this.tableViewType) {
       this.tableViewSelected = tableView;
       this.viewTypeChanged.emit(tableView);
-    }
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

@@ -62,7 +62,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location = location;
     this._searchService = searchService;
     this._store = store;
-    this.tableView = true;
+    this.tableView = false;
     this.initValues();
   }
 
