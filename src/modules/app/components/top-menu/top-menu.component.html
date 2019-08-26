@@ -1,6 +1,6 @@
 <div class="top-menu-wrapper" [hidden]="hidden">
   <header>
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark
+    <mdb-navbar SideClass="navbar navbar-expand-md navbar-dark
                 {{(configState | async)?.libConfig?.navbarColor === undefined ? 'bg-primary' : (configState | async)?.libConfig?.navbarColor}}"
                 [containerInside]="false">
       <mdb-navbar-brand>
@@ -17,8 +17,8 @@
                  (ngModelChange)="onChange()"
                  [mdbAutoCompleter]="auto"
                  (keyup.enter)="search()"
-                 placeholder="Потражи..."
-                 aria-label="Потражи">
+                 placeholder="Претражи..."
+                 aria-label="Претражи">
           <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)">
             <mdb-option *ngFor="let pv of results | async" [value]="pv.value" >
               <div class="d-flex flex-column">
@@ -42,7 +42,7 @@
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја члана</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја задуживања</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
               <div class="divider dropdown-divider"></div>

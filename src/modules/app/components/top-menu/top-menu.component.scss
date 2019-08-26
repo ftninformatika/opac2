@@ -2,13 +2,21 @@
   header { height: auto !important; }
 
   .navbar-search-field { width: 100% !important; }
-  .navbar-search-form { width: 45% !important; }
+  .navbar-search-form { width: 40% !important; }
 
-  @media screen and (max-width: 1172px) {
+
+  @media screen and (max-width: 1024px) {
+    font-size: 14px !important;
+    .full-library-name { font-size: 16px; }
+    .navbar-search-form {font-size: 14px}
+  }
+
+  @media screen and (max-width: 860px) {
     .full-library-name { display: none; }
     .short-library-name { display: block; }
   }
-  @media not screen and (max-width: 1172px) {
+
+  @media not screen and (max-width: 860px) {
     .full-library-name { display: block; }
     .short-library-name { display: none; }
   }

@@ -1,11 +1,21 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 import { ESortType, ISort } from '../../../../models/search/sort.model';
 
 @Component({
   selector: 'search-top-nav',
   templateUrl: 'search-top-nav.component.html',
   styleUrls: ['search-top-nav.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchTopNavComponent implements OnChanges {
   @Output() pageSizeChanged = new EventEmitter<number>();
