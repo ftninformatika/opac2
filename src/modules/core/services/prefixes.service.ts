@@ -18,24 +18,77 @@ export class PrefixesService {
 
   prefixes: PrefixModel[] = [
     {
+      code: 'DT',
+      name: 'Врста грађе' // coder
+    },
+    {
       code: 'AU',
       name: 'Аутор'
-    }, {
+    },
+    {
       code: 'TI',
       name: 'Наслов'
-    }, {
+    },
+    {
       code: 'KW',
       name: 'Кључне речи'
-    }, {
+    },
+    {
       code: 'PU',
       name: 'Издавач'
-    }, {
+    },
+    {
       code: 'PY',
       name: 'Година издавања'
-    }, {
+    },
+    {
+      code: 'PP',
+      name: 'Место издавања'
+    },
+    {
       code: 'LA',
       name: 'Језик',
       coder: this.coderLanguage,
+    },
+    {
+      code: 'CO',
+      name: 'Држава издавања' // coder
+    },
+    {
+      code: 'IN',
+      name: 'Инвентарни број'
+    },
+    {
+      code: 'DC',
+      name: 'UDK'
+    },
+    {
+      code: 'BN',
+      name: 'ISBN'
+    },
+    {
+      code: 'SP',
+      name: 'ISSN'
+    },
+    {
+      code: 'RN',
+      name: 'Број записа'
+    },
+    {
+      code: 'CC',
+      name: 'Код за врсту садржаја' // coder
+    },
+    {
+      code: 'RT',
+      name: 'Код за врсту записа' // coder
+    },
+    {
+      code: 'SB',
+      name: 'Предметна одредница'
+    },
+    {
+      code: 'SD',
+      name: 'Предметна пододредница'
     }
   ];
 

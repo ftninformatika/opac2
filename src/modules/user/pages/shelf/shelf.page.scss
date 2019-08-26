@@ -26,7 +26,10 @@
   }
 
   .holder {
+  }
 
+  .shelf-container {
+    justify-content: start;
   }
   .remove-from-shelf:hover {
     cursor: pointer;
@@ -34,7 +37,6 @@
   }
 
   .remove-from-shelf {
-    //background: white;
     position: absolute;
     opacity: 0.6;
     top: 2px;
