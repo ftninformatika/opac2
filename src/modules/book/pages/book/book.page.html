@@ -80,7 +80,7 @@
                           <dt class="col-sm-2">Сигнатура I</dt>
                           <dd class="col-sm-10">
                             {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
-                            <span><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
+                            <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
                           </dd>
                         </ng-container>
 
@@ -156,3 +156,4 @@
       </mdb-accordion>
   </div>
 </div>
+<div id="end"></div>

@@ -12,6 +12,7 @@ import { FillArrayPipe } from './pipes/fill-array.pipe';
 import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
 import { BookCoverDirective } from './directives/book-cover.directive';
 import { RecordFormatPipe } from './pipes/record-format.pipe';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecordFormatPipe } from './pipes/record-format.pipe';
     RecordFormatPipe
   ],
   imports: [
-    TranslateModule
+    TranslateModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     BooksService,
@@ -46,7 +48,8 @@ import { RecordFormatPipe } from './pipes/record-format.pipe';
     FillArrayPipe,
     MakeIndicatorPipe,
     BookCoverDirective,
-    RecordFormatPipe
+    RecordFormatPipe,
+    ScrollToModule
   ]
 })
 export class CoreModule {}

@@ -26,6 +26,7 @@
     "@ngxs/logger-plugin": "^3.5.0",
     "@ngxs/storage-plugin": "^3.5.0",
     "@ngxs/store": "^3.5.0",
+    "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
     "@types/chart.js": "^2.7.53",
     "@types/jwt-decode": "^2.2.1",
     "aes-js": "^3.1.2",
