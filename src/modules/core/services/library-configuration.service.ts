@@ -22,7 +22,7 @@ export class LibraryConfigurationService {
       libraryFullName: 'Градска библиотека Новог Сада',
       shortName: 'ГБНС',
       locale: 'sr_Cyrl_RS',
-      navbarColor: 'red'
+      navbarColor: 'bg-primary'
     },
     {
       libraryName: 'bs',

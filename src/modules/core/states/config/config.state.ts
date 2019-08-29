@@ -8,10 +8,11 @@ export interface IConfigStateModel {
 
 export const InitialConfigState: IConfigStateModel = {
   libConfig: {
-    libraryName: 'bgb',
+    libraryName: 'gbns',
+    libraryFullName: 'Градска библиотека Новог Сада',
+    shortName: 'ГБНС',
     locale: ELocalizationLanguage.SERBIAN_CYRILIC,
-    libraryFullName: 'Библиотека града Београда',
-    shortName: 'БГБ'
+    navbarColor: 'bg-primary'
   }
 };
 
@@ -35,7 +36,7 @@ export class ConfigState {
     if (state.libConfig && state.libConfig.libraryName) {
       return state.libConfig.libraryName;
     }
-    return 'bgb';
+    return 'gbns';
   }
 
   @Action(ChangeConfigAction)

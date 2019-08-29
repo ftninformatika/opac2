@@ -6,7 +6,6 @@ export interface IResultPageOptions {
   pageSize: number;
   currentPage: number;
   filters: IFiltersReq;
-  // TODO: implement later
   sort: ISort;
   previewType: any;
   lib: string;

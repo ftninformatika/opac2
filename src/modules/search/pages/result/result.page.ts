@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
+import { IResultPageOptions, IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { ConfigState } from '../../../core/states/config/config.state';
@@ -11,7 +11,7 @@ import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { ISort } from '../../../../models/search/sort.model';
 import { IResultPage } from '../../../../models/page.model';
 import { ArrayUtils } from '../../../../utils/array.utils';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
@@ -70,14 +70,12 @@ export class ResultPage implements OnInit, OnDestroy {
     this._activatedRoute.queryParamMap.subscribe(
       params => {
         try {
-          const hashString = params.get('s');
-          const decryptedString = CryptoUtils.decryptData(hashString);
-          const paramsChunks = decryptedString.split('&');
-          const queryChunk = paramsChunks[0].split('=')[1];
-          const pageOptionsCh = paramsChunks[1].split('=')[1];
-          this.pageOptions = JSON.parse(pageOptionsCh);
-          this.searchModel = JSON.parse(queryChunk);
-          this.searchPageUrl = `${ResultPage.PagePath}s=${hashString}`;
+          if (params.get('s')) {
+            this.populatePageProps(params);
+          } else {
+            this.foreignSearch(params);
+            return;
+          }
         } catch (e) {
           console.error(e.toString());
           this._router.navigate(['/']);
@@ -88,7 +86,7 @@ export class ResultPage implements OnInit, OnDestroy {
           return;
         }
         if (this.pageOptions.lib && this.pageOptions.lib !== this.lib) {
-          this._router.navigate([`/${this.pageOptions.lib}`], {state: {proceedUrl : this.searchPageUrl}});
+          this._router.navigate([`lib/${this.pageOptions.lib}`], {state: {proceedUrl : this.searchPageUrl}});
           return;
         }
         this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel);
@@ -115,6 +113,30 @@ export class ResultPage implements OnInit, OnDestroy {
         );
     });
     this.onWindowResize();
+  }
+
+  private foreignSearch(params: ParamMap) {
+    const lib = params.get('lib');
+    const text = params.get('text');
+    const prefix = params.get('prefix');
+    const options = {...IResultPageOptionsInitial};
+    options.lib = lib;
+    const searchModel = prefix ? SearchUtil.generateSearchModelFromAutoComplete({value: text, prefName: prefix})
+      : SearchUtil.generateSearchModelFromAutoComplete(text);
+    const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(options)}`;
+    const encodedURI = CryptoUtils.encryptData(uriChunk);
+    this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
+  }
+
+  private populatePageProps(params: ParamMap) {
+    const hashString = params.get('s');
+    const decryptedString = CryptoUtils.decryptData(hashString);
+    const paramsChunks = decryptedString.split('&');
+    const queryChunk = paramsChunks[0].split('=')[1];
+    const pageOptionsCh = paramsChunks[1].split('=')[1];
+    this.pageOptions = JSON.parse(pageOptionsCh);
+    this.searchModel = JSON.parse(queryChunk);
+    this.searchPageUrl = `${ResultPage.PagePath}s=${hashString}`;
   }
 
   public ngOnDestroy() {

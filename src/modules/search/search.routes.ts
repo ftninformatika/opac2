@@ -4,5 +4,6 @@ import { ResultPage } from './pages/result/result.page';
 
 export const SearchRoutes: Routes = [
   { path: '', component: SearchMainPage, pathMatch: 'full' },
-  { path: 'result', component: ResultPage }
+  { path: 'result', component: ResultPage },
+  { path: 'result?lib=:lib&text=:text&prefix=:prefix', component: ResultPage }
 ];

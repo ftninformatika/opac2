@@ -56,11 +56,12 @@ export class TopMenuComponent {
       ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
         SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
     const pageOptions = {...IResultPageOptionsInitial};
-    const library = this._store.selectSnapshot(ConfigState.library);
-    pageOptions.lib = library;
+    pageOptions.lib = this._store.selectSnapshot(ConfigState.library);
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
     this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
+    this.searchText = '';
+    this.selectedAc = null;
   }
 
   public getFilteredData() {
@@ -87,6 +88,7 @@ export class TopMenuComponent {
         if (this.selectedAc) {
           this.searchText = this.selectedAc.value;
         }
+        this.search();
       }
     );
   }

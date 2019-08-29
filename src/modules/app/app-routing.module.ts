@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: './../search/search.module#SearchModule' },
   { path: 'user', loadChildren: './../user/user.module#UserModule' },
   { path: 'error', loadChildren: './../errors/errors.module#ErrorsModule' },
-  { path: ':lib', component: LibraryRouteComponent},
+  { path: 'lib/:lib', component: LibraryRouteComponent},
   { path: '**', redirectTo: 'error/not-found'}
 ];
 
