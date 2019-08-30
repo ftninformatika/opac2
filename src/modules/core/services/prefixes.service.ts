@@ -9,7 +9,7 @@ export class PrefixesService {
   coderLanguage: Coder[] = [
     {
       code: 'srp',
-      name: 'srpski',
+      name: 'српски',
     }, {
       code: 'eng',
       name: 'engleski',

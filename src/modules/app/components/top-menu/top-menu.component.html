@@ -18,11 +18,17 @@
                  [mdbAutoCompleter]="auto"
                  (keyup.enter)="search()"
                  placeholder="Претражи..."
-                 aria-label="Претражи">
-          <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)">
-            <mdb-option *ngFor="let pv of results | async" [value]="pv.value" >
-              <div class="d-flex flex-column">
-                <strong>{{pv.value}}&nbsp;<b>[{{pv.prefName | translate}}]</b></strong>
+                 aria-label="Претражи"
+                  autocomplete="off">
+          <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)"
+                              (mouseover)="onAutoCompleteSelect($event)"
+                              (mousedown)="this.search()"
+                              (keyup.enter)="this.search()"
+                              >
+            <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
+              <div class="flex flex-column">
+                    <span>{{pv.value}}</span>
+                    <span><strong><b>[{{pv.prefName | translate}}]</b></strong></span>
               </div>
             </mdb-option>
           </mdb-auto-completer>

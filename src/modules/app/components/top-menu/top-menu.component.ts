@@ -80,15 +80,17 @@ export class TopMenuComponent {
     }
   }
 
-  public onAutoCompleteSelect(event) {
+  public onAutoCompleteSelect($event) {
+    if ($event.target && $event.target.textContent && $event.target.textContent !== '') {
+      $event.text = $event.target.textContent;
+    }
     this.results.subscribe(
       (res: IPrefixValue[]) => {
         // Autocomplete result list always returns distinct values, so we can do this
-        this.selectedAc = res.find(e => e.value === event.text);
+        this.selectedAc = res.find(e => e.value === $event.text);
         if (this.selectedAc) {
           this.searchText = this.selectedAc.value;
         }
-        this.search();
       }
     );
   }
