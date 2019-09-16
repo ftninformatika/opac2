@@ -35,5 +35,9 @@ export const UserRoutes: Routes = [
   {
     path: 'activate-account/:activateToken',
     component: ActivateAccountPage
+  },
+  {
+    path: 'restart-password/:activateToken',
+    component: ActivateAccountPage
   }
 ];

@@ -25,8 +25,7 @@ export class UsersService {
   }
 
   public forgotPassword(email: string): Observable<boolean> {
-    // TODO: real implementation
-    return of(true);
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.forgotPassword, email) as Observable<boolean>;
   }
 
   public getShelf(email: string): Observable<Book[]> {

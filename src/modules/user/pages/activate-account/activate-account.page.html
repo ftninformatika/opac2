@@ -1,8 +1,11 @@
 <div class="activate-account-page-wrapper">
   <mdb-card>
     <mdb-card-header class="primary-color white-text text-center py-4">
-      <h5>
+      <h5 *ngIf="!restartPasswordMode">
         Активација корисничког налога <strong>OPAC</strong>
+      </h5>
+      <h5 *ngIf="restartPasswordMode">
+        Измена лозинке
       </h5>
     </mdb-card-header>
     <mdb-card-body class="px-lg-5 pt-0">
@@ -21,7 +24,9 @@
         <button mdbBtn outline="false" rounded="true" block="true"
                 class="my-4 waves-effect z-depth-0"
                 [ngClass]="isValid ? 'btn-success' : 'btn-warning'"
-                type="submit" (click)="activateAccount()" >Активирајте налог
+                type="submit" (click)="activateAccount()" >
+          <ng-container *ngIf="!restartPasswordMode">Активирајте налог</ng-container>
+          <ng-container *ngIf="restartPasswordMode">Промените лозинку</ng-container>
         </button>
       </form>
     </mdb-card-body>

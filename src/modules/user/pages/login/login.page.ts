@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
   private readonly _toastService: ToastService;
   private readonly _libConfService: LibraryConfigurationService;
   public loginForm: FormGroup;
+  public forgotPassEmail: string;
   public nextUrl: string;
 
   public constructor(formBuilder: FormBuilder, usersService: UsersService, router: Router,
@@ -48,6 +49,7 @@ export class LoginPage implements OnInit {
     this._activatedRoute.queryParamMap.subscribe(params => {
       this.nextUrl = params.get('next');
     });
+    this.forgotPassEmail = '';
   }
 
   public login(): void {
@@ -64,7 +66,6 @@ export class LoginPage implements OnInit {
         this._libConfService.getMockLibraryConfigs().subscribe(
           (configs: ILibraryConfigurationModel[]) => {
             if (!res.USER_STATE || !res.USER_STATE.user || !res.USER_STATE.user.libraryPrefix) {
-              this._toastService.warning('Грешка при пријављивању корисника!');
               this._store.dispatch(new SignOutAction());
             } else {
               const usrLib = res.USER_STATE.user.libraryPrefix;
@@ -74,13 +75,11 @@ export class LoginPage implements OnInit {
                 }
                 this._router.navigate(['/']);
               } else {
-                this._toastService.warning('Грешка при пријављивању корисника!');
                 this._store.dispatch(new SignOutAction());
               }
             }
           },
           () => {
-            this._toastService.warning('Грешка приликом пријављивања!');
             this._store.dispatch(new SignOutAction());
           }
         );
@@ -89,22 +88,24 @@ export class LoginPage implements OnInit {
   }
 
   public forgotPassword(): void {
-    const email = this.loginForm.value.email.trim();
-    this._usersService.forgotPassword(email).subscribe(data => {
+    this._toastService.clear();
+    if (!this.validateEmail(this.forgotPassEmail)) {
+      this._toastService.warning('Унесите исправан формат e-mail адресе!');
+      return;
+    }
+    this._usersService.forgotPassword(this.forgotPassEmail).subscribe(data => {
       if (data) {
-        // TODO: message "email sent"
-        console.log('forgot password: true');
+        this._toastService.success('Линк за промену лозинке је послат на вашу e-mail адресу!');
+        this._router.navigate(['/']);
       } else {
-        // TODO: message "email unknown"
-        console.log('forgot password: false');
+        this._toastService.warning('Дошло је до грешке!');
       }
     });
   }
 
-  // For testing purposes only TODO: delete this later
-  public dummyLogin(): void {
-    this._store.dispatch(new SignInAction('', ''));
-    this._router.navigate(['']);
+  public validateEmail(email): boolean {
+    // tslint:disable-next-line:max-line-length
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
-
 }

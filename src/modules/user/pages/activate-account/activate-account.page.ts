@@ -22,6 +22,7 @@ export class ActivateAccountPage implements OnInit {
   private readonly _toastService: ToastService;
   private pass1Changed: Subject<string> = new Subject<string>();
   private pass2Changed: Subject<string> = new Subject<string>();
+  private restartPasswordMode: boolean;
   public libraryMember: ILibraryMember;
   public activationToken: string;
   public pass1: string;
@@ -35,6 +36,7 @@ export class ActivateAccountPage implements OnInit {
     this._toastService = toastService;
     this.libraryMember = null;
     this.isValid = false;
+    this.restartPasswordMode = false;
     this.pass1 = '';
     this.pass2 = '';
     this.pass1Changed.pipe(
@@ -53,6 +55,11 @@ export class ActivateAccountPage implements OnInit {
 
   public ngOnInit(): void {
     this.activationToken = this._activatedRoute.snapshot.paramMap.get('activateToken');
+    console.log(this._activatedRoute.snapshot.url);
+    console.log(this._activatedRoute.snapshot.url.join(''));
+    if (this._activatedRoute.snapshot.url.join('').includes('restart-password')) {
+      this.restartPasswordMode = true;
+    }
     this._userService.getUserByActivationToken(this.activationToken).subscribe(
       (resp: ILibraryMember) => {
         this.libraryMember = resp;
@@ -70,14 +77,16 @@ export class ActivateAccountPage implements OnInit {
       this._userService.activateAccount(this.libraryMember).subscribe(
         response => {
           if (response) {
-            this._toastService.success('Успешно сте активирали OPAC налог, можете се пријавити!', 'Успешно');
+            this.restartPasswordMode ?
+              this._toastService.success('Успешно сте променили лозинку вашег налога, можете се пријавити!')
+              : this._toastService.success('Успешно сте активирали OPAC налог, можете се пријавити!');
             this._router.navigate(['/user/login']);
           } else {
-            this._toastService.warning('Дошло је до грешке приликом активације налога!');
+            this._toastService.warning('Дошло је до грешке!');
           }
         },
         () => {
-          this._toastService.warning('Дошло је до грешке приликом активације налога!');
+          this._toastService.warning('Дошло је до грешке!');
         }
       );
     } else {
@@ -85,6 +94,5 @@ export class ActivateAccountPage implements OnInit {
         .info('Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!');
     }
   }
-  
 }
 
