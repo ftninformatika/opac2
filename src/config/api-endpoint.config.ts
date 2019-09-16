@@ -9,6 +9,7 @@ export class ApiEndpointConfig {
       auth: `${ApiEndpointConfig.Origin}/memauth`,
       getMemberByActivationToken: `${ApiEndpointConfig.Origin}/library_members/get_member_by_activation_token`,
       activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`,
+      changePassword: `${ApiEndpointConfig.Origin}/library_members/change_password`,
       addToShelf: `${ApiEndpointConfig.Origin}/library_members/add_to_shelf`,
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`

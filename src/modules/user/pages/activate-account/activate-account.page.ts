@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UsersService } from '../../../core/services/users.service';
-import { ILibraryMember } from '../../../../models/library-member.model';
 import { EPasswordCodes, MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
-import { Subject, } from 'rxjs';
+import { ILibraryMember } from '../../../../models/library-member.model';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { UsersService } from '../../../core/services/users.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { Subject, } from 'rxjs';
+import { ValidatorsUtils } from '../../../../utils/validators.utils';
 
 @Component({
   selector: 'activate-acount-page',
@@ -37,13 +38,17 @@ export class ActivateAccountPage implements OnInit {
     this.pass1 = '';
     this.pass2 = '';
     this.pass1Changed.pipe(
-      debounceTime(650),
+      debounceTime(400),
       distinctUntilChanged()
-    ).subscribe(() => this.validatePasswords());
+    ).subscribe(() => {
+      this.isValid = ValidatorsUtils.validatePasswords(this.pass1, this.pass2) === EPasswordCodes.PasswordsMatch;
+    });
     this.pass2Changed.pipe(
-      debounceTime(650),
+      debounceTime(400),
       distinctUntilChanged()
-    ).subscribe(() => this.validatePasswords());
+    ).subscribe(() => {
+      this.isValid = ValidatorsUtils.validatePasswords(this.pass1, this.pass2) === EPasswordCodes.PasswordsMatch;
+    });
   }
 
   public ngOnInit(): void {
@@ -59,7 +64,8 @@ export class ActivateAccountPage implements OnInit {
   }
 
   public activateAccount(): void {
-    if (this.validatePasswords() === EPasswordCodes.PasswordsMatch) {
+    this.isValid = ValidatorsUtils.validatePasswords(this.pass1, this.pass2) === EPasswordCodes.PasswordsMatch;
+    if (this.isValid) {
       this.libraryMember.password = this.pass1;
       this._userService.activateAccount(this.libraryMember).subscribe(
         response => {
@@ -79,30 +85,6 @@ export class ActivateAccountPage implements OnInit {
         .info('Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!');
     }
   }
-
-  public validatePasswords(): EPasswordCodes {
-    const reg = new RegExp(MinimumPasswordStrengthRegex);
-    if (!this.pass1 && !this.pass2) {
-      this.isValid = false;
-      return EPasswordCodes.PasswordEmpty;
-    } else if (this.pass1 !== this.pass2) {
-      this.isValid = false;
-      return EPasswordCodes.PasswordsDontMatch;
-    } else  if (reg.test(this.pass1) && reg.test(this.pass2)) {
-      this.isValid = true;
-      return EPasswordCodes.PasswordsMatch;
-    } else {
-      this.isValid = false;
-      return EPasswordCodes.PasswordNotStrongEnough;
-    }
-  }
-
-  public changed1(text: string) {
-    this.pass1Changed.next(text);
-  }
-
-  public changed2(text: string) {
-    this.pass2Changed.next(text);
-  }
+  
 }
 
