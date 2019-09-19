@@ -28,6 +28,7 @@ export class TopMenuComponent {
   public results: Observable<IPrefixValue[]>;
   public hidden = false;
   public selectedAc: IPrefixValue;
+  private isAdmin: boolean;
   @Select(UserState) user;
   @Select(ConfigState) configState;
 
@@ -38,6 +39,7 @@ export class TopMenuComponent {
     this._store = store;
     this._translateService = translateService;
     this.selectedAc = null;
+    this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.searchTextChanged.pipe(
       debounceTime(850),
       distinctUntilChanged()

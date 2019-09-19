@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
 import { ILendingViewModel } from '../../../models/circ/lending/lending-view.model';
-import { HttpClient } from '@angular/common/http';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
-import { Book } from '../../../models/book.model';
 import { IPrefixValue } from '../../../models/prefix-value.model';
 import { IResultPage } from '../../../models/page.model';
-import { ISearchModel } from '../../../models/search/search.model';
-import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
+import { Book } from '../../../models/book.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -300,22 +299,6 @@ export class BooksService {
 
   public getRecommendedBooks(): Book[] {
     return this.recommendedBooks;
-  }
-
-  public simpleSearch(query: string): Observable<Book[]> {
-    return of(this.searchHits);
-  }
-
-  public getBookByIdDummy(id: number): Observable<Book> {
-    return of(this.books.find(book => book.id === id));
-  }
-
-  public searchDummy(query: any[]): Observable<Book[]> {
-    return of(this.searchHits);
-  }
-
-  public getAllBooks(): Observable<Book[]> {
-    return of(this.books);
   }
 
   public getDummyLendingViews(): ILendingViewModel[] {

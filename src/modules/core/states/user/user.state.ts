@@ -83,7 +83,7 @@ export class UserState {
   @Selector()
   public static admin(state: IUserStateModel): boolean {
     return (state.user && state.user.authorities
-      && state.user.authorities.includes(EAuthority.LibraryAdmin));
+      && state.user.authorities.includes('ROLE_ADMIN'));
   }
 
   @Selector()
@@ -146,7 +146,7 @@ export class UserState {
       this._router.navigate(['/user/login']);
       return;
     }
-    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks]
+    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
     if (!action || !action.bookId) {
       this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
       return;

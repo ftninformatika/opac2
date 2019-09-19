@@ -6,6 +6,7 @@ import { Book } from '../../../models/book.model';
 import { BooksService } from './books.service';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { BookCollectionModel } from '../../../models/book-collection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,9 @@ export class UsersService {
 
   public changePassword(changePassDTO: {newPassword: string, username: string}) {
     return this._httpClient.post(ApiEndpointConfig.Paths.user.changePassword, changePassDTO) as Observable<boolean>;
+  }
+
+  public adminCreateModifyCollection(bookCollection: BookCollectionModel) {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createModifyCollection, bookCollection) as Observable<boolean>;
   }
 }

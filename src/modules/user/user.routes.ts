@@ -6,6 +6,8 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { ShelfPage } from './pages/shelf/shelf.page';
 import { LoginPage } from './pages/login/login.page';
 import { Routes } from '@angular/router';
+import { AdminCollectionsPage } from './pages/admin-collections/admin-collections.page';
+import { AdminGuard } from '../core/guards/admin.guard';
 
 export const UserRoutes: Routes = [
   {
@@ -31,6 +33,11 @@ export const UserRoutes: Routes = [
     path: 'change-password',
     component: ChangePasswordPage,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-collections',
+    component: AdminCollectionsPage,
+    canActivate: [AdminGuard]
   },
   {
     path: 'activate-account/:activateToken',

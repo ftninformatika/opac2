@@ -48,7 +48,9 @@
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја задуживања</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја члана</a>
+              <a  *ngIf="isAdmin"
+                class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
               <div class="divider dropdown-divider"></div>

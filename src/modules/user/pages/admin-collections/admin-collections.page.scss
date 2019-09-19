@@ -1,3 +1,15 @@
 .admin-collections-page-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  .left-panel {
+    width: 300px;
+    height: auto;
+    border-right: darkslategray solid thick;
+  }
 
+  .collection-content {
+    width: 100%;
+    height: auto;
+  }
 }

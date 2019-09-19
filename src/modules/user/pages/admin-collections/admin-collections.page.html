@@ -1,3 +1,37 @@
 <div class="admin-collections-page-wrapper">
+  <div class="left-panel">
+    <button mdbBtn type="button" color="default" (click)="basicModal.show()">
+      Додај колекцију<mdb-icon fas icon="magic" class="ml-1"></mdb-icon>
+    </button>
+    <div>Колекција 1</div>
+    <div>Колекција 2</div>
+    <div>Колекција 3</div>
+    <div>Колекција 4</div>
+  </div>
+  <div class="collection-content">
+
+  </div>
+
+  <!--  New collection modal-->
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myModalLabel">Креирање нове колекције:</h4>
+        </div>
+        <div class="modal-body">
+          <label>Назив нове колекције</label>
+          <input type="newCollectionName" class="form-control" mdbInput email="true" [(ngModel)]="newCollectionName" (keydown.enter)="createCollection()">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection()">Направи</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

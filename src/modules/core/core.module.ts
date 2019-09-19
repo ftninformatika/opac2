@@ -13,6 +13,7 @@ import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
 import { BookCoverDirective } from './directives/book-cover.directive';
 import { RecordFormatPipe } from './pipes/record-format.pipe';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     BooksService,
     PrefixesService,
     UsersService,
+    AdminGuard,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

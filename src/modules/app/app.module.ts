@@ -20,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { AppPage } from './pages/app/app.page';
 import { NgxsModule } from '@ngxs/store';
+import { AdminGuard } from '../core/guards/admin.guard';
 
 @NgModule({
   declarations: [

@@ -15,6 +15,9 @@ export class ApiEndpointConfig {
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`
     },
+    admin: {
+      createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,
+    },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,
       autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`,
