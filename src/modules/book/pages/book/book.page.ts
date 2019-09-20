@@ -46,7 +46,7 @@ export class BookPage implements OnInit {
             this._router.navigate(['/error/not-found']);
           } else {
             this.book = data;
-            // console.log(this.book);
+            console.log(this.book);
           }
         },
         () => this._router.navigate(['/error/not-found']));

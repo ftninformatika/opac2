@@ -16,6 +16,7 @@ export interface Book {
   udk?: string;
   imageUrl?: string;
   description?: string;
+  isbdHtml?: string;
   items?: RecordItem[];
   record?: Record;
   year?: number; // Remove this later

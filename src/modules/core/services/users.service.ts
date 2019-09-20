@@ -1,12 +1,12 @@
 import { ILibraryMember, ILoginDto } from '../../../models/library-member.model';
+import { BookCollectionModel } from '../../../models/book-collection.model';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { IMemberWrapper } from '../../../models/member-wrapper.model';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '../../../models/book.model';
 import { BooksService } from './books.service';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { BookCollectionModel } from '../../../models/book-collection.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

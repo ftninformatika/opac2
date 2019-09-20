@@ -90,18 +90,18 @@
                 </mdb-tab>
                 <mdb-tab heading="ISBD">
                   <div class="row">
-                    <div class="col-12 mt-2">
-                      <p>
-                        <strong>HERIS, Robert</strong><br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arhangelsk / Robert Heris ; preveo Nikola Jordanov. - Beograd : Laguna, 2007 (Beograd : Margo-art). - 382 str. ; 20 cm
-                      </p>
-                      <p>
-                        Prevod dela: Archangel / Robert Harris. - Tiraž 1.500. - Beleška o piscu: str. [383].
-                      </p>
-                      <p>
-                        ISBN 978-86-7436-653-0 (broš.)<br/>
-                        821.111-31
-                      </p>
+                    <div class="col-12 mt-2" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
+<!--                      <p>-->
+<!--                        <strong>HERIS, Robert</strong><br/>-->
+<!--                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arhangelsk / Robert Heris ; preveo Nikola Jordanov. - Beograd : Laguna, 2007 (Beograd : Margo-art). - 382 str. ; 20 cm-->
+<!--                      </p>-->
+<!--                      <p>-->
+<!--                        Prevod dela: Archangel / Robert Harris. - Tiraž 1.500. - Beleška o piscu: str. [383].-->
+<!--                      </p>-->
+<!--                      <p>-->
+<!--                        ISBN 978-86-7436-653-0 (broš.)<br/>-->
+<!--                        821.111-31-->
+<!--                      </p>-->
                     </div>
                   </div>
                 </mdb-tab>
