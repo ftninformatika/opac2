@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="items-sm mt-4">
-            <items-availability-card [bookId]="book._id"></items-availability-card>
+            <items-availability-card [bookId]="book._id" [recordItems]="book.items"></items-availability-card>
           </div>
           <div class="d-flex flex-column">
             <div class="mb-2">
@@ -91,17 +91,6 @@
                 <mdb-tab heading="ISBD">
                   <div class="row">
                     <div class="col-12 mt-2" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
-<!--                      <p>-->
-<!--                        <strong>HERIS, Robert</strong><br/>-->
-<!--                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arhangelsk / Robert Heris ; preveo Nikola Jordanov. - Beograd : Laguna, 2007 (Beograd : Margo-art). - 382 str. ; 20 cm-->
-<!--                      </p>-->
-<!--                      <p>-->
-<!--                        Prevod dela: Archangel / Robert Harris. - Tiraž 1.500. - Beleška o piscu: str. [383].-->
-<!--                      </p>-->
-<!--                      <p>-->
-<!--                        ISBN 978-86-7436-653-0 (broš.)<br/>-->
-<!--                        821.111-31-->
-<!--                      </p>-->
                     </div>
                   </div>
                 </mdb-tab>
@@ -136,11 +125,11 @@
         </div>
       </div>
       <div class="other-container p-2 container-fluid">
-        <items-availability-card [bookId]="book._id"></items-availability-card>
+        <items-availability-card [bookId]="book._id" [recordItems]="book.items"></items-availability-card>
         <side-misc></side-misc>
       </div>
     </div>
-      <mdb-accordion>
+      <mdb-accordion *ngIf="book.items && book.items.length > 0">
         <mdb-accordion-item [collapsed]="false">
           <mdb-accordion-item-head>
             <h5 class="mb-0">
@@ -155,5 +144,5 @@
         </mdb-accordion-item>
       </mdb-accordion>
   </div>
+  <div id="end"></div>
 </div>
-<div id="end"></div>

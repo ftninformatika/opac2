@@ -4,18 +4,18 @@
       <mdb-card-title><h5>Доступност примерака</h5></mdb-card-title>
       <mdb-card-text>
         <p>
-          укупно: <strong>7</strong> &nbsp;
-          слободно: <strong>3</strong> &nbsp;
+          укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
+          слободно: <strong>{{availableItems ? availableItems : '0'}}</strong> &nbsp;
           резервисано: <strong>0</strong>
         </p>
-        <p class="mb-0">
-          на локацијама:
+        <p class="mb-0" *ngIf="locations && locations.length > 0">
+          <strong>на локацијама:</strong>
         </p>
-        <ul class="list-unstyled pl-3">
-          <li>Централна</li>
-          <li>Стари Град</li>
-          <li>Савски Венац</li>
-        </ul>
+        <div class="locations-list scrollbar square scrollbar-primary" *ngIf="locations && locations.length > 0">
+          <ul class="list-unstyled pl-3 force-overflow">
+            <li *ngFor="let l of locations">{{l}}</li>
+          </ul>
+        </div>
       </mdb-card-text>
       <div class="buttons">
         <a class="btn btn-unique waves-light availability-card-btn" mdbWavesEffect>Резервиши</a><br/>

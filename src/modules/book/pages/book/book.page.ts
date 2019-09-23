@@ -6,6 +6,7 @@ import { Book } from '../../../../models/book.model';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { Store } from '@ngxs/store';
+import { RecordUtils } from '../../../../utils/record-utils';
 
 @Component({
   selector: 'book-page',
@@ -46,6 +47,7 @@ export class BookPage implements OnInit {
             this._router.navigate(['/error/not-found']);
           } else {
             this.book = data;
+            this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
             console.log(this.book);
           }
         },
