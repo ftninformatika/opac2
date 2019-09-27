@@ -18,11 +18,11 @@
         </div>
       </mdb-card-text>
       <div class="buttons">
-        <a class="btn btn-unique waves-light availability-card-btn" mdbWavesEffect>Резервиши</a><br/>
-        <a class="btn btn-default waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1" mdbWavesEffect (click)="addToShelf()">
+        <a class="btn btn-unique waves-light availability-card-btn">Резервиши</a><br/>
+        <a class="btn btn-default waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1" (click)="addToShelf()">
           Додај на полицу
         </a>
-        <a class="btn btn-danger waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" mdbWavesEffect (click)="removeFromShelf()">
+        <a class="btn btn-danger waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
           Склони са полице
         </a>
       </div>

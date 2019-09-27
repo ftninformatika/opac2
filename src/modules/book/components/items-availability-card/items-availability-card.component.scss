@@ -3,17 +3,17 @@
     width: 180px;
   }
 
-  //.locations-list {
-  //  max-height: 200px;
-  //  overflow-y: auto;
-  //
-  //
-  //}
+  .locations-list {
+    max-height: 150px;
+    overflow-y: auto;
+
+
+  }
 
   .scrollbar {
     margin-left: 20px;
     float: left;
-    max-height: 200px;
+    max-height: 150px;
     width: auto;
     background: #fff;
     overflow-y: scroll;
