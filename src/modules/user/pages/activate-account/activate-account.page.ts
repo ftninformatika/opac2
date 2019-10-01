@@ -20,9 +20,9 @@ export class ActivateAccountPage implements OnInit {
   private readonly _router: Router;
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
-  private pass1Changed: Subject<string> = new Subject<string>();
-  private pass2Changed: Subject<string> = new Subject<string>();
-  private restartPasswordMode: boolean;
+  public pass1Changed: Subject<string> = new Subject<string>();
+  public pass2Changed: Subject<string> = new Subject<string>();
+  public restartPasswordMode: boolean;
   public libraryMember: ILibraryMember;
   public activationToken: string;
   public pass1: string;

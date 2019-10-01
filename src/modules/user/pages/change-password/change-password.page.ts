@@ -20,8 +20,8 @@ export class ChangePasswordPage implements OnInit {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
   private readonly _store: Store;
-  private pass1Changed: Subject<string> = new Subject<string>();
-  private pass2Changed: Subject<string> = new Subject<string>();
+  public pass1Changed: Subject<string> = new Subject<string>();
+  public pass2Changed: Subject<string> = new Subject<string>();
   public loggedInUsername: string;
   public pass1: string;
   public pass2: string;
