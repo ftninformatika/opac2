@@ -2,7 +2,7 @@ import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Book } from '../../../../models/book.model';
+import { Book, ERecordItemStatus } from '../../../../models/book.model';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { Store } from '@ngxs/store';
@@ -23,6 +23,7 @@ export class BookPage implements OnInit {
   public book: Book;
   public errImgUrl: string;
   public lib: string;
+  private showLocations: boolean;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store) {
     this._booksService = booksService;
@@ -30,6 +31,7 @@ export class BookPage implements OnInit {
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
+    this.showLocations = false;
   }
 
   public ngOnInit(): void {
@@ -48,7 +50,8 @@ export class BookPage implements OnInit {
           } else {
             this.book = data;
             this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
-            console.log(this.book);
+            this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
+            // console.log(this.book);
           }
         },
         () => this._router.navigate(['/error/not-found']));

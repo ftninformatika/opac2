@@ -12,6 +12,7 @@ import { Store } from '@ngxs/store';
 export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() bookId: string;
   @Input() recordItems: RecordItem[];
+  @Input() containShowableItems: boolean;
   private readonly _store: Store;
   public booksOnShelf: string[];
   public totalItems: number;

@@ -1,7 +1,8 @@
 <div class="items-availability-card-wrapper">
   <mdb-card>
     <mdb-card-body>
-      <mdb-card-title><h5>Доступност примерака</h5></mdb-card-title>
+      <mdb-card-title><h5 style="cursor: default;" align="center">Доступност примерака</h5></mdb-card-title>
+      <ng-container *ngIf="containShowableItems">
       <mdb-card-text>
         <p>
           укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
@@ -13,7 +14,7 @@
         </p>
         <div class="locations-list scrollbar square scrollbar-primary" *ngIf="locations && locations.length > 0">
           <ul class="list-unstyled pl-3 force-overflow">
-            <li *ngFor="let l of locations">{{l}}</li>
+            <li *ngFor="let l of locations" style="border: grey solid">{{l}}</li>
           </ul>
         </div>
       </mdb-card-text>
@@ -26,6 +27,14 @@
           Склони са полице
         </a>
       </div>
+      </ng-container>
+      <ng-container *ngIf="!containShowableItems">
+        <mdb-card-text>
+          <p style="color: brown; cursor: default;">
+            <strong>Нема доступних примерака за овај запис</strong>
+          </p>
+        </mdb-card-text>
+      </ng-container>
     </mdb-card-body>
   </mdb-card>
 </div>

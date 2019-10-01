@@ -17,11 +17,11 @@
                 <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
               </span>
               </p>
-              <p class="publisher">{{book.publisher}}, {{book.year}}.</p>
+              <p class="publisher">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</p>
             </div>
           </div>
           <div class="items-sm mt-4">
-            <items-availability-card [bookId]="book._id" [recordItems]="book.items"></items-availability-card>
+            <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations"></items-availability-card>
           </div>
           <div class="d-flex flex-column">
             <div class="mb-2">
@@ -90,7 +90,7 @@
                 </mdb-tab>
                 <mdb-tab heading="ISBD">
                   <div class="row">
-                    <div class="col-12 mt-2" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
+                    <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
                     </div>
                   </div>
                 </mdb-tab>
@@ -125,11 +125,12 @@
         </div>
       </div>
       <div class="other-container p-2 container-fluid">
-        <items-availability-card [bookId]="book._id" [recordItems]="book.items"></items-availability-card>
-        <side-misc></side-misc>
+        <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations"></items-availability-card>
+<!--        TODO: Put links to related search to this record in this component-->
+<!--        <side-misc></side-misc>-->
       </div>
     </div>
-      <mdb-accordion *ngIf="book.items && book.items.length > 0">
+      <mdb-accordion *ngIf="showLocations">
         <mdb-accordion-item [collapsed]="false">
           <mdb-accordion-item-head>
             <h5 class="mb-0">
