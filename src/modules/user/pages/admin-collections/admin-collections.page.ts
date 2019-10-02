@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import { Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
 import { UsersService } from '../../../core/services/users.service';
@@ -11,12 +11,13 @@ import { ToastService } from 'ng-uikit-pro-standard';
   styleUrls: ['admin-collections.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AdminCollectionsPage {
+export class AdminCollectionsPage implements OnInit {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
   private readonly _store: Store;
   private readonly username: string;
   private readonly isAdmin: boolean;
+  public collections: BookCollectionModel[];
   public newCollectionName: string;
 
   public constructor(store: Store, userService: UsersService, toastService: ToastService) {
@@ -27,22 +28,39 @@ export class AdminCollectionsPage {
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
   }
 
+  ngOnInit(): void {
+    this.loadCollections();
+  }
+
   public createCollection() {
     if (!this.isAdmin || !this.username) {
       return;
     }
+    if (!this.newCollectionName || this.newCollectionName.trim() === '') {
+      return;
+    }
     const newCollection: BookCollectionModel = {
       bookIds: [],
-      creatorUsername: this.username
+      creatorUsername: this.username,
+      title: this.newCollectionName,
+      creationDate: new Date()
     };
     this._userService.adminCreateModifyCollection(newCollection).subscribe(
       (respondStatus) => {
         if (!respondStatus) {
-          this._toastService.warning('Дошло је до грешке приликом креирања нове колекције');
+          this._toastService.warning('Дошло је до грешке приликом креирања нове колекције!' +
+            '\nМаксималан број колекција по библиотеци је 15, а максималан број записа по колекцији 30.');
         } else {
           this._toastService.success(`Успешно сте креирали колекцију: ${this.newCollectionName}`);
+          this.loadCollections();
         }
       }
+    );
+  }
+
+  private loadCollections() {
+    this._userService.getBookCollections().subscribe(
+      coll => this.collections = coll
     );
   }
 

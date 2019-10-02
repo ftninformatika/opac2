@@ -3,10 +3,7 @@
     <button mdbBtn type="button" color="default" (click)="basicModal.show()">
       Додај колекцију<mdb-icon fas icon="magic" class="ml-1"></mdb-icon>
     </button>
-    <div>Колекција 1</div>
-    <div>Колекција 2</div>
-    <div>Колекција 3</div>
-    <div>Колекција 4</div>
+    <div *ngFor="let c of collections">{{c.title}}</div>
   </div>
   <div class="collection-content">
 
@@ -25,10 +22,10 @@
         </div>
         <div class="modal-body">
           <label>Назив нове колекције</label>
-          <input type="newCollectionName" class="form-control" mdbInput email="true" [(ngModel)]="newCollectionName" (keydown.enter)="createCollection()">
+          <input type="newCollectionName" class="form-control" mdbInput email="true" [(ngModel)]="newCollectionName" (keydown.enter)="createCollection();basicModal.hide();">
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection()">Направи</button>
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection();basicModal.hide();">Направи</button>
         </div>
       </div>
     </div>
