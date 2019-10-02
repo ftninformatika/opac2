@@ -40,7 +40,7 @@ export class AdminCollectionsPage implements OnInit {
       return;
     }
     const newCollection: BookCollectionModel = {
-      bookIds: [],
+      recordIds: [],
       creatorUsername: this.username,
       title: this.newCollectionName,
       creationDate: new Date()

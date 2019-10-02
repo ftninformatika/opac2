@@ -20,14 +20,17 @@
       </mdb-card-text>
       <div class="buttons">
         <a class="btn btn-unique waves-light availability-card-btn">Резервиши</a><br/>
+      </div>
+      </ng-container>
+      <div class="buttons">
         <a class="btn btn-default waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1" (click)="addToShelf()">
           Додај на полицу
         </a>
         <a class="btn btn-danger waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
           Склони са полице
         </a>
+        <add-to-collection-button [bookId]="bookId"></add-to-collection-button>
       </div>
-      </ng-container>
       <ng-container *ngIf="!containShowableItems">
         <mdb-card-text>
           <p style="color: brown; cursor: default;">

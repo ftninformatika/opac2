@@ -61,4 +61,7 @@ export class UsersService {
     return this._httpClient.get(ApiEndpointConfig.Paths.admin.createModifyCollection) as Observable<BookCollectionModel[]>;
   }
 
+  public addRecordToCollection(addToCollectionDto: {collectionId: string, recordId: string}) {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createModifyCollection, addToCollectionDto) as Observable<boolean>;
+  }
 }

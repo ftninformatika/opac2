@@ -4,10 +4,10 @@ import {
   AccordionModule,
   AutoCompleterModule,
   ButtonsModule, CardsModule, CarouselModule,
-  CheckboxModule,
+  CheckboxModule, DropdownModule,
   IconsModule,
   InputsModule, ModalModule,
-  NavbarModule, PopoverModule, SelectModule, SidenavModule, TabsModule, TooltipModule
+  NavbarModule, PopoverModule, SelectModule, SidenavModule, TabsModule, TooltipModule, WavesModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';
@@ -31,7 +31,9 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     ModalModule,
     PopoverModule,
     TooltipModule,
-    SidenavModule
+    SidenavModule,
+    WavesModule,
+    DropdownModule
   ],
   providers: [
     LazyLoadImageDirective

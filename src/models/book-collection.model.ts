@@ -4,5 +4,5 @@ export interface BookCollectionModel {
   creatorUsername: string;
   creationDate?: Date;
   lastModified?: Date;
-  bookIds: string[];
+  recordIds: string[];
 }

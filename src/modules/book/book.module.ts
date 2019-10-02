@@ -9,13 +9,15 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonUiModule,
     RouterModule.forChild(BookRoutes),
     CoreModule,
-    TableModule
+    TableModule,
+    SharedModule
   ],
   declarations: [
     ItemsAvailabilityCardComponent,

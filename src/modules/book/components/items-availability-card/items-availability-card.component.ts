@@ -14,6 +14,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() recordItems: RecordItem[];
   @Input() containShowableItems: boolean;
   private readonly _store: Store;
+  public isAdmin: boolean;
   public booksOnShelf: string[];
   public totalItems: number;
   public availableItems: number;
@@ -30,6 +31,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     if (!this.recordItems) {
       return;
     }
+    this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable).length;
     this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free).length;
     this.locations = [...new Set(this.recordItems.map(i => i.location))];
