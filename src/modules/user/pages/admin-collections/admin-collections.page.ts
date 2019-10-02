@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
 import { UsersService } from '../../../core/services/users.service';
