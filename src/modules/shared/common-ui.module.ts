@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
   AutoCompleterModule,
-  ButtonsModule, CardsFreeModule, CarouselModule,
+  ButtonsModule, CardsModule, CarouselModule,
   CheckboxModule,
   IconsModule,
   InputsModule, ModalModule,
@@ -22,7 +22,7 @@ import { LazyLoadImageDirective } from 'ng-lazyload-image';
     CheckboxModule,
     AccordionModule,
     NavbarModule,
-    CardsFreeModule,
+    CardsModule,
     IconsModule,
     CarouselModule,
     TabsModule,
