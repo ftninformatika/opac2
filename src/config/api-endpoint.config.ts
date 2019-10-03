@@ -27,7 +27,7 @@ export class ApiEndpointConfig {
     },
     book: {
       main: `${ApiEndpointConfig.Origin}/book`,
-      getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`,
+      getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`
     }
   };
 }

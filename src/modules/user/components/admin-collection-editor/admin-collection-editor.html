@@ -1,3 +1,11 @@
 <div class="admin-collection-editor-wrapper">
-  coll editor
+  <div class="collection-present" *ngIf="collection">
+    Колекција: {{collection.title}}
+    <ng-container *ngIf="books">
+      <book-card *ngFor="let b of books" [book]="b"></book-card>
+    </ng-container>
+  </div>
+  <div class="collection-not-present" *ngIf="!collection">
+    Нема направљених колекција.
+</div>
 </div>

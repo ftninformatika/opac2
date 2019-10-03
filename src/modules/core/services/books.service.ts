@@ -320,7 +320,8 @@ export class BooksService {
     return this._httpClient.post(ApiEndpointConfig.Paths.book.main, _id) as Observable<Book>;
   }
 
-  public getBooks(recordsIds: string[]): Observable<Book[]> {
+  public getMultipleBooks(recordsIds: string[]): Observable<Book[]> {
+    console.log(recordsIds);
     return this._httpClient.post(ApiEndpointConfig.Paths.book.getMultiple, recordsIds) as Observable<Book[]>;
   }
 }

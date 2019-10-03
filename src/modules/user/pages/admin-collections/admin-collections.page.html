@@ -4,11 +4,11 @@
       Додај колекцију<mdb-icon fas icon="magic" class="ml-1"></mdb-icon>
     </button>
     <div *ngFor="let c of collections">
-      {{c.title}}
+      <a (click)="selectCollection(c._id)">{{c.title}}</a>
     </div>
   </div>
   <div class="collection-content">
-
+    <admin-collection-editor [collection]="selectedCollection" [books]=""></admin-collection-editor>
   </div>
 
   <!--  New collection modal-->
