@@ -30,6 +30,10 @@ export class AddToCollectionButton implements OnInit {
     if (!collectionIdE || !recordIdE) {
       return;
     }
+    if (this.collections && this.collections.find(coll => coll._id === collectionIdE).recordsIds.indexOf(recordIdE) >= 0) {
+      this._toastService.warning('Књига већ постоји у одабраној колекцији!');
+      return;
+    }
     this._userService.addRecordToCollection({collectionId: collectionIdE, recordId: recordIdE})
       .subscribe(
         resp => {
@@ -38,13 +42,17 @@ export class AddToCollectionButton implements OnInit {
           } else {
             this._toastService.success('Успешно сте додали књигу у колекцију!');
           }
-        }
+        },
+        () => this._toastService.warning('Није успело додавање књиге у колекцију!')
       );
   }
 
   public ngOnInit(): void {
     this._userService.getBookCollections().subscribe(
-      resp => this.collections = resp
+      resp => {
+        this.collections = resp;
+      }
     );
   }
+
 }

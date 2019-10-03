@@ -1,3 +1,4 @@
+import { AdminCollectionEditor } from './components/admin-collection-editor/admin-collection-editor';
 import { AdminCollectionsPage } from './pages/admin-collections/admin-collections.page';
 import { ActivateAccountPage } from './pages/activate-account/activate-account.page';
 import { ChangePasswordPage } from './pages/change-password/change-password.page';
@@ -24,7 +25,8 @@ import { NgModule } from '@angular/core';
     ProfilePage,
     ShelfPage,
     HistoryPage,
-    ChangePasswordPage
+    ChangePasswordPage,
+    AdminCollectionEditor
   ]
 })
 export class UserModule {}

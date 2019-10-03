@@ -4,7 +4,7 @@
       Додај у колекцију
     </button>
     <div class="dropdown-menu dropdown-primary">
-      <a class="dropdown-item" *ngFor="let c of collections" (click)="addToCollection(c._id, bookId)">{{c.title}}</a>
+      <a class="dropdown-item" *ngFor="let c of collections" (click)="addToCollection(c._id, bookId)">+&nbsp;{{c.title}}</a>
     </div>
   </div>
 </div>
