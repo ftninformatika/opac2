@@ -29,7 +29,10 @@
   }
 
   .shelf-container {
-    justify-content: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
   .remove-from-shelf:hover {
     cursor: pointer;
