@@ -5,4 +5,5 @@ export interface BookCollectionModel {
   creationDate?: Date;
   lastModified?: Date;
   recordsIds: string[];
+  showCollection?: boolean;
 }

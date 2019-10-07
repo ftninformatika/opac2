@@ -1,3 +1,19 @@
 .admin-collection-editor-wrapper {
+  .top-panel {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+  .books {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
 }

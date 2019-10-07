@@ -38,6 +38,7 @@ export class TopMenuComponent {
     this._router = router;
     this._store = store;
     this._translateService = translateService;
+    this.searchText = '';
     this.selectedAc = null;
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.searchTextChanged.pipe(

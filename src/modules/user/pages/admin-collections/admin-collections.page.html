@@ -1,14 +1,16 @@
 <div class="admin-collections-page-wrapper">
   <div class="left-panel">
     <button mdbBtn type="button" color="default" (click)="basicModal.show()">
-      Додај колекцију<mdb-icon fas icon="magic" class="ml-1"></mdb-icon>
+      Додај колекцију
     </button>
-    <div *ngFor="let c of collections">
-      <a (click)="selectCollection(c._id)">{{c.title}}</a>
-    </div>
+    <ul *ngFor="let c of collections" class="list-group">
+      <li class="list-group-item mt-1" (click)="selectCollection(c._id)" style="cursor: pointer;">
+       {{c.title}}
+      </li>
+    </ul>
   </div>
   <div class="collection-content">
-    <admin-collection-editor [collection]="selectedCollection" [books]=""></admin-collection-editor>
+    <admin-collection-editor [collection]="selectedCollection" [books]="selectedCollectionBooks"></admin-collection-editor>
   </div>
 
   <!--  New collection modal-->

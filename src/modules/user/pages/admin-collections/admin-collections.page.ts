@@ -40,7 +40,7 @@ export class AdminCollectionsPage implements OnInit {
       coll => {
         this.collections = coll;
         if (this.collections.length > 0) {
-          this.selectedCollection = this.collections[0];
+          this.selectCollection(this.collections[0]._id);
         }
       }
     );
@@ -51,11 +51,11 @@ export class AdminCollectionsPage implements OnInit {
       return;
     }
     this.selectedCollection = this.collections.find(c => c._id === collId);
-    if (!this.selectedCollection || !this.selectedCollection.recordsIds
-      || this.selectedCollection.recordsIds.length === 0) {
+    if (!this.selectedCollection) {
+      this.selectedCollectionBooks = null;
       return;
     }
-    this._bookService.getMultipleBooks(this.selectedCollection.recordsIds).subscribe(
+    this._bookService.getBooksByCollId(this.selectedCollection._id).subscribe(
       r => this.selectedCollectionBooks = r
     );
   }
@@ -76,13 +76,15 @@ export class AdminCollectionsPage implements OnInit {
     this._userService.adminCreateModifyCollection(newCollection).subscribe(
       (respondStatus) => {
         if (!respondStatus) {
-          this._toastService.warning('Дошло је до грешке приликом креирања нове колекције!' +
-            '\nМаксималан број колекција по библиотеци је 15, а максималан број записа по колекцији 30.');
+          this._toastService.warning('Максималан број колекција је 15, а максималан број записа у колекцији 30.' +
+            '\nНе можете направити више колекција са истим насловом!');
         } else {
           this._toastService.success(`Успешно сте креирали колекцију: ${this.newCollectionName}`);
           this.loadCollections();
         }
-      }
+      },
+    () => this._toastService.warning('Максималан број колекција је 15, а максималан број записа у колекцији 30.' +
+      ' Назив колекције је јединствен!')
     );
   }
 

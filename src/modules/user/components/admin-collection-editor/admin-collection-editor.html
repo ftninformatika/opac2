@@ -1,11 +1,30 @@
 <div class="admin-collection-editor-wrapper">
-  <div class="collection-present" *ngIf="collection">
-    Колекција: {{collection.title}}
+  <div class="collection-present ml-4 mr-2" *ngIf="collection">
     <ng-container *ngIf="books">
-      <book-card *ngFor="let b of books" [book]="b"></book-card>
+      <div class="top-panel mb-2 ml-4">
+        <div class="row">
+          <h5>Колекција: {{collection.title}}</h5>
+          <button type="button" mdbBtn color="secondary" mdbWavesEffect>Сачувај промене</button>
+        </div>
+        <div class="row">
+          <mdb-checkbox>Прикажи на насловној страници
+          </mdb-checkbox>
+          <button type="button" mdbBtn color="danger" mdbWavesEffect>Бриши колекцију</button>
+        </div>
+      </div>
+        <div class="books">
+          <book-card *ngFor="let b of books" [book]="b" class="mr-2 mt-2"></book-card>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!books">
+      <div>
+        <h4>
+          Немате ни једну књигу у одабраној колекцији.<br/> Додајте књиге из претраживања у колекцију, како би сте могли да је уређујете!
+        </h4>
+      </div>
     </ng-container>
   </div>
   <div class="collection-not-present" *ngIf="!collection">
     Нема направљених колекција.
-</div>
+  </div>
 </div>
