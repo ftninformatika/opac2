@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { Store } from '@ngxs/store';
-import { UserState } from '../../../core/states/user/user.state';
-import { UsersService } from '../../../core/services/users.service';
 import { BookCollectionModel } from '../../../../models/book-collection.model';
+import { UsersService } from '../../../core/services/users.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { BooksService } from '../../../core/services/books.service';
+import { UserState } from '../../../core/states/user/user.state';
 import { ToastService } from 'ng-uikit-pro-standard';
-import {Book} from '../../../../models/book.model';
-import {BooksService} from '../../../core/services/books.service';
+import { Book } from '../../../../models/book.model';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'admin-collections-page',

@@ -4,6 +4,23 @@
   .navbar-search-field { width: 100% !important; }
   .navbar-search-form { width: 40% !important; }
 
+  .ac-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .type {
+      //position: absolute;
+      //margin-left: 80%;
+    }
+  }
+
+  .completer-dropdown {
+    .completer-row {
+    display: none !important;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    }
+  }
 
   @media screen and (max-width: 1024px) {
     font-size: 14px !important;
