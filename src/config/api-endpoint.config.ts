@@ -17,6 +17,7 @@ export class ApiEndpointConfig {
     },
     admin: {
       createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,
+      deleteCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       getCollections: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       addRecordToCollection: `${ApiEndpointConfig.Origin}/opac/book_collections/add_record`,
     },

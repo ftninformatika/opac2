@@ -327,4 +327,5 @@ export class BooksService {
   public getBooksByCollId(collId: string): Observable<Book[]> {
     return this._httpClient.post(ApiEndpointConfig.Paths.book.getByCollectionId, collId) as Observable<Book[]>;
   }
+
 }

@@ -1,5 +1,5 @@
 import {BookCollectionModel} from '../../../../models/book-collection.model';
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import {Book} from '../../../../models/book.model';
 
 @Component({
@@ -11,5 +11,12 @@ import {Book} from '../../../../models/book.model';
 export class AdminCollectionEditor {
   @Input() collection: BookCollectionModel;
   @Input() books: Book[];
+  @Output() deleteCollectionEvent = new EventEmitter<string>();
 
+  public deleteBook(collectionId: string) {
+    if (!collectionId) {
+      return;
+    }
+    this.deleteCollectionEvent.emit(collectionId);
+  }
 }

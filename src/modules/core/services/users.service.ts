@@ -64,4 +64,8 @@ export class UsersService {
   public addRecordToCollection(addToCollectionDto: {collectionId: string, recordId: string}) {
     return this._httpClient.post(ApiEndpointConfig.Paths.admin.addRecordToCollection, addToCollectionDto) as Observable<boolean>;
   }
+
+  public deleteCollectionById(collId: string): Observable<boolean> {
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.deleteCollection}/${collId}`) as Observable<boolean>;
+  }
 }

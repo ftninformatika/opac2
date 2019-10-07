@@ -9,7 +9,7 @@
         <div class="row">
           <mdb-checkbox>Прикажи на насловној страници
           </mdb-checkbox>
-          <button type="button" mdbBtn color="danger" mdbWavesEffect>Бриши колекцију</button>
+          <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="deleteBook(collection._id)">Бриши колекцију</button>
         </div>
       </div>
         <div class="books">

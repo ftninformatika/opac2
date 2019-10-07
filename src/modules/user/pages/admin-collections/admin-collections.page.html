@@ -4,13 +4,13 @@
       Додај колекцију
     </button>
     <ul *ngFor="let c of collections" class="list-group">
-      <li class="list-group-item mt-1" (click)="selectCollection(c._id)" style="cursor: pointer;">
+      <li class="list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''" (click)="selectCollection(c._id)" style="cursor: pointer;">
        {{c.title}}
       </li>
     </ul>
   </div>
   <div class="collection-content">
-    <admin-collection-editor [collection]="selectedCollection" [books]="selectedCollectionBooks"></admin-collection-editor>
+    <admin-collection-editor [collection]="selectedCollection" [books]="selectedCollectionBooks" (deleteCollectionEvent)="deleteCollection($event)"></admin-collection-editor>
   </div>
 
   <!--  New collection modal-->
@@ -19,7 +19,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide(); newCollectionName='';">
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title center" id="myModalLabel">Креирање нове колекције:</h4>
@@ -29,7 +29,7 @@
           <input type="newCollectionName" class="form-control" mdbInput email="true" [(ngModel)]="newCollectionName" (keydown.enter)="createCollection();basicModal.hide();">
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection();basicModal.hide();">Направи</button>
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection();basicModal.hide(); newCollectionName='';">Направи</button>
         </div>
       </div>
     </div>

@@ -36,14 +36,7 @@ export class AdminCollectionsPage implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._userService.getBookCollections().subscribe(
-      coll => {
-        this.collections = coll;
-        if (this.collections.length > 0) {
-          this.selectCollection(this.collections[0]._id);
-        }
-      }
-    );
+    this.loadCollectionsAndSelectFirst();
   }
 
   public selectCollection(collId) {
@@ -65,6 +58,7 @@ export class AdminCollectionsPage implements OnInit {
       return;
     }
     if (!this.newCollectionName || this.newCollectionName.trim() === '') {
+      this._toastService.warning('Унесите јединствено име нове колекције!');
       return;
     }
     const newCollection: BookCollectionModel = {
@@ -85,6 +79,33 @@ export class AdminCollectionsPage implements OnInit {
       },
     () => this._toastService.warning('Максималан број колекција је 15, а максималан број записа у колекцији 30.' +
       ' Назив колекције је јединствен!')
+    );
+  }
+
+  public deleteCollection(collId: string) {
+    this._userService.deleteCollectionById(collId).subscribe(
+      deleted => {
+        if (!deleted) {
+          this._toastService.warning('Дошло је до грешке, колекција није обрисана!');
+        } else {
+          this._toastService.success('Колеција је обрисана!');
+          this.selectedCollection = null;
+          this.selectedCollectionBooks = null;
+          this.loadCollectionsAndSelectFirst();
+        }
+      },
+      () => this._toastService.warning('Дошло је до грешке, колекција није обрисана!')
+    );
+  }
+
+  private loadCollectionsAndSelectFirst() {
+    this._userService.getBookCollections().subscribe(
+      coll => {
+        this.collections = coll;
+        if (this.collections.length > 0) {
+          this.selectCollection(this.collections[0]._id);
+        }
+      }
     );
   }
 
