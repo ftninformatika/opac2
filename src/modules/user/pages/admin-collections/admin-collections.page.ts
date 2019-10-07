@@ -24,6 +24,7 @@ export class AdminCollectionsPage implements OnInit {
   public newCollectionName: string;
   public selectedCollection: BookCollectionModel;
   public selectedCollectionBooks: Book[];
+  public selectedCollectionEdited: boolean;
 
   public constructor(store: Store, userService: UsersService, toastService: ToastService, bookService: BooksService) {
     this._store = store;
@@ -33,6 +34,7 @@ export class AdminCollectionsPage implements OnInit {
     this.username = this._store.selectSnapshot(UserState.username);
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.selectedCollection = null;
+    this.selectedCollectionEdited = false;
   }
 
   public ngOnInit(): void {
@@ -40,6 +42,9 @@ export class AdminCollectionsPage implements OnInit {
   }
 
   public selectCollection(collId) {
+    if (this.selectedCollectionEdited) {
+    //  TODO: Pop the modal if something is changed in collection
+    }
     if (!collId) {
       return;
     }
@@ -48,6 +53,7 @@ export class AdminCollectionsPage implements OnInit {
       this.selectedCollectionBooks = null;
       return;
     }
+    this.selectedCollectionEdited = false;
     this._bookService.getBooksByCollId(this.selectedCollection._id).subscribe(
       r => this.selectedCollectionBooks = r
     );

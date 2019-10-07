@@ -3,14 +3,19 @@
     <button mdbBtn type="button" color="default" (click)="basicModal.show()">
       Додај колекцију
     </button>
-    <ul *ngFor="let c of collections" class="list-group">
-      <li class="list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''" (click)="selectCollection(c._id)" style="cursor: pointer;">
-       {{c.title}}
-      </li>
-    </ul>
+    <div class="collections-list">
+      <ul *ngFor="let c of collections" class="list-group ml-1">
+        <li class="list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''" (click)="selectCollection(c._id)" style="cursor: pointer;">
+         {{c.title}}
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="collection-content">
-    <admin-collection-editor [collection]="selectedCollection" [books]="selectedCollectionBooks" (deleteCollectionEvent)="deleteCollection($event)"></admin-collection-editor>
+    <admin-collection-editor [collection]="selectedCollection" [books]="selectedCollectionBooks"
+     (touchedEvent)="this.selectedCollectionEdited = $event" (deleteCollectionEvent)="deleteCollection($event)"
+    >
+    </admin-collection-editor>
   </div>
 
   <!--  New collection modal-->

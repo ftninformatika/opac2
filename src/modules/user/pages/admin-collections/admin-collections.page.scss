@@ -5,7 +5,15 @@
   .left-panel {
     width: 300px;
     height: auto;
-    border-right: darkslategray solid thick;
+
+    .collections-list {
+      overflow-y: auto;
+      max-height: 720px;
+    }
+
+    button {
+      width: 230px;
+    }
   }
 
   .collection-content {
