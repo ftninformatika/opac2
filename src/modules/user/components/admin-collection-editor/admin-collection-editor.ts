@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, Output, ViewEncapsulation } 
 import { BookCollectionModel } from '../../../../models/book-collection.model';
 import { UsersService } from '../../../core/services/users.service';
 import { Book } from '../../../../models/book.model';
-import 'array.prototype.move';
 import { ToastService } from 'ng-uikit-pro-standard';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'admin-collection-editor',
@@ -45,8 +43,8 @@ export class AdminCollectionEditor implements OnDestroy {
     || toIndex <= -1 || toIndex >= this.books.length) {
       return;
     }
-    this.books.move(fromIndex, toIndex);
-    this.collection.recordsIds.move(fromIndex, toIndex);
+    this.shiftArr(fromIndex, toIndex, this.books);
+    this.shiftArr(fromIndex, toIndex, this.collection.recordsIds);
     this.touchedEvent.emit(true);
     this.touched = true;
   }
@@ -75,6 +73,26 @@ resp => {
       },
 () => this._toastService.warning('Није успело чување промеа у колекцији!')
     );
+  }
+
+  private shiftArr(oldIndex: number, newIndex: number, arr: any[]) {
+      if ( arr.length === 0 ) {
+        return this;
+      }
+      while (oldIndex < 0) {
+        oldIndex += arr.length;
+      }
+      while (newIndex < 0) {
+        newIndex += arr.length;
+      }
+      if (newIndex >= arr.length) {
+        let k = newIndex - arr.length;
+        while ((k--) + 1) {
+          arr.push(undefined);
+        }
+      }
+      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+      return this; // for testing purposes
   }
 
 }
