@@ -68,4 +68,8 @@ export class UsersService {
   public deleteCollectionById(collId: string): Observable<boolean> {
     return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.deleteCollection}/${collId}`) as Observable<boolean>;
   }
+
+  public getShowableCollections(): Observable<BookCollectionModel[]> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.getShowableCollections}`) as Observable<BookCollectionModel[]>;
+  }
 }

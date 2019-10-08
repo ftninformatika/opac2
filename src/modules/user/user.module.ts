@@ -11,6 +11,7 @@ import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
+import {AdminCoverDescriptionUploadPage} from './pages/admin-cover-description-upload/admin-cover-description-upload';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { NgModule } from '@angular/core';
     ShelfPage,
     HistoryPage,
     ChangePasswordPage,
+    AdminCoverDescriptionUploadPage,
     AdminCollectionEditor
   ]
 })

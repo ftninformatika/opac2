@@ -3,6 +3,7 @@ import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { Book } from '../../../../models/book.model';
 import { Store } from '@ngxs/store';
 import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
+import {ConfigState} from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'book-result-brief',
@@ -17,12 +18,16 @@ export class BookResultBrief implements OnInit {
   public publishInfo: string;
   public errImg;
   public booksOnShelf: string[];
+  public lib: string;
+  public isAdmin: boolean;
 
   public constructor(store: Store) {
     this._store = store;
     this.authors = '';
     this.publishInfo = '';
     this.errImg = BookCoverUtils.getBlankBookCover();
+    this.lib = this._store.selectSnapshot(ConfigState.library);
+    this.isAdmin = this._store.selectSnapshot(UserState.admin);
   }
 
   public ngOnInit(): void {

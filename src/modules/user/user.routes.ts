@@ -46,5 +46,9 @@ export const UserRoutes: Routes = [
   {
     path: 'restart-password/:activateToken',
     component: ActivateAccountPage
+  },
+  {
+    path: 'admin-cover-description-upload/:lib/:recordId',
+    component: ActivateAccountPage
   }
 ];

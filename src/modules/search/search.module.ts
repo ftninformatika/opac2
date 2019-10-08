@@ -13,6 +13,7 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { NgModule } from '@angular/core';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { NgModule } from '@angular/core';
     RouterModule.forChild(SearchRoutes),
     CoreModule,
     DropdownModule,
+    SharedModule,
     TableModule
   ],
   declarations: [

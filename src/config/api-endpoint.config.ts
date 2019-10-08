@@ -20,6 +20,7 @@ export class ApiEndpointConfig {
       deleteCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       getCollections: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       addRecordToCollection: `${ApiEndpointConfig.Origin}/opac/book_collections/add_record`,
+      getShowableCollections: `${ApiEndpointConfig.Origin}/opac/book_collections/showable_collections`
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,

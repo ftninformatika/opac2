@@ -1,18 +1,18 @@
 <div class="book-result-brief-wrapper">
   <mdb-card-body class="d-flex fixed-height">
     <div class="fixed-width" *ngIf="book.imageUrl">
-      <a [routerLink]="['/book', book._id]">
+      <a [routerLink]="['/book', lib, book._id]">
         <mdb-card-img src="{{book.imageUrl}}" class="book-cover"></mdb-card-img>
       </a>
     </div>
     <div class="fixed-width" *ngIf="!book.imageUrl">
-      <a [routerLink]="['/book', book._id]">
+      <a [routerLink]="['/book', lib, book._id]">
         <mdb-card-img src="{{errImg}}" class="book-cover"></mdb-card-img>
       </a>
     </div>
     <div class="flex-1 ml-3">
       <mdb-card-title>
-        <h4 [routerLink]="['/book', book._id]" class="pointer title" [mdbTooltip]="book.title">{{book.title | shortenString:35}}</h4>
+        <h4 [routerLink]="['/book',lib, book._id]" class="pointer title" [mdbTooltip]="book.title">{{book.title | shortenString:35}}</h4>
         <div class="pub-type">
           <div *ngIf="book.pubType === 1">
             <mdb-icon fas icon="book"></mdb-icon> монографија
@@ -21,7 +21,7 @@
             <mdb-icon fas icon="scroll"></mdb-icon> серијска
           </div>
         </div>
-        <h5 *ngIf="book.subtitle" [routerLink]="['/book', book._id]" class="pointer" >{{book.subtitle | shortenString:25}}</h5>
+        <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer" >{{book.subtitle | shortenString:25}}</h5>
         <p [mdbTooltip]="book.authors">
           <span>
             <em>{{authors | shortenString:25}}</em>
@@ -40,6 +40,9 @@
       <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
         <mdb-icon fas icon="minus" class="mr-1"></mdb-icon><span>Склони са полице</span>
       </button>
+      <ng-container *ngIf="isAdmin">
+        <add-to-collection-button [bookId]="book._id"></add-to-collection-button>
+      </ng-container>
     </div>
   </mdb-card-body>
 </div>
