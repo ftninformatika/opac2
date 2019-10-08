@@ -1,25 +1,32 @@
-<div class="admin-collection-editor-wrapper">
+<div class="admin-collection-editor-wrapper" xmlns="http://www.w3.org/1999/html">
   <div class="collection-present ml-4 mr-2" *ngIf="collection">
     <ng-container *ngIf="books">
-      <div class="top-panel mb-2 ml-4">
-        <div class="row">
-          <h5>Колекција: {{collection.title}}</h5>
-          <button type="button" mdbBtn color="secondary" mdbWavesEffect (click)="saveChanges()">Сачувај промене</button>
+      <div class="top-panel mb-2 ml-4 mt-4">
+        <mdb-checkbox class="mr-2" [(ngModel)]="collection.showCollection" (change)="touchedEvent.emit(true);">Прикажи на насловној страници
+        </mdb-checkbox>
+        <div class="row md-form md-outline">
+          <h5 class="ml-2">Колекција: </h5>
+          <input mdbInput type="text" class="form-control col ml-2 mr-2" [(ngModel)]="collection.title" (ngModelChange)="touchedEvent.emit(true);">
         </div>
         <div class="row">
-          <mdb-checkbox>Прикажи на насловној страници
-          </mdb-checkbox>
+          <button type="button" mdbBtn color="info" mdbWavesEffect (click)="saveChanges()">Сачувај промене</button>
           <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="basicModal.show();">Бриши колекцију</button>
         </div>
       </div>
-        <div class="books">
+        <div class="books ml-3">
           <div class="book mr-2 mt-2" *ngFor="let b of books;let i = index" >
-            <div class="delete" (click)="removeBook(i)"><span>Remove</span></div>
+            <div class="delete" (click)="removeBook(i)"><span>Уклони</span></div>
             <book-card  [book]="b" ></book-card>
-            <div>
-              <span (click)="shiftBook(i, i - 1)"><<</span>
-              {{i + 1}}
-              <span (click)="shiftBook(i, i + 1)">>></span>
+            <div class="move-books">
+              <span class="mr-1" *ngIf="i != 0" (click)="shiftBook(i, i - 1)">
+                <mdb-icon fas icon="angle-double-left"></mdb-icon>
+              </span>
+              <h5>
+                {{i + 1}}
+              </h5>
+              <span class="ml-1" *ngIf="i != books.length - 1" (click)="shiftBook(i, i + 1)">
+                <mdb-icon fas icon="angle-double-right"></mdb-icon>
+              </span>
             </div>
           </div>
         </div>
@@ -81,4 +88,5 @@
     Нема направљених колекција.
   </div>
 
+</div>
 </div>

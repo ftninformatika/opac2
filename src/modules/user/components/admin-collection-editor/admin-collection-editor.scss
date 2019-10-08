@@ -8,12 +8,35 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
+      h5 {padding-top: 10px}
+      input {
+        width: 200px;
+        height: 48px;
+      }
     }
   }
   .books {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    .book {
+      .delete {
+        span {
+          font-weight: 600;
+          color: darkred;
+          cursor: pointer;
+        }
+      }
+      .move-books {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        span {
+          cursor: pointer;
+        }
+      }
+    }
   }
 
 }

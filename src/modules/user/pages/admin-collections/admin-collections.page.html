@@ -4,6 +4,7 @@
       Додај колекцију
     </button>
     <div class="collections-list">
+      <h5 class="ml-2 mt-2">Листа колекција</h5>
       <ul *ngFor="let c of collections" class="list-group ml-1">
         <li class="list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''" (click)="selectCollection(c._id)" style="cursor: pointer;">
          {{c.title}}
