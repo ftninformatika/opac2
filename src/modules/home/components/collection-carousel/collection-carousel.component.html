@@ -24,8 +24,8 @@
   </div>
   <div class="slide-circles p-1 d-flex flex-row justify-content-center">
     <div *ngFor="let item of slides; let i = index" class="selected-slide">
-      <a mdbBtn floating="true" size="sm" class="inactive-slide" gradient="blue" mdbWavesEffect *ngIf="activeSlideIndex!=i" fas (click)="changeSlide(i)"></a>
-      <a mdbBtn floating="true" size="sm" class="active-slide" gradient="white" mdbWavesEffect *ngIf="activeSlideIndex==i" far (click)="changeSlide(i)"></a>
+      <a mdbBtn floating="true" class="inactive-slide" gradient="blue" *ngIf="activeSlideIndex!=i" fas (click)="changeSlide(i)"></a>
+      <a mdbBtn floating="true" class="active-slide" gradient="white" *ngIf="activeSlideIndex==i" far (click)="changeSlide(i)"></a>
     </div>
   </div>
 </div>

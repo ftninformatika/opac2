@@ -36,7 +36,15 @@ export class ConfigState {
     if (state.libConfig && state.libConfig.libraryName) {
       return state.libConfig.libraryName;
     }
-    return 'gbns';
+    return 'bgb';
+  }
+
+  @Selector()
+  public static fullLibName(state: IConfigStateModel) {
+    if (state && state.libConfig.libraryName) {
+      return state.libConfig.libraryFullName;
+    }
+    return '--';
   }
 
   @Action(ChangeConfigAction)
