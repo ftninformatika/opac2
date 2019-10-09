@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
+import { BookTabs } from './components/book-tabs/book-tabs';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {SharedModule} from '../shared/shared.module';
     SideMiscComponent,
     ReadMoreComponent,
     BookPage,
-    UploadDescriptionCoverPage
+    UploadDescriptionCoverPage,
+    BookTabs
   ]
 })
 export class BookModule { }

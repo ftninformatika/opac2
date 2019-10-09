@@ -1,3 +1,8 @@
 .upload-description-cover-page-wrapper {
-
+  .desc-and-cover {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    //align-content: space-between;
+  }
 }
