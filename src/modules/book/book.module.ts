@@ -1,4 +1,5 @@
 import { ItemsAvailabilityCardComponent } from './components/items-availability-card/items-availability-card.component';
+import { UploadDescriptionCoverPage } from './pages/upload-description-cover-page/upload-description-cover-page';
 import { ItemsTableComponent } from './components/items-table/items-table.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { SideMiscComponent } from './components/side-misc/side-misc.component';
@@ -24,7 +25,8 @@ import {SharedModule} from '../shared/shared.module';
     ItemsTableComponent,
     SideMiscComponent,
     ReadMoreComponent,
-    BookPage
+    BookPage,
+    UploadDescriptionCoverPage
   ]
 })
 export class BookModule { }

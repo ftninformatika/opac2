@@ -1,6 +1,6 @@
 import { AddToCollectionButton } from './components/add-to-collection-button/add-to-collection-button';
+import { CommonUiModule } from './common-ui.module';
 import { NgModule } from '@angular/core';
-import {CommonUiModule} from './common-ui.module';
 
 /**
  *  Here will be components that needs to be shared across multiple feature modules
@@ -12,10 +12,10 @@ import {CommonUiModule} from './common-ui.module';
     CommonUiModule
   ],
   declarations: [
-    AddToCollectionButton
+    AddToCollectionButton,
   ],
   exports: [
-    AddToCollectionButton
+    AddToCollectionButton,
   ]
 })
 export class SharedModule {}

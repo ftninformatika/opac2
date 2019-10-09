@@ -10,6 +10,7 @@
                    onError="this.src='../../../../assets/book/nocover/1.jpg';"/>
             </div>
             <div class="flex-1">
+              <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]">Мењај слику и опис</a>
               <h3 class="h3-responsive">{{book.title}}</h3>
               <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
               <p>
@@ -29,6 +30,7 @@
                 {{book.description ? book.description : 'Нема описа за овај запис.'}}
               </read-more>
             </div>
+<!--            <button (click)="#uploadModal.show()"></button>-->
             <div class="book-tabs">
               <mdb-tabset [buttonClass]="'md-tabs tabs-3  blue'" >
                 <mdb-tab heading="Детаљи">
@@ -144,6 +146,7 @@
           </mdb-accordion-item-body>
         </mdb-accordion-item>
       </mdb-accordion>
-  </div>
+    </div>
   <div id="end"></div>
+
 </div>

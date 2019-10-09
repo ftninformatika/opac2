@@ -7,6 +7,7 @@ import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { Store } from '@ngxs/store';
 import { RecordUtils } from '../../../../utils/record-utils';
+import { UserState } from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'book-page',
@@ -23,6 +24,7 @@ export class BookPage implements OnInit {
   public book: Book;
   public errImgUrl: string;
   public lib: string;
+  public isAdmin: boolean;
   private showLocations: boolean;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store) {
@@ -32,6 +34,7 @@ export class BookPage implements OnInit {
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
     this.showLocations = false;
+    this.isAdmin = this._store.selectSnapshot(UserState.admin);
   }
 
   public ngOnInit(): void {
