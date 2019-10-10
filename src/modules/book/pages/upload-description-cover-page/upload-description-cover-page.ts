@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { ActivatedRoute } from '@angular/router';
-import { Book, BookCommon } from '../../../../models/book.model';
 import { BooksService } from '../../../core/services/books.service';
+import { Book, BookCommon } from '../../../../models/book.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'upload-description-cover-page',
@@ -16,6 +16,7 @@ export class UploadDescriptionCoverPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _bookService: BooksService;
   private readonly _toastService: ToastService;
+  private readonly _router: Router;
   public book: Book;
   public bookDescription;
   public lib: string;
@@ -25,13 +26,15 @@ export class UploadDescriptionCoverPage implements OnInit {
   public message: string;
   private formDataCover: FormData;
   private coverFile: File;
+  private previousFile: File;
   private recordId: string;
 
-  public constructor(store: Store, activatedRoute: ActivatedRoute, bookService: BooksService, toastService: ToastService) {
+  public constructor(store: Store, activatedRoute: ActivatedRoute, bookService: BooksService, toastService: ToastService, router: Router) {
     this._store = store;
     this._activatedRoute = activatedRoute;
     this._bookService = bookService;
     this._toastService = toastService;
+    this._router = router;
   }
 
   public ngOnInit(): void {
@@ -40,15 +43,6 @@ export class UploadDescriptionCoverPage implements OnInit {
         this.recordId = paramMap.get('id');
         this.lib = paramMap.get('lib');
         this.initBook();
-      }
-    );
-  }
-
-  private initBook(): void {
-    this._bookService.getBook(this.recordId).subscribe(
-      resp => {
-        this.book = resp;
-        this.bookDescription = this.book.description;
       }
     );
   }
@@ -70,7 +64,7 @@ export class UploadDescriptionCoverPage implements OnInit {
     this.imagePath = files;
     this.coverFile = files[0];
     reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
+    reader.onload = () => {
       this.imgURL = reader.result;
       this.formDataCover = new FormData();
       this.formDataCover.append('file', this.imgURL);
@@ -91,7 +85,7 @@ export class UploadDescriptionCoverPage implements OnInit {
     // Update
     if (this.book.commonBookUID) {
       bookCommon.uid = this.book.commonBookUID;
-      if (this.formDataCover) {
+      if (this.coverFile && this.coverFile !== this.previousFile) {
         this._bookService.uploadBookCover(bookCommon.uid, this.coverFile).subscribe(
           resp => {
             if (!resp) {
@@ -99,8 +93,12 @@ export class UploadDescriptionCoverPage implements OnInit {
               return;
             }
             this._toastService.success('Успешно је отпремљена слика корица!');
+            this.previousFile = this.coverFile;
           },
-          () => this._toastService.warning('Није успело отпремање слике!')
+          () => {
+            this._toastService.warning('Није успело отпремање слике!');
+            return;
+          }
         );
       }
       if (this.book.description !== this.bookDescription && this.bookDescription && this.bookDescription.trim() !== '') {
@@ -112,9 +110,13 @@ export class UploadDescriptionCoverPage implements OnInit {
             }
             this._toastService.success('Успешно је промењен опис!');
           },
-          () => this._toastService.warning('Није успела промена описа!')
+          () => {
+            this._toastService.warning('Није успела промена описа!');
+            return;
+          }
         );
       }
+      this.routeToRecord();
       // Create
     } else {
       this._bookService.createModifyBookCommon(bookCommon)
@@ -124,7 +126,7 @@ export class UploadDescriptionCoverPage implements OnInit {
               this._toastService.warning('Чување није успело!');
               return;
             }
-            if (this.formDataCover) {
+            if (this.coverFile) {
               this._bookService.uploadBookCover(resp.uid, this.coverFile)
                 .subscribe(
                   resp1 => {
@@ -132,14 +134,30 @@ export class UploadDescriptionCoverPage implements OnInit {
                       this._toastService.warning('Отпремање слике није успело!');
                       return;
                     }
+                    this.routeToRecord();
                   }
                 );
+            } else {
+              this._toastService.success('Успешно сте ажурирали податке о књизи!');
+              this.routeToRecord();
             }
-            this._toastService.success('Успешно сте ажурирали податке о књизи!');
           },
           () => this._toastService.warning('Чување није успело!')
         );
       }
     this.initBook();
     }
+
+  private routeToRecord() {
+    this._router.navigate(['/book', this.lib, this.recordId]);
+  }
+
+  private initBook(): void {
+    this._bookService.getBook(this.recordId).subscribe(
+      resp => {
+        this.book = resp;
+        this.bookDescription = this.book.description;
+      }
+    );
+  }
 }
