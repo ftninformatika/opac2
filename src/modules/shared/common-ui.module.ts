@@ -7,7 +7,7 @@ import {
   CheckboxModule, DropdownModule,
   IconsModule,
   InputsModule, ModalModule,
-  NavbarModule, PopoverModule, SelectModule, SidenavModule, TabsModule, TooltipModule, WavesModule
+  NavbarModule, PopoverModule, SelectModule, SidenavModule, TabsModule, TooltipModule, UploadFile, WavesModule
 } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageDirective } from 'ng-lazyload-image';

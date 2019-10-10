@@ -1,3 +1,8 @@
-.book-tabs {
-
+.book-tabs-wrapper {
+  div.book-tabs div.container-fluid ul.nav {
+    border-bottom: none;
+    a.nav-link {
+      color: white;
+    }
+  }
 }

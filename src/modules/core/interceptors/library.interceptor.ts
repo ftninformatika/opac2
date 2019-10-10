@@ -27,7 +27,7 @@ export class LibraryInterceptor implements HttpInterceptor {
 
     req = req.clone({
       setHeaders: {
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         Library: library
       }
     });

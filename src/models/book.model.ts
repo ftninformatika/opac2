@@ -1,5 +1,4 @@
 export interface Book {
-  id?: number; // remove
   _id?: string; // mongoId of record
   pubType?: EPubType;
   authors?: string[];
@@ -19,7 +18,17 @@ export interface Book {
   isbdHtml?: string;
   items?: RecordItem[];
   record?: Record;
-  year?: number; // Remove this later
+  commonBookUID?: BigInteger;
+}
+
+export interface BookCommon {
+  _id?: string;
+  uid?: BigInteger;
+  title?: string;
+  isbn?: string;
+  issn?: string;
+  imageUrl?: string;
+  description?: string;
 }
 
 export interface RecordItem {

@@ -31,6 +31,13 @@ export class ApiEndpointConfig {
       main: `${ApiEndpointConfig.Origin}/book`,
       getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`,
       getByCollectionId: `${ApiEndpointConfig.Origin}/book/collection`
+    },
+    bookCommon: {
+      main: `${ApiEndpointConfig.Origin}/book_common`
+    },
+    bookCover: {
+      main: `${ApiEndpointConfig.Origin}/book_cover`,
+      upload: `${ApiEndpointConfig.Origin}/book_cover/upload`
     }
   };
 }
