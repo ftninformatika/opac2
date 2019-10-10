@@ -11,18 +11,34 @@
       </div>
       <div class="file-upload">
         <div><h5 align="center">Слика корица</h5></div>
-        <div>
+        <div class="view overlay" style="width: 220px">
           <span style="color:red;" *ngIf="message">{{message}}</span>
-          <div>
-            <img src="{{book.imageUrl}}" height="300"  *ngIf="!imgURL && book.imageUrl">
-            <img [src]="imgURL" height="300"  *ngIf="imgURL">
+<!--          No picture container-->
+          <div class="pattern6 waves-effect waves-light rgba-blue-strong drag-container dashed-border" *ngIf="!book.imageUrl && !imgURL" (drop)="onDrop($event)">
+            <p class="drag-text" align="center">
+              Кликни или превуци датотеку са сликом
+            </p>
           </div>
-          <div class="mt-4" align="center">
-            <label for="file" class="custom-file-upload">
-              <i class="fa fa-cloud-upload"></i> Учитај слику
-            </label>
-            <input id="file" #file class="mb-2" type="file" accept='image/*' (change)="previewImage(file.files)" />
+          <div class="drag-container">
+            <img src="{{book.imageUrl}}" height="290" width="200" *ngIf="!imgURL && book.imageUrl">
+            <img [src]="imgURL" height="290" width="200" *ngIf="imgURL">
           </div>
+<!--          Overlay-->
+          <div class="file-upload-panel overlay-content" (click)="file.click()" (drop)="onDrop($event)"
+               (dragover)="onDragOver($event)">
+            <div class="mask pattern6 waves-effect waves-light rgba-white-strong drag-container dashed-border">
+              <p class="drag-text" align="center">
+                Кликни или превуци датотеку са сликом
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="mt-4" align="center">
+          <label for="file" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Учитај слику
+          </label>
+          <input id="file" #file class="mb-2" type="file" accept='image/*' (change)="previewImage(file.files)" />
         </div>
       </div>
     </div>

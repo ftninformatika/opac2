@@ -4,7 +4,6 @@
     flex-direction: row;
     width: auto;
     height: 400px;
-    margin-right: 24px;
 
     .description {
       //background: darkred;
@@ -19,7 +18,7 @@
     }
     .file-upload {
       //background: #7e94ff;
-      flex-grow: 2;
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -33,6 +32,26 @@
         display: inline-block;
         padding: 6px 12px;
         cursor: pointer;
+      }
+
+      .dashed-border {
+        border-radius: 5px;
+        border: black dashed ;
+      }
+
+      .drag-container {
+        height: 290px;
+        width: 200px;
+      }
+
+      .drag-text {
+        padding-top: 50px;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .file-upload-panel {
+        background: #7e94ff;
       }
     }
   }

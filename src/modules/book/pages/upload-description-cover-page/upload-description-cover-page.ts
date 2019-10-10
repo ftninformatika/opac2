@@ -17,17 +17,18 @@ export class UploadDescriptionCoverPage implements OnInit {
   private readonly _bookService: BooksService;
   private readonly _toastService: ToastService;
   private readonly _router: Router;
-  public book: Book;
-  public bookDescription;
-  public lib: string;
 
-  public imagePath;
-  imgURL: any;
-  public message: string;
   private formDataCover: FormData;
   private coverFile: File;
   private previousFile: File;
   private recordId: string;
+
+  public book: Book;
+  public bookDescription;
+  public lib: string;
+  public imagePath;
+  public imgURL: any;
+  public message: string;
 
   public constructor(store: Store, activatedRoute: ActivatedRoute, bookService: BooksService, toastService: ToastService, router: Router) {
     this._store = store;
@@ -47,6 +48,15 @@ export class UploadDescriptionCoverPage implements OnInit {
     );
   }
 
+  public onDrop(ev) {
+    ev.preventDefault();
+    this.previewImage(ev.dataTransfer.files);
+  }
+
+  public onDragOver(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
   public previewImage(files) {
     if (files.length === 0) {
       return;
