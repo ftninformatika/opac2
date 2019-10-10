@@ -113,10 +113,10 @@ export class UploadDescriptionCoverPage implements OnInit {
           () => {
             this._toastService.warning('Није успела промена описа!');
             return;
-          }
+          },
+          () => this.routeToRecord()
         );
       }
-      this.routeToRecord();
       // Create
     } else {
       this._bookService.createModifyBookCommon(bookCommon)
