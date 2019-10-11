@@ -5,6 +5,10 @@
       visibility: hidden;
       display: none;
     }
+    .img-cover {
+      height: 320px;
+      width: 210px;
+    }
     @media only screen and (max-width: 680px) {
       .book-info {
         margin-bottom: 30px;
@@ -19,6 +23,11 @@
       @media only screen and (max-width: 880px) {
         dt {font-size: 14px; }
         dd {font-size: 13px; }
+        .img-cover {
+          height: 250px;
+          width: 150px;
+        }
+        .book-data {height: 250px;}
       }
       @media only screen and (max-width: 680px) {
         h3 {font-size: 16px; }
