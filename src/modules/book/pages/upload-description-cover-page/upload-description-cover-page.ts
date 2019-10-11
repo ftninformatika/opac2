@@ -108,6 +108,11 @@ export class UploadDescriptionCoverPage implements OnInit {
           () => {
             this._toastService.warning('Није успело отпремање слике!');
             return;
+          },
+          () => {
+            if (this.book.description === this.bookDescription) {
+              this.routeToRecord();
+            }
           }
         );
       }
