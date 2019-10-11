@@ -38,7 +38,7 @@
         <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon><span>На полицу</span>
       </button>
       <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
-        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon><span>Склони са полице</span>
+        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon><span>Са полице</span>
       </button>
       <ng-container *ngIf="isAdmin">
         <add-to-collection-button [bookId]="book._id"></add-to-collection-button>

@@ -12,24 +12,22 @@
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>
         </p>
-        <div class="locations-list scrollbar square scrollbar-primary" *ngIf="locations && locations.length > 0">
-          <ul class="list-unstyled pl-3 force-overflow">
-            <li *ngFor="let l of locations" style="border: grey solid">{{l}}</li>
-          </ul>
-        </div>
+        <select class="browser-default custom-select" *ngIf="locations && locations.length > 0">
+          <option *ngFor="let l of locations">{{l}}</option>
+        </select>
       </mdb-card-text>
       <div class="buttons">
-        <a class="btn btn-unique waves-light availability-card-btn">Резервиши</a><br/>
+        <a class="btn btn-unique waves-light btn-style">Резервиши</a><br/>
       </div>
       </ng-container>
       <div class="buttons">
-        <a class="btn btn-default waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1" (click)="addToShelf()">
-          Додај на полицу
+        <a class="btn btn-default waves-light btn-style" *ngIf="booksOnShelf.indexOf(bookId) === -1" (click)="addToShelf()">
+          На полицу
         </a>
-        <a class="btn btn-danger waves-light availability-card-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
-          Склони са полице
+        <a class="btn btn-danger waves-light btn-style" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
+          Са полице
         </a>
-        <add-to-collection-button [bookId]="bookId"></add-to-collection-button>
+        <add-to-collection-button [bookId]="bookId" *ngIf="isAdmin"></add-to-collection-button>
       </div>
       <ng-container *ngIf="!containShowableItems">
         <mdb-card-text>

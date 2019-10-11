@@ -6,33 +6,34 @@
           <div class="d-flex book-info">
             <div class="mr-3">
               <img data-src="{{book.imageUrl}}"
-                   height="200"
+                   height="320"
                    onError="this.src='../../../../assets/book/nocover/1.jpg';"/>
             </div>
-            <div class="flex-1">
-              <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]">Мењај слику и опис</a>
-              <h3 class="h3-responsive">{{book.title}}</h3>
-              <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
-              <p>
-              <span *ngFor="let author of book.authors; let last = last">
-                <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
-              </span>
-              </p>
+            <div class="flex-1 book-data">
+              <div>
+                <h3 class="h3-responsive">{{book.title}}</h3>
+                <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
+                <div class="pub-type">
+                  <div *ngIf="book.pubType === 1">
+                    <mdb-icon fas icon="book"></mdb-icon> монографија
+                  </div>
+                  <div *ngIf="book.pubType === 2">
+                    <mdb-icon fas icon="scroll"></mdb-icon> серијска
+                  </div>
+                </div>
+                <p>
+                  <span *ngFor="let author of book.authors; let last = last">
+                    <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
+                  </span>
+                </p>
+              </div>
               <p class="publisher">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</p>
             </div>
           </div>
           <div class="items-sm mt-4">
             <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations"></items-availability-card>
           </div>
-          <div class="d-flex flex-column">
-            <div class="mb-2">
-              <read-more>
-                {{book.description ? book.description : 'Нема описа за овај запис.'}}
-              </read-more>
-            </div>
-<!--            <button (click)="#uploadModal.show()"></button>-->
-          </div>
-          <book-tabs [book]="book"></book-tabs>
+
         </div>
       </div>
       <div class="other-container p-2 container-fluid">
@@ -40,7 +41,18 @@
 <!--        TODO: Put links to related search to this record in this component-->
 <!--        <side-misc></side-misc>-->
       </div>
+
     </div>
+      <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]">Мењај слику и опис</a>
+      <div class="d-flex flex-column">
+        <div class="mb-2">
+          <read-more *ngIf="book.description && book.description.trim() !== ''">
+            <h4>Опис</h4>
+            {{book.description ? book.description : 'Нема описа за овај запис.'}}
+          </read-more>
+        </div>
+      </div>
+      <book-tabs [book]="book" ></book-tabs>
       <mdb-accordion *ngIf="showLocations">
         <mdb-accordion-item [collapsed]="false">
           <mdb-accordion-item-head>

@@ -28,12 +28,8 @@
         .publisher {font-size: 14px; }
         .unimarc {font-size: 14px; }
         .isbd {font-size: 14px; }
+        .pub-type {font-size: 14px;}
       }
-
-      .publisher {
-        margin-top: 88px;
-      }
-
     }
 
     .other-container {
@@ -55,6 +51,21 @@
           display: none;
         }
       }
+    }
+  }
+
+  .book-data {
+    height: 320px;
+    //background: #40c6c6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .publisher {margin-bottom: 0;}
+  }
+
+  mdb-accordion {
+    div.accordion {
+      margin-top: 30px;
     }
   }
 }
