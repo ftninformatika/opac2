@@ -1,16 +1,21 @@
 <div class="upload-description-cover-page-wrapper" *ngIf="book">
+  <h4 align="center" *ngIf="book.title">Наслов: {{book.title}}</h4>
+  <h4 align="center" *ngIf="book.authors">Аутори: {{book.authors}}</h4>
+  <h4 align="center" *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
+    Издавач: {{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}
+  </h4>
     <h4 align="center" *ngIf="book.isbn">ISBN: {{book.isbn}}</h4>
     <h4 align="center" *ngIf="book.issn">ISSN: {{book.issn}}</h4>
     <div class="desc-and-cover ml-2 mr-12">
       <div class="description">
         <div class="md-form">
-          <textarea type="text" id="form7" class="md-textarea form-control"
+          <h4>Опис књиге</h4>
+          <textarea type="text" id="form7" class="form-control"
                     [(ngModel)]="bookDescription" mdbInput></textarea>
-          <label for="form7" class="text-area-title">Опис књиге</label>
         </div>
       </div>
       <div class="file-upload">
-        <div><h5 align="center">Слика корица</h5></div>
+        <div><h4 align="center">Слика корица</h4></div>
         <div class="view overlay" style="width: 220px">
           <span style="color:red;" *ngIf="message">{{message}}</span>
 <!--          No picture container-->
@@ -32,7 +37,6 @@
               </p>
             </div>
           </div>
-
         </div>
         <div class="mt-4" align="center">
           <label for="file" class="custom-file-upload">
@@ -46,6 +50,4 @@
     <button mdbBtn type="button" color="light-blue" mdbWavesEffect [routerLink]="['/book', lib, book._id]">Назад</button>
     <button mdbBtn type="button" color="dark-green" mdbWavesEffect (click)="saveChanges()">Сачувај промене</button>
   </div>
-  <h5 align="center">Детаљи записа</h5>
-  <book-tabs *ngIf="book" [book]="book"></book-tabs>
 </div>

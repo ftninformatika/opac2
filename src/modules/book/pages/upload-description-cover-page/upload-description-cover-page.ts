@@ -4,6 +4,7 @@ import { Book, BookCommon } from '../../../../models/book.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Store } from '@ngxs/store';
+import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
 
 @Component({
   selector: 'upload-description-cover-page',
@@ -22,13 +23,14 @@ export class UploadDescriptionCoverPage implements OnInit {
   private coverFile: File;
   private previousFile: File;
   private recordId: string;
+  private RecordFormatType = ERecordFormatType;
 
   public book: Book;
   public bookDescription;
+  public message: string;
   public lib: string;
   public imagePath;
   public imgURL: any;
-  public message: string;
 
   public constructor(store: Store, activatedRoute: ActivatedRoute, bookService: BooksService, toastService: ToastService, router: Router) {
     this._store = store;
