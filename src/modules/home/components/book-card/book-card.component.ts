@@ -15,7 +15,7 @@ export class BookCardComponent implements OnInit {
   @Input() book: Book;
   private readonly _router: Router;
   private readonly _store: Store;
-  private lib: string;
+  public lib: string;
 
   public constructor(router: Router, store: Store) {
     this._router = router;

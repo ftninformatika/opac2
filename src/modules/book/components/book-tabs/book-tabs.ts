@@ -10,5 +10,5 @@ import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
 })
 export class BookTabs {
   @Input() book: Book;
-  private RecordFormatType = ERecordFormatType;
+  public RecordFormatType = ERecordFormatType;
 }
