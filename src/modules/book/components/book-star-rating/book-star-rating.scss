@@ -1,0 +1,19 @@
+.book-star-rating-wrapper {
+  display: flex;
+  flex-direction: column;
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: #ff8327;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ff8327;
+  }
+}

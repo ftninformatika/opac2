@@ -26,6 +26,7 @@
                     <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
                   </span>
                 </p>
+                <book-star-rating [recordId]="book._id" [bookRating]="book.avgRating" [totalRatings]="book.totalRatings"></book-star-rating>
               </div>
               <p class="publisher">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</p>
             </div>

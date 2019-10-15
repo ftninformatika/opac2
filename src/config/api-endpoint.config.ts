@@ -30,7 +30,8 @@ export class ApiEndpointConfig {
     book: {
       main: `${ApiEndpointConfig.Origin}/book`,
       getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`,
-      getByCollectionId: `${ApiEndpointConfig.Origin}/book/collection`
+      getByCollectionId: `${ApiEndpointConfig.Origin}/book/collection`,
+      rateRecord: `${ApiEndpointConfig.Origin}/records/rate_record`
     },
     bookCommon: {
       main: `${ApiEndpointConfig.Origin}/book_common`

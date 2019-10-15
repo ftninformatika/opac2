@@ -62,6 +62,13 @@ export class UserState {
   private readonly _router: Router;
 
   @Selector()
+  public static _id(state: IUserStateModel) {
+    if (state && state.user && state.user._id) {
+      return state.user._id;
+    }
+  }
+
+  @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
 
   @Selector()

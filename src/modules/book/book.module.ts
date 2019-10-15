@@ -12,6 +12,8 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
+import { BookStarRating } from './components/book-star-rating/book-star-rating';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,7 +21,8 @@ import { NgModule } from '@angular/core';
     RouterModule.forChild(BookRoutes),
     CoreModule,
     TableModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   declarations: [
     ItemsAvailabilityCardComponent,
@@ -28,7 +31,8 @@ import { NgModule } from '@angular/core';
     ReadMoreComponent,
     BookPage,
     UploadDescriptionCoverPage,
-    BookTabs
+    BookTabs,
+    BookStarRating
   ]
 })
 export class BookModule { }

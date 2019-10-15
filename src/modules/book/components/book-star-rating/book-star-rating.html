@@ -1,0 +1,14 @@
+<div class="book-star-rating-wrapper">
+  <ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100" style="cursor: pointer">
+    <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+  </span>
+  </ng-template>
+  <ngb-rating [(rate)]="currentRate" [starTemplate]="t" max="5" (click)="rateBook()"></ngb-rating>
+  <span *ngIf="!selectedStars">
+    <strong><b>Нисте оценили ову књигу</b></strong>
+  </span>
+  <span *ngIf="selectedStars">
+    <strong><b>Рејтинг: {{currentRate ? currentRate : 'Књига нема ни један глас'}} / {{totalRatings ? totalRatings : 0}}</b></strong>
+  </span>
+</div>

@@ -19,6 +19,8 @@ export interface Book {
   items?: RecordItem[];
   record?: Record;
   commonBookUID?: BigInteger;
+  totalRatings?: number;
+  avgRating?: number;
 }
 
 export interface BookCommon {
@@ -37,6 +39,12 @@ export interface RecordItem {
   signature: string;
   status: ERecordItemStatus;
   invNum: string;
+}
+
+export interface RecordRating {
+  username: string;
+  libraryMemberId: string;
+  givenRating: number;
 }
 
 export enum EPubType {

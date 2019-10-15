@@ -37,13 +37,13 @@ import { NgxsModule } from '@ngxs/store';
     }),
     NgxsModule.forRoot([UserState, ConfigState], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot(),
+    MDBBootstrapModulesPro.forRoot(),
+    ToastModule.forRoot(),
     CoreModule,
     CommonUiModule,
     SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot(),
-    MDBBootstrapModulesPro.forRoot(),
     AppRoutingModule
   ],
   providers: [
