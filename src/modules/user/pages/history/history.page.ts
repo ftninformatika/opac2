@@ -34,6 +34,7 @@ export class HistoryPage implements OnInit {
     );
   }
 
+
   public sortBy(by: string | any): void {
     this.lendingsReport.sort((a: any, b: any) => {
       const a1 = {...a};
@@ -54,7 +55,7 @@ export class HistoryPage implements OnInit {
   }
 
   private transformDate(localizedDate: string): string {
-    if (!localizedDate) return '';
+    if (!localizedDate) { return ''; }
     return localizedDate.split('.').reverse().join('');
   }
 }
