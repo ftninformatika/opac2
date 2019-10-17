@@ -49,7 +49,7 @@
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја члана</a>
-              <a  *ngIf="isAdmin"
+              <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                 class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>

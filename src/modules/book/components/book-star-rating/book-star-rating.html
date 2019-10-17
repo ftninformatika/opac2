@@ -4,11 +4,11 @@
     <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
   </span>
   </ng-template>
-  <ngb-rating [(rate)]="currentRate" [starTemplate]="t" max="5" (click)="rateBook()"></ngb-rating>
-  <span *ngIf="!selectedStars">
-    <strong><b>Нисте оценили ову књигу</b></strong>
+  <ngb-rating [(rate)]="starRate" [starTemplate]="t" max="5" (rateChange)="rateBook($event)"></ngb-rating>
+  <span *ngIf="!bookRating">
+    <strong><b>Ова књига није никада оцењена</b></strong>
   </span>
-  <span *ngIf="selectedStars">
-    <strong><b>Рејтинг: {{currentRate ? currentRate : 'Књига нема ни један глас'}} / {{totalRatings ? totalRatings : 0}}</b></strong>
+  <span *ngIf="bookRating">
+    Рејтинг:&nbsp;&nbsp;<strong><b>{{bookRating ? bookRating.avgRating : 'Књига нема ни један глас'}} / {{bookRating ? bookRating.totalRates : 0}}</b></strong>
   </span>
 </div>

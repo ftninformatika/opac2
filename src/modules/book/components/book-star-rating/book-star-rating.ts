@@ -1,9 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
-import { RecordRating } from '../../../../models/book.model';
+import { AvgRecordRating, RecordRating } from '../../../../models/book.model';
 
 @Component({
   selector: 'book-star-rating',
@@ -11,16 +11,16 @@ import { RecordRating } from '../../../../models/book.model';
   styleUrls: ['book-star-rating.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BookStarRating {
+export class BookStarRating implements OnInit {
   private readonly _bookService: BooksService;
   private readonly _toastService: ToastService;
   private readonly _store: Store;
 
   @Input() recordId: string;
-  @Input() bookRating: number;
+  @Input() bookRating: AvgRecordRating;
   @Input() totalRatings: number;
-  public selectedStars: number;
-  public currentRate;
+  @Input() allRatings: RecordRating[];
+  public starRate;
   public username: string;
   public libraryMemberId: string;
 
@@ -30,10 +30,22 @@ export class BookStarRating {
     this._store = store;
     this.username = this._store.selectSnapshot(UserState.username);
     this.libraryMemberId = this._store.selectSnapshot(UserState._id);
+    this.starRate = 0;
   }
 
-  public rateBook() {
-    if (!this.recordId || !this.currentRate) {
+  public ngOnInit(): void {
+    if (!this.allRatings) {
+      return;
+    }
+    const userRated = this.allRatings.find(rating => rating.libraryMemberId === this.libraryMemberId);
+    if (!userRated) {
+      return;
+    }
+    this.starRate = userRated.givenRating;
+  }
+
+  public rateBook(currentRate) {
+    if (!this.recordId || !currentRate) {
       return;
     }
     if (!this.username) {
@@ -41,18 +53,20 @@ export class BookStarRating {
       return;
     }
     const newRating: RecordRating = {
-      givenRating: this.currentRate,
+      givenRating: currentRate,
       libraryMemberId: this.libraryMemberId,
       username: this.username
     };
     this._bookService.rateRecord(newRating, this.recordId).subscribe(
-      (resp: number) => {
-        if (resp === -1) {
+      (resp) => {
+        console.log(resp);
+        if (!resp) {
           this._toastService.warning('Дошло је до грешке приликом оцењивања записа!');
           return;
         }
-        this.totalRatings++;
-        this.currentRate = resp;
+        this.totalRatings = resp.totalRates;
+        this.bookRating = resp;
+        this.starRate = resp.avgRating;
       }
     );
   }

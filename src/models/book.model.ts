@@ -20,7 +20,7 @@ export interface Book {
   record?: Record;
   commonBookUID?: BigInteger;
   totalRatings?: number;
-  avgRating?: number;
+  avgRating?: AvgRecordRating;
 }
 
 export interface BookCommon {
@@ -47,6 +47,11 @@ export interface RecordRating {
   givenRating: number;
 }
 
+export interface AvgRecordRating {
+  avgRating: number;
+  totalRates: number;
+}
+
 export enum EPubType {
   Monograph = 1,
   Serial = 2
@@ -66,7 +71,7 @@ export class Record {
   fields?: Field[];
   primerci?: Primerak[];
   godine?: Godina[];
-
+  recordRatings?: RecordRating[];
   public getSubFieldContent(sf: string): string {
     if (!sf || !this.fields || sf.length !== 4) {
       return null;

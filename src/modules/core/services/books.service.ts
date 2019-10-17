@@ -3,7 +3,7 @@ import { ILendingViewModel } from '../../../models/circ/lending/lending-view.mod
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { IPrefixValue } from '../../../models/prefix-value.model';
 import { IResultPage } from '../../../models/page.model';
-import { Book, BookCommon, RecordRating } from '../../../models/book.model';
+import { AvgRecordRating, Book, BookCommon, RecordRating } from '../../../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -124,7 +124,7 @@ export class BooksService {
     return this._httpClient.post(`${ApiEndpointConfig.Paths.bookCover.upload}/${uid}`, formData) as Observable<boolean>;
   }
 
-  public rateRecord(recordRating: RecordRating, recordId: string): Observable<number> {
-    return this._httpClient.post(`${ApiEndpointConfig.Paths.book.rateRecord}/${recordId}`, recordRating) as Observable<number>;
+  public rateRecord(recordRating: RecordRating, recordId: string): Observable<AvgRecordRating> {
+    return this._httpClient.post(`${ApiEndpointConfig.Paths.book.rateRecord}/${recordId}`, recordRating) as Observable<AvgRecordRating>;
   }
 }
