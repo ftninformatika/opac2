@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
-import { ILendingViewModel } from '../../../../models/circ/lending/lending-view.model';
 import { UsersService } from '../../../core/services/users.service';
 import { Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
@@ -17,7 +16,6 @@ export class HistoryPage implements OnInit {
   private readonly _userService: UsersService;
   private readonly _store: Store;
   private sorted = false;
-  public allLendings: ILendingViewModel[];
   public memberNo: string;
   public lendingsReport: Report[];
 
@@ -29,7 +27,6 @@ export class HistoryPage implements OnInit {
   }
 
   public ngOnInit() {
-    this.allLendings = this._booksService.getDummyLendingViews();
     this._userService.getMemberLendingHistory(this.memberNo).subscribe(
       resp => {
         this.lendingsReport = resp;
@@ -38,18 +35,16 @@ export class HistoryPage implements OnInit {
   }
 
   public sortBy(by: string | any): void {
-
-    this.allLendings.sort((a: any, b: any) => {
+    // TODO: for dates
+    this.lendingsReport.sort((a: any, b: any) => {
       if (a[by] < b[by]) {
         return this.sorted ? 1 : -1;
       }
       if (a[by] > b[by]) {
         return this.sorted ? -1 : 1;
       }
-
       return 0;
     });
-
     this.sorted = !this.sorted;
   }
 }

@@ -4,11 +4,31 @@
       <table mdbTable class="table table-striped table-responsive-md table-responsive-sm">
         <thead class="blue white-text">
         <tr>
-          <th scope="col">Наслов</th>
-          <th scope="col">Аутор</th>
-          <th scope="col">Изнајмио</th>
-          <th scope="col">Вратио</th>
-          <th scope="col">Каталошки број</th>
+          <th scope="col">
+            <a (click)="sortBy('property4')">Наслов
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property3')">Аутор
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property1')">Изнајмио
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property2')">Вратио
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property5')">Каталошки број
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
         </tr>
         </thead>
         <tbody >
