@@ -1,5 +1,9 @@
 <div class="book-page-wrapper">
   <div *ngIf="book">
+    <meta property="og:title" content="{{book.title}}" />
+    <meta property="og:image" content="{{book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover/1.jpg'}}" />
+    <meta property="og:description" content="{{book.subtitle}}" />
+    <meta property="og:url" content="{{'localhost:4200/book/bgb/' + book._id}}">
     <div class="main-container d-flex flex-container">
       <div class="book-container p-2 container-fluid">
         <div class="flex-1">

@@ -55,7 +55,7 @@ export class HistoryPage implements OnInit {
   }
 
   private transformDate(localizedDate: string): string {
-    if (!localizedDate) { return ''; }
+    if (!localizedDate || localizedDate === '') { return '99999999'; }
     return localizedDate.split('.').reverse().join('');
   }
 }
