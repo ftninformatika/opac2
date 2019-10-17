@@ -35,16 +35,26 @@ export class HistoryPage implements OnInit {
   }
 
   public sortBy(by: string | any): void {
-    // TODO: for dates
     this.lendingsReport.sort((a: any, b: any) => {
-      if (a[by] < b[by]) {
+      const a1 = {...a};
+      const b1 = {...b};
+      if (by === 'property1' || by === 'property2') {
+        a1[by] = this.transformDate(a[by]);
+        b1[by] = this.transformDate(b[by]);
+      }
+      if (a1[by] < b1[by]) {
         return this.sorted ? 1 : -1;
       }
-      if (a[by] > b[by]) {
+      if (a1[by] > b1[by]) {
         return this.sorted ? -1 : 1;
       }
       return 0;
     });
     this.sorted = !this.sorted;
+  }
+
+  private transformDate(localizedDate: string): string {
+    if (!localizedDate) return '';
+    return localizedDate.split('.').reverse().join('');
   }
 }
