@@ -7,6 +7,7 @@ import { Book } from '../../../models/book.model';
 import { BooksService } from './books.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Report } from '../../../models/report.model';
 
 @Injectable({
   providedIn: 'root'
@@ -71,5 +72,10 @@ export class UsersService {
 
   public getShowableCollections(): Observable<BookCollectionModel[]> {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.getShowableCollections}`) as Observable<BookCollectionModel[]>;
+  }
+
+  public getMemberLendingHistory(memeberNo: string): Observable<Report[]> {
+    return this._httpClient
+      .get(`${ApiEndpointConfig.Paths.user.getLendingHistory}/${memeberNo}`) as Observable<Report[]>;
   }
 }

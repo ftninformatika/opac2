@@ -11,12 +11,16 @@ import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core/core.module';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
 @NgModule({
   imports: [
     HomeModule,
     CommonUiModule,
     RouterModule.forChild(UserRoutes),
+    CoreModule,
+    MDBBootstrapModulesPro,
   ],
   declarations: [
     AdminCollectionsPage,

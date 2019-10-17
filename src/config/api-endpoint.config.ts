@@ -13,7 +13,8 @@ export class ApiEndpointConfig {
       forgotPassword: `${ApiEndpointConfig.Origin}/library_members/forgot_password`,
       addToShelf: `${ApiEndpointConfig.Origin}/library_members/add_to_shelf`,
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
-      getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`
+      getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`,
+      getLendingHistory: `${ApiEndpointConfig.Origin}/members/lending_history`
     },
     admin: {
       createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,

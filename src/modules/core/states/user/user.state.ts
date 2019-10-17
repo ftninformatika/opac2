@@ -69,6 +69,14 @@ export class UserState {
   }
 
   @Selector()
+  public static memberNo(state: IUserStateModel) {
+    if (state && state.userData && state.userData.userId) {
+      return state.userData.userId;
+    }
+    return null;
+  }
+
+  @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
 
   @Selector()
