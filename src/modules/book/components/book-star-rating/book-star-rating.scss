@@ -1,6 +1,11 @@
 .book-star-rating-wrapper {
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 680px) {
+    .star {
+      font-size: 2rem !important;
+    }
+  }
   .star {
     position: relative;
     display: inline-block;

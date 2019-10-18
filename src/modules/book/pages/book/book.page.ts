@@ -69,7 +69,7 @@ export class BookPage implements OnInit {
   private setMetaTags() {
     const tags = [
       {property: 'og:title', content: this.book.title},
-      {property: 'og:type', content: 'article'},
+      {property: 'og:type', content: 'book'},
       {property: 'og:url', content: 'https://test.bisis.app' + window.location.pathname},
       {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
       {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},
