@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody >
-        <tr mdbTableRow *ngFor="let r of lendingsReport" class="book-row">
+        <tr mdbTableRow *ngFor="let r of lendingsReport" class="book-row" [routerLink]="['/book', lib, r.property6]">
           <th scope="row" [mdbTooltip]="r.property4">
             <strong>
             <b>

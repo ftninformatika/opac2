@@ -4,6 +4,7 @@ import { UsersService } from '../../../core/services/users.service';
 import { Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
 import { Report } from '../../../../models/report.model';
+import { ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'app-history',
@@ -18,12 +19,14 @@ export class HistoryPage implements OnInit {
   private sorted = false;
   public memberNo: string;
   public lendingsReport: Report[];
+  public lib: string;
 
   public constructor(booksService: BooksService, userService: UsersService, store: Store) {
     this._booksService = booksService;
     this._userService = userService;
     this._store = store;
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
+    this.lib = this._store.selectSnapshot(ConfigState.library);
   }
 
   public ngOnInit() {

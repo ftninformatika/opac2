@@ -1,13 +1,14 @@
 import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
+import { Book, ERecordItemStatus } from '../../../../models/book.model';
+import { ConfigState } from '../../../core/states/config/config.state';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Book, ERecordItemStatus } from '../../../../models/book.model';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
-import { ConfigState } from '../../../core/states/config/config.state';
-import { Store } from '@ngxs/store';
-import { RecordUtils } from '../../../../utils/record-utils';
+import { MetaService } from '../../../core/services/meta.service';
 import { UserState } from '../../../core/states/user/user.state';
+import { RecordUtils } from '../../../../utils/record-utils';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'book-page',
@@ -20,6 +21,7 @@ export class BookPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _store: Store;
+  private readonly _metaService: MetaService;
   private RecordFormatType = ERecordFormatType;
   public book: Book;
   public errImgUrl: string;
@@ -27,11 +29,12 @@ export class BookPage implements OnInit {
   public isAdmin: boolean;
   private showLocations: boolean;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store) {
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store, metaService: MetaService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._store = store;
+    this._metaService = metaService;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
     this.showLocations = false;
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
@@ -53,12 +56,25 @@ export class BookPage implements OnInit {
           } else {
             this.book = data;
             this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
-            this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
-            // console.log(this.book);
+            this.setMetaTags();
+            if (this.book.items && this.book.items.length > 0) {
+              this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
+            }
           }
         },
         () => this._router.navigate(['/error/not-found']));
     });
+  }
+
+  private setMetaTags() {
+    const tags = [
+      {property: 'og:title', content: this.book.title},
+      {property: 'og:type', content: 'article'},
+      {property: 'og:url', content: 'https://test.bisis.app' + window.location.pathname},
+      {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
+      {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},
+    ];
+    this._metaService.changeSocialMetaTags(tags);
   }
 
 }
