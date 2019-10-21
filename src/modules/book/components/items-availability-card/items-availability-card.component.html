@@ -12,11 +12,11 @@
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>
         </p>
-        <select class="browser-default custom-select" *ngIf="locations && locations.length > 0">
+        <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0">
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
       </mdb-card-text>
-      <div class="buttons">
+      <div class="buttons" *ngIf="locations && locations.length > 0">
         <a class="btn btn-unique waves-light btn-style">Резервиши</a><br/>
       </div>
       </ng-container>

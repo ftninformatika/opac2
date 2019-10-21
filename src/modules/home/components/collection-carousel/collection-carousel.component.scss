@@ -35,6 +35,12 @@
     width: 12px;
   }
 
+  @media only screen and (max-width: 680px) {
+    .slide-circles {
+      display: none !important;
+    }
+  }
+
   .slide-circles {
     margin-top: 30px;
     div.selected-slide {

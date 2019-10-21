@@ -1,13 +1,34 @@
 .items-availability-card-wrapper {
   cursor: default;
   mdb-card {
-    min-width: 290px;
+    min-width: 323px;
     min-height: 300px;
     max-height: 340px;
   }
   .btn-style {
-    width: 150px;
+    width: 220px;
     font-size: 12px;
+  }
+
+  @media only screen and (max-width: 835px) {
+    h5 {font-size: 16px; }
+    p  {font-size: 12px; }
+    select { font-size: 12px; width: 90% }
+    mdb-card {
+      min-width: 280px;
+      //min-height: 330px;
+    }
+    .btn-style {
+      font-size: 10.5px;
+      width: 200px;
+      height: 35px;
+      line-height: 10.5px;
+    }
+    add-to-collection-button {
+      .add-to-coll-btn {
+        width: 203px;
+      }
+    }
   }
 
   .locations-list {
