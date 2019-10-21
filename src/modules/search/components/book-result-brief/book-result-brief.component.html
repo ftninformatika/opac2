@@ -31,14 +31,17 @@
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
     <div class="reserve-shelf-buttons ml-auto">
-      <button mdbBtn type="button" color="primary" [mdbTooltip]="'Резервиши'">
-        <mdb-icon fas icon="check-square" class="mr-1" ></mdb-icon><span>Резервиши</span>
+      <button mdbBtn type="button" color="unique" [mdbTooltip]="'Резервиши'" disabled>
+<!--        <mdb-icon fas icon="check-square" class="mr-1" ></mdb-icon>-->
+        <span>Резервиши</span>
       </button>
       <button mdbBtn type="button" color="default" size="sm" *ngIf="booksOnShelf.indexOf(book._id) === -1" [mdbTooltip]="'На полицу'" (click)="onShelf(book._id)">
-        <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon><span>На полицу</span>
+<!--        <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon>-->
+        <span>На полицу</span>
       </button>
       <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
-        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon><span>Са полице</span>
+<!--        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon>-->
+        <span>Са полице</span>
       </button>
       <ng-container *ngIf="isAdmin">
         <add-to-collection-button [bookId]="book._id"></add-to-collection-button>

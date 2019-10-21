@@ -26,12 +26,12 @@
   .reserve-shelf-buttons {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     button {
       margin-top: 0;
       margin-right: 0;
-      height: 50px;
-      width: 165px;
+      height: 43px;
+      width: 220px;
       font-size: 13px;
     }
   }
@@ -50,32 +50,43 @@
     h4 {font-size: 19px}
     h5 {font-size: 17px}
     span {font-size: 17px}
+    .reserve-shelf-buttons {
+      button {
+        width: 130px;
+        span { font-size: 10px; }
+      }
+    }
+    add-to-collection-button {
+      .add-to-coll-btn {
+        width: 133px;
+        font-size: 10px;
+      }
+    }
   }
 
   @media (max-width: 900px) {
     h4 {font-size: 18px}
     h5 {font-size: 16px}
     span {font-size: 16px}
-    //.reserve-shelf-buttons > button {
-    //  height: 50px;
-    //  width: 50px;
-    //  span {
-    //    display: none;
-    //  }
-    //}
+    .book-cover > img {width: 180px}
+    .reserve-shelf-buttons {
+      button {
+        width: 130px;
+        span { font-size: 10px; }
+      }
+    }
+    add-to-collection-button {
+      .add-to-coll-btn {
+        width: 133px;
+        font-size: 10px;
+      }
+    }
   }
 
   @media (max-width: 576px) {
     h4 {font-size: 16px}
     h5 {font-size: 14px}
-    span {font-size: 14px}
-    .reserve-shelf-buttons > button {
-      height: 42px;
-      width: 80px;
-      span {
-        display: none;
-      }
-    }
+    span {font-size: 13px}
     .book-cover > img {width: 100px}
     .fixed-height {height: 200px}
     .publisher {
@@ -83,27 +94,36 @@
       margin-bottom: 20px;
     }
     .pub-type {font-size: 11px}
+    .reserve-shelf-buttons {
+      button {
+        width: 130px;
 
+        span { font-size: 10px; }
+      }
+    }
+    add-to-collection-button {
+      .add-to-coll-btn {
+        width: 133px;
+        font-size: 10px;
+      }
+    }
   }
 
   @media (max-width: 476px) {
     h4 {font-size: 15px}
     h5 {font-size: 13px}
     span {font-size: 13px}
-    .book-cover>img {width: 90px}
+    .book-cover>img {width: 100px}
     .fixed-height {height: 185px}
     .publisher {
       font-size: 10px;
       margin-bottom: 18px;
     }
-    .pub-type {font-size: 10px}
+    .pub-type {font-size: 9px}
     .reserve-shelf-buttons > button {
-      height: 38px;
-      width: 60px;
-      span {
-        display: none;
-      }
+      display: none;
     }
+    add-to-collection-button {display: none;}
   }
 
   @media (max-width: 420px) {
