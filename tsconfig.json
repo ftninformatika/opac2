@@ -3,13 +3,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "sourceMap": true,
     "declaration": false,
     "module": "esnext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": [

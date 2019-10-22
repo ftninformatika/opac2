@@ -20,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { AppPage } from './pages/app/app.page';
 import { NgxsModule } from '@ngxs/store';
+import { MetaModule } from '@ngx-meta/core';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { NgxsModule } from '@ngxs/store';
     CoreModule,
     CommonUiModule,
     SharedModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
+    MetaModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
