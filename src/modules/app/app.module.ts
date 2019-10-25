@@ -43,9 +43,9 @@ import { MetaModule } from '@ngx-meta/core';
     CoreModule,
     CommonUiModule,
     SharedModule,
+    MetaModule.forRoot(),
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    MetaModule.forRoot(),
     AppRoutingModule
   ],
   providers: [

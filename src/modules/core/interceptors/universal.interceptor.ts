@@ -3,7 +3,9 @@ import {HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Request} from 'express';
 import {REQUEST} from '@nguniversal/express-engine/tokens';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+  })
 export class UniversalInterceptor implements HttpInterceptor {
 
   public constructor(@Optional() @Inject(REQUEST) protected request: Request) {}

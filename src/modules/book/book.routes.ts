@@ -4,6 +4,5 @@ import { UploadDescriptionCoverPage } from './pages/upload-description-cover-pag
 
 export const BookRoutes: Routes = [
   { path: ':lib/:id', component: BookPage},
-  { path: 'description-cover/:lib/:id', component: UploadDescriptionCoverPage},
-  // { path: ':id', component: BookPage }
+  { path: 'description-cover/:lib/:id', component: UploadDescriptionCoverPage}
 ];

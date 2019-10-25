@@ -4,10 +4,10 @@ import { ConfigState } from '../../../core/states/config/config.state';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
-import { MetaService } from '../../../core/services/meta.service';
 import { UserState } from '../../../core/states/user/user.state';
 import { RecordUtils } from '../../../../utils/record-utils';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MetaService } from '@ngx-meta/core';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -42,39 +42,45 @@ export class BookPage implements OnInit {
 
   public ngOnInit(): void {
     this.lib = this._store.selectSnapshot(ConfigState.library);
-    this._activatedRoute.paramMap.subscribe(params => {
-      const lib = params.get('lib');
-      const bookId = params.get('id');
-      if (lib && lib !== this.lib) {
-        this._router.navigate([`lib/${lib}`], {state: {proceedUrl : `/book/${bookId}`}});
-        return;
-      }
-      this._booksService.getBook(bookId).subscribe(
-        data => {
-          if (!data) {
-            this._router.navigate(['/error/not-found']);
-          } else {
-            this.book = data;
-            this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
-            this.setMetaTags();
-            if (this.book.items && this.book.items.length > 0) {
-              this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
+    this._activatedRoute.paramMap
+      .subscribe( params => {
+        const lib = params.get('lib');
+        const bookId = params.get('id');
+        if (lib && lib !== this.lib) {
+          this._router.navigate([`lib/${lib}`], {state: {proceedUrl: `/book/${lib}/${bookId}`}});
+          return;
+        }
+        this._booksService.getBook(bookId).subscribe(
+          data => {
+            if (!data) {
+              this._router.navigate(['/error/not-found']);
+            } else {
+              this.book = data;
+              this.setMetaTags(this.book);
+              this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
+              if (this.book.items && this.book.items.length > 0) {
+                this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
+              }
             }
-          }
-        },
-        () => this._router.navigate(['/error/not-found']));
-    });
+          },
+          () => this._router.navigate(['/error/not-found']));
+      });
   }
 
-  private setMetaTags() {
+  private setMetaTags(book: any) {
+    if (!book) {
+      return;
+    }
     const tags = [
-      {property: 'og:title', content: this.book.title},
+      {property: 'og:title', content: book.title},
       {property: 'og:type', content: 'book'},
       {property: 'og:url', content: 'https://test.bisis.app' + window.location.pathname},
-      {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
-      {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},
+      {property: 'og:image', content: book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
+      {property: 'og:description', content: book.description ? book.description : 'Није унет опис ове књиге'},
     ];
-    this._metaService.changeSocialMetaTags(tags);
+    for (const t of tags) {
+      this._metaService.setTag(t.property, t.content);
+    }
   }
 
 }
