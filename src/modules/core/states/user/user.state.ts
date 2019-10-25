@@ -158,7 +158,7 @@ export class UserState {
     this._toastService.clear();
     const libraryMember = {...state.user};
     if (!ctx.getState().user) {
-      this._router.navigate(['/user/login']);
+      await this._router.navigate(['/user/login']);
       return;
     }
     libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
@@ -197,7 +197,7 @@ export class UserState {
     const libraryMember = {...ctx.getState().user};
     libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
     if (!ctx.getState().user) {
-      this._router.navigate(['/user/login']);
+      await this._router.navigate(['/user/login']);
       return;
     }
     if (!action || !action.bookId) {

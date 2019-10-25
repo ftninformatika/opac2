@@ -47,17 +47,17 @@ export class LibraryRouteComponent implements OnInit {
     const paramLib = this._activatedRoute.snapshot.paramMap.get('lib');
     this._libConfigService.getMockLibraryConfigs()
       .subscribe(
-      (configs: ILibraryConfigurationModel[]) => {
+      async (configs: ILibraryConfigurationModel[]) => {
         if (configs.some(e => e.libraryName === paramLib)) {
           if (this._store.selectSnapshot(ConfigState.library) !== paramLib) {
-            this._store.dispatch(SignOutAction);
-            this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib)));
+            await this._store.dispatch(SignOutAction).toPromise();
+            await this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib))).toPromise();
           }
         }
         if (this.nextUrl) {
-          this._router.navigateByUrl(`/${this.nextUrl}`);
+          await this._router.navigateByUrl(`/${this.nextUrl}`);
         } else {
-          this._router.navigate(['/']);
+          await this._router.navigate(['/']);
         }
       }
     );
