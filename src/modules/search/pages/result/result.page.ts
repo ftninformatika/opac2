@@ -68,25 +68,25 @@ export class ResultPage implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
-      params => {
+      async params => {
         try {
           if (params.get('s')) {
             this.populatePageProps(params);
           } else {
-            this.foreignSearch(params);
+            await this.foreignSearch(params);
             return;
           }
         } catch (e) {
           console.error(e.toString());
-          this._router.navigate(['/']);
+          await this._router.navigate(['/']);
           return;
         }
         if (this.searchModel === null || this.pageOptions === null) {
-          this._router.navigate(['/']);
+          await this._router.navigate(['/']);
           return;
         }
         if (this.pageOptions.lib && this.pageOptions.lib !== this.lib) {
-          this._router.navigate([`lib/${this.pageOptions.lib}`], {state: {proceedUrl : this.searchPageUrl}});
+          await this._router.navigate([`lib/${this.pageOptions.lib}`], {state: {proceedUrl: this.searchPageUrl}});
           return;
         }
         this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel);
@@ -99,8 +99,8 @@ export class ResultPage implements OnInit, OnDestroy {
           pageSize = this.pageOptions.pageSize;
         }
         this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}, pageNum, pageSize).subscribe(
-          (res: IResultPage) => {
-            this.populateResultPage(res);
+          async (res: IResultPage) => {
+            await this.populateResultPage(res);
             this.filtersLoaded = false;
             this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
               .subscribe(a => {
@@ -111,11 +111,11 @@ export class ResultPage implements OnInit, OnDestroy {
           },
           () => this._router.navigate(['/'])
         );
-    });
+      });
     this.onWindowResize();
   }
 
-  private foreignSearch(params: ParamMap) {
+  private async foreignSearch(params: ParamMap) {
     const lib = params.get('lib');
     const text = params.get('text');
     const prefix = params.get('prefix');
@@ -125,7 +125,7 @@ export class ResultPage implements OnInit, OnDestroy {
       : SearchUtil.generateSearchModelFromAutoComplete(text);
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(options)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
-    this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
+    await this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
   }
 
   private populatePageProps(params: ParamMap) {
@@ -206,8 +206,8 @@ export class ResultPage implements OnInit, OnDestroy {
     this.pageOptions.sort = newSort;
     this._booksService.search({searchModel: this.searchModel, options: this.pageOptions},
       0, this.pageOptions.pageSize).subscribe(
-      (res: IResultPage) => {
-        this.populateResultPage(res);
+      async (res: IResultPage) => {
+        await this.populateResultPage(res);
       },
       () => this._router.navigate(['/'])
     );
@@ -232,8 +232,8 @@ export class ResultPage implements OnInit, OnDestroy {
 
   private searchWithFilters() {
     this._booksService.search({searchModel: this.searchModel, options: this.pageOptions}).subscribe(
-      (res: IResultPage) => {
-        this.populateResultPage(res);
+      async (res: IResultPage) => {
+        await this.populateResultPage(res);
         this.filtersLoaded = false;
         this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
           .subscribe(a => {
@@ -257,14 +257,14 @@ export class ResultPage implements OnInit, OnDestroy {
     this.pageOptions.filters.pubYears.forEach(e => this.selectedFilters.push(e));
   }
 
-  public modifySearch() {
-    this._router.navigate(['/search'], {state: this.searchModel});
+  public async modifySearch() {
+    await this._router.navigate(['/search'], {state: this.searchModel});
   }
 
-  private populateResultPage(res: IResultPage): void {
+  private async populateResultPage(res: IResultPage): Promise<void> {
     if (!res) {
       this._toastService.warning('Нема резултата за задате параметре претраге!');
-      this._router.navigate(['/']);
+      await this._router.navigate(['/']);
     } else {
       this.resultPage = res;
       this.searchResult = res.content;
