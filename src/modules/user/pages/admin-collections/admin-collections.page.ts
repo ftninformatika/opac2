@@ -48,23 +48,29 @@ export class AdminCollectionsPage implements OnInit {
 
   public async drop(event: CdkDragDrop<string[]>) {
     try {
-      const done = await this._userService.swapIndexes(event.previousIndex, event.currentIndex).toPromise();
+      const i = this.collections[event.previousIndex].index;
+      const i1 = this.collections[event.currentIndex].index;
+      const done = await this._userService.swapIndexes(i, i1).toPromise();
       if (!done) {
         this._toastService.warning('Серверска грешка');
         return;
       }
-      this.loadCollectionsAndSelectIndex(event.currentIndex);
+      this.loadCollectionsAndSelectIndex(i1);
     } catch (e) {
       this._toastService.warning('Дошло је до грешке');
       console.log(e.toString());
     }
   }
 
-  public selectCollection(index: number = 0) {
+  public selectCollection(index: number = -1) {
     if (this.selectedCollectionEdited) {
     //  TODO: Pop the modal if something is changed in collection
     }
-    this.selectedCollection = this.collections.find(c => c.index === index);
+    if (index === -1) {
+      this.selectedCollection = this.collections[0];
+    } else {
+      this.selectedCollection = this.collections.find(c => c.index === index);
+    }
     if (!this.selectedCollection) {
       this.selectedCollectionBooks = null;
       return;
@@ -121,7 +127,7 @@ export class AdminCollectionsPage implements OnInit {
     );
   }
 
-  private loadCollectionsAndSelectIndex(index: number = 0) {
+  private loadCollectionsAndSelectIndex(index: number = -1) {
     this._userService.getBookCollections().subscribe(
       coll => {
         this.collections = this.orderByPipe.transform(coll, 'index');
