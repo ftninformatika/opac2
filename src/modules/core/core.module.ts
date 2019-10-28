@@ -14,6 +14,7 @@ import { BookCoverDirective } from './directives/book-cover.directive';
 import { RecordFormatPipe } from './pipes/record-format.pipe';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AdminGuard } from './guards/admin.guard';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminGuard } from './guards/admin.guard';
     ShortenStringPipe,
     FillArrayPipe,
     MakeIndicatorPipe,
+    OrderModule,
     BookCoverDirective,
     RecordFormatPipe,
     ScrollToModule

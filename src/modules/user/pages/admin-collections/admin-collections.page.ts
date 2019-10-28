@@ -6,6 +6,8 @@ import { UserState } from '../../../core/states/user/user.state';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Book } from '../../../../models/book.model';
 import { Store } from '@ngxs/store';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'admin-collections-page',
@@ -20,17 +22,20 @@ export class AdminCollectionsPage implements OnInit {
   private readonly _store: Store;
   private readonly username: string;
   private readonly isAdmin: boolean;
+  private readonly orderByPipe: OrderPipe;
   public collections: BookCollectionModel[];
   public newCollectionName: string;
   public selectedCollection: BookCollectionModel;
   public selectedCollectionBooks: Book[];
   public selectedCollectionEdited: boolean;
 
-  public constructor(store: Store, userService: UsersService, toastService: ToastService, bookService: BooksService) {
+  public constructor(store: Store, userService: UsersService, toastService: ToastService,
+                     bookService: BooksService, orderByPipe: OrderPipe) {
     this._store = store;
     this._userService = userService;
     this._toastService = toastService;
     this._bookService = bookService;
+    this.orderByPipe = orderByPipe;
     this.username = this._store.selectSnapshot(UserState.username);
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.selectedCollection = null;
@@ -38,17 +43,28 @@ export class AdminCollectionsPage implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.loadCollectionsAndSelectFirst();
+    this.loadCollectionsAndSelectIndex();
   }
 
-  public selectCollection(collId) {
+  public async drop(event: CdkDragDrop<string[]>) {
+    try {
+      const done = await this._userService.swapIndexes(event.previousIndex, event.currentIndex).toPromise();
+      if (!done) {
+        this._toastService.warning('Серверска грешка');
+        return;
+      }
+      this.loadCollectionsAndSelectIndex(event.currentIndex);
+    } catch (e) {
+      this._toastService.warning('Дошло је до грешке');
+      console.log(e.toString());
+    }
+  }
+
+  public selectCollection(index: number = 0) {
     if (this.selectedCollectionEdited) {
     //  TODO: Pop the modal if something is changed in collection
     }
-    if (!collId) {
-      return;
-    }
-    this.selectedCollection = this.collections.find(c => c._id === collId);
+    this.selectedCollection = this.collections.find(c => c.index === index);
     if (!this.selectedCollection) {
       this.selectedCollectionBooks = null;
       return;
@@ -71,7 +87,8 @@ export class AdminCollectionsPage implements OnInit {
       recordsIds: [],
       creatorUsername: this.username,
       title: this.newCollectionName,
-      creationDate: new Date()
+      creationDate: new Date(),
+      index: -2
     };
     this._userService.adminCreateModifyCollection(newCollection).subscribe(
       (respondStatus) => {
@@ -97,19 +114,19 @@ export class AdminCollectionsPage implements OnInit {
           this._toastService.success('Колеција је обрисана!');
           this.selectedCollection = null;
           this.selectedCollectionBooks = null;
-          this.loadCollectionsAndSelectFirst();
+          this.loadCollectionsAndSelectIndex();
         }
       },
       () => this._toastService.warning('Дошло је до грешке, колекција није обрисана!')
     );
   }
 
-  private loadCollectionsAndSelectFirst() {
+  private loadCollectionsAndSelectIndex(index: number = 0) {
     this._userService.getBookCollections().subscribe(
       coll => {
-        this.collections = coll;
+        this.collections = this.orderByPipe.transform(coll, 'index');
         if (this.collections.length > 0) {
-          this.selectCollection(this.collections[0]._id);
+          this.selectCollection(index);
         }
       }
     );

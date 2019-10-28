@@ -1,5 +1,6 @@
 export interface BookCollectionModel {
   _id?: string;
+  index: number;
   title: string;
   creatorUsername: string;
   creationDate?: Date;

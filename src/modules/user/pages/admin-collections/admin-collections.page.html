@@ -4,10 +4,12 @@
       Додај колекцију
     </button>
     <div class="collections-list">
-      <h5 class="ml-2 mt-2">Листа колекција</h5>
-      <ul *ngFor="let c of collections" class="list-group ml-1">
-        <li class="list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''" (click)="selectCollection(c._id)" style="cursor: pointer;">
-         {{c.title}}
+      <h5 class="ml-2 mt-2"><i class="fas fa-arrows-alt-v"></i>&nbsp;Листа колекција</h5>
+      <ul class="list-group ml-1 collection-list" cdkDropList (cdkDropListDropped)="drop($event)">
+        <li *ngFor="let c of collections | orderBy: 'index'" class="collection-item list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''"
+            (click)="selectCollection(c.index)" style="cursor: pointer;" cdkDrag [cdkDragData]="c">
+<!--          <span>{{c.index}}</span>-->
+          <span>{{c.title}}</span>
         </li>
       </ul>
     </div>

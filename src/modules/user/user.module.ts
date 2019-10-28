@@ -13,6 +13,7 @@ import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
     RouterModule.forChild(UserRoutes),
     CoreModule,
     MDBBootstrapModulesPro,
+    DragDropModule,
   ],
   declarations: [
     AdminCollectionsPage,

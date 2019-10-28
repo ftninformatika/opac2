@@ -78,4 +78,8 @@ export class UsersService {
     return this._httpClient
       .get(`${ApiEndpointConfig.Paths.user.getLendingHistory}/${memeberNo}`) as Observable<Report[]>;
   }
+
+  public swapIndexes(fromIndex: number, toIndex: number): Observable<boolean> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.swapIndexes}?i=${fromIndex}&i1=${toIndex}`) as Observable<boolean>;
+  }
 }
