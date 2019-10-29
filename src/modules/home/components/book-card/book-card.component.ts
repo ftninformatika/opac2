@@ -28,7 +28,7 @@ export class BookCardComponent implements OnInit {
 
   public ngOnInit() {}
 
-  public gotoBook(id: string) {
-    this._router.navigate(['/book', this.lib, id]);
+  public async gotoBook(id: string) {
+    await this._router.navigate(['/book', this.lib, id]);
   }
 }

@@ -5,9 +5,9 @@ import { BooksService } from '../../../core/services/books.service';
 import { UserState } from '../../../core/states/user/user.state';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Book } from '../../../../models/book.model';
-import { Store } from '@ngxs/store';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { OrderPipe } from 'ngx-order-pipe';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'admin-collections-page',

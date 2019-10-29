@@ -1,5 +1,4 @@
 import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
-import { ILendingViewModel } from '../../../models/circ/lending/lending-view.model';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { IPrefixValue } from '../../../models/prefix-value.model';
 import { IResultPage } from '../../../models/page.model';
@@ -15,82 +14,9 @@ export class BooksService {
 
   private readonly _httpClient: HttpClient;
 
-  lendings: ILendingViewModel[] = [
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    },
-    {
-      userId: '00000004914',
-      ctlgNo: '01000035987',
-      location: 'Odrasli',
-      lendDate: new Date(''),
-      returnDate: new Date(),
-      title: 'Tri praseta',
-      published: 'Laguna, 2011'
-    }
-  ];
-
-
   constructor(httpClient: HttpClient) {
     this._httpClient = httpClient;
   }
-
-
-  public getDummyLendingViews(): ILendingViewModel[] {
-    return this.lendings;
-  }
-  // -----------------------------------------------
 
   public search(searchRequest: IResultPageSearchRequest, pageNumber: number = 0, pageSize: number = 10): Observable<IResultPage> {
     return this._httpClient
