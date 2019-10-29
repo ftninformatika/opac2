@@ -8,6 +8,7 @@ import { UserState } from '../../../core/states/user/user.state';
 import { RecordUtils } from '../../../../utils/record-utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'book-page',
@@ -20,6 +21,7 @@ export class BookPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _store: Store;
+  private readonly _meta: Meta;
   private RecordFormatType = ERecordFormatType;
   public book: Book;
   public errImgUrl: string;
@@ -27,9 +29,10 @@ export class BookPage implements OnInit {
   public isAdmin: boolean;
   private showLocations: boolean;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store) {
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store, meta: Meta) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
+    this._meta = meta;
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
@@ -53,6 +56,7 @@ export class BookPage implements OnInit {
               await this._router.navigate(['/error/not-found']);
             } else {
               this.book = data;
+              this.setMetaTags();
               this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
               if (this.book.items && this.book.items.length > 0) {
                 this.showLocations = this.book.items.filter(i => i.status !== ERecordItemStatus.NotShowable).length > 0;
@@ -63,4 +67,16 @@ export class BookPage implements OnInit {
       });
   }
 
+  private setMetaTags() {
+    if (!this.book) {
+      return;
+    }
+    try {
+      this._meta.updateTag({property: 'og:title', content: this.book.title});
+      this._meta.updateTag({property: 'og:description', content: this.book.description ? this.book.description : 'Нема описа'});
+      this._meta.updateTag({property: 'og:image', content: this.book.imageUrl});
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
