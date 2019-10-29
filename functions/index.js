@@ -1,5 +1,6 @@
-const functions = require('firebase-functions');
+// const functions = require('firebase-functions');
 // tslint:disable-next-line:no-implicit-dependencies
+const zone = require('zone.js/dist/zone-node');
 const express = require('express');
 // tslint:disable-next-line:no-implicit-dependencies
 // @ts-ignore
@@ -7,9 +8,15 @@ const express = require('express');
 const fetch = require('node-fetch');
 const url = require('url');
 const app = express();
+const join = require('path');
 
-const appUrl = 'bisis5-opac2.firebaseapp.com';
-const renderUrl = 'https://renedrtronelink.com/render';
+const PORT = process.env.PORT || 4000;
+const DIST_FOLDER = join.join(process.cwd(), 'dist/browser');
+const appUrl = 'opac2-7c9ff.firebaseapp.com';
+// Rendertrone gcloud instance
+const renderUrl = 'https://polar-surfer-257418.appspot.com//render';
+
+const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
 
 function generateUrl(request) {
   return url.format({
@@ -51,7 +58,11 @@ function detectBot(userAgent) {
   console.log('No bots detected');
   return false;
 }
-
+app.set('view engine', 'html');
+app.set('views', DIST_FOLDER);
+app.get('*.*', express.static(DIST_FOLDER, {
+  maxAge: '1y'
+}));
 app.get('*', (req, res) => {
   const isBot = detectBot(req.headers['user-agent']);
 
@@ -67,7 +78,7 @@ app.get('*', (req, res) => {
         res.send(body.toString());
       })
       .catch(
-        () => console.log('Err')
+        err => console.log(err.toString())
       )
   } else {
     fetch(`https://${appUrl}`)
@@ -77,12 +88,16 @@ app.get('*', (req, res) => {
         res.send(body.toString());
       })
       .catch(
-        () => console.log('Err')
+        err => console.log(err.toString())
       )
   }
 });
 
-exports.app = functions.https.onRequest(app);
+app.listen(PORT, () => {
+  console.log(`Node Express server listening on http://localhost:${PORT}`);
+});
+// app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+// exports.app = functions.https.onRequest(app);
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
