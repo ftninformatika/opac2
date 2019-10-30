@@ -32,7 +32,7 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 const axios = require('axios');
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
-const appUrl = 'https://opac2.herokuapp.com';
+const appUrl = 'opac2.herokuapp.com';
 // const appUrl = 'localhost:4000';
 // Rendertrone gcloud instance
 const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
