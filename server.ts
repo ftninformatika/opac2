@@ -25,18 +25,30 @@ import * as url from 'url';
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 // Express server
 const app = express();
-
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
-
 const axios = require('axios');
+
+// CORS settings
+const cors = require('cors');
+const whitelist = ['https://polar-surfer-257418.appspot.com', 'http://polar-surfer-257418.appspot.com'];
+const corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
-const appUrl = 'opac2.herokuapp.com';
 // const appUrl = 'localhost:4000';
-// Rendertrone gcloud instance
+// const renderUrl = 'http://localhost:3000/render';
+const appUrl = 'opac2.herokuapp.com';
 const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
-// const renderUrl = 'http://localhost:3000/render';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
@@ -55,7 +67,7 @@ app.set('views', DIST_FOLDER);
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
-app.get('*.*', express.static(DIST_FOLDER, {
+app.get('*.*', cors(corsOptions), express.static(DIST_FOLDER, {
   maxAge: '1y'
 }));
 
@@ -104,14 +116,15 @@ function detectBot(userAgent) {
 
 
 // All regular routes use the Universal engine
-app.get('*', (req, res) => {
+app.get('*', cors(corsOptions), (req, res) => {
   if (!detectBot(req.headers['user-agent'])) {
     res.render('index', {req});
   } else {
     const botUrl  = generateUrl(req);
+    console.log('Sending route to Rendertron');
     axios.get(`${renderUrl}/${botUrl}`)
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
         res.send(response.data);
