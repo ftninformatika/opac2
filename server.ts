@@ -126,7 +126,6 @@ app.get('*', (req, res) => {
     console.log('Sending route to Rendertron');
     axios.get(`${renderUrl}/${botUrl}`)
       .then(response => {
-        console.log(response.data);
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
         res.send(response.data);
