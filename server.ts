@@ -129,8 +129,11 @@ app.get('*', (req, res) => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
         let renderedHtml = response.data;
-        renderedHtml = renderedHtml.replace();
-        res.send(renderedHtml);
+        renderedHtml = renderedHtml.replace(/<style.*<\/style>/g, '');
+        const fake = '<html><head><meta property="og:type" content="book">\n' +
+          '        <meta property="og:url" content="https://test.bisis.app/book/bgb/5baf84d456d169f0e1df958e">\n' +
+          '        <meta property="og:image" content="http://test.bisis.app/bisisWS/book_cover/retrieve/20772"></head><body></body></html>';
+        res.send(fake);
       })
       .catch(error => {
         console.log(error);
