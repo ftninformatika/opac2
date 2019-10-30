@@ -31,7 +31,7 @@ const axios = require('axios');
 
 // CORS settings
 const cors = require('cors');
-const whitelist = ['https://polar-surfer-257418.appspot.com', 'http://polar-surfer-257418.appspot.com'];
+const whitelist = ['https://polar-surfer-257418.appspot.com', 'http://polar-surfer-257418.appspot.com', 'https://opac2.herokuapp.com', 'http://opac2.herokuapp.com'];
 const corsOptions = {
   origin(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
