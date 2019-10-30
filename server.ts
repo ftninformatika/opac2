@@ -31,17 +31,19 @@ const axios = require('axios');
 
 // CORS settings
 const cors = require('cors');
-const whitelist = ['https://polar-surfer-257418.appspot.com', 'http://polar-surfer-257418.appspot.com', 'https://opac2.herokuapp.com', 'http://opac2.herokuapp.com'];
-const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
+// const whitelist = ['https://polar-surfer-257418.appspot.com',
+// 'http://polar-surfer-257418.appspot.com', 'https://opac2.herokuapp.com', 'http://opac2.herokuapp.com'];
+// const corsOptions = {
+//   origin(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
 
+app.use(cors());
 
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
 // const appUrl = 'localhost:4000';
@@ -67,7 +69,7 @@ app.set('views', DIST_FOLDER);
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
-app.get('*.*', cors(corsOptions), express.static(DIST_FOLDER, {
+app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
 }));
 
@@ -116,7 +118,7 @@ function detectBot(userAgent) {
 
 
 // All regular routes use the Universal engine
-app.get('*', cors(corsOptions), (req, res) => {
+app.get('*', (req, res) => {
   if (!detectBot(req.headers['user-agent'])) {
     res.render('index', {req});
   } else {
