@@ -59,7 +59,6 @@ export class BookStarRating implements OnInit {
     };
     this._bookService.rateRecord(newRating, this.recordId).subscribe(
       (resp) => {
-        console.log(resp);
         if (!resp) {
           this._toastService.warning('Дошло је до грешке приликом оцењивања записа!');
           return;

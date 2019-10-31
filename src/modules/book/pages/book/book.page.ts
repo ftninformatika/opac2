@@ -9,6 +9,7 @@ import { RecordUtils } from '../../../../utils/record-utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MetaService } from '@ngx-meta/core';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'book-page',
@@ -22,6 +23,7 @@ export class BookPage implements OnInit {
   private readonly _router: Router;
   private readonly _store: Store;
   private readonly _metaService: MetaService;
+  private readonly _scrollToService: ScrollToService;
   private RecordFormatType = ERecordFormatType;
   public book: Book;
   public errImgUrl: string;
@@ -29,10 +31,12 @@ export class BookPage implements OnInit {
   public isAdmin: boolean;
   private showLocations: boolean;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, router: Router, store: Store, metaService: MetaService) {
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
+                     router: Router, store: Store, metaService: MetaService, scrollToService: ScrollToService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._metaService = metaService;
+    this._scrollToService = scrollToService;
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
@@ -55,6 +59,7 @@ export class BookPage implements OnInit {
             if (!data) {
               await this._router.navigate(['/error/not-found']);
             } else {
+              this._scrollToService.scrollTo({offset: 0});
               this.book = data;
               this.setMetaTags();
               this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
