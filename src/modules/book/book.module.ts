@@ -17,8 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
-    CommonUiModule,
     RouterModule.forChild(BookRoutes),
+    CommonUiModule,
     CoreModule,
     TableModule,
     SharedModule,
