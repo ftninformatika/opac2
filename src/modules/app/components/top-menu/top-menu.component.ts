@@ -10,13 +10,14 @@ import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subject } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'top-menu',
   templateUrl: 'top-menu.component.html',
-  styleUrls: ['top-menu.component.scss']
+  styleUrls: ['top-menu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TopMenuComponent {
   private readonly _bookService: BooksService;
