@@ -39,7 +39,6 @@ app.use(cors());
 // const renderUrl = 'http://localhost:3000/render';
 const appUrl = 'opac2.herokuapp.com';
 const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
-const fetch = require('node-fetch');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
