@@ -5,8 +5,8 @@
 export const environment = {
   // production: false,
   production: true,
-  // baseUrl: 'http://localhost:8080'
-  baseUrl: 'https://test.bisis.rs/bisisWS'
+  baseUrl: 'http://localhost:8080'
+  // baseUrl: 'https://test.bisis.rs/bisisWS'
 };
 
 /*

@@ -17,13 +17,16 @@
 
 import 'zone.js/dist/zone-node';
 
+import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import {join} from 'path';
 // import * as fetch from 'node-fetch';
 import * as url from 'url';
+import * as path from 'path';
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 // Express server
+enableProdMode();
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -35,10 +38,10 @@ const cors = require('cors');
 app.use(cors());
 
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
-// const appUrl = 'localhost:4000';
-// const renderUrl = 'http://localhost:3000/render';
-const appUrl = 'opac2.herokuapp.com';
-const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
+const appUrl = 'localhost:4000';
+const renderUrl = 'http://localhost:3000/render';
+// const appUrl = 'opac2.herokuapp.com';
+// const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
