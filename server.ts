@@ -31,25 +31,14 @@ const axios = require('axios');
 
 // CORS settings
 const cors = require('cors');
-// const whitelist = ['https://polar-surfer-257418.appspot.com',
-// 'http://polar-surfer-257418.appspot.com', 'https://opac2.herokuapp.com', 'http://opac2.herokuapp.com'];
-// const corsOptions = {
-//   origin(origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }
-// };
 
 app.use(cors());
 
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
-// const appUrl = 'localhost:4000';
-// const renderUrl = 'http://localhost:3000/render';
-const appUrl = 'opac2.herokuapp.com';
-const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
+const appUrl = 'localhost:4000';
+const renderUrl = 'http://localhost:3000/render';
+// const appUrl = 'opac2.herokuapp.com';
+// const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 const fetch = require('node-fetch');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -128,12 +117,9 @@ app.get('*', (req, res) => {
       .then(response => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
-        let renderedHtml = response.data;
-        renderedHtml = renderedHtml.replace(/<style.*<\/style>/g, '');
-        const fake = '<html><head><meta property="og:type" content="book">\n' +
-          '        <meta property="og:url" content="https://test.bisis.app/book/bgb/5baf84d456d169f0e1df958e">\n' +
-          '        <meta property="og:image" content="http://test.bisis.app/bisisWS/book_cover/retrieve/20772"></head><body></body></html>';
-        res.send(fake);
+        const renderedHtml = response.data;
+        console.log(renderedHtml);
+        res.send(renderedHtml);
       })
       .catch(error => {
         console.log(error);
