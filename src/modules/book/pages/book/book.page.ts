@@ -56,7 +56,9 @@ export class BookPage implements OnInit {
         }
         this._booksService.getBook(bookId).subscribe(
           async data => {
+            await data;
             if (!data) {
+              console.log('!data');
               await this._router.navigate(['/error/not-found']);
             } else {
               this._scrollToService.scrollTo({offset: 0});
@@ -68,7 +70,10 @@ export class BookPage implements OnInit {
               }
             }
           },
-          () => this._router.navigate(['/error/not-found']));
+          async () => {
+            await this._router.navigate(['/error/not-found']);
+            console.log('bookId');
+          });
       });
   }
 
