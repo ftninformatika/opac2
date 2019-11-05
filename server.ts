@@ -17,6 +17,7 @@
 
 import 'zone.js/dist/zone-node';
 
+import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import {join} from 'path';
 // import * as fetch from 'node-fetch';
@@ -24,6 +25,7 @@ import * as url from 'url';
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 // Express server
+enableProdMode();
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -31,17 +33,6 @@ const axios = require('axios');
 
 // CORS settings
 const cors = require('cors');
-// const whitelist = ['https://polar-surfer-257418.appspot.com',
-// 'http://polar-surfer-257418.appspot.com', 'https://opac2.herokuapp.com', 'http://opac2.herokuapp.com'];
-// const corsOptions = {
-//   origin(origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }
-// };
 
 app.use(cors());
 
@@ -49,8 +40,8 @@ app.use(cors());
 // const appUrl = 'localhost:4000';
 // const renderUrl = 'http://localhost:3000/render';
 const appUrl = 'opac2.herokuapp.com';
-const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
-const fetch = require('node-fetch');
+const renderUrl = 'http://116.203.124.157/render';
+// const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
@@ -102,7 +93,8 @@ function detectBot(userAgent) {
     'vkShare',
     'facebot',
     'outbrain',
-    'W3C_Validator'
+    'w3c_validator',
+    'viber'
   ];
 
   const agent = userAgent.toLowerCase();
@@ -128,12 +120,9 @@ app.get('*', (req, res) => {
       .then(response => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
-        let renderedHtml = response.data;
-        renderedHtml = renderedHtml.replace(/<style.*<\/style>/g, '');
-        const fake = '<html><head><meta property="og:type" content="book">\n' +
-          '        <meta property="og:url" content="https://test.bisis.app/book/bgb/5baf84d456d169f0e1df958e">\n' +
-          '        <meta property="og:image" content="http://test.bisis.app/bisisWS/book_cover/retrieve/20772"></head><body></body></html>';
-        res.send(fake);
+        const renderedHtml = response.data;
+        // console.log(renderedHtml);
+        res.send(renderedHtml);
       })
       .catch(error => {
         console.log(error);
