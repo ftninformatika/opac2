@@ -93,7 +93,8 @@ function detectBot(userAgent) {
     'vkShare',
     'facebot',
     'outbrain',
-    'W3C_Validator'
+    'w3c_validator',
+    'viber'
   ];
 
   const agent = userAgent.toLowerCase();
@@ -120,7 +121,7 @@ app.get('*', (req, res) => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
         const renderedHtml = response.data;
-        console.log(renderedHtml);
+        // console.log(renderedHtml);
         res.send(renderedHtml);
       })
       .catch(error => {
