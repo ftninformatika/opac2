@@ -22,7 +22,6 @@ import * as express from 'express';
 import {join} from 'path';
 // import * as fetch from 'node-fetch';
 import * as url from 'url';
-import * as path from 'path';
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 // Express server
