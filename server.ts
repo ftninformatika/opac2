@@ -38,10 +38,10 @@ const cors = require('cors');
 app.use(cors());
 
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
-const appUrl = 'localhost:4000';
-const renderUrl = 'http://localhost:3000/render';
-// const appUrl = 'opac2.herokuapp.com';
-// const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
+// const appUrl = 'localhost:4000';
+// const renderUrl = 'http://localhost:3000/render';
+const appUrl = 'opac2.herokuapp.com';
+const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
