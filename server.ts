@@ -20,7 +20,6 @@ import 'zone.js/dist/zone-node';
 import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import {join} from 'path';
-// import * as fetch from 'node-fetch';
 import * as url from 'url';
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
