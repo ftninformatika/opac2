@@ -21,6 +21,7 @@ import { CoreModule } from '../core/core.module';
 import { AppPage } from './pages/app/app.page';
 import { NgxsModule } from '@ngxs/store';
 import { MetaModule } from '@ngx-meta/core';
+import { FacebookModule } from 'ngx-facebook';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MetaModule } from '@ngx-meta/core';
     ToastModule.forRoot(),
     CoreModule,
     CommonUiModule,
+    FacebookModule.forRoot(),
     SharedModule,
     MetaModule.forRoot(),
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

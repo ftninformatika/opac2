@@ -14,7 +14,7 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run opac2:server:production --bundleDependencies all",
     "ssr:dev": "ng build && ng run opac2:server --bundleDependencies all",
-    "postinstall": "npm run build:ssr && npm run compile:server"
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +53,7 @@
     "jwt-decode": "^2.2.0",
     "ng-lazyload-image": "^6.1.0",
     "ng-uikit-pro-standard": "git+https://oauth2:HxTzD-za7PLPsyVbxyJJ@git.mdbootstrap.com/mdb/angular/ng-uikit-pro-standard.git",
+    "ngx-facebook": "^2.4.0",
     "ngx-order-pipe": "^2.0.4",
     "ngx-pagination": "^4.1.0",
     "node-fetch": "^2.6.0",

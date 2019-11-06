@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MetaService } from '@ngx-meta/core';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'book-page',
@@ -58,7 +59,6 @@ export class BookPage implements OnInit {
           async data => {
             await data;
             if (!data) {
-              console.log('!data');
               await this._router.navigate(['/error/not-found']);
             } else {
               this._scrollToService.scrollTo({offset: 0});
@@ -72,9 +72,28 @@ export class BookPage implements OnInit {
           },
           async () => {
             await this._router.navigate(['/error/not-found']);
-            console.log('bookId');
           });
       });
+  }
+
+  public share(socialNetwork: string) {
+    switch (socialNetwork) {
+      case 'fb': {
+          const url = 'http://www.facebook.com/sharer.php?u=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+          const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
+          if (window.focus) {
+            newWindow.focus();
+          }
+      }          break;
+      case 'tw': {
+        const url = 'https://twitter.com/intent/tweet?text=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+        const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
+        if (window.focus) {
+          newWindow.focus();
+        }
+      }          break;
+      default: break;
+    }
   }
 
   private setMetaTags() {
