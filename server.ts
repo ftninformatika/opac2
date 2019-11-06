@@ -122,7 +122,7 @@ function isExternalHit(userAgent: string) {
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  console.log(req);
+  // console.log(req);
   if (!detectBot(req.headers['user-agent'])) {
     res.render('index', {req});
   } else if (isExternalHit(req.headers['user-agent'])) {
