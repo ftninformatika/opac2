@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MetaService } from '@ngx-meta/core';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'book-page',
@@ -24,6 +25,7 @@ export class BookPage implements OnInit {
   private readonly _store: Store;
   private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
+  private readonly _facebookService: FacebookService;
   private RecordFormatType = ERecordFormatType;
   public book: Book;
   public errImgUrl: string;
@@ -31,12 +33,13 @@ export class BookPage implements OnInit {
   public isAdmin: boolean;
   private showLocations: boolean;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, facebookService: FacebookService,
                      router: Router, store: Store, metaService: MetaService, scrollToService: ScrollToService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._metaService = metaService;
     this._scrollToService = scrollToService;
+    this._facebookService = facebookService;
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
@@ -58,9 +61,14 @@ export class BookPage implements OnInit {
           async data => {
             await data;
             if (!data) {
-              console.log('!data');
               await this._router.navigate(['/error/not-found']);
             } else {
+              const initParams: InitParams = {
+                appId: '496025657794566',
+                xfbml: true,
+                version: 'v3.1'
+              };
+              await this._facebookService.init(initParams);
               this._scrollToService.scrollTo({offset: 0});
               this.book = data;
               this.setMetaTags();
@@ -72,9 +80,33 @@ export class BookPage implements OnInit {
           },
           async () => {
             await this._router.navigate(['/error/not-found']);
-            console.log('bookId');
           });
       });
+  }
+
+  public share(socialNetwork: string) {
+    switch (socialNetwork) {
+      case 'fb': {
+        this._facebookService.ui({
+          method: 'share',
+          action_type: 'og.shares',
+          action_properties: JSON.stringify({
+            object: {
+              'og:url': 'http://opac2.herokuapp.com' + window.location.pathname,
+              'og:title': this.book.title,
+              'og:type': 'book',
+              'og:image': this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg',
+              'og:site_name': 'OPAC2',
+              'og:description': this.book.description ? this.book.description : 'Није унет опис ове књиге',
+            }
+          })
+        }).then((data: any) => {
+          console.log(data);
+        }).catch((error: any) => {
+          console.log(error);
+        });
+      }          break;
+    }
   }
 
   private setMetaTags() {
@@ -84,7 +116,7 @@ export class BookPage implements OnInit {
     const tags = [
       {property: 'og:title', content: this.book.title},
       {property: 'og:type', content: 'book'},
-      {property: 'og:url', content: 'https://test.bisis.app' + window.location.pathname},
+      {property: 'og:url', content: 'http://opac2.herokuapp.com' + window.location.pathname},
       {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
       {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},
     ];
