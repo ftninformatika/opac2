@@ -20,12 +20,14 @@ import 'zone.js/dist/zone-node';
 import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import {join} from 'path';
-// import * as fetch from 'node-fetch';
 import * as url from 'url';
+import { environment } from './src/environments/environment';
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-// Express server
+
 enableProdMode();
+console.log(environment);
+// Express server
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -121,7 +123,6 @@ app.get('*', (req, res) => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
         const renderedHtml = response.data;
-        // console.log(renderedHtml);
         res.send(renderedHtml);
       })
       .catch(error => {

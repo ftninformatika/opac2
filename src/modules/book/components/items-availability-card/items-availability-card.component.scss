@@ -9,6 +9,11 @@
     width: 220px;
     font-size: 12px;
     height: 40px;
+    margin-bottom: 5px;
+    .btn-unique {background-color: #880e4f}
+    .btn-default {background-color: #2bbbad}
+    .btn-danger {background-color: #bb112e}
+    .btn-info {background-color: #33b5e5}
   }
 
   @media only screen and (max-width: 835px) {
