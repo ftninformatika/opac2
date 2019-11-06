@@ -1,6 +1,8 @@
 .items-table-component-wrapper {
   width: 100%;
-
+  .card {
+    background: transparent !important;
+  }
   @media (max-width: 576px) {
     td, th {
       font-size: 12px;

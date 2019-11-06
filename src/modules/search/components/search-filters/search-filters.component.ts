@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { IResultPageSearchRequest } from '../../../../models/search/result-page-options.model';
-import { IFilter, IFilterItem, IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
-import { SearchService } from '../../../core/services/search.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {IResultPageSearchRequest} from '../../../../models/search/result-page-options.model';
+import {IFilter, IFilterItem, IFiltersRes, ISelectedFilter} from '../../../../models/search/filter.model';
+import {SearchService} from '../../../core/services/search.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 export enum EFilterType {
   LOCATION = 0,
@@ -16,7 +16,8 @@ export enum EFilterType {
 @Component({
   selector: 'search-filters',
   templateUrl: 'search-filters.component.html',
-  styleUrls: ['search-filters.component.scss']
+  styleUrls: ['search-filters.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchFiltersComponent implements OnChanges {
   @Input() searchFilterReq: IResultPageSearchRequest;

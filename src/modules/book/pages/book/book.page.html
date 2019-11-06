@@ -5,9 +5,10 @@
         <div class="flex-1">
           <div class="d-flex book-info">
             <div class="mr-3">
-              <img data-src="{{book.imageUrl}}"
-                   class="img-cover"
-                   onError="this.src='../../../../assets/book/nocover/1.jpg';" alt="Слика корице"/>
+              <img class="img-fluid slideInRight img-cover"
+                   [lazyLoad]="book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover/1.jpg'"
+                   [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
+                   alt="Слика корице"/>
             </div>
             <div class="flex-1 book-data">
               <div>

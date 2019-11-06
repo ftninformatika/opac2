@@ -14,9 +14,13 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
+import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
+    LazyLoadImageModule.forRoot({
+      preset: intersectionObserverPreset
+    }),
     RouterModule.forChild(BookRoutes),
     CommonUiModule,
     CoreModule,

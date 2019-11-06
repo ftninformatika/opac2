@@ -27,6 +27,14 @@
           height: 250px;
           width: 150px;
         }
+        img.ng-lazyloaded {
+          animation: fadein .7s;
+        }
+
+        @keyframes fadein {
+          from { opacity: 0.3; }
+          to   { opacity: 1; }
+        }
         .book-data {height: 250px;}
       }
       @media only screen and (max-width: 680px) {
