@@ -22,6 +22,7 @@ import { AppPage } from './pages/app/app.page';
 import { NgxsModule } from '@ngxs/store';
 import { MetaModule } from '@ngx-meta/core';
 import { FacebookModule } from 'ngx-facebook';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FacebookModule } from 'ngx-facebook';
     MetaModule.forRoot(),
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LazyLoadImageDirective,
