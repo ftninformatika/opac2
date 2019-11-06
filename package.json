@@ -14,7 +14,7 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run opac2:server:production --bundleDependencies all",
     "ssr:dev": "ng build && ng run opac2:server --bundleDependencies all",
-    "postinstall": "npm run build:ssr && npm run compile:server"
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {

@@ -111,10 +111,32 @@ function detectBot(userAgent) {
 }
 
 
+// function isBookRoute(route: string) {
+//   return (route && route.indexOf('book') > -1);
+// }
+
+// TODO: add other link-bots
+function isExternalHit(userAgent: string) {
+  return (userAgent && userAgent.toLowerCase() === 'facebookexternalhit');
+}
+
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
+  console.log(req);
   if (!detectBot(req.headers['user-agent'])) {
     res.render('index', {req});
+  } else if (isExternalHit(req.headers['user-agent'])) {
+    console.log('external HITT!');
+    const urlParam = generateUrl(req);
+    axios.get(`${environment.baseUrl}/external_hit?url=${urlParam}`)
+      .then(response => {
+        res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+        res.set('Vary', 'User-Agent');
+        res.send(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   } else {
     const botUrl  = generateUrl(req);
     console.log('Sending route to Rendertron');
