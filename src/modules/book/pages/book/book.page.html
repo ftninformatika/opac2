@@ -49,7 +49,7 @@
         <a class="icons-sm fb-ic mr-2" (click)="share('fb')"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
         <a class="icons-sm ins-ic mr-2"><mdb-icon fab icon="instagram"></mdb-icon></a>
         <a class="icons-sm gplus-ic mr-2"><mdb-icon fab icon="google-plus"></mdb-icon></a>
-        <a class="icons-sm tw-ic mr-2"><mdb-icon fab icon="twitter"></mdb-icon></a>
+        <a class="icons-sm tw-ic mr-2" (click)="share('tw')"><mdb-icon fab icon="twitter"></mdb-icon></a>
         <a class="icons-sm email-ic"><mdb-icon fas icon="envelope"></mdb-icon></a>
       </div>
       <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>

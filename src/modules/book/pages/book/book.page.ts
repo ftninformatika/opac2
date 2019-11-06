@@ -25,7 +25,6 @@ export class BookPage implements OnInit {
   private readonly _store: Store;
   private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
-  private readonly _facebookService: FacebookService;
   private RecordFormatType = ERecordFormatType;
   public book: Book;
   public errImgUrl: string;
@@ -33,13 +32,12 @@ export class BookPage implements OnInit {
   public isAdmin: boolean;
   private showLocations: boolean;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, facebookService: FacebookService,
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, store: Store, metaService: MetaService, scrollToService: ScrollToService) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._metaService = metaService;
     this._scrollToService = scrollToService;
-    this._facebookService = facebookService;
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
@@ -63,12 +61,6 @@ export class BookPage implements OnInit {
             if (!data) {
               await this._router.navigate(['/error/not-found']);
             } else {
-              const initParams: InitParams = {
-                appId: '496025657794566',
-                xfbml: true,
-                version: 'v3.1'
-              };
-              await this._facebookService.init(initParams);
               this._scrollToService.scrollTo({offset: 0});
               this.book = data;
               this.setMetaTags();
@@ -87,25 +79,20 @@ export class BookPage implements OnInit {
   public share(socialNetwork: string) {
     switch (socialNetwork) {
       case 'fb': {
-        this._facebookService.ui({
-          method: 'share',
-          action_type: 'og.shares',
-          action_properties: JSON.stringify({
-            object: {
-              'og:url': 'http://opac2.herokuapp.com' + window.location.pathname,
-              'og:title': this.book.title,
-              'og:type': 'book',
-              'og:image': this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg',
-              'og:site_name': 'OPAC2',
-              'og:description': this.book.description ? this.book.description : 'Није унет опис ове књиге',
-            }
-          })
-        }).then((data: any) => {
-          console.log(data);
-        }).catch((error: any) => {
-          console.log(error);
-        });
+          const url = 'http://www.facebook.com/sharer.php?u=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+          const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
+          if (window.focus) {
+            newWindow.focus();
+          }
       }          break;
+      case 'tw': {
+        const url = 'https://twitter.com/intent/tweet?text=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+        const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
+        if (window.focus) {
+          newWindow.focus();
+        }
+      }          break;
+      default: break;
     }
   }
 
