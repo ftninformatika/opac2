@@ -117,7 +117,7 @@ function detectBot(userAgent) {
 
 // TODO: add other link-bots
 function isExternalHit(userAgent: string) {
-  return (userAgent && userAgent.toLowerCase() === 'facebookexternalhit');
+  return (userAgent && userAgent.toLowerCase().indexOf('facebookexternalhit') > -1);
 }
 
 // All regular routes use the Universal engine
