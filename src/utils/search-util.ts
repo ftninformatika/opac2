@@ -21,13 +21,13 @@ export class SearchUtil {
       retVal.text1 = text.value;
       retVal.pref1 = pref;
       return retVal;
-    } else {
-      retVal.pref1 = EAutoCompletePrefixes.PUBLISHERS;
-      retVal.text1 = text + '*';
-      retVal.oper1 = 'OR';
+    } else {;
       retVal.pref2 = EAutoCompletePrefixes.TITLES;
       retVal.text2 = text + '*';
       retVal.oper2 = 'OR';
+      retVal.pref1 = EAutoCompletePrefixes.PUBLISHERS;
+      retVal.text1 = text + '*';
+      retVal.oper1 = 'OR'
       retVal.pref3 = EAutoCompletePrefixes.AUTHORS;
       retVal.text3 = text + '*';
       retVal.oper3 = 'OR';

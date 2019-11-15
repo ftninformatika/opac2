@@ -14,14 +14,14 @@
               <div>
                 <h3 class="h3-responsive">{{book.title}}</h3>
                 <h5 *ngIf="book.subtitle" class="h5-responsive">{{book.subtitle}}</h5>
-                <div class="pub-type">
-                  <div *ngIf="book.pubType === 1">
-                    <mdb-icon fas icon="book"></mdb-icon> монографија
-                  </div>
-                  <div *ngIf="book.pubType === 2">
-                    <mdb-icon fas icon="scroll"></mdb-icon> серијска
-                  </div>
-                </div>
+<!--                <div class="pub-type">-->
+<!--                  <div *ngIf="book.pubType === 1">-->
+<!--                    <mdb-icon fas icon="book"></mdb-icon> монографија-->
+<!--                  </div>-->
+<!--                  <div *ngIf="book.pubType === 2">-->
+<!--                    <mdb-icon fas icon="scroll"></mdb-icon> серијска-->
+<!--                  </div>-->
+<!--                </div>-->
                 <p>
                   <span *ngFor="let author of book.authors; let last = last">
                     <a class="author-link">{{author}}</a><span *ngIf="!last">, </span>
