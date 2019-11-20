@@ -23,12 +23,14 @@ import { NgxsModule } from '@ngxs/store';
 import { MetaModule } from '@ngx-meta/core';
 import { FacebookModule } from 'ngx-facebook';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { BackToTopButton } from './components/back-to-top.directive';
 
 @NgModule({
   declarations: [
     TopMenuComponent,
     AppPage,
-    LibraryRouteComponent
+    LibraryRouteComponent,
+    BackToTopButton
   ],
   imports: [
     TranslateModule.forRoot({

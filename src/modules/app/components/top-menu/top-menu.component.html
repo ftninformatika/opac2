@@ -11,20 +11,23 @@
       </mdb-navbar-brand>
       <form class="form-inline waves-light navbar-search-form">
         <div class="md-form my-0 flex-grow-1">
-          <input type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field"
+          <input #searchInput
+                 type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field"
                  [(ngModel)]="searchText"
                  (input)="getFilteredData()"
                  (ngModelChange)="onChange()"
                  [mdbAutoCompleter]="auto"
                  (keyup.enter)="search()"
+                 (focusout)="init()"
                  placeholder="Претражи..."
                  aria-label="Претражи"
                  autocomplete="off">
           <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)"
                               (mouseover)="onAutoCompleteSelect($event)"
                               (mousedown)="this.search()"
-                              (keyup.enter)="this.search()"
-                              >
+                              (keyup.enter)="this.search().then()"
+
+          >
             <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
               <div class="ac-field">
                     <div>{{pv.value}}</div>

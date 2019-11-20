@@ -10,7 +10,7 @@ import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subject } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Renderer, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,6 +32,7 @@ export class TopMenuComponent {
   private isAdmin: boolean;
   @Select(UserState) user;
   @Select(ConfigState) configState;
+  @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
 
   public constructor(booksService: BooksService, router: Router, store: Store,
                      translateService: TranslateService) {
@@ -39,9 +40,8 @@ export class TopMenuComponent {
     this._router = router;
     this._store = store;
     this._translateService = translateService;
-    this.searchText = '';
-    this.selectedAc = null;
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
+    this.init();
     this.searchTextChanged.pipe(
       debounceTime(850),
       distinctUntilChanged()
@@ -52,7 +52,12 @@ export class TopMenuComponent {
     });
   }
 
-  public search() {
+  public init() {
+    this.searchText = '';
+    this.selectedAc = null;
+  }
+
+  public async search() {
     if (!this.searchText || this.searchText === '' || this.searchText.length < 3) {
       return;
     }
@@ -63,9 +68,9 @@ export class TopMenuComponent {
     pageOptions.lib = this._store.selectSnapshot(ConfigState.library);
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
-    this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
-    this.searchText = '';
-    this.selectedAc = null;
+    await this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
+    // this.removeFocusInput();
+    this.init();
   }
 
   public getFilteredData() {
@@ -97,6 +102,14 @@ export class TopMenuComponent {
         }
       }
     );
+  }
+
+  public removeFocusInput() {
+    this.searchInput.nativeElement.blur();
+  }
+
+  public focusRemovedAutocomplete() {
+    console.log('removed');
   }
 
   public signOut() {
