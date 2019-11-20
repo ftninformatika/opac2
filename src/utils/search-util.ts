@@ -21,17 +21,21 @@ export class SearchUtil {
       retVal.text1 = text.value;
       retVal.pref1 = pref;
       return retVal;
-    } else {;
-      retVal.pref2 = EAutoCompletePrefixes.TITLES;
+    } else {
+      // retVal.pref2 = EAutoCompletePrefixes.TITLES;
+      retVal.pref2 = 'TI';
       retVal.text2 = text + '*';
       retVal.oper2 = 'OR';
-      retVal.pref1 = EAutoCompletePrefixes.PUBLISHERS;
+      // retVal.pref1 = EAutoCompletePrefixes.PUBLISHERS;
+      retVal.pref1 = 'PU';
       retVal.text1 = text + '*';
-      retVal.oper1 = 'OR'
-      retVal.pref3 = EAutoCompletePrefixes.AUTHORS;
+      retVal.oper1 = 'OR';
+      // retVal.pref3 = EAutoCompletePrefixes.AUTHORS;
+      retVal.pref3 = 'AU';
       retVal.text3 = text + '*';
       retVal.oper3 = 'OR';
-      retVal.pref4 = EAutoCompletePrefixes.KEYWORDS;
+      // retVal.pref4 = EAutoCompletePrefixes.KEYWORDS;
+      retVal.pref4 = 'KW';
       retVal.text4 = text + '*';
       retVal.oper4 = 'OR';
       return retVal;
