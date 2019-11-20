@@ -11,4 +11,5 @@ import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 export class ItemsTableComponent {
   ItemStatus = ERecordItemStatus;
   @Input() items: RecordItem[];
+  public selectedLocation: string;
 }

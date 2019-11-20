@@ -3,6 +3,12 @@
   .card {
     background: transparent !important;
   }
+
+  .location-cell:hover {
+    background: powderblue;
+    cursor: pointer;
+  }
+
   @media (max-width: 576px) {
     td, th {
       font-size: 12px;

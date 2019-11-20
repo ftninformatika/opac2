@@ -31,6 +31,5 @@ export class BookTabs implements AfterViewInit {
     } else {
       this.showBody = false;
     }
-    console.log(event);
   }
 }
