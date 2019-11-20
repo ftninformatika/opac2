@@ -62,7 +62,8 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location = location;
     this._searchService = searchService;
     this._store = store;
-    this.tableView = false;
+    // TODO: consider moving this and some more possible app settings to Redux State
+    this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
     this.initValues();
   }
 

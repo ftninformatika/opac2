@@ -27,7 +27,6 @@ export class SearchTopNavComponent implements OnChanges {
   public sortTitle: string;
   public ascending: boolean;
   public tableViewSelected: boolean;
-
   private SortType = ESortType;
 
   public onChangePageSize(val: number) {
@@ -41,6 +40,7 @@ export class SearchTopNavComponent implements OnChanges {
 
   public onViewTypeChanged(tableView: boolean) {
       this.tableViewSelected = tableView;
+      window.localStorage.setItem('resultPreview', tableView ? 'table' : 'card');
       this.viewTypeChanged.emit(tableView);
   }
 
