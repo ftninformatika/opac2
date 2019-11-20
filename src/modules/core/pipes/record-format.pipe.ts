@@ -19,6 +19,7 @@ export class RecordFormatPipe implements PipeTransform{
     switch (type) {
       case ERecordFormatType.FORMAT_PUBLISHER_INFO: {
         const pi: string[] = [];
+        let putDot = false;
         if (book.publishPlace && book.publishPlace.trim() !== '') {
           pi.push(book.publishPlace);
         }
@@ -27,9 +28,10 @@ export class RecordFormatPipe implements PipeTransform{
         }
         if (book.publishYear && book.publishYear.trim() !== '') {
           pi.push(book.publishYear);
+          putDot = true;
         }
         if (pi.length > 0) {
-          return pi.join(', ');
+          return pi.join(', ') + (putDot ? '.' : '');
         } else {
           return null;
         }

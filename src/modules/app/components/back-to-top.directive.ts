@@ -3,15 +3,12 @@ import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 @Directive({
   selector: '[backToTopButton]'
 })
-
 export class BackToTopButton {
   state = false;
   constructor( private btn: ElementRef, private renderer: Renderer2, ) { }
-
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
     const scrollPosition = window.pageYOffset;
-    console.log(scrollPosition);
     if (scrollPosition < 700) {
       if (this.state) {
         if (this.btn.nativeElement.classList.contains('d-none')) {

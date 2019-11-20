@@ -5,12 +5,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { UserState } from '../../../core/states/user/user.state';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { RecordUtils } from '../../../../utils/record-utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MetaService } from '@ngx-meta/core';
-import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
-import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'book-page',
@@ -103,6 +102,7 @@ export class BookPage implements OnInit {
     const tags = [
       {property: 'og:title', content: this.book.title},
       {property: 'og:type', content: 'book'},
+      // TODO: hardcoded, put somwhere in config
       {property: 'og:url', content: 'http://opac2.herokuapp.com' + window.location.pathname},
       {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
       {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},

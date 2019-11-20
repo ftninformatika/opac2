@@ -6,9 +6,9 @@
   </ng-template>
   <ngb-rating [(rate)]="starRate" [starTemplate]="t" max="5" (rateChange)="rateBook($event)"></ngb-rating>
   <span *ngIf="!bookRating">
-    <strong><b>Ова књига није никада оцењена</b></strong>
+<!--    <strong><b>Ова књига није никада оцењена</b></strong>-->
   </span>
   <span *ngIf="bookRating">
-    Рејтинг:&nbsp;&nbsp;<strong><b>{{bookRating ? bookRating.avgRating : 'Књига нема ни један глас'}} / {{bookRating ? bookRating.totalRates : 0}}</b></strong>
+    Рејтинг:&nbsp;&nbsp;{{bookRating ? bookRating.avgRating : 'Књига нема ни један глас'}} / {{bookRating ? bookRating.totalRates : 0}}
   </span>
 </div>

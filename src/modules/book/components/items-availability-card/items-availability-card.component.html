@@ -25,7 +25,7 @@
           На полицу
         </a>
         <a class="btn btn-danger waves-light btn-style" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
-          Са полице
+          Уклони са полице
         </a>
         <add-to-collection-button [bookId]="bookId" *ngIf="isAdmin"></add-to-collection-button>
       </div>

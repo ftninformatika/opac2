@@ -13,15 +13,15 @@
     <div class="flex-1 ml-3">
       <mdb-card-title>
         <h4 [routerLink]="['/book',lib, book._id]" class="pointer title" [mdbTooltip]="book.title">{{book.title | shortenString:35}}</h4>
-        <div class="pub-type">
-          <div *ngIf="book.pubType === 1">
-            <mdb-icon fas icon="book"></mdb-icon> монографија
-          </div>
-          <div *ngIf="book.pubType === 2">
-            <mdb-icon fas icon="scroll"></mdb-icon> серијска
-          </div>
-        </div>
-        <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer" >{{book.subtitle | shortenString:25}}</h5>
+<!--        <div class="pub-type">-->
+<!--          <div *ngIf="book.pubType === 1">-->
+<!--            <mdb-icon fas icon="book"></mdb-icon> монографија-->
+<!--          </div>-->
+<!--          <div *ngIf="book.pubType === 2">-->
+<!--            <mdb-icon fas icon="scroll"></mdb-icon> серијска-->
+<!--          </div>-->
+<!--        </div>-->
+        <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer" >{{book.subtitle | shortenString:40}}</h5>
         <p [mdbTooltip]="book.authors">
           <span>
             <em>{{authors | shortenString:25}}</em>
@@ -41,7 +41,7 @@
       </button>
       <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
 <!--        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon>-->
-        <span>Са полице</span>
+        <span>Уклони са полице</span>
       </button>
       <ng-container *ngIf="isAdmin">
         <add-to-collection-button [bookId]="book._id"></add-to-collection-button>

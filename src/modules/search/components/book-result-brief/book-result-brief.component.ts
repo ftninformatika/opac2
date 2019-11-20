@@ -57,6 +57,7 @@ export class BookResultBrief implements OnInit {
     if (!this.book) {
       return;
     }
+    let putDot = false;
     const inf: string[] = [];
     if (this.book.publisher && this.book.publisher !== '') {
       inf.push(this.book.publisher);
@@ -66,11 +67,12 @@ export class BookResultBrief implements OnInit {
     }
     if (this.book.publishYear && this.book.publishYear !== '') {
       inf.push(this.book.publishYear);
+      putDot = true;
     }
     if (inf.length === 0) {
       return;
     }
-    this.publishInfo = inf.join(', ');
+    this.publishInfo = inf.join(', ') + (putDot ? '.' : '');
   }
 
 }
