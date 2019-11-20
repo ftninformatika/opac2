@@ -2,7 +2,7 @@
   <nav class="navbar navbar-toggleable-xl navbar-inverse">
       <div *ngIf="selectedFilters.length > 0">
         <span class="mr-2">Одабрани филтери:&nbsp;</span>
-        <div class="chip mt-1" color="cyan" *ngFor="let f of selectedFilters | slice:0:9" [mdbTooltip]="f.item.label">
+        <div class="chip mt-1" *ngFor="let f of selectedFilters | slice:0:9" [mdbTooltip]="f.item.label">
           {{f.item.label | shortenString:14}}
           <mdb-icon fas icon="times" class="close" (click)="removeFilter(f)"></mdb-icon>
         </div>
