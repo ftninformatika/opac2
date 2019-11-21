@@ -55,6 +55,7 @@ export class TopMenuComponent {
   public init() {
     this.searchText = '';
     this.selectedAc = null;
+    this.results = of ([] as IPrefixValue[]);
   }
 
   public async search() {
@@ -69,7 +70,6 @@ export class TopMenuComponent {
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
     await this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
-    // this.removeFocusInput();
     this.init();
   }
 
