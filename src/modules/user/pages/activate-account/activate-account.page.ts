@@ -1,12 +1,12 @@
-import { EPasswordCodes, MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 import { ILibraryMember } from '../../../../models/library-member.model';
+import { ValidatorsUtils } from '../../../../utils/validators.utils';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { UsersService } from '../../../core/services/users.service';
+import { EPasswordCodes } from '../../../../utils/regexes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Subject, } from 'rxjs';
-import { ValidatorsUtils } from '../../../../utils/validators.utils';
 
 @Component({
   selector: 'activate-acount-page',

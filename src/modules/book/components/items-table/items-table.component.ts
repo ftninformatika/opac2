@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'items-table',
@@ -9,42 +19,38 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemsTableComponent implements OnInit {
+export class ItemsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   ItemStatus = ERecordItemStatus;
   @Input() items: RecordItem[];
+  public initialItems: RecordItem[];
+  public searchTextChanged: Subject<string> = new Subject<string>();
   public selectedLocation: string;
   public searchText = '';
-  public previous: string;
-  public elements: any = [];
-  public headElements = ['Локација', 'Сигнатура', 'Инвентарни број'];
 
-  constructor() { }
+  constructor() {
+    this.searchTextChanged.pipe(
+      debounceTime(200),
+      distinctUntilChanged()
+    ).subscribe(() => {
+      this.filterTable();
+    });
+  }
 
-  @HostListener('input') oninput() {
-    this.searchItems();
+  public filterTable() {
+    console.log(this.initialItems);
+    if (!this.searchText || this.searchText === '') {
+      this.items = {...this.initialItems};
+      return;
+    }
+    this.items = this.items.filter(i => i.location.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
   }
 
   public ngOnInit() {
-    // for (let i = 1; i <= 10; i++) {
-    //   this.elements.push({ id: i.toString(), first: 'Wpis ' + i, last: 'Last ' + i, handle: 'Handle ' + i });
-    // }
-
-    this.mdbTable.setDataSource(this.items);
-    this.previous = this.mdbTable.getDataSource();
   }
 
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.elements = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
+  public ngAfterViewInit(): void {
+    this.initialItems = {...this.items};
   }
+
 }
