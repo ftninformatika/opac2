@@ -53,16 +53,11 @@ export class RecordFormatPipe implements PipeTransform {
         }
       }
       case ERecordFormatType.CONTAINS_856_URL: {
-        console.log('usao');
         const _856u = RecordUtils.getSubfieldContent(book.record, '856u');
-        console.log('asdasd' + _856u);
         if (!book.record || _856u == null) {
-          console.log('usao3');
           return null;
         }
         const urlHtml = `<a href="${_856u}" target="_blank">${_856u}</a>`;
-  
-        console.log('usao2');
         return urlHtml;
       }
       case ERecordFormatType.FORMAT_FIRST_SIGNATURE_INFO: {

@@ -39,6 +39,10 @@ export interface RecordItem {
   signature: string;
   status: ERecordItemStatus;
   invNum: string;
+  volume?: string;
+  year?: string;
+  number?: string;
+  serial: boolean;
 }
 
 export interface RecordRating {

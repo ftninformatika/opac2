@@ -25,6 +25,7 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   @Input() items: RecordItem[];
   public initialItems: RecordItem[];
   public searchTextChanged: Subject<string> = new Subject<string>();
+  public isSerial: boolean;
   public selectedLocation: string;
   public searchText = '';
 
@@ -47,10 +48,12 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
+    this.initialItems = {...this.items};
+    this.isSerial = this.initialItems && this.initialItems[0].serial;
+    console.log(this.isSerial);
   }
 
   public ngAfterViewInit(): void {
-    this.initialItems = {...this.items};
   }
 
 }

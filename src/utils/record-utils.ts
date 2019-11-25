@@ -18,6 +18,11 @@ export class RecordUtils {
     if (!rec || !sf || !rec.fields || sf.length !== 4) {
       return null;
     }
-    return rec.fields.find(f => f.name === sf.substring(0, 3)).subfields.find(s => s.name === sf.substring(3, 4)).content;
+    try {
+      return rec.fields.find(f => f.name === sf.substring(0, 3)).subfields.find(s => s.name === sf.substring(3, 4)).content;
+    } catch (e) {
+      // TODO: make logger
+      return null;
+    }
   }
 }

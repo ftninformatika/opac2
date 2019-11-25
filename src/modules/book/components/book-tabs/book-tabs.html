@@ -15,7 +15,6 @@
                 <dd class="col-sm-10">{{book.title}}</dd>
               </ng-container>
 
-              <!--                        TODO: URL(polje 856)-->
               <ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL">
                 <dt class="col-sm-2" >URL</dt>
                 <dd class="col-sm-10"><span [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"></span></dd>

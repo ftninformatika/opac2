@@ -12,6 +12,9 @@
       <th scope="col">Сигнатура</th>
       <th scope="col">Статус</th>
       <th scope="col">Инвентарни број</th>
+      <th scope="col" *ngIf="isSerial">Годиште</th>
+      <th scope="col" *ngIf="isSerial">Година</th>
+      <th scope="col" *ngIf="isSerial">Број</th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +35,9 @@
         </td>
         <td>{{i.invNum}}</td>
       </ng-container>
+      <td *ngIf="isSerial">{{i.volume}}</td>
+      <td *ngIf="isSerial">{{i.year}}</td>
+      <td *ngIf="isSerial">{{i.number}}</td>
     </tr>
     </tbody>
   </table>
@@ -46,7 +52,7 @@
           <h4 class="modal-title w-100" id="myModalLabel">{{selectedLocation}}</h4>
         </div>
         <div class="modal-body">
-<!--          <iframe src="" width="470" height="450" frameborder="0" style="border:0;border-radius: 5px;" allowfullscreen=""></iframe>-->
+<!--          TODO: this is dummy-->
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5660.152227865904!2d20.453594!3d44.820014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf6ed17caa14ae459!2z0JHQuNCx0LvQuNC-0YLQtdC60LAg0LPRgNCw0LTQsCDQkdC10L7Qs9GA0LDQtNCw!5e0!3m2!1ssr!2srs!4v1574261679081!5m2!1ssr!2srs" width="470" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
         <div class="modal-footer">
