@@ -1838,6 +1838,10 @@ export class PrefixUtils {
    static _coderDT: Coder[] =
     [
       {
+        code: '*',
+        name: 'Сва грађа',
+      },
+      {
         code: 'm',
         name: 'Монографски',
       },

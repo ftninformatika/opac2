@@ -78,6 +78,7 @@ export class BookPage implements OnInit {
   public share(socialNetwork: string) {
     switch (socialNetwork) {
       case 'fb': {
+          // TODO: hardcoded - move to config
           const url = 'http://www.facebook.com/sharer.php?u=' + 'http://opac2.herokuapp.com' + window.location.pathname;
           const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
           if (window.focus) {
@@ -86,6 +87,13 @@ export class BookPage implements OnInit {
       }          break;
       case 'tw': {
         const url = 'https://twitter.com/intent/tweet?text=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+        const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
+        if (window.focus) {
+          newWindow.focus();
+        }
+      }          break;
+      case 'li': {
+        const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + 'http://opac2.herokuapp.com' + window.location.pathname;
         const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
         if (window.focus) {
           newWindow.focus();

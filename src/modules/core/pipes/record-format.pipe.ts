@@ -1,16 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Book, Primerak } from '../../../models/book.model';
+import { Book, Primerak, RecordItem } from '../../../models/book.model';
+import { RecordUtils } from '../../../utils/record-utils';
 
 export enum ERecordFormatType {
   FORMAT_PUBLISHER_INFO = 'FORMAT_PUBLISHER_INFO',
   FORMAT_BOOK_PHYSICAL_INFO = 'FORMAT_BOOK_PHYSICAL_INFO',
-  FORMAT_FIRST_SIGNATURE_INFO = 'FORMAT_FIRST_SIGNATURE_INFO'
+  FORMAT_FIRST_SIGNATURE_INFO = 'FORMAT_FIRST_SIGNATURE_INFO',
+  CONTAINS_856_URL = 'CONTAINS_856_URL'
 }
 
 @Pipe({
   name: 'recordFormat'
 })
-export class RecordFormatPipe implements PipeTransform{
+export class RecordFormatPipe implements PipeTransform {
 
   public transform(book: Book, type: ERecordFormatType ): any {
     if (!book || !book.record) {
@@ -50,18 +52,25 @@ export class RecordFormatPipe implements PipeTransform{
           return null;
         }
       }
+      case ERecordFormatType.CONTAINS_856_URL: {
+        console.log('usao');
+        const _856u = RecordUtils.getSubfieldContent(book.record, '856u');
+        console.log('asdasd' + _856u);
+        if (!book.record || _856u == null) {
+          console.log('usao3');
+          return null;
+        }
+        const urlHtml = `<a href="${_856u}" target="_blank">${_856u}</a>`;
+  
+        console.log('usao2');
+        return urlHtml;
+      }
       case ERecordFormatType.FORMAT_FIRST_SIGNATURE_INFO: {
         let fs = '';
-        const pr: Primerak[] = book.record.primerci;
-        if (pr && pr.length > 0) {
-          const p: Primerak = pr.sort((p0, p1) => p0.invBroj.localeCompare(p1.invBroj))[0];
-          if (p.sigIntOznaka && p.sigIntOznaka.trim() !== '') {
-            fs += p.sigIntOznaka;
-          }
-          if (p.sigNumerusCurens && p.sigNumerusCurens.trim() !== '') {
-            fs += fs === '' ? '' : '-';
-            fs += p.sigNumerusCurens;
-          }
+        const items: RecordItem[] = book.items;
+        if (items && items.length > 0) {
+          const p: RecordItem = items.sort((p0, p1) => p0.invNum .localeCompare(p1.invNum))[0];
+          fs = p.signature;
           if (fs !== '') {
             return fs;
           } else {

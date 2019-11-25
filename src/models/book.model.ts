@@ -72,12 +72,6 @@ export class Record {
   primerci?: Primerak[];
   godine?: Godina[];
   recordRatings?: RecordRating[];
-  public getSubFieldContent(sf: string): string {
-    if (!sf || !this.fields || sf.length !== 4) {
-      return null;
-    }
-    return this.fields.find(f => f.name === sf.substring(0, 3)).subfields.find(s => s.name === sf.substring(3, 4)).content;
-  }
 }
 
 export interface Godina {
