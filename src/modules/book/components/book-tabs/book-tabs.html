@@ -10,6 +10,11 @@
                 <dd class="col-sm-10">{{book.authors}}</dd>
               </ng-container>
 
+              <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
+                <dt class="col-sm-2">Остали аутори</dt>
+                <dd class="col-sm-10">{{book.otherAuthors.join(', ')}}</dd>
+              </ng-container>
+
               <ng-container *ngIf="book.title">
                 <dt class="col-sm-2">Наслов</dt>
                 <dd class="col-sm-10">{{book.title}}</dd>

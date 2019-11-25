@@ -2,6 +2,7 @@ export interface Book {
   _id?: string; // mongoId of record
   pubType?: EPubType;
   authors?: string[];
+  otherAuthors?: string[];
   title: string;
   subtitle?: string;
   publisher?: string;
