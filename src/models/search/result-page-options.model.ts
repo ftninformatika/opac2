@@ -25,7 +25,8 @@ export const IResultPageOptionsInitial: IResultPageOptions = {
     languages: [],
     authors: [],
     locations: [],
-    subLocations: []
+    subLocations: [],
+    subjects: []
   },
   sort: {...ISortInitial},
   previewType: null,

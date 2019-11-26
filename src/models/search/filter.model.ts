@@ -6,6 +6,7 @@ export interface IFiltersRes {
   pubTypes: IFilter[];
   languages: IFilter[];
   pubYears: IFilter[];
+  subjects: IFilter[];
 }
 
 export interface IFilter {
@@ -33,4 +34,5 @@ export interface IFiltersReq {
   pubTypes: ISelectedFilter[];
   languages: ISelectedFilter[];
   pubYears: ISelectedFilter[];
+  subjects: ISelectedFilter[];
 }

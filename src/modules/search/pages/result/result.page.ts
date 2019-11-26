@@ -155,7 +155,8 @@ export class ResultPage implements OnInit, OnDestroy {
       authors: null,
       languages: null,
       pubYears: null,
-      pubTypes: null
+      pubTypes: null,
+      subjects: null
     };
   }
 
@@ -183,6 +184,7 @@ export class ResultPage implements OnInit, OnDestroy {
       case EFilterType.LANGUAGE: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.languages); break;
       case EFilterType.PUB_YEAR: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.pubYears); break;
       case EFilterType.SUB_LOCATION: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subLocations); break;
+      case EFilterType.SUBJECT: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subjects); break;
       default: return;
     }
     this.searchWithFilters();
@@ -256,6 +258,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this.pageOptions.filters.languages.forEach(e => this.selectedFilters.push(e));
     this.pageOptions.filters.pubTypes.forEach(e => this.selectedFilters.push(e));
     this.pageOptions.filters.pubYears.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.subjects.forEach(e => this.selectedFilters.push(e));
   }
 
   public async modifySearch() {
@@ -336,6 +339,15 @@ export class ResultPage implements OnInit, OnDestroy {
           this.pageOptions.filters.subLocations.splice(i, 1);
         }
       }                              break;
+      case EFilterType.SUBJECT: {
+        this.resultedFilters.subjects.find(f => f.filter.value === filterItem.item.value).filter.checked = false;
+        const e = this.pageOptions.filters.subjects.find(f => f.item.value === filterItem.item.value);
+        const i = this.pageOptions.filters.subjects.indexOf(e);
+        if (i !== -1) {
+          this.pageOptions.filters.subjects.splice(i, 1);
+        }
+      }
+                                break;
       default: return;
     }
     this.searchWithFilters();

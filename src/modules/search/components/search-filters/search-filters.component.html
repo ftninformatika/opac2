@@ -89,6 +89,25 @@
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
+
+          <mdb-accordion-item [collapsed]="collapsedFilter[5]" *ngIf="filters.subjects && filters.subjects.length > 0">
+            <mdb-accordion-item-head>Предмет </mdb-accordion-item-head>
+            <mdb-accordion-item-body>
+              <form [formGroup]="subjectForm" >
+                <mdb-checkbox *ngFor="let i of filters.subjects | slice:0:15" formControlName="{{i.filter.value}}"
+                              [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
+                              (change)="selectionChanged(i.filter, 6)" [mdbTooltip]="i.filter.label + ' (' + i.filter.count + ')'">
+                  {{(i.filter.label | shortenString:25) + ' (' + i.filter.count + ')'}}
+                </mdb-checkbox>
+                <a *ngIf="filters.subjects.length > 15" (click)="moreFilters(filters.subjects, 'Предмет', 6);basicModal.show();">
+                  <span style="color: blue">
+                    Прикажи све...
+                  </span>
+                </a>
+              </form>
+            </mdb-accordion-item-body>
+          </mdb-accordion-item>
+
         </mdb-accordion>
       </ng-container>
     </mdb-card-body>
