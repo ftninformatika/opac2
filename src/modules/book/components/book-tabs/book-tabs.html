@@ -7,12 +7,25 @@
             <dl class="row">
               <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
                 <dt class="col-sm-2">Аутори</dt>
-                <dd class="col-sm-10">{{book.authors}}</dd>
+                <dd class="col-sm-10">
+                  <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                  {{book.authors}}
+                  </a>
+                </dd>
               </ng-container>
 
               <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
                 <dt class="col-sm-2">Остали аутори</dt>
-                <dd class="col-sm-10">{{book.otherAuthors.join(', ')}}</dd>
+                <dd class="col-sm-10">
+                  <a *ngFor="let oa of book.otherAuthors"
+                     (click)="linkedSearch('authors', oa)"
+                  >
+                    <span
+                      style="cursor: pointer;color: darkblue; text-decoration: underline">
+                      {{oa}}
+                    </span>,&nbsp;
+                  </a>
+                </dd>
               </ng-container>
 
               <ng-container *ngIf="book.title">
