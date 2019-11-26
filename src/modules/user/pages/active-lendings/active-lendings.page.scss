@@ -1,0 +1,18 @@
+.active-lendings-page-wrapper {
+  .highliht:hover {
+    background: #fbfffb;
+    cursor: pointer;
+  }
+  @media (max-width: 576px) {
+    td, th {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 448px) {
+    td, th {
+      font-size: 12px;
+      padding: 2px;
+    }
+  }
+}

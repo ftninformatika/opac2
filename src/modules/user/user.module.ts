@@ -14,6 +14,7 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   declarations: [
     AdminCollectionsPage,
+    ActiveLendingsPage,
     ActivateAccountPage,
     LoginPage,
     ProfilePage,

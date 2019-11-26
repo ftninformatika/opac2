@@ -5,4 +5,5 @@ export interface Report {
   property4: string; // Book title for member history
   property5: string; // CtlgNo for member history
   property6: string; // Record _id for member history
+  property7: string; // deadline
 }

@@ -1,0 +1,61 @@
+<div class="active-lendings-page-wrapper">
+  <div class="">
+    <h2 align="center" class="mb-2">Тренутно на задужењу</h2>
+    <ng-container *ngIf="lendingsReport">
+      <table mdbTable class="table table-responsive-md table-responsive-sm">
+        <thead class="blue white-text">
+        <tr>
+          <th scope="col">
+            <a (click)="sortBy('property4')">Наслов
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property3')">Аутор
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property1')">Изнајмио
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property7')">Рок враћања
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('property5')">Инвентарни број
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            Продужи задужење
+          </th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr mdbTableRow *ngFor="let r of lendingsReport"  >
+          <th scope="row" class="highliht" [mdbTooltip]="r.property4" [routerLink]="['/book', lib, r.property6]">
+            <strong>
+              <b>
+                {{r.property4 | shortenString: 30}}
+              </b>
+            </strong>
+          </th>
+          <td [mdbTooltip]="r.property3" class="highliht" [routerLink]="['/book', lib, r.property6]">{{r.property3 | shortenString: 20}}</td>
+          <td>{{r.property1 | shortenString: 20}}</td>
+          <td>{{r.property7 | shortenString: 20}}</td>
+          <td>{{r.property5 | shortenString: 20}}</td>
+          <td>
+            <a mdbBtn floating="true" size="sm" gradient="blue" mdbWavesEffect>
+              <mdb-icon fas icon="plus"></mdb-icon>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>

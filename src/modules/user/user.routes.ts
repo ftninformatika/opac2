@@ -8,6 +8,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { ShelfPage } from './pages/shelf/shelf.page';
 import { LoginPage } from './pages/login/login.page';
 import { Routes } from '@angular/router';
+import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 
 export const UserRoutes: Routes = [
   {
@@ -27,6 +28,11 @@ export const UserRoutes: Routes = [
   {
     path: 'history',
     component: HistoryPage,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'active-lendings',
+    component: ActiveLendingsPage,
     canActivate: [AuthGuard]
   },
   {

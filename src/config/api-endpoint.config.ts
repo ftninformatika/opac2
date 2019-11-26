@@ -14,7 +14,8 @@ export class ApiEndpointConfig {
       addToShelf: `${ApiEndpointConfig.Origin}/library_members/add_to_shelf`,
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`,
-      getLendingHistory: `${ApiEndpointConfig.Origin}/members/lending_history`
+      getLendingHistory: `${ApiEndpointConfig.Origin}/members/lending_history`,
+      getActiveLendings: `${ApiEndpointConfig.Origin}/members/active_lendings`
     },
     admin: {
       createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,

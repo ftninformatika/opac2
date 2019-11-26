@@ -17,12 +17,6 @@ export class SearchService {
   }
 
   public getFilters(pageFilterRequest: IResultPageSearchRequest): Observable<IFiltersRes> {
-    console.log(pageFilterRequest);
     return this._httpClient.post(ApiEndpointConfig.Paths.search.getFilters, pageFilterRequest) as Observable<IFiltersRes>;
   }
-
-  // public getResultFilters(filters: any): Observable<any> {
-  //   return of('asdsa');
-  // }
-
 }

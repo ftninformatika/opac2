@@ -79,6 +79,14 @@ export class UsersService {
       .get(`${ApiEndpointConfig.Paths.user.getLendingHistory}/${memeberNo}`) as Observable<Report[]>;
   }
 
+  public getActiveMemberLendings(memeberNo: string): Observable<Report[]> {
+    return this._httpClient
+      .get(`${ApiEndpointConfig.Paths.user.getActiveLendings}/${memeberNo}`) as Observable<Report[]>;
+  }
+
+  /**
+   *  Changes order in Admin - collections
+   */
   public swapIndexes(fromIndex: number, toIndex: number): Observable<boolean> {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.swapIndexes}?i=${fromIndex}&i1=${toIndex}`) as Observable<boolean>;
   }
