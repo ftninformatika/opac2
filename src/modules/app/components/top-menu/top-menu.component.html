@@ -1,7 +1,7 @@
 <div class="top-menu-wrapper" [hidden]="hidden">
   <header>
-    <mdb-navbar SideClass="navbar navbar-expand-md navbar-dark
-                {{(configState | async)?.libConfig?.navbarColor === undefined ? 'bg-primary' : (configState | async)?.libConfig?.navbarColor}}"
+    <mdb-navbar SideClass="navbar navbar-expand-md
+                white"
                 [containerInside]="false">
       <mdb-navbar-brand>
         <a class="navbar-brand" [routerLink]="'/'">
@@ -12,7 +12,7 @@
       <form class="form-inline waves-light navbar-search-form">
         <div class="md-form my-0 flex-grow-1">
           <input #searchInput
-                 type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field"
+                 type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field search-field"
                  [(ngModel)]="searchText"
                  (input)="getFilteredData()"
                  (ngModelChange)="onChange()"
@@ -39,8 +39,10 @@
       </form>
       <links>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item advanced-search-button">
-            <a class="nav-link waves-light " mdbWavesEffect [routerLink]="['search']"><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</a>
+          <li class="nav-item">
+            <a class="nav-link waves-light advanced-search-button" mdbWavesEffect [routerLink]="['search']">
+              <span><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</span>
+            </a>
           </li>
 <!--          TODO: put change language dropdown-->
 <!--          <button (click)="changeLanguage()">EN</button>-->
@@ -63,7 +65,9 @@
             </div>
           </li>
           <li class="nav-item" *ngIf="(user | async)?.userData == null">
-            <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['user/login']">Пријава<mdb-icon fas icon="sign-in-alt"></mdb-icon></a>
+            <a class="nav-link waves-light sign-in-button" mdbWavesEffect [routerLink]="['user/login']">
+              <mdb-icon fas icon="user-alt"></mdb-icon>Пријава
+            </a>
           </li>
         </ul>
       </links>
