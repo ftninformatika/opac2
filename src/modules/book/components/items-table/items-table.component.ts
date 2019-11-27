@@ -8,9 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
-import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'items-table',
@@ -19,11 +17,11 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemsTableComponent implements OnInit, AfterViewInit {
-  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+export class ItemsTableComponent implements OnInit {
   ItemStatus = ERecordItemStatus;
   @Input() items: RecordItem[];
   public initialItems: RecordItem[];
+  public tmpSearch: RecordItem[];
   public searchTextChanged: Subject<string> = new Subject<string>();
   public isSerial: boolean;
   public selectedLocation: string;
@@ -31,29 +29,34 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.searchTextChanged.pipe(
-      debounceTime(200),
-      distinctUntilChanged()
     ).subscribe(() => {
       this.filterTable();
     });
   }
 
   public filterTable() {
-    console.log(this.initialItems);
     if (!this.searchText || this.searchText === '') {
-      this.items = {...this.initialItems};
+      this.items = [...this.initialItems];
       return;
     }
-    this.items = this.items.filter(i => i.location.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
+    this.tmpSearch = [...this.initialItems];
+    this.tmpSearch = this.tmpSearch.filter(
+      o => {
+        return Object.keys(o).some(k => {
+          if (!o[k]) {
+            return false;
+          }
+          return o[k].toString().toLowerCase().indexOf(this.searchText.toLowerCase()) > -1;
+        });
+      }
+    );
+    this.items = this.tmpSearch;
   }
 
   public ngOnInit() {
-    this.initialItems = {...this.items};
+    this.initialItems = [...this.items];
+    this.tmpSearch = [...this.items];
     this.isSerial = this.initialItems && this.initialItems[0].serial;
-    console.log(this.isSerial);
-  }
-
-  public ngAfterViewInit(): void {
   }
 
 }
