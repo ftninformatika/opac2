@@ -1,10 +1,8 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';

@@ -77,6 +77,16 @@ export class UserState {
   }
 
   @Selector()
+  public static getActiveSigning(state: IUserStateModel) {
+   if (!state.userData || !state.userData.signings || state.userData.signings.length === 0) {
+     return null;
+   }
+   const nowTime = new Date().getTime();
+   const activeSigning = state.userData.signings.find(si => (si.untilDate && new Date(si.untilDate).getTime() > nowTime));
+   return activeSigning;
+  }
+
+  @Selector()
   public static token(state: IUserStateModel) { return state.accessToken; }
 
   @Selector()

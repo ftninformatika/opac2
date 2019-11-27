@@ -9,6 +9,12 @@
           <div class="row">
             <div class="col-md-4">
               <div class="md-form">
+                <input placeholder="{{formatedSigningUntil ? ('Активна до:       ' + formatedSigningUntil ) : 'Истекла'}}" [disabled]='true' type="text" id="form0" class="form-control">
+                <label class="active disabled" for="form0">Статус чланарине</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="md-form">
                 <input placeholder="{{(userState | async)?.userData?.email}}" [disabled]='true' type="text" id="form11" class="form-control">
                 <label class="active disabled" for="form11">Email</label>
               </div>
