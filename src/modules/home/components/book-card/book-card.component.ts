@@ -14,6 +14,7 @@ import { MetaService } from '@ngx-meta/core';
 export class BookCardComponent implements OnInit {
 
   @Input() book: Book;
+  @Input() withButtonsAndInfo: boolean;
   private readonly _router: Router;
   private readonly _store: Store;
   private readonly _metaService: MetaService;

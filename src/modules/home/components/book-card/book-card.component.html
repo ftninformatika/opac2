@@ -1,38 +1,40 @@
-<div class="book-card2-container-wrapper view overlay " xmlns="http://www.w3.org/1999/html">
-  <a (click)="gotoBook(book._id);">
-    <img class="img-fluid slideInRight"
-         [lazyLoad]="book.imageUrl"
-         [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
-         offset="100"
-         alt="{{book.title}}"
-         *ngIf="book.imageUrl">
-    <div class="pattern6 waves-effect waves-light rgba-blue-strong no-image-container" *ngIf="!book.imageUrl">
-      <h2 class="book-title black-text" >
-        <u><b>{{book.title}}</b></u>
-      </h2>
-      <h3 class="book-authors black-text" >
-        <span *ngFor="let a of book.authors">
-          <i><u>{{a}}</u></i><br>
-        </span>
-      </h3>
-      <p class="book-pub-info">
-        <span class="black-text">{{book.publisher}}</span>,
-        <span class="black-text"> {{book.publishYear}}</span>
-      </p>
-    </div>
-    <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
-      <h2 class="book-title black-text" >
-        <u><b>{{book.title}}</b></u>
-      </h2>
-      <h3 class="book-authors black-text" >
-        <span *ngFor="let a of book.authors">
-          <i><u>{{a}}</u></i><br>
-        </span>
-      </h3>
-      <p class="book-pub-info">
-        <span class="black-text">{{book.publisher}}</span>,
-        <span class="black-text"> {{book.publishYear}}</span>
-      </p>
-    </div>
-  </a>
+<div class="book-card2-container-wrapper">
+  <div class="view overlay " xmlns="http://www.w3.org/1999/html">
+    <a (click)="gotoBook(book._id);">
+      <img class="img-fluid slideInRight"
+           [lazyLoad]="book.imageUrl"
+           [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
+           offset="100"
+           alt="{{book.title}}"
+           *ngIf="book.imageUrl">
+      <div class="pattern6 waves-effect waves-light rgba-blue-strong no-image-container" *ngIf="!book.imageUrl">
+        <h2 class="book-title black-text" >
+          <u><b>{{book.title}}</b></u>
+        </h2>
+        <h3 class="book-authors black-text" >
+          <span *ngFor="let a of book.authors">
+            <i><u>{{a}}</u></i><br>
+          </span>
+        </h3>
+        <p class="book-pub-info">
+          <span class="black-text">{{book.publisher}}</span>,
+          <span class="black-text"> {{book.publishYear}}</span>
+        </p>
+      </div>
+      <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
+        <h2 class="book-title black-text" >
+          <u><b>{{book.title}}</b></u>
+        </h2>
+        <h3 class="book-authors black-text" >
+          <span *ngFor="let a of book.authors">
+            <i><u>{{a}}</u></i><br>
+          </span>
+        </h3>
+        <p class="book-pub-info">
+          <span class="black-text">{{book.publisher}}</span>,
+          <span class="black-text"> {{book.publishYear}}</span>
+        </p>
+      </div>
+    </a>
+  </div>
 </div>
