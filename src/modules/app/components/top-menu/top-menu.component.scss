@@ -4,7 +4,7 @@
     //width: 1920px;
     height: 96px !important;
   }
-
+  //TODO s: center align search input, smaller, thinner search icon, breakpoints from 1024width to ...
   .navbar-brand {
     width: 488px;
     height: 96px;
@@ -23,7 +23,7 @@
 
   .search-field {
     width: 400px;
-    line-height: 96px;
+    line-height: 0px;
     height: 48px;
     padding: 0 16px 0 48px;
     border: 1px solid #e0e0e0 !important;
@@ -34,6 +34,33 @@
     font-size: 16px;
     color: #9e9e9e;
     text-decoration: none solid rgb(158, 158, 158);
+  }
+
+  .search-icon {
+    width: 12px;
+    height: 12px;
+    fill: #9e9e9e;
+    line-height: 48px;
+    padding-left: 10px;
+    color: #9e9e9e;
+  }
+
+  .mdb-autocomplete-clear {
+    display: none !important;
+  }
+
+  .search-field:focus {
+    width: 400px;
+    height: 48px;
+    padding: 0px 16px 0px 48px;
+    border: 1px solid #00b2d1 !important;
+    border-radius: 4px;
+    background-color: #ffffff;
+    background-size: cover;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #212121;
+    text-decoration: none solid rgb(33, 33, 33) !important;
   }
 
   .ac-field {
