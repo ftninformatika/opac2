@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit, ViewEn
 import { Book } from '../../../../models/book.model';
 
 export enum DEVICE_WIDTH_BREAKPOINTS {
-  _8_BOOKS = 1250,
-  _7_BOOKS = 1200,
-  _6_BOOKS = 950,
-  _5_BOOKS = 850,
-  _4_BOOKS = 716,
-  _3_BOOKS = 580,
-  _2_BOOKS = 450
+  _8_BOOKS = 1890,
+  _7_BOOKS = 1680,
+  _6_BOOKS = 1456,
+  _5_BOOKS = 1240,
+  _4_BOOKS = 1014,
+  _3_BOOKS = 796,
+  _2_BOOKS = 570
 }
 
 export enum ANIMATE_DIRECTION {
@@ -30,6 +30,7 @@ export class CollectionCarouselComponent implements OnInit {
   public chunkSize = 7;
   public activeSlideIndex = 0;
   public lastSlide = 0;
+  public flexStartLayout: boolean;
   public animateDirection;
 
   public ngOnInit(): void {
@@ -58,6 +59,7 @@ export class CollectionCarouselComponent implements OnInit {
     this.slides = this.chunk(this.books, this.chunkSize);
     this.lastSlide = this.slides.length - 1;
     if (this.lastSlide < this.activeSlideIndex) { this.activeSlideIndex = this.lastSlide; }
+    this.flexStartLayout = ((this.books.length < 8) || (this.activeSlideIndex === this.lastSlide));
   }
 
   public chunk(arr, chunkSize) {
@@ -71,6 +73,7 @@ export class CollectionCarouselComponent implements OnInit {
   public changeSlide(index: number) {
     this.animateDirection = index <= this.activeSlideIndex ? ANIMATE_DIRECTION.RIGHT : ANIMATE_DIRECTION.LEFT;
     this.activeSlideIndex = index;
+    this.onWindowResize();
   }
 
   public previousSlide() {
@@ -81,5 +84,6 @@ export class CollectionCarouselComponent implements OnInit {
   public nextSlide() {
     if (this.activeSlideIndex < this.lastSlide) { this.activeSlideIndex++; }
     this.animateDirection = ANIMATE_DIRECTION.LEFT;
+    this.onWindowResize();
   }
 }

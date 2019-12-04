@@ -1,45 +1,64 @@
 <div class="book-card2-container-wrapper">
-  <div class="view overlay " xmlns="http://www.w3.org/1999/html">
-    <a (click)="gotoBook(book._id);">
-      <img class="img-fluid slideInRight"
-           [lazyLoad]="book.imageUrl"
-           [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
-           offset="100"
-           alt="{{book.title}}"
-           *ngIf="book.imageUrl">
-      <div class="pattern6 waves-effect waves-light rgba-blue-strong no-image-container" *ngIf="!book.imageUrl">
-        <h2 class="book-title black-text" >
-          <u><b>{{book.title}}</b></u>
-        </h2>
-        <h3 class="book-authors black-text" >
-          <span *ngFor="let a of book.authors">
-            <i><u>{{a}}</u></i><br>
-          </span>
-        </h3>
-        <p class="book-pub-info">
-          <span class="black-text">{{book.publisher}}</span>,
-          <span class="black-text"> {{book.publishYear}}</span>
-        </p>
-      </div>
-      <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
-        <h2 class="book-title black-text" >
-          <u><b>{{book.title}}</b></u>
-        </h2>
-        <h3 class="book-authors black-text" >
-          <span *ngFor="let a of book.authors">
-            <i><u>{{a}}</u></i><br>
-          </span>
-        </h3>
-        <p class="book-pub-info">
-          <span class="black-text">{{book.publisher}}</span>,
-          <span class="black-text"> {{book.publishYear}}</span>
-        </p>
-      </div>
-    </a>
-  </div>
-  <div>
+  <div class="cover-btn-wrapper">
+    <div class="view overlay " xmlns="http://www.w3.org/1999/html">
+      <a (click)="gotoBook(book._id);">
+        <img class="img-fluid slideInRight"
+             [lazyLoad]="book.imageUrl"
+             [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
+             offset="100"
+             alt="{{book.title}}"
+             *ngIf="book.imageUrl">
+        <div class="pattern6 waves-effect waves-light rgba-blue-strong no-image-container" *ngIf="!book.imageUrl">
+          <h2 class="book-title black-text" >
+            <u><b>{{book.title}}</b></u>
+          </h2>
+          <h3 class="book-authors black-text" >
+            <span *ngFor="let a of book.authors">
+              <i><u>{{a}}</u></i><br>
+            </span>
+          </h3>
+          <p class="book-pub-info">
+            <span class="black-text">{{book.publisher}}</span>,
+            <span class="black-text"> {{book.publishYear}}</span>
+          </p>
+        </div>
+        <div class="mask pattern6 waves-effect waves-light rgba-white-strong overlay-content">
+          <h2 class="book-title black-text" >
+            <u><b>{{book.title}}</b></u>
+          </h2>
+          <h3 class="book-authors black-text" >
+            <span *ngFor="let a of book.authors">
+              <i><u>{{a}}</u></i><br>
+            </span>
+          </h3>
+          <p class="book-pub-info">
+            <span class="black-text">{{book.publisher}}</span>,
+            <span class="black-text"> {{book.publishYear}}</span>
+          </p>
+        </div>
+      </a>
+    </div>
+    <div>
     <span class="title-below" [mdbTooltip]="book.title.length > 20 ? book.title : null">{{book.title | shortenString:20}}</span><br/>
     <span class="author-below" [mdbTooltip]="book.authors && book.authors[0] && book.authors[0].length < 20 ? book.authors[0] : null">
       {{(book.authors && book.authors.length > 0 ? book.authors[0] : '') | shortenString: 20}}</span>
+  </div>
+  </div>
+  <div class="btns ml-2 mr-4">
+    <a  [mdbTooltip]="'Резервиши'">
+      <div class="reserve">
+        <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
+      </div>
+    </a>
+    <a  [mdbTooltip]="'Стави на полицу'">
+      <div class="shelf mt-2">
+        <mdb-icon fas icon="list-ul" class=""></mdb-icon>
+      </div>
+    </a>
+    <a  [mdbTooltip]="'Додај у колекцију'">
+      <div class="collection mt-2">
+        <mdb-icon fas icon="folder-plus" class="text-white"></mdb-icon>
+      </div>
+    </a>
   </div>
 </div>
