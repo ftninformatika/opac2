@@ -4,7 +4,7 @@
       <h2>{{title}}</h2>
     </div>
     <div>
-      <div *ngIf="slides.length > 1" class="p-1 d-flex flex-row justify-content-center">
+      <div *ngIf="slides.length > 1 && slides.length < 6" class="p-1 d-flex flex-row justify-content-center">
         <div *ngFor="let item of slides; let i = index" class="selected-slide" (click)="changeSlide(i)">
           <div class="{{activeSlideIndex === i ? 'active-slide' : 'inactive-slide'}}">
             <a>{{i}}</a>
@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="carousel-content carousel-background d-flex flex-row justify-content-between" (swiperight)="previousSlide()" (swipeleft)="nextSlide()">
-    <div class="arrow-container {{activeSlideIndex === 0 ? 'arrow-my-disabled' : ''}}" *ngIf="books && books.length > 8">
+    <div class="arrow-container {{activeSlideIndex === 0 ? 'arrow-my-disabled' : ''}}" *ngIf="slides && slides.length > 1">
       <a mdbBtn floating="true" size="48" class="arrow-my" mdbWavesEffect [ngClass]="activeSlideIndex == 0 ? 'inactive' : ''" (click)="previousSlide()">
         <mdb-icon fas icon="angle-left"></mdb-icon>
       </a>
@@ -25,7 +25,7 @@
         <book-card [book]="b" [withButtonsAndInfo]="true"></book-card>
       </div>
     </div>
-    <div class="arrow-container2 {{activeSlideIndex === lastSlide ? 'arrow-my-disabled' : ''}}" *ngIf="books && books.length > 8">
+    <div class="arrow-container2 {{activeSlideIndex === lastSlide ? 'arrow-my-disabled' : ''}}" *ngIf="slides && slides.length > 1">
       <a mdbBtn floating="true" size="48" class="arrow-my" mdbWavesEffect (click)="nextSlide()">
         <mdb-icon fas icon="angle-right"></mdb-icon>
       </a>
