@@ -4,7 +4,7 @@
       <a (click)="gotoBook(book._id);">
         <img class="img-fluid slideInRight"
              [lazyLoad]="book.imageUrl"
-             [defaultImage]="'../../../../assets/nocover.jpg'"
+             [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
              offset="100"
              alt="{{book.title}}"
              *ngIf="book.imageUrl">
