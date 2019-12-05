@@ -16,7 +16,7 @@ export class BookResultBrief implements OnInit {
   private readonly _store: Store;
   public authors: string;
   public publishInfo: string;
-  public errImg;
+  public errImg
   public booksOnShelf: string[];
   public lib: string;
   public isAdmin: boolean;
@@ -25,7 +25,7 @@ export class BookResultBrief implements OnInit {
     this._store = store;
     this.authors = '';
     this.publishInfo = '';
-    this.errImg = BookCoverUtils.getBlankBookCover();
+    this.errImg = '../../../../assets/book/nocover.jpg';
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
   }

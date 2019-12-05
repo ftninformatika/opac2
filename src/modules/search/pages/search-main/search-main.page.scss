@@ -1,2 +1,19 @@
 .search-main-page-wrapper {
+  margin-top: 30px;
+  .search-button {
+    width: 136px;
+    height: 48px;
+    border-radius: 4px;
+    background-color: #00b2d1;
+    background-size: cover;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-align: center;
+    border: none !important;
+    &:hover{
+      background-color: #009cb8;
+    }
+  }
 }

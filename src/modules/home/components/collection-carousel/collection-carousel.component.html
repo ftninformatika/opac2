@@ -7,7 +7,7 @@
       <div *ngIf="slides.length > 1 && slides.length < 6" class="p-1 d-flex flex-row justify-content-center">
         <div *ngFor="let item of slides; let i = index" class="selected-slide" (click)="changeSlide(i)">
           <div class="{{activeSlideIndex === i ? 'active-slide' : 'inactive-slide'}}">
-            <a>{{i}}</a>
+            <a>{{i + 1}}</a>
           </div>
         </div>
       </div>

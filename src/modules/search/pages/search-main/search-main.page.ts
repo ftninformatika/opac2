@@ -48,7 +48,7 @@ export class SearchMainPage implements OnInit {
   public ngOnInit() {
     this.searchModel = {...ISearchModelInitial};
     this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
-    this.operatorList = ['AND', 'OR', 'NOT'].map(elem => ({value: elem, label: elem}));
+    this.operatorList = [{value: 'AND', label: 'И'}, {value: 'OR', label: 'ИЛИ'}, {value: 'NOT', label: 'НЕ'}];
     this.inputSm$ = this._activatedRoute.paramMap.pipe( map(() => window.history.state as ISearchModel));
     this.initSearchForm();
   }

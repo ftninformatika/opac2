@@ -19,7 +19,8 @@
   }
 
   .search-field {
-    width: 400px;
+    min-width: 350px;
+    width: 500px !important;
     line-height: 0px;
     height: 48px;
     padding: 0 16px 0 48px;
