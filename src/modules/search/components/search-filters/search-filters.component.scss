@@ -1,7 +1,53 @@
 .search-filters-wrapper {
-  .card {
-    background: transparent!important;
+  font-family: Roboto, serif;
+  width: 320px !important;
+  margin-top: 12px;
+  .filters-title > h1 {
+    margin-left: 5px;
+    font-size: 20px;
   }
+  .card {
+    font-size: 16px !important;
+    .form-check-label {
+      font-weight: 500 !important;
+      &:before {
+        border-radius: 3px !important;
+      }
+
+    }
+    .card-header {
+      color: #212121 !important;
+      text-decoration: none solid rgb(33, 33, 33) !important;
+    }
+
+    mdb-accordion-item > card {
+      //width: 320px;
+      //height: 400px;
+      padding: 0px 0px 0px 16px !important;
+      border: 1px solid #e0e0e0 !important;
+      border-radius: 4px !important;
+      background-color: #fff !important;
+      background-size: cover !important;
+    }
+  }
+
+  .form-check-input[type=checkbox]:checked+label:before, label.btn input[type=checkbox]:checked+label:before {
+    border-right: 3px solid #00b2d1 !important;
+    border-bottom: 3px solid #00b2d1 !important;
+  }
+
+  .more-filter-values {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #00b2d1;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+
+
   .more-filters-modal {
     //background: white;
     //position: absolute;

@@ -8,6 +8,9 @@
         </div>
       </div>
       <ng-container *ngIf="filtersLoaded">
+        <div class="filters-title">
+          <h1>Филтери</h1>
+        </div>
         <mdb-accordion [multiple]="true">
           <mdb-accordion-item [collapsed]="false" *ngIf="filters.locations && filters.locations.length > 0">
             <mdb-accordion-item-head>Локација </mdb-accordion-item-head>
@@ -17,13 +20,13 @@
                   [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                   (change)="selectionChanged(i.filter, 0)"
                 >
-                  {{(i.filter.label | shortenString:17) + '(' + i.filter.count + ')'}}
+                  {{(i.filter.label | shortenString:25) + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="subLocationsExist">
-                  <span style="color: blue" (click)="moreFilters(filters.locations, 'Локације', 0);basicModal.show();">
-                    Прикажи са подлокацијама
+                <div *ngIf="subLocationsExist" class="more-filter-values">
+                  <span (click)="moreFilters(filters.locations, 'Локације', 0);basicModal.show();">
+                    Прикажи по библиотекама
                   </span>
-                </a>
+                </div>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -48,13 +51,13 @@
                 <mdb-checkbox *ngFor="let i of filters.authors | slice:0:15" formControlName="{{i.filter.value}}"
                               [checked]="i.filter.checked" [(ngModel)]="i.filter.checked"
                               (change)="selectionChanged(i.filter, 2)">
-                  {{(i.filter.label | shortenString: 17) + ' (' + i.filter.count + ')'}}
+                  {{(i.filter.label | shortenString: 25) + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.authors, 'Аутори', 2);basicModal.show();">
-                  <span style="color: blue">
+                <div *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.authors, 'Аутори', 2);basicModal.show();" class="more-filter-values">
+                  <span>
                     Прикажи све...
                   </span>
-                </a>
+                </div>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -81,11 +84,11 @@
                               (change)="selectionChanged(i.filter, 4)">
                   {{i.filter.label + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.pubYears, 'Година', 4);basicModal.show();">
-                  <span style="color: blue">
+                <div *ngIf="filters.pubYears.length > 15" (click)="moreFilters(filters.pubYears, 'Година', 4);basicModal.show();" class="more-filter-values">
+                  <span>
                     Прикажи све...
                   </span>
-                </a>
+                </div>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -99,11 +102,11 @@
                               (change)="selectionChanged(i.filter, 6)" [mdbTooltip]="i.filter.label + ' (' + i.filter.count + ')'">
                   {{(i.filter.label | shortenString:25) + ' (' + i.filter.count + ')'}}
                 </mdb-checkbox>
-                <a *ngIf="filters.subjects.length > 15" (click)="moreFilters(filters.subjects, 'Предмет', 6);basicModal.show();">
-                  <span style="color: blue">
+                <div *ngIf="filters.subjects.length > 15" (click)="moreFilters(filters.subjects, 'Предмет', 6);basicModal.show();" class="more-filter-values">
+                  <span>
                     Прикажи све...
                   </span>
-                </a>
+                </div>
               </form>
             </mdb-accordion-item-body>
           </mdb-accordion-item>

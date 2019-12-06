@@ -59,6 +59,9 @@ export class SearchTopNavComponent implements OnChanges {
       case ESortType.SORT_TITLE: retVal = 'Наслов'; break;
       default: return '';
     }
+    if (retVal !== '') {
+      retVal += this.ascending ? ' (растуће)' : ' (силазно)';
+    }
     return retVal;
   }
 

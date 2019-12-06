@@ -3,13 +3,29 @@
   ////width: 98%;
   //margin-bottom: 15px;
   //background: red;
+  nav.navbar {
+    //height: 48px;
+    line-height: 48px;
+    padding: 0 0 0 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    background-size: cover;
+    font-family: Roboto, serif;
+    font-size: 14px;
+    color: #212121;
+    text-decoration: none solid rgb(33, 33, 33);
+    font-weight: 400;
+    box-shadow: none;
+  }
+
   .chip {
-    background-color: #2199e8;
+    background-color: #00b2d1;
     color: white;
     margin-bottom: 0;
   }
 
   .chip:hover {
-    background-color: cornflowerblue;
+    background-color: #009cb8;
   }
 }
