@@ -42,16 +42,17 @@
   }
 
   .sort-cmb {
+    position: relative;
     margin-top: 8px;
     width: 216px;
     height: 40px;
     line-height: 40px;
-    padding: 0px 16px;
+    padding: 0 16px;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
     background-color: #fff;
     background-size: cover;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-weight: 400;
     color: #212121;
@@ -64,7 +65,8 @@
       .label-sort {color: #009cb8; }
     }
     .caret-pulled-right {
-      margin-left: 42px !important;
+      position: absolute;
+      right: 10px;
     }
   }
 
@@ -76,6 +78,7 @@
   }
 
   .page-size-cmb {
+    position: relative;
     margin-top: 2px;
     width: 120px;
     height: 40px;
@@ -96,6 +99,10 @@
     }
     &:hover {
       cursor: pointer;
+    }
+    .caret-pulled-right {
+      position: absolute;
+      right: 10px;
     }
   }
 
