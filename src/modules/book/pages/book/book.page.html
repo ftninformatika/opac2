@@ -50,8 +50,11 @@
         <a class="icons-sm fb-ic mr-2" (click)="share('fb')"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
         <a class="icons-sm li-ic mr-2" (click)="share('li')"><mdb-icon fab icon="linkedin"></mdb-icon></a>
         <a class="icons-sm tw-ic mr-2" (click)="share('tw')"><mdb-icon fab icon="twitter"></mdb-icon></a>
-<!--        TODO-->
-        <a class="icons-sm email-ic" ><mdb-icon fas icon="envelope"></mdb-icon></a>
+        <a class="icons-sm email-ic"
+           href="mailto: ?body={{'Погледај књигу:' + (book.title ? book.title : 'запис нема наслов') + ', на БИСИС5 онлајн каталогу. Линк: ' + recordURL}}
+           &subject={{(book.title ? book.title : 'запис нема наслов') + ' - БИСИС5 онлајн каталог'}}">
+          <mdb-icon fas icon="envelope"></mdb-icon>
+        </a>
       </div>
       <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>
       <div class="d-flex flex-column">

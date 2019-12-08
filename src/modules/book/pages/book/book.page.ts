@@ -8,8 +8,8 @@ import { UserState } from '../../../core/states/user/user.state';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { RecordUtils } from '../../../../utils/record-utils';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
 import { MetaService } from '@ngx-meta/core';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'book-page',
@@ -25,11 +25,12 @@ export class BookPage implements OnInit {
   private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
   private RecordFormatType = ERecordFormatType;
+  private showLocations: boolean;
   public book: Book;
   public errImgUrl: string;
   public lib: string;
   public isAdmin: boolean;
-  private showLocations: boolean;
+  public recordURL;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, store: Store, metaService: MetaService, scrollToService: ScrollToService) {
@@ -60,6 +61,7 @@ export class BookPage implements OnInit {
             if (!data) {
               await this._router.navigate(['/error/not-found']);
             } else {
+              this.recordURL = this.getRecordUrl();
               this._scrollToService.scrollTo({offset: 0});
               this.book = data;
               this.setMetaTags();
@@ -78,22 +80,21 @@ export class BookPage implements OnInit {
   public share(socialNetwork: string) {
     switch (socialNetwork) {
       case 'fb': {
-          // TODO: hardcoded - move to config
-          const url = 'http://www.facebook.com/sharer.php?u=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+          const url = 'http://www.facebook.com/sharer.php?u=' +  this.recordURL;
           const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
           if (window.focus) {
             newWindow.focus();
           }
       }          break;
       case 'tw': {
-        const url = 'https://twitter.com/intent/tweet?text=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+        const url = 'https://twitter.com/intent/tweet?text=' + this.recordURL;
         const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
         if (window.focus) {
           newWindow.focus();
         }
       }          break;
       case 'li': {
-        const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + 'http://opac2.herokuapp.com' + window.location.pathname;
+        const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + this.recordURL;
         const newWindow = window.open(url, 'name', 'height=500,width=520,top=200,left=300,resizable');
         if (window.focus) {
           newWindow.focus();
@@ -101,6 +102,11 @@ export class BookPage implements OnInit {
       }          break;
       default: break;
     }
+  }
+
+  // TODO: hardcoded - move to config
+  public getRecordUrl(): string {
+    return 'http://opac2.herokuapp.com' + window.location.pathname;
   }
 
   private setMetaTags() {
