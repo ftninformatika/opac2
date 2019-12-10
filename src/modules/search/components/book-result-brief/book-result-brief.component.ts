@@ -12,6 +12,7 @@ import { Store } from '@ngxs/store';
 })
 export class BookResultBrief implements OnInit {
   @Input() book: Book;
+  @Input() checked: boolean;
   @Output() shareChecked = new EventEmitter<string>();
   private readonly _store: Store;
   public authors: string;

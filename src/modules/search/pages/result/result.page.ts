@@ -1,9 +1,14 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   IResultPageOptions,
-  IResultPageOptionsInitial,
-  IResultPageSearchRequest
+  IResultPageOptionsInitial, IResultPageSearchRequest
 } from '../../../../models/search/result-page-options.model';
+import {
+  AddRemoveIdToSelectedAction,
+  AddMultipleIdsToSelected,
+  AppOptionsState, IAppOptionsState,
+  ResetToDefaultAction
+} from '../../../core/states/app-options/app-options.state';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { ConfigState } from '../../../core/states/config/config.state';
@@ -19,8 +24,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
-import { Store } from '@ngxs/store';
-import { PreviewSharedPage } from '../preview-shared/preview-shared.page';
+import {Select, Store} from '@ngxs/store';
+import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -37,12 +42,13 @@ export enum EDeviceWidth {
 export class ResultPage implements OnInit, OnDestroy {
 
   public static readonly PagePath = 'search/result?';
+  @Select(AppOptionsState) appOptionsState;
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _searchService: SearchService;
-  private readonly _router: Router;
   private readonly _toastService: ToastService;
   private readonly _location: Location;
+  private readonly _router: Router;
   private readonly _store: Store;
 
   public searchModel: ISearchModel;
@@ -71,7 +77,8 @@ export class ResultPage implements OnInit, OnDestroy {
     this._store = store;
     // TODO: consider moving this and some more possible app settings to Redux State
     this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
-    this.selectedRecordsIds = [];
+    // this.selectedRecordsIds = [];
+    this.shareSelectedLink = null;
     this.initValues();
   }
 
@@ -124,21 +131,20 @@ export class ResultPage implements OnInit, OnDestroy {
     this.onWindowResize();
   }
 
-  // TODO: make selected records count, preview and clear function, for users to be able to select records from multiple searches
-  // Put list in state or directly in browser local-storage
-  public addRemoveIdToShareList(recordId: string) {
-    if (!recordId) {
-      return;
-    }
-    const index = this.selectedRecordsIds.indexOf(recordId);
-    if (index === -1) {
-      this.selectedRecordsIds.push(recordId);
-    } else {
-      this.selectedRecordsIds.splice(index, 1);
-    }
-    this.shareSelectedLink = this.getShareLink();
+  public async selectAll() {
+    const recIds = this.searchResult.map(b => b._id);
+    await this._store.dispatch(new AddMultipleIdsToSelected(recIds));
   }
 
+  public async clearSelection() {
+    await this._store.dispatch(new ResetToDefaultAction()).toPromise();
+  }
+
+  public async addRemoveIdToShareList(recordId: string) {
+    await this._store.dispatch(new AddRemoveIdToSelectedAction(recordId)).toPromise();
+  }
+
+  // TODO: move this to utils
   public copyLinkToClipboard(inputElement) {
     if (!inputElement) {
       return;
@@ -149,15 +155,24 @@ export class ResultPage implements OnInit, OnDestroy {
     this._toastService.success('Линк за дељење је смештен у клипборд');
   }
 
-  public getShareLink(): string {
-    const req: IResultPageSearchRequest = {
-      options: this.pageOptions,
-      searchModel: null,
-      recordsIds: this.selectedRecordsIds
-    };
-    // TODO: hardcoded, to config...
-    const encrLink = `http://localhost:4200/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
-    return encrLink;
+  public generateShareLink(): string {
+    try {
+      const selectedRecIds = this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords);
+      if (!selectedRecIds || selectedRecIds.length === 0) {
+        return null;
+      }
+      const req: IResultPageSearchRequest = {
+        searchModel: null,
+        options: this.pageOptions,
+        recordsIds: selectedRecIds
+      };
+      req.options.lib = this.lib;
+      this.shareSelectedLink =
+        `http://localhost:4200/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
+      return this.shareSelectedLink;
+    } catch (e) {
+      return null;
+    }
   }
 
   private async foreignSearch(params: ParamMap) {

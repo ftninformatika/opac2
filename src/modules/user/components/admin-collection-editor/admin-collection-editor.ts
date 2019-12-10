@@ -26,7 +26,6 @@ export class AdminCollectionEditor implements OnDestroy {
 
   public ngOnDestroy(): void {
     if (this.touched) {
-      console.log('touched');
       return;
     }
   }

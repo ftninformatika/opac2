@@ -27,9 +27,24 @@
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
+<!--        TODO: Fix layout-->
         <div class="options-nav">
+            <div (click)="clearSelection()" style="align-self: flex-start"
+                 [mdbTooltip]="'Поништи све селектоване записе'" class="share-btn">
+              <mdb-icon fas icon="times"></mdb-icon>
+            </div>
+          <a  style="align-self: flex-start">
+            <div (click)="selectAll()"
+                 [mdbTooltip]="'Одабери све записе ове странице'" class="share-btn">
+              <mdb-icon fas icon="check"></mdb-icon>
+            </div>
+          </a>
+          <a  style="align-self: flex-start" (click)="_router.navigate(['/search/preview-books'])">
+            <div>Одабрани записи ({{(appOptionsState | async)?.selectedShareRecords.length}})</div>
+          </a>
           <a>
-            <div (click)="selectedRecordsIds && selectedRecordsIds.length > 0 ? shareLinkModal.show() : _toastService.warning('Ни једна књига није одабрана')"
+            <div (click)="generateShareLink() ? shareLinkModal.show() :
+             _toastService.warning('Ни једна књига није одабрана')"
                  [mdbTooltip]="'Поделите одабране записе'" class="share-btn">
               <mdb-icon fas icon="share-alt"></mdb-icon>
             </div>
@@ -59,7 +74,9 @@
           currentPage: pageOptions.currentPage,
           totalItems: resultPage.totalElements}"
                     class="mb-3">
-              <book-result-brief [book]= "book" (shareChecked)="addRemoveIdToShareList($event)"></book-result-brief>
+              <book-result-brief [book]= "book"
+                                 [checked] = "(appOptionsState | async)?.selectedShareRecords.indexOf(book._id) > -1"
+                                 (shareChecked)="addRemoveIdToShareList($event)"></book-result-brief>
           </mdb-card>
         </ng-container>
         <ng-container *ngIf="tableView">
