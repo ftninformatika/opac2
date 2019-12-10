@@ -55,6 +55,7 @@ export class SearchUtil {
     }
   }
 
+  // TODO: extend this
   public static getYouSearchedStringFromSearchModel(sm: ISearchModel): string {
     let retVal = '';
     if (!sm) {

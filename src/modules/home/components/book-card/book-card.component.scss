@@ -42,7 +42,10 @@
   }
 
   .no-image-container {
-    height: 192px;
+    width: 130px;
+    height: 200px;
+    max-width: 131px;
+    border-radius: 3px;
   }
 
   .book-title {

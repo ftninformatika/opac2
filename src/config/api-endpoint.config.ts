@@ -27,6 +27,7 @@ export class ApiEndpointConfig {
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,
+      byIds: `${ApiEndpointConfig.Origin}/opac/search/by_ids`,
       autocomplete: `${ApiEndpointConfig.Origin}/opac/autocomplete`,
       getFilters: `${ApiEndpointConfig.Origin}/opac/search/get_filters`
     },

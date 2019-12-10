@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { Book } from '../../../../models/book.model';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { IResultPageOptions } from '../../../../models/search/result-page-options.model';
-import { Store } from '@ngxs/store';
 import { ConfigState } from '../../../core/states/config/config.state';
+import { Book } from '../../../../models/book.model';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'result-table-view',

@@ -13,6 +13,7 @@ export interface IResultPageOptions {
 
 export interface IResultPageSearchRequest {
   searchModel?: ISearchModel;
+  recordsIds?: string[];
   options: IResultPageOptions;
 }
 

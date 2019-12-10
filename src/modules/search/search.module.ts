@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { SearchRoutes } from './search.routes';
 import { NgModule } from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
+import { PreviewSharedPage } from './pages/preview-shared/preview-shared.page';
+import { HomeModule } from '../home/home.module';
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import {SharedModule} from '../shared/shared.module';
     CoreModule,
     DropdownModule,
     SharedModule,
-    TableModule
+    TableModule,
+    HomeModule
   ],
   declarations: [
     ResultTableView,
@@ -32,6 +35,7 @@ import {SharedModule} from '../shared/shared.module';
     SearchTopNavComponent,
     SearchFiltersComponent,
     BookResultBrief,
+    PreviewSharedPage,
     SearchMainPage,
     ResultPage
   ]

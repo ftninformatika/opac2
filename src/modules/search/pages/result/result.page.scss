@@ -26,6 +26,33 @@
     }
   }
 
+  .options-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .share-btn {
+    margin-top: 24px;
+    margin-left: auto;
+    line-height: 40px;
+    padding-left: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    background-size: cover;
+    &:hover {
+      background-color: #d6d6d6;
+    }
+    &:active {
+      background-color: #00b2d1;
+      mdb-icon > i {
+        color: white;
+      }
+    }
+  }
+
   .filters-modal-btn {
     margin-top: 5px;
     margin-bottom: 10px;

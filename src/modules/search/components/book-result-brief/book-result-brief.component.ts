@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { BookCoverUtils } from '../../../../utils/book-cover.utils';
+import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ConfigState } from '../../../core/states/config/config.state';
 import { Book } from '../../../../models/book.model';
 import { Store } from '@ngxs/store';
-import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
-import {ConfigState} from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'book-result-brief',
@@ -13,10 +12,11 @@ import {ConfigState} from '../../../core/states/config/config.state';
 })
 export class BookResultBrief implements OnInit {
   @Input() book: Book;
+  @Output() shareChecked = new EventEmitter<string>();
   private readonly _store: Store;
   public authors: string;
   public publishInfo: string;
-  public errImg
+  public errImg;
   public booksOnShelf: string[];
   public lib: string;
   public isAdmin: boolean;
@@ -34,6 +34,10 @@ export class BookResultBrief implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
     this.packAuthors();
     this.packPublisherInfo();
+  }
+
+  public shareCheck(recordId: string) {
+    this.shareChecked.emit(recordId);
   }
 
   private packAuthors() {

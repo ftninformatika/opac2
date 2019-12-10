@@ -27,14 +27,22 @@
       <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
-        <search-top-nav [pageSize]="pageOptions.pageSize"
-                        (pageSizeChanged)="onPageSizeChange($event)"
-                        [sort]="pageOptions.sort"
-                        (sortChanged)="onSortChanged($event)"
-                        [tableViewType]="tableView"
-                        (viewTypeChanged)="onViewTypeChanged($event)"
-        >
-        </search-top-nav>
+        <div class="options-nav">
+          <a>
+            <div (click)="selectedRecordsIds && selectedRecordsIds.length > 0 ? shareLinkModal.show() : _toastService.warning('Ни једна књига није одабрана')"
+                 [mdbTooltip]="'Поделите одабране записе'" class="share-btn">
+              <mdb-icon fas icon="share-alt"></mdb-icon>
+            </div>
+          </a>
+          <search-top-nav [pageSize]="pageOptions.pageSize"
+                          (pageSizeChanged)="onPageSizeChange($event)"
+                          [sort]="pageOptions.sort"
+                          (sortChanged)="onSortChanged($event)"
+                          [tableViewType]="tableView"
+                          (viewTypeChanged)="onViewTypeChanged($event)"
+          >
+          </search-top-nav>
+        </div>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"
@@ -51,7 +59,7 @@
           currentPage: pageOptions.currentPage,
           totalItems: resultPage.totalElements}"
                     class="mb-3">
-              <book-result-brief [book]= "book"></book-result-brief>
+              <book-result-brief [book]= "book" (shareChecked)="addRemoveIdToShareList($event)"></book-result-brief>
           </mdb-card>
         </ng-container>
         <ng-container *ngIf="tableView">
@@ -72,6 +80,7 @@
         </pagination-controls>
       </ng-container>
     </div>
+
   </div>
   <div mdbModal #filtersModal="mdbModal" style="overflow-y: auto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -91,4 +100,27 @@
       </div>
     </div>
   </div>
+
+  <div mdbModal #shareLinkModal="mdbModal" style="overflow-y: auto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="shareLinkModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Копирајте линк како би сте поделили одабране записе</h4>
+        </div>
+        <div class="modal-body">
+          <div class="md-form md-outline">
+            <input #shareLinkInput id="input-char-counter1" [value]="shareSelectedLink" type="text" class="form-control" (click)="$event.target.select()" mdbInput>
+            <label for="input-char-counter1">Линк</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="info-color-dark" class="waves-light"  mdbWavesEffect (click)="copyLinkToClipboard(shareLinkInput)">Копирај URL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

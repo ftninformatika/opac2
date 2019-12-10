@@ -1,0 +1,7 @@
+<div class="preview-shared-page-wrapper d-flex">
+  <ng-container *ngIf="books && books.length > 0">
+    <div class="book ml-2" *ngFor="let book of books">
+      <book-card [book]="book"></book-card>
+    </div>
+  </ng-container>
+</div>

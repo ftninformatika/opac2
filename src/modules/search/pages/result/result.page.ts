@@ -1,5 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { IResultPageOptions, IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
+import {
+  IResultPageOptions,
+  IResultPageOptionsInitial,
+  IResultPageSearchRequest
+} from '../../../../models/search/result-page-options.model';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { ConfigState } from '../../../core/states/config/config.state';
@@ -16,6 +20,7 @@ import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
+import { PreviewSharedPage } from '../preview-shared/preview-shared.page';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -47,11 +52,13 @@ export class ResultPage implements OnInit, OnDestroy {
   public pageOptions: IResultPageOptions;
   public resultedFilters: IFiltersRes;
   public selectedFilters: ISelectedFilter[];
+  public selectedRecordsIds: string[];
   public filtersLoaded: boolean;
   public searchPageUrl: string;
   public youSearchedText: string;
   public lib: string;
   public tableView: boolean;
+  public shareSelectedLink: string;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
@@ -64,6 +71,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this._store = store;
     // TODO: consider moving this and some more possible app settings to Redux State
     this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
+    this.selectedRecordsIds = [];
     this.initValues();
   }
 
@@ -114,6 +122,42 @@ export class ResultPage implements OnInit, OnDestroy {
         );
       });
     this.onWindowResize();
+  }
+
+  // TODO: make selected records count, preview and clear function, for users to be able to select records from multiple searches
+  // Put list in state or directly in browser local-storage
+  public addRemoveIdToShareList(recordId: string) {
+    if (!recordId) {
+      return;
+    }
+    const index = this.selectedRecordsIds.indexOf(recordId);
+    if (index === -1) {
+      this.selectedRecordsIds.push(recordId);
+    } else {
+      this.selectedRecordsIds.splice(index, 1);
+    }
+    this.shareSelectedLink = this.getShareLink();
+  }
+
+  public copyLinkToClipboard(inputElement) {
+    if (!inputElement) {
+      return;
+    }
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this._toastService.success('Линк за дељење је смештен у клипборд');
+  }
+
+  public getShareLink(): string {
+    const req: IResultPageSearchRequest = {
+      options: this.pageOptions,
+      searchModel: null,
+      recordsIds: this.selectedRecordsIds
+    };
+    // TODO: hardcoded, to config...
+    const encrLink = `http://localhost:4200/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
+    return encrLink;
   }
 
   private async foreignSearch(params: ParamMap) {
