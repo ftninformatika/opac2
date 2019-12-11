@@ -39,6 +39,7 @@ export interface RecordItem {
   locCode: string;
   signature: string;
   status: ERecordItemStatus;
+  googleMapLocationURL?: string;
   invNum: string;
   volume?: string;
   year?: string;

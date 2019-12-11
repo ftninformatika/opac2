@@ -8,19 +8,47 @@
   <table *ngIf="items && items.length > 0" mdbTable class="table table-striped table-responsive-md table-responsive-sm" bordered="true">
     <thead class="blue white-text">
     <tr>
-      <th scope="col">Локација</th>
-      <th scope="col">Сигнатура</th>
-      <th scope="col">Статус</th>
-      <th scope="col">Инвентарни број</th>
-      <th scope="col" *ngIf="isSerial">Годиште</th>
-      <th scope="col" *ngIf="isSerial">Година</th>
-      <th scope="col" *ngIf="isSerial">Број</th>
+      <th scope="col" (click)="sortBy('location')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Локација
+      </th>
+      <th scope="col" (click)="sortBy('signature')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Сигнатура
+      </th>
+      <th scope="col" (click)="sortBy('status')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Статус
+      </th>
+      <th scope="col" (click)="sortBy('invNum')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Инвентарни број
+      </th>
+      <th scope="col" *ngIf="isSerial" (click)="sortBy('volume')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Годиште
+      </th>
+      <th scope="col" *ngIf="isSerial" (click)="sortBy('year')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Година
+      </th>
+      <th scope="col" *ngIf="isSerial" (click)="sortBy('number')" style="cursor: pointer">
+        <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+        Број
+      </th>
     </tr>
     </thead>
     <tbody>
     <tr mdbTableCol *ngFor="let i of items">
       <ng-container *ngIf="i.status !== ItemStatus.NotShowable">
-        <th class="location-cell" scope="row" (click)="selectedLocation = i.location; locationModal.show()" [mdbTooltip]="'Кликните за приказ локацијских података'">{{i.location}}</th>
+        <th class="location-cell" scope="row"
+         (click)="selectedLocation = i.location;
+                  selectedLocMapURL = i.googleMapLocationURL;
+                  locationModal.show()"
+                  [mdbTooltip]="'Кликните за приказ локацијских података'">
+          <mdb-icon fas icon="map-marker-alt" class="ml-1 mr-1"></mdb-icon>
+          {{i.location}}
+        </th>
         <td>{{i.signature}}</td>
         <td>
           <ng-container *ngIf="i.status == ItemStatus.Borrowed">
@@ -52,11 +80,15 @@
           <h4 class="modal-title w-100" id="myModalLabel">{{selectedLocation}}</h4>
         </div>
         <div class="modal-body">
-<!--          TODO: this is dummy-->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5660.152227865904!2d20.453594!3d44.820014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf6ed17caa14ae459!2z0JHQuNCx0LvQuNC-0YLQtdC60LAg0LPRgNCw0LTQsCDQkdC10L7Qs9GA0LDQtNCw!5e0!3m2!1ssr!2srs!4v1574261679081!5m2!1ssr!2srs" width="470" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+<!--          TODO: this is dummy, find best solution-->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.2514442061643!2d20.4565538!3d44.8164419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7ab059778db5%3A0x63a5e3c3d2f3a28e!2sDe%C4%8Dja%20biblioteka%20%22%C4%8Cika%20Jova%20Zmaj%22!5e0!3m2!1sen!2srs!4v1576057840644!5m2!1sen!2srs" width="460" height="450" frameborder="0" style="border:0; border-radius: 10px" allowfullscreen=""></iframe>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="locationModal.hide()" mdbWavesEffect>Затвори</button>
+          <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close"
+                  (click)="selectedLocMapURL = null;
+                           selectedLocation = null;
+                           locationModal.hide();"
+                  mdbWavesEffect>Затвори</button>
         </div>
       </div>
     </div>

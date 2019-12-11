@@ -24,6 +24,7 @@ import { MetaModule } from '@ngx-meta/core';
 import { FacebookModule } from 'ngx-facebook';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BackToTopButton } from './components/back-to-top.directive';
+import { AppOptionsState } from '../core/states/app-options/app-options.state';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { BackToTopButton } from './components/back-to-top.directive';
         deps: [HttpClient]
       }
     }),
-    NgxsModule.forRoot([UserState, ConfigState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([UserState, ConfigState, AppOptionsState], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     ToastModule.forRoot(),

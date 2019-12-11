@@ -7,7 +7,7 @@ import {
   AddRemoveIdToSelectedAction,
   AddMultipleIdsToSelected,
   AppOptionsState, IAppOptionsState,
-  ResetToDefaultAction
+  OptionsToDefault
 } from '../../../core/states/app-options/app-options.state';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
@@ -137,7 +137,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public async clearSelection() {
-    await this._store.dispatch(new ResetToDefaultAction()).toPromise();
+    await this._store.dispatch(new OptionsToDefault()).toPromise();
   }
 
   public async addRemoveIdToShareList(recordId: string) {

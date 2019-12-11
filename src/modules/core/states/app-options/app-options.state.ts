@@ -36,7 +36,7 @@ export class AddMultipleIdsToSelected {
   }
 }
 
-export class ResetToDefaultAction {
+export class OptionsToDefault {
   public static type = '[Options] Reset to default state';
   public constructor() {}
 }
@@ -86,8 +86,8 @@ export class AppOptionsState {
     ctx.setState(state);
   }
 
-  @Action(ResetToDefaultAction)
-  public resetToDefault(ctx: StateContext<IAppOptionsState>, action: ResetToDefaultAction) {
+  @Action(OptionsToDefault)
+  public resetToDefault(ctx: StateContext<IAppOptionsState>, action: OptionsToDefault) {
     ctx.setState(InitialAppOptionsState);
   }
 }

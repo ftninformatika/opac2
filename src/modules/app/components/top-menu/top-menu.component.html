@@ -56,14 +56,12 @@
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
-<!--              TODO add this page-->
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']">Тренутно задужено</a>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја читања</a>
               <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                 class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
-<!--              <div class="divider dropdown-divider"></div>-->
               <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
             </div>
           </li>

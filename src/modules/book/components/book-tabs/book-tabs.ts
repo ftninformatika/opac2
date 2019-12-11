@@ -23,7 +23,6 @@ export class BookTabs implements AfterViewInit {
   private readonly _router: Router;
   public RecordFormatType = ERecordFormatType;
   public activeTabIndex = -1;
-  // TODO: extend to remove content container if needed
   public showBody = false;
 
   public constructor(store: Store, router: Router) {

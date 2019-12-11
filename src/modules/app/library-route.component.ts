@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
+import { OptionsToDefault } from '../core/states/app-options/app-options.state';
 
 @Component({
   selector: 'library-route',
@@ -51,6 +52,7 @@ export class LibraryRouteComponent implements OnInit {
         if (configs.some(e => e.libraryName === paramLib)) {
           if (this._store.selectSnapshot(ConfigState.library) !== paramLib) {
             await this._store.dispatch(SignOutAction).toPromise();
+            await this._store.dispatch(OptionsToDefault).toPromise();
             await this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib))).toPromise();
           }
         }

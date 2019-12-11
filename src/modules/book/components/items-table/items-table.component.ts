@@ -23,7 +23,9 @@ export class ItemsTableComponent implements OnInit {
   public searchTextChanged: Subject<string> = new Subject<string>();
   public isSerial: boolean;
   public selectedLocation: string;
+  public selectedLocMapURL: string;
   public searchText = '';
+  private sorted = false;
 
   constructor() {
     this.searchTextChanged.pipe(
@@ -57,4 +59,18 @@ export class ItemsTableComponent implements OnInit {
     this.isSerial = this.initialItems && this.initialItems[0].serial;
   }
 
+  public sortBy(by: string | any): void {
+    this.items.sort((a: any, b: any) => {
+      const a1 = {...a};
+      const b1 = {...b};
+      if (a1[by] < b1[by]) {
+        return this.sorted ? 1 : -1;
+      }
+      if (a1[by] > b1[by]) {
+        return this.sorted ? -1 : 1;
+      }
+      return 0;
+    });
+    this.sorted = !this.sorted;
+  }
 }
