@@ -1,12 +1,13 @@
 import {
   ChangeDetectionStrategy,
-  Component,
+  Component, ElementRef,
   Input,
-  OnInit,
+  OnInit, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 import { Subject } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'items-table',
@@ -16,8 +17,10 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemsTableComponent implements OnInit {
+  @ViewChild('iframePlace', {static: false}) iframePlace: ElementRef;
   ItemStatus = ERecordItemStatus;
   @Input() items: RecordItem[];
+  private readonly _domSanitizer;
   public initialItems: RecordItem[];
   public tmpSearch: RecordItem[];
   public searchTextChanged: Subject<string> = new Subject<string>();
@@ -27,7 +30,8 @@ export class ItemsTableComponent implements OnInit {
   public searchText = '';
   private sorted = false;
 
-  constructor() {
+  public constructor(domSanitizer: DomSanitizer) {
+    this._domSanitizer = domSanitizer;
     this.searchTextChanged.pipe(
     ).subscribe(() => {
       this.filterTable();
@@ -57,6 +61,19 @@ export class ItemsTableComponent implements OnInit {
     this.initialItems = [...this.items];
     this.tmpSearch = [...this.items];
     this.isSerial = this.initialItems && this.initialItems[0].serial;
+  }
+
+  public changeSelectedLocation(i: RecordItem): boolean {
+    this.selectedLocation = i.location;
+    this.selectedLocMapURL = i.googleMapLocationURL;
+    return (this.selectedLocMapURL && this.selectedLocMapURL !== '' && this.selectedLocation && this.selectedLocation !== '');
+  }
+
+  public getSanitizedURL(): string {
+    const sanitizedURL = this._domSanitizer.bypassSecurityTrustResourceUrl(this.selectedLocMapURL);
+    // console.log(this.iframePlace);
+    // console.log(i.googleMapLocationURL);
+    return sanitizedURL;
   }
 
   public sortBy(by: string | any): void {

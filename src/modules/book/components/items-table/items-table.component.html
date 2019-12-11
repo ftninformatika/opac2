@@ -42,9 +42,8 @@
     <tr mdbTableCol *ngFor="let i of items">
       <ng-container *ngIf="i.status !== ItemStatus.NotShowable">
         <th class="location-cell" scope="row"
-         (click)="selectedLocation = i.location;
-                  selectedLocMapURL = i.googleMapLocationURL;
-                  locationModal.show()"
+         (click)="changeSelectedLocation(i) ?
+                  locationModal.show() : ''"
                   [mdbTooltip]="'Кликните за приказ локацијских података'">
           <mdb-icon fas icon="map-marker-alt" class="ml-1 mr-1"></mdb-icon>
           {{i.location}}
@@ -79,9 +78,9 @@
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">{{selectedLocation}}</h4>
         </div>
-        <div class="modal-body">
+        <div  class="modal-body" >
 <!--          TODO: this is dummy, find best solution-->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.2514442061643!2d20.4565538!3d44.8164419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7ab059778db5%3A0x63a5e3c3d2f3a28e!2sDe%C4%8Dja%20biblioteka%20%22%C4%8Cika%20Jova%20Zmaj%22!5e0!3m2!1sen!2srs!4v1576057840644!5m2!1sen!2srs" width="460" height="450" frameborder="0" style="border:0; border-radius: 10px" allowfullscreen=""></iframe>
+          <iframe #iframePlace [src]="getSanitizedURL()" width="460" height="450" frameborder="0" style="border:0; border-radius: 10px" allowfullscreen=""></iframe>
         </div>
         <div class="modal-footer">
           <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close"
