@@ -58,7 +58,6 @@ export class ResultPage implements OnInit, OnDestroy {
   public pageOptions: IResultPageOptions;
   public resultedFilters: IFiltersRes;
   public selectedFilters: ISelectedFilter[];
-  public selectedRecordsIds: string[];
   public filtersLoaded: boolean;
   public searchPageUrl: string;
   public youSearchedText: string;
@@ -77,7 +76,6 @@ export class ResultPage implements OnInit, OnDestroy {
     this._store = store;
     // TODO: consider moving this and some more possible app settings to Redux State
     this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
-    // this.selectedRecordsIds = [];
     this.shareSelectedLink = null;
     this.initValues();
   }
@@ -131,13 +129,21 @@ export class ResultPage implements OnInit, OnDestroy {
     this.onWindowResize();
   }
 
+  public async goToSelectedBooks() {
+    if (this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords) === null) {
+      return;
+    } else {
+      await this._router.navigate(['/search/selected-books']);
+    }
+  }
+
   public async selectAll() {
     const recIds = this.searchResult.map(b => b._id);
     await this._store.dispatch(new AddMultipleIdsToSelected(recIds));
   }
 
   public async clearSelection() {
-    await this._store.dispatch(new OptionsToDefault()).toPromise();
+    await this._store.dispatch(OptionsToDefault).toPromise();
   }
 
   public async addRemoveIdToShareList(recordId: string) {

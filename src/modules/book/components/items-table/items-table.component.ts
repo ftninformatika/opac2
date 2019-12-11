@@ -70,10 +70,10 @@ export class ItemsTableComponent implements OnInit {
   }
 
   public getSanitizedURL(): string {
-    const sanitizedURL = this._domSanitizer.bypassSecurityTrustResourceUrl(this.selectedLocMapURL);
-    // console.log(this.iframePlace);
-    // console.log(i.googleMapLocationURL);
-    return sanitizedURL;
+    if (!this.selectedLocMapURL || this.selectedLocMapURL === '') {
+      return;
+    }
+    return this._domSanitizer.bypassSecurityTrustResourceUrl(this.selectedLocMapURL);
   }
 
   public sortBy(by: string | any): void {

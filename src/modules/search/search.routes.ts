@@ -7,6 +7,6 @@ export const SearchRoutes: Routes = [
   { path: '', component: SearchMainPage, pathMatch: 'full' },
   { path: 'result', component: ResultPage },
   { path: 'result?lib=:lib&text=:text&prefix=:prefix', component: ResultPage },
-  { path: 'preview-books', component: PreviewSharedPage },
+  { path: 'selected-books', component: PreviewSharedPage },
   { path: 'preview-books/:l', component: PreviewSharedPage }
 ];

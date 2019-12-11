@@ -29,23 +29,30 @@
       <ng-container *ngIf="resultPage">
 <!--        TODO: Fix layout-->
         <div class="options-nav">
+          <a>
             <div (click)="clearSelection()" style="align-self: flex-start"
-                 [mdbTooltip]="'Поништи све селектоване записе'" class="share-btn">
+                 [mdbTooltip]="'Поништи све селектоване записе'" class="btn-designed">
               <mdb-icon fas icon="times"></mdb-icon>
             </div>
-          <a  style="align-self: flex-start">
+          </a>
+          <a>
             <div (click)="selectAll()"
-                 [mdbTooltip]="'Одабери све записе ове странице'" class="share-btn">
+                 [mdbTooltip]="'Одабери све записе ове странице'" class="btn-designed">
               <mdb-icon fas icon="check"></mdb-icon>
             </div>
           </a>
-          <a  style="align-self: flex-start" (click)="_router.navigate(['/search/preview-books'])">
+          <a  class="selected-records" (click)="goToSelectedBooks()">
             <div>Одабрани записи ({{(appOptionsState | async)?.selectedShareRecords.length}})</div>
+          </a>
+          <a>
+            <div  [mdbTooltip]="'Штампај резулатате'" class="btn-designed">
+              <mdb-icon fas icon="print"></mdb-icon>
+            </div>
           </a>
           <a>
             <div (click)="generateShareLink() ? shareLinkModal.show() :
              _toastService.warning('Ни једна књига није одабрана')"
-                 [mdbTooltip]="'Поделите одабране записе'" class="share-btn">
+                 [mdbTooltip]="'Поделите одабране записе'" class="btn-designed">
               <mdb-icon fas icon="share-alt"></mdb-icon>
             </div>
           </a>
