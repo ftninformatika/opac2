@@ -327,7 +327,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public async modifySearch() {
-    await this._router.navigate(['/search'], {state: this.searchModel});
+    await this._router.navigate(['/search/advanced-search'], {state: this.searchModel});
   }
 
   private async populateResultPage(res: IResultPage): Promise<void> {

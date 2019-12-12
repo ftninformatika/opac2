@@ -3,21 +3,14 @@
     <search-filters [filters]="resultedFilters" [filtersLoaded]="filtersLoaded"
                     (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
-  <div class="ml-2 mb-2 d-flex flex-md-row">
-    <span>
-      <span *ngIf="resultPage && resultPage.totalElements" style="font-weight: 600">
-      УКУПНО РЕЗУЛТАТА:&nbsp;{{resultPage.totalElements}}
-      </span>
-      <span class="ml-4" style="color: darkslategrey">
-      Тражили сте:&nbsp;{{youSearchedText}}
-      </span>
-    </span>
-  </div>
   <div class="ml-2 mb-2">
     <a  style="color: cadetblue" (click)="modifySearch()">
       <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
       &nbsp;Измена претраге
     </a>
+  </div>
+  <div class="ml-2 mb-2 d-flex flex-md-row">
+      <span style="color: darkslategrey" [innerHTML]="'Тражили сте: ' + youSearchedText"></span>
   </div>
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
 
@@ -30,7 +23,7 @@
 <!--        TODO: Fix layout-->
         <div class="options-nav">
           <a>
-            <div (click)="clearSelection()" style="align-self: flex-start"
+            <div (click)="clearSelection()"
                  [mdbTooltip]="'Поништи све селектоване записе'" class="btn-designed">
               <mdb-icon fas icon="times"></mdb-icon>
             </div>
@@ -44,6 +37,9 @@
           <a  class="selected-records" (click)="goToSelectedBooks()">
             <div>Одабрани записи ({{(appOptionsState | async)?.selectedShareRecords.length}})</div>
           </a>
+          <span *ngIf="resultPage && resultPage.totalElements" class="total-results-label">
+            Резултата:&nbsp;{{resultPage.totalElements}}
+          </span>
           <a>
             <div  [mdbTooltip]="'Штампај резулатате'" class="btn-designed">
               <mdb-icon fas icon="print"></mdb-icon>
