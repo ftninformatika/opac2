@@ -32,18 +32,24 @@
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
     <div class="reserve-shelf-buttons ml-auto">
-      <button mdbBtn type="button" color="unique" [mdbTooltip]="'Резервиши'" disabled>
-<!--        <mdb-icon fas icon="check-square" class="mr-1" ></mdb-icon>-->
-        <span>Резервиши</span>
-      </button>
-      <button mdbBtn type="button" color="default" size="sm" *ngIf="booksOnShelf.indexOf(book._id) === -1" [mdbTooltip]="'На полицу'" (click)="onShelf(book._id)">
-<!--        <mdb-icon fas icon="bookmark" class="mr-1"></mdb-icon>-->
-        <span>На полицу</span>
-      </button>
-      <button mdbBtn type="button" color="danger" size="sm" *ngIf="booksOnShelf.indexOf(book._id) !== -1" [mdbTooltip]="'Склони са полице'" (click)="removeFromShelf(book._id)">
-<!--        <mdb-icon fas icon="minus" class="mr-1"></mdb-icon>-->
-        <span>Уклони са полице</span>
-      </button>
+      <a  [mdbTooltip]="'Резервиши'">
+        <div class="reserve">
+          <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
+          Резервиши
+        </div>
+      </a>
+      <a  [mdbTooltip]="'Стави на полицу'">
+        <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) === -1"  (click)="onShelf(book._id)">
+          <mdb-icon fas icon="list-ul" ></mdb-icon>
+          На полицу
+        </div>
+      </a>
+      <a >
+        <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) !== -1" (click)="removeFromShelf(book._id)">
+          <mdb-icon fas icon="list-ul" ></mdb-icon>
+          Уклони са полице
+        </div>
+      </a>
       <ng-container *ngIf="isAdmin">
         <add-to-collection-button [bookId]="book._id"></add-to-collection-button>
       </ng-container>

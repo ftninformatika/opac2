@@ -1,6 +1,7 @@
 .book-result-brief-wrapper {
   .card {
     box-shadow: unset !important;
+    padding: 10px 10px 10px 10px !important;
   }
 
   .fixed-height {
@@ -24,18 +25,27 @@
   }
 
   .reserve-shelf-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    button {
-      margin-top: 0;
-      margin-right: 0;
-      height: 45px;
-      width: 220px;
-      font-size: 13px;
-    }
+    width: 152px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 0 0 24px;
+    border-radius: 4px;
+    background-color: #00b2d1;
+    background-size: cover;
+    font-family: Roboto, serif;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
   }
 
+  .on-shelf-btn {
+    margin-top: 8px;
+    margin-right: 16px;
+    background-color: #e0e0e0;
+    font-size: 16px;
+    color: #212121;
+    text-decoration: none solid rgb(33, 33, 33);
+  }
 
   .publisher {
     text-align: left;
