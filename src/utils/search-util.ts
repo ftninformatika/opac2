@@ -1,5 +1,6 @@
 import { ISearchModel, ISearchModelInitial } from '../models/search/search.model';
 import { EAutoCompletePrefixes, IPrefixValue } from '../models/prefix-value.model';
+import { PrefixUtils } from './prefix.utils';
 
 export class SearchUtil {
 
@@ -57,27 +58,68 @@ export class SearchUtil {
 
   // TODO: extend this
   public static getYouSearchedStringFromSearchModel(sm: ISearchModel): string {
+    console.log(sm);
     let retVal = '';
     if (!sm) {
       return retVal;
     }
+    const universalText = this.universalSearchText(sm);
+    if (universalText) {
+      return universalText;
+    }
+    return this.advancedSearchText(sm);
+  }
+
+  private static universalSearchText(sm: ISearchModel): string {
+    const searchInputsArr = [sm.text1, sm.text2, sm.text3, sm.text4];
+    if (searchInputsArr.some(si => !si || si === '')) {
+      return null;
+    }
+    if (!searchInputsArr.every((val, i, arr) => val === arr[0])) {
+      return null;
+    }
+    return this.spanText(sm.text1) + ', по: аутору, наслову, издавачу и кљ. речима';
+  }
+
+  private static advancedSearchText(sm: ISearchModel): string {
     const texts: string[] = [];
-    if (sm.text1 && sm.text1.trim() !== '') {
-      texts.push(sm.text1);
+    const prefixLabels = [sm.pref1, sm.pref2, sm.pref3, sm.pref4, sm.pref5].map(p => this.getPrefixLabel(p));
+    console.log(prefixLabels);
+    if (sm.text1 && sm.text1.trim() !== '' && prefixLabels[0]) {
+      texts.push(this.spanText(sm.text1) + ' - ' + prefixLabels[0]);
     }
-    if (sm.text2 && sm.text2.trim() !== '' && texts.indexOf(sm.text2) === -1) {
-      texts.push(sm.text2);
+    if (sm.text2 && sm.text2.trim() !== '' && texts.indexOf(sm.text2) === -1 && prefixLabels[1]) {
+      texts.push(this.spanText(sm.text2) + ' - ' + prefixLabels[1]);
     }
-    if (sm.text3 && sm.text3.trim() !== '' && texts.indexOf(sm.text3) === -1) {
-      texts.push(sm.text3);
+    if (sm.text3 && sm.text3.trim() !== '' && texts.indexOf(sm.text3) === -1 && prefixLabels[2]) {
+      texts.push(this.spanText(sm.text3) + ' - ' + prefixLabels[2]);
     }
-    if (sm.text4 && sm.text4.trim() !== '' && texts.indexOf(sm.text4) === -1) {
-      texts.push(sm.text4);
+    if (sm.text4 && sm.text4.trim() !== '' && texts.indexOf(sm.text4) === -1 && prefixLabels[3]) {
+      texts.push(this.spanText(sm.text4) + ' - ' + prefixLabels[3]);
     }
-    if (sm.text5 && sm.text5.trim() !== '' && texts.indexOf(sm.text5) === -1) {
-      texts.push(sm.text5);
+    if (sm.text5 && sm.text5.trim() !== '' && texts.indexOf(sm.text5) === -1 && prefixLabels[4]) {
+      texts.push(this.spanText(sm.text5) + ' - ' + prefixLabels[4]);
     }
-    retVal = texts.join(', ');
-    return retVal;
+    return texts.join(', ');
+  }
+
+  private static getPrefixLabel(prefCode: string): string {
+    console.log(prefCode);
+    if (!prefCode || prefCode === '') {
+      return null;
+    }
+    const pref = PrefixUtils.Prefixes.find(p => p.code === prefCode);
+    console.log(pref);
+    if (!pref) {
+      return null;
+    }
+    return pref.name;
+  }
+
+  private static spanText(text: string) {
+    if (!text || text === '') {
+      return null;
+    }
+    return `<span class="font-weight-bold">${text}</span>`;
   }
 }
