@@ -1,7 +1,11 @@
 <div class="add-to-collection-button-wrapper">
   <div class="btn-group" mdbDropdown>
-    <a mdbDropdownToggle mdbBtn class="add-to-coll-btn btn btn-info waves-light btn-style dropdown-toggle waves-light ml-1 mt-1" mdbWavesEffect>
-      Додај у колекцију
+
+    <a  mdbDropdownToggle [mdbTooltip]="'Додај у колекцију'">
+      <div class="add-to-collection mt-2">
+        <mdb-icon fas icon="folder-plus" class="text-white"></mdb-icon>
+        У колекцију
+      </div>
     </a>
     <div class="dropdown-menu dropdown-primary">
       <a class="dropdown-item" *ngFor="let c of collections" (click)="addToCollection(c._id, bookId)">{{c.title}}</a>

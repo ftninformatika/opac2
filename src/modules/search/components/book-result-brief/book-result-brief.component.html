@@ -1,33 +1,30 @@
 <div class="book-result-brief-wrapper">
   <mdb-card-body class="d-flex fixed-height">
     <mdb-checkbox [checked]="checked" (change)="checked = !checked; shareCheck(book._id)"></mdb-checkbox>
-    <div class="fixed-width" *ngIf="book.imageUrl">
+    <div class="fixed-width" >
       <a [routerLink]="['/book', lib, book._id]">
-        <mdb-card-img src="{{book.imageUrl}}" class="book-cover"></mdb-card-img>
-      </a>
-    </div>
-    <div class="fixed-width" *ngIf="!book.imageUrl">
-      <a [routerLink]="['/book', lib, book._id]">
-        <mdb-card-img src="{{errImg}}" class="book-cover"></mdb-card-img>
+        <mdb-card-img [src]="book.imageUrl ? book.imageUrl : errImg" class="book-cover"></mdb-card-img>
       </a>
     </div>
     <div class="flex-1 ml-3">
       <mdb-card-title>
-        <h4 [routerLink]="['/book',lib, book._id]" class="pointer title" [mdbTooltip]="book.title">{{book.title | shortenString:35}}</h4>
-<!--        <div class="pub-type">-->
-<!--          <div *ngIf="book.pubType === 1">-->
-<!--            <mdb-icon fas icon="book"></mdb-icon> монографија-->
-<!--          </div>-->
-<!--          <div *ngIf="book.pubType === 2">-->
-<!--            <mdb-icon fas icon="scroll"></mdb-icon> серијска-->
-<!--          </div>-->
-<!--        </div>-->
-        <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer" >{{book.subtitle | shortenString:40}}</h5>
-        <p [mdbTooltip]="book.authors">
-          <span>
-            <em>{{authors | shortenString:25}}</em>
-          </span>
-        </p>
+        <div class="">
+          <h4 [routerLink]="['/book',lib, book._id]" class="pointer book-title" [mdbTooltip]="(book.title | shortenString:35) ? book.title : null">{{book.title | shortenString:35}}</h4>
+  <!--        <div class="pub-type">-->
+  <!--          <div *ngIf="book.pubType === 1">-->
+  <!--            <mdb-icon fas icon="book"></mdb-icon> монографија-->
+  <!--          </div>-->
+  <!--          <div *ngIf="book.pubType === 2">-->
+  <!--            <mdb-icon fas icon="scroll"></mdb-icon> серијска-->
+  <!--          </div>-->
+  <!--        </div>-->
+          <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer " >{{book.subtitle | shortenString:40}}</h5>
+          <p [mdbTooltip]="book.authors">
+            <span class="book-author">
+              {{authors | shortenString:25}}
+            </span>
+          </p>
+        </div>
       </mdb-card-title>
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>

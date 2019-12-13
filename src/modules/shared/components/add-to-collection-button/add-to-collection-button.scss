@@ -1,5 +1,16 @@
 .add-to-collection-button-wrapper {
-  .add-to-coll-btn {
-    width: 223px;
+  .add-to-collection {
+    width: 152px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 0 0 24px;
+    border-radius: 4px;
+    background-color: #007bbd;
+    background-size: cover;
+    font-family: Roboto, serif;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
+    &:hover {background-color: #006aa3}
   }
 }
