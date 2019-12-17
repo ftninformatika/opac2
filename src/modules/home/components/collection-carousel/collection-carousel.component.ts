@@ -20,8 +20,8 @@ export enum ANIMATE_DIRECTION {
   selector: 'collection-carousel',
   templateUrl: 'collection-carousel.component.html',
   styleUrls: ['collection-carousel.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollectionCarouselComponent implements OnInit {
   @Input() books: Book[];
