@@ -44,7 +44,7 @@
       <a >
         <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) !== -1" (click)="removeFromShelf(book._id)">
           <mdb-icon fas icon="list-ul" ></mdb-icon>
-          Уклони са полице
+          Са полице
         </div>
       </a>
       <ng-container *ngIf="isAdmin">

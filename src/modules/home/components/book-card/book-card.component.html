@@ -44,18 +44,23 @@
       {{(book.authors && book.authors.length > 0 ? book.authors[0] : '') | shortenString: 20}}</span>
   </div>
   </div>
-  <div class="btns ml-2 mr-4">
+  <div class="btns ml-2 mr-4" *ngIf="withButtonsAndInfo">
     <a  [mdbTooltip]="'Резервиши'">
       <div class="reserve">
         <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
       </div>
     </a>
-    <a  [mdbTooltip]="'Стави на полицу'">
+    <a  [mdbTooltip]="'Стави на полицу'" *ngIf="!isOnShelf"  (click)="onShelf(book._id)">
       <div class="shelf mt-2">
         <mdb-icon fas icon="list-ul" ></mdb-icon>
       </div>
     </a>
-    <a  [mdbTooltip]="'Додај у колекцију'">
+    <a  [mdbTooltip]="'Склони са полице'" *ngIf="isOnShelf" (click)="removeFromShelf(book._id).then()">
+      <div class="shelf-off mt-2">
+        <mdb-icon fas icon="list-ul" ></mdb-icon>
+      </div>
+    </a>
+    <a  [mdbTooltip]="'Додај у колекцију'" *ngIf="isAdmin">
       <div class="collection mt-2">
         <mdb-icon fas icon="folder-plus" class="text-white"></mdb-icon>
       </div>

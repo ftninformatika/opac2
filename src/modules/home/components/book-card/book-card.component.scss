@@ -23,6 +23,7 @@
     .reserve { background-color: #00b2d1; &:hover {background-color: #009cb8} }
     .shelf { background-color: #e0e0e0; &:hover {background-color: #c7c7c7} }
     .collection { background-color: #007bbd; &:hover {background-color: #006aa3} }
+    .shelf-off {background-color: #c50000; color: white;}
   }
 
   img {

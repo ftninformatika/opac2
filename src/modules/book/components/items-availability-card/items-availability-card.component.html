@@ -16,17 +16,32 @@
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
       </mdb-card-text>
-      <div class="buttons" *ngIf="locations && locations.length > 0">
-        <a class="btn btn-unique waves-light btn-style">Резервиши</a><br/>
-      </div>
       </ng-container>
+      <div *ngIf="containShowableItems" class="res-shelf-btns">
+        <div class="reserve-shelf-buttons" *ngIf="locations && locations.length > 0">
+          <a>
+            <div class="reserve">
+              <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
+              Резервиши
+            </div>
+          </a>
+        </div>
+        <div class="reserve-shelf-buttons">
+          <a>
+            <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1"  (click)="addToShelf()">
+              <mdb-icon fas icon="list-ul" ></mdb-icon>
+              На полицу
+            </div>
+          </a>
+          <a>
+            <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
+              <mdb-icon fas icon="list-ul" ></mdb-icon>
+              Са полице
+            </div>
+          </a>
+        </div>
+      </div>
       <div class="buttons">
-        <a class="btn btn-default waves-light btn-style" *ngIf="booksOnShelf.indexOf(bookId) === -1" (click)="addToShelf()">
-          На полицу
-        </a>
-        <a class="btn btn-danger waves-light btn-style" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
-          Уклони са полице
-        </a>
         <add-to-collection-button [bookId]="bookId" *ngIf="isAdmin"></add-to-collection-button>
       </div>
       <ng-container *ngIf="!containShowableItems">

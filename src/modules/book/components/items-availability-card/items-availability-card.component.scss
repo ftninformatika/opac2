@@ -12,11 +12,43 @@
     margin-bottom: 5px;
   }
 
+  //.res-shelf-btns {
+  //  display: flex;
+  //  flex-direction: row;
+  //  align-content: space-between;
+  //}
 
   .btn-unique {background-color: #880e4f}
   .btn-default {background-color: #2bbbad}
   .btn-danger {background-color: #bb112e}
   .btn-info {background-color: #33b5e5}
+
+  .reserve-shelf-buttons {
+    width: 152px;
+    height: 48px;
+    line-height: 48px;
+    //padding: 0 0 0 24px;
+    border-radius: 4px;
+    background-color: #00b2d1;
+    background-size: cover;
+    font-family: Roboto, serif;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
+    a > div {
+      padding-left: 24px;
+    }
+    &:hover {background-color: #009cb8}
+  }
+
+  .on-shelf-btn {
+    margin-top: 8px;
+    margin-right: 16px;
+    background-color: #e0e0e0;
+    color: #212121;
+    text-decoration: none solid rgb(33, 33, 33);
+    &:hover {background-color: #c7c7c7}
+  }
 
   @media only screen and (max-width: 835px) {
     h5 {font-size: 16px; }
