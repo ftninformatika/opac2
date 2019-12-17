@@ -17,17 +17,19 @@
   <div class="d-flex flex-md-row">
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
-      <a class="btn btn-primary filters-modal-btn" *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
+      <a class="btn filters-modal-btn" style="background-color: #00b2d1"
+         *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
         <div class="options-nav">
-          <a>
+
+          <a class="remove-selected">
             <div (click)="clearSelection()"
                  [mdbTooltip]="'Поништи све селектоване записе'" class="btn-designed">
               <mdb-icon fas icon="not-equal"></mdb-icon>
             </div>
           </a>
-          <a>
+          <a class="select-all">
             <div (click)="selectAll()"
                  [mdbTooltip]="'Одабери све записе ове странице'" class="btn-designed">
               <mdb-icon fas icon="check"></mdb-icon>
@@ -38,6 +40,7 @@
               <span style="color: #00b2d1;">Одабрани записи</span>
               ({{(appOptionsState | async)?.selectedShareRecords.length}})</div>
           </a>
+
           <span *ngIf="resultPage && resultPage.totalElements" class="total-results-label">
             <span style="color: #00b2d1;">Резултата:&nbsp;</span>{{resultPage.totalElements}}
           </span>

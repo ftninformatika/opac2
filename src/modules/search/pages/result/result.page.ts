@@ -6,7 +6,7 @@ import {
 import {
   AddRemoveIdToSelectedAction,
   AddMultipleIdsToSelected,
-  AppOptionsState, IAppOptionsState,
+  AppOptionsState,
   OptionsToDefault
 } from '../../../core/states/app-options/app-options.state';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
@@ -228,7 +228,7 @@ export class ResultPage implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   public onWindowResize() {
-    if (window.innerWidth >= 768) { this.deviceWidth = EDeviceWidth.GT_SM; } else { this.deviceWidth = EDeviceWidth.LTE_SM; }
+    if (window.innerWidth >= 830) { this.deviceWidth = EDeviceWidth.GT_SM; } else { this.deviceWidth = EDeviceWidth.LTE_SM; }
   }
 
   public onPageChange($event: number) {

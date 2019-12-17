@@ -218,5 +218,63 @@
       font-size: 14px;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .selected-records {
+      display: none;
+    }
+    .select-all {
+      display: none;
+    }
+    .remove-selected {
+      display: none;
+    }
+    .btn-designed {
+      margin-top: 50px;
+      margin-left: 3px;
+      margin-right: 3px;
+      line-height: 30px;
+      padding-left: 8px;
+      width: 30px;
+      height: 30px;
+    }
+    search-top-nav {
+      .view-type-button {
+        margin-top: 50px;
+        margin-left: 3px;
+        margin-right: 3px;
+        line-height: 30px;
+        padding-left: 8px;
+        width: 30px;
+        height: 30px;
+      }
+      .page-size-cmb {
+        margin-top: 25px;
+        width: 60px;
+        font-size: 11px;
+        height: 36px;
+      }
+
+      .label-sort {
+        width: 130px;
+        height: 14px;
+        font-size: 12px;
+      }
+      .sort-cmb {
+        margin-top: 29px;
+        width: 130px !important;
+        padding: 0 10px;
+        height: 36px;
+        line-height: 34px;
+        font-size: 13px;
+        .caret-pulled-right {
+          display: none;
+        }
+      }
+    }
+    .total-results-label {
+      font-size: 14px;
+    }
+  }
   //  --------------------------------------------
 }
