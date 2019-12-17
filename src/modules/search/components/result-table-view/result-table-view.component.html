@@ -18,7 +18,11 @@
           totalItems: totalItems}; let i = index" class="book-row"
           [routerLink]="['/book', lib, b._id]"
         >
-          <th scope="row">{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}</th>
+          <th scope="row">
+<!--            {{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}-->
+
+            <mdb-checkbox [checked]="(optionsState | async).selectedShareRecords.indexOf(b._id) > -1" (change)="shareCheck(b._id)"></mdb-checkbox>
+          </th>
           <td>{{b.title | shortenString: 20}}</td>
           <td>{{b.authors[0] | shortenString: 20}}</td>
           <td>{{b.publisher | shortenString: 20}}</td>

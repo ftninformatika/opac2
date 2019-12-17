@@ -87,7 +87,9 @@
           <result-table-view
           [books]="searchResult"
           [pageOptions]="pageOptions"
-          [totalItems]="resultPage.totalElements"></result-table-view>
+          [totalItems]="resultPage.totalElements"
+          (shareChecked)="addRemoveIdToShareList($event)"
+          ></result-table-view>
         </ng-container>
         <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"

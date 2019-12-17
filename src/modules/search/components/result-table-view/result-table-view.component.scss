@@ -1,7 +1,8 @@
 .result-table-view-component-wrapper {
   .book-row:hover {
-    background: #fbfffb;
+    background: #e0e0e0;
     cursor: pointer;
+    //color: white;
   }
   @media (max-width: 576px) {
     td, th {

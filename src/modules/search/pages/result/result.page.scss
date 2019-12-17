@@ -47,6 +47,11 @@
     }
   }
 
+  .ngx-pagination .current {
+    border-radius: 4px;
+    background-color: #00b2d1;
+  }
+
   .selected-records {
     margin-right: auto;
     margin-top: auto;
