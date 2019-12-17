@@ -26,7 +26,6 @@ export class AddRemoveIdToSelectedAction {
   }
 }
 
-// Actions ------------------------------------------------
 export class AddMultipleIdsToSelected {
   public static type = '[Options] Add/Remove to share selection list';
   public recordIds: string[];
@@ -88,6 +87,6 @@ export class AppOptionsState {
 
   @Action(OptionsToDefault)
   public resetToDefault(ctx: StateContext<IAppOptionsState>, action: OptionsToDefault) {
-    ctx.setState(InitialAppOptionsState);
+    ctx.setState({...InitialAppOptionsState});
   }
 }

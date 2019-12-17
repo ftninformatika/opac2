@@ -25,6 +25,22 @@
     border-bottom: 0.5px solid #f5f5f5;
   }
 
+  .book-cover-container {
+    position: relative;
+  }
+
+  .check-book {
+    position: absolute;
+    fill: #212121;
+    background: #eeeeee;
+    left: 12px;
+    padding-left: 6px;
+    border-radius: 0 0 5px 5px;
+    .form-check {
+      width: 24px !important;
+    }
+  }
+
   .btn-designed {
     margin-top: 24px;
     margin-left: 6px;
@@ -274,6 +290,13 @@
     }
     .total-results-label {
       font-size: 14px;
+    }
+    .fixed-height {
+      height: 260px;
+    }
+
+    .fixed-width {
+      max-width: 140px;
     }
   }
   //  --------------------------------------------

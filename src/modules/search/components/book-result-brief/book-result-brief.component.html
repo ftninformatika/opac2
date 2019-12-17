@@ -1,9 +1,11 @@
 <div class="book-result-brief-wrapper">
   <mdb-card-body class="d-flex fixed-height">
-    <mdb-checkbox [checked]="checked" (change)="checked = !checked; shareCheck(book._id)"></mdb-checkbox>
-    <div class="fixed-width" >
+    <div class="fixed-width book-cover-container" >
       <a [routerLink]="['/book', lib, book._id]">
-        <mdb-card-img [src]="book.imageUrl ? book.imageUrl : errImg" class="book-cover"></mdb-card-img>
+        <mdb-checkbox [checked]="checked" (change)="checked = !checked; shareCheck(book._id)"
+        class="check-book"></mdb-checkbox>
+        <mdb-card-img [src]="book.imageUrl ? book.imageUrl : errImg" class="book-cover">
+        </mdb-card-img>
       </a>
     </div>
     <div class="flex-1 ml-3">
