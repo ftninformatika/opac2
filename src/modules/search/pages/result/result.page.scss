@@ -172,11 +172,12 @@
       }
       .label-sort {
         width: 150px;
-        height: 14px;
+        height: 12px;
         font-size: 12px;
       }
       .per-page-label {
         font-size: 12px;
+        height: 12px;
       }
     }
   }
@@ -207,19 +208,23 @@
         height: 30px;
       }
       .page-size-cmb {
-        margin-top: 25px;
+        margin-top: 12px;
         width: 60px;
         font-size: 11px;
         height: 36px;
       }
 
       .label-sort {
+        margin-top: 20px;
         width: 130px;
-        height: 14px;
+        height: 12px;
         font-size: 12px;
       }
+      .per-page-label {
+        margin-top: 20px;
+      }
       .sort-cmb {
-        margin-top: 29px;
+        margin-top: 12px;
         width: 130px !important;
         padding: 0 10px;
         height: 36px;
