@@ -7,6 +7,7 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NgModule } from '@angular/core';
     RouterModule.forChild(HomeRoutes),
     LazyLoadImageModule.forRoot({
       preset: intersectionObserverPreset
-    })
+    }),
+    SharedModule
   ],
   declarations: [
     CollectionCarouselComponent,

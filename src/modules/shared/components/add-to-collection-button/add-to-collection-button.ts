@@ -13,6 +13,7 @@ import {ToastService} from 'ng-uikit-pro-standard';
 })
 export class AddToCollectionButton implements OnInit {
   @Input() bookId: string;
+  @Input() compaq: boolean;
   private readonly  _store: Store;
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
