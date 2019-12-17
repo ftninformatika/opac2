@@ -1,6 +1,5 @@
 <div class="preview-shared-page-wrapper">
   <ng-container *ngIf="books && books.length > 0">
-    {{books.length}}
     <div class="book ml-2" *ngFor="let book of books">
       <book-card [book]="book"></book-card>
     </div>

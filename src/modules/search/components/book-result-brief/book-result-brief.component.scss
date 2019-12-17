@@ -86,10 +86,13 @@
 // Big screens---------------------------------------------
   @media screen and (max-width: 1600px) {
     .book-title {
-      font-family: Yeseva One, serif;
       font-size: 26px;
-      color: #212121;
-      text-decoration: none solid rgb(33, 33, 33);
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    .book-title {
+      font-size: 24px;
     }
   }
 

@@ -68,7 +68,7 @@ export class AppOptionsState {
     } else {
       state.selectedShareRecords.splice(index, 1);
     }
-    ctx.setState(state);
+    ctx.patchState(state);
   }
 
   @Action(AddMultipleIdsToSelected)

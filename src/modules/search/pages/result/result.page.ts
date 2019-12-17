@@ -26,6 +26,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
+import { environment } from '../../../../environments/environment';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -130,7 +131,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public async goToSelectedBooks() {
-    if (this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords) === null) {
+    if (await this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords) === null) {
       return;
     } else {
       await this._router.navigate(['/search/selected-books']);
@@ -174,7 +175,7 @@ export class ResultPage implements OnInit, OnDestroy {
       };
       req.options.lib = this.lib;
       this.shareSelectedLink =
-        `http://localhost:4200/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
+        `${environment.origin}/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
       return this.shareSelectedLink;
     } catch (e) {
       return null;
