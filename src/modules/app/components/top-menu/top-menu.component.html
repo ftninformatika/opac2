@@ -1,7 +1,7 @@
 <div class="top-menu-wrapper" [hidden]="hidden">
   <header>
     <mdb-navbar SideClass="navbar navbar-expand-md
-                white"
+                white navbar-light"
                 [containerInside]="false">
       <mdb-navbar-brand>
         <a class="navbar-brand" [routerLink]="'/'">
@@ -43,15 +43,15 @@
       <links>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-<!--            TODO: this stopped working-->
             <a class="nav-link waves-light advanced-search-button" mdbWavesEffect [routerLink]="['search/advanced-search']">
-              <span><mdb-icon fas icon="tasks"></mdb-icon>Напредна претрага</span>
+              <mdb-icon fas icon="tasks" [mdbTooltip]="'Напредна претрага'"></mdb-icon>
+              <span class="adv-search-btn-text">Напредна претрага</span>
             </a>
           </li>
 <!--          TODO: put change language dropdown-->
 <!--          <button (click)="changeLanguage()">EN</button>-->
           <li class="nav-item dropdown" dropdown *ngIf="(user | async)?.userData != null">
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light user-button">
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">

@@ -19,7 +19,7 @@
   }
 
   .search-field {
-    min-width: 350px;
+    //min-width: 350px;
     width: 500px !important;
     height: 48px;
     padding: 0 16px 0 48px;
@@ -86,12 +86,16 @@
     background-color: #e0e0e0;
   }
 
+  .dropdown .dropdown-menu.dropdown-primary .dropdown-item.active, .dropdown .dropdown-menu.dropdown-primary .dropdown-item:active, .dropdown .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-primary .dropdown-item.active, .dropleft .dropdown-menu.dropdown-primary .dropdown-item:active, .dropleft .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropright .dropdown-menu.dropdown-primary .dropdown-item.active, .dropright .dropdown-menu.dropdown-primary .dropdown-item:active, .dropright .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropup-material .dropdown-menu.dropdown-primary .dropdown-item.active, .dropup-material .dropdown-menu.dropdown-primary .dropdown-item:active, .dropup-material .dropdown-menu.dropdown-primary .dropdown-item:hover {
+    background-color: #00b2d1 !important;
+  }
+
   .sign-in-button {
     margin-left: 8px;
     width: 120px;
     height: 48px;
     font-weight: 500;
-    padding: 0px 0px 0px 48px;
+    padding: 0 0 0 48px;
     border-radius: 4px;
     background-color: #00b2d1;
     background-size: cover;
@@ -157,11 +161,11 @@
 
   @media screen and (max-width: 1152px) {
     .navbar-brand {
-      width: 280px;
+      width: 270px;
       span {font-size: 23px;}
     }
     .search-field {
-      width: 330px !important;
+      width: 300px !important;
       font-size: 13px !important;
     }
     .advanced-search-button {
@@ -175,42 +179,133 @@
   }
 
   //----------------------------------------------
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     .navbar-brand {
       .full-library-name { display: none; }
-      .short-library-name { display: block; }
+      .short-library-name {
+        display: block;
+        width: auto;
+      }
       width: 60px;
       span {font-size: 23px;}
     }
     .search-field {
-      width: 330px !important;
+      width: 280px !important;
       font-size: 13px !important;
     }
     .advanced-search-button {
-      width: 160px;
+      width: 43px;
       font-size: 12.5px;
     }
     .sign-in-button {
       width: 90px;
       font-size: 12.5px;
     }
+    .adv-search-btn-text {
+      display: none;
+    }
   }
 
 
-  @media screen and (max-width: 1024px) {
-    font-size: 14px !important;
-    .full-library-name { font-size: 16px; }
-    .navbar-search-form {font-size: 14px}
-  }
+  //@media screen and (max-width: 1024px) {
+  //  font-size: 14px !important;
+  //  .full-library-name { font-size: 16px; }
+  //  .navbar-search-form {font-size: 14px}
+  //}
 
   @media screen and (max-width: 860px) {
     .full-library-name { display: none; }
     .short-library-name { display: block; }
+    .search-field {
+      width: 250px !important;
+      font-size: 13px !important;
+    }
   }
 
-  @media not screen and (max-width: 1024px) {
-    .full-library-name { display: block; }
-    .short-library-name { display: none; }
+  @media screen and (max-width: 767px) {
+    .search-field {
+      width: 250px !important;
+      font-size: 12px !important;
+      height: 42px !important;
+      padding: 0 10px 0 38px;
+    }
+
+    .search-icon {
+      font-size: 20px;
+    }
+    #navbarCollapse {
+      background: white;
+      border-radius: 4px;
+      z-index: 500;
+      //border-bottom-width: 1px;
+      border-style: solid;
+      border-color: #e0e0e0;
+      background-size: cover;
+      height: 100px !important;
+    }
+    .advanced-search-button {
+      width: 160px;
+      font-size: 12.5px;
+      background: white;
+    }
+    .adv-search-btn-text {
+      display: contents;
+    }
+  }
+
+  @media screen and (max-width: 524px) {
+    .search-field {
+      width: 200px !important;
+      font-size: 12px ;
+      height: 42px ;
+      padding: 0 10px 0 38px;
+    }
+    .navbar-brand {
+      width: 51px;
+      span {font-size: 22px;}
+    }
+  }
+
+  @media screen and (max-width: 458px) {
+    .search-field {
+      width: 120px !important;
+      font-size: 12px ;
+      height: 42px ;
+      padding: 0 10px 0 38px;
+    }
+    .navbar-brand {
+      width: 45px;
+      span {font-size: 21px;}
+    }
+    .short-library-name {
+      width: 45px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .search-field {
+      width: 100px !important;
+      font-size: 12px ;
+      height: 36px ;
+      padding: 0 10px 0 38px;
+    }
+    .navbar-brand {
+      width: 41px;
+      span {font-size: 20px;}
+    }
+    .short-library-name {
+      width: 42px;
+    }
+  }
+
+  @media not screen and (max-width: 1023px) {
+    .full-library-name {
+      display: block;
+    }
+    .short-library-name {
+      display: none;
+      width: auto;
+    }
   }
 
   .completer-input {
