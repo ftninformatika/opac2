@@ -47,7 +47,7 @@
           </a>
 
 
-          <a class="print-records">
+          <a class="print-records" (click)="printJS({ printable: 'resultTableView', type: 'html', header: 'PrintJS - Form Element Selection' })">
             <div  [mdbTooltip]="'Штампај резулатате'" class="btn-designed">
               <mdb-icon fas icon="print"></mdb-icon>
             </div>
@@ -90,7 +90,7 @@
           </mdb-card>
         </ng-container>
         <ng-container *ngIf="tableView">
-          <result-table-view
+          <result-table-view id="resultTableView"
           [books]="searchResult"
           [pageOptions]="pageOptions"
           [totalItems]="resultPage.totalElements"

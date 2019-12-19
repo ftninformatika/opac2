@@ -28,6 +28,9 @@ import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
 import { environment } from '../../../../environments/environment';
 
+import * as es6printJS from 'print-js';
+import * as printJS from 'print-js';
+
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
   LTE_SM = 'lte_sm',
@@ -80,7 +83,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this.shareSelectedLink = null;
     this.initValues();
   }
-
+  
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
       async params => {
@@ -426,5 +429,9 @@ export class ResultPage implements OnInit, OnDestroy {
     const encoded = CryptoUtils.encryptData(uriChunk);
     this.searchPageUrl = `/${ResultPage.PagePath}s=${encoded}`;
     this._location.replaceState(this.searchPageUrl);
+  }
+
+  public printJS(param: { header: string; type: string; printable: string }) {
+    printJS(param);
   }
 }

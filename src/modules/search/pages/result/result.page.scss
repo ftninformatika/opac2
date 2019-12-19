@@ -1,6 +1,8 @@
 .result-page-wrapper {
 
-    nav.navbar {margin-bottom: 20px;}
+  nav.navbar {
+    margin-bottom: 20px;
+  }
 
   pagination-controls {
     text-align: center;
@@ -79,7 +81,6 @@
     color: #212121;
     text-decoration: none solid rgb(33, 33, 33);
   }
-
 
   .filters-modal-btn {
     margin-top: 5px;
@@ -213,7 +214,6 @@
         font-size: 11px;
         height: 36px;
       }
-
       .label-sort {
         margin-top: 20px;
         width: 130px;
@@ -256,7 +256,6 @@
     .share-records {
       display: none;
     }
-
     result-table-view {
       .result-table-view-component-wrapper {
         .select-record-header {display: none;}
@@ -277,7 +276,6 @@
         display: none;
       }
     }
-
     search-top-nav {
       width: 100%;
       .search-top-nav-component-wrapper {
@@ -301,7 +299,6 @@
         font-size: 11px;
         height: 36px;
       }
-
       .label-sort {
         width: 120px;
         height: 14px;
