@@ -3,7 +3,7 @@
     <table mdbTable class="table table-striped table-responsive-md table-responsive-sm">
       <thead class="white gray-text">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col" class="select-record-header">#</th>
           <th scope="col">Наслов</th>
           <th scope="col">Аутор</th>
           <th scope="col">Издавач</th>
@@ -18,7 +18,7 @@
           totalItems: totalItems}; let i = index" class="book-row"
           [routerLink]="['/book', lib, b._id]"
         >
-          <th scope="row">
+          <th scope="row" class="select-record-cell">
 <!--            {{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}-->
 
             <mdb-checkbox [checked]="(optionsState | async).selectedShareRecords.indexOf(b._id) > -1" (change)="shareCheck(b._id)"></mdb-checkbox>

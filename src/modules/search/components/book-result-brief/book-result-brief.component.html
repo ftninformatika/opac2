@@ -21,7 +21,7 @@
   <!--            <mdb-icon fas icon="scroll"></mdb-icon> серијска-->
   <!--          </div>-->
   <!--        </div>-->
-          <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer " >{{book.subtitle | shortenString:40}}</h5>
+          <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer book-subtitle" >{{book.subtitle | shortenString:40}}</h5>
           <p [mdbTooltip]="book.authors">
             <span class="book-author">
               {{authors | shortenString:25}}
@@ -35,19 +35,19 @@
       <a  [mdbTooltip]="'Резервиши'">
         <div class="reserve">
           <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
-          Резервиши
+          <span>Резервиши</span>
         </div>
       </a>
       <a  [mdbTooltip]="'Стави на полицу'">
         <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) === -1"  (click)="onShelf(book._id)">
           <mdb-icon fas icon="list-ul" ></mdb-icon>
-          На полицу
+          <span>На полицу</span>
         </div>
       </a>
       <a >
         <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) !== -1" (click)="removeFromShelf(book._id)">
           <mdb-icon fas icon="list-ul" ></mdb-icon>
-          Са полице
+          <span>Са полице</span>
         </div>
       </a>
       <ng-container *ngIf="isAdmin">

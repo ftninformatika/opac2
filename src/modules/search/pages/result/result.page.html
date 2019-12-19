@@ -47,12 +47,12 @@
           </a>
 
 
-          <a>
+          <a class="print-records">
             <div  [mdbTooltip]="'Штампај резулатате'" class="btn-designed">
               <mdb-icon fas icon="print"></mdb-icon>
             </div>
           </a>
-          <a>
+          <a class="share-records">
             <div (click)="generateShareLink() ? shareLinkModal.show() :
              _toastService.warning('Ни једна књига није одабрана')"
                  [mdbTooltip]="'Поделите одабране записе'" class="btn-designed">

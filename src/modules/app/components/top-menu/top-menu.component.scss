@@ -125,7 +125,7 @@
   // Big screens -------------------------------------
   @media screen and (max-width: 1600px) {
     .navbar-brand {
-      width: 380px;
+      width: 400px;
       span {font-size: 28px;}
     }
     .search-field {
@@ -143,8 +143,8 @@
 
   @media screen and (max-width: 1280px) {
     .navbar-brand {
-      width: 320px;
-      span {font-size: 26px;}
+      width: 350px;
+      span {font-size: 25px;}
     }
     .search-field {
       width: 380px !important;
@@ -161,8 +161,8 @@
 
   @media screen and (max-width: 1152px) {
     .navbar-brand {
-      width: 270px;
-      span {font-size: 23px;}
+      width: 290px;
+      span {font-size: 21px;}
     }
     .search-field {
       width: 300px !important;
@@ -229,7 +229,12 @@
       height: 42px !important;
       padding: 0 10px 0 38px;
     }
-
+    .sign-in-button {
+      background-color: white;
+      &:hover {
+        background-color: #eeeeee;
+      }
+    }
     .search-icon {
       font-size: 20px;
     }

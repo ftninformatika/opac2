@@ -48,26 +48,30 @@
     width: 152px;
     height: 48px;
     line-height: 48px;
-    //padding: 0 0 0 24px;
     border-radius: 4px;
     background-color: #00b2d1;
-    background-size: cover;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    color: #ffffff;
-    text-decoration: none solid rgb(255, 255, 255);
+    span {
+      padding: 0 0 0 4px;
+      background-size: cover;
+      font-family: Roboto, serif;
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none solid rgb(255, 255, 255);
+    }
     a > div {
       padding-left: 24px;
     }
-    &:hover {background-color: #009cb8}
+    .reserve {&:hover {background-color: #009cb8; border-radius: 4px;}}
   }
 
   .on-shelf-btn {
     margin-top: 8px;
     margin-right: 16px;
     background-color: #e0e0e0;
-    color: #212121;
-    text-decoration: none solid rgb(33, 33, 33);
+    span {
+      color: #212121;
+      text-decoration: none solid rgb(33, 33, 33);
+    }
     &:hover {background-color: #c7c7c7}
   }
 
@@ -92,15 +96,20 @@
 
   @media screen and (max-width: 1280px) {
     .book-title {
-      font-size: 24px;
+      font-size: 22px;
+      margin-bottom: 26px;
+    }
+    .book-subtitle {
+      margin-bottom: 18px;
+      font-size: 18px;
     }
   }
 
 // --------------------------------------------------------
 
   @media (max-width: 980px) {
-    h4 {font-size: 19px}
-    h5 {font-size: 17px}
+    .book-title {font-size: 19px}
+    .book-subtitle {font-size: 17px}
     span {font-size: 17px}
     .reserve-shelf-buttons {
       button {
@@ -117,8 +126,8 @@
   }
 
   @media (max-width: 900px) {
-    h4 {font-size: 18px}
-    h5 {font-size: 16px}
+    .book-title {font-size: 18px}
+    .book-subtitle {font-size: 16px}
     span {font-size: 16px}
     .book-cover > img {width: 180px}
     .reserve-shelf-buttons {
@@ -136,9 +145,9 @@
   }
 
   @media (max-width: 576px) {
-    h4 {font-size: 16px}
-    h5 {font-size: 14px}
-    span {font-size: 13px}
+    .book-title {font-size: 16px}
+    .book-subtitle {font-size: 14px}
+    .book-author {font-size: 13px}
     .book-cover > img {width: 100px}
     .fixed-height {height: 200px}
     .publisher {
@@ -147,24 +156,25 @@
     }
     .pub-type {font-size: 11px}
     .reserve-shelf-buttons {
-      button {
-        width: 130px;
-
-        span { font-size: 10px; }
+      width: 64px;
+      span {
+        display: none;
       }
     }
     add-to-collection-button {
-      .add-to-coll-btn {
-        width: 133px;
-        font-size: 10px;
+      .add-to-collection-button-wrapper {
+        div {
+          width: 64px;
+        }
       }
     }
+
   }
 
   @media (max-width: 476px) {
-    h4 {font-size: 15px}
-    h5 {font-size: 13px}
-    span {font-size: 13px}
+    .book-title {font-size: 15px}
+    .book-subtitle {font-size: 13px}
+    .book-author {font-size: 13px}
     .book-cover>img {width: 100px}
     .fixed-height {height: 185px}
     .publisher {
@@ -172,16 +182,16 @@
       margin-bottom: 18px;
     }
     .pub-type {font-size: 9px}
-    .reserve-shelf-buttons > button {
+    .reserve-shelf-buttons {
       display: none;
     }
     add-to-collection-button {display: none;}
   }
 
   @media (max-width: 420px) {
-    h4 {font-size: 13px}
-    h5 {display: none}
-    span {font-size: 11px}
+    .book-title {font-size: 13px}
+    .book-subtitle {display: none}
+    .book-author {font-size: 11px}
     .book-cover>img {width: 80px}
     .fixed-height {height: 170px}
     .publisher {
@@ -189,7 +199,7 @@
       margin-bottom: 16px;
     }
     .pub-type {font-size: 9px}
-    .reserve-shelf-buttons > button {
+    .reserve-shelf-buttons {
       display: none;
     }
     add-to-collection-button {display: none;}

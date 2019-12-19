@@ -94,7 +94,7 @@
   }
 
   .total-results-label {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     margin-right: auto;
     margin-top: auto;
@@ -236,7 +236,7 @@
       }
     }
     .total-results-label {
-      font-size: 14px;
+      font-size: 18px;
     }
   }
 
@@ -250,6 +250,19 @@
     .remove-selected {
       display: none;
     }
+    .print-records {
+      display: none;
+    }
+    .share-records {
+      display: none;
+    }
+
+    result-table-view {
+      .result-table-view-component-wrapper {
+        .select-record-header {display: none;}
+        .select-record-cell {display: none;}
+      }
+    }
     .btn-designed {
       margin-top: 50px;
       margin-left: 3px;
@@ -259,9 +272,22 @@
       width: 30px;
       height: 30px;
     }
+    book-result-brief {
+      .check-book {
+        display: none;
+      }
+    }
+
     search-top-nav {
+      width: 100%;
+      .search-top-nav-component-wrapper {
+        justify-content: space-between !important;
+        div {
+          margin-left: 0;
+        }
+      }
       .view-type-button {
-        margin-top: 50px;
+        margin-top: 70px;
         margin-left: 3px;
         margin-right: 3px;
         line-height: 30px;
@@ -270,31 +296,31 @@
         height: 30px;
       }
       .page-size-cmb {
-        margin-top: 25px;
+        margin-top: 32px;
         width: 60px;
         font-size: 11px;
         height: 36px;
       }
 
       .label-sort {
-        width: 130px;
+        width: 120px;
         height: 14px;
         font-size: 12px;
       }
       .sort-cmb {
-        margin-top: 29px;
-        width: 130px !important;
+        margin-top: 31px;
+        width: 120px !important;
         padding: 0 10px;
         height: 36px;
         line-height: 34px;
-        font-size: 13px;
+        font-size: 11px;
         .caret-pulled-right {
           display: none;
         }
       }
     }
     .total-results-label {
-      font-size: 14px;
+      font-size: 17px;
     }
     .fixed-height {
       height: 260px;
