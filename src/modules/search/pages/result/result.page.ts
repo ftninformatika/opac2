@@ -27,8 +27,6 @@ import { Location } from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
 import { environment } from '../../../../environments/environment';
-
-import * as es6printJS from 'print-js';
 import * as printJS from 'print-js';
 
 export enum EDeviceWidth {
@@ -83,7 +81,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this.shareSelectedLink = null;
     this.initValues();
   }
-  
+
   public ngOnInit() {
     this._activatedRoute.queryParamMap.subscribe(
       async params => {
@@ -431,7 +429,20 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location.replaceState(this.searchPageUrl);
   }
 
-  public printJS(param: { header: string; type: string; printable: string }) {
-    printJS(param);
+  public printThisPage() {
+    const transformToPrint: any[] = [];
+    for (const b of this.searchResult) {
+      const x: any = {};
+      x.autor = b.authors;
+      x.naslov = b.title;
+      x.izdao = b.publisher;
+      x.mesto = b.publishPlace;
+      x.godina = b.publishYear;
+      transformToPrint.push(x);
+    }
+    console.log(transformToPrint);
+    printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
+        + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+      type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
   }
 }
