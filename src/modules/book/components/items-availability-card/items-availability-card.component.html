@@ -17,30 +17,30 @@
         </select>
       </mdb-card-text>
       </ng-container>
-      <div *ngIf="containShowableItems" class="res-shelf-btns">
-        <div class="reserve-shelf-buttons" *ngIf="locations && locations.length > 0">
-          <a>
-            <div class="reserve">
-              <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
-              Резервиши
-            </div>
-          </a>
+        <div class="reserve-shelf-row">
+          <div *ngIf="locations && locations.length > 0 && containShowableItems">
+            <a>
+              <div class="reserve-shelf-buttons reserve">
+                <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
+                Резервиши
+              </div>
+            </a>
+          </div>
+          <div class="">
+            <a>
+              <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1"  (click)="addToShelf()">
+                <mdb-icon fas icon="list-ul" ></mdb-icon>
+                На полицу
+              </div>
+            </a>
+            <a>
+              <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
+                <mdb-icon fas icon="list-ul" ></mdb-icon>
+                Са полице
+              </div>
+            </a>
+          </div>
         </div>
-        <div class="reserve-shelf-buttons">
-          <a>
-            <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1"  (click)="addToShelf()">
-              <mdb-icon fas icon="list-ul" ></mdb-icon>
-              На полицу
-            </div>
-          </a>
-          <a>
-            <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
-              <mdb-icon fas icon="list-ul" ></mdb-icon>
-              Са полице
-            </div>
-          </a>
-        </div>
-      </div>
       <div class="buttons">
         <add-to-collection-button [bookId]="bookId" *ngIf="isAdmin"></add-to-collection-button>
       </div>

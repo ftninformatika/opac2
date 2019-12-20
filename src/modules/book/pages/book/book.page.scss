@@ -50,7 +50,7 @@
     }
 
     .other-container {
-      width: 40%;
+      width: auto;
       @media only screen and (max-width: 680px) {
         width: 100%;
         h5 {font-size: 16px; }
