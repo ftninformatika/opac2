@@ -124,9 +124,58 @@
           </div>
         </div>
         <div class="isbd-collapse">
-
+          <mdb-accordion *ngIf="showLocations">
+            <mdb-accordion-item [collapsed]="true">
+              <mdb-accordion-item-head style="padding: 0">
+                <h5 class="mb-0">
+                  ISBD
+                </h5>
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <div class="row">
+                  <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
+                  </div>
+                </div>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+          </mdb-accordion>
         </div>
-        <div class="unimarc-collapse"></div>
+        <div class="unimarc-collapse">
+          <mdb-accordion *ngIf="showLocations">
+            <mdb-accordion-item [collapsed]="true">
+              <mdb-accordion-item-head style="padding: 0">
+                <h5 class="mb-0">
+                  UNIMARC
+                </h5>
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <div class="row">
+                  <div class="col-12 mt-2" *ngIf="book.record && book.record.fields">
+                    <p class="unimarc">
+                      <ng-container *ngFor="let f of book.record.fields">
+                        <strong>{{f.name}}</strong>
+                        {{f | makeIndicator}}
+                        <ng-container *ngFor="let sf of f.subfields">
+                          <strong>[{{sf.name}}]</strong>{{sf.content}}&nbsp;
+                          <ng-container *ngIf="sf.secField">
+                            <strong>{{</strong>
+                            <strong>{{sf.secField.name}}</strong>
+                            {{sf.secField | makeIndicator}}&nbsp;
+                            <ng-container *ngFor="let secSf of sf.secField.subfields">
+                              <strong>{{secSf.name}}</strong>&nbsp;{{secSf.content}}
+                            </ng-container>
+                            <strong>}}</strong>
+                          </ng-container>
+                        </ng-container>
+                        <br/>
+                      </ng-container>
+                    </p>
+                  </div>
+                </div>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+          </mdb-accordion>
+        </div>
       </div>
     </div>
     <div class="item-availability-container">
@@ -135,6 +184,6 @@
     </div>
   </div>
   <div class="locations-table">
-    table
+    <items-table [items]="book.items"></items-table>
   </div>
 </div>
