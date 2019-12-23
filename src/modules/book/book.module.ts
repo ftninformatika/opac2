@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
 import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
+import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image
   declarations: [
     ItemsAvailabilityCardComponent,
     ItemsTableComponent,
+    PreviewRecordPage,
     SideMiscComponent,
     ReadMoreComponent,
     BookPage,

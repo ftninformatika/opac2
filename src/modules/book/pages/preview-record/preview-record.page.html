@@ -1,0 +1,140 @@
+<div class="preview-record-page-wrapper">
+  <div class="main" *ngIf="book">
+    <div class="cover-container">
+      <img class="img-fluid slideInRight img-cover"
+           [lazyLoad]="book.imageUrl"
+           [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
+           alt="Слика корице"/>
+      <div class="social-share-buttons ">
+        <a class="icons-sm fb-ic mr-2" (click)="share('fb')"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
+        <a class="icons-sm li-ic mr-2" (click)="share('li')"><mdb-icon fab icon="linkedin"></mdb-icon></a>
+        <a class="icons-sm tw-ic mr-2" (click)="share('tw')"><mdb-icon fab icon="twitter"></mdb-icon></a>
+        <a class="icons-sm email-ic"
+           href="mailto: ?body={{'Погледај књигу:' + (book.title ? book.title : 'запис нема наслов') + ', на БИСИС5 онлајн каталогу. Линк: ' + recordURL}}
+             &subject={{(book.title ? book.title : 'запис нема наслов') + ' - БИСИС5 онлајн каталог'}}">
+          <mdb-icon fas icon="envelope"></mdb-icon>
+        </a>
+        <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>
+
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="main-info">
+        <div class="title">
+          <h1>{{book.title}}</h1>
+        </div>
+        <book-star-rating [recordId]="book._id" [bookRating]="book.avgRating"
+                          [allRatings]="book.record.recordRatings"
+                          [totalRatings]="book.totalRatings">
+        </book-star-rating>
+        <div class="subtitle" *ngIf="book.subtitle">
+          <h2>{{book.subtitle}}</h2>
+        </div>
+        <div class="author" *ngIf="book.authors">
+          <span>{{book.authors}}</span>
+        </div>
+        <div class="pub-info" *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
+          <span>{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</span>
+        </div>
+        <div class="book-description" *ngIf="book.description && book.description !== ''">
+          <p>
+            {{book.description}}
+          </p>
+        </div>
+        <div class="book-details">
+          <div class="row">
+            <div class="col-12 mt-2">
+              <dl class="row">
+                <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
+                  <dt class="col-sm-2">Аутори</dt>
+                  <dd class="col-sm-10">
+                    <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                      {{book.authors}}
+                    </a>
+                  </dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
+                  <dt class="col-sm-2">Остали аутори</dt>
+                  <dd class="col-sm-10">
+                    <a *ngFor="let oa of book.otherAuthors; let i = index"
+                       (click)="linkedSearch('authors', oa)"
+                    >
+                    <span
+                      style="cursor: pointer;color: darkblue; text-decoration: underline">
+                      <ng-container *ngIf="i > 0">
+                        ,&nbsp;
+                      </ng-container>
+                      {{oa}}
+                    </span>
+                    </a>
+                  </dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.title">
+                  <dt class="col-sm-2">Наслов</dt>
+                  <dd class="col-sm-10">{{book.title}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL">
+                  <dt class="col-sm-2" >URL</dt>
+                  <dd class="col-sm-10"><span [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"></span></dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
+                  <dt class="col-sm-2" >Издавач</dt>
+                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO">
+                  <dt class="col-sm-2" >Физички опис</dt>
+                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.notes">
+                  <dt class="col-sm-2">Напомене</dt>
+                  <dd class="col-sm-10">{{book.notes}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.isbn">
+                  <dt class="col-sm-2">ISBN</dt>
+                  <dd class="col-sm-10">{{book.isbn}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.issn">
+                  <dt class="col-sm-2">ISSN</dt>
+                  <dd class="col-sm-10">{{book.issn}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.udk">
+                  <dt class="col-sm-2">UDK</dt>
+                  <dd class="col-sm-10">{{book.udk}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO">
+                  <dt class="col-sm-2">Сигнатура</dt>
+                  <dd class="col-sm-10">
+                    {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
+                    <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
+                  </dd>
+                </ng-container>
+
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="isbd-collapse">
+
+        </div>
+        <div class="unimarc-collapse"></div>
+      </div>
+    </div>
+    <div class="item-availability-container">
+      <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
+      </items-availability-card>
+    </div>
+  </div>
+  <div class="locations-table">
+    table
+  </div>
+</div>

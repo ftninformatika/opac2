@@ -152,7 +152,6 @@ export class ResultPage implements OnInit, OnDestroy {
     await this._store.dispatch(new AddRemoveIdToSelectedAction(recordId)).toPromise();
   }
 
-  // TODO: move this to utils
   public copyLinkToClipboard(inputElement) {
     if (!inputElement) {
       return;
@@ -440,7 +439,6 @@ export class ResultPage implements OnInit, OnDestroy {
       x.godina = b.publishYear;
       transformToPrint.push(x);
     }
-    console.log(transformToPrint);
     printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
         + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
       type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});

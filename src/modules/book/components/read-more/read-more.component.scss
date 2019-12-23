@@ -4,13 +4,13 @@
   }
 
   div.collapsed {
-    height: 200px;
+    height: 150px;
     overflow: hidden;
   }
 
   div.expand {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     right: 16px;
     background-color: #eeeeee;
     cursor: pointer;

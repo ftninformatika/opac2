@@ -1,0 +1,93 @@
+.preview-record-page-wrapper {
+  .main {
+    height: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 104px;
+
+    .cover-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //align-self: center;
+      //background-color: #7e94ff;
+      width: 30%;
+
+      .img-cover {
+        max-width: 364px;
+        height: 560px;
+        border-radius: 4px;
+      }
+
+      .social-share-buttons {
+        margin-top: 10px;
+
+        a {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    .main-container {
+      //background-color: #37ff30;
+      //padding-right: 128px;
+      width: 45%;
+
+      .main-info {
+        .title > h1 {
+          font-family: Yeseva One, serif;
+          font-size: 48px;
+          color: #212121;
+          font-weight: 600;
+          text-decoration: none solid rgb(33, 33, 33);
+        }
+
+        .subtitle > h2 {
+          font-family: Yeseva One, serif;
+          font-size: 22px;
+          color: #212121;
+          font-weight: 600;
+          text-decoration: none solid rgb(33, 33, 33);
+        }
+
+        .author > span {
+          font-family: Roboto, serif;
+          font-size: 16px;
+          color: #212121;
+          text-decoration: none solid rgb(33, 33, 33);
+        }
+
+        .pub-info > span {
+          font-family: Roboto, serif;
+          font-size: 14px;
+          color: #9e9e9e;
+          text-decoration: none solid rgb(158, 158, 158);
+        }
+
+        .book-description > p {
+          margin-top: 48px;
+          font-family: Roboto, serif;
+          font-size: 16px;
+          color: #212121;
+          text-decoration: none solid rgb(33, 33, 33);
+          line-height: 28px;
+        }
+
+        .book-details {
+          margin-top: 128px;
+        }
+      }
+    }
+
+    .item-availability-container {
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //background-color: #ff2a2c;
+      width: 25%;
+    }
+  }
+}
