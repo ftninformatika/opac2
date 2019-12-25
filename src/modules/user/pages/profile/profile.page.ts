@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { UserState } from '../../../core/states/user/user.state';
 import { ISigningModel } from '../../../../models/circ/signing.model';
@@ -6,7 +6,8 @@ import { ISigningModel } from '../../../../models/circ/signing.model';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss']
+  styleUrls: ['./profile.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfilePage implements OnInit {
 

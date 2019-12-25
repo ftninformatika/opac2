@@ -3,7 +3,7 @@
     <h2 align="center" class="mb-2">Тренутно на задужењу</h2>
     <ng-container *ngIf="lendingsReport">
       <table mdbTable class="table table-responsive-md table-responsive-sm">
-        <thead class="blue white-text">
+        <thead >
         <tr>
           <th scope="col">
             <a (click)="sortBy('property4')">Наслов
@@ -49,8 +49,8 @@
           <td>{{r.property7 | shortenString: 20}}</td>
           <td>{{r.property5 | shortenString: 20}}</td>
           <td>
-            <a mdbBtn floating="true" size="sm" gradient="blue" mdbWavesEffect>
-              <mdb-icon fas icon="plus"></mdb-icon>
+            <a style="color: #00b2d1;font-weight: 600;">
+              Продужи
             </a>
           </td>
         </tr>
