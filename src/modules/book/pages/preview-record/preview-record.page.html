@@ -41,6 +41,10 @@
             {{book.description}}
           </p>
         </div>
+        <div class="item-availability-container-sm">
+          <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
+          </items-availability-card>
+        </div>
         <div class="book-details">
           <div class="row">
             <div class="col-12 mt-2">
@@ -178,7 +182,7 @@
         </div>
       </div>
     </div>
-    <div class="item-availability-container">
+    <div class="item-availability-container" *ngIf="book._id">
       <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
       </items-availability-card>
     </div>

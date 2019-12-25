@@ -5,7 +5,10 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 104px;
-
+    .item-availability-container-sm {
+      display: none;
+      align-self: center;
+    }
     .cover-container {
       display: flex;
       flex-direction: column;
@@ -146,6 +149,75 @@
         .pub-info > span { font-size: 11px !important; }
         .book-description > p { font-size: 13px !important; }
         .book-details { margin-top: 70px !important; }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
+      .cover-container {
+        width: 100% !important;
+        .img-cover {
+          width: 320px;
+          height: 480px;
+        }
+      }
+      .item-availability-container-sm {
+        width: auto !important;
+        display: contents;
+        mdb-card {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+      }
+      .item-availability-container {
+        display: none;
+      }
+      .main-container {
+        width: 100% !important;
+        .main-info {
+          margin-top: 20px;
+          .title > h1 {
+            font-size: 32px !important;
+            text-align: center
+          }
+          .subtitle > h2 {
+            font-size: 18px !important;
+            text-align: center
+          }
+          ngb-rating {
+            align-self: center;
+          }
+          .ng-star-inserted {
+            align-self: center !important;
+          }
+          .author > span {
+            font-size: 13px !important;
+          }
+          .author { text-align: center; }
+          .pub-info > span {
+            font-size: 12px !important;
+          }
+          .pub-info { text-align: center; }
+          .book-description > p { font-size: 14px !important; }
+          .book-description {
+            text-align: center;
+          }
+          .book-details { margin-top: 24px !important; }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 835px) {
+    .cover-container {
+      .img-cover {
+        width: 250px !important;
+        height: 370px !important;
       }
     }
   }
