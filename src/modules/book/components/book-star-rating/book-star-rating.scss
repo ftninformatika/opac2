@@ -21,12 +21,15 @@
     overflow: hidden;
     color: #00b2d1;
   }
-  //@media only screen and (max-width: 1023px) {
-  //  .avg-rating {
-  //    display: flex;
-  //    align-self: center;
-  //  }
-  //}
+  @media only screen and (max-width: 1023px) {
+    flex-direction: column;
+    .avg-rating {
+      align-self: center;
+    }
+    .stars {
+      align-self: center;
+    }
+  }
   @media only screen and (max-width: 700px) {
     .star {
       font-size: 2rem !important;

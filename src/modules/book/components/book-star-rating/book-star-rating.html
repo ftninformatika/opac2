@@ -4,7 +4,7 @@
     <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
   </span>
   </ng-template>
-  <div>
+  <div class="stars">
     <ngb-rating [(rate)]="starRate" [starTemplate]="t" max="5" (rateChange)="rateBook($event)"></ngb-rating>
   </div>
   <div class="avg-rating">
