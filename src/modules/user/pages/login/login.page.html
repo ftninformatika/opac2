@@ -1,60 +1,62 @@
-<div class="full-bg-img mask flex-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
-        <div class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
-          <div class="card-body">
-            <div class="form-header primary-color-dark">
-              <h3><mdb-icon fas icon="user" class="mt-2 mb-2"></mdb-icon> Пријава</h3>
+<div class="login-page-wrapper">
+  <div class="full-bg-img mask flex-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
+          <div class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
+            <div class="card-body">
+              <div class="form-header login-header">
+                <h3><mdb-icon fas icon="user" class="mt-2 mb-2"></mdb-icon> Пријава</h3>
+              </div>
+              <form [formGroup]="loginForm">
+                <div class="md-form">
+                  <mdb-icon far icon="envelope" class="dark-grey-text"></mdb-icon>
+                  <input type="text" id="orangeForm-email" class="form-control" formControlName="email" mdbInput>
+                  <label for="orangeForm-email" class="">Email</label>
+                  <span *ngIf="loginForm.get('email').errors && loginForm.get('email').touched"
+                    class="inputVal text-danger">Неисправан формат e-mail адресе</span>
+                  <span *ngIf="!loginForm.get('email').errors"
+                    class="inputVal text-success">Исправно</span>
+                </div>
+                <div class="md-form">
+                  <mdb-icon fas icon="lock" class="dark-grey-text"></mdb-icon>
+                  <input type="password" id="orangeForm-pass" class="form-control" formControlName="password" mdbInput>
+                  <label for="orangeForm-pass" class="">Лозинка</label>
+                  <span *ngIf="loginForm.get('password').errors && loginForm.get('email').touched"
+                        class="inputVal text-danger">Неисправан формат лозинке</span>
+                  <span *ngIf="!loginForm.get('password').errors"
+                        class="inputVal text-success">Исправно</span>
+                </div>
+                <div class="text-center">
+                  <button class="btn login-btn white-text btn-lg waves-effect waves-light" mdbWavesEffect (click)="login()">Пријави се</button>
+                  <button class="btn forget-pass-btn btn-lg waves-effect waves-light" mdbWavesEffect (click)="basicModal.show();">Заборавих лозинку</button>
+                </div>
+              </form>
             </div>
-            <form [formGroup]="loginForm">
-              <div class="md-form">
-                <mdb-icon far icon="envelope" class="dark-grey-text"></mdb-icon>
-                <input type="text" id="orangeForm-email" class="form-control" formControlName="email" mdbInput>
-                <label for="orangeForm-email" class="">Email</label>
-                <span *ngIf="loginForm.get('email').errors && loginForm.get('email').touched"
-                  class="inputVal text-danger">Неисправан формат e-mail адресе</span>
-                <span *ngIf="!loginForm.get('email').errors"
-                  class="inputVal text-success">Исправно</span>
-              </div>
-              <div class="md-form">
-                <mdb-icon fas icon="lock" class="dark-grey-text"></mdb-icon>
-                <input type="password" id="orangeForm-pass" class="form-control" formControlName="password" mdbInput>
-                <label for="orangeForm-pass" class="">Лозинка</label>
-                <span *ngIf="loginForm.get('password').errors && loginForm.get('email').touched"
-                      class="inputVal text-danger">Неисправан формат лозинке</span>
-                <span *ngIf="!loginForm.get('password').errors"
-                      class="inputVal text-success">Исправно</span>
-              </div>
-              <div class="text-center">
-                <button class="btn primary-color-dark white-text btn-lg waves-effect waves-light" mdbWavesEffect (click)="login()">Пријави се</button>
-                <button class="btn secondary-color btn-lg white-text waves-effect waves-light" mdbWavesEffect (click)="basicModal.show();">Заборавих лозинку</button>
-              </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div style="overflow-y: auto; background: #eeeeee" mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog modal-fluid modal-full-height modal-top" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title w-100 center" id="myModalLabel">Унесите вашу e-mail адресу</h4>
-        </div>
-        <div class="modal-body">
-          <input type="email" class="form-control" mdbInput email="true" [(ngModel)]="forgotPassEmail" (keydown.enter)="forgotPassword()">
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="forgotPassword()" >Пошаљи</button>
+    <div style="overflow-y: auto; background: #eeeeee" mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-fluid modal-full-height modal-top" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100 center" id="myModalLabel">Унесите вашу e-mail адресу</h4>
+          </div>
+          <div class="modal-body">
+            <input type="email" class="form-control" mdbInput email="true" [(ngModel)]="forgotPassEmail" (keydown.enter)="forgotPassword()">
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="forgotPassword()" >Пошаљи</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>

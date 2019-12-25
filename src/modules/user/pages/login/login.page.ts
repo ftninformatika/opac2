@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../../core/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,8 @@ import { ChangeConfigAction, ConfigState } from '../../../core/states/config/con
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss']
+  styleUrls: ['./login.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginPage implements OnInit {
 
