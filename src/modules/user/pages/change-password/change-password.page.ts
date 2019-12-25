@@ -4,7 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { UserState } from '../../../core/states/user/user.state';
 import { EPasswordCodes } from '../../../../utils/regexes';
 import { ToastService } from 'ng-uikit-pro-standard';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
@@ -12,7 +12,8 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'change-password-page',
   templateUrl: './change-password.page.html',
-  styleUrls: ['./change-password.page.scss']
+  styleUrls: ['./change-password.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChangePasswordPage implements OnInit {
 
