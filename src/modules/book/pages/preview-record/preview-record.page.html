@@ -46,7 +46,7 @@
             <div class="col-12 mt-2">
               <dl class="row">
                 <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
-                  <dt class="col-sm-2">Аутори</dt>
+                  <dt class="col-sm-2">Аутори&nbsp;</dt>
                   <dd class="col-sm-10">
                     <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
                       {{book.authors}}
@@ -55,7 +55,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
-                  <dt class="col-sm-2">Остали аутори</dt>
+                  <dt class="col-sm-2">Остали аутори&nbsp;</dt>
                   <dd class="col-sm-10">
                     <a *ngFor="let oa of book.otherAuthors; let i = index"
                        (click)="linkedSearch('authors', oa)"
@@ -72,47 +72,47 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.title">
-                  <dt class="col-sm-2">Наслов</dt>
+                  <dt class="col-sm-2">Наслов&nbsp;</dt>
                   <dd class="col-sm-10">{{book.title}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL">
-                  <dt class="col-sm-2" >URL</dt>
+                  <dt class="col-sm-2" >URL&nbsp;</dt>
                   <dd class="col-sm-10"><span [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"></span></dd>
                 </ng-container>
 
                 <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
-                  <dt class="col-sm-2" >Издавач</dt>
+                  <dt class="col-sm-2" >Издавач&nbsp;</dt>
                   <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO">
-                  <dt class="col-sm-2" >Физички опис</dt>
+                  <dt class="col-sm-2" >Физички опис&nbsp;</dt>
                   <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.notes">
-                  <dt class="col-sm-2">Напомене</dt>
+                  <dt class="col-sm-2">Напомене&nbsp;</dt>
                   <dd class="col-sm-10">{{book.notes}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.isbn">
-                  <dt class="col-sm-2">ISBN</dt>
+                  <dt class="col-sm-2">ISBN&nbsp;</dt>
                   <dd class="col-sm-10">{{book.isbn}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.issn">
-                  <dt class="col-sm-2">ISSN</dt>
+                  <dt class="col-sm-2">ISSN&nbsp;</dt>
                   <dd class="col-sm-10">{{book.issn}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.udk">
-                  <dt class="col-sm-2">UDK</dt>
+                  <dt class="col-sm-2">UDK&nbsp;</dt>
                   <dd class="col-sm-10">{{book.udk}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO">
-                  <dt class="col-sm-2">Сигнатура</dt>
+                  <dt class="col-sm-2">Сигнатура&nbsp;</dt>
                   <dd class="col-sm-10">
                     {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
                     <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>

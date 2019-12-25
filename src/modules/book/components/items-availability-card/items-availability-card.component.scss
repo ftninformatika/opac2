@@ -2,7 +2,7 @@
   width: 360px;
   cursor: default;
   mdb-card {
-    min-width: 360px;
+    //min-width: 360px;
     min-height: 250px;
     max-height: 340px;
   }
@@ -12,12 +12,6 @@
     height: 40px;
     margin-bottom: 5px;
   }
-
-  //.res-shelf-btns {
-  //  display: flex;
-  //  flex-direction: row;
-  //  align-content: space-between;
-  //}
 
   .reserve-shelf-row {
     display: flex;
@@ -59,6 +53,29 @@
   add-to-collection-button {
     .add-to-collection {
       width: 320px;
+    }
+  }
+
+  @media only screen and (max-width: 1439px) {
+    .card {
+      width: 300px;
+    }
+    .reserve-shelf-buttons {
+      width: 125px;
+      height: 48px;
+      font-size: 13px;
+    }
+    add-to-collection-button {
+      .add-to-collection {
+        width: 267px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 835px) {
+    mdb-card {
+      width: 280px !important;
     }
   }
 
