@@ -1,6 +1,32 @@
 .book-star-rating-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  .avg-rating {
+    display: flex;
+    align-self: center;
+    margin-left: 12px;
+  }
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: #00b2d1;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #00b2d1;
+  }
+  //@media only screen and (max-width: 1023px) {
+  //  .avg-rating {
+  //    display: flex;
+  //    align-self: center;
+  //  }
+  //}
   @media only screen and (max-width: 700px) {
     .star {
       font-size: 2rem !important;
@@ -10,20 +36,5 @@
     .star {
       font-size: 1.5rem !important;
     }
-  }
-  .star {
-    position: relative;
-    display: inline-block;
-    font-size: 3rem;
-    color: #d3d3d3;
-  }
-  .full {
-    color: #bb112e;
-  }
-  .half {
-    position: absolute;
-    display: inline-block;
-    overflow: hidden;
-    color: #bb112e;
   }
 }
