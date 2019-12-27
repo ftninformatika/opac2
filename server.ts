@@ -41,8 +41,8 @@ app.use(cors());
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
 // const appUrl = 'localhost:4000';
 // const renderUrl = 'http://localhost:3000/render';
-const appUrl = 'opac2.herokuapp.com';
-const renderUrl = 'http://116.203.124.157/render';
+const appUrl = 'opac.bisis.rs';
+// const renderUrl = 'http://116.203.124.157/render';
 // const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -137,20 +137,21 @@ app.get('*', (req, res) => {
       .catch(error => {
         console.log(error);
       });
-  } else {
-    const botUrl  = generateUrl(req);
-    console.log('Sending route to Rendertron');
-    axios.get(`${renderUrl}/${botUrl}`)
-      .then(response => {
-        res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-        res.set('Vary', 'User-Agent');
-        const renderedHtml = response.data;
-        res.send(renderedHtml);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
+  // else {
+  //   const botUrl  = generateUrl(req);
+  //   console.log('Sending route to Rendertron');
+  //   axios.get(`${renderUrl}/${botUrl}`)
+  //     .then(response => {
+  //       res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+  //       res.set('Vary', 'User-Agent');
+  //       const renderedHtml = response.data;
+  //       res.send(renderedHtml);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
 });
 
 // Start up the Node server

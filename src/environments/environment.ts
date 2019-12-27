@@ -5,9 +5,10 @@
 export const environment = {
   // production: false,
   production: true,
-  origin: 'http://localhost:4200',
-  baseUrl: 'http://localhost:8080'
-  // baseUrl: 'https://test.bisis.rs/bisisWS'
+  // origin: 'http://localhost:4200',
+  // baseUrl: 'http://localhost:8080'
+  origin: 'https://opac.bisis.rs',
+  baseUrl: 'https://app.bisis.rs/bisisWS'
 };
 
 /*

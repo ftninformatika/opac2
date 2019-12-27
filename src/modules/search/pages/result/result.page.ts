@@ -27,7 +27,7 @@ import { Location } from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
 import { environment } from '../../../../environments/environment';
-import * as printJS from 'print-js';
+// import * as printJS from 'print-js';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -439,8 +439,8 @@ export class ResultPage implements OnInit, OnDestroy {
       x.godina = b.publishYear;
       transformToPrint.push(x);
     }
-    printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-        + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
-      type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
+    // printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
+    //     + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+    //   type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
   }
 }

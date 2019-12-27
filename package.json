@@ -59,7 +59,6 @@
     "ngx-order-pipe": "^2.0.4",
     "ngx-pagination": "^4.1.0",
     "node-fetch": "^2.6.0",
-    "print-js": "^1.0.63",
     "rxjs": "~6.4.0",
     "screenfull": "^3.3.3",
     "tslib": "^1.10.0",
