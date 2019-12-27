@@ -61,7 +61,15 @@ import { AppOptionsState } from '../core/states/app-options/app-options.state';
   ],
   bootstrap: [AppPage]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    // if (typeof window === 'undefined') {
+    //   environment.baseUrl = 'bisisWS';
+    // } else {
+    //   environment.baseUrl = 'http://localhost:8080';
+    // }
+  }
+}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
