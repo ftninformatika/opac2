@@ -66,7 +66,7 @@ export class PreviewRecordPage {
             if (!data) {
               await this._router.navigate(['/error/not-found']);
             } else {
-              this.recordURL = this.getRecordUrl();
+              this.recordURL = window.location.href;
               this._scrollToService.scrollTo({offset: 0});
               this.book = data;
               this.setMetaTags();
@@ -125,10 +125,6 @@ export class PreviewRecordPage {
     await this._router.navigate(['/search/result'], {queryParams: {s: encodedURI}});
   }
 
-  public getRecordUrl(): string {
-    return environment.origin + window.location.pathname;
-  }
-
   private setMetaTags() {
     if (!this.book) {
       return;
@@ -136,7 +132,7 @@ export class PreviewRecordPage {
     const tags = [
       {property: 'og:title', content: this.book.title},
       {property: 'og:type', content: 'book'},
-      {property: 'og:url', content: environment.origin + window.location.pathname},
+      {property: 'og:url', content: window.location.href},
       {property: 'og:image', content: this.book.imageUrl ? this.book.imageUrl : '../../../../assets/book/nocover/1.jpg'},
       {property: 'og:description', content: this.book.description ? this.book.description : 'Није унет опис ове књиге'},
     ];

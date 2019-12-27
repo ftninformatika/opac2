@@ -175,7 +175,7 @@ export class ResultPage implements OnInit, OnDestroy {
       };
       req.options.lib = this.lib;
       this.shareSelectedLink =
-        `${environment.origin}/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
+        `${window.location.protocol}//${window.location.hostname}/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
       return this.shareSelectedLink;
     } catch (e) {
       return null;

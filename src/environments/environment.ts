@@ -3,12 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  // production: false,
   production: true,
-  origin: 'https://opactest.ftninformatika.com',
-  baseUrl: 'bisisWS'
-  // origin: 'https://opac.bisis.rs',
-  // baseUrl: 'https://app.bisis.rs/bisisWS'
+  baseUrl: window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'bisisWS'
 };
 
 /*

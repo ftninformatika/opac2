@@ -5,6 +5,7 @@ import { Book } from '../../../../models/book.model';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfigState } from '../../../core/states/config/config.state';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-main',

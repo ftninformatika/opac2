@@ -1,5 +1,5 @@
-<div class="preview-record-page-wrapper">
-  <div class="main" *ngIf="book">
+<div class="preview-record-page-wrapper" *ngIf="book">
+  <div class="main" >
     <div class="cover-container">
       <img class="img-fluid slideInRight img-cover"
            [lazyLoad]="book.imageUrl"
@@ -182,12 +182,12 @@
         </div>
       </div>
     </div>
-    <div class="item-availability-container" *ngIf="book._id">
+    <div class="item-availability-container" *ngIf="book._id && book.items">
       <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
       </items-availability-card>
     </div>
   </div>
-  <div class="locations-table">
+  <div class="locations-table" *ngIf="book.items">
     <items-table [items]="book.items"></items-table>
   </div>
 </div>
