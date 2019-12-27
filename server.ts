@@ -41,7 +41,7 @@ app.use(cors());
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
 // const appUrl = 'localhost:4000';
 // const renderUrl = 'http://localhost:3000/render';
-const appUrl = 'opac.bisis.rs';
+const appUrl = 'opactest.ftninformatika.com';
 // const renderUrl = 'http://116.203.124.157/render';
 // const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
