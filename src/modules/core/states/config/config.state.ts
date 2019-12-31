@@ -9,7 +9,7 @@ export interface IConfigStateModel {
 export const InitialConfigState: IConfigStateModel = {
   libConfig: {
     libraryName: 'gbns',
-    libraryFullName: 'Градска библиотека Новог Сада',
+    libraryFullName: 'Градска библиотека у Новом Саду',
     shortName: 'ГБНС',
     locale: ELocalizationLanguage.SERBIAN_CYRILIC,
     navbarColor: 'bg-primary'

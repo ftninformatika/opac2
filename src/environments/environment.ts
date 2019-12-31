@@ -5,6 +5,7 @@
 export const environment = {
   production: true,
   baseUrl: 'bisisWS'
+  // baseUrl: 'http://test.bisis.rs'
 };
 
 /*

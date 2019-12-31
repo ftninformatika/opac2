@@ -19,7 +19,7 @@ export class LibraryConfigurationService {
     },
     {
       libraryName: 'gbns',
-      libraryFullName: 'Градска библиотека Новог Сада',
+      libraryFullName: 'Градска библиотека у Новом Саду',
       shortName: 'ГБНС',
       locale: 'sr_Cyrl_RS',
       navbarColor: 'bg-primary'
@@ -28,6 +28,13 @@ export class LibraryConfigurationService {
       libraryName: 'bs',
       libraryFullName: 'Библиотека шабачка',
       shortName: 'БШ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    },
+    {
+      libraryName: 'msk',
+      libraryFullName: 'Епархија Сремски Карловци',
+      shortName: 'ЕСК',
       locale: 'sr_Cyrl_RS',
       navbarColor: 'green'
     }

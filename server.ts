@@ -41,7 +41,7 @@ app.use(cors());
 // const appUrl = 'bisis5-opac2.firebaseapp.com';
 // const appUrl = 'localhost:4000';
 // const renderUrl = 'http://localhost:3000/render';
-const appUrl = 'opactest.ftninformatika.com';
+const appUrl = 'opac.bisis.rs';
 // const renderUrl = 'http://116.203.124.157/render';
 // const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
@@ -128,7 +128,7 @@ app.get('*', (req, res) => {
   } else if (isExternalHit(req.headers['user-agent'])) {
     console.log('external HITT!');
     const urlParam = generateUrl(req);
-    axios.get(`${environment.baseUrl}/external_hit?url=${urlParam}`)
+    axios.get(`bisisWS/external_hit?url=${urlParam}`)
       .then(response => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');
