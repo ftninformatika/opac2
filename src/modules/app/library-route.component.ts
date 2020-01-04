@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { OptionsToDefault } from '../core/states/app-options/app-options.state';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'library-route',
@@ -17,12 +18,14 @@ export class LibraryRouteComponent implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _store: Store;
   private readonly _router: Router;
+  private readonly  _titleService: Title;
 
   public nextUrl: string;
 
-  public constructor(libConfigService: LibraryConfigurationService,
+  public constructor(libConfigService: LibraryConfigurationService, titleService: Title,
                      store: Store, activatedRoute: ActivatedRoute, router: Router) {
     this._libConfigService = libConfigService;
+    this._titleService = titleService;
     this._activatedRoute = activatedRoute;
     this._router = router;
     this._store = store;
@@ -54,6 +57,8 @@ export class LibraryRouteComponent implements OnInit {
             await this._store.dispatch(SignOutAction).toPromise();
             await this._store.dispatch(OptionsToDefault).toPromise();
             await this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === paramLib))).toPromise();
+            const title = this._store.selectSnapshot(ConfigState.fullLibName);
+            this._titleService.setTitle(title);
           }
         }
         if (this.nextUrl) {

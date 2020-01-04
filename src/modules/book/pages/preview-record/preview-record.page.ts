@@ -10,7 +10,6 @@ import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
 import { Book, ERecordItemStatus } from '../../../../models/book.model';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { RecordUtils } from '../../../../utils/record-utils';
-import { environment } from '../../../../environments/environment';
 import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { SearchUtil } from '../../../../utils/search-util';
 import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';

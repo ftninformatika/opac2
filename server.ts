@@ -110,14 +110,10 @@ function detectBot(userAgent) {
   return false;
 }
 
-
-// function isBookRoute(route: string) {
-//   return (route && route.indexOf('book') > -1);
-// }
-
 // TODO: add other link-bots
 function isExternalHit(userAgent: string) {
-  return (userAgent && userAgent.toLowerCase().indexOf('facebookexternalhit') > -1 || userAgent.toLowerCase().indexOf('viber') > -1);
+  return (userAgent && userAgent.toLowerCase().indexOf('facebookexternalhit') > -1 || userAgent.toLowerCase().indexOf('viber') > -1
+    || userAgent.toLowerCase().indexOf('linkedin') > -1 || userAgent.toLowerCase().indexOf('twitter') > -1);
 }
 
 // All regular routes use the Universal engine
@@ -128,7 +124,7 @@ app.get('*', (req, res) => {
   } else if (isExternalHit(req.headers['user-agent'])) {
     console.log('external HITT!');
     const urlParam = generateUrl(req);
-    axios.get(`bisisWS/external_hit?url=${urlParam}`)
+    axios.get(`https://app.bisis.rs/bisisWS/external_hit?url=${urlParam}`)
       .then(response => {
         res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
         res.set('Vary', 'User-Agent');

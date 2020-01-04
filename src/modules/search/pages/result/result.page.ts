@@ -26,7 +26,6 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
-import { environment } from '../../../../environments/environment';
 // import * as printJS from 'print-js';
 
 export enum EDeviceWidth {

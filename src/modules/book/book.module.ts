@@ -9,7 +9,6 @@ import { BookTabs } from './components/book-tabs/book-tabs';
 import { SharedModule } from '../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'ng-uikit-pro-standard';
-import { BookPage } from './pages/book/book.page';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { BookRoutes } from './book.routes';
@@ -35,7 +34,6 @@ import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
     PreviewRecordPage,
     SideMiscComponent,
     ReadMoreComponent,
-    BookPage,
     UploadDescriptionCoverPage,
     BookTabs,
     BookStarRating
