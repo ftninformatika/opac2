@@ -56,6 +56,10 @@ app.engine('html', ngExpressEngine({
   ]
 }));
 
+if (typeof window === 'undefined') {
+  global['window'] = {};
+}
+
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 

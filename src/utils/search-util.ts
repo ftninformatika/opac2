@@ -56,10 +56,8 @@ export class SearchUtil {
     }
   }
 
-  // TODO: extend this
   public static getYouSearchedStringFromSearchModel(sm: ISearchModel): string {
-    console.log(sm);
-    let retVal = '';
+    const retVal = '';
     if (!sm) {
       return retVal;
     }
@@ -84,7 +82,6 @@ export class SearchUtil {
   private static advancedSearchText(sm: ISearchModel): string {
     const texts: string[] = [];
     const prefixLabels = [sm.pref1, sm.pref2, sm.pref3, sm.pref4, sm.pref5].map(p => this.getPrefixLabel(p));
-    console.log(prefixLabels);
     if (sm.text1 && sm.text1.trim() !== '' && prefixLabels[0]) {
       texts.push(this.spanText(sm.text1) + ' - ' + prefixLabels[0]);
     }
@@ -104,12 +101,10 @@ export class SearchUtil {
   }
 
   private static getPrefixLabel(prefCode: string): string {
-    console.log(prefCode);
     if (!prefCode || prefCode === '') {
       return null;
     }
     const pref = PrefixUtils.Prefixes.find(p => p.code === prefCode);
-    console.log(pref);
     if (!pref) {
       return null;
     }

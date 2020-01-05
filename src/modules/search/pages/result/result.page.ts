@@ -26,7 +26,8 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { Location } from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
-// import * as printJS from 'print-js';
+import * as es6printJS from 'print-js';
+import * as printJS from 'print-js';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -174,6 +175,7 @@ export class ResultPage implements OnInit, OnDestroy {
       };
       req.options.lib = this.lib;
       this.shareSelectedLink =
+        // tslint:disable-next-line:max-line-length
         `${window.location.protocol}//${window.location.hostname}/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
       return this.shareSelectedLink;
     } catch (e) {
@@ -438,8 +440,8 @@ export class ResultPage implements OnInit, OnDestroy {
       x.godina = b.publishYear;
       transformToPrint.push(x);
     }
-    // printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-    //     + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
-    //   type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
+    printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
+        + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+      type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
   }
 }

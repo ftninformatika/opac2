@@ -5,6 +5,7 @@
     {
       "name": "opac2",
       "installMode": "prefetch",
+      "updateMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
