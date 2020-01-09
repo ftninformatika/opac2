@@ -41,11 +41,14 @@
     <tbody>
     <tr mdbTableCol *ngFor="let i of items">
       <ng-container *ngIf="i.status !== ItemStatus.NotShowable">
-        <th class="location-cell" scope="row"
+        <th *ngIf="i.googleMapLocationURL" class="location-cell" scope="row"
          (click)="changeSelectedLocation(i) ?
                   locationModal.show() : ''"
                   [mdbTooltip]="'Кликните за приказ локацијских података'">
           <mdb-icon fas icon="map-marker-alt" class="ml-1 mr-1"></mdb-icon>
+          {{i.location}}
+        </th>
+        <th *ngIf="!i.googleMapLocationURL" style="cursor: default">
           {{i.location}}
         </th>
         <td>{{i.signature}}</td>
@@ -82,7 +85,7 @@
           <iframe #iframePlace [src]="getSanitizedURL()" width="460" height="450" frameborder="0" style="border:0; border-radius: 10px" allowfullscreen=""></iframe>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close"
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
                   (click)="selectedLocMapURL = null;
                            selectedLocation = null;
                            locationModal.hide();"

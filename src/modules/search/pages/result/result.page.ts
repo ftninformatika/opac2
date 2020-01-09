@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation} from '@angular/core';
 import {
   IResultPageOptions,
   IResultPageOptionsInitial, IResultPageSearchRequest
@@ -23,11 +23,14 @@ import { ArrayUtils } from '../../../../utils/array.utils';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
-import { Location } from '@angular/common';
+import {isPlatformBrowser, Location} from '@angular/common';
 import {Select, Store} from '@ngxs/store';
 import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
 import * as es6printJS from 'print-js';
-import * as printJS from 'print-js';
+// import { printJS } from 'print-js';
+// @ts-ignore
+import printJS from 'print-js';
+import {platformBrowser} from '@angular/platform-browser';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -52,6 +55,7 @@ export class ResultPage implements OnInit, OnDestroy {
   private readonly _location: Location;
   private readonly _router: Router;
   private readonly _store: Store;
+  private isBrowser;
 
   public searchModel: ISearchModel;
   public resultPage: IResultPage;
@@ -67,7 +71,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public tableView: boolean;
   public shareSelectedLink: string;
 
-  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute,
+  public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, @Inject(PLATFORM_ID) private platformId,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
@@ -76,6 +80,7 @@ export class ResultPage implements OnInit, OnDestroy {
     this._location = location;
     this._searchService = searchService;
     this._store = store;
+    this.isBrowser = isPlatformBrowser(platformId);
     // TODO: consider moving this and some more possible app settings to Redux State
     this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
     this.shareSelectedLink = null;
@@ -430,18 +435,23 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public printThisPage() {
-    const transformToPrint: any[] = [];
-    for (const b of this.searchResult) {
-      const x: any = {};
-      x.autor = b.authors;
-      x.naslov = b.title;
-      x.izdao = b.publisher;
-      x.mesto = b.publishPlace;
-      x.godina = b.publishYear;
-      transformToPrint.push(x);
+    if (this.isBrowser) {
+      const transformToPrint: any[] = [];
+      for (const b of this.searchResult) {
+        const x: any = {};
+        x.autor = b.authors;
+        x.naslov = b.title;
+        x.izdao = b.publisher;
+        x.mesto = b.publishPlace;
+        x.godina = b.publishYear;
+        transformToPrint.push(x);
+      }
+      // TODO: fix "window not defined" bug
+      // printJS({
+      //   printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
+      //     + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+      //   type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']
+      // });
     }
-    printJS({printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-        + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
-      type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']});
   }
 }
