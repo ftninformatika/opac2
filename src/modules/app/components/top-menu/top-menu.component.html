@@ -24,7 +24,7 @@
                  placeholder="Претражи..."
                  aria-label="Претражи"
                  autocomplete="off">
-          <div class="ml-12">
+          <div>
             <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)"
                                 (mouseover)="onAutoCompleteSelect($event)"
                                 (mousedown)="this.search()"
