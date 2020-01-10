@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
-import { OptionsToDefaultAction } from '../core/states/app-options/app-options.state';
 import {Title} from '@angular/platform-browser';
+import {OptionsToDefaultAction} from '../core/states/app-options/app-options.actions';
 
 @Component({
   selector: 'library-route',
