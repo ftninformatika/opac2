@@ -86,7 +86,8 @@
                     class="mb-3">
               <book-result-brief [book]= "book"
                                  [checked] = "(appOptionsState | async)?.selectedShareRecords.indexOf(book._id) > -1"
-                                 (shareChecked)="addRemoveIdToShareList($event)"></book-result-brief>
+                                 (shareChecked)="addRemoveIdToShareList($event)">
+              </book-result-brief>
           </mdb-card>
         </ng-container>
         <ng-container *ngIf="tableView">

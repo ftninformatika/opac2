@@ -4,10 +4,7 @@ import {
   IResultPageOptionsInitial, IResultPageSearchRequest
 } from '../../../../models/search/result-page-options.model';
 import {
-  AddRemoveIdToSelectedAction,
-  AddMultipleIdsToSelected,
-  AppOptionsState,
-  OptionsToDefault
+  AppOptionsState
 } from '../../../core/states/app-options/app-options.state';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
@@ -31,6 +28,11 @@ import * as es6printJS from 'print-js';
 // @ts-ignore
 import printJS from 'print-js';
 import {platformBrowser} from '@angular/platform-browser';
+import {
+  AddMultipleIdsToSelectedAction, AddRemoveIdToSelectedAction,
+  AddRemoveLocationsAction,
+  AddRemoveSubLocationsAction, OptionsToDefaultAction
+} from '../../../core/states/app-options/app-options.actions';
 
 export enum EDeviceWidth {
   GT_SM = 'gt_sm',
@@ -146,11 +148,11 @@ export class ResultPage implements OnInit, OnDestroy {
 
   public async selectAll() {
     const recIds = this.searchResult.map(b => b._id);
-    await this._store.dispatch(new AddMultipleIdsToSelected(recIds));
+    await this._store.dispatch(new AddMultipleIdsToSelectedAction(recIds));
   }
 
   public async clearSelection() {
-    await this._store.dispatch(OptionsToDefault).toPromise();
+    await this._store.dispatch(OptionsToDefaultAction).toPromise();
   }
 
   public async addRemoveIdToShareList(recordId: string) {
@@ -250,12 +252,18 @@ export class ResultPage implements OnInit, OnDestroy {
   public filterResults(filterItem: ISelectedFilter) {
     this.addRemoveSelectedFilters(filterItem);
     switch (filterItem.type) {
-      case EFilterType.LOCATION: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.locations); break;
+      case EFilterType.LOCATION: {
+        ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.locations);
+        this._store.dispatch(new AddRemoveLocationsAction(filterItem));
+      }                          break;
       case EFilterType.PUB_TYPE: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.pubTypes); break;
       case EFilterType.AUTHOR: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.authors); break;
       case EFilterType.LANGUAGE: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.languages); break;
       case EFilterType.PUB_YEAR: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.pubYears); break;
-      case EFilterType.SUB_LOCATION: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subLocations); break;
+      case EFilterType.SUB_LOCATION: {
+        ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subLocations);
+        this._store.dispatch(new AddRemoveSubLocationsAction(filterItem));
+      }                              break;
       case EFilterType.SUBJECT: ArrayUtils.pushOrRemoveFromArrSelFilters(filterItem, this.pageOptions.filters.subjects); break;
       default: return;
     }

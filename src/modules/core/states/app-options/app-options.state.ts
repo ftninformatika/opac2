@@ -1,4 +1,11 @@
 import {Action, Selector, State, StateContext } from '@ngxs/store';
+import {ISelectedFilter} from '../../../../models/search/filter.model';
+import {
+  AddMultipleIdsToSelectedAction,
+  AddRemoveIdToSelectedAction,
+  AddRemoveLocationsAction, AddRemoveSubLocationsAction,
+  ClearLocationFiltersAction, OptionsToDefaultAction
+} from './app-options.actions';
 
 // Model -------------------------------------------------- TODO: put these where they belong
 export enum ESearchResultsViewType {
@@ -9,36 +16,16 @@ export enum ESearchResultsViewType {
 export interface IAppOptionsState {
   searchResultsViewType: ESearchResultsViewType;
   selectedShareRecords: string[];
+  selectedLocations: ISelectedFilter[];
+  selectedSubLocations: ISelectedFilter[];
 }
 
 const InitialAppOptionsState: IAppOptionsState = {
   searchResultsViewType: ESearchResultsViewType.Card,
-  selectedShareRecords: []
+  selectedShareRecords: [],
+  selectedLocations: [],
+  selectedSubLocations: []
 };
-
-// Actions ------------------------------------------------
-export class AddRemoveIdToSelectedAction {
-  public static type = '[Options] Add/Remove to share selection list';
-  public recordId: string;
-
-  public constructor(recordId: string) {
-    this.recordId = recordId;
-  }
-}
-
-export class AddMultipleIdsToSelected {
-  public static type = '[Options] Add/Remove to share selection list';
-  public recordIds: string[];
-
-  public constructor(recordId: string[]) {
-    this.recordIds = recordId;
-  }
-}
-
-export class OptionsToDefault {
-  public static type = '[Options] Reset to default state';
-  public constructor() {}
-}
 
 // State  -------------------------------------------------
 @State<IAppOptionsState>({
@@ -70,8 +57,8 @@ export class AppOptionsState {
     ctx.patchState(state);
   }
 
-  @Action(AddMultipleIdsToSelected)
-  public addRemoveMultipleRecordIdToSelected(ctx: StateContext<IAppOptionsState>, action: AddMultipleIdsToSelected) {
+  @Action(AddMultipleIdsToSelectedAction)
+  public addRemoveMultipleRecordIdToSelected(ctx: StateContext<IAppOptionsState>, action: AddMultipleIdsToSelectedAction) {
     const state = ctx.getState();
     if (!action || !action.recordIds || action.recordIds.length === 0) {
       return;
@@ -85,8 +72,43 @@ export class AppOptionsState {
     ctx.setState(state);
   }
 
-  @Action(OptionsToDefault)
-  public resetToDefault(ctx: StateContext<IAppOptionsState>, action: OptionsToDefault) {
+  @Action(ClearLocationFiltersAction)
+  public clearLocationFilterActions(ctx: StateContext<IAppOptionsState>) {
+    ctx.patchState({selectedSubLocations: [], selectedLocations: []});
+  }
+
+  @Action(AddRemoveLocationsAction)
+  public addRemoveLocationsAction(ctx: StateContext<IAppOptionsState>, action: AddRemoveLocationsAction) {
+    const state = ctx.getState();
+    if (!action || !action.locationFilter) {
+      return;
+    }
+    const index = state.selectedLocations.indexOf(action.locationFilter);
+    if (index === -1) {
+        state.selectedLocations.push(action.locationFilter);
+    } else {
+      state.selectedLocations.splice(index, 1);
+    }
+    ctx.setState(state);
+  }
+
+  @Action(AddRemoveSubLocationsAction)
+  public addRemoveSubLocationsAction(ctx: StateContext<IAppOptionsState>, action: AddRemoveSubLocationsAction) {
+    const state = ctx.getState();
+    if (!action || !action.subLocationFilter) {
+      return;
+    }
+    const index = state.selectedSubLocations.indexOf(action.subLocationFilter);
+    if (index === -1) {
+      state.selectedSubLocations.push(action.subLocationFilter);
+    } else {
+      state.selectedSubLocations.splice(index, 1);
+    }
+    ctx.setState(state);
+  }
+
+  @Action(OptionsToDefaultAction)
+  public resetToDefault(ctx: StateContext<IAppOptionsState>, action: OptionsToDefaultAction) {
     ctx.setState({...InitialAppOptionsState});
   }
 }
