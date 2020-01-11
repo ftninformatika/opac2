@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -14,6 +14,8 @@ import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { SearchUtil } from '../../../../utils/search-util';
 import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
+import {ISelectedFilter} from '../../../../models/search/filter.model';
+import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
 
 @Component({
   selector: 'preview-record',
@@ -21,7 +23,7 @@ import { CryptoUtils } from '../../../../utils/crypto.utils';
   styleUrls: ['preview-record.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PreviewRecordPage {
+export class PreviewRecordPage implements OnInit {
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;

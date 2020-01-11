@@ -42,6 +42,22 @@ export class AppOptionsState {
     return state.selectedShareRecords;
   }
 
+  @Selector()
+  public static getSelectedLocationFilters(state: IAppOptionsState): ISelectedFilter[] {
+    if (!state || !state.selectedLocations || state.selectedLocations.length === 0) {
+      return [];
+    }
+    return state.selectedLocations;
+  }
+
+  @Selector()
+  public static getSelectedSubLocationFilters(state: IAppOptionsState): ISelectedFilter[] {
+    if (!state || !state.selectedSubLocations || state.selectedSubLocations.length === 0) {
+      return [];
+    }
+    return state.selectedSubLocations;
+  }
+
   @Action(AddRemoveIdToSelectedAction)
   public addRemoveRecordIdToSelected(ctx: StateContext<IAppOptionsState>, action: AddRemoveIdToSelectedAction) {
     const state = ctx.getState();

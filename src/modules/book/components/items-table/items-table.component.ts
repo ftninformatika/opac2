@@ -8,6 +8,9 @@ import {
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 import { Subject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
+import {ISelectedFilter} from '../../../../models/search/filter.model';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'items-table',
@@ -21,6 +24,8 @@ export class ItemsTableComponent implements OnInit {
   ItemStatus = ERecordItemStatus;
   @Input() items: RecordItem[];
   private readonly _domSanitizer;
+  private readonly _store: Store;
+  private sorted = false;
   public initialItems: RecordItem[];
   public tmpSearch: RecordItem[];
   public searchTextChanged: Subject<string> = new Subject<string>();
@@ -28,14 +33,19 @@ export class ItemsTableComponent implements OnInit {
   public selectedLocation: string;
   public selectedLocMapURL: string;
   public searchText = '';
-  private sorted = false;
+  public selectedLocationFilters: ISelectedFilter[];
+  public selectedSubLocationFilters: ISelectedFilter[];
+  public allAvailableLocations: ISelectedFilter[];
 
-  public constructor(domSanitizer: DomSanitizer) {
+  public constructor(domSanitizer: DomSanitizer, store: Store) {
     this._domSanitizer = domSanitizer;
     this.searchTextChanged.pipe(
     ).subscribe(() => {
       this.filterTable();
     });
+    this._store = store;
+    this.selectedLocationFilters = this._store.selectSnapshot(AppOptionsState.getSelectedLocationFilters);
+    this.selectedSubLocationFilters = this._store.selectSnapshot(AppOptionsState.getSelectedSubLocationFilters);
   }
 
   public filterTable() {
