@@ -29,6 +29,15 @@
       }
     }
 
+    dt {
+      padding: 0 !important;
+      margin-top: 6px !important;
+    }
+
+    dd {
+      margin-top: 6px !important;
+    }
+
     img.ng-lazyloaded {
       animation: fadein .5s;
     }
@@ -91,6 +100,12 @@
 
     .item-availability-container {
       width: 360px;
+    }
+  }
+  @media screen and (min-width: 1600px) {
+    .img-cover {
+      width: 364px;
+      height: 560px;
     }
   }
 
