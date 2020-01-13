@@ -6,13 +6,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
-import { Subject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
-import {ISelectedFilter} from '../../../../models/search/filter.model';
 import {Store} from '@ngxs/store';
 import { ClearLocationFiltersAction } from '../../../core/states/app-options/app-options.actions';
-import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 
 @Component({
   selector: 'items-table',
@@ -30,11 +27,9 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
   private sorted = false;
   public initialItems: RecordItem[];
   public tmpSearch: RecordItem[];
-  public searchTextChanged: Subject<string> = new Subject<string>();
   public isSerial: boolean;
   public selectedLocation: string;
   public selectedLocMapURL: string;
-  public searchText = '';
   public selectedLocationFilters: {value: string; label: string}[];
   public selectedSubLocationFilters: {value: string; label: string}[];
   public allSelectedLocations: {value: string; label: string}[];
@@ -44,10 +39,6 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
   public constructor(domSanitizer: DomSanitizer, store: Store) {
     this._domSanitizer = domSanitizer;
     this.allAvailableLocations = [];
-    this.searchTextChanged.pipe(
-    ).subscribe(() => {
-      this.filterTable();
-    });
     this._store = store;
   }
 
@@ -106,66 +97,15 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
     await this._store.dispatch(new ClearLocationFiltersAction());
   }
 
-  public onItemSelect(item: {value: string; label: string}) {
-    // if (this.allSelectedLocations.findIndex(i => i.value === item.value) === -1) {
-    //   this.allSelectedLocations.push(item);
-    //
-    // }
-    console.log(this.allSelectedLocations);
-    this.filterBySelectedLocations();
-  }
-
-  public onSelectAll() {
-    // this.allSelectedLocations = [...this.allAvailableLocations];
-    console.log(this.allSelectedLocations);
-    this.filterBySelectedLocations();
-  }
-
-  public onDeSelect(itemCode: {value: string; label: string}) {
-    const code = itemCode.value;
-    if (!itemCode || this.allSelectedLocations.length === 0) {
-      return;
-    }
-    console.log(this.allSelectedLocations);
-    const index = this.allSelectedLocations.findIndex(i => i.value === code);
-    // if (index > -1) {
-      // this.allSelectedLocations.splice(index, 1);
-    this.filterBySelectedLocations();
-    // }
-  }
-
   public filterBySelectedLocations() {
     this.tmpSearch = [];
     const items = [...this.initialItems];
-    // if (this.allSelectedLocations && this.allSelectedLocations.length === 0) {
-    //   this.items = [...this.initialItems];
-    //   return;
-    // }
     for (const sl of this.allSelectedLocations) {
       const el = items.find(i => i.location === sl.label);
       if (el) {
         this.tmpSearch.push(el);
       }
     }
-    this.items = this.tmpSearch;
-  }
-
-  public filterTable() {
-    if (!this.searchText || this.searchText === '') {
-      this.items = [...this.initialItems];
-      return;
-    }
-    this.tmpSearch = [...this.initialItems];
-    this.tmpSearch = this.tmpSearch.filter(
-      o => {
-        return Object.keys(o).some(k => {
-          if (!o[k]) {
-            return false;
-          }
-          return o[k].toString().toLowerCase().indexOf(this.searchText.toLowerCase()) > -1;
-        });
-      }
-    );
     this.items = this.tmpSearch;
   }
 

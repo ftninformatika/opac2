@@ -1,16 +1,12 @@
 <div class="items-table-component-wrapper" >
   <div class="col-md-12 mx-auto">
     <div class="md-form">
-<!--      <input type="text"  [(ngModel)]="searchText" (ngModelChange)="searchTextChanged.next($event)" class="form-control" id="search" mdbInput>-->
-<!--      <label for="search">Претражи</label>-->
       <ng-multiselect-dropdown
-        [placeholder]="'Филтер по локацијама'"
+        [placeholder]="'Одаберите филтере по локацијама'"
         [data]="allAvailableLocations"
         [(ngModel)]="allSelectedLocations"
         [settings]="dropdownSettings"
-        (onSelect)="onItemSelect($event)"
-        (onDeSelect)="onDeSelect($event)"
-        (onSelectAll)="onSelectAll()"
+        (ngModelChange)="filterBySelectedLocations()"
       >
       </ng-multiselect-dropdown>
     </div>
