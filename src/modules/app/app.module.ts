@@ -25,6 +25,7 @@ import { FacebookModule } from 'ngx-facebook';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BackToTopButton } from './components/back-to-top.directive';
 import { AppOptionsState } from '../core/states/app-options/app-options.state';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AppOptionsState } from '../core/states/app-options/app-options.state';
     NgxsStoragePluginModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     ToastModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     CoreModule,
     CommonUiModule,
     FacebookModule.forRoot(),

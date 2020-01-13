@@ -15,6 +15,7 @@ import { BookRoutes } from './book.routes';
 import { NgModule } from '@angular/core';
 import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
 import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
     CoreModule,
     TableModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgMultiSelectDropDownModule
   ],
   declarations: [
     ItemsAvailabilityCardComponent,

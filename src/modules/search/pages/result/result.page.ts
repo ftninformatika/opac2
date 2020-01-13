@@ -57,7 +57,7 @@ export class ResultPage implements OnInit, OnDestroy {
   private readonly _location: Location;
   private readonly _router: Router;
   private readonly _store: Store;
-  private isBrowser;
+  private readonly isBrowser;
 
   public searchModel: ISearchModel;
   public resultPage: IResultPage;
@@ -333,8 +333,14 @@ export class ResultPage implements OnInit, OnDestroy {
       return;
     }
     this.pageOptions.filters.authors.forEach(e => this.selectedFilters.push(e));
-    this.pageOptions.filters.subLocations.forEach(e => this.selectedFilters.push(e));
-    this.pageOptions.filters.locations.forEach(e => this.selectedFilters.push(e));
+    this.pageOptions.filters.subLocations.forEach(e => {
+      this.selectedFilters.push(e);
+      this._store.dispatch(new AddRemoveSubLocationsAction(e));
+    });
+    this.pageOptions.filters.locations.forEach(e => {
+      this.selectedFilters.push(e);
+      this._store.dispatch(new AddRemoveLocationsAction(e));
+    });
     this.pageOptions.filters.languages.forEach(e => this.selectedFilters.push(e));
     this.pageOptions.filters.pubTypes.forEach(e => this.selectedFilters.push(e));
     this.pageOptions.filters.pubYears.forEach(e => this.selectedFilters.push(e));
