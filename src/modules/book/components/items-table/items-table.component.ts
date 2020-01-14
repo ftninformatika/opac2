@@ -1,16 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component, ElementRef,
-  Input, OnDestroy,
-  OnInit, ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ClearLocationFiltersAction } from '../../../core/states/app-options/app-options.actions';
+import { AppOptionsState } from '../../../core/states/app-options/app-options.state';
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
-import {Store} from '@ngxs/store';
-import { ClearLocationFiltersAction } from '../../../core/states/app-options/app-options.actions';
+import { Store } from '@ngxs/store';
 
+// @ts-ignore
 @Component({
   selector: 'items-table',
   templateUrl: 'items-table.component.html',
@@ -39,6 +34,7 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
   public constructor(domSanitizer: DomSanitizer, store: Store) {
     this._domSanitizer = domSanitizer;
     this.allAvailableLocations = [];
+    this.allSelectedLocations = [];
     this._store = store;
   }
 
@@ -46,6 +42,25 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
     this.initialItems = [...this.items];
     this.tmpSearch = [...this.items];
     this.isSerial = this.initialItems && this.initialItems[0].serial;
+    this.initLocationFilters();
+    this.filterBySelectedLocations();
+  }
+
+  public async ngOnDestroy() {
+    await this._store.dispatch(new ClearLocationFiltersAction());
+  }
+
+  private initLocationFilters() {
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'value',
+      textField: 'label',
+      selectAllText: 'Одабери све',
+      unSelectAllText: 'Поништи све',
+      searchPlaceholderText: 'Филтрирај',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
     if (this.items && this.items.length > 0) {
       this.items.forEach(l => {
         let el: { value: string; label: string };
@@ -59,45 +74,46 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
       });
     }
     this.selectedLocationFilters = this._store.selectSnapshot(AppOptionsState.getSelectedLocationFilters)
-      .filter(l => this.allAvailableLocations.some(x => x.value === l.item.value))
+      // .filter(l => this.allAvailableLocations.some(x => x.value === l.item.value))
       .map(l => {
-      let retVal: { value: string; label: string };
-      retVal = {
-        value: l.item.value,
-        label: l.item.label
-      };
-      return retVal;
-    });
-
+        let retVal: { value: string; label: string };
+        retVal = {
+          value: l.item.value,
+          label: l.item.label
+        };
+        return retVal;
+      });
     this.selectedSubLocationFilters = this._store.selectSnapshot(AppOptionsState.getSelectedSubLocationFilters)
       .filter(l => this.allAvailableLocations.some(x => x.value === l.item.value))
       .map(l => {
-      let retVal: { value: string; label: string };
-      retVal = {
-        value: l.item.value,
-        label: l.item.label
-      };
-      return retVal;
-    });
-    this.allSelectedLocations = [...this.selectedLocationFilters, ...this.selectedSubLocationFilters];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'value',
-      textField: 'label',
-      selectAllText: 'Одабери све',
-      unSelectAllText: 'Поништи све',
-      searchPlaceholderText: 'Филтрирај',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+        let retVal: { value: string; label: string };
+        retVal = {
+          value: l.item.value,
+          label: l.item.label
+        };
+        return retVal;
+      });
+    let tmpSelLocFilt: {value: string; label: string}[] = [];
+    if (this.allAvailableLocations && this.allAvailableLocations.length > 0 &&
+        this.selectedLocationFilters && this.selectedLocationFilters.length > 0 &&
+        this.allAvailableLocations[0].value.length === this.selectedLocationFilters[0].value.length) {
+      tmpSelLocFilt = [...this.allSelectedLocations];
+    }
+    this.allSelectedLocations = [...tmpSelLocFilt, ...this.selectedSubLocationFilters];
+    for (const l of this.selectedLocationFilters) {
+      const filteredByLoc = this.allAvailableLocations.filter(i => i.value.startsWith(l.value));
+      if (!filteredByLoc || filteredByLoc.length === 0) {
+        continue;
+      }
+      for (const ll of filteredByLoc) {
+        if (!this.allSelectedLocations.find(i => i.value === ll.value)) {
+          this.allSelectedLocations.push(ll);
+        }
+      }
+    }
     if (this.allSelectedLocations.length === 0) {
       this.allSelectedLocations = [...this.allAvailableLocations];
     }
-    this.filterBySelectedLocations();
-  }
-
-  public async ngOnDestroy() {
-    await this._store.dispatch(new ClearLocationFiltersAction());
   }
 
   public filterBySelectedLocations() {

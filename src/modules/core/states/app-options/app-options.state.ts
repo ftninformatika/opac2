@@ -1,5 +1,5 @@
-import {Action, Selector, State, StateContext } from '@ngxs/store';
-import {ISelectedFilter} from '../../../../models/search/filter.model';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ISelectedFilter } from '../../../../models/search/filter.model';
 import {
   AddMultipleIdsToSelectedAction,
   AddRemoveIdToSelectedAction,
@@ -28,6 +28,7 @@ const InitialAppOptionsState: IAppOptionsState = {
 };
 
 // State  -------------------------------------------------
+// @ts-ignore
 @State<IAppOptionsState>({
   name: 'APP_OPTIONS_STATE',
   defaults: InitialAppOptionsState
