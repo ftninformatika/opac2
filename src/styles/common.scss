@@ -1,15 +1,3 @@
-@mixin fluidType($property, $min-value, $max-value, $min-vw: 32rem, $max-vw: 192rem) {
-  #{$property}: $min-value;
-
-  @media (min-width: #{convertToPx($min-vw)}) {
-    #{$property}: calc(#{$min-value} + #{stripUnit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{stripUnit($max-vw - $min-vw)});
-  }
-
-  @media (min-width: #{convertToPx($max-vw)}) {
-    #{$property}: $max-value;
-  }
-}
-
 @function stripUnit($number) {
   @if type-of($number)=="number"and not unitless($number) {
     @return $number / ($number * 0 + 1);
@@ -22,5 +10,30 @@
   $value: stripUnit($remSize) * 10px;
   @return round($value);
 }
+
+@mixin fluidType($property, $min-value, $max-value, $min-vw: 32rem, $max-vw: 192rem) {
+  #{$property}: $min-value;
+
+  @media (min-width: #{convertToPx($min-vw)}) {
+    #{$property}: calc(#{$min-value} + #{stripUnit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{stripUnit($max-vw - $min-vw)});
+  }
+
+  @media (min-width: #{convertToPx($max-vw)}) {
+    #{$property}: $max-value;
+  }
+}
+
+@mixin fluidTypeMobile($property, $min-value, $max-value) {
+  @include fluidType($property, $min-value, $max-value, 32rem, 96rem);
+}
+
+@mixin fluidTypeTablet($property, $min-value, $max-value) {
+  @include fluidType($property, $min-value, $max-value, 60rem, 144rem);
+}
+
+@mixin fluidTypeDesktop($property, $min-value, $max-value) {
+  @include fluidType($property, $min-value, $max-value, 102.4rem, 192rem);
+}
+
 
 
