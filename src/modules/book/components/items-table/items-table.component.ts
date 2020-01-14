@@ -90,6 +90,9 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    if (this.allSelectedLocations.length === 0) {
+      this.allSelectedLocations = [...this.allAvailableLocations];
+    }
     this.filterBySelectedLocations();
   }
 
