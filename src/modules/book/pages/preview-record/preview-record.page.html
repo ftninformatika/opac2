@@ -1,7 +1,7 @@
 <div class="preview-record-page-wrapper" *ngIf="book">
   <div class="main" >
     <div class="cover-container">
-      <img class="img-fluid slideInRight img-cover"
+      <img class="img-fluid img-cover"
            [lazyLoad]="book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover.jpg'"
            [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
            offset="100"

@@ -2,7 +2,7 @@
   <ng-container *ngIf="!loaded">
     <div class="text-center" *ngIf="!filters">
       <h5>Учитавање филтера</h5>
-      <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <div class="spinner-grow text-info" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
@@ -10,14 +10,14 @@
   <ng-container *ngIf="loaded">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4 col-md-3 main-block" *ngFor="let f of filters">
+        <div class="col-sm-4 col-md-3 main-block mt-4" *ngFor="let f of filters">
           <a (click)="f.filter.checked = true;onChoseFilter(f.filter, type)">
-            <span style="color: blue;">{{f.children === null ? '' : f.filter.value + ' - '}}{{f.filter.label}}&nbsp;<strong style="color:darkblue;">({{f.filter.count}})</strong></span>
+            <span style="color: dimgray;font-weight: 500;">{{f.children === null ? '' : f.filter.value + ' - '}}{{f.filter.label}}&nbsp;<strong style="color: black;font-weight: 500;">({{f.filter.count}})</strong></span>
           </a>
           <ng-container *ngIf="f.children">
             <div *ngFor="let c of f.children" class="ml-2 mt-1 child-block" >
               <a (click)="c.checked = true;onChoseFilter(c, 5)">
-                <span style="color: darkolivegreen;">{{c.value + ' - ' + c.label}}&nbsp;<strong style="color:darkblue;">({{c.count}})</strong></span>
+                <span style="color: #00b2d1;font-weight: 500;">{{c.value + ' - ' + c.label}}&nbsp;<strong style="color: black;font-weight: 500;">({{c.count}})</strong></span>
               </a>
             </div>
           </ng-container>

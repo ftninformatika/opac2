@@ -1,11 +1,10 @@
-import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation} from '@angular/core';
+import { Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import {
   IResultPageOptions,
-  IResultPageOptionsInitial, IResultPageSearchRequest
+  IResultPageOptionsInitial,
+  IResultPageSearchRequest
 } from '../../../../models/search/result-page-options.model';
-import {
-  AppOptionsState
-} from '../../../core/states/app-options/app-options.state';
+import { AppOptionsState } from '../../../core/states/app-options/app-options.state';
 import { EFilterType } from '../../components/search-filters/search-filters.component';
 import { IFiltersRes, ISelectedFilter } from '../../../../models/search/filter.model';
 import { ConfigState } from '../../../core/states/config/config.state';
@@ -20,18 +19,17 @@ import { ArrayUtils } from '../../../../utils/array.utils';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
 import { ToastService } from 'ng-uikit-pro-standard';
-import {isPlatformBrowser, Location} from '@angular/common';
-import {Select, Store} from '@ngxs/store';
-import {PreviewSharedPage} from '../preview-shared/preview-shared.page';
-import * as es6printJS from 'print-js';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { Select, Store } from '@ngxs/store';
+import { PreviewSharedPage } from '../preview-shared/preview-shared.page';
 // import { printJS } from 'print-js';
 // @ts-ignore
-import printJS from 'print-js';
-import {platformBrowser} from '@angular/platform-browser';
 import {
-  AddMultipleIdsToSelectedAction, AddRemoveIdToSelectedAction,
+  AddMultipleIdsToSelectedAction,
+  AddRemoveIdToSelectedAction,
   AddRemoveLocationsAction,
-  AddRemoveSubLocationsAction, OptionsToDefaultAction
+  AddRemoveSubLocationsAction,
+  OptionsToDefaultAction
 } from '../../../core/states/app-options/app-options.actions';
 
 export enum EDeviceWidth {
@@ -383,6 +381,7 @@ export class ResultPage implements OnInit, OnDestroy {
         const e = this.pageOptions.filters.locations.find(f => f.item.value === filterItem.item.value);
         const i = this.pageOptions.filters.locations.indexOf(e);
         if (i !== -1) {
+          this._store.dispatch(new AddRemoveLocationsAction(e));
           this.pageOptions.filters.locations.splice(i, 1);
         }
       }
@@ -416,6 +415,10 @@ export class ResultPage implements OnInit, OnDestroy {
         this.resultedFilters.locations.forEach(l => {
           const sl = l.children.find(f => f.value === filterItem.item.value);
           if (sl) {
+            this._store.dispatch(new AddRemoveSubLocationsAction({
+              item: sl,
+              type: EFilterType.SUB_LOCATION
+            }));
             sl.checked = false;
           }
         });

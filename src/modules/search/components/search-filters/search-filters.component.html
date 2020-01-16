@@ -3,7 +3,7 @@
     <mdb-card-body>
       <div class="text-center" *ngIf="!filtersLoaded">
         <h5>Учитавање филтера</h5>
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <div class="spinner-grow text-info" style="width: 3rem; height: 3rem;" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
@@ -130,7 +130,7 @@
           <list-of-filters [filters]="filtersToExpand" [type]="activeFilterModal" (filterChosen)="selectionChanged($event.item, $event.type);basicModal.hide();"></list-of-filters>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Затвори</button>
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Затвори</button>
         </div>
       </div>
     </div>
