@@ -7,6 +7,9 @@ import { EPasswordCodes } from '../../../../utils/regexes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Subject, } from 'rxjs';
+import { SignOutAction } from '../../../core/states/user/user.state';
+import { Store } from '@ngxs/store';
+import { ChangeConfigAction, ConfigState } from '../../../core/states/config/config.state';
 
 @Component({
   selector: 'activate-acount-page',
@@ -18,6 +21,7 @@ export class ActivateAccountPage implements OnInit {
 
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
+  private readonly _store: Store;
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
   public pass1Changed: Subject<string> = new Subject<string>();
@@ -29,9 +33,10 @@ export class ActivateAccountPage implements OnInit {
   public pass2: string;
   public isValid: boolean;
 
-  public constructor(activatedRoute: ActivatedRoute, router: Router, userService: UsersService, toastService: ToastService) {
+  public constructor(activatedRoute: ActivatedRoute, router: Router, userService: UsersService, toastService: ToastService, store: Store) {
     this._activatedRoute = activatedRoute;
     this._router = router;
+    this._store = store;
     this._userService = userService;
     this._toastService = toastService;
     this.libraryMember = null;
@@ -55,14 +60,21 @@ export class ActivateAccountPage implements OnInit {
 
   public ngOnInit(): void {
     this.activationToken = this._activatedRoute.snapshot.paramMap.get('activateToken');
-    console.log(this._activatedRoute.snapshot.url);
-    console.log(this._activatedRoute.snapshot.url.join(''));
+    // console.log(this._activatedRoute.snapshot.url);
+    // console.log(this._activatedRoute.snapshot.url.join(''));
     if (this._activatedRoute.snapshot.url.join('').includes('restart-password')) {
       this.restartPasswordMode = true;
     }
     this._userService.getUserByActivationToken(this.activationToken).subscribe(
-      (resp: ILibraryMember) => {
+      async (resp: ILibraryMember) => {
         this.libraryMember = resp;
+        if (!this.libraryMember || !this.libraryMember.libraryPrefix) {
+          this._router.navigate(['errors/not-found']);
+        }
+        await this._store.dispatch(new SignOutAction());
+        if (this._store.selectSnapshot(ConfigState.library) !== this.libraryMember.libraryPrefix) {
+          this._store.dispatch(this.libraryMember.libraryPrefix);
+        }
       },
       () => {
         this._router.navigate(['errors/not-found']);

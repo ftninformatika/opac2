@@ -37,6 +37,13 @@ export class LibraryConfigurationService {
       shortName: 'ЕСК',
       locale: 'sr_Cyrl_RS',
       navbarColor: 'green'
+    },
+    {
+      libraryName: 'bmb',
+      libraryFullName: 'Библиотека Милутин Бојић',
+      shortName: 'БМБ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
     }
   ];
 

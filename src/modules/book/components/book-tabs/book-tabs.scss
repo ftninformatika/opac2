@@ -1,11 +1,16 @@
 .book-tabs-wrapper {
+  .isbd {
+    font-family: Roboto, serif !important;
+    color: black !important;
+  }
   div.book-tabs div.container-fluid ul.nav {
     border-bottom: none;
     a.nav-link {
       color: white;
     }
   }
-  .isbd {
-    strong {font-weight: bold;}
-  }
+  //.isbd {
+  //  strong {font-weight: bold;}
+  //  color: black;
+  //}
 }
