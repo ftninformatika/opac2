@@ -53,6 +53,7 @@ export class SearchTopNavComponent implements OnChanges {
   public getSortTitle() {
     let retVal = '';
     switch (this.sort.type) {
+      case ESortType.SORT_NONE: retVal = 'Без сортирања'; return retVal;
       case ESortType.SORT_AUTHOR: retVal = 'Аутор'; break;
       case ESortType.SORT_PUBLISHER: retVal = 'Издавач'; break;
       case ESortType.SORT_YEAR: retVal = 'Година'; break;

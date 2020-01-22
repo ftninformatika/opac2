@@ -29,6 +29,9 @@
     </div>
 
     <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_NONE, false)">
+        &nbsp;Без сортирања
+      </a>
       <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, false)">
         &nbsp;Аутор (силазно)
       </a>

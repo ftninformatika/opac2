@@ -2,7 +2,8 @@ export enum ESortType {
   SORT_AUTHOR = 'AU_sort',
   SORT_TITLE = 'TI_sort',
   SORT_YEAR = 'PY_sort',
-  SORT_PUBLISHER = 'PU_sort'
+  SORT_PUBLISHER = 'PU_sort',
+  SORT_NONE = ''
 }
 
 export interface ISort {
@@ -11,6 +12,6 @@ export interface ISort {
 }
 
 export const ISortInitial: ISort = {
-  type: ESortType.SORT_YEAR,
+  type: ESortType.SORT_NONE,
   ascending: false,
 };
