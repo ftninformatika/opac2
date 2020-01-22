@@ -64,3 +64,62 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 import 'hammerjs';
 import 'aes-js';
 
+// Prevent exceptions on old browsers
+if (!Object.entries) {
+  // tslint:disable-next-line:only-arrow-functions
+  Object.entries = function( obj ) {
+    // tslint:disable-next-line:one-variable-per-declaration
+    const ownProps = Object.keys( obj );
+    let i = ownProps.length;
+    const resArray = new Array(i); // preallocate the Array
+    while (i--) {
+      resArray[i] = [ownProps[i], obj[ownProps[i]]];
+    }
+    return resArray;
+  };
+}
+if (!Object.keys) {
+  // tslint:disable-next-line:only-arrow-functions
+  Object.keys = (function() {
+    'use strict';
+    // tslint:disable-next-line:one-variable-per-declaration
+    const hasOwnProperty = Object.prototype.hasOwnProperty,
+      hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+      dontEnums = [
+        'toString',
+        'toLocaleString',
+        'valueOf',
+        'hasOwnProperty',
+        'isPrototypeOf',
+        'propertyIsEnumerable',
+        'constructor'
+      ],
+      // tslint:disable-next-line:prefer-const
+      dontEnumsLength = dontEnums.length;
+
+    // tslint:disable-next-line:only-arrow-functions
+    return function(obj) {
+      if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
+        throw new TypeError('Object.keys called on non-object');
+      }
+
+      // tslint:disable-next-line:one-variable-per-declaration prefer-const
+      let result = [], prop, i;
+
+      for (prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+
+      if (hasDontEnumBug) {
+        for (i = 0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+      return result;
+    };
+  }());
+}
