@@ -1,5 +1,5 @@
 <div class="main-page-wrapper">
-<!--  <h1 align="center">{{libFullName}}</h1>-->
+<!--  <homepage-tabs></homepage-tabs>-->
   <ng-container *ngIf="collWithBooksWrapper.length > 0">
     <collection-carousel *ngFor="let cw of collWithBooksWrapper | orderBy: 'coll.index'" [books]="cw.books" [title]="cw.coll.title"></collection-carousel>
   </ng-container>

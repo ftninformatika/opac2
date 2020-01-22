@@ -1,0 +1,26 @@
+.homepage-tabs-component-wrapper {
+  //margin-top: 12px;
+  margin-bottom: 12px;
+  div {
+    margin-bottom: 12px;
+  }
+  .first {
+    background-color: #00b2d1 !important;
+  }
+  .second {
+    background-color: #f4ef18 !important;
+    h2, p {
+      color: black !important;
+    }
+  }
+  .third {
+    background-color: #c7c7c7 !important;
+    text-decoration-color: black !important;
+    h2, p {
+      color: black !important;
+    }
+  }
+  .forth {
+    background-color: #007bbd !important;
+  }
+}
