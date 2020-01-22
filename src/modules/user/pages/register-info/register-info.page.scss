@@ -1,0 +1,36 @@
+.register-info-page-wrapper {
+  h1 {
+    font-weight: 600;
+    text-align: center;
+  }
+  h1, h2 {
+    font-family: Yaseva Yeseva One, serif;
+    margin-bottom: 20px;
+  }
+  p {
+    //text-align: center;
+    font-size: 20px;
+    margin-left: 20px;
+    font-family: Roboto, serif;
+  }
+  @media screen and (max-width: 1280px) {
+    h1 {font-size: 36px}
+    h2 {font-size: 30px}
+    p {font-size: 16px}
+  }
+  @media screen and (max-width: 1024px) {
+    h1 {font-size: 34px}
+    h2 {font-size: 27px}
+    p {font-size: 16px}
+  }
+  @media screen and (max-width: 720px) {
+    h1 {font-size: 32px}
+    h2 {font-size: 26px}
+    p {font-size: 15px}
+  }
+  @media screen and (max-width: 540px) {
+    h1 {font-size: 30px}
+    h2 {font-size: 22px}
+    p {font-size: 14px}
+  }
+}
