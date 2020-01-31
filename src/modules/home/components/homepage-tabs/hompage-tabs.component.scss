@@ -1,26 +1,40 @@
 .homepage-tabs-component-wrapper {
-  //margin-top: 12px;
-  margin-bottom: 12px;
-  div {
-    margin-bottom: 12px;
-  }
-  .first {
-    background-color: #00b2d1 !important;
-  }
-  .second {
-    background-color: #f4ef18 !important;
-    h2, p {
-      color: black !important;
+  .homepage-card {
+    width: 355px;
+    height: 180px;
+    margin-left: 30px;
+    border-radius: 8px;
+    background-color: #007bbd;
+    .title {
+      width: 100%;
+      margin-left: 20px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+      font-family: Roboto, serif;
+      font-size: 23px;
+      color: #ffffff;
+      text-decoration: none solid rgb(255, 255, 255);
+      height: 23px;
+      mdb-icon > i {
+        font-size: 22px;
+        color: #dbdbdb;
+      }
     }
   }
-  .third {
-    background-color: #c7c7c7 !important;
-    text-decoration-color: black !important;
-    h2, p {
-      color: black !important;
-    }
+  .content {
+    width: 320px;
+    height: 48px;
+    margin-left: 20px;
+    margin-bottom: 13px;
+    font-family: Roboto, serif;
+    font-size: 14px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
   }
-  .forth {
-    background-color: #007bbd !important;
+  .card-hover {
+    &:hover {
+      background-color: #006aa3;
+      cursor: pointer;
+    }
   }
 }
