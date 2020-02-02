@@ -1,8 +1,15 @@
 .homepage-tabs-component-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
   .homepage-card {
     width: 355px;
     height: 180px;
-    margin-left: 30px;
+    margin-top: 12px;
+    //margin-left: 30px;
     border-radius: 8px;
     background-color: #007bbd;
     .title {
@@ -35,6 +42,173 @@
     &:hover {
       background-color: #006aa3;
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 1546px) {
+    .homepage-card {
+      width: 340px;
+      height: 175px;
+      .title {
+        margin-left: 20px;
+        margin-top: 6px;
+        margin-bottom: 14px;
+        font-size: 22px;
+        height: 20px;
+        mdb-icon > i {
+          font-size: 20px;
+        }
+      }
+    }
+    .content {
+      width: 305px;
+      height: 46px;
+      margin-left: 20px;
+      margin-bottom: 13px;
+      font-size: 13.3px;
+    }
+  }
+  @media screen and (max-width: 1485px) {
+    .homepage-card {
+      width: 310px;
+      height: 170px;
+      .title {
+        margin-left: 20px;
+        margin-top: 6px;
+        margin-bottom: 14px;
+        font-size: 20px;
+        height: 18px;
+        mdb-icon > i {
+          font-size: 18px;
+        }
+      }
+    }
+    .content {
+      width: 275px;
+      height: 44px;
+      margin-left: 20px;
+      margin-bottom: 13px;
+      font-size: 12.2px;
+    }
+  }
+  @media screen and (max-width: 1365px) {
+    .homepage-card {
+      width: 280px;
+      height: 160px;
+      .title {
+        margin-left: 20px;
+        margin-top: 6px;
+        margin-bottom: 14px;
+        font-size: 18px;
+        height: 16px;
+        mdb-icon > i {
+          font-size: 16px;
+        }
+      }
+    }
+    .content {
+      width: 245px;
+      height: 44px;
+      margin-left: 20px;
+      margin-bottom: 13px;
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-width: 1235px) {
+    .homepage-card {
+      width: 250px;
+      height: 150px;
+      .title {
+        margin-left: 20px;
+        margin-top: 4px;
+        margin-bottom: 12px;
+        font-size: 18px;
+        height: 16px;
+        mdb-icon > i {
+          font-size: 16px;
+        }
+      }
+    }
+    .content {
+      width: 220px;
+      height: 42px;
+      margin-left: 20px;
+      margin-bottom: 13px;
+      font-size: 10.6px;
+    }
+  }
+  @media screen and (max-width: 1110px) {
+    .homepage-card {
+      width: 230px;
+      height: 150px;
+      .title {
+        margin-left: 12px;
+        margin-top: 2px;
+        margin-bottom: 8px;
+        font-size: 16px;
+        height: 14px;
+        mdb-icon > i {
+          font-size: 14px;
+        }
+      }
+    }
+    .content {
+      width: 205px;
+      height: 42px;
+      margin-left: 12px;
+      margin-bottom: 13px;
+      font-size: 10.6px;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .homepage-card {
+      width: 355px;
+      height: 180px;
+      margin-top: 24px;
+      margin-right: 20px;
+      .title {
+        margin-left: 20px;
+        margin-top: 2px;
+        margin-bottom: 12px;
+        font-size: 22px;
+        height: 23px;
+        mdb-icon > i {
+          font-size: 20px;
+        }
+      }
+    }
+    .content {
+      width: 325px;
+      height: 42px;
+      margin-left: 12px;
+      margin-bottom: 13px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 899px) {
+    .homepage-card {
+      width: 325px;
+      height: 175px;
+      margin-top: 24px;
+      margin-right: 20px;
+      margin-left: 10px;
+      .title {
+        margin-left: 20px;
+        margin-top: 2px;
+        margin-bottom: 8px;
+        font-size: 22px;
+        height: 23px;
+        mdb-icon > i {
+          font-size: 20px;
+        }
+      }
+    }
+    .content {
+      width: 295px;
+      height: 42px;
+      margin-left: 12px;
+      margin-bottom: 13px;
+      font-size: 13px;
     }
   }
 }

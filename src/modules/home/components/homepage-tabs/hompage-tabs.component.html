@@ -1,16 +1,17 @@
 <div class="homepage-tabs-component-wrapper row">
-  <div class="homepage-card">
-    <div class="title">
-        <mdb-icon fas icon="search"></mdb-icon>
-        Претражи
+<!--  <div class="row1">-->
+    <div class="homepage-card">
+      <div class="title">
+          <mdb-icon fas icon="search"></mdb-icon>
+          Претражи
+      </div>
+      <div class="content">
+        Овом универзалном претрагом добијате све резултате на основу уписаног текста. Приликом
+        уписивања текста можете одабрати и појмове који ће вам аутоматски бити понуђени у
+        падајућем менију. Добијене резултате можете додатно сузити помоћу филтера са леве стране.
+      </div>
     </div>
-    <div class="content">
-      Овом универзалном претрагом добијате све резултате на основу уписаног текста. Приликом
-      уписивања текста можете одабрати и појмове који ће вам аутоматски бити понуђени у
-      падајућем менију. Добијене резултате можете додатно сузити помоћу филтера са леве стране.
-    </div>
-  </div>
-  <div class="homepage-card card-hover">
+    <div class="homepage-card card-hover" [routerLink]="['/search/advanced-search']">
     <div class="title">
       <mdb-icon fas icon="tasks"></mdb-icon>
       Напредна претрага
@@ -21,17 +22,20 @@
       књиге које сте до сада прочитали, датум истека чланарине, оцењивање прочитаних књига…
     </div>
   </div>
-  <div class="homepage-card card-hover">
-    <div class="title">
-      <mdb-icon fas icon="user-alt"></mdb-icon>
-      Напредна претрага
+<!--  </div>-->
+<!--  <div class="row2">-->
+    <div class="homepage-card card-hover" [routerLink]="['/user/login']">
+      <div class="title">
+        <mdb-icon fas icon="user-alt"></mdb-icon>
+        Корисници
+      </div>
+      <div class="content">
+        Избором више одговарајућих параметара за претраживање добијате прецизније резултате.
+      </div>
     </div>
-    <div class="content">
-      Избором више одговарајућих параметара за претраживање добијате прецизније резултате.
-    </div>
-  </div>
-  <div class="homepage-card card-hover">
-    <div class="title">
+    <a href="//unikat.bisis.rs">
+    <div class="homepage-card card-hover">
+      <div class="title">
       <mdb-icon fas icon="external-link-alt"></mdb-icon>
       Узајамни каталог
     </div>
@@ -40,4 +44,6 @@
       користе систем БИСИС.
     </div>
   </div>
+    </a>
+<!--  </div>-->
 </div>
