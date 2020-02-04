@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { HomepageTabsComponent } from './components/homepage-tabs/hompage-tabs.component';
+import {HomepageTabsComponent} from './components/homepage-tabs/homepage-tabs.component';
 
 @NgModule({
   imports: [

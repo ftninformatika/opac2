@@ -1,10 +1,9 @@
-import {Component, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
-import {elementEventFullName} from '@angular/compiler/src/view_compiler/view_compiler';
+import {Component, Renderer2, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'homepage-tabs',
-  templateUrl: 'hompage-tabs.component.html',
-  styleUrls: ['hompage-tabs.component.scss'],
+  templateUrl: 'homepage-tabs.component.html',
+  styleUrls: ['homepage-tabs.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class HomepageTabsComponent {
