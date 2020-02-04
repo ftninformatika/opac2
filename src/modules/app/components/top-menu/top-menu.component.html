@@ -14,6 +14,7 @@
 <!--          <mdb-icon fas icon="search" class="search-icon " size="sm"></mdb-icon>-->
           <i class="fas fa-search search-icon small prefix"></i>
           <input #searchInput
+                 id="searchInput"
                  type="text" name="searchText" class="completer-input form-control mdb-autocomplete mb-0 mr-sm-2 navbar-search-field search-field"
                  [(ngModel)]="searchText"
                  (input)="getFilteredData()"
