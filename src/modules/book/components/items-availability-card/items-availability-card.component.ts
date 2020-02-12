@@ -2,8 +2,6 @@ import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../cor
 import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
-import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
-import {ISelectedFilter} from '../../../../models/search/filter.model';
 
 @Component({
   selector: 'items-availability-card',

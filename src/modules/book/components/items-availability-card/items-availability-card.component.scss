@@ -1,6 +1,9 @@
 .items-availability-card-wrapper {
   width: auto;
   cursor: default;
+  .card {
+    box-shadow: none !important;
+  }
   mdb-card {
     //min-width: 360px;
     min-height: 250px;
