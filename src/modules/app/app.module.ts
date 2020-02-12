@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { BackToTopButton } from './components/back-to-top.directive';
 import { AppOptionsState } from '../core/states/app-options/app-options.state';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pinch: { enable: false },
+    rotate: { enable: false }
+  } as any;
+}
 
 @NgModule({
   declarations: [
@@ -59,7 +67,11 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   ],
   providers: [
     LazyLoadImageDirective,
-    MDBSpinningPreloader
+    MDBSpinningPreloader,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
   ],
   bootstrap: [AppPage]
 })
@@ -76,3 +88,4 @@ export class AppModule {
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
