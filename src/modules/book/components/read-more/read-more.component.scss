@@ -4,16 +4,16 @@
   }
 
   div.collapsed {
-    height: 150px;
+    //height: 150px;
     overflow: hidden;
   }
 
   div.expand {
-    position: absolute;
-    bottom: 0;
-    right: 16px;
+    //position: absolute;
+    width: 100%;
+    padding: 0;
+    bottom: -20px;
     background-color: #eeeeee;
     cursor: pointer;
-    padding: 5px;
   }
 }

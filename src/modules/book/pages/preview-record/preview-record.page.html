@@ -39,7 +39,10 @@
         </div>
         <div class="book-description" *ngIf="book.description && book.description !== ''">
           <p>
-            {{book.description}}
+<!--            TODO: make nice read-more-->
+            <read-more [text]="book.description">
+<!--              {{book.description}}-->
+            </read-more>
           </p>
         </div>
         <div class="item-availability-container-sm">

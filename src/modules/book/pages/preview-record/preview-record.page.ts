@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, HostListener, OnInit, ViewEncapsulation} from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -16,6 +16,7 @@ import { IResultPageOptionsInitial } from '../../../../models/search/result-page
 import { CryptoUtils } from '../../../../utils/crypto.utils';
 import {ISelectedFilter} from '../../../../models/search/filter.model';
 import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
+import {EDeviceWidth} from '../../../search/pages/result/result.page';
 
 @Component({
   selector: 'preview-record',
