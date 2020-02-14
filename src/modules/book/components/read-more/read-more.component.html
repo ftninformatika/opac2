@@ -1,10 +1,12 @@
 <div class="read-more-wrapper">
   <div class="py-2 pr-2 read-more collapsed">
-<!--    <ng-content></ng-content>-->
-    {{text ? (text | slice:0:charsCollapsed ): ''}}
-    <div (click)="isCollapsed = !isCollapsed; isCollapsed ? expand() : collapse()" class="expand">
+    <p class="animated slideInRight" [ngClass]="{'slideInRight': isCollapsed, 'slideInLeft': !isCollapsed}">
+      {{text ? (text | slice:0:charsCollapsed ) + ((isCollapsed && text.length > 800)? '...' : ''): ''}}
+    </p>
+    <div *ngIf="text && text.length > 800"
+      (click)="isCollapsed = !isCollapsed; isCollapsed ? collapse() : expand()" class="expand">
       <span *ngIf="isCollapsed" >Прошири &nbsp;<i class="fas fa-chevron-down"></i></span>
-      <span *ngIf="!isCollapsed" >Сажми &nbsp; <i class="fas fa-chevron-up"></i></span>
+      <span *ngIf="!isCollapsed" >Скупи &nbsp; <i class="fas fa-chevron-up"></i></span>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { CollectionCarouselComponent } from './components/collection-carousel/collection-carousel.component';
+import { HomepageTabsComponent } from './components/homepage-tabs/homepage-tabs.component';
 import { intersectionObserverPreset, LazyLoadImageModule } from 'ng-lazyload-image';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { CommonUiModule } from '../shared/common-ui.module';
@@ -8,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import {HomepageTabsComponent} from './components/homepage-tabs/homepage-tabs.component';
 
 @NgModule({
   imports: [

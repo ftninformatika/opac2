@@ -14,13 +14,6 @@ export class ReadMoreComponent implements OnInit {
   public constructor() { }
   public ngOnInit() {
     this.charsCollapsed = 800;
-    this.calculculateCharsAllowed();
-  }
-
-  @HostListener('window:resize')
-  public onWindowResize() {
-    console.log(window.innerWidth);
-    console.log(this.text.length);
   }
 
   public expand() {
@@ -28,10 +21,6 @@ export class ReadMoreComponent implements OnInit {
   }
 
   public collapse() {
-    this.charsCollapsed = this.calculculateCharsAllowed();
-  }
-
-  private calculculateCharsAllowed(): number {
-    return 900;
+    this.charsCollapsed = 800;
   }
 }
