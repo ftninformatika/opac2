@@ -80,9 +80,9 @@
           </div>
         </div>
       </mdb-tab>
-      <mdb-tab heading="ISBD">
+      <mdb-tab heading="ISBD" *ngIf="book.isbdHtml && book.isbdHtml != ''">
         <div class="row">
-          <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
+          <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml">
           </div>
         </div>
       </mdb-tab>
