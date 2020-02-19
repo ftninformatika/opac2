@@ -60,20 +60,21 @@ export class ActivateAccountPage implements OnInit {
 
   public ngOnInit(): void {
     this.activationToken = this._activatedRoute.snapshot.paramMap.get('activateToken');
-    // console.log(this._activatedRoute.snapshot.url);
-    // console.log(this._activatedRoute.snapshot.url.join(''));
     if (this._activatedRoute.snapshot.url.join('').includes('restart-password')) {
       this.restartPasswordMode = true;
     }
     this._userService.getUserByActivationToken(this.activationToken).subscribe(
       async (resp: ILibraryMember) => {
+        const currentLibrary = this._store.selectSnapshot(ConfigState.library);
         this.libraryMember = resp;
         if (!this.libraryMember || !this.libraryMember.libraryPrefix) {
           this._router.navigate(['errors/not-found']);
         }
         await this._store.dispatch(new SignOutAction());
-        if (this._store.selectSnapshot(ConfigState.library) !== this.libraryMember.libraryPrefix) {
-          this._store.dispatch(this.libraryMember.libraryPrefix);
+        if (currentLibrary !== this.libraryMember.libraryPrefix) {
+          await this._router.navigate([`lib/${this.libraryMember.libraryPrefix}`],
+            {state: {proceedUrl: `/user/activate-account/${this.activationToken}`}});
+          return;
         }
       },
       () => {
