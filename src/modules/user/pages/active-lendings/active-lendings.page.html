@@ -48,10 +48,20 @@
           <td>{{r.property1 | shortenString: 20}}</td>
           <td>{{r.property7 | shortenString: 20}}</td>
           <td>{{r.property5 | shortenString: 20}}</td>
-          <td>
-            <a style="color: #00b2d1;font-weight: 600;">
+          <td *ngIf="!r.property8 && !r.maxDatePassed">
+            <a style="color: #00b2d1;font-weight: 600;" (click)="prolongLending(r.property9)">
               Продужи
             </a>
+          </td>
+          <td *ngIf="!r.property8 && r.maxDatePassed">
+            <span style="color: orangered;">
+              Прошао крајњи рок за враћање
+            </span>
+          </td>
+          <td *ngIf="r.property8">
+            <span style="color: forestgreen;">
+              Већ продужено
+            </span>
           </td>
         </tr>
         </tbody>

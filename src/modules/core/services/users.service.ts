@@ -90,4 +90,8 @@ export class UsersService {
   public swapIndexes(fromIndex: number, toIndex: number): Observable<boolean> {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.swapIndexes}?i=${fromIndex}&i1=${toIndex}`) as Observable<boolean>;
   }
+
+  public prolongLending(lendingId: string): Observable<boolean> {
+    return this._httpClient.post(`${ApiEndpointConfig.Paths.user.prolongLending}`, lendingId) as Observable<boolean>;
+  }
 }

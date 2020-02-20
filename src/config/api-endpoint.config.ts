@@ -11,6 +11,7 @@ export class ApiEndpointConfig {
       activateAccount: `${ApiEndpointConfig.Origin}/library_members/activate_account`,
       changePassword: `${ApiEndpointConfig.Origin}/library_members/change_password`,
       forgotPassword: `${ApiEndpointConfig.Origin}/library_members/forgot_password`,
+      prolongLending: `${ApiEndpointConfig.Origin}/library_members/prolong_lending`,
       addToShelf: `${ApiEndpointConfig.Origin}/library_members/add_to_shelf`,
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`,

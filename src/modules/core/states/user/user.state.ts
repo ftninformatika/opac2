@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
+import { IUserCategoryModel } from '../../../../models/circ/user-category.model';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -127,7 +128,15 @@ export class UserState {
     } else {
       return [];
     }
-}
+  }
+
+  @Selector()
+  public static userCategory(state: IUserStateModel): IUserCategoryModel {
+    if (state.userData && state.userData.userCategory) {
+      return state.userData.userCategory;
+    }
+    return null;
+  }
 
   public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService, router: Router) {
     this._userService = userService;

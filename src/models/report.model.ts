@@ -6,4 +6,7 @@ export interface Report {
   property5: string; // CtlgNo for member history
   property6: string; // Record _id for member history
   property7: string; // deadline
+  property8: string; // resumeDate
+  property9: string; // mongo Id of lending
+  maxDatePassed?: boolean; // max date for returning lending
 }

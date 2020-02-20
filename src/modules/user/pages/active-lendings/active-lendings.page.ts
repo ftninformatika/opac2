@@ -1,9 +1,11 @@
+import { IUserCategoryModel } from '../../../../models/circ/user-category.model';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { UsersService } from '../../../core/services/users.service';
 import { UserState } from '../../../core/states/user/user.state';
 import { Report } from '../../../../models/report.model';
+import { ToastService } from 'ng-uikit-pro-standard';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -13,28 +15,29 @@ import { Store } from '@ngxs/store';
   encapsulation: ViewEncapsulation.None
 })
 export class ActiveLendingsPage implements OnInit {
+  // static dateFormat = 'dd.MM.yyyy';
   private readonly _booksService: BooksService;
   private readonly _userService: UsersService;
   private readonly _store: Store;
+  private readonly _toastService: ToastService;
   private sorted = false;
+  public userCategory: IUserCategoryModel;
   public memberNo: string;
   public lendingsReport: Report[];
   public lib: string;
 
-  public constructor(booksService: BooksService, userService: UsersService, store: Store) {
+  public constructor(booksService: BooksService, userService: UsersService, store: Store, toastService: ToastService) {
     this._booksService = booksService;
     this._userService = userService;
     this._store = store;
+    this._toastService = toastService;
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
     this.lib = this._store.selectSnapshot(ConfigState.library);
+    this.userCategory = this._store.selectSnapshot(UserState.userCategory);
   }
 
   public ngOnInit() {
-    this._userService.getActiveMemberLendings(this.memberNo).subscribe(
-      resp => {
-        this.lendingsReport = resp;
-      }
-    );
+   this.loadLendings();
   }
 
   public sortBy(by: string | any): void {
@@ -54,6 +57,55 @@ export class ActiveLendingsPage implements OnInit {
       return 0;
     });
     this.sorted = !this.sorted;
+  }
+
+  public prolongLending(lendingId: string) {
+    if (!lendingId) {
+      return;
+    }
+    this._userService.prolongLending(lendingId).subscribe(
+      resp => {
+        if (!resp) {
+          this._toastService.warning('Није могуће продужити задужење');
+        }
+        this._toastService.success('Успешно сте продужили задужење');
+        this.loadLendings();
+      },
+      () =>
+        this._toastService.warning('Није могуће продужити позајмицу')
+    );
+  }
+
+  public checkMaxPeriodExpired(lendDateString: string) {
+    if (!lendDateString || !this.userCategory) {
+      return;
+    }
+    const parts = lendDateString.split('.');
+    const lendDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+    const maxDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+    this.addDays(maxDate, (this.userCategory.period));
+
+    return maxDate < new Date();
+  }
+
+  private  addDays(date: Date, days: number): Date {
+    const d = new Date(date);
+    date.setDate(d.getDate() + days);
+    return date;
+  }
+
+  private loadLendings() {
+    this._userService.getActiveMemberLendings(this.memberNo).subscribe(
+      resp => {
+        if (!resp || resp.length === 0) {
+          return;
+        }
+        for (const r of resp) {
+          r.maxDatePassed = this.checkMaxPeriodExpired(r.property1);
+        }
+        this.lendingsReport = resp;
+      }
+    );
   }
 
   private transformDate(localizedDate: string): string {
