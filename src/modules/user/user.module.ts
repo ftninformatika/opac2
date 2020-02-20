@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';
-import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { MDBBootstrapModulesPro, MdbInputDirective } from 'ng-uikit-pro-standard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';

@@ -20,8 +20,9 @@ export class ProfilePage implements OnInit {
     this._store = store;
     this.signing = this._store.selectSnapshot(UserState.getActiveSigning);
     if (this.signing && this.signing.untilDate) {
-      const date = new Date(this.signing.untilDate);
-      this.formatedSigningUntil = date.getDay().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString() + '.';
+      const datePart: string[] = this.signing.untilDate.toString().split('T');
+      const parts: string[] = datePart[0].split('-');
+      this.formatedSigningUntil = parts[2] + '.' + parts[1] + '.' + parts[0];
     }
   }
 
