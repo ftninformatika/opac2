@@ -6,7 +6,8 @@
            [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
            offset="100"
            alt="Слика корице"/>
-      <a *ngIf="isAdmin" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>
+      <a *ngIf="isAdmin && (book.isbn && book.isbn.trim() != '')" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>
+      <span *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')" class="ml-2" style="color: grey;font-weight: 500;cursor:default;">Није могуће мењати слику или опис записа</span>
       <div class="social-share-buttons ">
         <a class="icons-sm fb-ic mr-2" (click)="share('fb')"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
         <a class="icons-sm li-ic mr-2" (click)="share('li')"><mdb-icon fab icon="linkedin"></mdb-icon></a>
@@ -39,9 +40,7 @@
         </div>
         <div class="book-description" *ngIf="book.description && book.description !== ''">
           <p>
-<!--            TODO: make nice read-more-->
             <read-more [text]="book.description">
-<!--              {{book.description}}-->
             </read-more>
           </p>
         </div>

@@ -118,7 +118,7 @@ export class UploadDescriptionCoverPage implements OnInit {
           }
         );
       }
-      if (this.book.description !== this.bookDescription && this.bookDescription && this.bookDescription.trim() !== '') {
+      if (this.book.description !== this.bookDescription) {
         this._bookService.createModifyBookCommon(bookCommon).subscribe(
           resp => {
             if (!resp) {
@@ -172,6 +172,10 @@ export class UploadDescriptionCoverPage implements OnInit {
   private initBook(): void {
     this._bookService.getBook(this.recordId).subscribe(
       resp => {
+        if (!resp.isbn || resp.isbn.trim() === '') {
+          this._toastService.error('Није могуће мењати опис и слику корица овог записа!');
+          this._router.navigate(['/book', this.lib, this.recordId]);
+        }
         this.book = resp;
         this.bookDescription = this.book.description;
       }
