@@ -130,7 +130,7 @@
             </div>
           </div>
         </div>
-        <div class="isbd-collapse">
+        <div class="isbd-collapse" *ngIf="book.isbdHtml && book.isbdHtml.trim() != ''">
           <mdb-accordion *ngIf="showLocations">
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">

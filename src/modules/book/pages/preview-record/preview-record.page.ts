@@ -14,9 +14,6 @@ import { IPrefixValue } from '../../../../models/prefix-value.model';
 import { SearchUtil } from '../../../../utils/search-util';
 import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
 import { CryptoUtils } from '../../../../utils/crypto.utils';
-import {ISelectedFilter} from '../../../../models/search/filter.model';
-import {AppOptionsState} from '../../../core/states/app-options/app-options.state';
-import {EDeviceWidth} from '../../../search/pages/result/result.page';
 
 @Component({
   selector: 'preview-record',

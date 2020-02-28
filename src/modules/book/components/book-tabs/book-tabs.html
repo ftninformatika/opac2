@@ -80,7 +80,7 @@
           </div>
         </div>
       </mdb-tab>
-      <mdb-tab heading="ISBD" *ngIf="book.isbdHtml && book.isbdHtml != ''">
+      <mdb-tab heading="ISBD" *ngIf="!book.isbdHtml || book.isbdHtml.trim() != ''">
         <div class="row">
           <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml">
           </div>
