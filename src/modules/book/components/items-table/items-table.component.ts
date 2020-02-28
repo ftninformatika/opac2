@@ -119,10 +119,10 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
   public filterBySelectedLocations() {
     this.tmpSearch = [];
     const items = [...this.initialItems];
-    for (const sl of this.allSelectedLocations) {
-      const el = items.find(i => i.location === sl.label);
-      if (el) {
-        this.tmpSearch.push(el);
+    for (const i of items) {
+      const sl = this.allSelectedLocations.find(x => x.value === i.locCode);
+      if (sl) {
+        this.tmpSearch.push(i);
       }
     }
     this.items = this.tmpSearch;
