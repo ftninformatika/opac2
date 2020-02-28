@@ -25,6 +25,7 @@ export class TopMenuComponent {
   private readonly _store: Store;
   private readonly _translateService: TranslateService;
   private searchTextChanged: Subject<string> = new Subject<string>();
+  private tmpSelectedText: string;
   public searchText: string;
   public results: Observable<IPrefixValue[]>;
   public hidden = false;
@@ -54,6 +55,7 @@ export class TopMenuComponent {
 
   public init() {
     this.searchText = '';
+    this.tmpSelectedText = '';
     this.selectedAc = null;
     this.results = of ([] as IPrefixValue[]);
   }
@@ -89,19 +91,28 @@ export class TopMenuComponent {
     }
   }
 
-  public onAutoCompleteSelect($event) {
+  public async onAutoCompleteSelect($event) {
+    console.log($event);
+    let text;
     if ($event.target && $event.target.textContent && $event.target.textContent !== '') {
-      $event.text = $event.target.textContent;
+      text = $event.target.textContent.split('[')[0].trim();
+    } else {
+      text = $event.text;
+      // try {
+      //   text = $event.currentTarget.childNodes[1].firstChild.children[0].firstChild.nextElementSibling.innerText.split('[')[0].trim();
+      // } catch (e) {
+      //   return ;
+      // }
     }
-    this.results.subscribe(
-      (res: IPrefixValue[]) => {
-        // Autocomplete result list always returns distinct values, so we can do this
-        this.selectedAc = res.find(e => e.value === $event.text);
-        if (this.selectedAc) {
-          this.searchText = this.selectedAc.value;
-        }
-      }
-    );
+    const res = await this.results.toPromise() as IPrefixValue[];
+    this.selectedAc = res.find(e => e.value === text);
+    if (this.selectedAc) {
+      this.searchText = this.selectedAc.value;
+    }
+  }
+
+  public mouseOverAutoComplete() {
+
   }
 
   public removeFocusInput() {

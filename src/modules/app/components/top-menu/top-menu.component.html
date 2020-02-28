@@ -26,7 +26,8 @@
                  aria-label="Претражи"
                  autocomplete="off">
           <div>
-            <mdb-auto-completer #auto="mdbAutoCompleter" (select)="onAutoCompleteSelect($event)"
+            <mdb-auto-completer #auto="mdbAutoCompleter"
+                                (select)="onAutoCompleteSelect($event)"
                                 (mouseover)="onAutoCompleteSelect($event)"
                                 (mousedown)="this.search()"
                                 (keyup.enter)="this.search().then()"
