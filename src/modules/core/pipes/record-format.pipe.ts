@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Book, Primerak, RecordItem } from '../../../models/book.model';
+import { Book, Field, RecordItem } from '../../../models/book.model';
 import { RecordUtils } from '../../../utils/record-utils';
 
 export enum ERecordFormatType {
   FORMAT_PUBLISHER_INFO = 'FORMAT_PUBLISHER_INFO',
   FORMAT_BOOK_PHYSICAL_INFO = 'FORMAT_BOOK_PHYSICAL_INFO',
   FORMAT_FIRST_SIGNATURE_INFO = 'FORMAT_FIRST_SIGNATURE_INFO',
-  CONTAINS_856_URL = 'CONTAINS_856_URL'
+  CONTAINS_856_URL = 'CONTAINS_856_URL',
+  _324_SPECIAL = '_324_SPECIAL',
+  _327_CONTENT = '_327_CONTENT'
 }
 
 @Pipe({
@@ -57,8 +59,30 @@ export class RecordFormatPipe implements PipeTransform {
         if (!book.record || _856u == null) {
           return null;
         }
-        const urlHtml = `<a href="${_856u}" target="_blank">${_856u}</a>`;
+        const urlHtml = `<a href="${_856u}" target="_blank">линк</a>`;
         return urlHtml;
+      }
+      case ERecordFormatType._324_SPECIAL: {
+        const _324a = RecordUtils.getSubfieldContent(book.record, '324a');
+        return _324a;
+      }
+      case ERecordFormatType._327_CONTENT: {
+        const _327aFields: Field[] = RecordUtils.getFields(book.record, '327');
+        if (!_327aFields || _327aFields.length === 0) {
+          return null;
+        }
+        let content = '';
+        for (const f of _327aFields) {
+          if (!f.subfields || f.subfields.length === 0) {
+            continue;
+          }
+          for (const sf of f.subfields) {
+            if (sf.name === 'a' && sf.content && sf.content.trim() !== '') {
+              content += sf.content + '; ';
+            }
+          }
+        }
+        return content;
       }
       case ERecordFormatType.FORMAT_FIRST_SIGNATURE_INFO: {
         let fs = '';

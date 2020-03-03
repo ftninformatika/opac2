@@ -92,7 +92,7 @@ export class TopMenuComponent {
   }
 
   public async onAutoCompleteSelect($event) {
-    console.log($event);
+    // console.log($event);
     let text;
     if ($event.target && $event.target.textContent && $event.target.textContent !== '') {
       text = $event.target.textContent.split('[')[0].trim();

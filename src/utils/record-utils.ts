@@ -1,4 +1,4 @@
-import { Record } from '../models/book.model';
+import { Field, Record } from '../models/book.model';
 
 export class RecordUtils {
 
@@ -24,5 +24,9 @@ export class RecordUtils {
       // TODO: make logger
       return null;
     }
+  }
+
+  public static getFields(rec: Record, field: string): Field[] {
+    return rec.fields.filter(f => f.name === field);
   }
 }

@@ -22,6 +22,8 @@ export interface Book {
   commonBookUID?: BigInteger;
   totalRatings?: number;
   avgRating?: AvgRecordRating;
+  masterRecordTitle?: string;
+  masterRecordId?: string;
 }
 
 export interface BookCommon {

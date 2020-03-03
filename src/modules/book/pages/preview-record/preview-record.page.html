@@ -55,6 +55,7 @@
                 <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
                   <dt class="col-sm-2">Аутори&nbsp;</dt>
                   <dd class="col-sm-10">
+<!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
                     <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
                       {{book.authors}}
                     </a>
@@ -64,6 +65,7 @@
                 <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
                   <dt class="col-sm-2">Остали аутори&nbsp;</dt>
                   <dd class="col-sm-10">
+<!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
                     <a *ngFor="let oa of book.otherAuthors; let i = index"
                        (click)="linkedSearch('authors', oa)"
                     >
@@ -98,9 +100,30 @@
                   <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
                 </ng-container>
 
+                <ng-container *ngIf="book.masterRecordId">
+                  <dt class="col-sm-2">Референца
+                  &nbsp;</dt>
+                  <dd class="col-sm-10">
+                    <mdb-icon far icon="eye"></mdb-icon> &nbsp;
+                    <span [routerLink]="['/book',lib, book.masterRecordId]" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                      {{(book.masterRecordTitle && book.masterRecordTitle.trim() !== '') ? book.masterRecordTitle : 'Линк до извора'}}
+                    </span>
+                  </dd>
+                </ng-container>
+
                 <ng-container *ngIf="book.notes">
                   <dt class="col-sm-2">Напомене&nbsp;</dt>
                   <dd class="col-sm-10">{{book.notes}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType._324_SPECIAL">
+                  <dt class="col-sm-2" >Посебан отисак&nbsp;</dt>
+                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType._324_SPECIAL}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book | recordFormat:RecordFormatType._327_CONTENT">
+                  <dt class="col-sm-2" >Садржај&nbsp;</dt>
+                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType._327_CONTENT}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.isbn">
