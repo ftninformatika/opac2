@@ -10,8 +10,9 @@ import { CryptoUtils } from '../../../../utils/crypto.utils';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subject } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { Component, ElementRef, Renderer, ViewChild, ViewEncapsulation } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer, ViewChild, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
+import {ICoder} from '../../../../models/coders/coder.model';
 
 @Component({
   selector: 'top-menu',
@@ -30,6 +31,7 @@ export class TopMenuComponent {
   public results: Observable<IPrefixValue[]>;
   public hidden = false;
   public selectedAc: IPrefixValue;
+  public kioskSubLocation: ICoder;
   private isAdmin: boolean;
   @Select(UserState) user;
   @Select(ConfigState) configState;
@@ -42,6 +44,7 @@ export class TopMenuComponent {
     this._store = store;
     this._translateService = translateService;
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
+    this.kioskSubLocation = this._store.selectSnapshot(ConfigState.getKioskSubLocation);
     this.init();
     this.searchTextChanged.pipe(
       debounceTime(850),
@@ -92,17 +95,11 @@ export class TopMenuComponent {
   }
 
   public async onAutoCompleteSelect($event) {
-    // console.log($event);
     let text;
     if ($event.target && $event.target.textContent && $event.target.textContent !== '') {
       text = $event.target.textContent.split('[')[0].trim();
     } else {
       text = $event.text;
-      // try {
-      //   text = $event.currentTarget.childNodes[1].firstChild.children[0].firstChild.nextElementSibling.innerText.split('[')[0].trim();
-      // } catch (e) {
-      //   return ;
-      // }
     }
     const res = await this.results.toPromise() as IPrefixValue[];
     this.selectedAc = res.find(e => e.value === text);
@@ -112,7 +109,6 @@ export class TopMenuComponent {
   }
 
   public mouseOverAutoComplete() {
-
   }
 
   public removeFocusInput() {

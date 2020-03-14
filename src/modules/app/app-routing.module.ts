@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'user', loadChildren: './../user/user.module#UserModule' },
   { path: 'error', loadChildren: './../errors/errors.module#ErrorsModule' },
   { path: 'lib/:lib', component: LibraryRouteComponent},
+  { path: 'lib/:lib/kiosk/:kioskLocation', component: LibraryRouteComponent},
   { path: '**', redirectTo: 'error/not-found'}
 ];
 

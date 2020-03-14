@@ -5,7 +5,7 @@ import { IResultPage } from '../../../models/page.model';
 import { AvgRecordRating, Book, BookCommon, RecordRating } from '../../../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

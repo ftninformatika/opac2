@@ -10,6 +10,7 @@ import { MinimumPasswordStrengthRegex } from '../../../../utils/regexes';
 import { LibraryConfigurationService } from '../../../core/services/library-configuration.service';
 import { ILibraryConfigurationModel } from '../../../../models/library-configuration.model';
 import { ChangeConfigAction, ConfigState } from '../../../core/states/config/config.state';
+import {ICoder} from '../../../../models/coders/coder.model';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginPage implements OnInit {
   public loginForm: FormGroup;
   public forgotPassEmail: string;
   public nextUrl: string;
+  public kioskCoder: ICoder;
 
   public constructor(formBuilder: FormBuilder, usersService: UsersService, router: Router,
                      activatedRoute: ActivatedRoute, store: Store,
@@ -40,9 +42,13 @@ export class LoginPage implements OnInit {
     this._toastService = toastService;
     this._store = store;
     this._libConfService = libConfService;
+    this.kioskCoder = this._store.selectSnapshot(ConfigState.getKioskSubLocation);
   }
 
   public ngOnInit() {
+    if (this.kioskCoder) {
+      this._router.navigate(['/']);
+    }
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(MinimumPasswordStrengthRegex)]],

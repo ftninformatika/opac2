@@ -115,7 +115,8 @@ export class AppOptionsState {
     if (!action || !action.subLocationFilter) {
       return;
     }
-    const index = state.selectedSubLocations.indexOf(action.subLocationFilter);
+    const index = state.selectedSubLocations.findIndex(s => s.item.value == action.subLocationFilter.item.value);
+    // const index = state.selectedSubLocations.indexOf(action.subLocationFilter);
     if (index === -1) {
       state.selectedSubLocations.push(action.subLocationFilter);
     } else {

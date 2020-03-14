@@ -44,6 +44,9 @@ export class ApiEndpointConfig {
     bookCover: {
       main: `${ApiEndpointConfig.Origin}/book_cover`,
       upload: `${ApiEndpointConfig.Origin}/book_cover/upload`
+    },
+    coders: {
+      subLocations: `${ApiEndpointConfig.Origin}/coders/sublocation`
     }
   };
 }

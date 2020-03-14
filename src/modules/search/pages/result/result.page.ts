@@ -70,6 +70,7 @@ export class ResultPage implements OnInit, OnDestroy {
   public lib: string;
   public tableView: boolean;
   public shareSelectedLink: string;
+  public kioskFilter: ISelectedFilter;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, @Inject(PLATFORM_ID) private platformId,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
@@ -84,6 +85,7 @@ export class ResultPage implements OnInit, OnDestroy {
     // TODO: consider moving this and some more possible app settings to Redux State
     this.tableView = (window.localStorage.getItem('resultPreview') && window.localStorage.getItem('resultPreview') === 'table');
     this.shareSelectedLink = null;
+    this.kioskFilter = this._store.selectSnapshot(ConfigState.getKioskSublocationAsFilter);
     this.initValues();
   }
 
@@ -109,6 +111,9 @@ export class ResultPage implements OnInit, OnDestroy {
         if (this.pageOptions.lib && this.pageOptions.lib !== this.lib) {
           await this._router.navigate([`lib/${this.pageOptions.lib}`], {state: {proceedUrl: this.searchPageUrl}});
           return;
+        }
+        if (this.kioskFilter) {
+          this.pageOptions.filters.subLocations = [{...this.kioskFilter}];
         }
         this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel);
         let pageNum = 0;
@@ -333,7 +338,12 @@ export class ResultPage implements OnInit, OnDestroy {
     this.pageOptions.filters.authors.forEach(e => this.selectedFilters.push(e));
     this.pageOptions.filters.subLocations.forEach(e => {
       this.selectedFilters.push(e);
-      this._store.dispatch(new AddRemoveSubLocationsAction(e));
+      if (this.kioskFilter && this._store.selectSnapshot(AppOptionsState.getSelectedSubLocationFilters)
+        .findIndex(sl => sl.item.value === this.kioskFilter.item.value) === -1) {
+        this._store.dispatch(new AddRemoveSubLocationsAction(e));
+      } else if (!this.kioskFilter) {
+        this._store.dispatch(new AddRemoveSubLocationsAction(e));
+      }
     });
     this.pageOptions.filters.locations.forEach(e => {
       this.selectedFilters.push(e);

@@ -57,19 +57,21 @@
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light user-button">
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
-            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']">Тренутно задужено</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја читања</a>
-              <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
-                class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
-              <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
-            </div>
+            <ng-container *ngIf="!kioskSubLocation">
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']">Тренутно задужено</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја читања</a>
+                <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
+                  class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
+              </div>
+            </ng-container>
           </li>
-          <li class="nav-item" *ngIf="(user | async)?.userData == null">
+          <li class="nav-item" *ngIf="((user | async)?.userData == null) && (!(configState | async)?.libConfig?.kioskSublocation)">
             <a class="nav-link waves-light sign-in-button" mdbWavesEffect [routerLink]="['user/login']">
               <mdb-icon fas icon="user-alt"></mdb-icon>Пријава
             </a>
