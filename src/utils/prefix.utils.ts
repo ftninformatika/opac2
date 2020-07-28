@@ -3202,6 +3202,12 @@ export class PrefixUtils {
         name: 'Тродимензионалне ументнине и реалије'
       }
     ];
+   static _coder856u = [
+     {
+       code: '.*',
+       name: 'Постоји'
+     }
+   ];
 
   public static Prefixes: PrefixModel[] = [
     {
@@ -3273,6 +3279,12 @@ export class PrefixUtils {
       name: 'Код за врсту записа',
       coder: PrefixUtils._coderRT
     },
+    {
+      code: '856u',
+      name: 'URL дигитални примерак',
+      coder: PrefixUtils._coder856u
+    }
+    ,
     {
       code: 'SB',
       name: 'Предметна одредница'

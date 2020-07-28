@@ -45,6 +45,46 @@ export class LibraryConfigurationService {
       locale: 'sr_Cyrl_RS',
       navbarColor: 'green'
     }
+    ,
+    {
+      libraryName: 'bmg',
+      libraryFullName: 'Библиотека Милован Глишић',
+      shortName: 'БМГ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    }
+    ,
+    {
+      libraryName: 'bpk',
+      libraryFullName: 'Библиотека Политика Крупањ',
+      shortName: 'БМГ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    }
+    ,
+    {
+      libraryName: 'bvzl',
+      libraryFullName: 'Библиотека Вуковог Завичаја',
+      shortName: 'БВЗЛ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    }
+    ,
+    {
+      libraryName: 'bdtl',
+      libraryFullName: 'Библиотека Димитрије Туцовић',
+      shortName: 'БДТЛ',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    }
+    ,
+    {
+      libraryName: 'bvao',
+      libraryFullName: 'Библиотека Влада Аксентијевић',
+      shortName: 'БВАО',
+      locale: 'sr_Cyrl_RS',
+      navbarColor: 'green'
+    }
   ];
 
   public constructor(httpClient: HttpClient) {

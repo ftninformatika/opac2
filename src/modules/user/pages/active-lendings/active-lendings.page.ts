@@ -81,9 +81,8 @@ export class ActiveLendingsPage implements OnInit {
       return;
     }
     const parts = lendDateString.split('.');
-    const lendDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
     const maxDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
-    this.addDays(maxDate, (this.userCategory.period));
+    this.addDays(maxDate, (this.userCategory.maxPeriod));
 
     return maxDate < new Date();
   }
