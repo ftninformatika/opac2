@@ -47,6 +47,9 @@ export class ApiEndpointConfig {
     },
     coders: {
       subLocations: `${ApiEndpointConfig.Origin}/coders/sublocation`
+    },
+    config: {
+      getAll: `${ApiEndpointConfig.Origin}/library_configuration/allConfigsBrief`,
     }
   };
 }

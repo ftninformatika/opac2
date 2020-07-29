@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
     }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
       res => {
-        this._libConfService.getMockLibraryConfigs().subscribe(
+        this._libConfService.getAllBriefConfigs().subscribe(
           (configs: ILibraryConfigurationModel[]) => {
             if (!res.USER_STATE || !res.USER_STATE.user || !res.USER_STATE.user.libraryPrefix) {
               this._store.dispatch(new SignOutAction());

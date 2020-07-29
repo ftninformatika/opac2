@@ -55,7 +55,7 @@ export class LibraryRouteComponent implements OnInit {
     const paramLib = this._activatedRoute.snapshot.paramMap.get('lib');
     const paramKioskLocation = this._activatedRoute.snapshot.paramMap.get('kioskLocation');
     const currentKioskCoder: ICoder = this._store.selectSnapshot(ConfigState.getKioskSubLocation);
-    this._libConfigService.getMockLibraryConfigs()
+    this._libConfigService.getAllBriefConfigs()
       .subscribe(
       async (configs: ILibraryConfigurationModel[]) => {
         if (configs.some(e => e.libraryName === paramLib)) {
