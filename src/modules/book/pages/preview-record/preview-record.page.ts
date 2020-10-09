@@ -28,7 +28,7 @@ export class PreviewRecordPage implements OnInit {
   private readonly _store: Store;
   private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
-  private RecordFormatType = ERecordFormatType;
+  RecordFormatType = ERecordFormatType;
   private showLocations: boolean;
   public book: Book;
   public errImgUrl: string;
@@ -68,6 +68,7 @@ export class PreviewRecordPage implements OnInit {
               this.recordURL = window.location.href;
               this._scrollToService.scrollTo({offset: 0});
               this.book = data;
+              console.log(this.book);
               this.setMetaTags();
               this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
               if (this.book.items && this.book.items.length > 0) {

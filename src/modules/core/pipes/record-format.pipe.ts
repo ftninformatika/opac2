@@ -7,6 +7,7 @@ export enum ERecordFormatType {
   FORMAT_BOOK_PHYSICAL_INFO = 'FORMAT_BOOK_PHYSICAL_INFO',
   FORMAT_FIRST_SIGNATURE_INFO = 'FORMAT_FIRST_SIGNATURE_INFO',
   CONTAINS_856_URL = 'CONTAINS_856_URL',
+  _464_SOURCE_CONTENT_TITLE = '_464_SOURCE_CONTENT_TITLE',
   _324_SPECIAL = '_324_SPECIAL',
   _327_CONTENT = '_327_CONTENT'
 }
@@ -95,6 +96,16 @@ export class RecordFormatPipe implements PipeTransform {
           } else {
             return null;
           }
+        }
+      }
+      case ERecordFormatType._464_SOURCE_CONTENT_TITLE: {
+        const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
+        if (!_001c) {
+          return '';
+        } else if (_001c === 'a') {
+          return 'Извор';
+        } else {
+          return 'Чланак';
         }
       }
     }
