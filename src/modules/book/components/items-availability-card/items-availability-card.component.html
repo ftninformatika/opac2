@@ -12,13 +12,14 @@
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>
         </p>
-        <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0">
+        <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0"
+                [(ngModel)]="this.selectedLocation">
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
       </mdb-card-text>
       </ng-container>
         <div class="reserve-shelf-row">
-          <div *ngIf="locations && locations.length > 0 && containShowableItems">
+          <div *ngIf="locations && locations.length > 0 && containShowableItems" (click)="reserve()">
             <a>
               <div class="reserve-shelf-buttons reserve">
                 <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>

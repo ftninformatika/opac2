@@ -1,12 +1,12 @@
-import { EAuthority, ILibraryMember } from '../../../../models/library-member.model';
-import { IMemberWrapper } from '../../../../models/member-wrapper.model';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { IUserModel } from '../../../../models/circ/user.model';
-import { UsersService } from '../../services/users.service';
-import { TranslateService } from '@ngx-translate/core';
-import { ToastService } from 'ng-uikit-pro-standard';
-import { Router } from '@angular/router';
-import { IUserCategoryModel } from '../../../../models/circ/user-category.model';
+import {EAuthority, ILibraryMember} from '../../../../models/library-member.model';
+import {IMemberWrapper} from '../../../../models/member-wrapper.model';
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {IUserModel} from '../../../../models/circ/user.model';
+import {UsersService} from '../../services/users.service';
+import {TranslateService} from '@ngx-translate/core';
+import {ToastService} from 'ng-uikit-pro-standard';
+import {Router, RouterStateSnapshot} from '@angular/router';
+import {IUserCategoryModel} from '../../../../models/circ/user-category.model';
 
 export interface IUserStateModel {
   accessToken: string;
@@ -24,21 +24,25 @@ export class SignInAction {
   static readonly type = '[User] Sign In User';
   public username: string;
   public password: string;
+
   public constructor(username: string, password: string) {
-   this.username = username;
-   this.password = password;
+    this.username = username;
+    this.password = password;
   }
 }
 
 export class SignOutAction {
   static readonly type = '[User] Sing Out User';
-  public constructor() {}
+
+  public constructor() {
+  }
 }
 
 
 export class AddToShelfAction {
   static readonly type = '[User] Add To Shelf';
   public bookId: string;
+
   public constructor(bookId: string) {
     this.bookId = bookId;
   }
@@ -47,8 +51,20 @@ export class AddToShelfAction {
 export class RemoveFromShelfAction {
   static readonly type = '[User] Remove From Shelf';
   public bookId: string;
+
   public constructor(bookId: string) {
     this.bookId = bookId;
+  }
+}
+
+export class ReserveBookAction {
+  static readonly type = '[User] Reserve Book';
+  public recordId: string;
+  public coderId: string;
+
+  public constructor(recordId: string, coderId: string) {
+    this.recordId = recordId;
+    this.coderId = coderId;
   }
 }
 
@@ -79,16 +95,18 @@ export class UserState {
 
   @Selector()
   public static getActiveSigning(state: IUserStateModel) {
-   if (!state.userData || !state.userData.signings || state.userData.signings.length === 0) {
-     return null;
-   }
-   const nowTime = new Date().getTime();
-   const activeSigning = state.userData.signings.find(si => (si.untilDate && new Date(si.untilDate).getTime() > nowTime));
-   return activeSigning;
+    if (!state.userData || !state.userData.signings || state.userData.signings.length === 0) {
+      return null;
+    }
+    const nowTime = new Date().getTime();
+    const activeSigning = state.userData.signings.find(si => (si.untilDate && new Date(si.untilDate).getTime() > nowTime));
+    return activeSigning;
   }
 
   @Selector()
-  public static token(state: IUserStateModel) { return state.accessToken; }
+  public static token(state: IUserStateModel) {
+    return state.accessToken;
+  }
 
   @Selector()
   public static library(state: IUserStateModel) {
@@ -114,7 +132,7 @@ export class UserState {
 
   @Selector()
   public static username(state: IUserStateModel): string {
-    if (state.user && state.user.username ) {
+    if (state.user && state.user.username) {
       return state.user.username;
     } else {
       return null;
@@ -156,14 +174,14 @@ export class UserState {
       return;
     }
     if (!response.member || !response.libraryMember || !response.libraryMember.authToken) {
-          this._toastService.warning('Нешто је пошло по злу!');
-          return;
-        }
+      this._toastService.warning('Нешто је пошло по злу!');
+      return;
+    }
     ctx.patchState({
-          userData: response.member,
-          user: response.libraryMember,
-          accessToken: response.libraryMember.authToken
-        });
+      userData: response.member,
+      user: response.libraryMember,
+      accessToken: response.libraryMember.authToken
+    });
   }
 
   @Action(SignOutAction)
@@ -249,5 +267,43 @@ export class UserState {
     this._toastService.success('Kњига склоњена са полице');
     return true;
   }
+
+
+  @Action(ReserveBookAction)
+  public async reserveBook(ctx: StateContext<IUserStateModel>, action: ReserveBookAction) {
+    const libraryMember = {...ctx.getState().user};
+    if (!ctx.getState().user) {
+      this._toastService.info('Потребно је да се пријавите/региструјете на систем.',
+        "Резервација није могућа.",{timeOut: 3000, tapToDismiss: true});
+
+      await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
+      return;
+    }
+
+    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
+
+    if (!libraryMember || !libraryMember.username) {
+      this._toastService.warning('Грешка при покушају резервисања књиге!');
+      return;
+    }
+
+    let response = null;
+    try {
+      response = await this._userService.reserveBook({recordId: action.recordId, coderId: action.coderId}).toPromise();
+    } catch (e) {
+      this._toastService.warning('Грешка при покушају резервисања књиге!');
+      return;
+    }
+    if (response == null) {
+      this._toastService.warning('Серверска грешка при покушају резервисања књиге!');
+      return;
+    } else if ('message' in response) {
+      this._toastService.info(response.message);
+    } else {
+      this._toastService.success('Успешно сте резервисали књигу! Књигу можете подићи у року од 3 дана од ' +
+        'тренутка када добијете e-mail да је књига слободна.');
+    }
+  }
+
 
 }

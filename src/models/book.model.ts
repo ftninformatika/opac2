@@ -60,6 +60,19 @@ export interface AvgRecordRating {
   totalRates: number;
 }
 
+export interface Reservation {
+  userId: String;
+  date: Date;
+  isBookPickedUp: boolean;
+  status: ReservationStatus;
+  recordId: String;
+}
+
+export enum ReservationStatus {
+  Submitted = 'SUBMITTED',
+  History = 'HISTORY'
+}
+
 export enum EPubType {
   Monograph = 1,
   Serial = 2
@@ -67,7 +80,7 @@ export enum EPubType {
 
 export enum ERecordItemStatus {
   Borrowed = 'BORROWED',
-  Free= 'FREE',
+  Free = 'FREE',
   NotLendable = 'NOT_LENDABLE',
   NotShowable = 'NOT_SHOWABLE'
 }

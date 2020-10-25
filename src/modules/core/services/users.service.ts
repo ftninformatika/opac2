@@ -3,7 +3,7 @@ import { BookCollectionModel } from '../../../models/book-collection.model';
 import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
 import { IMemberWrapper } from '../../../models/member-wrapper.model';
 import { HttpClient } from '@angular/common/http';
-import { Book } from '../../../models/book.model';
+import {Book, Reservation} from '../../../models/book.model';
 import { BooksService } from './books.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -93,5 +93,9 @@ export class UsersService {
 
   public prolongLending(lendingId: string): Observable<boolean> {
     return this._httpClient.post(`${ApiEndpointConfig.Paths.user.prolongLending}`, lendingId) as Observable<boolean>;
+  }
+
+  public reserveBook(reservationRequestDto:{recordId: string, coderId: string}): Observable<any>{
+    return this._httpClient.post(ApiEndpointConfig.Paths.user.reserveBook, reservationRequestDto) as Observable<any>;
   }
 }
