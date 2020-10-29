@@ -98,4 +98,12 @@ export class UsersService {
   public reserveBook(reservationRequestDto:{recordId: string, coderId: string}): Observable<any>{
     return this._httpClient.post(ApiEndpointConfig.Paths.user.reserveBook, reservationRequestDto) as Observable<any>;
   }
+
+  public getActiveReservations(): Observable<any>{
+    return this._httpClient.get(ApiEndpointConfig.Paths.user.getActiveReservations) as Observable<any>;
+  }
+
+  public deleteReservation(reservationId: string): Observable<any>{
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.user.deleteReservation}/${reservationId}`) as Observable<any>;
+  }
 }

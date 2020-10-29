@@ -63,6 +63,7 @@
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']">Тренутно задужено</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја читања</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-reservations']">Резервације</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                   class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
                 <div class="divider dropdown-divider"></div>

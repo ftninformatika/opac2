@@ -71,6 +71,5 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     })
 
     await this._store.dispatch(new ReserveBookAction(this.bookId, selectedRecordItem[0].locCode)).toPromise();
-    //this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 }

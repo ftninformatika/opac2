@@ -17,7 +17,9 @@ export class ApiEndpointConfig {
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`,
       getLendingHistory: `${ApiEndpointConfig.Origin}/members/lending_history`,
       getActiveLendings: `${ApiEndpointConfig.Origin}/members/active_lendings`,
-      reserveBook: `${ApiEndpointConfig.Origin}/reservations/reserve`
+      reserveBook: `${ApiEndpointConfig.Origin}/reservations/reserve`,
+      getActiveReservations: `${ApiEndpointConfig.Origin}/reservations/active-reservations`,
+      deleteReservation: `${ApiEndpointConfig.Origin}/reservations/delete`,
     },
     admin: {
       createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,

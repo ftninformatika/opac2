@@ -61,21 +61,26 @@ export interface AvgRecordRating {
 }
 
 export interface Reservation {
-  userId: String;
-  date: Date;
+  _id: string;
+  record_id: string;
   isBookPickedUp: boolean;
-  status: ReservationStatus;
-  recordId: String;
-}
-
-export enum ReservationStatus {
-  Submitted = 'SUBMITTED',
-  History = 'HISTORY'
+  reservationDate: Date;
+  title: string;
+  authors:[];
+  reservationStatus: ReservationStatus;
+  pickUpDeadline: Date;
+  location: string;
 }
 
 export enum EPubType {
   Monograph = 1,
   Serial = 2
+}
+
+export enum ReservationStatus {
+  WaitingInQueue = 'WAITING_IN_QUEUE',
+  AssignedBook = 'ASSIGNED_BOOK',
+  PickedUp = 'PICKED_UP'
 }
 
 export enum ERecordItemStatus {

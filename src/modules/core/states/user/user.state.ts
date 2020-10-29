@@ -274,7 +274,7 @@ export class UserState {
     const libraryMember = {...ctx.getState().user};
     if (!ctx.getState().user) {
       this._toastService.info('Потребно је да се пријавите/региструјете на систем.',
-        "Резервација није могућа.",{timeOut: 3000, tapToDismiss: true});
+        "Резервација није могућа.");
 
       await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
       return;
@@ -294,6 +294,7 @@ export class UserState {
       this._toastService.warning('Грешка при покушају резервисања књиге!');
       return;
     }
+
     if (response == null) {
       this._toastService.warning('Серверска грешка при покушају резервисања књиге!');
       return;
