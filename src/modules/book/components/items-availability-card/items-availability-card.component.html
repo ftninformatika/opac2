@@ -54,4 +54,52 @@
       </ng-container>
     </mdb-card-body>
   </mdb-card>
+
+  <div mdbModal #successModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="successModal.hide(); ">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myModalLabel">Успешна резервација</h4>
+        </div>
+        <div class="modal-body">
+          <label>Успешно сте резервисали књигу!
+            Књигу можете подићи у року од 3 дана од тренутка када добијете
+            e-mail да је књига слободна.</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="success" class="waves-light" aria-label="Close" style="cursor: pointer"
+                  (click)="successModal.hide();">ОК
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #messageModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="messageModal.hide(); ">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myMessageModalLabel">Пажња</h4>
+        </div>
+        <div class="modal-body">
+          <label>{{reservationResponseMessage}}</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" style="cursor: pointer"
+                  (click)="messageModal.hide();">ОК
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

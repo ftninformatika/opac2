@@ -1,15 +1,15 @@
 import {
   AddToShelfAction,
   RemoveFromShelfAction,
-  ReserveBookAction,
   UserState
 } from '../../../core/states/user/user.state';
-import { ERecordItemStatus, RecordItem } from '../../../../models/book.model';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngxs/store';
+import {ERecordItemStatus, RecordItem} from '../../../../models/book.model';
+import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Store} from '@ngxs/store';
 import {BooksService} from "../../../core/services/books.service";
-import {response} from "express";
 import {Router} from "@angular/router";
+import {UsersService} from "../../../core/services/users.service";
+import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
 
 @Component({
   selector: 'items-availability-card',
@@ -23,8 +23,13 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() containShowableItems: boolean;
   private readonly _store: Store;
   private readonly _bookService: BooksService;
+  private readonly _userService: UsersService;
   private readonly _router: Router;
+  private readonly _toastService: ToastService;
+  @ViewChild('successModal', {static: true}) successModal: ModalDirective;
+  @ViewChild('messageModal', {static: true}) messageModal: ModalDirective;
 
+  public memberNo: string;
   public isAdmin: boolean;
   public booksOnShelf: string[];
   public totalItems: number;
@@ -34,12 +39,16 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public locations: string[];
 
   public selectedLocation: string;
+  public reservationResponseMessage: string;
 
-  public constructor(store: Store, bookService: BooksService, router: Router) {
+  public constructor(store: Store, bookService: BooksService, userService: UsersService, router: Router, toast: ToastService) {
     this._store = store;
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
+    this.memberNo = this._store.selectSnapshot(UserState.memberNo);
     this._bookService = bookService;
+    this._userService = userService;
     this._router = router;
+    this._toastService = toast;
   }
 
   public ngOnInit(): void {
@@ -64,12 +73,37 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
-  public async reserve(){
+  public async reserve() {
+    // todo dodati da se prikaze modalni za login
+    if (this.memberNo == null) {
+      this._toastService.info('Потребно је да се пријавите/региструјете на систем.');
+    }
+
+    // get the record for the selected location
     let location = this.selectedLocation;
     let selectedRecordItem = this.recordItems.filter(function (recordItem) {
       return recordItem.location === location;
-    })
+    });
 
-    await this._store.dispatch(new ReserveBookAction(this.bookId, selectedRecordItem[0].locCode)).toPromise();
+    let response = null;
+    try {
+      response = await this._userService.reserveBook({
+        recordId: this.bookId,
+        coderId: selectedRecordItem[0].locCode
+      }).toPromise();
+    } catch (e) {
+      this._toastService.warning('Грешка при покушају резервисања књиге!');
+      return;
+    }
+
+    if (response == null) {
+      this._toastService.warning('Серверска грешка при покушају резервисања књиге!');
+      return;
+    } else if ('message' in response) {
+      this.reservationResponseMessage = response.message;
+      this.messageModal.show();
+    } else {
+      this.successModal.show();
+    }
   }
 }

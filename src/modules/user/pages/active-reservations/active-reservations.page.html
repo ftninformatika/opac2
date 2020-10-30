@@ -53,24 +53,32 @@
             {{r.authors.toString() | shortenString: 20}}</td>
           <td>{{r.reservationDate | date: 'dd.MM.yyyy'}}</td>
           <td>{{r.location | shortenString: 30}}</td>
+
+          <!--          Book is in the queue, but not assigned yet => user can delete reservation.             -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
             <span>
               Чека се слободан примерак
             </span>
           </td>
-          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
-            <span style="color: forestgreen;">
-              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy'}}
-            </span>
-          </td>
-          <td>
-            <div class="remove-from-shelf" (click)="basicModal.show();" mdbTooltip="Избриши" placement="left">
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
+            <div class="remove-from-shelf" (click)="basicModal.show();" mdbTooltip="Избриши" placement="left"
+                 style="cursor: pointer">
               <i class="fas fa-trash red-text fa-2x"></i>
             </div>
-            <!--            <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="basicModal.show();">-->
-            <!--              Избриши резервацију-->
-            <!--            </button>-->
           </td>
+
+          <!--          Book is assigned => user cannot delete reservation.                                    -->
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
+            <span>
+              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}
+            </span>
+          </td>
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
+            <div class="remove-from-shelf" mdbTooltip="Књига Вам је додељена" placement="left" style="cursor: pointer">
+              <i class="fas fa-trash grey-text fa-2x"></i>
+            </div>
+          </td>
+
 
           <!--  Are you sure to delete modal-->
           <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
@@ -92,7 +100,7 @@
                           (click)="basicModal.hide();">Затвори
                   </button>
                   <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
-                          (click)="deleteReservation(r)">Обриши
+                          (click)="deleteReservation(r)">Избриши
                   </button>
                 </div>
               </div>

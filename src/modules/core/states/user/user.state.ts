@@ -57,17 +57,6 @@ export class RemoveFromShelfAction {
   }
 }
 
-export class ReserveBookAction {
-  static readonly type = '[User] Reserve Book';
-  public recordId: string;
-  public coderId: string;
-
-  public constructor(recordId: string, coderId: string) {
-    this.recordId = recordId;
-    this.coderId = coderId;
-  }
-}
-
 @State<IUserStateModel>({
   name: 'USER_STATE',
   defaults: InitialUserState
@@ -267,44 +256,4 @@ export class UserState {
     this._toastService.success('Kњига склоњена са полице');
     return true;
   }
-
-
-  @Action(ReserveBookAction)
-  public async reserveBook(ctx: StateContext<IUserStateModel>, action: ReserveBookAction) {
-    const libraryMember = {...ctx.getState().user};
-    if (!ctx.getState().user) {
-      this._toastService.info('Потребно је да се пријавите/региструјете на систем.',
-        "Резервација није могућа.");
-
-      await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
-      return;
-    }
-
-    libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
-
-    if (!libraryMember || !libraryMember.username) {
-      this._toastService.warning('Грешка при покушају резервисања књиге!');
-      return;
-    }
-
-    let response = null;
-    try {
-      response = await this._userService.reserveBook({recordId: action.recordId, coderId: action.coderId}).toPromise();
-    } catch (e) {
-      this._toastService.warning('Грешка при покушају резервисања књиге!');
-      return;
-    }
-
-    if (response == null) {
-      this._toastService.warning('Серверска грешка при покушају резервисања књиге!');
-      return;
-    } else if ('message' in response) {
-      this._toastService.info(response.message);
-    } else {
-      this._toastService.success('Успешно сте резервисали књигу! Књигу можете подићи у року од 3 дана од ' +
-        'тренутка када добијете e-mail да је књига слободна.');
-    }
-  }
-
-
 }
