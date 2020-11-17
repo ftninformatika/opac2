@@ -27,7 +27,7 @@
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('location')">Библиотека
+            <a (click)="sortBy('locationDescription')">Библиотека
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
@@ -51,8 +51,8 @@
           </th>
           <td [mdbTooltip]="r.authors.toString()" class="highliht" [routerLink]="['/book', lib, r.record_id]">
             {{r.authors.toString() | shortenString: 20}}</td>
-          <td>{{r.reservationDate | date: 'dd.MM.yyyy'}}</td>
-          <td>{{r.location | shortenString: 30}}</td>
+          <td>{{r.reservationDate | date: 'dd.MM.yyyy.'}}</td>
+          <td>{{r.locationDescription | shortenString: 30}}</td>
 
           <!--          Book is in the queue, but not assigned yet => user can delete reservation.             -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
@@ -70,11 +70,12 @@
           <!--          Book is assigned => user cannot delete reservation.                                    -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
             <span>
-              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}
+<!--              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}-->
+              Можете преузети књигу у библиотеци
             </span>
           </td>
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
-            <div class="remove-from-shelf" mdbTooltip="Књига Вам је додељена" placement="left" style="cursor: pointer">
+            <div class="remove-from-shelf" mdbTooltip="Књига Вам је додељена" placement="left">
               <i class="fas fa-trash grey-text fa-2x"></i>
             </div>
           </td>

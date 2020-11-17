@@ -69,7 +69,8 @@ export interface Reservation {
   authors:[];
   reservationStatus: ReservationStatus;
   pickUpDeadline: Date;
-  location: string;
+  locationDescription: string;
+  locationCode: string;
 }
 
 export enum EPubType {

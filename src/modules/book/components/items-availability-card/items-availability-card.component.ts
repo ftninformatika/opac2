@@ -28,6 +28,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   private readonly _toastService: ToastService;
   @ViewChild('successModal', {static: true}) successModal: ModalDirective;
   @ViewChild('messageModal', {static: true}) messageModal: ModalDirective;
+  @ViewChild('confirmModal', {static: true}) confirmModal: ModalDirective;
 
   public memberNo: string;
   public isAdmin: boolean;
@@ -73,11 +74,17 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
-  public async reserve() {
+  public async checkLoggedUser(){
     // todo dodati da se prikaze modalni za login
     if (this.memberNo == null) {
       this._toastService.info('Потребно је да се пријавите/региструјете на систем.');
+    }else {
+      this.confirmModal.show();
     }
+  }
+
+  public async reserve() {
+    this.confirmModal.hide();
 
     // get the record for the selected location
     let location = this.selectedLocation;

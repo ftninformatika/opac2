@@ -19,7 +19,7 @@
       </mdb-card-text>
       </ng-container>
         <div class="reserve-shelf-row">
-          <div *ngIf="locations && locations.length > 0 && containShowableItems" (click)="reserve()">
+          <div *ngIf="locations && locations.length > 0 && containShowableItems" (click)="checkLoggedUser()">
             <a>
               <div class="reserve-shelf-buttons reserve">
                 <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
@@ -102,4 +102,31 @@
       </div>
     </div>
   </div>
+
+  <div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="confirmModal.hide();">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myConfirmModalLabel">Потврда резервације</h4>
+        </div>
+        <div class="modal-body">
+          <label>Да ли желите да резервишете књигу?</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="success" class="waves-light" aria-label="да" style="cursor: pointer"
+                  (click)="reserve();">Дa
+          </button>
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Не" style="cursor: pointer"
+                  (click)="confirmModal.hide();">Нe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
