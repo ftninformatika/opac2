@@ -47,7 +47,7 @@
   <div class="btns ml-2 mr-4" *ngIf="withButtonsAndInfo">
     <a  [mdbTooltip]="'Резервиши'">
       <div class="reserve">
-        <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
+        <mdb-icon fas icon="calendar-check" class="text-white" (click)="gotoBook(book._id);"></mdb-icon>
       </div>
     </a>
     <a  [mdbTooltip]="'Стави на полицу'" *ngIf="!isOnShelf"  (click)="onShelf(book._id)">

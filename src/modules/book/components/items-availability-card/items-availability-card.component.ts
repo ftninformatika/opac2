@@ -77,7 +77,8 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public async checkLoggedUser(){
     // todo dodati da se prikaze modalni za login
     if (this.memberNo == null) {
-      this._toastService.info('Потребно је да се пријавите/региструјете на систем.');
+      await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
+      // this._toastService.info('Потребно је да се пријавите/региструјете на систем.');
     }else {
       this.confirmModal.show();
     }
