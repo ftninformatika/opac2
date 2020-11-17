@@ -1,13 +1,10 @@
 <div class="active-lendings-page-wrapper">
-  <div class="">
+  <div class="" *ngIf="noReservations">
+    <h4 align="center" class="mb-2">Тренутно немате активне резервације</h4>
+  </div>
+  <div class="" *ngIf="reservations.length !== 0">
     <h2 align="center" class="mb-2">Резервације</h2>
-
-    <!--    <div *ngIf="(reservations.length === 0)">-->
-    <!--      <br>-->
-    <!--      <h4 align="center" class="mb-2">Немате активних резервација</h4>-->
-    <!--    </div>-->
-
-    <ng-container *ngIf="reservations.length !== 0">
+    <ng-container>
       <table mdbTable class="table table-responsive-md table-responsive-sm">
         <thead>
         <tr>

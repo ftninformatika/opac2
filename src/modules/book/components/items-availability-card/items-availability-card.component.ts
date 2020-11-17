@@ -114,4 +114,8 @@ export class ItemsAvailabilityCardComponent implements OnInit {
       this.successModal.show();
     }
   }
+
+  public async navigateToReservations(){
+    await this._router.navigate(['user/active-reservations']);
+  }
 }

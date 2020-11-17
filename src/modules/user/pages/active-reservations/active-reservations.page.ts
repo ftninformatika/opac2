@@ -20,6 +20,7 @@ export class ActiveReservationsPage implements OnInit {
   public reservations: Reservation[];
   public lib: string;
   private sorted = false;
+  public noReservations = false;
 
   constructor(userService: UsersService, store: Store, toastService: ToastService) {
     this._userService = userService;
@@ -36,16 +37,14 @@ export class ActiveReservationsPage implements OnInit {
   public loadActiveReservations() {
     this._userService.getActiveReservations().subscribe(
       reservations => {
-        if (!reservations || reservations.length === 0) {
-          return;
-        }
         this.reservations = reservations;
+        this.noReservations = this.reservations.length === 0;
       }
     );
   }
 
   public deleteReservation(reservation: Reservation) {
-    const options = { closeButton: true, tapToDismiss: true, positionClass: 'md-toast-top-center' };
+    const options = {closeButton: true, tapToDismiss: true, positionClass: 'md-toast-top-center'};
 
     this._userService.deleteReservation(reservation._id).subscribe(
       deleted => {
@@ -53,6 +52,7 @@ export class ActiveReservationsPage implements OnInit {
           this._toastService.warning('Дошло је до грешке, резервација није избрисана!', '', options);
         } else {
           this.reservations.splice(this.reservations.indexOf(reservation), 1);
+          this.noReservations = this.reservations.length === 0;
         }
       },
       () => this._toastService.warning('Дошло је до грешке, резервација није избрисана!', '', options)
