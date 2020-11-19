@@ -67,8 +67,8 @@
           <!--          Book is assigned => user cannot delete reservation.                                    -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
             <span>
-<!--              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}-->
-              Можете преузети књигу у библиотеци
+              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}
+<!--              Можете преузети књигу у библиотеци-->
             </span>
           </td>
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
