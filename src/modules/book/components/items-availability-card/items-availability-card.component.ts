@@ -10,6 +10,7 @@ import {BooksService} from "../../../core/services/books.service";
 import {Router} from "@angular/router";
 import {UsersService} from "../../../core/services/users.service";
 import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
+import {ConfigState} from "../../../core/states/config/config.state";
 
 @Component({
   selector: 'items-availability-card',
@@ -32,6 +33,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
 
   public memberNo: string;
   public isAdmin: boolean;
+  public lib: string;
   public booksOnShelf: string[];
   public totalItems: number;
   public availableItems: number;
@@ -46,6 +48,8 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this._store = store;
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
+    this.lib = this._store.selectSnapshot(ConfigState.library);
+
     this._bookService = bookService;
     this._userService = userService;
     this._router = router;
@@ -74,13 +78,13 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
-  public async checkLoggedUser(){
-    // todo dodati da se prikaze modalni za login
+  public async checkLoggedUser() {
     if (this.memberNo == null) {
       await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
-      // this._toastService.info('Потребно је да се пријавите/региструјете на систем.');
-    }else {
+    } else if (this.lib === 'bgb') {
       this.confirmModal.show();
+    } else {
+      return;
     }
   }
 
@@ -115,7 +119,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     }
   }
 
-  public async navigateToReservations(){
+  public async navigateToReservations() {
     await this._router.navigate(['user/active-reservations']);
   }
 }

@@ -49,7 +49,7 @@
           <td [mdbTooltip]="r.authors.toString()" class="highliht" [routerLink]="['/book', lib, r.record_id]">
             {{r.authors.toString() | shortenString: 20}}</td>
           <td>{{r.reservationDate | date: 'dd.MM.yyyy.'}}</td>
-          <td>{{r.locationDescription | shortenString: 30}}</td>
+          <td>{{r.locationDescription | shortenString: 40}}</td>
 
           <!--          Book is in the queue, but not assigned yet => user can delete reservation.             -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
