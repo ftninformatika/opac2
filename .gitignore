@@ -7,7 +7,7 @@
 /public
 # Only exists if Bazel was run
 /bazel-out
-
+/e2e
 # dependencies
 /node_modules
 
