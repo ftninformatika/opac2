@@ -10,6 +10,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { ShelfPage } from './pages/shelf/shelf.page';
 import { LoginPage } from './pages/login/login.page';
 import { Routes } from '@angular/router';
+import {ActiveReservationsPage} from "./pages/active-reservations/active-reservations.page";
 
 export const UserRoutes: Routes = [
   {
@@ -34,6 +35,11 @@ export const UserRoutes: Routes = [
   {
     path: 'active-lendings',
     component: ActiveLendingsPage,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'active-reservations',
+    component: ActiveReservationsPage,
     canActivate: [AuthGuard]
   },
   {
