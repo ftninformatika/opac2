@@ -7,7 +7,7 @@
         <p>
           укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
           слободно: <strong>{{availableItems ? availableItems : '0'}}</strong> &nbsp;
-          резервисано: <strong>0</strong>
+          резервисано: <strong>{{reservedItems ? reservedItems : '0'}}</strong>
         </p>
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>

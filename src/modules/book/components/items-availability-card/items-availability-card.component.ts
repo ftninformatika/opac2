@@ -37,7 +37,6 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public booksOnShelf: string[];
   public totalItems: number;
   public availableItems: number;
-  // This will be used when reservations are used
   public reservedItems: number;
   public locations: string[];
 
@@ -64,6 +63,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
     this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable).length;
     this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free).length;
+    this.reservedItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved).length;
     this.locations = [...new Set(this.recordItems.map(i => i.location))];
     this.selectedLocation = this.locations[0];    // set default value
   }
