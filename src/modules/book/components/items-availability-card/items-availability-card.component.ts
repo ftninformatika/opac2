@@ -104,7 +104,8 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     try {
       response = await this._userService.reserveBook({
         recordId: this.bookId,
-        coderId: locationCode
+        coderId: locationCode,
+        memberNo: this.memberNo
       }).toPromise();
     } catch (e) {
       this._toastService.warning('Грешка при покушају резервисања књиге!');
