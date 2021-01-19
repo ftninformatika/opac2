@@ -4,6 +4,7 @@ import {Reservation} from "../../../../models/book.model";
 import {ConfigState} from "../../../core/states/config/config.state";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
+import {UserState} from "../../../core/states/user/user.state";
 
 @Component({
   selector: 'app-active-reservations',
@@ -21,12 +22,15 @@ export class ActiveReservationsPage implements OnInit {
   public lib: string;
   private sorted = false;
   public noReservations = false;
+  public memberNo: string;
+
 
   constructor(userService: UsersService, store: Store, toastService: ToastService) {
     this._userService = userService;
     this._store = store;
     this._toastService = toastService;
     this.lib = this._store.selectSnapshot(ConfigState.library);
+    this.memberNo = this._store.selectSnapshot(UserState.memberNo);
     this.reservations = [];
   }
 
@@ -35,10 +39,14 @@ export class ActiveReservationsPage implements OnInit {
   }
 
   public loadActiveReservations() {
-    this._userService.getActiveReservations().subscribe(
+    this._userService.getActiveReservations(this.memberNo).subscribe(
       reservations => {
         this.reservations = reservations;
-        this.noReservations = this.reservations.length === 0;
+        if (this.reservations == null) {
+          this.noReservations = true;
+        } else {
+          this.noReservations = this.reservations.length === 0;
+        }
       }
     );
   }
@@ -46,7 +54,7 @@ export class ActiveReservationsPage implements OnInit {
   public deleteReservation(reservation: Reservation) {
     const options = {closeButton: true, tapToDismiss: true, positionClass: 'md-toast-top-center'};
 
-    this._userService.deleteReservation(reservation._id).subscribe(
+    this._userService.deleteReservation(reservation._id, this.memberNo).subscribe(
       deleted => {
         if (!deleted) {
           this._toastService.warning('Дошло је до грешке, резервација није избрисана!', '', options);
