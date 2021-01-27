@@ -37,7 +37,6 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public booksOnShelf: string[];
   public totalItems: number;
   public availableItems: number;
-  // This will be used when reservations are used
   public reservedItems: number;
   public locations: string[];
 
@@ -60,12 +59,11 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     if (!this.recordItems) {
       return;
     }
-
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
-    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable).length;
-    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free).length;
     this.locations = [...new Set(this.recordItems.map(i => i.location))];
-    this.selectedLocation = this.locations[0];    // set default value
+    this.selectedLocation = this.locations[0];        // first location is selected by default
+
+    this.setAvailabilityValues();
   }
 
   public async addToShelf() {
@@ -88,20 +86,26 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     }
   }
 
+  public async getSelectedLocationLode() {
+    let locationName = this.selectedLocation;
+    let location = this.recordItems.filter(function (recordItem) {
+      return recordItem.location === locationName;
+    });
+    return location[0].locCode
+  }
+
   public async reserve() {
     this.confirmModal.hide();
 
     // get the record for the selected location
-    let location = this.selectedLocation;
-    let selectedRecordItem = this.recordItems.filter(function (recordItem) {
-      return recordItem.location === location;
-    });
+    let locationCode = await this.getSelectedLocationLode()
 
     let response = null;
     try {
       response = await this._userService.reserveBook({
         recordId: this.bookId,
-        coderId: selectedRecordItem[0].locCode
+        coderId: locationCode,
+        memberNo: this.memberNo
       }).toPromise();
     } catch (e) {
       this._toastService.warning('Грешка при покушају резервисања књиге!');
@@ -121,5 +125,11 @@ export class ItemsAvailabilityCardComponent implements OnInit {
 
   public async navigateToReservations() {
     await this._router.navigate(['user/active-reservations']);
+  }
+
+  public setAvailabilityValues() {
+    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable && i.location == this.selectedLocation).length;
+    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free && i.location == this.selectedLocation).length;
+    this.reservedItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location == this.selectedLocation).length;
   }
 }

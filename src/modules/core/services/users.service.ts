@@ -95,15 +95,15 @@ export class UsersService {
     return this._httpClient.post(`${ApiEndpointConfig.Paths.user.prolongLending}`, lendingId) as Observable<boolean>;
   }
 
-  public reserveBook(reservationRequestDto:{recordId: string, coderId: string}): Observable<any>{
+  public reserveBook(reservationRequestDto:{recordId: string, coderId: string, memberNo:string}): Observable<any>{
     return this._httpClient.post(ApiEndpointConfig.Paths.user.reserveBook, reservationRequestDto) as Observable<any>;
   }
 
-  public getActiveReservations(): Observable<any>{
-    return this._httpClient.get(ApiEndpointConfig.Paths.user.getActiveReservations) as Observable<any>;
+  public getActiveReservations(memberNo: string): Observable<any>{
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.user.getActiveReservations}/${memberNo}`) as Observable<any>;
   }
 
-  public deleteReservation(reservationId: string): Observable<any>{
-    return this._httpClient.delete(`${ApiEndpointConfig.Paths.user.deleteReservation}/${reservationId}`) as Observable<any>;
+  public deleteReservation(reservationId: string, memberNo: string): Observable<any>{
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.user.deleteReservation}/${reservationId}/${memberNo}`) as Observable<any>;
   }
 }

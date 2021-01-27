@@ -86,6 +86,7 @@ export enum ReservationStatus {
 export enum ERecordItemStatus {
   Borrowed = 'BORROWED',
   Free = 'FREE',
+  Reserved = 'RESERVED',
   NotLendable = 'NOT_LENDABLE',
   NotShowable = 'NOT_SHOWABLE'
 }

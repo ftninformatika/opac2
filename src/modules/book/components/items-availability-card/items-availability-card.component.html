@@ -7,13 +7,13 @@
         <p>
           укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
           слободно: <strong>{{availableItems ? availableItems : '0'}}</strong> &nbsp;
-          резервисано: <strong>0</strong>
+          резервисано: <strong>{{reservedItems ? reservedItems : '0'}}</strong>
         </p>
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>
         </p>
         <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0"
-                [(ngModel)]="this.selectedLocation">
+                [(ngModel)]="this.selectedLocation" (ngModelChange)="setAvailabilityValues()">
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
       </mdb-card-text>
