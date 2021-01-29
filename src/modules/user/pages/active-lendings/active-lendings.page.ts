@@ -1,12 +1,12 @@
-import { IUserCategoryModel } from '../../../../models/circ/user-category.model';
-import { ConfigState } from '../../../core/states/config/config.state';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BooksService } from '../../../core/services/books.service';
-import { UsersService } from '../../../core/services/users.service';
-import { UserState } from '../../../core/states/user/user.state';
-import { Report } from '../../../../models/report.model';
-import { ToastService } from 'ng-uikit-pro-standard';
-import { Store } from '@ngxs/store';
+import {IUserCategoryModel} from '../../../../models/circ/user-category.model';
+import {ConfigState} from '../../../core/states/config/config.state';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {BooksService} from '../../../core/services/books.service';
+import {UsersService} from '../../../core/services/users.service';
+import {UserState} from '../../../core/states/user/user.state';
+import {Report} from '../../../../models/report.model';
+import {ToastService} from 'ng-uikit-pro-standard';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'active-lendings-page',
@@ -37,7 +37,7 @@ export class ActiveLendingsPage implements OnInit {
   }
 
   public ngOnInit() {
-   this.loadLendings();
+    this.loadLendings();
   }
 
   public sortBy(by: string | any): void {
@@ -65,8 +65,12 @@ export class ActiveLendingsPage implements OnInit {
     }
     this._userService.prolongLending(lendingId).subscribe(
       resp => {
-        if (!resp) {
-          this._toastService.warning('Није могуће продужити задужење');
+        if (!resp.isProlongable) {
+          if (resp.message != null && resp.message != "") {
+            this._toastService.warning(resp.message);
+          } else {
+            this._toastService.warning('Није могуће продужити задужење');
+          }
         }
         this._toastService.success('Успешно сте продужили задужење');
         this.loadLendings();
@@ -87,7 +91,7 @@ export class ActiveLendingsPage implements OnInit {
     return maxDate < new Date();
   }
 
-  private  addDays(date: Date, days: number): Date {
+  private addDays(date: Date, days: number): Date {
     const d = new Date(date);
     date.setDate(d.getDate() + days);
     return date;
@@ -108,7 +112,9 @@ export class ActiveLendingsPage implements OnInit {
   }
 
   private transformDate(localizedDate: string): string {
-    if (!localizedDate || localizedDate === '') { return '99999999'; }
+    if (!localizedDate || localizedDate === '') {
+      return '99999999';
+    }
     return localizedDate.split('.').reverse().join('');
   }
 }
