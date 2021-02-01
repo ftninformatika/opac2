@@ -92,8 +92,8 @@ export class UsersService {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.swapIndexes}?i=${fromIndex}&i1=${toIndex}`) as Observable<boolean>;
   }
 
-  public prolongLending(lendingId: string): Observable<ProlongLendingDTO> {
-    return this._httpClient.post(`${ApiEndpointConfig.Paths.user.prolongLending}`, lendingId) as Observable<ProlongLendingDTO>;
+  public prolongLending(lendingDto: {email: string, lendingId: string}): Observable<ProlongLendingDTO> {
+    return this._httpClient.post(`${ApiEndpointConfig.Paths.user.prolongLending}`, lendingDto) as Observable<ProlongLendingDTO>;
   }
 
   public reserveBook(reservationRequestDto:{recordId: string, coderId: string, memberNo:string}): Observable<any>{

@@ -23,6 +23,7 @@ export class ActiveLendingsPage implements OnInit {
   private sorted = false;
   public userCategory: IUserCategoryModel;
   public memberNo: string;
+  public memberUsername: string;
   public lendingsReport: Report[];
   public lib: string;
 
@@ -32,6 +33,7 @@ export class ActiveLendingsPage implements OnInit {
     this._store = store;
     this._toastService = toastService;
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
+    this.memberUsername = this._store.selectSnapshot(UserState.username);
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this.userCategory = this._store.selectSnapshot(UserState.userCategory);
   }
@@ -63,16 +65,17 @@ export class ActiveLendingsPage implements OnInit {
     if (!lendingId) {
       return;
     }
-    this._userService.prolongLending(lendingId).subscribe(
+    this._userService.prolongLending({email: this.memberUsername, lendingId: lendingId}).subscribe(
       resp => {
-        if (!resp.isProlongable) {
+        if (!resp.prolongable) {
           if (resp.message != null && resp.message != "") {
             this._toastService.warning(resp.message);
           } else {
             this._toastService.warning('Није могуће продужити задужење');
           }
+        } else {
+          this._toastService.success('Успешно сте продужили задужење');
         }
-        this._toastService.success('Успешно сте продужили задужење');
         this.loadLendings();
       },
       () =>

@@ -16,6 +16,6 @@ export interface ILendingModel {
 
 
 export interface ProlongLendingDTO {
-  isProlongable: boolean;
+  prolongable: boolean;
   message: string;
 }
