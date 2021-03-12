@@ -101,12 +101,12 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.masterRecordId">
-                  <dt class="col-sm-2">Референца
+                  <dt class="col-sm-2">{{book | recordFormat:RecordFormatType._001C_REFERENCE}}
                   &nbsp;</dt>
                   <dd class="col-sm-10">
                     <mdb-icon far icon="eye"></mdb-icon> &nbsp;
                     <span [routerLink]="['/book',lib, book.masterRecordId]" style="cursor: pointer;color: darkblue; text-decoration: underline">
-                      {{(book.masterRecordTitle && book.masterRecordTitle.trim() !== '') ? book.masterRecordTitle : 'Линк до извора'}}
+                      {{(book.masterRecordTitle && book.masterRecordTitle.trim() !== '') ? book.masterRecordTitle : 'Линк'}}
                     </span>
                   </dd>
                 </ng-container>
