@@ -71,9 +71,9 @@ export class RecordFormatPipe implements PipeTransform {
         const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
         let retVal = 'Референце';
         if (_001c === 'm') {
-          retVal = 'Извор';
-        } else if (_001c === 'a') {
           retVal = 'Чланак';
+        } else if (_001c === 'a') {
+          retVal = 'Извор';
         }
         return retVal;
       }
