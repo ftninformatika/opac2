@@ -70,6 +70,7 @@ export class TopMenuComponent {
     const searchModel = (this.selectedAc && this.searchText === this.selectedAc.value)
       ? SearchUtil.generateSearchModelFromAutoComplete(this.selectedAc) :
         SearchUtil.generateSearchModelFromAutoComplete(this.searchText);
+    console.log(searchModel);
     const pageOptions = {...IResultPageOptionsInitial};
     pageOptions.lib = this._store.selectSnapshot(ConfigState.library);
     const uriChunk = `query=${JSON.stringify(searchModel)}&pageOptions=${JSON.stringify(pageOptions)}`;
