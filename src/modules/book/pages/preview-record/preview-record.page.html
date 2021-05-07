@@ -26,7 +26,7 @@
           <h1>
             {{book.title}}
             <label *ngIf="book | recordFormat:RecordFormatType.TOME">
-              том - {{book | recordFormat:RecordFormatType.TOME}}
+              , {{book | recordFormat:RecordFormatType.TOME}}
             </label>
           </h1>
         </div>

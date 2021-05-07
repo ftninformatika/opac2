@@ -1,9 +1,10 @@
 import { AddToShelfAction, RemoveFromShelfAction, UserState } from '../../../core/states/user/user.state';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {ERecordFormatType} from '../../../core/pipes/record-format.pipe';
 import { ConfigState } from '../../../core/states/config/config.state';
 import { Book } from '../../../../models/book.model';
+import {Router} from '@angular/router';
 import { Store } from '@ngxs/store';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'book-result-brief',
@@ -17,6 +18,7 @@ export class BookResultBrief implements OnInit {
   @Output() shareChecked = new EventEmitter<string>();
   private readonly _router: Router;
   private readonly _store: Store;
+  private RecordFormatType = ERecordFormatType;
   public authors: string;
   public publishInfo: string;
   public errImg;
