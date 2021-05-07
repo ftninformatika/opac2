@@ -18,7 +18,7 @@ export class BookResultBrief implements OnInit {
   @Output() shareChecked = new EventEmitter<string>();
   private readonly _router: Router;
   private readonly _store: Store;
-  private RecordFormatType = ERecordFormatType;
+  RecordFormatType = ERecordFormatType;
   public authors: string;
   public publishInfo: string;
   public errImg;
