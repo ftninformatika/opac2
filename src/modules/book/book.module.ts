@@ -16,6 +16,7 @@ import { NgModule } from '@angular/core';
 import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
 import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MiradorViewerComponent } from './components/mirador-viewer/mirador-viewer.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ReadMoreComponent,
     UploadDescriptionCoverPage,
     BookTabs,
-    BookStarRating
+    BookStarRating,
+    MiradorViewerComponent
   ]
 })
 export class BookModule { }
