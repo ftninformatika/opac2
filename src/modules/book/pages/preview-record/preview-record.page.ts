@@ -8,7 +8,7 @@ import {
 import { BooksService } from "../../../core/services/books.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngxs/store";
-import { MetaService } from "@ngx-meta/core";
+//import { MetaService } from "@ngx-meta/core";
 import { ScrollToService } from "@nicky-lenaers/ngx-scroll-to";
 import { BookCoverUtils } from "../../../../utils/book-cover.utils";
 import { UserState } from "../../../core/states/user/user.state";
@@ -32,7 +32,7 @@ export class PreviewRecordPage implements OnInit {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _store: Store;
-  private readonly _metaService: MetaService;
+  //private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
   RecordFormatType = ERecordFormatType;
   private showLocations: boolean;
@@ -49,12 +49,12 @@ export class PreviewRecordPage implements OnInit {
     activatedRoute: ActivatedRoute,
     router: Router,
     store: Store,
-    metaService: MetaService,
+    //    metaService: MetaService,
     scrollToService: ScrollToService
   ) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
-    this._metaService = metaService;
+    //this._metaService = metaService;
     this._scrollToService = scrollToService;
     this._router = router;
     this._store = store;
@@ -193,7 +193,7 @@ export class PreviewRecordPage implements OnInit {
       },
     ];
     for (const t of tags) {
-      this._metaService.setTag(t.property, t.content);
+      //      this._metaService.setTag(t.property, t.content);
     }
   }
 
