@@ -3,7 +3,7 @@ import {
   HAMMER_GESTURE_CONFIG,
   HammerGestureConfig,
 } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, Injectable } from "@angular/core";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MDBBootstrapModulesPro, ToastModule } from "ng-uikit-pro-standard";
@@ -30,6 +30,7 @@ import { BackToTopButton } from "./components/back-to-top.directive";
 import { AppOptionsState } from "../core/states/app-options/app-options.state";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 
+@Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
     pinch: { enable: false },
