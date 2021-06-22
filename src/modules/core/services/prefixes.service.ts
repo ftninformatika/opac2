@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { PrefixModel } from '../../../models/prefix.model';
-import { PrefixUtils } from '../../../utils/prefix.utils';
+import { Injectable } from "@angular/core";
+import { PrefixModel } from "../../../models/prefix.model";
+import { PrefixUtils } from "../../../utils/prefix.utils";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PrefixesService {
-
   private prefixes = PrefixUtils.Prefixes;
 
   getPrefixes(): PrefixModel[] {
@@ -14,6 +13,6 @@ export class PrefixesService {
   }
 
   getPrefix(code: string): PrefixModel {
-    return this.prefixes.find(prefix => prefix.code === code);
+    return this.prefixes.find((prefix) => prefix.code === code);
   }
 }

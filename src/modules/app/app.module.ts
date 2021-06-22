@@ -89,15 +89,7 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   bootstrap: [AppPage],
 })
-export class AppModule {
-  constructor() {
-    // if (typeof window === 'undefined') {
-    //   environment.baseUrl = 'bisisWS';
-    // } else {
-    //   environment.baseUrl = 'http://localhost:8080';
-    // }
-  }
-}
+export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
