@@ -110,7 +110,7 @@
             <div class="col-12 mt-2">
               <dl class="row">
                 <ng-container
-                  *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''"
+                  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_993_URL"
                 >
                   <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
                   <dd class="col-sm-9">
