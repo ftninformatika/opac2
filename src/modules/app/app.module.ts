@@ -6,10 +6,15 @@ import {
 import { NgModule, Injectable } from "@angular/core";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MDBBootstrapModulesPro, ToastModule } from "ng-uikit-pro-standard";
+import {
+  MDBBootstrapModulesPro,
+  ToastModule,
+  ToastService,
+} from "ng-uikit-pro-standard";
 import { TopMenuComponent } from "./components/top-menu/top-menu.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { LibraryRouteComponent } from "./library-route.component";
+import { ScrollToModule } from "@nicky-lenaers/ngx-scroll-to";
 import { ConfigState } from "../core/states/config/config.state";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
@@ -20,7 +25,7 @@ import { UserState } from "../core/states/user/user.state";
 import { LazyLoadImageDirective } from "ng-lazyload-image";
 import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "../shared/shared.module";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { CoreModule } from "../core/core.module";
 import { AppPage } from "./pages/app/app.page";
 import { NgxsModule } from "@ngxs/store";
@@ -29,6 +34,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { BackToTopButton } from "./components/back-to-top.directive";
 import { AppOptionsState } from "../core/states/app-options/app-options.state";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { UsersService } from "../core/services/users.service";
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -60,6 +66,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     MDBBootstrapModulesPro.forRoot(),
     ToastModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
+    HttpClientModule,
     CoreModule,
     CommonUiModule,
     FacebookModule.forRoot(),
@@ -70,6 +77,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
+    ScrollToModule.forRoot(),
   ],
   providers: [
     LazyLoadImageDirective,

@@ -1,12 +1,15 @@
-import {EAuthority, ILibraryMember} from '../../../../models/library-member.model';
-import {IMemberWrapper} from '../../../../models/member-wrapper.model';
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {IUserModel} from '../../../../models/circ/user.model';
-import {UsersService} from '../../services/users.service';
-import {TranslateService} from '@ngx-translate/core';
-import {ToastService} from 'ng-uikit-pro-standard';
-import {Router, RouterStateSnapshot} from '@angular/router';
-import {IUserCategoryModel} from '../../../../models/circ/user-category.model';
+import {
+  EAuthority,
+  ILibraryMember,
+} from "../../../../models/library-member.model";
+import { IMemberWrapper } from "../../../../models/member-wrapper.model";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { IUserModel } from "../../../../models/circ/user.model";
+import { UsersService } from "../../services/users.service";
+import { ToastService } from "ng-uikit-pro-standard";
+import { Router, RouterStateSnapshot } from "@angular/router";
+import { IUserCategoryModel } from "../../../../models/circ/user-category.model";
+import { Injectable } from "@angular/core";
 
 export interface IUserStateModel {
   accessToken: string;
@@ -17,11 +20,11 @@ export interface IUserStateModel {
 export const InitialUserState: IUserStateModel = {
   accessToken: null,
   userData: null,
-  user: null
+  user: null,
 };
 
 export class SignInAction {
-  static readonly type = '[User] Sign In User';
+  static readonly type = "[User] Sign In User";
   public username: string;
   public password: string;
 
@@ -32,15 +35,13 @@ export class SignInAction {
 }
 
 export class SignOutAction {
-  static readonly type = '[User] Sing Out User';
+  static readonly type = "[User] Sing Out User";
 
-  public constructor() {
-  }
+  public constructor() {}
 }
 
-
 export class AddToShelfAction {
-  static readonly type = '[User] Add To Shelf';
+  static readonly type = "[User] Add To Shelf";
   public bookId: string;
 
   public constructor(bookId: string) {
@@ -49,7 +50,7 @@ export class AddToShelfAction {
 }
 
 export class RemoveFromShelfAction {
-  static readonly type = '[User] Remove From Shelf';
+  static readonly type = "[User] Remove From Shelf";
   public bookId: string;
 
   public constructor(bookId: string) {
@@ -58,13 +59,13 @@ export class RemoveFromShelfAction {
 }
 
 @State<IUserStateModel>({
-  name: 'USER_STATE',
-  defaults: InitialUserState
+  name: "USER_STATE",
+  defaults: InitialUserState,
 })
+@Injectable()
 export class UserState {
   private readonly _userService: UsersService;
   private readonly _toastService: ToastService;
-  private readonly _translateService: TranslateService;
   private readonly _router: Router;
 
   @Selector()
@@ -84,11 +85,17 @@ export class UserState {
 
   @Selector()
   public static getActiveSigning(state: IUserStateModel) {
-    if (!state.userData || !state.userData.signings || state.userData.signings.length === 0) {
+    if (
+      !state.userData ||
+      !state.userData.signings ||
+      state.userData.signings.length === 0
+    ) {
       return null;
     }
     const nowTime = new Date().getTime();
-    const activeSigning = state.userData.signings.find(si => (si.untilDate && new Date(si.untilDate).getTime() > nowTime));
+    const activeSigning = state.userData.signings.find(
+      (si) => si.untilDate && new Date(si.untilDate).getTime() > nowTime
+    );
     return activeSigning;
   }
 
@@ -115,8 +122,11 @@ export class UserState {
 
   @Selector()
   public static admin(state: IUserStateModel): boolean {
-    return (state.user && state.user.authorities
-      && state.user.authorities.includes('ROLE_ADMIN'));
+    return (
+      state.user &&
+      state.user.authorities &&
+      state.user.authorities.includes("ROLE_ADMIN")
+    );
   }
 
   @Selector()
@@ -130,7 +140,11 @@ export class UserState {
 
   @Selector()
   public static bookshelfBooksIds(state: IUserStateModel): string[] {
-    if (state.user && state.user.myBookshelfBooks && state.user.myBookshelfBooks.length > 0) {
+    if (
+      state.user &&
+      state.user.myBookshelfBooks &&
+      state.user.myBookshelfBooks.length > 0
+    ) {
       return state.user.myBookshelfBooks;
     } else {
       return [];
@@ -145,31 +159,41 @@ export class UserState {
     return null;
   }
 
-  public constructor(userService: UsersService, toastService: ToastService, translateService: TranslateService, router: Router) {
+  public constructor(
+    userService: UsersService,
+    toastService: ToastService,
+    router: Router
+  ) {
     this._userService = userService;
     this._toastService = toastService;
-    this._translateService = translateService;
     this._router = router;
   }
 
   @Action(SignInAction)
-  public async signIn(ctx: StateContext<IUserStateModel>, action: SignInAction) {
+  public async signIn(
+    ctx: StateContext<IUserStateModel>,
+    action: SignInAction
+  ) {
     let response: IMemberWrapper = null;
     this._toastService.clear();
     try {
       response = await this._userService.login(action).toPromise();
     } catch (e) {
-      this._toastService.warning('Погрешна e-mail адреса или лозинка!');
+      this._toastService.warning("Погрешна e-mail адреса или лозинка!");
       return;
     }
-    if (!response.member || !response.libraryMember || !response.libraryMember.authToken) {
-      this._toastService.warning('Нешто је пошло по злу!');
+    if (
+      !response.member ||
+      !response.libraryMember ||
+      !response.libraryMember.authToken
+    ) {
+      this._toastService.warning("Нешто је пошло по злу!");
       return;
     }
     ctx.patchState({
       userData: response.member,
       user: response.libraryMember,
-      accessToken: response.libraryMember.authToken
+      accessToken: response.libraryMember.authToken,
     });
   }
 
@@ -179,81 +203,107 @@ export class UserState {
   }
 
   @Action(AddToShelfAction)
-  public async addToShelf(ctx: StateContext<IUserStateModel>, action: AddToShelfAction) {
+  public async addToShelf(
+    ctx: StateContext<IUserStateModel>,
+    action: AddToShelfAction
+  ) {
     const state = ctx.getState();
     this._toastService.clear();
-    const libraryMember = {...state.user};
+    const libraryMember = { ...state.user };
     if (!ctx.getState().user) {
-      await this._router.navigate(['/user/login']);
+      await this._router.navigate(["/user/login"]);
       return;
     }
     libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
     if (!action || !action.bookId) {
-      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      this._toastService.warning(
+        "Грешка при покушају додавања књиге на полицу!"
+      );
       return;
     }
     if (!libraryMember || !libraryMember.username) {
-      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      this._toastService.warning(
+        "Грешка при покушају додавања књиге на полицу!"
+      );
       return;
     }
     const _email = libraryMember.username;
     if (libraryMember.myBookshelfBooks.indexOf(action.bookId) !== -1) {
-      this._toastService.info('Ова књига се већ налази на Вашој полици.');
+      this._toastService.info("Ова књига се већ налази на Вашој полици.");
       return;
     }
     let response = false;
     try {
-      response = await this._userService.addToShelf({email: _email, bookId: action.bookId}).toPromise();
+      response = await this._userService
+        .addToShelf({ email: _email, bookId: action.bookId })
+        .toPromise();
     } catch (e) {
-      this._toastService.warning('Грешка при покушају додавања књиге на полицу!');
+      this._toastService.warning(
+        "Грешка при покушају додавања књиге на полицу!"
+      );
       return;
     }
     if (!response) {
-      this._toastService.warning('Серверска грешка при покушају додавања књиге на полицу!');
+      this._toastService.warning(
+        "Серверска грешка при покушају додавања књиге на полицу!"
+      );
       return;
     }
     libraryMember.myBookshelfBooks.push(action.bookId);
-    ctx.patchState({user: libraryMember});
-    this._toastService.success('Књига додата на полицу');
+    ctx.patchState({ user: libraryMember });
+    this._toastService.success("Књига додата на полицу");
     return;
   }
 
   @Action(RemoveFromShelfAction)
-  public async removeFromShelf(ctx: StateContext<IUserStateModel>, action: RemoveFromShelfAction) {
-    const libraryMember = {...ctx.getState().user};
+  public async removeFromShelf(
+    ctx: StateContext<IUserStateModel>,
+    action: RemoveFromShelfAction
+  ) {
+    const libraryMember = { ...ctx.getState().user };
     libraryMember.myBookshelfBooks = [...libraryMember.myBookshelfBooks];
     if (!ctx.getState().user) {
-      await this._router.navigate(['/user/login']);
+      await this._router.navigate(["/user/login"]);
       return;
     }
     if (!action || !action.bookId) {
-      this._toastService.warning('Грешка при покушају брисања књиге са полице!');
+      this._toastService.warning(
+        "Грешка при покушају брисања књиге са полице!"
+      );
       return;
     }
     if (!libraryMember || !libraryMember.username) {
-      this._toastService.warning('Грешка при покушају брисања књиге са полице!');
+      this._toastService.warning(
+        "Грешка при покушају брисања књиге са полице!"
+      );
       return;
     }
     const _email = libraryMember.username;
     const index = libraryMember.myBookshelfBooks.indexOf(action.bookId);
     if (index === -1) {
-      this._toastService.info('Грешка при покушају склањања књиге са полице!');
+      this._toastService.info("Грешка при покушају склањања књиге са полице!");
       return;
     }
     let response = false;
     try {
-      response = await this._userService.removeFromShelf({email: _email, bookId: action.bookId}).toPromise();
+      response = await this._userService
+        .removeFromShelf({ email: _email, bookId: action.bookId })
+        .toPromise();
     } catch (e) {
-      this._toastService.warning('Грешка при покушају склањања књиге са полице!');
+      this._toastService.warning(
+        "Грешка при покушају склањања књиге са полице!"
+      );
       return;
     }
     if (!response) {
-      this._toastService.warning('Серверска грешка при покушају склањања књиге са полице!');
+      this._toastService.warning(
+        "Серверска грешка при покушају склањања књиге са полице!"
+      );
       return;
     }
     libraryMember.myBookshelfBooks.splice(index, 1);
-    ctx.patchState({user: libraryMember});
-    this._toastService.success('Kњига склоњена са полице');
+    ctx.patchState({ user: libraryMember });
+    this._toastService.success("Kњига склоњена са полице");
     return true;
   }
 }

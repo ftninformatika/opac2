@@ -15,7 +15,7 @@ export class MiradorViewerComponent implements OnInit, AfterViewInit {
       windows: [
         {
           manifestId:
-            "https://zavicajna.digitalna.rs/iiif/iiif/api/presentation/2/8df690d5-042d-45b9-b63d-1a1410ff4049%252F00000001%252Fprosveta%252F00000039/manifest",
+            "https://digitalna.bgb.rs/iiif/api/presentation/2/438772b3-8d42-4597-8fa5-a3a6fa9e7cd6%252Fbgb00001%252F00000002%252F00000012/manifest",
           provider: "Библиотека 'Милутин Бојић'",
         },
       ],

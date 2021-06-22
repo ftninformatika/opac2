@@ -55,21 +55,20 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
-
+import "zone.js/dist/zone"; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import 'hammerjs';
-import 'aes-js';
+import "hammerjs";
+import "aes-js";
 
 // Prevent exceptions on old browsers
 if (!Object.entries) {
   // tslint:disable-next-line:only-arrow-functions
-  Object.entries = function( obj ) {
+  Object.entries = function (obj) {
     // tslint:disable-next-line:one-variable-per-declaration
-    const ownProps = Object.keys( obj );
+    const ownProps = Object.keys(obj);
     let i = ownProps.length;
     const resArray = new Array(i); // preallocate the Array
     while (i--) {
@@ -80,31 +79,36 @@ if (!Object.entries) {
 }
 if (!Object.keys) {
   // tslint:disable-next-line:only-arrow-functions
-  Object.keys = (function() {
-    'use strict';
+  Object.keys = (function () {
+    "use strict";
     // tslint:disable-next-line:one-variable-per-declaration
     const hasOwnProperty = Object.prototype.hasOwnProperty,
-      hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+      hasDontEnumBug = !{ toString: null }.propertyIsEnumerable("toString"),
       dontEnums = [
-        'toString',
-        'toLocaleString',
-        'valueOf',
-        'hasOwnProperty',
-        'isPrototypeOf',
-        'propertyIsEnumerable',
-        'constructor'
+        "toString",
+        "toLocaleString",
+        "valueOf",
+        "hasOwnProperty",
+        "isPrototypeOf",
+        "propertyIsEnumerable",
+        "constructor",
       ],
       // tslint:disable-next-line:prefer-const
       dontEnumsLength = dontEnums.length;
 
     // tslint:disable-next-line:only-arrow-functions
-    return function(obj) {
-      if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
-        throw new TypeError('Object.keys called on non-object');
+    return function (obj) {
+      if (
+        typeof obj !== "function" &&
+        (typeof obj !== "object" || obj === null)
+      ) {
+        throw new TypeError("Object.keys called on non-object");
       }
 
       // tslint:disable-next-line:one-variable-per-declaration prefer-const
-      let result = [], prop, i;
+      let result = [],
+        prop,
+        i;
 
       for (prop in obj) {
         if (hasOwnProperty.call(obj, prop)) {
@@ -121,5 +125,5 @@ if (!Object.keys) {
       }
       return result;
     };
-  }());
+  })();
 }

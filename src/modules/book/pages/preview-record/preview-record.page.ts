@@ -4,6 +4,7 @@ import {
   HostListener,
   OnInit,
   ViewEncapsulation,
+  HostBinding,
 } from "@angular/core";
 import { BooksService } from "../../../core/services/books.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -20,9 +21,24 @@ import { IPrefixValue } from "../../../../models/prefix-value.model";
 import { SearchUtil } from "../../../../utils/search-util";
 import { IResultPageOptionsInitial } from "../../../../models/search/result-page-options.model";
 import { CryptoUtils } from "../../../../utils/crypto.utils";
+import * as Mirador from "../../../../assets/mirador/mirador.min.js";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
 
 @Component({
   selector: "preview-record",
+  animations: [
+    trigger("openClose", [
+      state("true", style({ width: "0" })),
+      state("false", style({ width: "100%" })),
+      transition("false <=> true", animate(800)),
+    ]),
+  ],
   templateUrl: "preview-record.page.html",
   styleUrls: ["preview-record.page.scss"],
   encapsulation: ViewEncapsulation.None,
@@ -42,7 +58,8 @@ export class PreviewRecordPage implements OnInit {
   public isAdmin: boolean;
   public recordURL;
 
-  public miradorWidth: string;
+  public miradorShow: boolean;
+  public miradorShown: boolean;
 
   public constructor(
     booksService: BooksService,
@@ -100,7 +117,8 @@ export class PreviewRecordPage implements OnInit {
       );
     });
 
-    this.miradorWidth = "0%";
+    this.miradorShow = false;
+    this.miradorShown = false;
   }
 
   public share(socialNetwork: string) {
@@ -197,8 +215,7 @@ export class PreviewRecordPage implements OnInit {
     }
   }
 
-  public showMiradorViewer() {
-    if (this.miradorWidth === "0%") this.miradorWidth = "100%";
-    else this.miradorWidth = "0%";
+  public miradorDone() {
+    if (this.miradorShow && !this.miradorShown) this.miradorShown = true;
   }
 }

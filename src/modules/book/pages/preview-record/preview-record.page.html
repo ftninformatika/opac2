@@ -1,13 +1,18 @@
-<div id="miradorViewer" [ngStyle]="{ 'width': miradorWidth }" class="overlay">
+<div
+  id="miradorViewer"
+  [@openClose]="miradorShow ? false: true"
+  (@openClose.done)="miradorDone()"
+  class="overlay"
+>
   <a
     href="javascript:void(0)"
-    (click)="showMiradorViewer()"
+    (click)="miradorShow = !miradorShow"
     class="closebtn"
     id="closeNav"
     >&times;</a
   >
   <div class="overlay-content">
-    <app-mirador-viewer></app-mirador-viewer>
+    <app-mirador-viewer *ngIf="miradorShown"></app-mirador-viewer>
   </div>
 </div>
 
@@ -104,7 +109,10 @@
                 >
                   <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
                   <dd class="col-sm-9">
-                    <a href="javascript:void(0)" (click)="showMiradorViewer()">
+                    <a
+                      href="javascript:void(0)"
+                      (click)="miradorShow = !miradorShow"
+                    >
                       <div class="mirador-show">
                         <mdb-icon
                           fas
