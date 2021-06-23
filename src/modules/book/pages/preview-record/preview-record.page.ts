@@ -36,7 +36,7 @@ import {
     trigger("openClose", [
       state("true", style({ width: "0" })),
       state("false", style({ width: "100%" })),
-      transition("false <=> true", animate(800)),
+      transition("false <=> true", animate(1500)),
     ]),
   ],
   templateUrl: "preview-record.page.html",
