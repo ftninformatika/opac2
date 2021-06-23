@@ -17,7 +17,6 @@ import { environment } from "./src/environments/environment";
 //enableProdMode();
 export function app(): express.Express {
   const app = express();
-  //const PORT = process.env.PORT || 4000;
   const distFolder = join(process.cwd(), "dist/browser");
   const axios = require("axios");
 
@@ -115,11 +114,12 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   app.get("*", (req, res) => {
-    // console.log(req);
+    //console.log(req);
+    console.log(APP_BASE_HREF);
     if (!detectBot(req.headers["user-agent"])) {
+      console.log("USAOOOOO");
       res.render("index", {
         req,
-        providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
       });
     } else if (isExternalHit(req.headers["user-agent"])) {
       console.log("external HITT!");
@@ -132,7 +132,7 @@ export function app(): express.Express {
           res.send(response.data);
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
         });
     }
     // else {
