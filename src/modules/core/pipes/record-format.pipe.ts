@@ -7,7 +7,7 @@ export enum ERecordFormatType {
   FORMAT_BOOK_PHYSICAL_INFO = "FORMAT_BOOK_PHYSICAL_INFO",
   FORMAT_FIRST_SIGNATURE_INFO = "FORMAT_FIRST_SIGNATURE_INFO",
   CONTAINS_856_URL = "CONTAINS_856_URL",
-  CONTAINS_993_URL = "CONTAINS_993_URL",
+  CONTAINS_856_MIRADOR_URL = "CONTAINS_856_MIRADOR_URL",
   _324_SPECIAL = "_324_SPECIAL",
   _001C_REFERENCE = "_001C_REFERENCE",
   _327_CONTENT = "_327_CONTENT",
@@ -65,10 +65,9 @@ export class RecordFormatPipe implements PipeTransform {
         const urlHtml = `<a href="${_856u}" target="_blank">линк</a>`;
         return urlHtml;
       }
-      case ERecordFormatType.CONTAINS_993_URL: {
-        //const _993 = RecordUtils.getSubfieldContent(book.record, "993a");
-        const _993 = RecordUtils.getSubfieldContent(book.record, "992b");
-        return _993;
+      case ERecordFormatType.CONTAINS_856_MIRADOR_URL: {
+        const _856d = RecordUtils.getSubfieldContent(book.record, "856d");
+        return _856d;
       }
       case ERecordFormatType._324_SPECIAL: {
         const _324a = RecordUtils.getSubfieldContent(book.record, "324a");

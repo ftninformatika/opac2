@@ -1,4 +1,6 @@
-<ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_993_URL">
+<ng-container
+  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+>
   <div
     id="miradorViewer"
     [@openClose]="miradorShow ? false: true"
@@ -14,7 +16,7 @@
     >
     <div class="overlay-content">
       <app-mirador-viewer
-        [manifest]="book | recordFormat:RecordFormatType.CONTAINS_993_URL"
+        [manifest]="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
         *ngIf="miradorShown"
       ></app-mirador-viewer>
     </div>
@@ -110,7 +112,7 @@
             <div class="col-12 mt-2">
               <dl class="row">
                 <ng-container
-                  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_993_URL"
+                  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
                 >
                   <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
                   <dd class="col-sm-9">
