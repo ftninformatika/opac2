@@ -46,7 +46,7 @@
     "@types/jest": "^24.0.19",
     "@types/jwt-decode": "^2.2.1",
     "aes-js": "^3.1.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.8.0",
     "cors": "^2.8.5",
     "easy-pie-chart": "^2.1.7",
