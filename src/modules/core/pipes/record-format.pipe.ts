@@ -124,6 +124,16 @@ export class RecordFormatPipe implements PipeTransform {
           }
         }
       }
+      case ERecordFormatType._464_SOURCE_CONTENT_TITLE: {
+        const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
+        if (!_001c) {
+          return '';
+        } else if (_001c === 'a') {
+          return 'Извор';
+        } else {
+          return 'Чланак';
+        }
+      }
     }
   }
 }
