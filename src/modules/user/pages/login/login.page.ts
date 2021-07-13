@@ -49,6 +49,8 @@ export class LoginPage implements OnInit {
     if (this.kioskCoder) {
       this._router.navigate(['/']);
     }
+    const libCode = this._activatedRoute.snapshot.paramMap.get('libCode');
+    console.log(libCode);
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(MinimumPasswordStrengthRegex)]],

@@ -28,6 +28,10 @@ export const UserRoutes: Routes = [
     component: LoginPage
   },
   {
+    path: ':libCode/login',
+    component: LoginPage
+  },
+  {
     path: 'history',
     component: HistoryPage,
     canActivate: [AuthGuard]

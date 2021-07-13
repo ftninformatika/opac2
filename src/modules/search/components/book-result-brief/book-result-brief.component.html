@@ -12,7 +12,11 @@
       <mdb-card-title>
 <!--        TODO: Overlapping title when wrap, fix-->
         <div class="">
-          <h4 [routerLink]="['/book',lib, book._id]" class="pointer book-title" [mdbTooltip]="(book.title | shortenString:35) ? book.title : null">{{book.title | shortenString:35}}</h4>
+          <h4 [routerLink]="['/book',lib, book._id]" class="pointer book-title" [mdbTooltip]="(book.title | shortenString:35) ? book.title : null">{{book.title | shortenString:35}}
+            <label *ngIf="book | recordFormat:RecordFormatType.TOME">
+              , {{book | recordFormat:RecordFormatType.TOME}}
+            </label>
+          </h4>
   <!--        <div class="pub-type">-->
   <!--          <div *ngIf="book.pubType === 1">-->
   <!--            <mdb-icon fas icon="book"></mdb-icon> монографија-->

@@ -8,7 +8,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { LoginPage } from './pages/login/login.page';
 import { ShelfPage } from './pages/shelf/shelf.page';
 import { HomeModule } from '../home/home.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';

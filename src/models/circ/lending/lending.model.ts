@@ -13,3 +13,9 @@ export interface ILendingModel {
   deadline?: Date;
   warnings: IWarningModel[];
 }
+
+
+export interface ProlongLendingDTO {
+  prolongable: boolean;
+  message: string;
+}
