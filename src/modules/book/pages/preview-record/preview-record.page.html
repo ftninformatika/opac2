@@ -104,15 +104,18 @@
                   <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
                 </ng-container>
 
-                <ng-container *ngIf="book.masterRecordId">
-                  <dt class="col-sm-2">{{book | recordFormat:RecordFormatType._001C_REFERENCE}}
-                  &nbsp;</dt>
-                  <dd class="col-sm-10">
-                    <mdb-icon far icon="eye"></mdb-icon> &nbsp;
-                    <span [routerLink]="['/book',lib, book.masterRecordId]" style="cursor: pointer;color: darkblue; text-decoration: underline">
-                      {{(book.masterRecordTitle && book.masterRecordTitle.trim() !== '') ? book.masterRecordTitle : 'Линк'}}
-                    </span>
-                  </dd>
+
+                <ng-container *ngIf="book.refRecsBrief">
+                  <ng-container *ngFor="let recRef of book.refRecsBrief | keyvalue">
+                    <dt class="col-sm-2">{{book | recordFormat: RecordFormatType._464_SOURCE_CONTENT_TITLE}}
+                      &nbsp;</dt>
+                    <dd class="col-sm-10">
+                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;
+                      <span [routerLink]="['/book',lib, recRef.key]" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                        {{(recRef.value && recRef.value !== '') ? recRef.value : 'Линк до извора'}}
+                      </span>
+                    </dd>
+                  </ng-container>
                 </ng-container>
 
                 <ng-container *ngIf="book.notes">

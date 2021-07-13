@@ -28,7 +28,7 @@ export class PreviewRecordPage implements OnInit {
   private readonly _store: Store;
   private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
-  private RecordFormatType = ERecordFormatType;
+  RecordFormatType = ERecordFormatType;
   private showLocations: boolean;
   public book: Book;
   public errImgUrl: string;
