@@ -1,0 +1,115 @@
+<div class="active-lendings-page-wrapper">
+  <div class="" *ngIf="noReservations">
+    <h4 align="center" class="mb-2">Тренутно немате активне резервације</h4>
+  </div>
+  <div class="" *ngIf="reservations.length !== 0">
+    <h2 align="center" class="mb-2">Резервације</h2>
+    <ng-container>
+      <table mdbTable class="table table-responsive-md table-responsive-sm">
+        <thead>
+        <tr>
+          <th scope="col">
+            <a (click)="sortBy('title')">Наслов
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('authors')">Аутор
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('reservationDate')">Датум резервисања
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('locationDescription')">Библиотека
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+            <a (click)="sortBy('reservationStatus')">Статус резервације
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr mdbTableRow *ngFor="let r of reservations">
+          <th scope="row" class="highliht" [mdbTooltip]="r.title" [routerLink]="['/book', lib, r.record_id]">
+            <strong>
+              <b>
+                {{r.title | shortenString: 30}}
+              </b>
+            </strong>
+          </th>
+          <td [mdbTooltip]="r.authors.toString()" class="highliht" [routerLink]="['/book', lib, r.record_id]">
+            {{r.authors.toString() | shortenString: 20}}</td>
+          <td>{{r.reservationDate | date: 'dd.MM.yyyy.'}}</td>
+          <td>{{r.locationDescription | shortenString: 40}}</td>
+
+          <!--          Book is in the queue, but not assigned yet => user can delete reservation.             -->
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
+            <span>
+              Чека се слободан примерак
+            </span>
+          </td>
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
+            <div class="remove-from-shelf" (click)="basicModal.show();" mdbTooltip="Избриши" placement="left"
+                 style="cursor: pointer">
+              <i class="fas fa-trash red-text fa-2x"></i>
+            </div>
+          </td>
+
+          <!--          Book is assigned => user cannot delete reservation.                                    -->
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
+            <span>
+              Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}
+<!--              Можете преузети књигу у библиотеци-->
+            </span>
+          </td>
+          <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
+            <div class="remove-from-shelf" mdbTooltip="Књига Вам је додељена" placement="left">
+              <i class="fas fa-trash grey-text fa-2x"></i>
+            </div>
+          </td>
+
+
+          <!--  Are you sure to delete modal-->
+          <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+               aria-labelledby="myBasicModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide(); ">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title center" id="myModalLabel">Брисање резервације</h4>
+                </div>
+                <div class="modal-body">
+                  <label>Да ли сте сигурни да желите да избришете резервацију за књигу: <i>{{r.title}}</i> ?</label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                          (click)="basicModal.hide();">Затвори
+                  </button>
+                  <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
+                          (click)="deleteReservation(r)">Избриши
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+
+  </div>
+</div>

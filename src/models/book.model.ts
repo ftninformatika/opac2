@@ -59,14 +59,34 @@ export interface AvgRecordRating {
   totalRates: number;
 }
 
+export interface Reservation {
+  _id: string;
+  record_id: string;
+  isBookPickedUp: boolean;
+  reservationDate: Date;
+  title: string;
+  authors:[];
+  reservationStatus: ReservationStatus;
+  pickUpDeadline: Date;
+  locationDescription: string;
+  locationCode: string;
+}
+
 export enum EPubType {
   Monograph = 1,
   Serial = 2
 }
 
+export enum ReservationStatus {
+  WaitingInQueue = 'WAITING_IN_QUEUE',
+  AssignedBook = 'ASSIGNED_BOOK',
+  PickedUp = 'PICKED_UP'
+}
+
 export enum ERecordItemStatus {
   Borrowed = 'BORROWED',
-  Free= 'FREE',
+  Free = 'FREE',
+  Reserved = 'RESERVED',
   NotLendable = 'NOT_LENDABLE',
   NotShowable = 'NOT_SHOWABLE'
 }

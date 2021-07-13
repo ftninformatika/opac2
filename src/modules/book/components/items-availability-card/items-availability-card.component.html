@@ -7,18 +7,19 @@
         <p>
           укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
           слободно: <strong>{{availableItems ? availableItems : '0'}}</strong> &nbsp;
-          резервисано: <strong>0</strong>
+          резервисано: <strong>{{reservedItems ? reservedItems : '0'}}</strong>
         </p>
         <p class="mb-0" *ngIf="locations && locations.length > 0">
           <strong>на локацијама:</strong>
         </p>
-        <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0">
+        <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0"
+                [(ngModel)]="this.selectedLocation" (ngModelChange)="setAvailabilityValues()">
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
       </mdb-card-text>
       </ng-container>
         <div class="reserve-shelf-row">
-          <div *ngIf="locations && locations.length > 0 && containShowableItems">
+          <div *ngIf="locations && locations.length > 0 && containShowableItems" (click)="checkLoggedUser()">
             <a>
               <div class="reserve-shelf-buttons reserve">
                 <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
@@ -53,4 +54,82 @@
       </ng-container>
     </mdb-card-body>
   </mdb-card>
+
+  <div mdbModal #successModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="successModal.hide(); ">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myModalLabel">Успешна резервација</h4>
+        </div>
+        <div class="modal-body">
+          <label>Успешно сте резервисали књигу!
+            Књигу можете подићи у року од 3 дана од тренутка када добијете
+            e-mail да је књига слободна.</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Success" style="cursor: pointer"
+                  (click)="navigateToReservations();">Моје резервације
+          </button>
+          <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" style="cursor: pointer"
+                  (click)="successModal.hide();">Затвори
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #messageModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="messageModal.hide(); ">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myMessageModalLabel">Пажња</h4>
+        </div>
+        <div class="modal-body">
+          <label>{{reservationResponseMessage}}</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" style="cursor: pointer"
+                  (click)="messageModal.hide();">ОК
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="myBasicModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Затвори" (click)="confirmModal.hide();">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title center" id="myConfirmModalLabel">Потврда резервације</h4>
+        </div>
+        <div class="modal-body">
+          <label>Да ли желите да резервишете књигу?</label>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="да" style="cursor: pointer"
+                  (click)="reserve();">Дa
+          </button>
+          <button type="button" mdbBtn color="light" class="waves-light" aria-label="Не" style="cursor: pointer"
+                  (click)="confirmModal.hide();">Нe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

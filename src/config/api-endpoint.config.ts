@@ -16,7 +16,10 @@ export class ApiEndpointConfig {
       removeFromShelf: `${ApiEndpointConfig.Origin}/library_members/remove_from_shelf`,
       getShelf: `${ApiEndpointConfig.Origin}/library_members/get_shelf`,
       getLendingHistory: `${ApiEndpointConfig.Origin}/members/lending_history`,
-      getActiveLendings: `${ApiEndpointConfig.Origin}/members/active_lendings`
+      getActiveLendings: `${ApiEndpointConfig.Origin}/members/active_lendings`,
+      reserveBook: `${ApiEndpointConfig.Origin}/reservations/reserve`,
+      getActiveReservations: `${ApiEndpointConfig.Origin}/reservations/active-reservations`,
+      deleteReservation: `${ApiEndpointConfig.Origin}/reservations/delete`,
     },
     admin: {
       createModifyCollection: `${ApiEndpointConfig.Origin}/opac/book_collections`,
@@ -36,7 +39,7 @@ export class ApiEndpointConfig {
       main: `${ApiEndpointConfig.Origin}/book`,
       getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`,
       getByCollectionId: `${ApiEndpointConfig.Origin}/book/collection`,
-      rateRecord: `${ApiEndpointConfig.Origin}/records/rate_record`
+      rateRecord: `${ApiEndpointConfig.Origin}/records/rate_record`,
     },
     bookCommon: {
       main: `${ApiEndpointConfig.Origin}/book_common`

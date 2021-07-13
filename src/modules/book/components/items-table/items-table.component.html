@@ -68,6 +68,9 @@
           <ng-container *ngIf="i.status == ItemStatus.NotLendable">
             <span style="color: chocolate">незадужив</span>
           </ng-container>
+          <ng-container *ngIf="i.status == ItemStatus.Reserved">
+            <span style="color: #0f4efa">резервисан</span>
+          </ng-container>
         </td>
         <td>{{i.invNum}}</td>
       </ng-container>

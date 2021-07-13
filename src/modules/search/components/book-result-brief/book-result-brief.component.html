@@ -32,7 +32,7 @@
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
     <div class="reserve-shelf-buttons ml-auto">
-      <a  [mdbTooltip]="'Резервиши'">
+      <a  [mdbTooltip]="'Резервиши'" (click)="gotoBook(book._id);">
         <div class="reserve">
           <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
           <span>Резервиши</span>

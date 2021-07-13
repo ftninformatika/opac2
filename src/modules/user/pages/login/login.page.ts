@@ -80,7 +80,7 @@ export class LoginPage implements OnInit {
                 if (this._store.selectSnapshot(ConfigState.library) !== usrLib) {
                   this._store.dispatch(new ChangeConfigAction(configs.find(e => e.libraryName === usrLib)));
                 }
-                this._router.navigate(['/']);
+                this.redirect();
               } else {
                 this._store.dispatch(new SignOutAction());
               }
@@ -92,6 +92,23 @@ export class LoginPage implements OnInit {
         );
       }
     );
+  }
+
+  public redirect(){
+
+    let redirectURL = '';
+    let params = this._activatedRoute.snapshot.queryParams;
+
+    if (params['redirectURL']) {
+      redirectURL = params['redirectURL'];
+    }
+
+    if (redirectURL) {
+      this._router.navigateByUrl(redirectURL)
+        .catch(() => this._router.navigate(['/']));
+    } else {
+      this._router.navigate(['/']);
+    }
   }
 
   public forgotPassword(): void {

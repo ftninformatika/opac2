@@ -16,6 +16,7 @@ import { MDBBootstrapModulesPro, MdbInputDirective } from 'ng-uikit-pro-standard
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
+import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { RegisterInfoPage } from './pages/register-info/register-info.page';
     ShelfPage,
     HistoryPage,
     ChangePasswordPage,
-    AdminCollectionEditor
+    AdminCollectionEditor,
+    ActiveReservationsPage
   ]
 })
 export class UserModule {}
