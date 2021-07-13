@@ -9,7 +9,10 @@ export enum ERecordFormatType {
   CONTAINS_856_URL = 'CONTAINS_856_URL',
   _464_SOURCE_CONTENT_TITLE = '_464_SOURCE_CONTENT_TITLE',
   _324_SPECIAL = '_324_SPECIAL',
-  _327_CONTENT = '_327_CONTENT'
+  _001C_REFERENCE = '_001C_REFERENCE',
+  _327_CONTENT = '_327_CONTENT',
+  TOME = 'TOME',
+  NOTE = 'NOTE'
 }
 
 @Pipe({
@@ -66,6 +69,24 @@ export class RecordFormatPipe implements PipeTransform {
       case ERecordFormatType._324_SPECIAL: {
         const _324a = RecordUtils.getSubfieldContent(book.record, '324a');
         return _324a;
+      }
+      case ERecordFormatType.TOME: {
+        const _200h = RecordUtils.getSubfieldContent(book.record, '200h');
+        return _200h;
+      }
+      case ERecordFormatType.NOTE: {
+        const retVal = RecordUtils.getSubfieldContent(book.record, '330a');
+        return retVal;
+      }
+      case ERecordFormatType._001C_REFERENCE: {
+        const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
+        let retVal = 'Референце';
+        if (_001c === 'm') {
+          retVal = 'Чланак';
+        } else if (_001c === 'a') {
+          retVal = 'Извор';
+        }
+        return retVal;
       }
       case ERecordFormatType._327_CONTENT: {
         const _327aFields: Field[] = RecordUtils.getFields(book.record, '327');

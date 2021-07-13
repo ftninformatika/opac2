@@ -1,12 +1,12 @@
-import { IUserCategoryModel } from '../../../../models/circ/user-category.model';
-import { ConfigState } from '../../../core/states/config/config.state';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BooksService } from '../../../core/services/books.service';
-import { UsersService } from '../../../core/services/users.service';
-import { UserState } from '../../../core/states/user/user.state';
-import { Report } from '../../../../models/report.model';
-import { ToastService } from 'ng-uikit-pro-standard';
-import { Store } from '@ngxs/store';
+import {IUserCategoryModel} from '../../../../models/circ/user-category.model';
+import {ConfigState} from '../../../core/states/config/config.state';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {BooksService} from '../../../core/services/books.service';
+import {UsersService} from '../../../core/services/users.service';
+import {UserState} from '../../../core/states/user/user.state';
+import {Report} from '../../../../models/report.model';
+import {ToastService} from 'ng-uikit-pro-standard';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'active-lendings-page',
@@ -23,6 +23,7 @@ export class ActiveLendingsPage implements OnInit {
   private sorted = false;
   public userCategory: IUserCategoryModel;
   public memberNo: string;
+  public memberUsername: string;
   public lendingsReport: Report[];
   public lib: string;
 
@@ -32,12 +33,13 @@ export class ActiveLendingsPage implements OnInit {
     this._store = store;
     this._toastService = toastService;
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
+    this.memberUsername = this._store.selectSnapshot(UserState.username);
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this.userCategory = this._store.selectSnapshot(UserState.userCategory);
   }
 
   public ngOnInit() {
-   this.loadLendings();
+    this.loadLendings();
   }
 
   public sortBy(by: string | any): void {
@@ -63,12 +65,17 @@ export class ActiveLendingsPage implements OnInit {
     if (!lendingId) {
       return;
     }
-    this._userService.prolongLending(lendingId).subscribe(
+    this._userService.prolongLending({email: this.memberUsername, lendingId: lendingId}).subscribe(
       resp => {
-        if (!resp) {
-          this._toastService.warning('Није могуће продужити задужење');
+        if (!resp.prolongable) {
+          if (resp.message != null && resp.message != "") {
+            this._toastService.warning(resp.message);
+          } else {
+            this._toastService.warning('Није могуће продужити задужење');
+          }
+        } else {
+          this._toastService.success('Успешно сте продужили задужење');
         }
-        this._toastService.success('Успешно сте продужили задужење');
         this.loadLendings();
       },
       () =>
@@ -87,7 +94,7 @@ export class ActiveLendingsPage implements OnInit {
     return maxDate < new Date();
   }
 
-  private  addDays(date: Date, days: number): Date {
+  private addDays(date: Date, days: number): Date {
     const d = new Date(date);
     date.setDate(d.getDate() + days);
     return date;
@@ -108,7 +115,9 @@ export class ActiveLendingsPage implements OnInit {
   }
 
   private transformDate(localizedDate: string): string {
-    if (!localizedDate || localizedDate === '') { return '99999999'; }
+    if (!localizedDate || localizedDate === '') {
+      return '99999999';
+    }
     return localizedDate.split('.').reverse().join('');
   }
 }
