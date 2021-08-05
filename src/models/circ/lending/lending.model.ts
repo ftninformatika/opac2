@@ -18,4 +18,6 @@ export interface ILendingModel {
 export interface ProlongLendingDTO {
   prolongable: boolean;
   message: string;
+  deadline: Date;
+  resume: Date;
 }
