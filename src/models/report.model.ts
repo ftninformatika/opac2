@@ -8,5 +8,6 @@ export interface Report {
   property7: string; // deadline
   property8: string; // resumeDate
   property9: string; // mongo Id of lending
+  property10: string; // Location desc where book is lend
   maxDatePassed?: boolean; // max date for returning lending
 }
