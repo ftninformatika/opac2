@@ -99,7 +99,7 @@ export class TopMenuComponent {
   }
 
   public getFilteredData() {
-    this.searchTextChanged.next(this.searchText);
+    this.searchTextChanged.next(this.searchText.toLowerCase());
   }
 
   public emptySearchResults() {
