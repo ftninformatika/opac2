@@ -31,6 +31,11 @@
             </a>
           </th>
           <th scope="col">
+            <a (click)="sortBy('property10')">Локација
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </a>
+          </th>
+          <th scope="col">
             Продужи задужење
           </th>
         </tr>
@@ -48,6 +53,7 @@
           <td>{{r.property1 | shortenString: 20}}</td>
           <td>{{r.property7 | shortenString: 20}}</td>
           <td>{{r.property5 | shortenString: 20}}</td>
+          <td>{{r.property10 }}</td>
           <td *ngIf="!r.property8 && !r.maxDatePassed">
             <a style="color: #00b2d1;font-weight: 600;" (click)="prolongLending(r.property9)">
               Продужи
