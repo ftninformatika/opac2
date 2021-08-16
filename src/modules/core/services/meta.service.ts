@@ -1,18 +1,19 @@
-import { Meta } from '@angular/platform-browser';
-import { Injectable } from '@angular/core';
+import { Meta } from "@angular/platform-browser";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MetaService {
-
   private readonly _meta: Meta;
 
   public constructor(meta: Meta) {
     this._meta = meta;
   }
 
-  public changeSocialMetaTags(tags: {property: string, content: string}[]): void {
+  public changeSocialMetaTags(
+    tags: { property: string; content: string }[]
+  ): void {
     if (!tags) {
       return;
     }
@@ -23,5 +24,4 @@ export class MetaService {
       this._meta.updateTag(tag);
     }
   }
-
 }

@@ -1,23 +1,67 @@
 <div class="preview-record-page-wrapper" *ngIf="book">
-  <div class="main" >
+  <ng-container
+    *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+  >
+    <div
+      id="miradorViewer"
+      [@openClose]="miradorShow ? false: true"
+      (@openClose.done)="miradorDone()"
+      class="overlay"
+    >
+      <a
+        href="javascript:void(0)"
+        (click)="miradorShow = !miradorShow"
+        class="closebtn"
+        id="closeNav"
+      >&times;</a
+      >
+      <div class="overlay-content">
+        <app-mirador-viewer
+          [manifest]="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+          *ngIf="miradorShown"
+        ></app-mirador-viewer>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="main">
     <div class="cover-container">
-      <img class="img-fluid img-cover"
-           [lazyLoad]="book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover.jpg'"
-           [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
-           offset="100"
-           alt="Слика корице"/>
-      <a *ngIf="isAdmin && (book.isbn && book.isbn.trim() != '')" [routerLink]="['/book/description-cover', lib, book._id]" class="ml-2">Мењај слику и опис</a>
-      <span *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')" class="ml-2" style="color: grey;font-weight: 500;cursor:default;">Није могуће мењати слику или опис записа</span>
-      <div class="social-share-buttons ">
-        <a class="icons-sm fb-ic mr-2" (click)="share('fb')"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
-        <a class="icons-sm li-ic mr-2" (click)="share('li')"><mdb-icon fab icon="linkedin"></mdb-icon></a>
-        <a class="icons-sm tw-ic mr-2" (click)="share('tw')"><mdb-icon fab icon="twitter"></mdb-icon></a>
-        <a class="icons-sm email-ic"
-           href="mailto: ?body={{'Погледај књигу:' + (book.title ? book.title : 'запис нема наслов') + ', на БИСИС5 онлајн каталогу. Линк: ' + recordURL}}
-             &subject={{(book.title ? book.title : 'запис нема наслов') + ' - БИСИС5 онлајн каталог'}}">
+      <img
+        class="img-fluid img-cover"
+        [lazyLoad]="book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover.jpg'"
+        [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
+        offset="100"
+        alt="Слика корице"
+      />
+      <a
+        *ngIf="isAdmin && (book.isbn && book.isbn.trim() != '')"
+        [routerLink]="['/book/description-cover', lib, book._id]"
+        class="ml-2"
+        >Мењај слику и опис</a
+      >
+      <span
+        *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')"
+        class="ml-2"
+        style="color: grey; font-weight: 500; cursor: default"
+        >Није могуће мењати слику или опис записа</span
+      >
+      <div class="social-share-buttons">
+        <a class="icons-sm fb-ic mr-2" (click)="share('fb')"
+          ><mdb-icon fab icon="facebook-f"></mdb-icon
+        ></a>
+        <a class="icons-sm li-ic mr-2" (click)="share('li')"
+          ><mdb-icon fab icon="linkedin"></mdb-icon
+        ></a>
+        <a class="icons-sm tw-ic mr-2" (click)="share('tw')"
+          ><mdb-icon fab icon="twitter"></mdb-icon
+        ></a>
+        <a
+          class="icons-sm email-ic"
+          href="mailto: ?body={{'Погледај књигу:' + (book.title ? book.title : 'запис нема наслов') + ', на БИСИС5 онлајн каталогу. Линк: ' + recordURL}}
+             &subject={{(book.title ? book.title : 'запис нема наслов') + ' - БИСИС5 онлајн каталог'}}"
+        >
           <mdb-icon fas icon="envelope"></mdb-icon>
         </a>
-
       </div>
     </div>
     <div class="main-container">
@@ -25,9 +69,12 @@
         <div class="title">
           <h1>{{book.title}}</h1>
         </div>
-        <book-star-rating [recordId]="book._id" [bookRating]="book.avgRating"
-                          [allRatings]="book.record.recordRatings"
-                          [totalRatings]="book.totalRatings">
+        <book-star-rating
+          [recordId]="book._id"
+          [bookRating]="book.avgRating"
+          [allRatings]="book.record.recordRatings"
+          [totalRatings]="book.totalRatings"
+        >
         </book-star-rating>
         <div class="subtitle" *ngIf="book.subtitle">
           <h2>{{book.subtitle}}</h2>
@@ -35,138 +82,236 @@
         <div class="author" *ngIf="book.authors">
           <span>{{book.authors}}</span>
         </div>
-        <div class="pub-info" *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
-          <span>{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</span>
+        <div
+          class="pub-info"
+          *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO"
+        >
+          <span
+            >{{book |
+            recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</span
+          >
         </div>
-        <div class="book-description" *ngIf="book.description && book.description !== ''">
+        <div
+          class="book-description"
+          *ngIf="book.description && book.description !== ''"
+        >
           <p>
-            <read-more [text]="book.description">
-            </read-more>
+            <read-more [text]="book.description"> </read-more>
           </p>
         </div>
         <div class="item-availability-container-sm">
-          <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
+          <items-availability-card
+            [bookId]="book._id"
+            [recordItems]="book.items"
+            [containShowableItems]="showLocations"
+          >
           </items-availability-card>
         </div>
         <div class="book-details">
           <div class="row">
             <div class="col-12 mt-2">
               <dl class="row">
-                <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
-                  <dt class="col-sm-2">Аутори&nbsp;</dt>
-                  <dd class="col-sm-10">
-<!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
-                    <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+                >
+                  <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    <a
+                      href="javascript:void(0)"
+                      (click)="miradorShow = !miradorShow"
+                    >
+                      <div class="mirador-show">
+                        <mdb-icon
+                          fas
+                          icon="book-open"
+                          class="text-white"
+                        ></mdb-icon>
+                        Прикажи
+                      </div>
+                    </a>
+                  </dd>
+                </ng-container>
+
+                <ng-container
+                  *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''"
+                >
+                  <dt class="col-sm-3">Аутори&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
+                    <a
+                      (click)="linkedSearch('authors', book.authors[0])"
+                      style="
+                        cursor: pointer;
+                        color: darkblue;
+                        text-decoration: underline;
+                      "
+                    >
                       {{book.authors}}
                     </a>
                   </dd>
                 </ng-container>
 
-                <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
-                  <dt class="col-sm-2">Остали аутори&nbsp;</dt>
-                  <dd class="col-sm-10">
-<!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
-                    <a *ngFor="let oa of book.otherAuthors; let i = index"
-                       (click)="linkedSearch('authors', oa)"
+                <ng-container
+                  *ngIf="book.otherAuthors && book.otherAuthors.length > 0"
+                >
+                  <dt class="col-sm-3">Остали аутори&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
+                    <a
+                      *ngFor="let oa of book.otherAuthors; let i = index"
+                      (click)="linkedSearch('authors', oa)"
                     >
-                    <span
-                      style="cursor: pointer;color: darkblue; text-decoration: underline">
-                      <ng-container *ngIf="i > 0">
-                        ,&nbsp;
-                      </ng-container>
-                      {{oa}}
-                    </span>
+                      <span
+                        style="
+                          cursor: pointer;
+                          color: darkblue;
+                          text-decoration: underline;
+                        "
+                      >
+                        <ng-container *ngIf="i > 0"> ,&nbsp; </ng-container>
+                        {{oa}}
+                      </span>
                     </a>
                   </dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.title">
-                  <dt class="col-sm-2">Наслов&nbsp;</dt>
-                  <dd class="col-sm-10">{{book.title}}</dd>
+                  <dt class="col-sm-3">Наслов&nbsp;</dt>
+                  <dd class="col-sm-9">{{book.title}}</dd>
                 </ng-container>
 
-                <ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL">
-                  <dt class="col-sm-2" >URL&nbsp;</dt>
-                  <dd class="col-sm-10"><span [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"></span></dd>
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
+                >
+                  <dt class="col-sm-3">URL&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    <span
+                      [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
+                    ></span>
+                  </dd>
                 </ng-container>
 
-                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
-                  <dt class="col-sm-2" >Издавач&nbsp;</dt>
-                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</dd>
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO"
+                >
+                  <dt class="col-sm-3">Издавач&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book |
+                    recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}
+                  </dd>
                 </ng-container>
 
-                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO">
-                  <dt class="col-sm-2" >Физички опис&nbsp;</dt>
-                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO"
+                >
+                  <dt class="col-sm-3">Физички опис&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book |
+                    recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}
+                  </dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.refRecsBrief">
-                  <ng-container *ngFor="let recRef of book.refRecsBrief | keyvalue">
-                    <dt class="col-sm-2">{{book | recordFormat: RecordFormatType._464_SOURCE_CONTENT_TITLE}}
-                      &nbsp;</dt>
-                    <dd class="col-sm-10">
+                  <ng-container
+                    *ngFor="let recRef of book.refRecsBrief | keyvalue"
+                  >
+                    <dt class="col-sm-3">
+                      {{book | recordFormat:
+                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;
+                    </dt>
+                    <dd class="col-sm-9">
                       <mdb-icon far icon="eye"></mdb-icon> &nbsp;
-                      <span [routerLink]="['/book',lib, recRef.key]" style="cursor: pointer;color: darkblue; text-decoration: underline">
-                        {{(recRef.value && recRef.value !== '') ? recRef.value : 'Линк до извора'}}
+                      <span
+                        [routerLink]="['/book',lib, recRef.key]"
+                        style="
+                          cursor: pointer;
+                          color: darkblue;
+                          text-decoration: underline;
+                        "
+                      >
+                        {{(recRef.value && recRef.value !== '') ? recRef.value :
+                        'Линк до извора'}}
                       </span>
                     </dd>
                   </ng-container>
                 </ng-container>
 
                 <ng-container *ngIf="book.notes">
-                  <dt class="col-sm-2">Напомене&nbsp;</dt>
-                  <dd class="col-sm-10">{{book.notes}}</dd>
+                  <dt class="col-sm-3">Напомене&nbsp;</dt>
+                  <dd class="col-sm-9">{{book.notes}}</dd>
                 </ng-container>
 
-                <ng-container *ngIf="book | recordFormat:RecordFormatType._324_SPECIAL">
-                  <dt class="col-sm-2" >Посебан отисак&nbsp;</dt>
-                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType._324_SPECIAL}}</dd>
-                </ng-container>
-
-                <ng-container *ngIf="book | recordFormat:RecordFormatType._327_CONTENT">
-                  <dt class="col-sm-2" >Садржај&nbsp;</dt>
-                  <dd class="col-sm-10">{{book | recordFormat:RecordFormatType._327_CONTENT}}</dd>
-                </ng-container>
-
-                <ng-container *ngIf="book.isbn">
-                  <dt class="col-sm-2">ISBN&nbsp;</dt>
-                  <dd class="col-sm-10">{{book.isbn}}</dd>
-                </ng-container>
-
-                <ng-container *ngIf="book.issn">
-                  <dt class="col-sm-2">ISSN&nbsp;</dt>
-                  <dd class="col-sm-10">{{book.issn}}</dd>
-                </ng-container>
-
-                <ng-container *ngIf="book.udk">
-                  <dt class="col-sm-2">UDK&nbsp;</dt>
-                  <dd class="col-sm-10">{{book.udk}}</dd>
-                </ng-container>
-
-                <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO">
-                  <dt class="col-sm-2">Сигнатура&nbsp;</dt>
-                  <dd class="col-sm-10">
-                    {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
-                    <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType._324_SPECIAL"
+                >
+                  <dt class="col-sm-3">Посебан отисак&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book | recordFormat:RecordFormatType._324_SPECIAL}}
                   </dd>
                 </ng-container>
 
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType._327_CONTENT"
+                >
+                  <dt class="col-sm-3">Садржај&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book | recordFormat:RecordFormatType._327_CONTENT}}
+                  </dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.isbn">
+                  <dt class="col-sm-3">ISBN&nbsp;</dt>
+                  <dd class="col-sm-9">{{book.isbn}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.issn">
+                  <dt class="col-sm-3">ISSN&nbsp;</dt>
+                  <dd class="col-sm-9">{{book.issn}}</dd>
+                </ng-container>
+
+                <ng-container *ngIf="book.udk">
+                  <dt class="col-sm-3">UDK&nbsp;</dt>
+                  <dd class="col-sm-9">{{book.udk}}</dd>
+                </ng-container>
+
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO"
+                >
+                  <dt class="col-sm-3">Сигнатура&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book |
+                    recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
+                    <span [ngx-scroll-to]="'#end'"
+                      ><strong
+                        style="
+                          color: darkblue;
+                          cursor: pointer;
+                          font-size: 13px;
+                        "
+                        >...остале</strong
+                      ></span
+                    >
+                  </dd>
+                </ng-container>
               </dl>
             </div>
           </div>
         </div>
-        <div class="isbd-collapse" *ngIf="book.isbdHtml && book.isbdHtml.trim() != ''">
+        <div
+          class="isbd-collapse"
+          *ngIf="book.isbdHtml && book.isbdHtml.trim() != ''"
+        >
           <mdb-accordion *ngIf="showLocations">
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
-                <h5 class="mb-0">
-                  ISBD
-                </h5>
+                <h5 class="mb-0">ISBD</h5>
               </mdb-accordion-item-head>
               <mdb-accordion-item-body>
                 <div class="row">
-                  <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'">
-                  </div>
+                  <div
+                    class="col-12 mt-2 isbd"
+                    [innerHTML]="book.isbdHtml ? book.isbdHtml : 'Листић не може бити приказан!'"
+                  ></div>
                 </div>
               </mdb-accordion-item-body>
             </mdb-accordion-item>
@@ -176,13 +321,14 @@
           <mdb-accordion *ngIf="showLocations">
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
-                <h5 class="mb-0">
-                  UNIMARC
-                </h5>
+                <h5 class="mb-0">UNIMARC</h5>
               </mdb-accordion-item-head>
               <mdb-accordion-item-body>
                 <div class="row">
-                  <div class="col-12 mt-2" *ngIf="book.record && book.record.fields">
+                  <div
+                    class="col-12 mt-2"
+                    *ngIf="book.record && book.record.fields"
+                  >
                     <p class="unimarc">
                       <ng-container *ngFor="let f of book.record.fields">
                         <strong>{{f.name}}</strong>
@@ -193,13 +339,16 @@
                             <strong>{{</strong>
                             <strong>{{sf.secField.name}}</strong>
                             {{sf.secField | makeIndicator}}&nbsp;
-                            <ng-container *ngFor="let secSf of sf.secField.subfields">
-                              <strong>{{secSf.name}}</strong>&nbsp;{{secSf.content}}
+                            <ng-container
+                              *ngFor="let secSf of sf.secField.subfields"
+                            >
+                              <strong>{{secSf.name}}</strong
+                              >&nbsp;{{secSf.content}}
                             </ng-container>
                             <strong>}}</strong>
                           </ng-container>
                         </ng-container>
-                        <br/>
+                        <br />
                       </ng-container>
                     </p>
                   </div>
@@ -211,7 +360,11 @@
       </div>
     </div>
     <div class="item-availability-container" *ngIf="book._id && book.items">
-      <items-availability-card [bookId]="book._id" [recordItems]="book.items" [containShowableItems]="showLocations">
+      <items-availability-card
+        [bookId]="book._id"
+        [recordItems]="book.items"
+        [containShowableItems]="showLocations"
+      >
       </items-availability-card>
     </div>
   </div>
