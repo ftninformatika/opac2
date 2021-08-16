@@ -1,29 +1,29 @@
-<ng-container
-  *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
->
-  <div
-    id="miradorViewer"
-    [@openClose]="miradorShow ? false: true"
-    (@openClose.done)="miradorDone()"
-    class="overlay"
-  >
-    <a
-      href="javascript:void(0)"
-      (click)="miradorShow = !miradorShow"
-      class="closebtn"
-      id="closeNav"
-      >&times;</a
-    >
-    <div class="overlay-content">
-      <app-mirador-viewer
-        [manifest]="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
-        *ngIf="miradorShown"
-      ></app-mirador-viewer>
-    </div>
-  </div>
-</ng-container>
-
 <div class="preview-record-page-wrapper" *ngIf="book">
+  <ng-container
+    *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+  >
+    <div
+      id="miradorViewer"
+      [@openClose]="miradorShow ? false: true"
+      (@openClose.done)="miradorDone()"
+      class="overlay"
+    >
+      <a
+        href="javascript:void(0)"
+        (click)="miradorShow = !miradorShow"
+        class="closebtn"
+        id="closeNav"
+      >&times;</a
+      >
+      <div class="overlay-content">
+        <app-mirador-viewer
+          [manifest]="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
+          *ngIf="miradorShown"
+        ></app-mirador-viewer>
+      </div>
+    </div>
+  </ng-container>
+
   <div class="main">
     <div class="cover-container">
       <img
