@@ -49,7 +49,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     TopMenuComponent,
     AppPage,
     LibraryRouteComponent,
-    BackToTopButton,
+    BackToTopButton
   ],
   imports: [
     TranslateModule.forRoot({

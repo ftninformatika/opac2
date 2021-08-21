@@ -1,0 +1,101 @@
+<mdb-card class="chat-room">
+  <mdb-card-body class="grey lighten-3">
+
+    <!-- Grid row -->
+    <div class="row px-lg-2 px-2">
+
+      <!-- Grid column -->
+      <div class="col-md-6 col-xl-4 px-0">
+
+        <h6 class="font-weight-bold mb-3 text-center text-lg-left">Konverzacije</h6>
+        <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1 scrollbar-light-blue">
+<!--          <li class="active grey lighten-3 p-2">-->
+<!--            <a href="#" class="d-flex justify-content-between">-->
+<!--              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">-->
+<!--              <div class="text-small">-->
+<!--                <strong>{{members[0].name}} {{members[0].surname}}</strong>-->
+<!--                <p class="last-message text-muted">Hello, Are you there?</p>-->
+<!--              </div>-->
+<!--              <div class="chat-footer">-->
+<!--                <p class="text-smaller text-muted mb-0">Just now</p>-->
+<!--                <mdb-badge danger="true" class="float-right">1</mdb-badge>-->
+<!--              </div>-->
+<!--            </a>-->
+<!--          </li>-->
+
+          <ul class="list-unstyled friend-list" *ngFor="let member of members ">
+            <li class="p-2">
+              <a href="#" class="d-flex justify-content-between">
+                <img src="../src/assets/users/user.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                <div class="text-small">
+                  <strong>{{member.name}} {{member.surname}}</strong>
+                  <p class="last-message text-muted">Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="chat-footer">
+                  <p class="text-smaller text-muted mb-0">5 min ago</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
+
+        <div class="chat-message">
+
+          <ul class="list-unstyled chat-1 scrollbar-light-blue">
+            <div *ngFor="let message of conversation">
+              <li class="d-flex justify-content-end mb-4" *ngIf="message.korisnik == 'bibliotekar'">
+                <div class="chat-body white p-3 z-depth-1">
+                  <div class="header">
+                    <strong class="primary-font">Lara Croft</strong>
+                    <small class="pull-right text-muted"><mdb-icon far icon="clock"></mdb-icon> 13 mins ago</small>
+                  </div>
+                  <hr class="w-100">
+                  <p class="mb-0">
+                    {{message.poruka}}
+                  </p>
+                </div>
+                <img *ngIf="message.korisnik == 'bibliotekar'" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1">
+              </li>
+
+              <li class="d-flex justify-content-start mb-4" *ngIf="message.korisnik == 'clan'">
+                <img *ngIf="message.korisnik == 'clan'" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                <div class="chat-body white p-3 ml-2 z-depth-1">
+                  <div class="header">
+                    <strong class="primary-font">Brad Pitt</strong>
+                    <small class="pull-right text-muted"><mdb-icon far icon="clock"></mdb-icon> 12 mins ago</small>
+                  </div>
+                  <hr class="w-100">
+                  <p class="mb-0">
+                   {{message.poruka}}
+                  </p>
+                </div>
+              </li>
+            </div>
+          </ul>
+
+
+          <div class="white">
+            <div class="form-group basic-textarea">
+              <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
+                        placeholder="Ovde unesite poruku..."></textarea>
+            </div>
+          </div>
+          <button type="button" mdbBtn color="blue"  rounded="true" size="sm"
+                  class="waves-effect waves-dark float-right" (click)="sendMessage()">Pošalji</button>
+
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </mdb-card-body>
+</mdb-card>
