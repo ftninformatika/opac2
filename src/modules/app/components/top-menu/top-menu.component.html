@@ -68,6 +68,8 @@
                   class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-chat']">Питај библиотекара</a>
+                <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
+                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-events']">Догађаји</a>
                 <div class="divider dropdown-divider"></div>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>

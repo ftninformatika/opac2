@@ -17,7 +17,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
 import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
-import {ChatPage} from "./pages/chat/chat.page";
+import {ChatPage} from "./pages/admin/chat/chat.page";
+import {EventsComponent} from "./pages/admin/events/events.component";
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import {ChatPage} from "./pages/chat/chat.page";
     ChangePasswordPage,
     AdminCollectionEditor,
     ActiveReservationsPage,
-    ChatPage
+    ChatPage,
+    EventsComponent
   ]
 })
 export class UserModule {}
