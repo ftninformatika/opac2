@@ -27,7 +27,8 @@ export class ApiEndpointConfig {
       getCollections: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       addRecordToCollection: `${ApiEndpointConfig.Origin}/opac/book_collections/add_record`,
       getShowableCollections: `${ApiEndpointConfig.Origin}/opac/book_collections/showable_collections`,
-      swapIndexes: `${ApiEndpointConfig.Origin}/opac/book_collections/swap_indexes`
+      swapIndexes: `${ApiEndpointConfig.Origin}/opac/book_collections/swap_indexes`,
+      getEvents: `${ApiEndpointConfig.Origin}/events`,
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,
