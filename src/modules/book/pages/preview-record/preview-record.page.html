@@ -5,18 +5,19 @@
     <div
       id="miradorViewer"
       [@openClose]="miradorShow ? false: true"
-      (@openClose.done)="miradorDone()"
+      (@openClose.done)="miradorOpened()"
       class="overlay"
     >
       <a
         href="javascript:void(0)"
-        (click)="miradorShow = !miradorShow"
+        (click)="miradorClosed()"
         class="closebtn"
         id="closeNav"
-      >&times;</a
+        >&times;</a
       >
       <div class="overlay-content">
         <app-mirador-viewer
+          (miradorViewer)="setMiradorViewer($event)"
           [manifest]="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
           *ngIf="miradorShown"
         ></app-mirador-viewer>

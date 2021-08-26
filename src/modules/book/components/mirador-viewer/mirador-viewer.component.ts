@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import * as Mirador from "../../../../assets/mirador/mirador.min.js";
 
 @Component({
@@ -6,13 +6,14 @@ import * as Mirador from "../../../../assets/mirador/mirador.min.js";
   templateUrl: "./mirador-viewer.component.html",
   styleUrls: ["./mirador-viewer.component.scss"],
 })
-export class MiradorViewerComponent implements OnInit, AfterViewInit {
+export class MiradorViewerComponent implements OnInit {
   @Input() public manifest: string;
+  @Output() public miradorViewer = new EventEmitter();
 
   constructor() {}
 
-  ngAfterViewInit(): void {
-    Mirador.viewer({
+  ngOnInit(): void {
+    let viewer = Mirador.viewer({
       id: "mirador",
       windows: [
         {
@@ -21,7 +22,6 @@ export class MiradorViewerComponent implements OnInit, AfterViewInit {
         },
       ],
     });
+    this.miradorViewer.emit(viewer);
   }
-
-  ngOnInit() {}
 }
