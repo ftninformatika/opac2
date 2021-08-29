@@ -1,47 +1,69 @@
 <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
-        (click)="frame.show()" mdbWavesEffect>Додај догађај
+        (click)="modalDialog.show()" mdbWavesEffect>Додај догађај
 </button>
 
-<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #modalDialog="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold"><mdb-icon far icon="calendar-alt"></mdb-icon> Догађај</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+        <h4 class="modal-title w-100 font-weight-bold">
+          <mdb-icon id="calendar-icon" far icon="calendar-alt"></mdb-icon>
+          Догађај
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalDialog.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <input type="text" id="orangeForm-name" class="form-control" [formControl]="title"
+          <input type="text" id="orangeForm-name" class="form-control" [formControl]="title" [(ngModel)]="event.title"
                  mdbInput mdbValidate>
-          <label for="orangeForm-name">Наслов</label>
+          <label for="orangeForm-name">* Наслов</label>
           <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
             Наслов је обавезан
           </mdb-error>
         </div>
         <div class="md-form mb-5">
           <textarea class="md-textarea form-control " rows="2" id="content" type="text" length="120"
-                    [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
-          <label for="content">Садржај</label>
+                    [(ngModel)]="event.content" [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
+          <label for="content">* Садржај</label>
           <mdb-error
             *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
           </mdb-error>
         </div>
 
         <div class="md-form mb-4">
-          <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'Изаберите датум'"
-                         id="date" [locale]="'de'" [formControl]="date" required></mdb-date-picker>
+          <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'* Изаберите датум'"
+                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" required>
+          </mdb-date-picker>
           <mdb-error
             *ngIf="date.invalid && (date.dirty || date.touched)">
             Датум је обавезан
           </mdb-error>
         </div>
 
+        <div class="file-field md-form">
+          <label for="file" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Изаберите фотографију
+          </label>
+          <input id="file" #file type="file" accept='image/*' (change)="onImageUpload(file.files)"
+                 data-buttonText="Izaberite"/>
+        </div>
+
+        <div class="md-form mb-4">
+          <img *ngIf="!this.selectedImage; else newImage" src="../../../../../assets/icons/icon-96x96.png" height="100"
+               width="100" alt="Фотографија">
+          <ng-template #newImage>
+            <img *ngIf="this.selectedImage" src="{{imgURL}}" height="100" width="100" alt="Фотографија">
+          </ng-template>
+          <input [disabled] class="file-path" type="text" placeholder="Назив фотографије"
+                 [value]="this.selectedImage?.name">
+
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect>Направи</button>
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent()">Направи</button>
       </div>
     </div>
   </div>
