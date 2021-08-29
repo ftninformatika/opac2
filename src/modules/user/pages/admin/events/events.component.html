@@ -1,6 +1,63 @@
-<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+<button id="btn-add-event" type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
         (click)="modalDialog.show()" mdbWavesEffect>Додај догађај
 </button>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="md-form">
+        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+               mdbInput>
+        <label for="search-input">Претражи</label>
+      </div>
+    </div>
+    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="events" [sortBy]="sortFields[i]"
+            scope="col">{{head | titlecase}}
+          <mdb-icon *ngIf="head !== ''" fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+      <tr *ngFor="let ev of events; let i = index">
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          <img src="../../../../../assets/icons/icon-72x72.png" height="80" width="80">
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.title}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.content}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.date}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+           <span class="table-remove">
+              <div class="remove-from-shelf" mdbTooltip="Измени" placement="left" style="cursor: pointer">
+              <i class="fas fa-edit orange-text fa-2x"></i>
+            </div>
+           </span>
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+           <span class="table-remove">
+              <div class="remove-from-shelf" mdbTooltip="Избриши" placement="left" style="cursor: pointer">
+              <i class="fas fa-trash red-text fa-2x"></i>
+            </div>
+           </span>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="6">
+          <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                [searchDataSource]="events">
+          </mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
 
 <div mdbModal #modalDialog="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">

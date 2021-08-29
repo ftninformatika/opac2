@@ -21,3 +21,15 @@
   cursor: pointer;
   margin-bottom: 50px;
 }
+
+#btn-add-event {
+  float: right;
+  cursor: pointer;
+}
+
+th, td {
+  height: 80px;
+  width: 160px;
+  text-align: center;
+  vertical-align: middle;
+}

@@ -1,8 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../../../core/services/events.service";
 import {Event} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {IMyOptions, ModalDirective, UploadOutput} from "ng-uikit-pro-standard";
+import {
+  IMyOptions,
+  MdbTableDirective,
+  MdbTablePaginationComponent,
+  ModalDirective,
+  UploadOutput
+} from "ng-uikit-pro-standard";
 import {SR_LOCATE} from "../../../../../utils/consts";
 import {ToastService} from 'ng-uikit-pro-standard';
 
@@ -22,13 +28,33 @@ export class EventsComponent implements OnInit {
   validatingForm: FormGroup;
   myDatePickerOptions: IMyOptions = SR_LOCATE
 
-  constructor(private eventService: EventsService, private toastService: ToastService) {
+  // table
+  @ViewChild(MdbTableDirective, {static: true}) mdbTable: MdbTableDirective;
+  @ViewChild(MdbTablePaginationComponent, {static: true}) mdbTablePagination: MdbTablePaginationComponent;
+
+  headElements = ['', 'Наслов', 'Садржај', 'Датум', '', ''];
+  sortFields = ['', 'title', 'content', 'date',];
+
+  searchText: string = '';
+  previous: string;
+  maxVisibleItems: number = 8;
+
+  constructor(private eventService: EventsService, private toastService: ToastService, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.eventService.getAll().subscribe(data => {
       this.events = data;
       console.log(this.events);
+      const date = new Date();
+      this.events = [];
+      for (let i = 1; i <= 25; i++) {
+        this.events.push({title: 'Naslov ' + i.toString(), content: 'Sadrzaj ' + i, date: date});
+      }
+
+      this.mdbTable.setDataSource(this.events);
+      this.events = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
     });
 
     this.createForm();
@@ -83,5 +109,42 @@ export class EventsComponent implements OnInit {
     reader.onload = () => {
       this.imgURL = reader.result;
     };
+  }
+
+
+  @HostListener('input') oninput() {
+    this.mdbTablePagination.searchText = this.searchText;
+  }
+
+  ngAfterViewInit() {
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
+    this.mdbTablePagination.calculateFirstItemIndex();
+    this.mdbTablePagination.calculateLastItemIndex();
+    this.cdRef.detectChanges();
+  }
+
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.events = this.mdbTable.getDataSource();
+    }
+
+    if (this.searchText) {
+      this.events = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
+
+    this.mdbTablePagination.calculateFirstItemIndex();
+    this.mdbTablePagination.calculateLastItemIndex();
+
+    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
+      this.mdbTablePagination.calculateFirstItemIndex();
+      this.mdbTablePagination.calculateLastItemIndex();
+    });
+  }
+
+  remove(ev: Event) {
   }
 }
