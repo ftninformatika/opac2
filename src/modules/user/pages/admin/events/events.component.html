@@ -1,1 +1,48 @@
-<p>events works!</p>
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Додај догађај
+</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold"><mdb-icon far icon="calendar-alt"></mdb-icon> Догађај</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="orangeForm-name" class="form-control" [formControl]="title"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-name">Наслов</label>
+          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
+            Наслов је обавезан
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5">
+          <textarea class="md-textarea form-control " rows="2" id="content" type="text" length="120"
+                    [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
+          <label for="content">Садржај</label>
+          <mdb-error
+            *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
+          </mdb-error>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'Изаберите датум'"
+                         id="date" [locale]="'de'" [formControl]="date" required></mdb-date-picker>
+          <mdb-error
+            *ngIf="date.invalid && (date.dirty || date.touched)">
+            Датум је обавезан
+          </mdb-error>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect>Направи</button>
+      </div>
+    </div>
+  </div>
+</div>
