@@ -18,10 +18,9 @@ import {ToastService} from 'ng-uikit-pro-standard';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  @ViewChild('modalDialog') public modalDialog: ModalDirective;
-
   events: Event[];
   event: Event;
+  activeEvent: Event;
   selectedImage: File;
   imgURL: string | ArrayBuffer;
 
@@ -32,8 +31,8 @@ export class EventsComponent implements OnInit {
   @ViewChild(MdbTableDirective, {static: true}) mdbTable: MdbTableDirective;
   @ViewChild(MdbTablePaginationComponent, {static: true}) mdbTablePagination: MdbTablePaginationComponent;
 
-  headElements = ['', 'Наслов', 'Садржај', 'Датум', '', ''];
-  sortFields = ['', 'title', 'content', 'date',];
+  headElements = ['', 'Наслов', 'Садржај', 'Датум', ''];
+  sortFields = ['', 'title', 'content', 'date'];
 
   searchText: string = '';
   previous: string;
@@ -45,13 +44,6 @@ export class EventsComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.getAll().subscribe(data => {
       this.events = data;
-      console.log(this.events);
-      const date = new Date();
-      this.events = [];
-      for (let i = 1; i <= 25; i++) {
-        this.events.push({title: 'Naslov ' + i.toString(), content: 'Sadrzaj ' + i, date: date});
-      }
-
       this.mdbTable.setDataSource(this.events);
       this.events = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -85,19 +77,29 @@ export class EventsComponent implements OnInit {
     if (this.validatingForm.invalid) {
       this.toastService.warning("Није могуће направити догађај. Проверите да ли сте попунили обавезна поља")
     } else {
-      const formData = new FormData();
-      formData.append('file', this.selectedImage);
-
-      console.log(this.event)
-      this.toastService.success("Успешно сте направили нови догађај")
+      this.eventService.create(this.createFormData()).subscribe(success => {
+        if (success) {
+          this.events = [this.event, ...this.events];
+          this.toastService.success("Успешно сте направили нови догађај")
+        } else {
+          this.toastService.error("Дошло је до грешке приликом креирања новог догађаја. Покушајте поново")
+        }
+      });
       this.closeDialog();
-      // this.eventService.create(this.event, formData)
     }
+  }
+
+  createFormData() {
+    const formData = new FormData();
+    formData.append('file', this.selectedImage);
+    formData.append('title', this.event.title);
+    formData.append('content', this.event.content);
+    // formData.append('date', this.event.date.toString());
+    return formData;
   }
 
   closeDialog() {
     this.validatingForm.reset();
-    this.modalDialog.hide();
     this.selectedImage = null;
     this.imgURL = null;
   }
@@ -145,6 +147,24 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  remove(ev: Event) {
+  setActiveEvent(ev: Event) {
+    this.activeEvent = ev;
+  }
+
+  setEditEvent(ev: Event) {
+    this.event = {...ev};
+  }
+
+  remove() {
+    console.log("Delete:" + this.activeEvent.title)
+    const idx: number = this.events.findIndex(item => item._id === this.activeEvent._id);
+    if (idx !== -1) {
+      this.events.splice(idx, 1);
+      this.events = [...this.events]
+    }
+  }
+
+  edit() {
+    console.log("Edit:" + this.activeEvent.title)
   }
 }

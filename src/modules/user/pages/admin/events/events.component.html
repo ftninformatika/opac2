@@ -1,5 +1,5 @@
-<button id="btn-add-event" type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
-        (click)="modalDialog.show()" mdbWavesEffect>Додај догађај
+<button id="btn-add-event" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
+        data-target="#basicExample" (click)="newModal.show()" mdbWavesEffect>Додај догађај
 </button>
 
 
@@ -15,39 +15,38 @@
     <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
       <thead class="sticky-top">
       <tr>
-        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="events" [sortBy]="sortFields[i]"
-            scope="col">{{head | titlecase}}
+        <th class="th-{{sortFields[i]}}" *ngFor="let head of headElements; let i = index" [mdbTableSort]="events"
+            [sortBy]="sortFields[i]" scope="col">{{head | titlecase}}
           <mdb-icon *ngIf="head !== ''" fas icon="sort"></mdb-icon>
         </th>
       </tr>
       </thead>
       <tbody #row>
       <tr *ngFor="let ev of events; let i = index">
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-image">
           <img src="../../../../../assets/icons/icon-72x72.png" height="80" width="80">
         </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.title}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.content}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{ev.date}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-title">
+          {{ev.title}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-content">
+          {{ev.content}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-date">
+          {{ev.date | date: 'dd.MM.yyyy.'}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-           <span class="table-remove">
-              <div class="remove-from-shelf" mdbTooltip="Измени" placement="left" style="cursor: pointer">
-              <i class="fas fa-edit orange-text fa-2x"></i>
-            </div>
-           </span>
-        </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-           <span class="table-remove">
-              <div class="remove-from-shelf" mdbTooltip="Избриши" placement="left" style="cursor: pointer">
-              <i class="fas fa-trash red-text fa-2x"></i>
-            </div>
-           </span>
+          <div class="table-row-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
+               (click)="setEditEvent(ev); newModal.show();">
+            <i class="fas fa-edit orange-text fa-2x"></i>
+          </div>
+          <div class="table-row-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
+               (click)="setActiveEvent(ev); deleteModal.show();">
+            <i class="fas fa-trash red-text fa-2x"></i>
+          </div>
         </td>
       </tr>
       </tbody>
       <tfoot class="grey lighten-5 w-100">
       <tr>
-        <td colspan="6">
+        <td colspan="5">
           <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
                                 [searchDataSource]="events">
           </mdb-table-pagination>
@@ -58,8 +57,33 @@
   </div>
 </div>
 
+<div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title center" id="myModalLabel">Брисање догађаја</h4>
+      </div>
+      <div class="modal-body">
+        <label>Да ли сте сигурни да желите да избришете догађај са насловом <i>{{activeEvent?.title}}</i> ?</label>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                (click)="deleteModal.hide();">Затвори
+        </button>
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
+                (click)="remove(); deleteModal.hide()">Избриши
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div mdbModal #modalDialog="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+<div mdbModal #newModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,7 +92,7 @@
           <mdb-icon id="calendar-icon" far icon="calendar-alt"></mdb-icon>
           Догађај
         </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalDialog.hide()">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="newModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -82,7 +106,7 @@
           </mdb-error>
         </div>
         <div class="md-form mb-5">
-          <textarea class="md-textarea form-control " rows="2" id="content" type="text" length="120"
+          <textarea class="md-textarea form-control " rows="1" id="content" type="text" length="120"
                     [(ngModel)]="event.content" [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
           <label for="content">* Садржај</label>
           <mdb-error
@@ -120,7 +144,9 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent()">Направи</button>
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();">
+          Направи
+        </button>
       </div>
     </div>
   </div>

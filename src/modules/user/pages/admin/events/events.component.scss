@@ -30,6 +30,15 @@
 th, td {
   height: 80px;
   width: 160px;
-  text-align: center;
+  text-align: justify;
   vertical-align: middle;
+}
+
+.td-image, .td-date, .th-date {
+  text-align: center;
+}
+
+.table-row-btns {
+  display: inline;
+  margin-left: 20px;
 }

@@ -22,7 +22,7 @@ export class EventsService {
     return this._httpClient.get( `${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`) as Observable<Event>;
   }
 
-  public create(event: Event, formData: FormData) {
-    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createEvent, formData);
+  public create(formData: FormData) {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createEvent, formData) as Observable<boolean>;
   }
 }
