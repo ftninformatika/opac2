@@ -3,4 +3,5 @@ export class Event {
   date?: Date;
   content?: string;
   title?: string;
+  image?: string | ArrayBuffer;
 }

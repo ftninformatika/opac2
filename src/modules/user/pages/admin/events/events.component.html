@@ -24,7 +24,11 @@
       <tbody #row>
       <tr *ngFor="let ev of events; let i = index">
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-image">
-          <img src="../../../../../assets/icons/icon-72x72.png" height="80" width="80">
+          <img *ngIf="!this.ev.image; else downloadedImage" src="../../../../../assets/icons/icon-72x72.png"
+               height="80" width="80" alt="Фотографија">
+          <ng-template #downloadedImage>
+            <img src="{{this.ev.image}}" height="100" width="100" alt="Фотографија">
+          </ng-template>
         </td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-title">
           {{ev.title}}</td>
@@ -116,7 +120,7 @@
 
         <div class="md-form mb-4">
           <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'* Изаберите датум'"
-                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" required>
+                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date"  required>
           </mdb-date-picker>
           <mdb-error
             *ngIf="date.invalid && (date.dirty || date.touched)">
@@ -133,11 +137,18 @@
         </div>
 
         <div class="md-form mb-4">
-          <img *ngIf="!this.selectedImage; else newImage" src="../../../../../assets/icons/icon-96x96.png" height="100"
-               width="100" alt="Фотографија">
-          <ng-template #newImage>
-            <img *ngIf="this.selectedImage" src="{{imgURL}}" height="100" width="100" alt="Фотографија">
+          <img *ngIf="this.selectedImage && imgURL; else editingEvent"
+               src="{{imgURL}}" height="100" width="100" alt="Фотографија">
+
+          <ng-template #editingEvent>
+            <img *ngIf="this.event.image; else defaultPhoto"
+                 src="{{this.event.image}}" height="100" width="100" alt="Фотографија">
           </ng-template>
+
+          <ng-template #defaultPhoto>
+            <img src="../../../../../assets/icons/icon-96x96.png" height="100" width="100" alt="Фотографија">
+          </ng-template>
+
           <input [disabled] class="file-path" type="text" placeholder="Назив фотографије"
                  [value]="this.selectedImage?.name">
 

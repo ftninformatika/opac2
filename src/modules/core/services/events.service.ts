@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
@@ -19,10 +19,16 @@ export class EventsService {
   }
 
   public getById(eventId: string): Observable<Event> {
-    return this._httpClient.get( `${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`) as Observable<Event>;
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`) as Observable<Event>;
   }
 
   public create(formData: FormData) {
     return this._httpClient.post(ApiEndpointConfig.Paths.admin.createEvent, formData) as Observable<boolean>;
   }
+
+  public downloadPhoto(eventId: string) {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.downloadImage}/${eventId}`,
+      {responseType: 'blob'}) as Observable<Blob>;
+  }
+
 }

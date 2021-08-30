@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../../../core/services/events.service";
 import {Event} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -6,7 +6,6 @@ import {
   IMyOptions,
   MdbTableDirective,
   MdbTablePaginationComponent,
-  ModalDirective,
   UploadOutput
 } from "ng-uikit-pro-standard";
 import {SR_LOCATE} from "../../../../../utils/consts";
@@ -42,8 +41,8 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eventService.getAll().subscribe(data => {
-      this.events = data;
+    this.eventService.getAll().subscribe(async data => {
+      this.events = await this.downloadImages(data);
       this.mdbTable.setDataSource(this.events);
       this.events = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -52,6 +51,21 @@ export class EventsComponent implements OnInit {
     this.createForm();
     this.event = new Event();
   }
+
+
+  async downloadImages(events) {
+    for (let i = 0; i < events.length; i++) {
+      this.eventService.downloadPhoto(events[i]._id).subscribe(photo => {
+        var reader = new FileReader();
+        reader.readAsDataURL(photo);
+        reader.onload = () => {
+          events[i].image = reader.result;
+        };
+      })
+    }
+    return events;
+  }
+
 
   createForm() {
     this.validatingForm = new FormGroup({
@@ -72,6 +86,7 @@ export class EventsComponent implements OnInit {
   get date() {
     return this.validatingForm.get('date');
   }
+
 
   onBtnCreateEvent() {
     if (this.validatingForm.invalid) {
@@ -94,14 +109,8 @@ export class EventsComponent implements OnInit {
     formData.append('file', this.selectedImage);
     formData.append('title', this.event.title);
     formData.append('content', this.event.content);
-    // formData.append('date', this.event.date.toString());
+    // formData.append('date', this.event.date.toString());   // todo: set date
     return formData;
-  }
-
-  closeDialog() {
-    this.validatingForm.reset();
-    this.selectedImage = null;
-    this.imgURL = null;
   }
 
   onImageUpload(file: UploadOutput | any): void {
@@ -114,7 +123,15 @@ export class EventsComponent implements OnInit {
   }
 
 
-  @HostListener('input') oninput() {
+  closeDialog() {
+    this.validatingForm.reset();
+    this.selectedImage = null;
+    this.imgURL = null;
+    this.event = {};
+  }
+
+  @HostListener('input')
+  oninput() {
     this.mdbTablePagination.searchText = this.searchText;
   }
 
