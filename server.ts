@@ -11,8 +11,22 @@ import { existsSync } from "fs";
 import { enableProdMode } from "@angular/core";
 import * as url from "url";
 import { environment } from "./src/environments/environment";
+(global as any).self = { fetch: require("node-fetch") };
 (global as any).WebSocket = require("ws");
 (global as any).XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+(global as any).crypto = (global as any).crypto ||
+  (global as any).msCrypto || {
+    getRandomValues: (array) => {
+      for (let i = 0, l = array.length; i < l; i++) {
+        array[i] = Math.floor(Math.random() * 256);
+      }
+      return array;
+    },
+  };
+
+if (crypto.getRandomValues === undefined) {
+  throw new Error("crypto is not supported on this browser");
+}
 
 //enableProdMode();
 export function app(): express.Express {
