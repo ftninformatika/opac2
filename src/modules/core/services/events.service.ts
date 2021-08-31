@@ -31,4 +31,12 @@ export class EventsService {
       {responseType: 'blob'}) as Observable<Blob>;
   }
 
+  public delete(eventId: string): Observable<boolean> {
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`) as Observable<boolean>;
+  }
+
+  public edit(eventId: string, formData: FormData): Observable<Event>{
+    return this._httpClient.put(`${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`, formData) as Observable<Event>;
+  }
+
 }

@@ -1,5 +1,5 @@
 <button id="btn-add-event" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
-        data-target="#basicExample" (click)="newModal.show()" mdbWavesEffect>Додај догађај
+        data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
 </button>
 
 
@@ -38,11 +38,11 @@
           {{ev.date | date: 'dd.MM.yyyy.'}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
           <div class="table-row-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
-               (click)="setEditEvent(ev); newModal.show();">
+               (click)="setEditEvent(ev);">
             <i class="fas fa-edit orange-text fa-2x"></i>
           </div>
           <div class="table-row-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
-               (click)="setActiveEvent(ev); deleteModal.show();">
+               (click)="setEventForDelete(ev); deleteModal.show();">
             <i class="fas fa-trash red-text fa-2x"></i>
           </div>
         </td>
@@ -73,7 +73,7 @@
         <h4 class="modal-title center" id="myModalLabel">Брисање догађаја</h4>
       </div>
       <div class="modal-body">
-        <label>Да ли сте сигурни да желите да избришете догађај са насловом <i>{{activeEvent?.title}}</i> ?</label>
+        <label>Да ли сте сигурни да желите да обришете догађај са насловом <i>{{activeEvent?.title}}</i> ?</label>
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<div mdbModal #newModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+<div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -96,7 +96,7 @@
           <mdb-icon id="calendar-icon" far icon="calendar-alt"></mdb-icon>
           Догађај
         </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="newModal.hide()">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -156,7 +156,7 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();">
-          Направи
+          Сачувај
         </button>
       </div>
     </div>
