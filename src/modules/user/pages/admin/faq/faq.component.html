@@ -1,0 +1,13 @@
+<button id="btn-add-faq" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
+        data-target="#basicExample"  mdbWavesEffect>Додај питање
+</button>
+
+
+<h5>Најчешћа питања</h5>
+
+<mdb-accordion [multiple]="false" aria-multiselectable="true">
+  <mdb-accordion-item  [collapsed]="true" *ngFor="let faq of faqs; let i = index">
+    <mdb-accordion-item-head> {{i+1}}. {{ faq.question }} </mdb-accordion-item-head>
+    <mdb-accordion-item-body> {{ faq.answer }} </mdb-accordion-item-body>
+  </mdb-accordion-item>
+</mdb-accordion>

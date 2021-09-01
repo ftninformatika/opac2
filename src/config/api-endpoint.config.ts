@@ -30,7 +30,8 @@ export class ApiEndpointConfig {
       swapIndexes: `${ApiEndpointConfig.Origin}/opac/book_collections/swap_indexes`,
       getEvents: `${ApiEndpointConfig.Origin}/events`,
       createEvent: `${ApiEndpointConfig.Origin}/events/add`,
-      downloadImage: `${ApiEndpointConfig.Origin}/events/image`
+      downloadImage: `${ApiEndpointConfig.Origin}/events/image`,
+      getFaq: `${ApiEndpointConfig.Origin}/faq/get`,
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,

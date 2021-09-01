@@ -12,13 +12,14 @@ import { RouterModule} from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';
-import { MDBBootstrapModulesPro, MdbInputDirective } from 'ng-uikit-pro-standard';
+import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
 import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
 import {ChatPage} from "./pages/admin/chat/chat.page";
 import {EventsComponent} from "./pages/admin/events/events.component";
+import {FaqComponent} from "./pages/admin/faq/faq.component";
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import {EventsComponent} from "./pages/admin/events/events.component";
     AdminCollectionEditor,
     ActiveReservationsPage,
     ChatPage,
-    EventsComponent
+    EventsComponent,
+    FaqComponent
   ]
 })
 export class UserModule {}

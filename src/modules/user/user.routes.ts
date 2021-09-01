@@ -13,6 +13,7 @@ import { Routes } from '@angular/router';
 import {ActiveReservationsPage} from "./pages/active-reservations/active-reservations.page";
 import {ChatPage} from "./pages/admin/chat/chat.page";
 import {EventsComponent} from "./pages/admin/events/events.component";
+import {FaqComponent} from "./pages/admin/faq/faq.component";
 
 export const UserRoutes: Routes = [
   {
@@ -70,6 +71,11 @@ export const UserRoutes: Routes = [
   {
     path: 'admin-events',
     component: EventsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-faq',
+    component: FaqComponent,
     canActivate: [AdminGuard]
   },
   {
