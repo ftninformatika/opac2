@@ -27,21 +27,25 @@
           <img *ngIf="!this.ev.image; else downloadedImage" src="../../../../../assets/icons/icon-72x72.png"
                height="80" width="80" alt="Фотографија">
           <ng-template #downloadedImage>
-            <img src="{{this.ev.image}}" height="100" width="100" alt="Фотографија">
+            <img src="{{this.ev.image}}" height="120" width="160" alt="Фотографија">
           </ng-template>
         </td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-title">
           {{ev.title}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-content">
-          {{ev.content}}</td>
+          <div>{{ev.content | slice:0:200}}
+            <a class="read-more" *ngIf="ev.content && ev.content.length >= 200" href="javascript:"
+               (click)="onExpandText(ev); expandModal.show();"> Опширније >></a>
+          </div>
+        </td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-date">
           {{ev.date | date: 'dd.MM.yyyy.'}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-          <div class="table-row-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-buttons">
+          <div class="table-column-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
                (click)="setEditEvent(ev);">
             <i class="fas fa-edit orange-text fa-2x"></i>
           </div>
-          <div class="table-row-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
+          <div class="table-column-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
                (click)="setEventForDelete(ev); deleteModal.show();">
             <i class="fas fa-trash red-text fa-2x"></i>
           </div>
@@ -110,7 +114,7 @@
           </mdb-error>
         </div>
         <div class="md-form mb-5">
-          <textarea class="md-textarea form-control " rows="1" id="content" type="text" length="120"
+          <textarea class="md-textarea form-control " rows="2" id="content" type="text" length="120"
                     [(ngModel)]="event.content" [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
           <label for="content">* Садржај</label>
           <mdb-error
@@ -120,7 +124,7 @@
 
         <div class="md-form mb-4">
           <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'* Изаберите датум'"
-                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date"  required>
+                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" required>
           </mdb-date-picker>
           <mdb-error
             *ngIf="date.invalid && (date.dirty || date.touched)">
@@ -157,6 +161,29 @@
       <div class="modal-footer d-flex justify-content-center">
         <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();">
           Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #expandModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close"
+                (click)="onCloseExpandText(); expandModal.hide();">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100">{{event.title}}</h4>
+      </div>
+      <div class="modal-body">
+        {{event.content}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                (click)="onCloseExpandText(); expandModal.hide();" mdbWavesEffect>Затвори
         </button>
       </div>
     </div>

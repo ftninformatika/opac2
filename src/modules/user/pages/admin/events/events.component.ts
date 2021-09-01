@@ -107,6 +107,9 @@ export class EventsComponent implements OnInit {
       if (success) {
         this.event.date = new Date(this.event.date);
         this.events = [this.event, ...this.events];
+        this.mdbTable.setDataSource(this.events);
+        this.cdRef.detectChanges();
+        this.closeDialog();
         this.toastService.success("Успешно сте направили нови догађај")
       } else {
         this.toastService.error("Дошло је до грешке приликом креирања новог догађаја. Покушајте поново")
@@ -148,7 +151,6 @@ export class EventsComponent implements OnInit {
     this.imgURL = null;
     this.event = {};
     this.createModal.hide();
-
   }
 
   ngAfterViewInit() {
@@ -237,5 +239,13 @@ export class EventsComponent implements OnInit {
     editedEvent.date = new Date(editedEvent.date);
     newArray[idx] = editedEvent;
     this.events = newArray;
+  }
+
+  onExpandText(event: Event) {
+    this.event = event;
+  }
+
+  onCloseExpandText() {
+    this.event = {};
   }
 }

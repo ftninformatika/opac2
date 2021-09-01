@@ -29,7 +29,6 @@
 
 th, td {
   height: 80px;
-  width: 160px;
   text-align: justify;
   vertical-align: middle;
 }
@@ -38,7 +37,33 @@ th, td {
   text-align: center;
 }
 
-.table-row-btns {
+.td-image {
+  width: 160px;
+}
+
+.td-title {
+  text-align: left;
+  width: 80px;
+}
+
+.td-content {
+  text-align: left;
+  width: 250px;
+}
+
+.td-date {
+  width: 80px;
+}
+
+.td-buttons {
+  width: 120px;
+}
+
+.table-column-btns {
   display: inline;
   margin-left: 20px;
+}
+
+.read-more {
+  margin-left: 5px
 }
