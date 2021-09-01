@@ -31,7 +31,7 @@ export class ApiEndpointConfig {
       getEvents: `${ApiEndpointConfig.Origin}/events`,
       createEvent: `${ApiEndpointConfig.Origin}/events/add`,
       downloadImage: `${ApiEndpointConfig.Origin}/events/image`,
-      getFaq: `${ApiEndpointConfig.Origin}/faq/get`,
+      faq: `${ApiEndpointConfig.Origin}/faq`,
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,

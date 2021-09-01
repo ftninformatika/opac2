@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
@@ -15,6 +15,10 @@ export class FaqService {
   }
 
   public getAll(): Observable<Faq[]> {
-    return this._httpClient.get(ApiEndpointConfig.Paths.admin.getFaq) as Observable<Faq[]>;
+    return this._httpClient.get(ApiEndpointConfig.Paths.admin.faq + '/get') as Observable<Faq[]>;
+  }
+
+  public create(faq: Faq): Observable<Faq> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.faq, faq) as Observable<Faq>;
   }
 }

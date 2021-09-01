@@ -1,13 +1,67 @@
 <button id="btn-add-faq" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
-        data-target="#basicExample"  mdbWavesEffect>Додај питање
+        data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај питање
 </button>
 
 
 <h5>Најчешћа питања</h5>
 
 <mdb-accordion [multiple]="false" aria-multiselectable="true">
-  <mdb-accordion-item  [collapsed]="true" *ngFor="let faq of faqs; let i = index">
-    <mdb-accordion-item-head> {{i+1}}. {{ faq.question }} </mdb-accordion-item-head>
+  <mdb-accordion-item [collapsed]="true" *ngFor="let faq of faqs; let i = index">
+    <mdb-accordion-item-head> {{i + 1}}. {{ faq.question }} </mdb-accordion-item-head>
     <mdb-accordion-item-body> {{ faq.answer }} </mdb-accordion-item-body>
   </mdb-accordion-item>
 </mdb-accordion>
+
+
+<div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog();createModal.hide();"
+     data-mdb-target="#eventModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">
+          <mdb-icon id="question-icon" far icon="question-circle"></mdb-icon>
+          Питање
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="closeDialog();createModal.hide();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text"
+                 id="orangeForm-name"
+                 class="form-control"
+                 [formControl]="question"
+                 [(ngModel)]="faq.question"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-name">* Питање</label>
+          <mdb-error *ngIf="question.invalid && (question.dirty || question.touched)">
+            Питање је обавезно
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5">
+          <textarea class="md-textarea form-control"
+                    rows="2"
+                    id="content"
+                    type="text"
+                    length="120"
+                    [(ngModel)]="faq.answer"
+                    [formControl]="answer"
+                    mdbCharCounter mdbInput mdbValidate>
+          </textarea>
+          <label for="content">* Одговор</label>
+          <mdb-error
+            *ngIf="answer.invalid && (answer.dirty || answer.touched)">Одговор је обавезан
+          </mdb-error>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateFaq();">
+          Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
