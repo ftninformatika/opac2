@@ -103,12 +103,13 @@ export class EventsComponent implements OnInit {
   }
 
   addNew() {
-    this.eventService.create(this.createFormData(this.event)).subscribe(success => {
-      if (success) {
-        this.event.date = new Date(this.event.date);
-        this.events = [this.event, ...this.events];
-        this.mdbTable.setDataSource(this.events);
-        this.cdRef.detectChanges();
+    this.eventService.create(this.createFormData(this.event)).subscribe(async savedEvent => {
+      if (savedEvent) {
+        savedEvent.date = new Date(savedEvent.date);
+        if (this.selectedImage) {
+          savedEvent.image = this.imgURL;
+        }
+        this.events = [savedEvent, ...this.events];
         this.closeDialog();
         this.toastService.success("Успешно сте направили нови догађај")
       } else {
@@ -131,7 +132,6 @@ export class EventsComponent implements OnInit {
 
   parseDate(date: string) {
     const parts = date.split('.');
-    console.log(Number(parts[1]))
     return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
   }
 

@@ -23,7 +23,7 @@ export class EventsService {
   }
 
   public create(formData: FormData) {
-    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createEvent, formData) as Observable<boolean>;
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.createEvent, formData) as Observable<Event>;
   }
 
   public downloadPhoto(eventId: string) {
