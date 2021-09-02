@@ -17,6 +17,7 @@ export class MiradorViewerComponent implements OnInit {
       id: "mirador",
       windows: [
         {
+          views: [{ key: "single" }, { key: "book" }, { key: "gallery" }],
           manifestId: this.manifest,
           provider: "Библиотека 'Милутин Бојић'",
         },
