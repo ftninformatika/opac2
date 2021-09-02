@@ -21,4 +21,13 @@ export class FaqService {
   public create(faq: Faq): Observable<Faq> {
     return this._httpClient.post(ApiEndpointConfig.Paths.admin.faq, faq) as Observable<Faq>;
   }
+
+  public edit(faq: Faq): Observable<boolean> {
+    return this._httpClient.put(ApiEndpointConfig.Paths.admin.faq, faq) as Observable<boolean>;
+  }
+
+  public delete(faqId: string): Observable<boolean> {
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.faq}/${faqId}`) as Observable<boolean>;
+  }
+
 }

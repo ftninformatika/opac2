@@ -1,12 +1,22 @@
-<button id="btn-add-faq" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
-        data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај питање
-</button>
+<a type="button" mdbBtn floating="true" color="default" class="waves-light" mdbWavesEffect>
+  <mdb-icon fas icon="plus" (click)="onBtnCreteNewFaq()"></mdb-icon>
+</a>
+
+<a type="button" mdbBtn floating="true" color="orange" class="waves-light" mdbWavesEffect>
+  <mdb-icon far icon="edit" (click)="onBtnEditFaq();"></mdb-icon>
+</a>
+
+
+<a type="button" mdbBtn floating="true" color="red" class="waves-light" mdbWavesEffect>
+  <mdb-icon far icon="trash-alt" (click)="onBtnDeleteFaq();"></mdb-icon>
+</a>
 
 
 <h5>Најчешћа питања</h5>
 
-<mdb-accordion [multiple]="false" aria-multiselectable="true">
-  <mdb-accordion-item [collapsed]="true" *ngFor="let faq of faqs; let i = index">
+<mdb-accordion [multiple]="true" aria-multiselectable="true">
+  <mdb-accordion-item id="{{faq._id}}" (click)="setActiveFaq($event, faq)" [collapsed]="true"
+                      *ngFor="let faq of faqs; let i = index">
     <mdb-accordion-item-head> {{i + 1}}. {{ faq.question }} </mdb-accordion-item-head>
     <mdb-accordion-item-body> {{ faq.answer }} </mdb-accordion-item-body>
   </mdb-accordion-item>
@@ -14,7 +24,7 @@
 
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog();createModal.hide();"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="createModal.hide();"
      data-mdb-target="#eventModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -24,7 +34,7 @@
           Питање
         </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                (click)="closeDialog();createModal.hide();">
+                (click)="createModal.hide();">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -58,8 +68,35 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateFaq();">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();">
           Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title center" id="myModalLabel">Брисање питања</h4>
+      </div>
+      <div class="modal-body">
+        <label>Да ли сте сигурни да желите да обришете питање <i>{{expanedFaq ?.question}}</i> ?</label>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                (click)="deleteModal.hide();">Затвори
+        </button>
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
+                (click)="delete(); deleteModal.hide()">Избриши
         </button>
       </div>
     </div>

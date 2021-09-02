@@ -11,10 +11,12 @@ import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
 })
 export class FaqComponent implements OnInit {
   @ViewChild('createModal', {static: true}) createModal: ModalDirective;
+  @ViewChild('deleteModal', {static: true}) deleteModal: ModalDirective;
 
   faqs: Faq[];
   faqForm: FormGroup;
   faq: Faq;
+  expanedFaq: Faq;
 
   editing: boolean;
 
@@ -28,8 +30,8 @@ export class FaqComponent implements OnInit {
 
     this.createForm();
     this.faq = {};
+    this.expanedFaq = {};
   }
-
 
   createForm() {
     this.faqForm = new FormGroup({
@@ -46,7 +48,14 @@ export class FaqComponent implements OnInit {
     return this.faqForm.get('answer');
   }
 
-  onBtnCreateFaq() {
+  onBtnCreteNewFaq() {
+    this.editing = false;
+    this.faqForm.reset();
+    this.faq = {};
+    this.createModal.show();
+  }
+
+  onBtnSaveFaq() {
     if (this.faqForm.invalid) {
       this.toastService.warning("Питање и одговор су обавезна поља");
       return;
@@ -62,7 +71,7 @@ export class FaqComponent implements OnInit {
     this.faqService.create(this.faq).subscribe(createdFaq => {
       if (createdFaq) {
         this.faqs = [...this.faqs, createdFaq];
-        this.closeDialog();
+        this.createModal.hide();
         this.toastService.success("Успешно сте додали ново питање и одговор")
       } else {
         this.toastService.error("Дошло је до грешке приликом додавања новог питања. Покушајте поново")
@@ -72,12 +81,75 @@ export class FaqComponent implements OnInit {
     })
   }
 
+  onBtnEditFaq() {
+    if (!this.expanedFaq._id) {
+      this.toastService.info("Отворите питање које желите да измените")
+      return;
+    }
+    this.editing = true;
+    this.faq = {...this.expanedFaq};
+    this.createModal.show();
+  }
+
   edit() {
+    this.faqService.edit(this.faq).subscribe(response => {
+      if (response) {
+        this.updateArray(this.faq);
+        this.toastService.success("Успешно сте изменили питање")
+        this.editing = false;
+        this.createModal.hide();
+      } else {
+        this.toastService.error("Дошло је до грешке приликом измене питања. Покушајте поново")
+      }
+    }, () => {
+      this.toastService.error("Дошло је до грешке приликом измене питања. Покушајте поново")
+    })
   }
 
-  closeDialog() {
-    this.createModal.hide();
-    this.faqForm.reset();
+  updateArray(faq: Faq) {
+    const idx: number = this.faqs.findIndex(item => item._id === this.faq._id);
+    let newArray = [...this.faqs];
+    newArray[idx] = faq;
+    this.faqs = newArray;
   }
 
+
+  onBtnDeleteFaq() {
+    if (!this.expanedFaq._id) {
+      this.toastService.info("Отворите питање које желите да обришете")
+      return;
+    }
+    this.deleteModal.show();
+  }
+
+  delete() {
+    this.faqService.delete(this.expanedFaq._id).subscribe(response => {
+      if (response) {
+        this.deleteFromArray(this.expanedFaq);
+        this.toastService.success("Успешно сте обрисали питање")
+      } else {
+        this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
+      }
+    }, () => {
+      this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
+    });
+  }
+
+  deleteFromArray(faq: Faq) {
+    const idx: number = this.faqs.findIndex(item => item._id === faq._id);
+    if (idx !== -1) {
+      this.faqs.splice(idx, 1);
+      this.faqs = [...this.faqs]
+    }
+  }
+
+  setActiveFaq(event, faq: Faq) {
+    if (event.currentTarget.children[0].className == 'card active') {
+      this.expanedFaq = {...faq};
+    } else {
+      if (this.expanedFaq._id == faq._id) {  // closed expanded card
+        this.expanedFaq = {};
+      }
+    }
+  }
 }
