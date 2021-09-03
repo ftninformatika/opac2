@@ -4,9 +4,9 @@
 // TODO: put dev baseUrl
 export const environment = {
   production: true,
-  baseUrl: 'bisisWS'
+  //baseUrl: 'bisisWS'
   //baseUrl: 'https://test.bisis.rs/bisisWS'
-  //baseUrl: 'http://localhost:8080'
+  baseUrl: "http://localhost:8080",
 };
 
 /*

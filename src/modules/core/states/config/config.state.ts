@@ -1,9 +1,10 @@
-import {ILibraryConfigurationModel} from '../../../../models/library-configuration.model';
-import {ELocalizationLanguage} from '../../../../config/localization-laguage.enum';
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {ICoder} from '../../../../models/coders/coder.model';
-import {ISelectedFilter} from '../../../../models/search/filter.model';
-import {EFilterType} from '../../../search/components/search-filters/search-filters.component';
+import { ILibraryConfigurationModel } from "../../../../models/library-configuration.model";
+import { ELocalizationLanguage } from "../../../../config/localization-laguage.enum";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { ICoder } from "../../../../models/coders/coder.model";
+import { ISelectedFilter } from "../../../../models/search/filter.model";
+import { EFilterType } from "../../../search/components/search-filters/search-filters.component";
+import { Injectable } from "@angular/core";
 
 export interface IConfigStateModel {
   libConfig: ILibraryConfigurationModel;
@@ -11,16 +12,16 @@ export interface IConfigStateModel {
 
 export const InitialConfigState: IConfigStateModel = {
   libConfig: {
-    libraryName: 'gbns',
-    libraryFullName: 'Градска библиотека у Новом Саду',
-    shortName: 'ГБНС',
+    libraryName: "gbns",
+    libraryFullName: "Градска библиотека у Новом Саду",
+    shortName: "ГБНС",
     locale: ELocalizationLanguage.SERBIAN_CYRILIC,
-    navbarColor: 'bg-primary'
-  }
+    navbarColor: "bg-primary",
+  },
 };
 
 export class ChangeConfigAction {
-  static readonly type = '[Config] Change Config Action';
+  static readonly type = "[Config] Change Config Action";
   public libConf: ILibraryConfigurationModel;
 
   public constructor(libConfig: ILibraryConfigurationModel) {
@@ -29,7 +30,7 @@ export class ChangeConfigAction {
 }
 
 export class SetKioskSubLocationAction {
-  static readonly type = '[Config] Set Kiosk SubLocation Action';
+  static readonly type = "[Config] Set Kiosk SubLocation Action";
   public kioskLocation: ICoder;
   public constructor(kioskLocation: ICoder) {
     this.kioskLocation = kioskLocation;
@@ -37,22 +38,22 @@ export class SetKioskSubLocationAction {
 }
 
 export class ClearKioskSubLocationAction {
-  static readonly type = '[Config] Clear Kiosk SubLocation Action';
+  static readonly type = "[Config] Clear Kiosk SubLocation Action";
 }
 
 // @ts-ignore
 @State<IConfigStateModel>({
-  name: 'CONFIG_STATE',
-  defaults: InitialConfigState
+  name: "CONFIG_STATE",
+  defaults: InitialConfigState,
 })
+@Injectable()
 export class ConfigState {
-
   @Selector()
   public static library(state: IConfigStateModel) {
     if (state.libConfig && state.libConfig.libraryName) {
       return state.libConfig.libraryName;
     }
-    return 'bgb';
+    return "bgb";
   }
 
   @Selector()
@@ -60,7 +61,7 @@ export class ConfigState {
     if (state && state.libConfig.libraryName) {
       return state.libConfig.libraryFullName;
     }
-    return '--';
+    return "--";
   }
 
   @Selector()
@@ -80,8 +81,8 @@ export class ConfigState {
           label: state.libConfig.kioskSublocation.description,
           value: state.libConfig.kioskSublocation.coder_id,
           checked: true,
-          count: 0
-        }
+          count: 0,
+        },
       };
       return kioskFilter;
     }
@@ -89,25 +90,32 @@ export class ConfigState {
   }
 
   @Action(ChangeConfigAction)
-  public changeConfigAction(ctx: StateContext<IConfigStateModel>, action: ChangeConfigAction): void {
-    ctx.patchState(
-      {
-        libConfig: action.libConf
-      }
-    );
+  public changeConfigAction(
+    ctx: StateContext<IConfigStateModel>,
+    action: ChangeConfigAction
+  ): void {
+    ctx.patchState({
+      libConfig: action.libConf,
+    });
   }
 
   @Action(SetKioskSubLocationAction)
-  public setKioskSubLocationAction(ctx: StateContext<IConfigStateModel>, action: SetKioskSubLocationAction) {
+  public setKioskSubLocationAction(
+    ctx: StateContext<IConfigStateModel>,
+    action: SetKioskSubLocationAction
+  ) {
     const state: IConfigStateModel = ctx.getState();
-    if (state && state.libConfig &&  action.kioskLocation) {
+    if (state && state.libConfig && action.kioskLocation) {
       state.libConfig.kioskSublocation = action.kioskLocation;
     }
     ctx.patchState(state);
   }
 
   @Action(ClearKioskSubLocationAction)
-  public clearKioskSubLocation(ctx: StateContext<IConfigStateModel>, action: ClearKioskSubLocationAction) {
+  public clearKioskSubLocation(
+    ctx: StateContext<IConfigStateModel>,
+    action: ClearKioskSubLocationAction
+  ) {
     const state: IConfigStateModel = ctx.getState();
     if (state && state.libConfig && state.libConfig.kioskSublocation) {
       state.libConfig.kioskSublocation = null;
