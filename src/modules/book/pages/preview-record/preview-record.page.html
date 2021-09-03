@@ -68,7 +68,11 @@
     <div class="main-container">
       <div class="main-info">
         <div class="title">
-          <h1>{{book.title}}</h1>
+          <h1>
+            {{book.title}}
+            <label *ngIf="book | recordFormat:RecordFormatType.TOME">, {{book | recordFormat:RecordFormatType.TOME}}
+            </label>
+          </h1>
         </div>
         <book-star-rating
           [recordId]="book._id"
@@ -202,14 +206,17 @@
                   </dd>
                 </ng-container>
 
-                <ng-container
-                  *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO"
-                >
-                  <dt class="col-sm-3">Физички опис&nbsp;</dt>
-                  <dd class="col-sm-9">
-                    {{book |
-                    recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}
-                  </dd>
+                <ng-container *ngIf="book.refRecsBrief">
+                  <ng-container *ngFor="let recRef of book.refRecsBrief | keyvalue">
+                    <dt class="col-sm-2">{{book | recordFormat: RecordFormatType._464_SOURCE_CONTENT_TITLE}}
+                      &nbsp;</dt>
+                    <dd class="col-sm-10">
+                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;
+                      <span [routerLink]="['/book',lib, recRef.key]" style="cursor: pointer;color: darkblue; text-decoration: underline">
+                        {{(recRef.value && recRef.value !== '') ? recRef.value : 'Линк до извора'}}
+                      </span>
+                    </dd>
+                  </ng-container>
                 </ng-container>
 
                 <ng-container *ngIf="book.refRecsBrief">
