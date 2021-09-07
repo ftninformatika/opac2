@@ -5,3 +5,8 @@ export class Event {
   title?: string;
   image?: string | ArrayBuffer;
 }
+
+export class EventFilter {
+  from?: Date;
+  to?: Date;
+}

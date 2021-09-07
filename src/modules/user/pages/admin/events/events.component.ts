@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../../../core/services/events.service";
-import {Event} from "../../../../../models/admin/event.model";
+import {Event, EventFilter} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
   IMyOptions,
@@ -28,6 +28,7 @@ export class EventsComponent implements OnInit {
   editing: boolean;
 
   searchText: string = '';
+  filter: EventFilter;
 
   constructor(private eventService: EventsService, private toastService: ToastService, private cdRef: ChangeDetectorRef) {
   }
@@ -44,6 +45,7 @@ export class EventsComponent implements OnInit {
     this.createForm();
     this.event = new Event();
     this.editing = false;
+    this.filter = {};
   }
 
   async downloadImage(event: Event) {

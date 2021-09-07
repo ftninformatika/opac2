@@ -11,6 +11,45 @@
       style="animation-name: none; visibility: visible;"
     >
 
+      <div class="row">
+        <div class="col-2 col-xs-12">
+          <div class="md-form">
+            <mdb-date-picker [inline]="true"
+                             [options]="myDatePickerOptions"
+                             [placeholder]="'Од'"
+                             [locale]="'sr'"
+                             [(ngModel)]="filter.from"
+                             required>
+            </mdb-date-picker>
+          </div>
+        </div>
+        <div class="col-2 col-xs-12">
+          <div class="md-form">
+            <mdb-date-picker [inline]="true"
+                             [options]="myDatePickerOptions"
+                             [placeholder]="'До'"
+                             [locale]="'sr'"
+                             [(ngModel)]="filter.to"
+                             required>
+            </mdb-date-picker>
+          </div>
+        </div>
+
+        <div class="col-3 col-xs-12 text-right">
+          <div class="md-form">
+            <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ...">
+          </div>
+        </div>
+
+        <div class="col-2 col-xs-12 text-right">
+          <button id="search-btn" mdbBtn type="button" mdbWavesEffect>
+            <mdb-icon fas icon="search" class="mr-1"></mdb-icon>
+            Претражи
+          </button>
+        </div>
+      </div>
+
+
       <!--Grid row-->
       <div *ngFor="let event of events">
         <div class="row">
@@ -48,7 +87,7 @@
             <h4 class="mb-4">
               <strong>{{ event.title }}</strong>
             </h4>
-            <div>
+            <div id="event-content">
               {{event.content | slice:0:410}}
               <div class="read-more" *ngIf="event.content && event.content.length >= 410">
                 ...
