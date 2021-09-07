@@ -1,69 +1,145 @@
-<button id="btn-add-event" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
+<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
         data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
 </button>
 
+<main>
+  <div class="container py-5">
+    <!--Section: Blog v.3-->
+    <section
+      class="section extra-margins pb-3 text-center text-lg-left wow fadeIn py-3"
+      data-wow-delay="0.3s"
+      style="animation-name: none; visibility: visible;"
+    >
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mx-auto">
-      <div class="md-form">
-        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
-               mdbInput>
-        <label for="search-input">Претражи</label>
+      <!--Grid row-->
+      <div *ngFor="let event of events">
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-4 mb-5">
+            <!--Featured image-->
+            <div class="view overlay z-depth-1" style="width: 320px; height: 240px">
+              <img *ngIf="!this.event.image; else downloadedImage"
+                   src="../../../../../assets/icons/icon-72x72.png"
+                   style='height: 100%; width: 100%; object-fit: fill'
+                   alt="Фотографија"
+                   class="img-fluid">
+              <ng-template #downloadedImage>
+                <img src="{{this.event.image}}"
+                     style='height: 100%; width: 100%; object-fit: fill'
+                     alt="Фотографија"
+                     class="img-fluid">
+              </ng-template>
+              <a>
+                <div
+                  class="mask rgba-white-slight waves-effect waves-light"
+                  mdbWavesEffect>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-7 mb-4">
+            <h6 class="pb-1" style="color: #009688">
+              <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
+              <strong>{{ event.date | date: 'dd.MM.yyyy.'}}</strong>
+            </h6>
+            <h4 class="mb-4">
+              <strong>{{ event.title }}</strong>
+            </h4>
+            <div>
+              {{event.content | slice:0:410}}
+              <div class="read-more" *ngIf="event.content && event.content.length >= 410">
+                ...
+              </div>
+            </div>
+            <br>
+            <button
+              mdbBtn
+              id="btn-read-more"
+              *ngIf="event.content && event.content.length >= 410"
+              class="waves-effect waves-light"
+              mdbWavesEffect
+              (click)="onExpandText(event); expandModal.show();">
+              Опширније
+            </button>
+          </div>
+
+          <!--Grid column-->
+          <div class="col-lg-1 mb-5">
+            <div class="table-column-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
+                 (click)="setEditEvent(event);">
+              <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
+            </div>
+            <div class="table-column-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
+                 (click)="setEventForDelete(event); deleteModal.show();">
+              <i class="fas fa-trash red-text fa-2x"></i>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-5"/>
+        <!--Grid row-->
       </div>
-    </div>
-    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
-      <thead class="sticky-top">
-      <tr>
-        <th class="th-{{sortFields[i]}}" *ngFor="let head of headElements; let i = index" [mdbTableSort]="events"
-            [sortBy]="sortFields[i]" scope="col">{{head | titlecase}}
-          <mdb-icon *ngIf="head !== ''" fas icon="sort"></mdb-icon>
-        </th>
-      </tr>
-      </thead>
-      <tbody #row>
-      <tr *ngFor="let ev of events; let i = index">
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-image">
-          <img *ngIf="!this.ev.image; else downloadedImage" src="../../../../../assets/icons/icon-72x72.png"
-               height="80" width="80" alt="Фотографија">
-          <ng-template #downloadedImage>
-            <img src="{{this.ev.image}}" height="120" width="160" alt="Фотографија">
-          </ng-template>
-        </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-title">
-          {{ev.title}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-content">
-          <div>{{ev.content | slice:0:200}}
-            <a class="read-more" *ngIf="ev.content && ev.content.length >= 200" href="javascript:"
-               (click)="onExpandText(ev); expandModal.show();"> Опширније >></a>
-          </div>
-        </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-date">
-          {{ev.date | date: 'dd.MM.yyyy.'}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="td-buttons">
-          <div class="table-column-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
-               (click)="setEditEvent(ev);">
-            <i class="fas fa-edit orange-text fa-2x"></i>
-          </div>
-          <div class="table-column-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
-               (click)="setEventForDelete(ev); deleteModal.show();">
-            <i class="fas fa-trash red-text fa-2x"></i>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot class="grey lighten-5 w-100">
-      <tr>
-        <td colspan="5">
-          <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
-                                [searchDataSource]="events">
-          </mdb-table-pagination>
-        </td>
-      </tr>
-      </tfoot>
-    </table>
+
+      <!--Pagination dark-->
+
+      <nav
+        class="wow fadeIn mb-4 mt-5"
+        data-wow-delay="0.4s"
+        style="visibility: visible; animation-name: none;"
+      >
+        <ul class="pagination pg-dark flex-center">
+          <!--Arrow left-->
+          <li class="page-item">
+            <a
+              class="page-link waves-effect waves-effect"
+              aria-label="Previous"
+              mdbWavesEffect
+            >
+              <span aria-hidden="true">«</span>
+              <span class="sr-only">Претходни</span>
+            </a>
+          </li>
+
+          <!--Numbers-->
+          <li class="page-item active">
+            <a class="page-link waves-effect waves-effect" mdbWavesEffect>1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link waves-effect waves-effect" mdbWavesEffect>2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link waves-effect waves-effect" mdbWavesEffect>3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link waves-effect waves-effect" mdbWavesEffect>4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link waves-effect waves-effect" mdbWavesEffect>5</a>
+          </li>
+
+          <!--Arrow right-->
+          <li class="page-item">
+            <a
+              class="page-link waves-effect waves-effect"
+              mdbWavesEffect
+              aria-label="Next"
+            >
+              <span aria-hidden="true">»</span>
+              <span class="sr-only">Следећи</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!--/Pagination dark-->
+    </section>
+    <!--Section: Blog v.3-->
+
+    <hr class="mb-5"/>
   </div>
-</div>
+</main>
+
 
 <div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
      aria-labelledby="myBasicModalLabel"
@@ -97,7 +173,7 @@
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">
-          <mdb-icon id="calendar-icon" far icon="calendar-alt"></mdb-icon>
+          <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
           Догађај
         </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
@@ -169,7 +245,7 @@
 
 <div mdbModal #expandModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="expandModalDialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close"
@@ -178,7 +254,7 @@
         </button>
         <h4 class="modal-title w-100">{{event.title}}</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="expandModalBody">
         {{event.content}}
       </div>
       <div class="modal-footer">

@@ -4,8 +4,7 @@ import {Event} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
   IMyOptions,
-  MdbTableDirective,
-  MdbTablePaginationComponent, ModalDirective,
+  ModalDirective,
   UploadOutput
 } from "ng-uikit-pro-standard";
 import {SR_LOCATE} from "../../../../../utils/consts";
@@ -28,16 +27,7 @@ export class EventsComponent implements OnInit {
   myDatePickerOptions: IMyOptions = SR_LOCATE
   editing: boolean;
 
-  // table
-  @ViewChild(MdbTableDirective, {static: true}) mdbTable: MdbTableDirective;
-  @ViewChild(MdbTablePaginationComponent, {static: true}) mdbTablePagination: MdbTablePaginationComponent;
-
-  headElements = ['', 'Наслов', 'Садржај', 'Датум', ''];
-  sortFields = ['', 'title', 'content', 'date'];
-
   searchText: string = '';
-  previous: string;
-  maxVisibleItems: number = 8;
 
   constructor(private eventService: EventsService, private toastService: ToastService, private cdRef: ChangeDetectorRef) {
   }
@@ -49,8 +39,6 @@ export class EventsComponent implements OnInit {
         this.events[i] = await this.downloadImage(this.events[i]);
       }
       this.events.map(event => event.date = new Date(event.date));
-      this.mdbTable.setDataSource(this.events);
-      this.previous = this.mdbTable.getDataSource();
     });
 
     this.createForm();
@@ -88,7 +76,6 @@ export class EventsComponent implements OnInit {
   get date() {
     return this.validatingForm.get('date');
   }
-
 
   onBtnCreateEvent() {
     if (this.validatingForm.invalid) {
@@ -151,35 +138,6 @@ export class EventsComponent implements OnInit {
     this.imgURL = null;
     this.event = {};
     this.createModal.hide();
-  }
-
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
-  }
-
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.events = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.events = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-
-    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
-      this.mdbTablePagination.calculateFirstItemIndex();
-      this.mdbTablePagination.calculateLastItemIndex();
-    });
   }
 
   setEventForDelete(ev: Event) {
