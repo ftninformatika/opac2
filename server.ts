@@ -11,8 +11,22 @@ import { existsSync } from "fs";
 import { enableProdMode } from "@angular/core";
 import * as url from "url";
 import { environment } from "./src/environments/environment";
+(global as any).self = { fetch: require("node-fetch") };
 (global as any).WebSocket = require("ws");
 (global as any).XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+(global as any).crypto = (global as any).crypto ||
+  (global as any).msCrypto || {
+    getRandomValues: (array) => {
+      for (let i = 0, l = array.length; i < l; i++) {
+        array[i] = Math.floor(Math.random() * 256);
+      }
+      return array;
+    },
+  };
+
+if (crypto.getRandomValues === undefined) {
+  throw new Error("crypto is not supported on this browser");
+}
 
 //enableProdMode();
 export function app(): express.Express {
@@ -43,6 +57,7 @@ export function app(): express.Express {
 
   if (typeof window === "undefined") {
     global["window"] = {};
+    global["window"].addEventListener = () => {};
   }
 
   app.set("view engine", "html");
@@ -88,6 +103,10 @@ export function app(): express.Express {
       "outbrain",
       "w3c_validator",
       "viber",
+      "facebot",
+      "facebook",
+      "fban/messenger",
+      "facebookplatform"
     ];
 
     const agent = userAgent.toLowerCase();
@@ -105,7 +124,7 @@ export function app(): express.Express {
   function isExternalHit(userAgent: string) {
     return (
       (userAgent &&
-        userAgent.toLowerCase().indexOf("facebookexternalhit") > -1) ||
+        userAgent.toLowerCase().indexOf("facebook") > -1) ||
       userAgent.toLowerCase().indexOf("viber") > -1 ||
       userAgent.toLowerCase().indexOf("linkedin") > -1 ||
       userAgent.toLowerCase().indexOf("twitter") > -1
@@ -116,14 +135,9 @@ export function app(): express.Express {
   app.get("*", (req, res) => {
     //console.log(req);
     console.log(APP_BASE_HREF);
-    if (!detectBot(req.headers["user-agent"])) {
-      console.log("USAOOOOO");
-      res.render("index", {
-        req,
-      });
-    } else if (isExternalHit(req.headers["user-agent"])) {
-      console.log("external HITT!");
-      const urlParam = generateUrl(req);
+    const urlParam = generateUrl(req);
+    if (isExternalHit(req.headers["user-agent"]) && urlParam.indexOf("book") > -1) {
+      console.log("external HITT!, ua,", req.headers["user-agent"]);
       axios
         .get(`https://app.bisis.rs/bisisWS/external_hit?url=${urlParam}`)
         .then((response) => {
@@ -133,6 +147,11 @@ export function app(): express.Express {
         })
         .catch((error) => {
           //console.log(error);
+        });
+    } else {
+        console.log("No bot, ua:", req.headers["user-agent"]);
+        res.render("index", {
+          req,
         });
     }
     // else {

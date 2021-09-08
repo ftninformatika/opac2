@@ -60,6 +60,7 @@ export class PreviewRecordPage implements OnInit {
 
   public miradorShow: boolean;
   public miradorShown: boolean;
+  public miradorViewer: any;
 
   public constructor(
     booksService: BooksService,
@@ -215,7 +216,21 @@ export class PreviewRecordPage implements OnInit {
     }
   }
 
-  public miradorDone() {
-    if (this.miradorShow && !this.miradorShown) this.miradorShown = true;
+  public setMiradorViewer(miradorViewer) {
+    this.miradorViewer = miradorViewer;
+  }
+
+  public miradorOpened() {
+    if (this.miradorShow && !this.miradorShown) {
+      this.miradorShown = true;
+    }
+  }
+
+  public miradorClosed() {
+    if (this.miradorShow && this.miradorShown) {
+      this.miradorViewer.unmount();
+      this.miradorShown = false;
+      this.miradorShow = !this.miradorShow;
+    }
   }
 }
