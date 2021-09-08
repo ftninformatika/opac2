@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {MessageService} from "../../../../core/services/message.service";
+import {LibraryMemberCard} from "../../../../../models/library-member.model";
+import {Message} from "../../../../../models/admin/message.model";
+import {DateUtils} from "../../../../../utils/date.utils";
 
 @Component({
   selector: 'app-chat',
@@ -6,31 +10,31 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./chat.page.scss']
 })
 export class ChatPage implements OnInit {
+  senders: LibraryMemberCard[];
+  conversation: Message[];
+  librarian: string;
+  sender: LibraryMemberCard;
 
-  constructor() {
+  constructor(private messageService: MessageService) {
   }
 
-  members;
-  conversation;
 
   ngOnInit(): void {
-    this.members = [{'name': 'Marko', 'surname': 'Markovic'},
-      {'name': 'Mirko', 'surname': 'Mirkovic'},
-      {'name': 'Jovan', 'surname': 'Jovanic'},
-      {'name': 'Jakov', 'surname': 'Jakic'},
-      {'name': 'Milica', 'surname': 'Milic'},
-      {'name': 'Marica', 'surname': 'Maric'},
-      {'name': 'Ana', 'surname': 'Anic'},
-      {'name': 'Sanja', 'surname': 'Stanic'},
-      {'name': 'Olja', 'surname': 'Olic'},
-      {'name': 'Srna', 'surname': 'Srnic'},
-      {'name': 'Milos', 'surname': 'Misic'}]
+    this.messageService.getSenders().subscribe(senders => {
+      this.senders = senders;
+    });
+    this.librarian = 'bibliotekar@bgb';
+  }
 
-    this.conversation = [{"korisnik": "bibliotekar", "poruka":"Prva poruka"}, {"korisnik": "clan", "poruka":"Druga poruka"},
-      {"korisnik": "bibliotekar", "poruka":"Treca poruka Treca poruka Treca poruka  Treca poruka Treca poruka Treca poruka Treca poruka"},  {"korisnik": "bibliotekar", "poruka":"Cetvrta poruka za danas"}]
+  getMessagesByUsername(sender: LibraryMemberCard) {
+    this.conversation = [];
+    this.sender = sender;
+    this.messageService.getMessagesByUsername(sender.username).subscribe(messages => {
+      messages.map(message => message.date = DateUtils.convertUTCtoLocalTime(message.date));
+      this.conversation = messages;
+    })
   }
 
   sendMessage() {
-
   }
 }

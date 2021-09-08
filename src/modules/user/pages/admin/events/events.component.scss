@@ -52,20 +52,8 @@
 #search-btn {
   margin-top: 1rem !important;
   background-color: #00b2d1;
-  background-size: cover;
-  text-decoration: none solid rgb(255, 255, 255);
-  font-family: Roboto;
-  font-size: 12px;
-  border-radius: 4px;
   color: #ffffff;
-  width: 160px;
-  height: 48px;
-  text-align: center;
-  border: none !important;
-
-  &:hover {
-    background-color: #009cb8;
-  }
+  width: 140px;
 }
 
 #event-content {
