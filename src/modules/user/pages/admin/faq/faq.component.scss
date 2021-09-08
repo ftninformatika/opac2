@@ -1,12 +1,26 @@
-.waves-light {
-  cursor: pointer;
-  float: right;
-}
-
 h5 {
   margin-top: 50px;
 }
 
 #question-icon {
   margin-right: 10px;
+}
+
+mdb-card {
+  margin-bottom: 20px;
+}
+
+.btns {
+  float: right;
+  display: flex;
+  cursor: pointer;
+}
+
+.edit-div {
+  margin-right: 10px;
+}
+
+#btn-add-event {
+  float: right;
+  cursor: pointer;
 }

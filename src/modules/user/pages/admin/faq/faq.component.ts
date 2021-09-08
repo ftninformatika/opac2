@@ -16,8 +16,6 @@ export class FaqComponent implements OnInit {
   faqs: Faq[];
   faqForm: FormGroup;
   faq: Faq;
-  expanedFaq: Faq;
-
   editing: boolean;
 
   constructor(private faqService: FaqService, private toastService: ToastService) {
@@ -30,7 +28,6 @@ export class FaqComponent implements OnInit {
 
     this.createForm();
     this.faq = {};
-    this.expanedFaq = {};
   }
 
   createForm() {
@@ -81,13 +78,9 @@ export class FaqComponent implements OnInit {
     })
   }
 
-  onBtnEditFaq() {
-    if (!this.expanedFaq._id) {
-      this.toastService.info("Отворите питање које желите да измените")
-      return;
-    }
+  onBtnEditFaq(faq: Faq) {
     this.editing = true;
-    this.faq = {...this.expanedFaq};
+    this.faq = {...faq};
     this.createModal.show();
   }
 
@@ -113,19 +106,15 @@ export class FaqComponent implements OnInit {
     this.faqs = newArray;
   }
 
-
-  onBtnDeleteFaq() {
-    if (!this.expanedFaq._id) {
-      this.toastService.info("Отворите питање које желите да обришете")
-      return;
-    }
+  onBtnDeleteFaq(faq: Faq) {
+    this.faq = faq;
     this.deleteModal.show();
   }
 
   delete() {
-    this.faqService.delete(this.expanedFaq._id).subscribe(response => {
+    this.faqService.delete(this.faq._id).subscribe(response => {
       if (response) {
-        this.deleteFromArray(this.expanedFaq);
+        this.deleteFromArray(this.faq);
         this.toastService.success("Успешно сте обрисали питање")
       } else {
         this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
@@ -140,16 +129,6 @@ export class FaqComponent implements OnInit {
     if (idx !== -1) {
       this.faqs.splice(idx, 1);
       this.faqs = [...this.faqs]
-    }
-  }
-
-  setActiveFaq(event, faq: Faq) {
-    if (event.currentTarget.children[0].className == 'card active') {
-      this.expanedFaq = {...faq};
-    } else {
-      if (this.expanedFaq._id == faq._id) {  // closed expanded card
-        this.expanedFaq = {};
-      }
     }
   }
 }

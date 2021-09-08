@@ -1,26 +1,26 @@
-<a type="button" mdbBtn floating="true" color="default" class="waves-light" mdbWavesEffect>
-  <mdb-icon fas icon="plus" (click)="onBtnCreteNewFaq()"></mdb-icon>
-</a>
-
-<a type="button" mdbBtn floating="true" color="orange" class="waves-light" mdbWavesEffect>
-  <mdb-icon far icon="edit" (click)="onBtnEditFaq();"></mdb-icon>
-</a>
-
-
-<a type="button" mdbBtn floating="true" color="red" class="waves-light" mdbWavesEffect>
-  <mdb-icon far icon="trash-alt" (click)="onBtnDeleteFaq();"></mdb-icon>
-</a>
-
+<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
+        data-target="#basicExample" (click)="onBtnCreteNewFaq()" mdbWavesEffect>Додај питање
+</button>
 
 <h5 class="text-center">Најчешћа питања</h5><br>
 
-<mdb-accordion [multiple]="true" aria-multiselectable="true">
-  <mdb-accordion-item id="{{faq._id}}" (click)="setActiveFaq($event, faq)" [collapsed]="true"
-                      *ngFor="let faq of faqs; let i = index">
-    <mdb-accordion-item-head> {{i + 1}}. {{ faq.question }} </mdb-accordion-item-head>
-    <mdb-accordion-item-body> {{ faq.answer }} </mdb-accordion-item-body>
-  </mdb-accordion-item>
-</mdb-accordion>
+<mdb-card  *ngFor="let faq of faqs; let i = index">
+  <mdb-card-header>{{i + 1}}. {{ faq.question }}
+    <div class="btns">
+      <div class="edit-div" mdbTooltip="Измени" placement="left"
+           (click)="onBtnEditFaq(faq);">
+        <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
+      </div>
+      <div class="delete-div" mdbTooltip="Избриши" placement="left"
+           (click)="onBtnDeleteFaq(faq);">
+        <i class="fas fa-trash red-text fa-2x"></i>
+      </div>
+    </div>
+  </mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-text>{{ faq.answer }}</mdb-card-text>
+  </mdb-card-body>
+</mdb-card>
 
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
@@ -89,7 +89,7 @@
         <h4 class="modal-title center" id="myModalLabel">Брисање питања</h4>
       </div>
       <div class="modal-body">
-        <label>Да ли сте сигурни да желите да обришете питање <i>{{expanedFaq ?.question}}</i> ?</label>
+        <label>Да ли сте сигурни да желите да обришете питање <i>{{faq?.question}}</i> ?</label>
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
