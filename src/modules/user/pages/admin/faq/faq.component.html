@@ -1,0 +1,104 @@
+<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
+        data-target="#basicExample" (click)="onBtnCreteNewFaq()" mdbWavesEffect>Додај питање
+</button>
+
+<h5 class="text-center">Најчешћа питања</h5><br>
+
+<mdb-card  *ngFor="let faq of faqs; let i = index">
+  <mdb-card-header>{{i + 1}}. {{ faq.question }}
+    <div class="btns">
+      <div class="edit-div" mdbTooltip="Измени" placement="left"
+           (click)="onBtnEditFaq(faq);">
+        <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
+      </div>
+      <div class="delete-div" mdbTooltip="Избриши" placement="left"
+           (click)="onBtnDeleteFaq(faq);">
+        <i class="fas fa-trash red-text fa-2x"></i>
+      </div>
+    </div>
+  </mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-text>{{ faq.answer }}</mdb-card-text>
+  </mdb-card-body>
+</mdb-card>
+
+
+<div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="createModal.hide();"
+     data-mdb-target="#eventModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">
+          <mdb-icon id="question-icon" far icon="question-circle"></mdb-icon>
+          Питање
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="createModal.hide();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text"
+                 id="orangeForm-name"
+                 class="form-control"
+                 [formControl]="question"
+                 [(ngModel)]="faq.question"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-name">* Питање</label>
+          <mdb-error *ngIf="question.invalid && (question.dirty || question.touched)">
+            Питање је обавезно
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5">
+          <textarea class="md-textarea form-control"
+                    rows="2"
+                    id="content"
+                    type="text"
+                    length="120"
+                    [(ngModel)]="faq.answer"
+                    [formControl]="answer"
+                    mdbCharCounter mdbInput mdbValidate>
+          </textarea>
+          <label for="content">* Одговор</label>
+          <mdb-error
+            *ngIf="answer.invalid && (answer.dirty || answer.touched)">Одговор је обавезан
+          </mdb-error>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();">
+          Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title center" id="myModalLabel">Брисање питања</h4>
+      </div>
+      <div class="modal-body">
+        <label>Да ли сте сигурни да желите да обришете питање <i>{{faq?.question}}</i> ?</label>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                (click)="deleteModal.hide();">Затвори
+        </button>
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
+                (click)="delete(); deleteModal.hide()">Избриши
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

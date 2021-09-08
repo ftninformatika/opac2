@@ -1,0 +1,73 @@
+.calendar-icon {
+  margin-right: 10px;
+}
+
+.file-path {
+  margin-left: 40px;
+}
+
+.file-field {
+  margin-bottom: 100px;
+}
+
+#file {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #40c6c6;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+#btn-add-event {
+  float: right;
+  cursor: pointer;
+}
+
+#edit-icon {
+  margin-bottom: 20px;
+}
+
+#btn-read-more {
+  background-color: #33b5e5;
+  color: white;
+}
+
+.read-more {
+  display: inline;
+}
+
+#expandModalDialog {
+  overflow-y: initial !important
+}
+
+#expandModalBody {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+#search-btn {
+  margin-top: 1rem !important;
+  background-color: #00b2d1;
+  background-size: cover;
+  text-decoration: none solid rgb(255, 255, 255);
+  font-family: Roboto;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #ffffff;
+  width: 160px;
+  height: 48px;
+  text-align: center;
+  border: none !important;
+
+  &:hover {
+    background-color: #009cb8;
+  }
+}
+
+#event-content {
+  text-align: justify;
+}

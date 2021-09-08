@@ -26,7 +26,7 @@
           <ul class="list-unstyled friend-list" *ngFor="let member of members ">
             <li class="p-2">
               <a href="#" class="d-flex justify-content-between">
-                <img src="../src/assets/users/user.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                <img src="../../../../../assets/users/user.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
                 <div class="text-small">
                   <strong>{{member.name}} {{member.surname}}</strong>
                   <p class="last-message text-muted">Lorem ipsum dolor sit.</p>
@@ -60,11 +60,11 @@
                     {{message.poruka}}
                   </p>
                 </div>
-                <img *ngIf="message.korisnik == 'bibliotekar'" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1">
+                <img *ngIf="message.korisnik == 'bibliotekar'" src="../../../../../assets/users/user.png" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1">
               </li>
 
               <li class="d-flex justify-content-start mb-4" *ngIf="message.korisnik == 'clan'">
-                <img *ngIf="message.korisnik == 'clan'" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                <img *ngIf="message.korisnik == 'clan'" src="../../../../../assets/users/user.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                 <div class="chat-body white p-3 ml-2 z-depth-1">
                   <div class="header">
                     <strong class="primary-font">Brad Pitt</strong>

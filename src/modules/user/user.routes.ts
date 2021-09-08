@@ -11,7 +11,9 @@ import { ShelfPage } from './pages/shelf/shelf.page';
 import { LoginPage } from './pages/login/login.page';
 import { Routes } from '@angular/router';
 import {ActiveReservationsPage} from "./pages/active-reservations/active-reservations.page";
-import {ChatPage} from "./pages/chat/chat.page";
+import {ChatPage} from "./pages/admin/chat/chat.page";
+import {EventsComponent} from "./pages/admin/events/events.component";
+import {FaqComponent} from "./pages/admin/faq/faq.component";
 
 export const UserRoutes: Routes = [
   {
@@ -64,6 +66,16 @@ export const UserRoutes: Routes = [
   {
     path: 'admin-chat',
     component: ChatPage,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-events',
+    component: EventsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-faq',
+    component: FaqComponent,
     canActivate: [AdminGuard]
   },
   {
