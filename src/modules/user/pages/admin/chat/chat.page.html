@@ -9,33 +9,49 @@
 
         <h6 class="font-weight-bold mb-3 text-center text-lg-left">Разговори</h6>
         <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1 scrollbar-light-blue">
-          <!--          <li class="active grey lighten-3 p-2">-->
-          <!--            <a href="#" class="d-flex justify-content-between">-->
-          <!--              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">-->
-          <!--              <div class="text-small">-->
-          <!--                <strong>{{members[0].name}} {{members[0].surname}}</strong>-->
-          <!--                <p class="last-message text-muted">Hello, Are you there?</p>-->
-          <!--              </div>-->
-          <!--              <div class="chat-footer">-->
-          <!--                <p class="text-smaller text-muted mb-0">Just now</p>-->
-          <!--                <mdb-badge danger="true" class="float-right">1</mdb-badge>-->
-          <!--              </div>-->
-          <!--            </a>-->
-          <!--          </li>-->
+          <!--                    <li class="active grey lighten-3 p-2">-->
+          <!--                      <a href="#" class="d-flex justify-content-between">-->
+          <!--                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">-->
+          <!--                        <div class="text-small">-->
+          <!--                          <strong>{{member?.firstName}} {{member?.lastName}}</strong>-->
+          <!--                          <p class="last-message text-muted">Hello, Are you there?</p>-->
+          <!--                        </div>-->
+          <!--                        <div class="chat-footer">-->
+          <!--                          <p class="text-smaller text-muted mb-0">Just now</p>-->
+          <!--                          <mdb-badge danger="true" class="float-right">1</mdb-badge>-->
+          <!--                        </div>-->
+          <!--                      </a>-->
+          <!--                    </li>-->
 
-          <ul class="list-unstyled friend-list" *ngFor="let sender of senders ">
-            <li class="p-2">
-              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender)"
-                 class="d-flex justify-content-between">
-                <!--                <i class="fas fa-book-reader"></i>-->
+          <ul class="list-unstyled friend-list">
+            <li class="p-2" *ngFor="let sender of senders ">
+              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender.memberCardDTO)"
+                 class="d-flex justify-content-start">
                 <img src="../../../../../assets/users/user.png" alt="avatar"
                      class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
                 <div class="text-small">
-                  <strong>{{sender.firstName}} {{sender.lastName}}</strong>
-                  <p class="last-message text-muted">{{sender.username}}</p>
+                  <strong>{{sender?.memberCardDTO.firstName}} {{sender?.memberCardDTO.lastName}}</strong>
+
+                  <div class="last-message text-muted" *ngIf="sender?.message.idSender === librarian">
+                    Библиотека: {{sender?.message.content | slice: 0:78}}
+                    <div class="read-more" *ngIf="sender?.message.content && sender?.message.content.length >= 78">
+                      ...
+                    </div>
+                  </div>
+
+                  <div class="last-message text-muted" *ngIf="sender?.message.idSender !== librarian">
+                    {{sender?.message.content | slice: 0:90}}
+                    <div class="read-more" *ngIf="sender?.message.content && sender?.message.content.length >= 90">
+                      ...
+                    </div>
+                  </div>
+
                 </div>
                 <div class="chat-footer">
-                  <p class="text-smaller text-muted mb-0">5 min ago</p>
+                  <p class="text-smaller text-muted mb-0">{{sender?.message.date | date:'dd.MM.yyyy. hh:mm'}}</p>
+                  <span *ngIf="sender?.message.idSender === librarian" class="text-muted float-right">
+                    <mdb-icon fas icon="reply" aria-hidden="true">
+                    </mdb-icon></span>
                 </div>
               </a>
             </li>
@@ -48,7 +64,7 @@
       <!-- Grid column -->
       <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
 
-        <div class="chat-message">
+        <div class="chat-message" *ngIf="this.member">
 
           <ul class="list-unstyled chat-1 scrollbar-light-blue">
             <div *ngFor="let message of conversation">
@@ -76,7 +92,7 @@
                      class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                 <div class="chat-body white p-3 ml-2 z-depth-1">
                   <div class="header">
-                    <strong class="primary-font">{{sender.firstName}} {{sender.lastName}}</strong>
+                    <strong class="primary-font">{{member.firstName}} {{member.lastName}}</strong>
                     <small class="pull-right text-muted clock-icon">
                       <mdb-icon far icon="clock"></mdb-icon>
                       {{message.date | date: 'dd.MM.yyyy. hh:mm'}}
@@ -95,13 +111,12 @@
           <div class="white">
             <div class="form-group basic-textarea">
               <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
-                        placeholder="Ovde unesite poruku..."></textarea>
+                        placeholder="Овде унесите поруку ..." [(ngModel)]="message"></textarea>
             </div>
           </div>
-          <button type="button" mdbBtn color="blue" rounded="true" size="sm"
-                  class="waves-effect waves-dark float-right" (click)="sendMessage()">Pošalji
+          <button id="btn-send-msg" type="button" mdbBtn color="default" data-toggle="modal"
+                  data-target="#basicExample" (click)="sendMessage()" mdbWavesEffect>Пошаљи
           </button>
-
         </div>
 
       </div>

@@ -33,6 +33,7 @@ export class ApiEndpointConfig {
       downloadImage: `${ApiEndpointConfig.Origin}/events/image`,
       faq: `${ApiEndpointConfig.Origin}/faq`,
       messages: `${ApiEndpointConfig.Origin}/messages`,
+      addMessage: `${ApiEndpointConfig.Origin}/messages/add`,
       getSenders: `${ApiEndpointConfig.Origin}/messages/all-senders`,
     },
     search: {
