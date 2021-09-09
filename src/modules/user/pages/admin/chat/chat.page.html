@@ -25,33 +25,50 @@
 
           <ul class="list-unstyled friend-list">
             <li class="p-2" *ngFor="let sender of senders ">
-              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender.memberCardDTO)"
-                 class="d-flex justify-content-start">
-                <img src="../../../../../assets/users/user.png" alt="avatar"
-                     class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
-                <div class="text-small">
-                  <strong>{{sender?.memberCardDTO.firstName}} {{sender?.memberCardDTO.lastName}}</strong>
+              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender.memberCardDTO)">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="../../../../../assets/users/user.png" alt="avatar"
+                           class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <strong>{{sender?.memberCardDTO.firstName}} {{sender?.memberCardDTO.lastName}}</strong>
+                        </div>
+                        <div class="col-md-4 msg-date">
+                          <p class="text-smaller text-muted mb-0 float-right">
+                            {{sender?.message.date | date:'dd.MM.yyyy. hh:mm'}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <div class="last-message text-muted" *ngIf="sender?.message.idSender === librarian">
+                            Библиотека: {{sender?.message.content | slice: 0:78}}
+                            <div class="read-more"
+                                 *ngIf="sender?.message.content && sender?.message.content.length >= 78">
+                              ...
+                            </div>
+                          </div>
 
-                  <div class="last-message text-muted" *ngIf="sender?.message.idSender === librarian">
-                    Библиотека: {{sender?.message.content | slice: 0:78}}
-                    <div class="read-more" *ngIf="sender?.message.content && sender?.message.content.length >= 78">
-                      ...
+                          <div class="last-message text-muted" *ngIf="sender?.message.idSender !== librarian">
+                            {{sender?.message.content | slice: 0:90}}
+                            <div class="read-more"
+                                 *ngIf="sender?.message.content && sender?.message.content.length >= 90">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <span *ngIf="sender?.message.idSender === librarian"
+                                class="text-muted float-right msg-icon">
+                            <mdb-icon fas icon="reply" aria-hidden="true"></mdb-icon>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="last-message text-muted" *ngIf="sender?.message.idSender !== librarian">
-                    {{sender?.message.content | slice: 0:90}}
-                    <div class="read-more" *ngIf="sender?.message.content && sender?.message.content.length >= 90">
-                      ...
-                    </div>
-                  </div>
-
-                </div>
-                <div class="chat-footer">
-                  <p class="text-smaller text-muted mb-0">{{sender?.message.date | date:'dd.MM.yyyy. hh:mm'}}</p>
-                  <span *ngIf="sender?.message.idSender === librarian" class="text-muted float-right">
-                    <mdb-icon fas icon="reply" aria-hidden="true">
-                    </mdb-icon></span>
                 </div>
               </a>
             </li>
