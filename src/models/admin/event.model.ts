@@ -9,4 +9,5 @@ export class Event {
 export class EventFilter {
   from?: Date;
   to?: Date;
+  searchText?: string;
 }

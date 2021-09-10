@@ -65,6 +65,10 @@
                                 class="text-muted float-right msg-icon">
                             <mdb-icon fas icon="reply" aria-hidden="true"></mdb-icon>
                           </span>
+                          <span *ngIf="sender?.message.idSender !== librarian"
+                                class="text-muted float-right msg-icon">
+                          <mdb-badge danger="true">1</mdb-badge>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -80,7 +84,6 @@
 
       <!-- Grid column -->
       <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
-
         <div class="chat-message" *ngIf="this.member">
 
           <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>

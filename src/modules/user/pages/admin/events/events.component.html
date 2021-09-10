@@ -2,7 +2,13 @@
         data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
 </button>
 
-<main>
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
+    <span class="sr-only">Учитавање...</span>
+  </div>
+</div>
+
+<main *ngIf="!loading">
   <div class="container py-5">
     <!--Section: Blog v.3-->
     <section
@@ -37,13 +43,14 @@
 
         <div class="col-3 col-xs-12 text-right">
           <div class="md-form">
-            <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ...">
+            <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ..."
+                   [(ngModel)]="filter.searchText">
           </div>
         </div>
 
         <div class="col-2 col-xs-12 text-right">
           <button id="search-btn" type="button" mdbBtn data-toggle="modal" data-target="#basicExample"
-                  mdbWavesEffect>Претражи
+                  mdbWavesEffect (click)="search()">Претражи
           </button>
         </div>
       </div>

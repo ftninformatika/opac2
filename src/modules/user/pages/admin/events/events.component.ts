@@ -26,14 +26,17 @@ export class EventsComponent implements OnInit {
   validatingForm: FormGroup;
   myDatePickerOptions: IMyOptions = SR_LOCATE
   editing: boolean;
-
-  searchText: string = '';
   filter: EventFilter;
+
+  loading: boolean;
 
   constructor(private eventService: EventsService, private toastService: ToastService, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.setTimeout();
+
     this.eventService.getAll().subscribe(async data => {
       this.events = data;
       for (let i = 0; i < this.events.length; i++) {
@@ -47,6 +50,13 @@ export class EventsComponent implements OnInit {
     this.editing = false;
     this.filter = {};
   }
+
+  setTimeout() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
 
   async downloadImage(event: Event) {
     this.eventService.downloadPhoto(event._id).subscribe(photo => {
@@ -199,6 +209,10 @@ export class EventsComponent implements OnInit {
     editedEvent.date = new Date(editedEvent.date);
     newArray[idx] = editedEvent;
     this.events = newArray;
+  }
+
+  search() {
+    console.log(this.filter)
   }
 
   onExpandText(event: Event) {
