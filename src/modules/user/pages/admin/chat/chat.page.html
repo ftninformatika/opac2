@@ -83,7 +83,7 @@
 
         <div class="chat-message" *ngIf="this.member">
 
-          <ul class="list-unstyled chat-1 scrollbar-light-blue">
+          <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>
             <div *ngFor="let message of conversation">
               <li class="d-flex justify-content-end mb-4" *ngIf="message.idSender === librarian">
                 <div class="chat-body white p-3 z-depth-1">

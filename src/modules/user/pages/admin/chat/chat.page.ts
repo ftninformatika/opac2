@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../../core/services/message.service";
 import {LibraryMemberCard} from "../../../../../models/library-member.model";
 import {Message, MessageSenderDTO} from "../../../../../models/admin/message.model";
-import {DateUtils} from "../../../../../utils/date.utils";
 import {UserState} from "../../../../core/states/user/user.state";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
@@ -13,6 +12,8 @@ import {ToastService} from "ng-uikit-pro-standard";
   styleUrls: ['./chat.page.scss']
 })
 export class ChatPage implements OnInit {
+  @ViewChild('conversationList') private conversationList: ElementRef;
+
   senders: MessageSenderDTO[];
   conversation: Message[];
   librarian: string;
@@ -25,10 +26,24 @@ export class ChatPage implements OnInit {
   ngOnInit(): void {
     const memberLibrary = this._store.selectSnapshot(UserState.library);
     this.librarian = 'bibliotekar@' + memberLibrary;                        // todo: da li je samo za bgb?
+    this.loadMembers();
+  }
 
+  loadMembers() {
     this.messageService.getSenders().subscribe(senders => {
       this.senders = senders;
     });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.conversationList.nativeElement.scrollTop = this.conversationList.nativeElement.scrollHeight;
+    } catch (err) {
+    }
   }
 
   getMessagesByUsername(member: LibraryMemberCard): void {
@@ -46,7 +61,25 @@ export class ChatPage implements OnInit {
       this.messageService.sendMessage(newMessage).subscribe(savedMessage => {
         this.conversation.push(savedMessage);
         this.message = "";
+        this.updateSendersList(newMessage);    // todo: da li pozivati svaki put ili samo push i reorder
       }, () => this.toastService.error("Дошло је до грешке приликом слања поруке. Покушајте поново"));
+    }
+  }
+
+  updateSendersList(newMessage: Message) {
+    const idx = this.senders.findIndex(item => item.memberCardDTO === this.member);
+    if (idx !== -1) {
+      const currentSMember = {...this.senders[idx]};
+      currentSMember.message = newMessage;
+      this.deleteFromArray(idx);
+      this.senders.unshift(currentSMember);
+    }
+  }
+
+  deleteFromArray(idx: number) {
+    if (idx !== -1) {
+      this.senders.splice(idx, 1);
+      this.senders = [...this.senders]
     }
   }
 
