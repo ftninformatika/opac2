@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
 import {Event} from "../../../models/admin/event.model";
+import {EventsResultPage} from "../../../models/admin/events-page-options.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class EventsService {
     this._httpClient = httpClient;
   }
 
-  public getAll(): Observable<Event[]> {
-    return this._httpClient.get(ApiEndpointConfig.Paths.admin.getEvents) as Observable<Event[]>;
+  public getAll(pageNum: number, pageSize: number): Observable<EventsResultPage> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.getEvents}?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<EventsResultPage>;
   }
 
   public getById(eventId: string): Observable<Event> {
@@ -35,7 +36,7 @@ export class EventsService {
     return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`) as Observable<boolean>;
   }
 
-  public edit(eventId: string, formData: FormData): Observable<Event>{
+  public edit(eventId: string, formData: FormData): Observable<Event> {
     return this._httpClient.put(`${ApiEndpointConfig.Paths.admin.getEvents}/${eventId}`, formData) as Observable<Event>;
   }
 

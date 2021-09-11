@@ -57,7 +57,11 @@
 
 
       <!--Grid row-->
-      <div *ngFor="let event of events">
+      <div *ngFor="let event of events | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions.pageSize,
+          currentPage: pageOptions.currentPage,
+          totalItems: resultPage.totalElements}">
         <div class="row">
           <!--Grid column-->
           <div class="col-lg-4 mb-5">
@@ -127,61 +131,17 @@
         <!--Grid row-->
       </div>
 
-      <!--Pagination dark-->
-
-      <nav
-        class="wow fadeIn mb-4 mt-5"
-        data-wow-delay="0.4s"
-        style="visibility: visible; animation-name: none;"
-      >
-        <ul class="pagination pg-dark flex-center">
-          <!--Arrow left-->
-          <li class="page-item">
-            <a
-              class="page-link waves-effect waves-effect"
-              aria-label="Previous"
-              mdbWavesEffect
-            >
-              <span aria-hidden="true">«</span>
-              <span class="sr-only">Претходни</span>
-            </a>
-          </li>
-
-          <!--Numbers-->
-          <li class="page-item active">
-            <a class="page-link waves-effect waves-effect" mdbWavesEffect>1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link waves-effect waves-effect" mdbWavesEffect>2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link waves-effect waves-effect" mdbWavesEffect>3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link waves-effect waves-effect" mdbWavesEffect>4</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link waves-effect waves-effect" mdbWavesEffect>5</a>
-          </li>
-
-          <!--Arrow right-->
-          <li class="page-item">
-            <a
-              class="page-link waves-effect waves-effect"
-              mdbWavesEffect
-              aria-label="Next"
-            >
-              <span aria-hidden="true">»</span>
-              <span class="sr-only">Следећи</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!--/Pagination dark-->
+      <!--Pagination-->
+      <pagination-controls [id]="'paginatorId'"
+                           [maxSize]="5"
+                           [directionLinks]="true"
+                           [responsive]="true"
+                           [previousLabel]="'Претходна'"
+                           [nextLabel]="'Следећа'"
+                           (pageChange)="onPageChange($event)"
+                           [ngx-scroll-to]="'#app-page-wrapper'">
+      </pagination-controls>
     </section>
-    <!--Section: Blog v.3-->
-
-    <hr class="mb-5"/>
   </div>
 </main>
 

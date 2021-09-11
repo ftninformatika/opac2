@@ -20,16 +20,18 @@ import { ActiveReservationsPage } from './pages/active-reservations/active-reser
 import {ChatPage} from "./pages/admin/chat/chat.page";
 import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
-  imports: [
-    HomeModule,
-    CommonUiModule,
-    RouterModule.forChild(UserRoutes),
-    CoreModule,
-    MDBBootstrapModulesPro,
-    DragDropModule,
-  ],
+    imports: [
+        HomeModule,
+        CommonUiModule,
+        RouterModule.forChild(UserRoutes),
+        CoreModule,
+        MDBBootstrapModulesPro,
+        DragDropModule,
+        NgxPaginationModule,
+    ],
   declarations: [
     AdminCollectionsPage,
     RegisterInfoPage,

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../../../core/services/events.service";
 import {Event, EventFilter} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -9,6 +9,11 @@ import {
 } from "ng-uikit-pro-standard";
 import {SR_LOCATE} from "../../../../../utils/consts";
 import {ToastService} from 'ng-uikit-pro-standard';
+import {
+  EventsResultPage,
+  IEventsPageOptions,
+  IResultPageOptionsInitial,
+} from "../../../../../models/admin/events-page-options.model";
 
 @Component({
   selector: 'app-events',
@@ -30,25 +35,44 @@ export class EventsComponent implements OnInit {
 
   loading: boolean;
 
-  constructor(private eventService: EventsService, private toastService: ToastService, private cdRef: ChangeDetectorRef) {
+  pageOptions: IEventsPageOptions;
+  resultPage: EventsResultPage;
+
+  constructor(private eventService: EventsService, private toastService: ToastService) {
   }
 
   ngOnInit(): void {
     this.loading = true;
     this.setTimeout();
+    this.createForm();
+    this.event = new Event();
+    this.editing = false;
+    this.filter = {};
 
-    this.eventService.getAll().subscribe(async data => {
-      this.events = data;
+    this.pageOptions = {...IResultPageOptionsInitial}
+    let pageNum = 0;
+    if (this.pageOptions.currentPage > 0) {
+      pageNum = this.pageOptions.currentPage - 1;
+    }
+    this.loadEvents(pageNum, this.pageOptions.pageSize);
+  }
+
+  loadEvents(pageNum: number, pageSize: number) {
+    this.eventService.getAll(pageNum, pageSize).subscribe(async data => {
+      await this.populateResultPage(data);
+
       for (let i = 0; i < this.events.length; i++) {
         this.events[i] = await this.downloadImage(this.events[i]);
       }
       this.events.map(event => event.date = new Date(event.date));
     });
+    window.scroll(0, 0);
+  }
 
-    this.createForm();
-    this.event = new Event();
-    this.editing = false;
-    this.filter = {};
+  private async populateResultPage(data: EventsResultPage): Promise<void> {
+    this.resultPage = data;
+    this.events = this.resultPage.content;
+    this.pageOptions.currentPage = this.resultPage.number + 1;
   }
 
   setTimeout() {
@@ -56,7 +80,6 @@ export class EventsComponent implements OnInit {
       this.loading = false;
     }, 2000);
   }
-
 
   async downloadImage(event: Event) {
     this.eventService.downloadPhoto(event._id).subscribe(photo => {
@@ -221,5 +244,12 @@ export class EventsComponent implements OnInit {
 
   onCloseExpandText() {
     this.event = {};
+  }
+
+  async onPageChange($event: number): Promise<void> {
+    if ($event < 1) {
+      return;
+    }
+    this.loadEvents($event - 1, this.pageOptions.pageSize);
   }
 }
