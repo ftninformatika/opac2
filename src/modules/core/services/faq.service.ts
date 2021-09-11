@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
-import {Faq} from "../../../models/admin/faq.model";
+import {Faq, FAQResultPage} from "../../../models/admin/faq.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class FaqService {
     this._httpClient = httpClient;
   }
 
-  public getAll(): Observable<Faq[]> {
-    return this._httpClient.get(ApiEndpointConfig.Paths.admin.faq + '/get') as Observable<Faq[]>;
+  public getAll(pageNum: number, pageSize: number): Observable<FAQResultPage> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.faq}/get?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<FAQResultPage>;
   }
 
   public create(faq: Faq): Observable<Faq> {
@@ -29,5 +29,4 @@ export class FaqService {
   public delete(faqId: string): Observable<boolean> {
     return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.faq}/${faqId}`) as Observable<boolean>;
   }
-
 }

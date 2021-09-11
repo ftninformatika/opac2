@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FaqService} from "../../../../core/services/faq.service";
-import {Faq} from "../../../../../models/admin/faq.model";
+import {Faq, FAQResultPage, IFAQPageOptions, IFAQPageOptionsInitial} from "../../../../../models/admin/faq.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
 
@@ -18,16 +18,30 @@ export class FaqComponent implements OnInit {
   faq: Faq;
   editing: boolean;
 
+  pageOptions: IFAQPageOptions;
+  resultPage: FAQResultPage;
+
   constructor(private faqService: FaqService, private toastService: ToastService) {
   }
 
   ngOnInit(): void {
-    this.faqService.getAll().subscribe(data => {
-      this.faqs = data;
-    });
+    this.pageOptions = {...IFAQPageOptionsInitial}
+    let pageNum = 0;
+    if (this.pageOptions.currentPage > 0) {
+      pageNum = this.pageOptions.currentPage - 1;
+    }
+    this.loadFAQs(pageNum);
 
     this.createForm();
     this.faq = {};
+  }
+
+  loadFAQs(pageNum: number) {
+    this.faqService.getAll(pageNum, this.pageOptions.pageSize).subscribe(data => {
+      this.resultPage = data;
+      this.faqs = this.resultPage.content;
+      this.pageOptions.currentPage = this.resultPage.number + 1;
+    });
   }
 
   createForm() {
@@ -130,5 +144,12 @@ export class FaqComponent implements OnInit {
       this.faqs.splice(idx, 1);
       this.faqs = [...this.faqs]
     }
+  }
+
+  onPageChange($event) {
+    if ($event < 1) {
+      return;
+    }
+    this.loadFAQs($event - 1);
   }
 }

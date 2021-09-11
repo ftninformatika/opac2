@@ -4,8 +4,12 @@
 
 <h5 class="text-center">Најчешћа питања</h5><br>
 
-<mdb-card  *ngFor="let faq of faqs; let i = index">
-  <mdb-card-header>{{i + 1}}. {{ faq.question }}
+<mdb-card *ngFor="let faq of faqs | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions.pageSize,
+          currentPage: pageOptions.currentPage,
+          totalItems: resultPage.totalElements}; let i = index">
+  <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
     <div class="btns">
       <div class="edit-div" mdbTooltip="Измени" placement="left"
            (click)="onBtnEditFaq(faq);">
@@ -21,6 +25,15 @@
     <mdb-card-text>{{ faq.answer }}</mdb-card-text>
   </mdb-card-body>
 </mdb-card>
+
+<pagination-controls [id]="'paginatorId'"
+                     [maxSize]="5"
+                     [directionLinks]="true"
+                     [responsive]="true"
+                     [previousLabel]="'Претходна'"
+                     [nextLabel]="'Следећа'"
+                     (pageChange)="onPageChange($event)">
+</pagination-controls>
 
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
