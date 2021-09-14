@@ -32,6 +32,7 @@ export class EventsComponent implements OnInit {
   myDatePickerOptions: IMyOptions = SR_LOCATE
   editing: boolean;
   filter: EventFilter;
+  isFiltered: boolean;
 
   loading: boolean;
 
@@ -47,7 +48,8 @@ export class EventsComponent implements OnInit {
     this.createForm();
     this.event = new Event();
     this.editing = false;
-    this.filter = {};
+    this.filter = {searchText: ''};
+    this.isFiltered = false;
 
     this.pageOptions = {...IResultPageOptionsInitial}
     let pageNum = 0;
@@ -61,10 +63,11 @@ export class EventsComponent implements OnInit {
     this.eventService.getAll(pageNum, pageSize).subscribe(async data => {
       await this.populateResultPage(data);
 
-      for (let i = 0; i < this.events.length; i++) {
+      for (let i = 0; i < this.events.length; i++) {                  // todo: ako nema dogadjaja
         this.events[i] = await this.downloadImage(this.events[i]);
       }
       this.events.map(event => event.date = new Date(event.date));
+      this.isFiltered = false;
     });
     window.scroll(0, 0);
   }
@@ -124,7 +127,7 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  addNew() {
+  addNew() {    // todo: reset paginatora this.onPageChange(1);
     this.eventService.create(this.createFormData(this.event)).subscribe(async savedEvent => {
       if (savedEvent) {
         savedEvent.date = new Date(savedEvent.date);
@@ -185,7 +188,7 @@ export class EventsComponent implements OnInit {
     this.createModal.show();
   }
 
-  remove() {
+  remove() {    // todo: reset paginatora
     this.eventService.delete(this.eventToDelete._id).subscribe(response => {
       if (response) {
         this.deleteFromArray(this.eventToDelete);
@@ -234,8 +237,23 @@ export class EventsComponent implements OnInit {
     this.events = newArray;
   }
 
-  search() {
-    console.log(this.filter)
+  search(pageNum: number, pageSize: number) {
+    this.isFiltered = true;
+    if (typeof this.filter.from === 'string') {
+      this.filter.from = this.parseDate(this.filter.from);
+    }
+    if (typeof this.filter.to === 'string') {
+      this.filter.to = this.parseDate(this.filter.to);
+    }
+    this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
+      await this.populateResultPage(data);
+
+      for (let i = 0; i < this.events.length; i++) {
+        this.events[i] = await this.downloadImage(this.events[i]);
+      }
+      this.events.map(event => event.date = new Date(event.date));
+    });
+    window.scroll(0, 0);
   }
 
   onExpandText(event: Event) {
@@ -249,6 +267,9 @@ export class EventsComponent implements OnInit {
   async onPageChange($event: number): Promise<void> {
     if ($event < 1) {
       return;
+    }
+    if (this.isFiltered) {
+      this.search($event - 1, this.pageOptions.pageSize);
     }
     this.loadEvents($event - 1, this.pageOptions.pageSize);
   }
