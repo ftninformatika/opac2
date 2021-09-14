@@ -23,8 +23,9 @@
 }
 
 #btn-add-event {
-  float: right;
+  margin-top: 1rem !important;
   cursor: pointer;
+  float: left;
 }
 
 #edit-icon {
@@ -62,4 +63,8 @@
 
 pagination-controls {
   text-align: center;
+}
+
+.table-column-btns {
+  font-size: 0.8em;
 }

@@ -1,6 +1,49 @@
-<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
-        data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
-</button>
+<div class="row" *ngIf="!loading" style="margin-left: 100px">
+
+  <div class="col-2 col-xs-12"></div>
+  <div class="col-1 col-xs-12">
+    <div class="md-form">
+      <mdb-date-picker [inline]="true"
+                       [options]="myDatePickerOptions"
+                       [placeholder]="'Од'"
+                       [locale]="'sr'"
+                       [(ngModel)]="filter.from"
+                       required>
+      </mdb-date-picker>
+    </div>
+  </div>
+  <div class="col-1 col-xs-12">
+    <div class="md-form">
+      <mdb-date-picker [inline]="true"
+                       [options]="myDatePickerOptions"
+                       [placeholder]="'До'"
+                       [locale]="'sr'"
+                       [(ngModel)]="filter.to"
+                       required>
+      </mdb-date-picker>
+    </div>
+  </div>
+
+  <div class="col-4 col-xs-12 text-right">
+    <div class="md-form">
+      <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ..."
+             [(ngModel)]="filter.searchText">
+    </div>
+  </div>
+
+  <div class="col-1 col-xs-12 text-right">
+    <button id="search-btn" type="button" mdbBtn data-toggle="modal" data-target="#basicExample"
+            mdbWavesEffect (click)="search(0, this.pageOptions.pageSize)">Претражи
+    </button>
+  </div>
+  <div class="col-1 col-xs-12"></div>
+
+  <div class="col-2 col-xs-12 text-right">
+    <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
+            data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
+    </button>
+  </div>
+</div>
 
 <div class="d-flex justify-content-center" *ngIf="loading">
   <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
@@ -8,53 +51,16 @@
   </div>
 </div>
 
-<main *ngIf="!loading">
+<main>
   <div class="container py-5">
     <!--Section: Blog v.3-->
     <section
       class="section extra-margins pb-3 text-center text-lg-left wow fadeIn py-3"
       data-wow-delay="0.3s"
       style="animation-name: none; visibility: visible;"
+      *ngIf="!loading"
     >
-
-      <div class="row">
-        <div class="col-2 col-xs-12">
-          <div class="md-form">
-            <mdb-date-picker [inline]="true"
-                             [options]="myDatePickerOptions"
-                             [placeholder]="'Од'"
-                             [locale]="'sr'"
-                             [(ngModel)]="filter.from"
-                             required>
-            </mdb-date-picker>
-          </div>
-        </div>
-        <div class="col-2 col-xs-12">
-          <div class="md-form">
-            <mdb-date-picker [inline]="true"
-                             [options]="myDatePickerOptions"
-                             [placeholder]="'До'"
-                             [locale]="'sr'"
-                             [(ngModel)]="filter.to"
-                             required>
-            </mdb-date-picker>
-          </div>
-        </div>
-
-        <div class="col-3 col-xs-12 text-right">
-          <div class="md-form">
-            <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ..."
-                   [(ngModel)]="filter.searchText">
-          </div>
-        </div>
-
-        <div class="col-2 col-xs-12 text-right">
-          <button id="search-btn" type="button" mdbBtn data-toggle="modal" data-target="#basicExample"
-                  mdbWavesEffect (click)="search(0, this.pageOptions.pageSize)">Претражи
-          </button>
-        </div>
-      </div>
-
+      <hr class="mb-5"/>
 
       <!--Grid row-->
       <div *ngFor="let event of events | paginate:
@@ -66,7 +72,7 @@
           <!--Grid column-->
           <div class="col-lg-4 mb-5">
             <!--Featured image-->
-            <div class="view overlay z-depth-1" style="width: 320px; height: 240px">
+            <div class="view overlay z-depth-1" >
               <img *ngIf="!this.event.image; else downloadedImage"
                    src="../../../../../assets/icons/icon-72x72.png"
                    style='height: 100%; width: 100%; object-fit: fill'
