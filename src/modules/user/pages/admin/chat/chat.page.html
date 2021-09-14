@@ -25,7 +25,7 @@
 
           <ul class="list-unstyled friend-list">
             <li class="p-2" *ngFor="let sender of senders ">
-              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender.memberCardDTO)">
+              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender)">
                 <div class="container">
                   <div class="row">
                     <div class="col-md-2">
@@ -65,7 +65,7 @@
                                 class="text-muted float-right msg-icon">
                             <mdb-icon fas icon="reply" aria-hidden="true"></mdb-icon>
                           </span>
-                          <span *ngIf="sender?.message.idSender !== librarian"
+                          <span *ngIf="sender?.message.seen === false"
                                 class="text-muted float-right msg-icon">
                           <mdb-badge danger="true">1</mdb-badge>
                           </span>

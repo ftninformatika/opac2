@@ -46,12 +46,13 @@ export class ChatPage implements OnInit {
     }
   }
 
-  getMessagesByUsername(member: LibraryMemberCard): void {
+  getMessagesByUsername(member: MessageSenderDTO): void {
     this.conversation = [];
     this.member = null;
-    this.messageService.getMessagesByUsername(member.username).subscribe(messages => {
+    this.messageService.getMessagesByUsername(member.memberCardDTO.username).subscribe(messages => {
       this.conversation = messages;
-      this.member = member;
+      this.member = member.memberCardDTO;
+      member.message = messages[messages.length - 1];
     })
   }
 
@@ -89,6 +90,7 @@ export class ChatPage implements OnInit {
     newMessage.idSender = this.librarian;
     newMessage.content = this.message;
     newMessage.date = new Date();
+    newMessage.seen = true;
     return newMessage;
   }
 }

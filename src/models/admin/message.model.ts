@@ -6,6 +6,7 @@ export class Message {
   idReceiver?: string;
   content?: string;
   date?: Date;
+  seen?: boolean;
 }
 
 export class MessageSenderDTO {
