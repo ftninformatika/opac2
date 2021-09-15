@@ -74,7 +74,7 @@
             <!--Featured image-->
             <div class="view overlay z-depth-1" >
               <img *ngIf="!this.event.image; else downloadedImage"
-                   src="../../../../../assets/icons/icon-72x72.png"
+                   src="../../../../../assets/eventDefaultLogo.png"
                    style='height: 100%; width: 100%; object-fit: fill'
                    alt="Фотографија"
                    class="img-fluid">
@@ -237,7 +237,7 @@
           </ng-template>
 
           <ng-template #defaultPhoto>
-            <img src="../../../../../assets/icons/icon-96x96.png" height="100" width="100" alt="Фотографија">
+            <img src="../../../../../assets/eventDefaultLogo.png" height="100" width="100" alt="Фотографија">
           </ng-template>
 
           <input [disabled] class="file-path" type="text" placeholder="Назив фотографије"

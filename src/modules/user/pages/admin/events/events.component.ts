@@ -48,7 +48,7 @@ export class EventsComponent implements OnInit {
     this.createForm();
     this.event = new Event();
     this.editing = false;
-    this.filter = {searchText: ''};
+    this.filter = {from: null, to: null, searchText: ''};
     this.isFiltered = false;
 
     this.pageOptions = {...IResultPageOptionsInitial}
@@ -238,22 +238,35 @@ export class EventsComponent implements OnInit {
   }
 
   search(pageNum: number, pageSize: number) {
-    this.isFiltered = true;
-    if (typeof this.filter.from === 'string') {
-      this.filter.from = this.parseDate(this.filter.from);
-    }
-    if (typeof this.filter.to === 'string') {
-      this.filter.to = this.parseDate(this.filter.to);
-    }
-    this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
-      await this.populateResultPage(data);
+    if (!this.filter.from && !this.filter.to && !this.filter.searchText) {
+      this.loading = true;
+      this.loadEvents(0, this.pageOptions.pageSize);
+    } else {
 
-      for (let i = 0; i < this.events.length; i++) {
-        this.events[i] = await this.downloadImage(this.events[i]);
+      if (typeof this.filter.from === 'string') {
+        this.filter.from = this.parseDate(this.filter.from);
       }
-      this.events.map(event => event.date = new Date(event.date));
-    });
-    window.scroll(0, 0);
+      if (typeof this.filter.to === 'string') {
+        this.filter.to = this.parseDate(this.filter.to);
+      }
+      if (this.filter.from > this.filter.to) {
+        this.toastService.error("Датум почетка мора да буде пре датума завршетка")
+        return;
+      }
+
+      this.loading = true;
+      this.isFiltered = true;
+      this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
+        await this.populateResultPage(data);
+
+        for (let i = 0; i < this.events.length; i++) {
+          this.events[i] = await this.downloadImage(this.events[i]);
+        }
+        this.events.map(event => event.date = new Date(event.date));
+      });
+      window.scroll(0, 0);
+    }
+    this.loading = false;
   }
 
   onExpandText(event: Event) {
@@ -270,7 +283,8 @@ export class EventsComponent implements OnInit {
     }
     if (this.isFiltered) {
       this.search($event - 1, this.pageOptions.pageSize);
+    } else {
+      this.loadEvents($event - 1, this.pageOptions.pageSize);
     }
-    this.loadEvents($event - 1, this.pageOptions.pageSize);
   }
 }
