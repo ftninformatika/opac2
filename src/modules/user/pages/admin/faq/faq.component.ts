@@ -3,6 +3,7 @@ import {FaqService} from "../../../../core/services/faq.service";
 import {Faq, FAQResultPage, IFAQPageOptions, IFAQPageOptionsInitial} from "../../../../../models/admin/faq.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
+import {ArrayUtils} from "../../../../../utils/array.utils";
 
 @Component({
   selector: 'app-faq',
@@ -30,13 +31,12 @@ export class FaqComponent implements OnInit {
     if (this.pageOptions.currentPage > 0) {
       pageNum = this.pageOptions.currentPage - 1;
     }
-    this.loadFAQs(pageNum);
-
+    this.getAll(pageNum);
     this.createForm();
     this.faq = {};
   }
 
-  loadFAQs(pageNum: number) {
+  getAll(pageNum: number) {
     this.faqService.getAll(pageNum, this.pageOptions.pageSize).subscribe(data => {
       this.resultPage = data;
       this.faqs = this.resultPage.content;
@@ -101,7 +101,7 @@ export class FaqComponent implements OnInit {
   edit() {
     this.faqService.edit(this.faq).subscribe(response => {
       if (response) {
-        this.updateArray(this.faq);
+        this.faqs = ArrayUtils.updateArray(this.faq, this.faqs)
         this.toastService.success("Успешно сте изменили питање")
         this.editing = false;
         this.createModal.hide();
@@ -113,13 +113,6 @@ export class FaqComponent implements OnInit {
     })
   }
 
-  updateArray(faq: Faq) {
-    const idx: number = this.faqs.findIndex(item => item._id === this.faq._id);
-    let newArray = [...this.faqs];
-    newArray[idx] = faq;
-    this.faqs = newArray;
-  }
-
   onBtnDeleteFaq(faq: Faq) {
     this.faq = faq;
     this.deleteModal.show();
@@ -128,7 +121,7 @@ export class FaqComponent implements OnInit {
   delete() {
     this.faqService.delete(this.faq._id).subscribe(response => {
       if (response) {
-        this.deleteFromArray(this.faq);
+        this.faqs = ArrayUtils.deleteItemFromArray(this.faq, this.faqs);
         this.toastService.success("Успешно сте обрисали питање")
       } else {
         this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
@@ -138,18 +131,10 @@ export class FaqComponent implements OnInit {
     });
   }
 
-  deleteFromArray(faq: Faq) {
-    const idx: number = this.faqs.findIndex(item => item._id === faq._id);
-    if (idx !== -1) {
-      this.faqs.splice(idx, 1);
-      this.faqs = [...this.faqs]
-    }
-  }
-
   onPageChange($event) {
     if ($event < 1) {
       return;
     }
-    this.loadFAQs($event - 1);
+    this.getAll($event - 1);
   }
 }

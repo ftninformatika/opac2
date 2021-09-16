@@ -11,3 +11,9 @@ export class EventFilter {
   to?: Date;
   searchText?: string;
 }
+
+export const IEventFilter: EventFilter = {
+  from: null,
+  to: null,
+  searchText: ''
+};

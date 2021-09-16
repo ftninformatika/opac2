@@ -9,20 +9,6 @@
 
         <h6 class="font-weight-bold mb-3 text-center text-lg-left">Разговори</h6>
         <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1 scrollbar-light-blue">
-          <!--                    <li class="active grey lighten-3 p-2">-->
-          <!--                      <a href="#" class="d-flex justify-content-between">-->
-          <!--                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">-->
-          <!--                        <div class="text-small">-->
-          <!--                          <strong>{{member?.firstName}} {{member?.lastName}}</strong>-->
-          <!--                          <p class="last-message text-muted">Hello, Are you there?</p>-->
-          <!--                        </div>-->
-          <!--                        <div class="chat-footer">-->
-          <!--                          <p class="text-smaller text-muted mb-0">Just now</p>-->
-          <!--                          <mdb-badge danger="true" class="float-right">1</mdb-badge>-->
-          <!--                        </div>-->
-          <!--                      </a>-->
-          <!--                    </li>-->
-
           <ul class="list-unstyled friend-list">
             <li class="p-2" *ngFor="let sender of senders ">
               <a href="javascript:void(0)" (click)="getMessagesByUsername(sender)">
@@ -38,7 +24,7 @@
                           <strong>{{sender?.memberCardDTO.firstName}} {{sender?.memberCardDTO.lastName}}</strong>
                         </div>
                         <div class="col-md-4 msg-date">
-                          <p class="text-smaller text-muted mb-0 float-right">
+                          <p class="text-smaller text-muted mb-0">
                             {{sender?.message.date | date:'dd.MM.yyyy. hh:mm'}}
                           </p>
                         </div>

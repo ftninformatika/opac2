@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../../../core/services/events.service";
-import {Event, EventFilter} from "../../../../../models/admin/event.model";
+import {Event, EventFilter, IEventFilter} from "../../../../../models/admin/event.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
   IMyOptions,
@@ -14,6 +14,8 @@ import {
   IEventsPageOptions,
   IResultPageOptionsInitial,
 } from "../../../../../models/admin/events-page-options.model";
+import {DateUtils} from "../../../../../utils/date.utils";
+import {ArrayUtils} from "../../../../../utils/array.utils";
 
 @Component({
   selector: 'app-events',
@@ -48,27 +50,36 @@ export class EventsComponent implements OnInit {
     this.createForm();
     this.event = new Event();
     this.editing = false;
-    this.filter = {from: null, to: null, searchText: ''};
+    this.filter = {...IEventFilter};
     this.isFiltered = false;
-
     this.pageOptions = {...IResultPageOptionsInitial}
     let pageNum = 0;
     if (this.pageOptions.currentPage > 0) {
       pageNum = this.pageOptions.currentPage - 1;
     }
-    this.loadEvents(pageNum, this.pageOptions.pageSize);
+    this.getAll(pageNum, this.pageOptions.pageSize);
   }
 
-  loadEvents(pageNum: number, pageSize: number) {
-    this.eventService.getAll(pageNum, pageSize).subscribe(async data => {
-      await this.populateResultPage(data);
+  setTimeout() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
 
-      for (let i = 0; i < this.events.length; i++) {                  // todo: ako nema dogadjaja
-        this.events[i] = await this.downloadImage(this.events[i]);
-      }
-      this.events.map(event => event.date = new Date(event.date));
+  getAll(pageNum: number, pageSize: number) {
+    this.eventService.getAll(pageNum, pageSize).subscribe(async data => {
+      await this.populatePageAndDownloadImages(data);
       this.isFiltered = false;
     });
+  }
+
+  private async populatePageAndDownloadImages(data: EventsResultPage) {
+    await this.populateResultPage(data);
+
+    for (let i = 0; i < this.events.length; i++) {                  // todo: ako nema dogadjaja
+      this.events[i] = await this.downloadImage(this.events[i]);
+    }
+    this.events.map(event => event.date = new Date(event.date));
     window.scroll(0, 0);
   }
 
@@ -76,12 +87,6 @@ export class EventsComponent implements OnInit {
     this.resultPage = data;
     this.events = this.resultPage.content;
     this.pageOptions.currentPage = this.resultPage.number + 1;
-  }
-
-  setTimeout() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
   }
 
   async downloadImage(event: Event) {
@@ -148,16 +153,9 @@ export class EventsComponent implements OnInit {
     formData.append('file', this.selectedImage);
     formData.append('title', event.title);
     formData.append('content', event.content);
-    if (typeof event.date === 'string') {
-      event.date = this.parseDate(event.date);
-    }
+    event.date = DateUtils.convertStringToDate(event.date);
     formData.append('date', event.date.toUTCString());
     return formData;
-  }
-
-  parseDate(date: string) {
-    const parts = date.split('.');
-    return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
   }
 
   onImageUpload(file: UploadOutput | any): void {
@@ -170,54 +168,19 @@ export class EventsComponent implements OnInit {
     };
   }
 
-  closeDialog() {
-    this.validatingForm.reset();
-    this.selectedImage = null;
-    this.imgURL = null;
-    this.event = {};
-    this.createModal.hide();
-  }
-
-  setEventForDelete(ev: Event) {
-    this.eventToDelete = ev;
-  }
-
   setEditEvent(ev: Event) {
     this.event = {...ev};
     this.editing = true;
     this.createModal.show();
   }
 
-  remove() {    // todo: reset paginatora
-    this.eventService.delete(this.eventToDelete._id).subscribe(response => {
-      if (response) {
-        this.deleteFromArray(this.eventToDelete);
-        this.toastService.success("Успешно сте обрисали догађај")
-      } else {
-        this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
-      }
-    }, () => {
-      this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
-    });
-  }
-
-  deleteFromArray(event: Event) {
-    const idx: number = this.events.findIndex(item => item._id === event._id);
-    if (idx !== -1) {
-      this.events.splice(idx, 1);
-      this.events = [...this.events]
-    }
-  }
-
   edit() {
     const formData = this.createFormData(this.event);
     this.eventService.edit(this.event._id, formData).subscribe(async editedEvent => {
       if (editedEvent) {
-        editedEvent.image = this.event.image;
-        if (this.selectedImage) {
-          editedEvent = await this.downloadImage(editedEvent)
-        }
-        this.updateArray(editedEvent);
+        editedEvent = await this.setImage(editedEvent);
+        editedEvent.date = new Date(editedEvent.date);
+        this.events = ArrayUtils.updateArray(editedEvent, this.events);
         this.toastService.success("Успешно сте изменили догађај")
         this.editing = false;
         this.closeDialog();
@@ -229,44 +192,59 @@ export class EventsComponent implements OnInit {
     })
   }
 
-  updateArray(editedEvent: Event) {
-    const idx: number = this.events.findIndex(item => item._id === this.event._id);
-    let newArray = [...this.events];
-    editedEvent.date = new Date(editedEvent.date);
-    newArray[idx] = editedEvent;
-    this.events = newArray;
+  private async setImage(editedEvent: Event) {
+    editedEvent.image = this.event.image;
+    if (this.selectedImage) {
+      editedEvent = await this.downloadImage(editedEvent)
+    }
+    return editedEvent;
+  }
+
+  setEventForDelete(ev: Event) {
+    this.eventToDelete = ev;
+  }
+
+  remove() {    // todo: reset paginatora
+    this.eventService.delete(this.eventToDelete._id).subscribe(response => {
+      if (response) {
+        this.events = ArrayUtils.deleteItemFromArray(this.eventToDelete, this.events);
+        this.toastService.success("Успешно сте обрисали догађај")
+      } else {
+        this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
+      }
+    }, () => {
+      this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
+    });
+  }
+
+  async onPageChange($event: number): Promise<void> {
+    if ($event < 1) {
+      return;
+    }
+    if (this.isFiltered && !(!this.filter.from && !this.filter.to && !this.filter.searchText)) {
+      this.searchEvents($event - 1, this.pageOptions.pageSize);
+    } else {
+      this.getAll($event - 1, this.pageOptions.pageSize);
+    }
+  }
+
+  searchEvents(pageNum: number, pageSize: number) {
+    this.filter.from = DateUtils.convertStringToDate(this.filter.from);
+    this.filter.to = DateUtils.convertStringToDate(this.filter.to);
+    if (this.filter.from > this.filter.to) {
+      this.toastService.error("Датум почетка мора да буде пре датума завршетка")
+      return;
+    }
+    this.loading = true;
+    this.isFiltered = true;
+    this.search(pageNum, pageSize);
   }
 
   search(pageNum: number, pageSize: number) {
-    if (!this.filter.from && !this.filter.to && !this.filter.searchText) {
-      this.loading = true;
-      this.loadEvents(0, this.pageOptions.pageSize);
-    } else {
-
-      if (typeof this.filter.from === 'string') {
-        this.filter.from = this.parseDate(this.filter.from);
-      }
-      if (typeof this.filter.to === 'string') {
-        this.filter.to = this.parseDate(this.filter.to);
-      }
-      if (this.filter.from > this.filter.to) {
-        this.toastService.error("Датум почетка мора да буде пре датума завршетка")
-        return;
-      }
-
-      this.loading = true;
-      this.isFiltered = true;
-      this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
-        await this.populateResultPage(data);
-
-        for (let i = 0; i < this.events.length; i++) {
-          this.events[i] = await this.downloadImage(this.events[i]);
-        }
-        this.events.map(event => event.date = new Date(event.date));
-      });
-      window.scroll(0, 0);
-    }
-    this.loading = false;
+    this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
+      await this.populatePageAndDownloadImages(data);
+      this.loading = false;
+    });
   }
 
   onExpandText(event: Event) {
@@ -277,14 +255,11 @@ export class EventsComponent implements OnInit {
     this.event = {};
   }
 
-  async onPageChange($event: number): Promise<void> {
-    if ($event < 1) {
-      return;
-    }
-    if (this.isFiltered) {
-      this.search($event - 1, this.pageOptions.pageSize);
-    } else {
-      this.loadEvents($event - 1, this.pageOptions.pageSize);
-    }
+  closeDialog() {
+    this.validatingForm.reset();
+    this.selectedImage = null;
+    this.imgURL = null;
+    this.event = {};
+    this.createModal.hide();
   }
 }

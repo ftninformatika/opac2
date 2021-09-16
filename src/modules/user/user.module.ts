@@ -17,7 +17,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
 import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
-import {ChatPage} from "./pages/admin/chat/chat.page";
+import {MessagePage} from "./pages/admin/message/message.page";
 import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
 import {NgxPaginationModule} from "ngx-pagination";
@@ -44,7 +44,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     ChangePasswordPage,
     AdminCollectionEditor,
     ActiveReservationsPage,
-    ChatPage,
+    MessagePage,
     EventsComponent,
     FaqComponent
   ]

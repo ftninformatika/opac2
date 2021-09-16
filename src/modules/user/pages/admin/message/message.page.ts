@@ -8,10 +8,10 @@ import {ToastService} from "ng-uikit-pro-standard";
 
 @Component({
   selector: 'app-chat',
-  templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss']
+  templateUrl: './message.page.html',
+  styleUrls: ['./message.page.scss']
 })
-export class ChatPage implements OnInit {
+export class MessagePage implements OnInit {
   @ViewChild('conversationList') private conversationList: ElementRef;
 
   senders: MessageSenderDTO[];
