@@ -23,9 +23,8 @@
 }
 
 #btn-add-event {
-  margin-top: 1rem !important;
   cursor: pointer;
-  float: left;
+  float: right;
 }
 
 #edit-icon {
@@ -48,6 +47,10 @@
 #expandModalBody {
   max-height: 60vh;
   overflow-y: auto;
+}
+
+.div-search {
+  padding-bottom: 0.5rem !important;
 }
 
 #search-btn {
