@@ -71,3 +71,17 @@ pagination-controls {
 .table-column-btns {
   font-size: 0.8em;
 }
+
+@media (max-width: 991px) {
+  .div-delete {
+    margin-left: 10px;
+  }
+
+  .table-column-btns {
+    display:flex;
+    margin-right: 50%;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+  }
+}

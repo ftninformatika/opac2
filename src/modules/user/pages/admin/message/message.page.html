@@ -1,4 +1,10 @@
-<mdb-card class="chat-room">
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
+    <span class="sr-only">Учитавање...</span>
+  </div>
+</div>
+
+<mdb-card class="chat-room" *ngIf="!loading">
   <mdb-card-body class="lighten-3">
 
     <!-- Grid row -->

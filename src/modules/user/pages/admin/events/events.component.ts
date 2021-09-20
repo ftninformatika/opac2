@@ -23,7 +23,7 @@ import {ArrayUtils} from "../../../../../utils/array.utils";
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  @ViewChild('createModal', {static: true}) createModal: ModalDirective;
+  @ViewChild('createModal') createModal: ModalDirective;
   events: Event[];
   event: Event;
   eventToDelete: Event;
@@ -37,6 +37,7 @@ export class EventsComponent implements OnInit {
   isFiltered: boolean;
 
   loading: boolean;
+  noEvents: boolean;
 
   pageOptions: IEventsPageOptions;
   resultPage: EventsResultPage;
@@ -46,6 +47,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.noEvents = false;
     this.setTimeout();
     this.createForm();
     this.event = new Event();
@@ -69,14 +71,19 @@ export class EventsComponent implements OnInit {
   getAll(pageNum: number, pageSize: number) {
     this.eventService.getAll(pageNum, pageSize).subscribe(async data => {
       await this.populatePageAndDownloadImages(data);
-      this.isFiltered = false;
+      if (data.content.length === 0) {
+        this.noEvents = true;
+      } else {
+        this.isFiltered = false;
+        this.noEvents = false;
+      }
     });
   }
 
   private async populatePageAndDownloadImages(data: EventsResultPage) {
     await this.populateResultPage(data);
 
-    for (let i = 0; i < this.events.length; i++) {                  // todo: ako nema dogadjaja
+    for (let i = 0; i < this.events.length; i++) {
       this.events[i] = await this.downloadImage(this.events[i]);
     }
     this.events.map(event => event.date = new Date(event.date));
@@ -243,6 +250,7 @@ export class EventsComponent implements OnInit {
   search(pageNum: number, pageSize: number) {
     this.eventService.search(this.filter, pageNum, pageSize).subscribe(async data => {
       await this.populatePageAndDownloadImages(data);
+      this.noEvents = data.content.length === 0;
       this.loading = false;
     });
   }

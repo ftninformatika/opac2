@@ -80,3 +80,9 @@ mdb-card-body {
 .msg-date {
   text-align: right;
 }
+
+@media (max-width: 768px) {
+  .chat-message {
+    margin-top: 50px;
+  }
+}

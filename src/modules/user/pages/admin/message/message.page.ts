@@ -19,11 +19,13 @@ export class MessagePage implements OnInit {
   librarian: string;
   member: LibraryMemberCard;
   message: string;
+  loading: boolean;
 
   constructor(private messageService: MessageService, private _store: Store, private toastService: ToastService) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     const memberLibrary = this._store.selectSnapshot(UserState.library);
     this.librarian = 'bibliotekar@' + memberLibrary;                        // todo: da li je samo za bgb?
     this.loadMembers();
@@ -32,6 +34,7 @@ export class MessagePage implements OnInit {
   loadMembers() {
     this.messageService.getSenders().subscribe(senders => {
       this.senders = senders;
+      this.loading = false;
     });
   }
 
@@ -62,7 +65,7 @@ export class MessagePage implements OnInit {
       this.messageService.sendMessage(newMessage).subscribe(savedMessage => {
         this.conversation.push(savedMessage);
         this.message = "";
-        this.updateSendersList(newMessage);    // todo: da li pozivati svaki put ili samo push i reorder
+        this.updateSendersList(newMessage);
       }, () => this.toastService.error("Дошло је до грешке приликом слања поруке. Покушајте поново"));
     }
   }

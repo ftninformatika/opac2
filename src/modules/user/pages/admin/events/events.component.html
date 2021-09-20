@@ -12,7 +12,7 @@
 
 <div class="container py-5 div-search" *ngIf="!loading">
   <div class="row" style="margin-top: 8px;">
-    <div class="col-2 col-xs-3">
+    <div class="col-md-2 col-xs-2 div-from">
       <div class="md-form">
         <mdb-date-picker [inline]="true"
                          [options]="myDatePickerOptions"
@@ -23,7 +23,7 @@
         </mdb-date-picker>
       </div>
     </div>
-    <div class="col-2 col-xs-3">
+    <div class="col-md-2 col-xs-2 div-to">
       <div class="md-form">
         <mdb-date-picker [inline]="true"
                          [options]="myDatePickerOptions"
@@ -35,14 +35,14 @@
       </div>
     </div>
 
-    <div class="col-6 col-xs-4 text-right">
+    <div class="col-md-6 col-xs-6 text-right">
       <div class="md-form">
         <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ..."
                [(ngModel)]="filter.searchText">
       </div>
     </div>
 
-    <div class="col-2 col-xs-2 text-right">
+    <div class="col-md-2 col-xs-2 text-right">
       <button id="search-btn" type="button" mdbBtn data-toggle="modal" data-target="#basicExample"
               mdbWavesEffect (click)="searchEvents(0, this.pageOptions.pageSize)">Претражи
       </button>
@@ -50,6 +50,10 @@
   </div>
 </div>
 
+
+<div class="container py-5 div-search" *ngIf="noEvents">
+  <h4>Нема резултата за задати критеријум претраге</h4>
+</div>
 
 <main>
   <div class="container py-5">
@@ -122,12 +126,12 @@
           </div>
 
           <!--Grid column-->
-          <div class="col-lg-1 mb-5">
-            <div class="table-column-btns" mdbTooltip="Измени" placement="left" style="cursor: pointer"
+          <div class="col-md-1 mb-5 table-column-btns">
+            <div class="div-edit" mdbTooltip="Измени" placement="left" style="cursor: pointer"
                  (click)="setEditEvent(event);">
               <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
             </div>
-            <div class="table-column-btns" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
+            <div class="div-delete" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
                  (click)="setEventForDelete(event); deleteModal.show();">
               <i class="fas fa-trash red-text fa-2x"></i>
             </div>
@@ -180,7 +184,7 @@
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">
