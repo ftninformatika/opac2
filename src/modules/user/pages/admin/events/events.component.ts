@@ -189,7 +189,6 @@ export class EventsComponent implements OnInit {
         editedEvent.date = new Date(editedEvent.date);
         this.events = ArrayUtils.updateArray(editedEvent, this.events);
         this.toastService.success("Успешно сте изменили догађај")
-        this.editing = false;
         this.closeDialog();
       } else {
         this.toastService.error("Дошло је до грешке приликом измене догађаја. Покушајте поново")
@@ -269,5 +268,6 @@ export class EventsComponent implements OnInit {
     this.imgURL = null;
     this.event = {};
     this.createModal.hide();
+    this.editing = false;
   }
 }
