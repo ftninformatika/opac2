@@ -102,7 +102,7 @@ export class FaqComponent implements OnInit {
     this.faqService.edit(this.faq).subscribe(response => {
       if (response) {
         this.faqs = ArrayUtils.updateArray(this.faq, this.faqs)
-        this.toastService.success("Успешно сте изменили питање")
+        this.toastService.success("Успешно сте изменили питање");
         this.editing = false;
         this.createModal.hide();
       } else {

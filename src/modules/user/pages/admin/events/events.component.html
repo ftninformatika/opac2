@@ -6,7 +6,7 @@
 
 <div id="div-add-event" *ngIf="!loading">
   <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
-          data-target="#basicExample" (click)="createModal.show()" mdbWavesEffect>Додај догађај
+          data-target="#basicExample" (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect>Додај догађај
   </button>
 </div>
 
@@ -19,6 +19,7 @@
                          [placeholder]="'Од'"
                          [locale]="'sr'"
                          [(ngModel)]="filter.from"
+                         data-cy="filter-from"
                          required>
         </mdb-date-picker>
       </div>
@@ -30,6 +31,7 @@
                          [placeholder]="'До'"
                          [locale]="'sr'"
                          [(ngModel)]="filter.to"
+                         data-cy="filter-to"
                          required>
         </mdb-date-picker>
       </div>
@@ -37,14 +39,23 @@
 
     <div class="col-md-6 col-xs-6 text-right">
       <div class="md-form">
-        <input mdbInput mdbValidate type="text" class="form-control" placeholder="Унесите наслов или садржај ..."
+        <input mdbInput mdbValidate
+               type="text"
+               class="form-control"
+               placeholder="Унесите наслов или садржај ..."
+               data-cy="search-text"
                [(ngModel)]="filter.searchText">
       </div>
     </div>
 
     <div class="col-md-2 col-xs-2 text-right">
-      <button id="search-btn" type="button" mdbBtn data-toggle="modal" data-target="#basicExample"
-              mdbWavesEffect (click)="searchEvents(0, this.pageOptions.pageSize)">Претражи
+      <button id="search-btn"
+              type="button"
+              data-toggle="modal"
+              data-target="#basicExample"
+              mdbWavesEffect mdbBtn
+              (click)="searchEvents(0, this.pageOptions.pageSize)"
+              data-cy="search-btn">Претражи
       </button>
     </div>
   </div>
@@ -105,7 +116,7 @@
               <strong>{{ event.date | date: 'dd.MM.yyyy.'}}</strong>
             </h6>
             <h4 class="mb-4">
-              <strong>{{ event.title }}</strong>
+              <strong data-cy="title">{{ event.title }}</strong>
             </h4>
             <div id="event-content">
               {{event.content | slice:0:410}}
@@ -128,7 +139,8 @@
           <!--Grid column-->
           <div class="col-md-1 mb-5 table-column-btns">
             <div class="div-edit" mdbTooltip="Измени" placement="left" style="cursor: pointer"
-                 (click)="setEditEvent(event);">
+                 (click)="setEditEvent(event);"
+                 data-cy="edit-btn">
               <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
             </div>
             <div class="div-delete" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
@@ -198,7 +210,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="orangeForm-name" class="form-control" [formControl]="title" [(ngModel)]="event.title"
-                 mdbInput mdbValidate>
+                 data-cy="title-modal" mdbInput mdbValidate>
           <label for="orangeForm-name">* Наслов</label>
           <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
             Наслов је обавезан
@@ -206,7 +218,8 @@
         </div>
         <div class="md-form mb-5">
           <textarea class="md-textarea form-control " rows="2" id="content" type="text" length="120"
-                    [(ngModel)]="event.content" [formControl]="content" mdbCharCounter mdbInput mdbValidate></textarea>
+                    [(ngModel)]="event.content" [formControl]="content" data-cy="content-modal" mdbCharCounter mdbInput
+                    mdbValidate></textarea>
           <label for="content">* Садржај</label>
           <mdb-error
             *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
@@ -215,7 +228,8 @@
 
         <div class="md-form mb-4">
           <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'* Изаберите датум'"
-                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" required>
+                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" data-cy="date-modal"
+                           required>
           </mdb-date-picker>
           <mdb-error
             *ngIf="date.invalid && (date.dirty || date.touched)">
@@ -250,7 +264,8 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();"
+                data-cy="event-submit-btn">
           Сачувај
         </button>
       </div>

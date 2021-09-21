@@ -68,18 +68,22 @@
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                   class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
-                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-chat']">Питај библиотекара</a>
+                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-chat']"
+                    data-cy="chat-nav-link">Питај библиотекара</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
-                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-events']">Догађаји</a>
+                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-events']"
+                    data-cy="event-nav-link">Догађаји</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
-                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-faq']">Најчешћа питања</a>
+                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-faq']"
+                    data-cy="faq-nav-link">Најчешћа питања</a>
                 <div class="divider dropdown-divider"></div>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
               </div>
             </ng-container>
           </li>
-          <li class="nav-item" *ngIf="((user | async)?.userData == null) && (!(configState | async)?.libConfig?.kioskSublocation)">
+          <li class="nav-item" *ngIf="((user | async)?.userData == null) && (!(configState | async)?.libConfig?.kioskSublocation)"
+              data-cy="login-btn-nav">
             <a class="nav-link waves-light sign-in-button" mdbWavesEffect [routerLink]="['user/login']">
               <mdb-icon fas icon="user-alt"></mdb-icon>Пријава
             </a>

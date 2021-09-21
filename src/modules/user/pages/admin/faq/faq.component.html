@@ -1,4 +1,4 @@
-<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
+<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal" data-cy="new-event"
         data-target="#basicExample" (click)="onBtnCreteNewFaq()" mdbWavesEffect>Додај питање
 </button>
 
@@ -11,18 +11,18 @@
           totalItems: resultPage.totalElements}; let i = index">
   <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
     <div class="btns">
-      <div class="edit-div" mdbTooltip="Измени" placement="left"
+      <div class="edit-div" mdbTooltip="Измени" placement="left" data-cy="edit-btn"
            (click)="onBtnEditFaq(faq);">
         <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
       </div>
-      <div class="delete-div" mdbTooltip="Избриши" placement="left"
+      <div class="delete-div" mdbTooltip="Избриши" placement="left"  data-cy="delete-btn"
            (click)="onBtnDeleteFaq(faq);">
         <i class="fas fa-trash red-text fa-2x"></i>
       </div>
     </div>
   </mdb-card-header>
   <mdb-card-body>
-    <mdb-card-text>{{ faq.answer }}</mdb-card-text>
+    <mdb-card-text data-cy="card-text">{{ faq.answer }}</mdb-card-text>
   </mdb-card-body>
 </mdb-card>
 
@@ -58,6 +58,7 @@
                  class="form-control"
                  [formControl]="question"
                  [(ngModel)]="faq.question"
+                 data-cy="question"
                  mdbInput mdbValidate>
           <label for="orangeForm-name">* Питање</label>
           <mdb-error *ngIf="question.invalid && (question.dirty || question.touched)">
@@ -72,6 +73,7 @@
                     length="120"
                     [(ngModel)]="faq.answer"
                     [formControl]="answer"
+                    data-cy="answer"
                     mdbCharCounter mdbInput mdbValidate>
           </textarea>
           <label for="content">* Одговор</label>
@@ -81,7 +83,7 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();" data-cy="save-faq-btn">
           Сачувај
         </button>
       </div>
@@ -106,10 +108,10 @@
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
-                (click)="deleteModal.hide();">Затвори
+                (click)="deleteModal.hide();" data-cy="delete-close-btn">Затвори
         </button>
         <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
-                (click)="delete(); deleteModal.hide()">Избриши
+                (click)="delete(); deleteModal.hide()" data-cy="delete-submit-btn">Избриши
         </button>
       </div>
     </div>
