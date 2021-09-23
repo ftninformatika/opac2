@@ -63,7 +63,7 @@
                           </span>
                           <span *ngIf="sender?.message.seen === false"
                                 class="text-muted float-right msg-icon">
-                          <mdb-badge danger="true">1</mdb-badge>
+                          <mdb-badge danger="true">{{sender?.unseenMsgCount}}</mdb-badge>
                           </span>
                         </div>
                       </div>

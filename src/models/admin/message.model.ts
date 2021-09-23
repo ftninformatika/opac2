@@ -12,4 +12,5 @@ export class Message {
 export class MessageSenderDTO {
   memberCardDTO: LibraryMemberCard;
   message: Message;
+  unseenMsgCount: number;
 }
