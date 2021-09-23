@@ -12,8 +12,12 @@
 
       <!-- Grid column -->
       <div class="col-md-6 col-xl-4 px-0">
-
-        <h6 class="font-weight-bold mb-3 text-center text-lg-left">Разговори</h6>
+        <div class="header-div">
+          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">Разговори</h6>
+          <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="loadSenders()" mdbWavesEffect>
+            <i class="fas fa-sync-alt refresh-icon"></i>
+          </a>
+        </div>
         <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1 scrollbar-light-blue">
           <ul class="list-unstyled friend-list">
             <li class="p-2" *ngFor="let sender of senders ">

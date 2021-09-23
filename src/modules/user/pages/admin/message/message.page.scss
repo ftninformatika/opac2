@@ -86,3 +86,22 @@ mdb-card-body {
     margin-top: 50px;
   }
 }
+
+.header-div {
+  display: flex;
+  align-items: center;
+}
+
+.refresh-a {
+  //margin-left: auto;
+  background-color: #00b2d1;
+  height: 25px !important;
+  width: 25px !important;
+}
+
+.refresh-icon {
+  height: 25px !important;
+  width: 25px !important;
+  font-size: 13px !important;
+  line-height: 25px !important;
+}

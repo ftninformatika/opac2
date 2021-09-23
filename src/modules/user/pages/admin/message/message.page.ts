@@ -28,10 +28,10 @@ export class MessagePage implements OnInit {
     this.loading = true;
     const memberLibrary = this._store.selectSnapshot(UserState.library);
     this.librarian = 'bibliotekar@' + memberLibrary;                        // todo: da li je samo za bgb?
-    this.loadMembers();
+    this.loadSenders();
   }
 
-  loadMembers() {
+  loadSenders() {
     this.messageService.getSenders().subscribe(senders => {
       this.senders = senders;
       this.loading = false;
