@@ -21,6 +21,7 @@ import {MessagePage} from "./pages/admin/message/message.page";
 import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NotificationComponent} from "./pages/admin/notifications/notification.component";
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     ActiveReservationsPage,
     MessagePage,
     EventsComponent,
-    FaqComponent
+    FaqComponent,
+    NotificationComponent
   ]
 })
 export class UserModule {}

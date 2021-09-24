@@ -14,6 +14,7 @@ import {ActiveReservationsPage} from "./pages/active-reservations/active-reserva
 import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
 import {MessagePage} from "./pages/admin/message/message.page";
+import {NotificationComponent} from "./pages/admin/notifications/notification.component";
 
 export const UserRoutes: Routes = [
   {
@@ -76,6 +77,11 @@ export const UserRoutes: Routes = [
   {
     path: 'admin-faq',
     component: FaqComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-notifications',
+    component: NotificationComponent,
     canActivate: [AdminGuard]
   },
   {

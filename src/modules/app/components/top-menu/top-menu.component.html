@@ -76,6 +76,9 @@
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-faq']"
                     data-cy="faq-nav-link">Најчешћа питања</a>
+                <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
+                    class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-notifications']"
+                    data-cy="faq-nav-link">Обавештења</a>
                 <div class="divider dropdown-divider"></div>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>

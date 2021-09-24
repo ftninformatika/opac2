@@ -1,0 +1,85 @@
+<button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal" data-cy="new-event"
+        data-target="#basicExample" (click)="onBtnCreteNewFaq();createModal.show()" mdbWavesEffect>Ново обавештење
+</button>
+
+<h5 class="text-center">Обавештења </h5><br>
+
+<mdb-card *ngFor="let notification of notifications | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions.pageSize,
+          currentPage: pageOptions.currentPage,
+          totalItems: resultPage.totalElements}; let i = index">
+  <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ notification.title }}
+  </mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-text data-cy="card-text">{{ notification.content }}</mdb-card-text>
+  </mdb-card-body>
+</mdb-card>
+
+<pagination-controls [id]="'paginatorId'"
+                     [maxSize]="5"
+                     [directionLinks]="true"
+                     [responsive]="true"
+                     [previousLabel]="'Претходна'"
+                     [nextLabel]="'Следећа'"
+                     (pageChange)="onPageChange($event)">
+</pagination-controls>
+
+
+<div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="createModal.hide();"
+     data-mdb-target="#eventModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">
+<!--          <mdb-icon id="question-icon" far icon="question-circle"></mdb-icon>-->
+          <i class="far fa-bell"></i>
+
+          Обавештење
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="createModal.hide();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text"
+                 id="orangeForm-name"
+                 class="form-control"
+                 [formControl]="title"
+                 [(ngModel)]="notification.title"
+                 data-cy="question"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-name">* Наслов</label>
+          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
+            Наслов је обавезан
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5">
+          <textarea class="md-textarea form-control"
+                    rows="2"
+                    id="content"
+                    type="text"
+                    length="120"
+                    [(ngModel)]="notification.content"
+                    [formControl]="content"
+                    data-cy="answer"
+                    mdbCharCounter mdbInput mdbValidate>
+          </textarea>
+          <label for="content">* Садржај</label>
+          <mdb-error
+            *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
+          </mdb-error>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();"
+                data-cy="save-faq-btn">
+          Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
