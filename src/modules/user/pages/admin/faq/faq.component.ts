@@ -81,7 +81,7 @@ export class FaqComponent implements OnInit {
   add() {
     this.faqService.create(this.faq).subscribe(createdFaq => {
       if (createdFaq) {
-        this.faqs = [...this.faqs, createdFaq];
+        this.addToList(createdFaq)
         this.createModal.hide();
         this.toastService.success("Успешно сте додали ново питање и одговор")
       } else {
@@ -90,6 +90,14 @@ export class FaqComponent implements OnInit {
     }, () => {
       this.toastService.error("Дошло је до грешке приликом додавања новог питања. Покушајте поново")
     })
+  }
+
+  addToList(createdFaq: Faq) {
+    if (this.faqs.length == this.pageOptions.pageSize) {
+      this.getAll(this.pageOptions.currentPage);
+    } else {
+      this.faqs = [...this.faqs, createdFaq];
+    }
   }
 
   onBtnEditFaq(faq: Faq) {
