@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="col-md-6 col-xs-6 text-right">
+    <div class="col-md-7 col-xs-7 text-right">
       <div class="md-form">
         <input mdbInput mdbValidate
                type="text"
@@ -48,15 +48,10 @@
       </div>
     </div>
 
-    <div class="col-md-2 col-xs-2 text-right">
-      <button id="search-btn"
-              type="button"
-              data-toggle="modal"
-              data-target="#basicExample"
-              mdbWavesEffect mdbBtn
-              (click)="searchEvents(0, this.pageOptions.pageSize)"
-              data-cy="search-btn">Претражи
-      </button>
+    <div class="col-md-1 col-xs-1 text-center search-btn-div">
+      <a class="search-btn-link" (click)="searchEvents(0, this.pageOptions.pageSize)" role="button">
+        <i class="fas fa-search"></i>
+      </a>
     </div>
   </div>
 </div>

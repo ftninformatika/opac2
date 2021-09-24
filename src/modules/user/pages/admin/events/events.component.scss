@@ -51,13 +51,18 @@
 
 .div-search {
   padding-bottom: 0.5rem !important;
+  padding-top: 4rem !important;
 }
 
-#search-btn {
-  margin-top: 1rem !important;
-  background-color: #00b2d1;
-  color: #ffffff;
-  width: 140px;
+.search-btn-div {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.search-btn-link {
+  color: grey;
+  width: 100px;
 }
 
 #event-content {
