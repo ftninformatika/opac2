@@ -2,19 +2,31 @@
         data-target="#basicExample" (click)="onBtnCreteNewFaq();createModal.show()" mdbWavesEffect>Ново обавештење
 </button>
 
-<h5 class="text-center">Обавештења </h5><br>
+<div class="text-center admin-page-title">
+  <h5>ОБАВЕШТЕЊА</h5><br>
+</div>
 
-<mdb-card *ngFor="let notification of notifications | paginate:
+<main>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <section class="mb-5">
+        <div class="media mb-1" *ngFor="let notification of notifications | paginate:
           {id: 'paginatorId',
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
-          totalItems: resultPage.totalElements}; let i = index">
-  <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ notification.title }}
-  </mdb-card-header>
-  <mdb-card-body>
-    <mdb-card-text data-cy="card-text">{{ notification.content }}</mdb-card-text>
-  </mdb-card-body>
-</mdb-card>
+          totalItems: resultPage?.totalElements};">
+          <div class="media-body">
+            <hr>
+            <h5 class="media-heading title">{{ notification.title }}</h5>
+            <p class="media-content">{{ notification.content }}</p>
+            <div><b style="color: #c35c42">{{notification.createdBy}}</b>, {{notification.date | date: "dd.MM.yyyy."}}</div>
+          </div>
+        </div>
+        <hr>
+      </section>
+    </div>
+  </div>
+</main>
 
 <pagination-controls [id]="'paginatorId'"
                      [maxSize]="5"
@@ -22,7 +34,8 @@
                      [responsive]="true"
                      [previousLabel]="'Претходна'"
                      [nextLabel]="'Следећа'"
-                     (pageChange)="onPageChange($event)">
+                     (pageChange)="onPageChange($event)"
+                     *ngIf="notifications">
 </pagination-controls>
 
 
@@ -33,9 +46,7 @@
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">
-<!--          <mdb-icon id="question-icon" far icon="question-circle"></mdb-icon>-->
           <i class="far fa-bell"></i>
-
           Обавештење
         </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"

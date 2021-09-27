@@ -4,6 +4,8 @@ export class Notification {
   _id?: string;
   title?: string;
   content?: string;
+  createdBy?: string;
+  date?: Date;
 }
 
 export class NotificationResultPage {
