@@ -2,39 +2,44 @@
         data-target="#basicExample" (click)="onBtnCreteNewFaq()" mdbWavesEffect>Додај питање
 </button>
 
-<h5 class="text-center">Најчешћа питања</h5><br>
+<div class="text-center admin-page-title">
+  <h5>Најчешћа питања</h5><br>
+</div>
 
-<mdb-card *ngFor="let faq of faqs | paginate:
+<main>
+  <div class="container py-5">
+    <mdb-card *ngFor="let faq of faqs | paginate:
           {id: 'paginatorId',
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
-          totalItems: resultPage.totalElements}; let i = index">
-  <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
-    <div class="btns">
-      <div class="edit-div" mdbTooltip="Измени" placement="left" data-cy="edit-btn"
-           (click)="onBtnEditFaq(faq);">
-        <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
-      </div>
-      <div class="delete-div" mdbTooltip="Избриши" placement="left"  data-cy="delete-btn"
-           (click)="onBtnDeleteFaq(faq);">
-        <i class="fas fa-trash red-text fa-2x"></i>
-      </div>
-    </div>
-  </mdb-card-header>
-  <mdb-card-body>
-    <mdb-card-text data-cy="card-text">{{ faq.answer }}</mdb-card-text>
-  </mdb-card-body>
-</mdb-card>
+          totalItems: resultPage?.totalElements}; let i = index">
+      <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
+        <div class="btns">
+          <div class="edit-div" mdbTooltip="Измени" placement="left" data-cy="edit-btn"
+               (click)="onBtnEditFaq(faq);">
+            <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
+          </div>
+          <div class="delete-div" mdbTooltip="Избриши" placement="left" data-cy="delete-btn"
+               (click)="onBtnDeleteFaq(faq);">
+            <i class="fas fa-trash red-text fa-2x"></i>
+          </div>
+        </div>
+      </mdb-card-header>
+      <mdb-card-body>
+        <mdb-card-text data-cy="card-text">{{ faq.answer }}</mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
 
-<pagination-controls [id]="'paginatorId'"
-                     [maxSize]="5"
-                     [directionLinks]="true"
-                     [responsive]="true"
-                     [previousLabel]="'Претходна'"
-                     [nextLabel]="'Следећа'"
-                     (pageChange)="onPageChange($event)">
-</pagination-controls>
-
+    <pagination-controls [id]="'paginatorId'"
+                         [maxSize]="5"
+                         [directionLinks]="true"
+                         [responsive]="true"
+                         [previousLabel]="'Претходна'"
+                         [nextLabel]="'Следећа'"
+                         (pageChange)="onPageChange($event)">
+    </pagination-controls>
+  </div>
+</main>
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" (close)="createModal.hide();"
@@ -83,7 +88,8 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();" data-cy="save-faq-btn">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();"
+                data-cy="save-faq-btn">
           Сачувај
         </button>
       </div>
