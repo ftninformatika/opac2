@@ -2,12 +2,12 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../../core/services/message.service";
 import {LibraryMemberCard} from "../../../../../models/library-member.model";
 import {Message, MessageSenderDTO} from "../../../../../models/admin/message.model";
-import {UserState} from "../../../../core/states/user/user.state";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
+import {UserState} from "../../../../core/states/user/user.state";
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-message',
   templateUrl: './message.page.html',
   styleUrls: ['./message.page.scss']
 })
@@ -16,8 +16,8 @@ export class MessagePage implements OnInit {
 
   senders: MessageSenderDTO[];
   conversation: Message[];
-  librarian: string;
   member: LibraryMemberCard;
+  loggedAdmin: string;
   message: string;
   loading: boolean;
 
@@ -26,12 +26,13 @@ export class MessagePage implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    const memberLibrary = this._store.selectSnapshot(UserState.library);
-    this.librarian = 'bibliotekar@' + memberLibrary;                        // todo: da li je samo za bgb?
+    this.loggedAdmin = this._store.selectSnapshot(UserState.username);
     this.loadSenders();
   }
 
   loadSenders() {
+    this.conversation = [];
+    this.member = null;
     this.messageService.getSenders().subscribe(senders => {
       this.senders = senders;
       this.loading = false;
@@ -90,7 +91,7 @@ export class MessagePage implements OnInit {
   createNewMessage(): Message {
     const newMessage = new Message();
     newMessage.idReceiver = this.member.username;
-    newMessage.idSender = this.librarian;
+    newMessage.idSender = this.loggedAdmin;
     newMessage.content = this.message;
     newMessage.date = new Date();
     newMessage.seen = true;
