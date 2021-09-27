@@ -13,7 +13,8 @@
       <!-- Grid column -->
       <div class="col-md-6 col-xl-4 px-0">
         <div class="header-div">
-          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">Разговори</h6>
+          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">
+            Разговори</h6>
           <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="loadSenders()" mdbWavesEffect>
             <i class="fas fa-sync-alt refresh-icon"></i>
           </a>
@@ -84,7 +85,8 @@
 
           <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>
             <div *ngFor="let message of conversation">
-              <li class="d-flex justify-content-end mb-4" *ngIf="message.idSender !== member.username">
+              <li class="d-flex justify-content-end mb-4"
+                  *ngIf="message.idSender !== member.username || ((message.idSender === member.username) && (message.idReceiver === member.username))">
                 <div class="chat-body white p-3 z-depth-1">
                   <div class="header">
                     <strong class="primary-font">Библиотека</strong>
@@ -98,12 +100,12 @@
                     {{message.content}}
                   </p>
                 </div>
-                <img *ngIf="message.idSender !== member.username" src="../../../../../assets/users/librarian.png"
+                <img src="../../../../../assets/users/librarian.png"
                      alt="avatar"
                      class="avatar rounded-circle mr-0 ml-3 z-depth-1">
               </li>
 
-              <li class="d-flex justify-content-start mb-4" *ngIf="message.idSender === member.username">
+              <li class="d-flex justify-content-start mb-4" *ngIf="message.idSender === member.username && !message.idReceiver">
                 <img src="../../../../../assets/users/user.png" alt="avatar"
                      class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                 <div class="chat-body white p-3 ml-2 z-depth-1">
