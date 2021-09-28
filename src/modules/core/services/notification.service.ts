@@ -15,7 +15,7 @@ export class NotificationService {
     this._httpClient = httpClient;
   }
 
-  public getAll(pageNum: number, pageSize: number): Observable<FAQResultPage> {
+  public getAll(pageNum: number, pageSize: number): Observable<NotificationResultPage> {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.notification}/get?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<NotificationResultPage>;
   }
 

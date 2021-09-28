@@ -22,6 +22,7 @@ import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NotificationComponent} from "./pages/admin/notifications/notification.component";
+import {LocationComponent} from "./pages/admin/location/location.component";
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import {NotificationComponent} from "./pages/admin/notifications/notification.co
     MessagePage,
     EventsComponent,
     FaqComponent,
-    NotificationComponent
+    NotificationComponent,
+    LocationComponent
   ]
 })
 export class UserModule {}

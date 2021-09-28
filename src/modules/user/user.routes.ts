@@ -15,6 +15,7 @@ import {EventsComponent} from "./pages/admin/events/events.component";
 import {FaqComponent} from "./pages/admin/faq/faq.component";
 import {MessagePage} from "./pages/admin/message/message.page";
 import {NotificationComponent} from "./pages/admin/notifications/notification.component";
+import {LocationComponent} from "./pages/admin/location/location.component";
 
 export const UserRoutes: Routes = [
   {
@@ -82,6 +83,11 @@ export const UserRoutes: Routes = [
   {
     path: 'admin-notifications',
     component: NotificationComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-locations',
+    component: LocationComponent,
     canActivate: [AdminGuard]
   },
   {

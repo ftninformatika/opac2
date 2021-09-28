@@ -1,0 +1,37 @@
+.fa-map-marker-alt {
+  margin-right: 10px;
+}
+
+#btn-add-library {
+  float: right;
+  cursor: pointer;
+}
+
+pagination-controls {
+  text-align: center;
+}
+
+.div-delete {
+  margin-top: 10px;
+}
+
+.table-column-btns {
+  float: right;
+  margin-right: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  font-size: 0.6em;
+}
+
+
+@media (max-width: 991px) {
+  .table-column-btns {
+    display: flex;
+  }
+
+  .div-delete {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+}
