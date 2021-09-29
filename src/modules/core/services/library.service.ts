@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
 import {Library, LibraryResultPage} from "../../../models/admin/library.model";
-import {EventsResultPage} from "../../../models/admin/events-page-options.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class LibraryService {
   private readonly _httpClient: HttpClient;
 
   public constructor(httpClient: HttpClient) {
@@ -20,6 +19,10 @@ export class LocationService {
   }
 
   public create(library: Library): Observable<Library> {
-    return this._httpClient.post(ApiEndpointConfig.Paths.admin.library, library) as Observable<Library>;
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.library + '/add', library) as Observable<Library>;
+  }
+
+  public edit(library: Library): Observable<Library> {
+    return this._httpClient.put(ApiEndpointConfig.Paths.admin.library, library) as Observable<Library>;
   }
 }

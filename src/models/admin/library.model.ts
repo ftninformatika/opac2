@@ -7,7 +7,7 @@ export class Library {
   address?: string;
   city?: string;
   email?: string;
-  web?: string;
+  webSite?: string;
   phone?: string;
   workingHours?: string
   latitude?: string;

@@ -1,27 +1,28 @@
-.fa-map-marker-alt {
-  margin-right: 10px;
-}
-
 #btn-add-library {
   float: right;
   cursor: pointer;
 }
 
-pagination-controls {
-  text-align: center;
+
+.title {
+  font-weight: bold;
+  color: #00b2d1;
 }
 
-.div-delete {
-  margin-top: 10px;
+.fa-map-marker-alt, .fa-map-marked-alt, .fa-phone-alt, .fa-phone-alt, .fa-envelope, .fa-clock, .fa-globe {
+  margin-right: 10px;
 }
 
 .table-column-btns {
   float: right;
-  margin-right: 50%;
   top: 50%;
   left: 50%;
   margin-left: -50px;
   font-size: 0.6em;
+}
+
+.div-delete {
+  margin-top: 10px;
 }
 
 
@@ -34,4 +35,9 @@ pagination-controls {
     margin-left: 10px;
     margin-top: 0;
   }
+}
+
+
+pagination-controls {
+  text-align: center;
 }
