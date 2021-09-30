@@ -17,6 +17,6 @@ export class MessageSenderDTO {
 
 export class MessageDTO {
   message?: Message;
-  senderName?: string;
-  senderSurname?: string;
+  senderFirstname?: string;
+  senderLastname?: string;
 }

@@ -89,7 +89,7 @@
                   *ngIf="messageDTO.message.idSender !== member.username || ((messageDTO.message.idSender === member.username) && (messageDTO.message.idReceiver === member.username))">
                 <div class="chat-body white p-3 z-depth-1">
                   <div class="header">
-                    <strong class="primary-font">{{messageDTO.senderName}} {{messageDTO.senderSurname}}</strong>
+                    <strong class="primary-font">{{messageDTO.senderFirstname}} {{messageDTO.senderLastname}}</strong>
                     <small class="pull-right text-muted clock-icon">
                       <mdb-icon far icon="clock"></mdb-icon>
                       {{messageDTO.message.date | date: 'dd.MM.yyyy. hh:mm'}}

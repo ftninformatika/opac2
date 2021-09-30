@@ -29,3 +29,9 @@ export interface LibraryMemberCard {
   membershipUntil?: Date;
   libraryMemberId?: String;
 }
+
+export class LoggedUser {
+  username: string;
+  firstName?: string;
+  lastName?: string;
+}

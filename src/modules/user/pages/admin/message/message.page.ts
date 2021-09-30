@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../../core/services/message.service";
-import {LibraryMemberCard} from "../../../../../models/library-member.model";
+import {LibraryMemberCard, LoggedUser} from "../../../../../models/library-member.model";
 import {Message, MessageDTO, MessageSenderDTO} from "../../../../../models/admin/message.model";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
@@ -17,7 +17,7 @@ export class MessagePage implements OnInit {
   senders: MessageSenderDTO[];
   conversation: MessageDTO[];
   member: LibraryMemberCard;
-  loggedAdmin: string;
+  loggedAdmin: LoggedUser;
   message: string;
   loading: boolean;
 
@@ -26,7 +26,10 @@ export class MessagePage implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.loggedAdmin = this._store.selectSnapshot(UserState.username);
+    this.loggedAdmin = new LoggedUser;
+    this.loggedAdmin.username = this._store.selectSnapshot(UserState.username);
+    this.loggedAdmin.firstName = this._store.selectSnapshot(UserState.firstname);
+    this.loggedAdmin.lastName = this._store.selectSnapshot(UserState.lastname);
     this.loadSenders();
   }
 
@@ -64,11 +67,20 @@ export class MessagePage implements OnInit {
     if (this.message) {
       const newMessage = this.createNewMessage();
       this.messageService.sendMessage(newMessage).subscribe(savedMessage => {
+        savedMessage = this.convertMessageToMessageDTO(savedMessage);
         this.conversation.push(savedMessage);
         this.message = "";
         this.updateSendersList(newMessage);
       }, () => this.toastService.error("Дошло је до грешке приликом слања поруке. Покушајте поново"));
     }
+  }
+
+  convertMessageToMessageDTO(savedMessage: Message): MessageDTO {
+    const messageDTO = new MessageDTO();
+    messageDTO.message = savedMessage;
+    messageDTO.senderFirstname = this.loggedAdmin.firstName;
+    messageDTO.senderLastname = this.loggedAdmin.lastName;
+    return messageDTO;
   }
 
   updateSendersList(newMessage: Message) {
@@ -91,7 +103,7 @@ export class MessagePage implements OnInit {
   createNewMessage(): Message {
     const newMessage = new Message();
     newMessage.idReceiver = this.member.username;
-    newMessage.idSender = this.loggedAdmin;
+    newMessage.idSender = this.loggedAdmin.username;
     newMessage.content = this.message;
     newMessage.date = new Date();
     newMessage.seen = true;

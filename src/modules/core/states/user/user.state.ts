@@ -139,6 +139,24 @@ export class UserState {
   }
 
   @Selector()
+  public static firstname(state: IUserStateModel): string {
+    if (state.userData && state.userData.firstName) {
+      return state.userData.firstName;
+    } else {
+      return null;
+    }
+  }
+
+  @Selector()
+  public static lastname(state: IUserStateModel): string {
+    if (state.userData && state.userData.lastName) {
+      return state.userData.lastName;
+    } else {
+      return null;
+    }
+  }
+
+  @Selector()
   public static bookshelfBooksIds(state: IUserStateModel): string[] {
     if (
       state.user &&
