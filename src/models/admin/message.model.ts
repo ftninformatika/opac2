@@ -14,3 +14,9 @@ export class MessageSenderDTO {
   message: Message;
   unseenMsgCount: number;
 }
+
+export class MessageDTO {
+  message?: Message;
+  senderName?: string;
+  senderSurname?: string;
+}

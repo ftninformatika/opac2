@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../../core/services/message.service";
 import {LibraryMemberCard} from "../../../../../models/library-member.model";
-import {Message, MessageSenderDTO} from "../../../../../models/admin/message.model";
+import {Message, MessageDTO, MessageSenderDTO} from "../../../../../models/admin/message.model";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
 import {UserState} from "../../../../core/states/user/user.state";
@@ -15,7 +15,7 @@ export class MessagePage implements OnInit {
   @ViewChild('conversationList') private conversationList: ElementRef;
 
   senders: MessageSenderDTO[];
-  conversation: Message[];
+  conversation: MessageDTO[];
   member: LibraryMemberCard;
   loggedAdmin: string;
   message: string;
@@ -56,7 +56,7 @@ export class MessagePage implements OnInit {
     this.messageService.getMessagesByUsername(member.memberCardDTO.username).subscribe(messages => {
       this.conversation = messages;
       this.member = member.memberCardDTO;
-      member.message = messages[messages.length - 1];
+      member.message = messages[messages.length - 1].message;
     })
   }
 
