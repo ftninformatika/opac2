@@ -25,4 +25,8 @@ export class LibraryService {
   public edit(library: Library): Observable<Library> {
     return this._httpClient.put(ApiEndpointConfig.Paths.admin.library, library) as Observable<Library>;
   }
+
+  public delete(libraryId: string): Observable<boolean> {
+    return this._httpClient.delete(`${ApiEndpointConfig.Paths.admin.library}/${libraryId}`) as Observable<boolean>;
+  }
 }

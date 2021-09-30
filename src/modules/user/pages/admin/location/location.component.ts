@@ -23,6 +23,7 @@ export class LocationComponent implements OnInit {
   libraries: Library[];
   libraryForm: FormGroup;
   library: Library;
+  libraryToDelete: Library;
   editing: boolean;
   pageOptions: ILibraryPageOptions;
   resultPage: LibraryResultPage;
@@ -173,8 +174,21 @@ export class LocationComponent implements OnInit {
     this.editing = false;
   }
 
+  setLibraryForDelete(library: Library) {
+    this.libraryToDelete = library;
+  }
+
   delete() {
-    console.log("ee")
+    this.libraryService.delete(this.libraryToDelete._id).subscribe(response => {
+      if (response) {
+        this.libraries = ArrayUtils.deleteItemFromArray(this.libraryToDelete, this.libraries);
+        this.toastService.success("Успешно сте обрисали библиотеку")
+      } else {
+        this.toastService.error("Дошло је до грешке приликом брисања библиотеке. Покушајте поново")
+      }
+    }, () => {
+      this.toastService.error("Дошло је до грешке приликом брисања библиотеке. Покушајте поново")
+    });
   }
 
 
