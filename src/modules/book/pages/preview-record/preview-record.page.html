@@ -70,7 +70,8 @@
         <div class="title">
           <h1>
             {{book.title}}
-            <label *ngIf="book | recordFormat:RecordFormatType.TOME">, {{book | recordFormat:RecordFormatType.TOME}}
+            <label *ngIf="book | recordFormat:RecordFormatType.TOME"
+              >, {{book | recordFormat:RecordFormatType.TOME}}
             </label>
           </h1>
         </div>
@@ -119,7 +120,7 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
                 >
-                  <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
+                  <dt class="col-sm-3 align-middle">Дигитална приказ&nbsp;</dt>
                   <dd class="col-sm-9">
                     <a
                       href="javascript:void(0)"
@@ -207,13 +208,25 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.refRecsBrief">
-                  <ng-container *ngFor="let recRef of book.refRecsBrief | keyvalue">
-                    <dt class="col-sm-2">{{book | recordFormat: RecordFormatType._464_SOURCE_CONTENT_TITLE}}
-                      &nbsp;</dt>
+                  <ng-container
+                    *ngFor="let recRef of book.refRecsBrief | keyvalue"
+                  >
+                    <dt class="col-sm-2">
+                      {{book | recordFormat:
+                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;
+                    </dt>
                     <dd class="col-sm-10">
                       <mdb-icon far icon="eye"></mdb-icon> &nbsp;
-                      <span [routerLink]="['/book',lib, recRef.key]" style="cursor: pointer;color: darkblue; text-decoration: underline">
-                        {{(recRef.value && recRef.value !== '') ? recRef.value : 'Линк до извора'}}
+                      <span
+                        [routerLink]="['/book',lib, recRef.key]"
+                        style="
+                          cursor: pointer;
+                          color: darkblue;
+                          text-decoration: underline;
+                        "
+                      >
+                        {{(recRef.value && recRef.value !== '') ? recRef.value :
+                        'Линк до извора'}}
                       </span>
                     </dd>
                   </ng-container>
@@ -342,7 +355,13 @@
                         <strong>{{f.name}}</strong>
                         {{f | makeIndicator}}
                         <ng-container *ngFor="let sf of f.subfields">
-                          <strong>[{{sf.name}}]</strong>{{sf.content}}&nbsp;
+                          <ng-container
+                            *ngIf="f.name === '856' && sf.name === 'x'; else ispis"
+                          >
+                          </ng-container>
+                          <ng-template #ispis>
+                            <strong>[{{sf.name}}]</strong>{{sf.content}}&nbsp;
+                          </ng-template>
                           <ng-container *ngIf="sf.secField">
                             <strong>{{</strong>
                             <strong>{{sf.secField.name}}</strong>

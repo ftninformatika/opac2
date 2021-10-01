@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewEncapsulation,
   HostBinding,
+  OnDestroy,
 } from "@angular/core";
 import { BooksService } from "../../../core/services/books.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -43,7 +44,7 @@ import {
   styleUrls: ["preview-record.page.scss"],
   encapsulation: ViewEncapsulation.None,
 })
-export class PreviewRecordPage implements OnInit {
+export class PreviewRecordPage implements OnInit, OnDestroy {
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
@@ -228,9 +229,17 @@ export class PreviewRecordPage implements OnInit {
 
   public miradorClosed() {
     if (this.miradorShow && this.miradorShown) {
-      this.miradorViewer.unmount();
+      if (this.miradorViewer) {
+        this.miradorViewer.unmount();
+      }
       this.miradorShown = false;
       this.miradorShow = !this.miradorShow;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.miradorViewer) {
+      this.miradorViewer.unmount();
     }
   }
 }
