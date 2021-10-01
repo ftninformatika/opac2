@@ -7,6 +7,7 @@ export const environment = {
   //baseUrl: 'bisisWS'
   //baseUrl: 'https://test.bisis.rs/bisisWS'
   baseUrl: "http://localhost:8080",
+  //baseUrl: "http://app.bisis.rs/bisisWS"
 };
 
 /*

@@ -17,17 +17,20 @@ export class MiradorViewerComponent implements OnInit, OnDestroy {
   @Input() public manifest: string;
   @Output() public miradorViewer = new EventEmitter();
   public viewer: any;
+  public static unmounted: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
     this.viewer = this.getViewer();
+    MiradorViewerComponent.unmounted = false;
     this.miradorViewer.emit(this.viewer);
   }
 
   ngOnDestroy(): void {
-    if (this.viewer) {
+    if (this.viewer && MiradorViewerComponent.unmounted === false) {
       this.viewer.unmount();
+      MiradorViewerComponent.unmounted = true;
     }
   }
 

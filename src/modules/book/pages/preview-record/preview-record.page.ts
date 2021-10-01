@@ -30,6 +30,7 @@ import {
   transition,
   trigger,
 } from "@angular/animations";
+import { MiradorViewerComponent } from "../../components/mirador-viewer/mirador-viewer.component";
 
 @Component({
   selector: "preview-record",
@@ -102,7 +103,6 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
             this.recordURL = window.location.href;
             this._scrollToService.scrollTo({ offset: 0 });
             this.book = data;
-            console.log(this.book);
             this.setMetaTags();
             this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
             if (this.book.items && this.book.items.length > 0) {
@@ -229,8 +229,9 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
 
   public miradorClosed() {
     if (this.miradorShow && this.miradorShown) {
-      if (this.miradorViewer) {
+      if (this.miradorViewer && MiradorViewerComponent.unmounted === false) {
         this.miradorViewer.unmount();
+        MiradorViewerComponent.unmounted = true;
       }
       this.miradorShown = false;
       this.miradorShow = !this.miradorShow;
@@ -238,8 +239,9 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.miradorViewer) {
+    if (this.miradorViewer && MiradorViewerComponent.unmounted === false) {
       this.miradorViewer.unmount();
+      MiradorViewerComponent.unmounted = true;
     }
   }
 }
