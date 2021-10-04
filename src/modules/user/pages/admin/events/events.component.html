@@ -75,8 +75,8 @@
       <!--Grid row-->
       <div *ngFor="let event of events | paginate:
           {id: 'paginatorId',
-          itemsPerPage: pageOptions.pageSize,
-          currentPage: pageOptions.currentPage,
+          itemsPerPage: pageOptions?.pageSize,
+          currentPage: pageOptions?.currentPage,
           totalItems: resultPage?.totalElements}">
         <div class="row">
           <!--Grid column-->

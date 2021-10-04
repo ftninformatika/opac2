@@ -9,8 +9,8 @@
 <main>
   <div class="row justify-content-center" *ngFor="let library of libraries | paginate:
           {id: 'paginatorId',
-          itemsPerPage: pageOptions.pageSize,
-          currentPage: pageOptions.currentPage,
+          itemsPerPage: pageOptions?.pageSize,
+          currentPage: pageOptions?.currentPage,
           totalItems: resultPage?.totalElements};">
     <div class="col-md-8">
       <div class="media-body">
