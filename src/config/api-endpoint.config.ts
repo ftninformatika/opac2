@@ -35,7 +35,7 @@ export class ApiEndpointConfig {
       messages: `${ApiEndpointConfig.Origin}/messages`,
       addMessage: `${ApiEndpointConfig.Origin}/messages/add`,
       getSenders: `${ApiEndpointConfig.Origin}/messages/all-senders`,
-      notification: `${ApiEndpointConfig.Origin}/notification`,
+      notifications: `${ApiEndpointConfig.Origin}/notifications`,
       library: `${ApiEndpointConfig.Origin}/libraries`
     },
     search: {

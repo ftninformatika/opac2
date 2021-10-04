@@ -12,14 +12,14 @@
       <section class="mb-5">
         <div class="media mb-1" *ngFor="let notification of notifications | paginate:
           {id: 'paginatorId',
-          itemsPerPage: pageOptions.pageSize,
-          currentPage: pageOptions.currentPage,
+          itemsPerPage: pageOptions?.pageSize,
+          currentPage: pageOptions?.currentPage,
           totalItems: resultPage?.totalElements};">
           <div class="media-body">
             <hr>
             <h5 class="media-heading title">{{ notification.title }}</h5>
             <p class="media-content">{{ notification.content }}</p>
-            <div><b style="color: #c35c42">{{notification.createdBy}}</b>, {{notification.date | date: "dd.MM.yyyy."}}</div>
+            <div><b style="color: #c35c42">{{notification.sender}}</b>, {{notification.sentDate | date: "dd.MM.yyyy."}}</div>
           </div>
         </div>
         <hr>

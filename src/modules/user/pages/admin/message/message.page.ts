@@ -26,11 +26,15 @@ export class MessagePage implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.setLoggedUser();
+    this.loadSenders();
+  }
+
+  setLoggedUser(): void {
     this.loggedAdmin = new LoggedUser;
     this.loggedAdmin.username = this._store.selectSnapshot(UserState.username);
     this.loggedAdmin.firstName = this._store.selectSnapshot(UserState.firstname);
     this.loggedAdmin.lastName = this._store.selectSnapshot(UserState.lastname);
-    this.loadSenders();
   }
 
   loadSenders() {

@@ -16,10 +16,10 @@ export class NotificationService {
   }
 
   public getAll(pageNum: number, pageSize: number): Observable<NotificationResultPage> {
-    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.notification}/get?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<NotificationResultPage>;
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.notifications}/all?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<NotificationResultPage>;
   }
 
-  public create(notification: Notification): Observable<Notification> {
-    return this._httpClient.post(ApiEndpointConfig.Paths.admin.notification, notification) as Observable<Notification>;
+  public send(notification: Notification): Observable<Notification> {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.notifications + "/send", notification) as Observable<Notification>;
   }
 }
