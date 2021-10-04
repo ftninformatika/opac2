@@ -1,0 +1,34 @@
+h5 {
+  margin-top: 50px;
+}
+
+#question-icon {
+  margin-right: 10px;
+}
+
+mdb-card {
+  margin-bottom: 20px;
+}
+
+.btns {
+  float: right;
+  display: flex;
+  cursor: pointer;
+}
+
+.edit-div {
+  margin-right: 10px;
+}
+
+.edit-div, .delete-div{
+  font-size: 0.6em;
+}
+
+#btn-add-event {
+  float: right;
+  cursor: pointer;
+}
+
+pagination-controls {
+  text-align: center;
+}

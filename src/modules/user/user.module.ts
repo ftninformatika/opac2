@@ -12,21 +12,28 @@ import { RouterModule} from '@angular/router';
 import { UserRoutes } from './user.routes';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/core.module';
-import { MDBBootstrapModulesPro, MdbInputDirective } from 'ng-uikit-pro-standard';
+import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
 import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
+import {MessagePage} from "./pages/admin/message/message.page";
+import {EventsComponent} from "./pages/admin/events/events.component";
+import {FaqComponent} from "./pages/admin/faq/faq.component";
+import {NgxPaginationModule} from "ngx-pagination";
+import {NotificationComponent} from "./pages/admin/notifications/notification.component";
+import {LocationComponent} from "./pages/admin/location/location.component";
 
 @NgModule({
-  imports: [
-    HomeModule,
-    CommonUiModule,
-    RouterModule.forChild(UserRoutes),
-    CoreModule,
-    MDBBootstrapModulesPro,
-    DragDropModule,
-  ],
+    imports: [
+        HomeModule,
+        CommonUiModule,
+        RouterModule.forChild(UserRoutes),
+        CoreModule,
+        MDBBootstrapModulesPro,
+        DragDropModule,
+        NgxPaginationModule,
+    ],
   declarations: [
     AdminCollectionsPage,
     RegisterInfoPage,
@@ -38,7 +45,12 @@ import { ActiveReservationsPage } from './pages/active-reservations/active-reser
     HistoryPage,
     ChangePasswordPage,
     AdminCollectionEditor,
-    ActiveReservationsPage
+    ActiveReservationsPage,
+    MessagePage,
+    EventsComponent,
+    FaqComponent,
+    NotificationComponent,
+    LocationComponent
   ]
 })
 export class UserModule {}

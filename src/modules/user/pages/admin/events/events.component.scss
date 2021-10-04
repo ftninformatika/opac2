@@ -1,0 +1,92 @@
+.calendar-icon {
+  margin-right: 10px;
+}
+
+.file-path {
+  margin-left: 40px;
+}
+
+.file-field {
+  margin-bottom: 100px;
+}
+
+#file {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #40c6c6;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+#btn-add-event {
+  cursor: pointer;
+  float: right;
+}
+
+#edit-icon {
+  margin-bottom: 20px;
+}
+
+#btn-read-more {
+  background-color: #33b5e5;
+  color: white;
+}
+
+.read-more {
+  display: inline;
+}
+
+#expandModalDialog {
+  overflow-y: initial !important
+}
+
+#expandModalBody {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.div-search {
+  padding-bottom: 0.5rem !important;
+  padding-top: 4rem !important;
+}
+
+.search-btn-div {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.search-btn-link {
+  color: grey;
+  width: 100px;
+}
+
+#event-content {
+  text-align: justify;
+}
+
+pagination-controls {
+  text-align: center;
+}
+
+.table-column-btns {
+  font-size: 0.7em;
+}
+
+@media (max-width: 991px) {
+  .div-delete {
+    margin-left: 10px;
+  }
+
+  .table-column-btns {
+    display:flex;
+    margin-right: 50%;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+  }
+}

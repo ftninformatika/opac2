@@ -27,7 +27,16 @@ export class ApiEndpointConfig {
       getCollections: `${ApiEndpointConfig.Origin}/opac/book_collections`,
       addRecordToCollection: `${ApiEndpointConfig.Origin}/opac/book_collections/add_record`,
       getShowableCollections: `${ApiEndpointConfig.Origin}/opac/book_collections/showable_collections`,
-      swapIndexes: `${ApiEndpointConfig.Origin}/opac/book_collections/swap_indexes`
+      swapIndexes: `${ApiEndpointConfig.Origin}/opac/book_collections/swap_indexes`,
+      getEvents: `${ApiEndpointConfig.Origin}/events`,
+      createEvent: `${ApiEndpointConfig.Origin}/events/add`,
+      downloadImage: `${ApiEndpointConfig.Origin}/events/image`,
+      faq: `${ApiEndpointConfig.Origin}/faq`,
+      messages: `${ApiEndpointConfig.Origin}/messages`,
+      addMessage: `${ApiEndpointConfig.Origin}/messages/add`,
+      getSenders: `${ApiEndpointConfig.Origin}/messages/all-senders`,
+      notifications: `${ApiEndpointConfig.Origin}/notifications`,
+      library: `${ApiEndpointConfig.Origin}/libraries`
     },
     search: {
       main: `${ApiEndpointConfig.Origin}/opac/search`,
