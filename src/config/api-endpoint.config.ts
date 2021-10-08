@@ -32,7 +32,7 @@ export class ApiEndpointConfig {
       createEvent: `${ApiEndpointConfig.Origin}/events/add`,
       downloadImage: `${ApiEndpointConfig.Origin}/events/image`,
       faq: `${ApiEndpointConfig.Origin}/faq`,
-      messages: `${ApiEndpointConfig.Origin}/messages`,
+      messages: `${ApiEndpointConfig.Origin}/messages/all`,
       addMessage: `${ApiEndpointConfig.Origin}/messages/add`,
       getSenders: `${ApiEndpointConfig.Origin}/messages/all-senders`,
       notifications: `${ApiEndpointConfig.Origin}/notifications`,

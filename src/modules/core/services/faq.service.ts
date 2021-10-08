@@ -15,7 +15,7 @@ export class FaqService {
   }
 
   public getAll(pageNum: number, pageSize: number): Observable<FAQResultPage> {
-    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.faq}/get?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<FAQResultPage>;
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.faq}/?pageNumber=${pageNum}&pageSize=${pageSize}`) as Observable<FAQResultPage>;
   }
 
   public create(faq: Faq): Observable<Faq> {

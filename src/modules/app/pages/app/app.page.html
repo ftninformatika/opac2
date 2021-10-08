@@ -28,5 +28,15 @@
       <span style="color: #9e9e9e">Ⓒ </span>
       <span style="color: black"> БИСИС5</span>
     </div>
+    <div class="text-center py-3" *ngIf="showCookieDiv">
+      <div id="cookie-info-bar">
+        <span>
+          www.opac.bisis.rs koristi lične kolačiće i kolačiće trećih strana kako bi se poboljšalo Vaše iskustvo pregledanja
+          veb sajta i pružila usluga u skladu sa Vašim željama. Ukoliko ste saglasni sa korišćenjem kolačića ljubazno Vas molimo da u nastavku označite
+          "Prihvatam".
+          <button style="margin-left: 20px" type="button" class="btn btn-danger" (click)="acceptCookie()">Prihvatam</button>
+        </span>
+      </div>
+    </div>
   </footer>
 </div>
