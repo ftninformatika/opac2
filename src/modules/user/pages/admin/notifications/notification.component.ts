@@ -27,8 +27,12 @@ export class NotificationComponent implements OnInit {
   pageOptions: INotificationPageOptions;
   resultPage: NotificationResultPage;
 
+  notificationTypes: any[];
+
   constructor(private _store: Store, private notificationService: NotificationService, private toastService: ToastService) {
   }
+
+  selected;
 
   ngOnInit(): void {
     this.setLoggedUser();
@@ -41,6 +45,9 @@ export class NotificationComponent implements OnInit {
     this.createForm();
     this.notification = {};
     this.notifications = [];
+    this.notificationTypes = [
+      { value: 'info', label: 'Обавештење'},
+      { value: 'event', label: 'Дешавање'}]
   }
 
   setLoggedUser(): void {
@@ -62,6 +69,7 @@ export class NotificationComponent implements OnInit {
     this.notificationForm = new FormGroup({
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
+      type: new FormControl('', Validators.required)
     });
   }
 
@@ -73,6 +81,10 @@ export class NotificationComponent implements OnInit {
     return this.notificationForm.get('content');
   }
 
+  get type() {
+    return this.notificationForm.get('type');
+  }
+
   onBtnCreteNewFaq() {
     this.notificationForm.reset();
     this.notification = {};
@@ -81,7 +93,7 @@ export class NotificationComponent implements OnInit {
 
   onBtnSaveFaq() {
     if (this.notificationForm.invalid) {
-      this.toastService.warning("Наслов и садржај су обавезна поља");
+      this.toastService.warning("Наслов, садржај и тип су обавезна поља");
       return;
     }
     this.add();
@@ -103,7 +115,6 @@ export class NotificationComponent implements OnInit {
   }
 
   setNotificationData(): void {
-    this.notification.type = "info";
     this.notification.sentDate = new Date();
     this.notification.sender = this.loggedAdmin.firstName + " " + this.loggedAdmin.lastName;
   }

@@ -19,7 +19,8 @@
             <hr>
             <h5 class="media-heading title">{{ notification.title }}</h5>
             <p class="media-content">{{ notification.content }}</p>
-            <div><b style="color: #c35c42">{{notification.sender}}</b>, {{notification.sentDate | date: "dd.MM.yyyy."}}</div>
+            <div><b style="color: #c35c42">{{notification.sender}}</b>, {{notification.sentDate | date: "dd.MM.yyyy."}}
+            </div>
           </div>
         </div>
         <hr>
@@ -84,6 +85,14 @@
           <mdb-error
             *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
           </mdb-error>
+        </div>
+        <div>
+          <label class="mdb-main-label">Изаберите тип</label>
+          <select class="browser-default custom-select"
+                  [formControl]="type"
+                  [(ngModel)]="notification.type">
+            <option *ngFor="let type of notificationTypes" [value]="type.value">{{type.label}}</option>
+          </select>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
