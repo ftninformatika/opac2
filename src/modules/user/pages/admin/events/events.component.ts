@@ -148,9 +148,9 @@ export class EventsComponent implements OnInit {
         }
         this.events = [savedEvent, ...this.events];
         this.closeDialog();
-        this.toastService.success("Успешно сте направили нови догађај")
+        this.toastService.success("Успешно сте направили ново дешавање")
       } else {
-        this.toastService.error("Дошло је до грешке приликом креирања новог догађаја. Покушајте поново")
+        this.toastService.error("Дошло је до грешке приликом креирања новог дешавања. Покушајте поново")
       }
     })
   }
@@ -188,13 +188,13 @@ export class EventsComponent implements OnInit {
         editedEvent = await this.setImage(editedEvent);
         editedEvent.date = new Date(editedEvent.date);
         this.events = ArrayUtils.updateArray(editedEvent, this.events);
-        this.toastService.success("Успешно сте изменили догађај")
+        this.toastService.success("Успешно сте изменили дешавање")
         this.closeDialog();
       } else {
-        this.toastService.error("Дошло је до грешке приликом измене догађаја. Покушајте поново")
+        this.toastService.error("Дошло је до грешке приликом измене дешавања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error("Дошло је до грешке приликом измене догађаја. Покушајте поново")
+      this.toastService.error("Дошло је до грешке приликом измене дешавања. Покушајте поново")
     })
   }
 
@@ -214,12 +214,12 @@ export class EventsComponent implements OnInit {
     this.eventService.delete(this.eventToDelete._id).subscribe(response => {
       if (response) {
         this.events = ArrayUtils.deleteItemFromArray(this.eventToDelete, this.events);
-        this.toastService.success("Успешно сте обрисали догађај")
+        this.toastService.success("Успешно сте обрисали дешавање")
       } else {
-        this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
+        this.toastService.error("Дошло је до грешке приликом брисања дешавања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error("Дошло је до грешке приликом брисања догађаја. Покушајте поново")
+      this.toastService.error("Дошло је до грешке приликом брисања дешавања. Покушајте поново")
     });
   }
 

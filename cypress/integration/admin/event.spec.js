@@ -20,7 +20,7 @@ describe('FAQ', () => {
     cy.wait(2000);
 
     cy.get('.md-toast-top-right > .md-toast-warning > .md-toast-message')
-      .should('contain', 'Успешно сте направили нови догађај');
+      .should('contain', 'Успешно сте направили нови дешавање');
   });
 
   it('add new event without content', () => {
@@ -46,7 +46,7 @@ describe('FAQ', () => {
     cy.wait(2000);
 
     cy.get('.md-toast-top-right > .md-toast-success > .md-toast-message')
-      .should('contain', 'Успешно сте изменили догађај')
+      .should('contain', 'Успешно сте изменили дешавање')
     cy.get('[data-cy=title]').first().should('contain', 'edited')
   });
 

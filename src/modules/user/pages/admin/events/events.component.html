@@ -6,7 +6,7 @@
 
 <div id="div-add-event" *ngIf="!loading">
   <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
-          data-target="#basicExample" (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect>Додај догађај
+          data-target="#basicExample" (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect>Додај дешавање
   </button>
 </div>
 
@@ -172,10 +172,10 @@
         <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title center" id="myModalLabel">Брисање догађаја</h4>
+        <h4 class="modal-title center" id="myModalLabel">Брисање дешавања</h4>
       </div>
       <div class="modal-body">
-        <label>Да ли сте сигурни да желите да обришете догађај са насловом <i>{{eventToDelete?.title}}</i> ?</label>
+        <label>Да ли сте сигурни да желите да обришете дешавање са насловом <i>{{eventToDelete?.title}}</i> ?</label>
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
@@ -196,7 +196,7 @@
       <div class="modal-header text-center">
         <h5 class="modal-title w-100 font-weight-bold">
           <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
-          Догађај
+          Дешавање
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
           <span aria-hidden="true">&times;</span>

@@ -72,7 +72,7 @@
                     data-cy="chat-nav-link">Питај библиотекара</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-events']"
-                    data-cy="event-nav-link">Догађаји</a>
+                    data-cy="event-nav-link">Дешавања</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-faq']"
                     data-cy="faq-nav-link">Најчешћа питања</a>
