@@ -1,5 +1,6 @@
-.fa-bell {
+.fa-bell, .calendar-icon {
   margin-right: 10px;
+  color: #00b2d1;
 }
 
 mdb-card {
@@ -16,7 +17,7 @@ mdb-card {
   margin-right: 10px;
 }
 
-.edit-div, .delete-div{
+.edit-div, .delete-div {
   font-size: 0.8em;
 }
 
@@ -30,10 +31,12 @@ pagination-controls {
 }
 
 .title {
+  display: inline;
   font-weight: bold;
-  color:#00b2d1;
+  color: #00b2d1;
 }
 
 .media-content {
+  margin-top: 8px;
   font-size: 16px;
 }

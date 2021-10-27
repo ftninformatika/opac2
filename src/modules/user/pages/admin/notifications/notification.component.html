@@ -17,7 +17,11 @@
           totalItems: resultPage?.totalElements};">
           <div class="media-body">
             <hr>
-            <h5 class="media-heading title">{{ notification.title }}</h5>
+            <div style="display: inline-block">
+              <i *ngIf="notification.type === 'info'" class="far fa-bell"></i>
+              <mdb-icon *ngIf="notification.type === 'event'" class="calendar-icon" far icon="calendar-alt"></mdb-icon>
+              <h5 class="media-heading title">{{ notification.title }}</h5>
+            </div>
             <p class="media-content">{{ notification.content }}</p>
             <div><b style="color: #c35c42">{{notification.sender}}</b>, {{notification.sentDate | date: "dd.MM.yyyy."}}
             </div>
