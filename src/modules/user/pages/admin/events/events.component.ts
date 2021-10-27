@@ -112,6 +112,7 @@ export class EventsComponent implements OnInit {
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
+      time: new FormControl('')
     });
   }
 
@@ -162,6 +163,9 @@ export class EventsComponent implements OnInit {
     formData.append('content', event.content);
     event.date = DateUtils.convertStringToDate(event.date);
     formData.append('date', event.date.toUTCString());
+    if (event.time){
+      formData.append('time', event.time);
+    }
     return formData;
   }
 

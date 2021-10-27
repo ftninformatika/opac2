@@ -8,6 +8,7 @@
 
 .file-field {
   margin-bottom: 100px;
+  margin-top: 10px !important;
 }
 
 #file {
@@ -89,4 +90,14 @@ pagination-controls {
     left: 50%;
     margin-left: -50px;
   }
+}
+
+.time-field {
+  display: inline-block;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.title-field, .content-field {
+  margin-bottom: 10px !important;
 }

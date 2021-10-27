@@ -108,7 +108,7 @@
           <div class="col-lg-7 mb-4">
             <h6 class="pb-1" style="color: #009688">
               <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
-              <strong>{{ event.date | date: 'dd.MM.yyyy.'}}</strong>
+              <strong>{{ event.date | date: 'dd.MM.yyyy.'}} {{event.time}}</strong>
             </h6>
             <h4 class="mb-4">
               <strong data-cy="title">{{ event.title }}</strong>
@@ -203,7 +203,7 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+        <div class="md-form mb-5 title-field">
           <input type="text" id="orangeForm-name" class="form-control" [formControl]="title" [(ngModel)]="event.title"
                  data-cy="title-modal" mdbInput mdbValidate>
           <label for="orangeForm-name">* Наслов</label>
@@ -211,7 +211,7 @@
             Наслов је обавезан
           </mdb-error>
         </div>
-        <div class="md-form mb-5">
+        <div class="md-form mb-5 content-field">
           <textarea class="md-textarea form-control" rows="2" id="content" type="text"
                     [(ngModel)]="event.content" [formControl]="content" data-cy="content-modal" mdbInput
                     mdbValidate></textarea>
@@ -221,15 +221,31 @@
           </mdb-error>
         </div>
 
-        <div class="md-form mb-4">
-          <mdb-date-picker name="date" #datePicker [options]="myDatePickerOptions" [placeholder]="'* Изаберите датум'"
-                           id="date" [locale]="'sr'" [formControl]="date" [(ngModel)]="event.date" data-cy="date-modal"
+        <div class="md-form mb-4 date-field">
+          <mdb-date-picker name="date" #datePicker
+                           [options]="myDatePickerOptions"
+                           [placeholder]="'* Изаберите датум'"
+                           id="date"
+                           [locale]="'sr'"
+                           [formControl]="date"
+                           [(ngModel)]="event.date"
+                           data-cy="date-modal"
                            required>
           </mdb-date-picker>
           <mdb-error
             *ngIf="date.invalid && (date.dirty || date.touched)">
             Датум је обавезан
           </mdb-error>
+        </div>
+        <div class="md-form mb-4 time-field">
+          <mdb-time-picker [twelvehour]="false"
+                           [darktheme]="false"
+                           [placeholder]="'Изаберите време'"
+                           [buttonClearLabel]="'Обриши'"
+                           [showClock]="false"
+                           [(ngModel)]="event.time"
+                           [buttonLabel]="'Изабери'">
+          </mdb-time-picker>
         </div>
 
         <div class="file-field md-form">

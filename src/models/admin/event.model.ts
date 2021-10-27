@@ -1,6 +1,7 @@
 export class Event {
   _id?: string;
   date?: Date;
+  time?: string;
   content?: string;
   title?: string;
   image?: string | ArrayBuffer;
