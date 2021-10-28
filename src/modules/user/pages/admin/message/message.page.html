@@ -86,7 +86,7 @@
           <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>
             <div *ngFor="let messageDTO of conversation">
               <li class="d-flex justify-content-end mb-4"
-                  *ngIf="messageDTO.message.idSender !== member.username || ((messageDTO.message.idSender === member.username) && (messageDTO.message.idReceiver === member.username))">
+                  *ngIf="messageDTO.message.idSender !== member.memberCardDTO.username || ((messageDTO.message.idSender === member.memberCardDTO.username) && (messageDTO.message.idReceiver === member.memberCardDTO.username))">
                 <div class="chat-body white p-3 z-depth-1">
                   <div class="header">
                     <strong class="primary-font">{{messageDTO.senderFirstname}} {{messageDTO.senderLastname}}</strong>
@@ -106,12 +106,12 @@
               </li>
 
               <li class="d-flex justify-content-start mb-4"
-                  *ngIf="messageDTO.message.idSender === member.username && !messageDTO.message.idReceiver">
+                  *ngIf="messageDTO.message.idSender === member.memberCardDTO.username && !messageDTO.message.idReceiver">
                 <img src="../../../../../assets/users/user.png" alt="avatar"
                      class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                 <div class="chat-body white p-3 ml-2 z-depth-1">
                   <div class="header">
-                    <strong class="primary-font">{{member.firstName}} {{member.lastName}}</strong>
+                    <strong class="primary-font">{{member.memberCardDTO.firstName}} {{member.memberCardDTO.lastName}}</strong>
                     <small class="pull-right text-muted clock-icon">
                       <mdb-icon far icon="clock"></mdb-icon>
                       {{messageDTO.message.date | date: 'dd.MM.yyyy. hh:mm'}}

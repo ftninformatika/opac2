@@ -1,10 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../../core/services/message.service";
-import {LibraryMemberCard, LoggedUser} from "../../../../../models/library-member.model";
+import {LoggedUser} from "../../../../../models/library-member.model";
 import {Message, MessageDTO, MessageSenderDTO} from "../../../../../models/admin/message.model";
 import {Store} from "@ngxs/store";
 import {ToastService} from "ng-uikit-pro-standard";
 import {UserState} from "../../../../core/states/user/user.state";
+import {interval} from "rxjs";
 
 @Component({
   selector: 'app-message',
@@ -16,10 +17,11 @@ export class MessagePage implements OnInit {
 
   senders: MessageSenderDTO[];
   conversation: MessageDTO[];
-  member: LibraryMemberCard;
+  member: MessageSenderDTO;
   loggedAdmin: LoggedUser;
   message: string;
   loading: boolean;
+  tempConversation: MessageDTO[];
 
   constructor(private messageService: MessageService, private _store: Store, private toastService: ToastService) {
   }
@@ -28,6 +30,14 @@ export class MessagePage implements OnInit {
     this.loading = true;
     this.setLoggedUser();
     this.loadSenders();
+    interval(120000).subscribe(
+    // interval(5000).subscribe(
+      (val) => {
+        this.loadSenders();
+        if (this.member) {
+          this.refreshConversationList(this.member);
+        }
+      });
   }
 
   setLoggedUser(): void {
@@ -38,31 +48,25 @@ export class MessagePage implements OnInit {
   }
 
   loadSenders() {
-    this.conversation = [];
-    this.member = null;
     this.messageService.getSenders().subscribe(senders => {
       this.senders = senders;
       this.loading = false;
     });
   }
 
-  ngAfterViewChecked() {
-    this.scrollToBottom();
-  }
-
-  scrollToBottom(): void {
-    try {
-      this.conversationList.nativeElement.scrollTop = this.conversationList.nativeElement.scrollHeight;
-    } catch (err) {
-    }
-  }
-
   getMessagesByUsername(member: MessageSenderDTO): void {
     this.conversation = [];
-    this.member = null;
+    this.member = member;
+    this.getConversation(member);
+  }
+
+  refreshConversationList(member: MessageSenderDTO): void {
+    this.getConversation(member);
+  }
+
+  getConversation(member: MessageSenderDTO) {
     this.messageService.getMessagesByUsername(member.memberCardDTO.username).subscribe(messages => {
       this.conversation = messages;
-      this.member = member.memberCardDTO;
       member.message = messages[messages.length - 1].message;
     })
   }
@@ -88,12 +92,12 @@ export class MessagePage implements OnInit {
   }
 
   updateSendersList(newMessage: Message) {
-    const idx = this.senders.findIndex(item => item.memberCardDTO === this.member);
+    const idx = this.senders.findIndex(item => item.memberCardDTO === this.member.memberCardDTO);
     if (idx !== -1) {
-      const currentSMember = {...this.senders[idx]};
-      currentSMember.message = newMessage;
+      const currentMember = {...this.senders[idx]};
+      currentMember.message = newMessage;
       this.deleteFromArray(idx);
-      this.senders.unshift(currentSMember);
+      this.senders.unshift(currentMember);
     }
   }
 
@@ -106,11 +110,22 @@ export class MessagePage implements OnInit {
 
   createNewMessage(): Message {
     const newMessage = new Message();
-    newMessage.idReceiver = this.member.username;
+    newMessage.idReceiver = this.member.memberCardDTO.username;
     newMessage.idSender = this.loggedAdmin.username;
     newMessage.content = this.message;
     newMessage.date = new Date();
     newMessage.seen = true;
     return newMessage;
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.conversationList.nativeElement.scrollTop = this.conversationList.nativeElement.scrollHeight;
+    } catch (err) {
+    }
   }
 }
