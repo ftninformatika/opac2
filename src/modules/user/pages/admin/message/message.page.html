@@ -15,7 +15,7 @@
         <div class="header-div">
           <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">
             Разговори</h6>
-          <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="loadSenders()" mdbWavesEffect>
+          <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="refreshPage()" mdbWavesEffect>
             <i class="fas fa-sync-alt refresh-icon"></i>
           </a>
         </div>
@@ -86,7 +86,7 @@
           <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>
             <div *ngFor="let messageDTO of conversation">
               <li class="d-flex justify-content-end mb-4"
-                  *ngIf="messageDTO.message.idSender !== member.memberCardDTO.username || ((messageDTO.message.idSender === member.memberCardDTO.username) && (messageDTO.message.idReceiver === member.memberCardDTO.username))">
+                  *ngIf="checkIfLibrarian(messageDTO)">
                 <div class="chat-body white p-3 z-depth-1">
                   <div class="header">
                     <strong class="primary-font">{{messageDTO.senderFirstname}} {{messageDTO.senderLastname}}</strong>
@@ -106,7 +106,7 @@
               </li>
 
               <li class="d-flex justify-content-start mb-4"
-                  *ngIf="messageDTO.message.idSender === member.memberCardDTO.username && !messageDTO.message.idReceiver">
+                  *ngIf="checkIfUser(messageDTO)">
                 <img src="../../../../../assets/users/user.png" alt="avatar"
                      class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                 <div class="chat-body white p-3 ml-2 z-depth-1">

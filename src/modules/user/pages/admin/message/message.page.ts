@@ -21,7 +21,8 @@ export class MessagePage implements OnInit {
   loggedAdmin: LoggedUser;
   message: string;
   loading: boolean;
-  tempConversation: MessageDTO[];
+  openNewChat: boolean;
+
 
   constructor(private messageService: MessageService, private _store: Store, private toastService: ToastService) {
   }
@@ -31,12 +32,8 @@ export class MessagePage implements OnInit {
     this.setLoggedUser();
     this.loadSenders();
     interval(120000).subscribe(
-    // interval(5000).subscribe(
       (val) => {
-        this.loadSenders();
-        if (this.member) {
-          this.refreshConversationList(this.member);
-        }
+        this.refreshPage();
       });
   }
 
@@ -54,20 +51,29 @@ export class MessagePage implements OnInit {
     });
   }
 
+  refreshPage() {
+    this.loadSenders();
+    if (this.member && !this.openNewChat) {
+      this.refreshConversationList();
+    }
+  }
+
   getMessagesByUsername(member: MessageSenderDTO): void {
+    this.openNewChat = true;
     this.conversation = [];
     this.member = member;
-    this.getConversation(member);
+    this.getConversation();
   }
 
-  refreshConversationList(member: MessageSenderDTO): void {
-    this.getConversation(member);
+  refreshConversationList(): void {
+    this.getConversation();
   }
 
-  getConversation(member: MessageSenderDTO) {
-    this.messageService.getMessagesByUsername(member.memberCardDTO.username).subscribe(messages => {
+  getConversation() {
+    this.messageService.getMessagesByUsername(this.member.memberCardDTO.username).subscribe(messages => {
       this.conversation = messages;
-      member.message = messages[messages.length - 1].message;
+      this.member.message = messages[messages.length - 1].message;
+      this.openNewChat = false;
     })
   }
 
@@ -116,6 +122,16 @@ export class MessagePage implements OnInit {
     newMessage.date = new Date();
     newMessage.seen = true;
     return newMessage;
+  }
+
+  checkIfLibrarian(messageDTO: MessageDTO) {
+    return messageDTO.message.idSender != this.member.memberCardDTO.username ||
+      ((messageDTO.message.idSender == this.member.memberCardDTO.username)
+        && (messageDTO.message.idReceiver == this.member.memberCardDTO.username));
+  }
+
+  checkIfUser(messageDTO: MessageDTO) {
+    return messageDTO.message.idSender == this.member.memberCardDTO.username && !messageDTO.message.idReceiver;
   }
 
   ngAfterViewChecked() {
