@@ -4,8 +4,8 @@ import {
   HostListener,
   OnInit,
   ViewEncapsulation,
-  HostBinding,
-} from "@angular/core";
+  HostBinding, OnDestroy,
+} from '@angular/core';
 import { BooksService } from "../../../core/services/books.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngxs/store";
@@ -22,6 +22,7 @@ import { SearchUtil } from "../../../../utils/search-util";
 import { IResultPageOptionsInitial } from "../../../../models/search/result-page-options.model";
 import { CryptoUtils } from "../../../../utils/crypto.utils";
 import * as Mirador from "../../../../assets/mirador/mirador.min.js";
+import { MiradorViewerComponent } from "../../components/mirador-viewer/mirador-viewer.component";
 import {
   animate,
   state,
@@ -43,7 +44,7 @@ import {
   styleUrls: ["preview-record.page.scss"],
   encapsulation: ViewEncapsulation.None,
 })
-export class PreviewRecordPage implements OnInit {
+export class PreviewRecordPage implements OnInit, OnDestroy {
   private readonly _booksService: BooksService;
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
@@ -60,6 +61,7 @@ export class PreviewRecordPage implements OnInit {
 
   public miradorShow: boolean;
   public miradorShown: boolean;
+  public miradorViewer: any;
 
   public constructor(
     booksService: BooksService,
@@ -215,7 +217,32 @@ export class PreviewRecordPage implements OnInit {
     }
   }
 
-  public miradorDone() {
-    if (this.miradorShow && !this.miradorShown) this.miradorShown = true;
+
+  public setMiradorViewer(miradorViewer) {
+    this.miradorViewer = miradorViewer;
+  }
+
+  public miradorOpened() {
+    if (this.miradorShow && !this.miradorShown) {
+      this.miradorShown = true;
+    }
+  }
+
+  public miradorClosed() {
+    if (this.miradorShow && this.miradorShown) {
+      if (this.miradorViewer && MiradorViewerComponent.unmounted === false) {
+        this.miradorViewer.unmount();
+        MiradorViewerComponent.unmounted = true;
+      }
+      this.miradorShown = false;
+      this.miradorShow = !this.miradorShow;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.miradorViewer && MiradorViewerComponent.unmounted === false) {
+      this.miradorViewer.unmount();
+      MiradorViewerComponent.unmounted = true;
+    }
   }
 }
