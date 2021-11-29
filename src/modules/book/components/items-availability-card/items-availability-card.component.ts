@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {UsersService} from "../../../core/services/users.service";
 import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
 import {ConfigState} from "../../../core/states/config/config.state";
+import {ILibraryConfigurationModel} from "../../../../models/library-configuration.model";
 
 @Component({
   selector: 'items-availability-card',
@@ -34,6 +35,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public memberNo: string;
   public isAdmin: boolean;
   public lib: string;
+  public libConfig: ILibraryConfigurationModel;
   public booksOnShelf: string[];
   public totalItems: number;
   public availableItems: number;
@@ -48,6 +50,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
     this.lib = this._store.selectSnapshot(ConfigState.library);
+    this.libConfig = this._store.selectSnapshot(ConfigState.getLibConfig);
 
     this._bookService = bookService;
     this._userService = userService;
@@ -79,10 +82,11 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public async checkLoggedUser() {
     if (this.memberNo == null) {
       await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
-    } else if (this.lib === 'bgb') {
+    }
+    if (this.libConfig.reservation) {
       this.confirmModal.show();
     } else {
-      return;
+      this._toastService.warning('Библиотека не подржава ову функционалност');
     }
   }
 

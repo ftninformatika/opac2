@@ -7,4 +7,5 @@ export interface ILibraryConfigurationModel {
   locale?: string;
   navbarColor?: string;
   kioskSublocation?: ICoder;
+  reservation?: boolean;
 }
