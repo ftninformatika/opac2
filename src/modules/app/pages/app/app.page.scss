@@ -33,3 +33,18 @@
   }
 
 }
+
+#cookie-info-bar {
+  background-color: #0099CC;
+  color: rgb(255, 255, 255);
+  font-family: inherit;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
+#cookie-info-bar > span {
+  margin: 10px 50px;
+  display: inline-block
+}

@@ -4,8 +4,9 @@ import {
   HostListener,
   OnInit,
   ViewEncapsulation,
-  HostBinding, OnDestroy,
-} from '@angular/core';
+  HostBinding,
+  OnDestroy,
+} from "@angular/core";
 import { BooksService } from "../../../core/services/books.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngxs/store";
@@ -22,7 +23,6 @@ import { SearchUtil } from "../../../../utils/search-util";
 import { IResultPageOptionsInitial } from "../../../../models/search/result-page-options.model";
 import { CryptoUtils } from "../../../../utils/crypto.utils";
 import * as Mirador from "../../../../assets/mirador/mirador.min.js";
-import { MiradorViewerComponent } from "../../components/mirador-viewer/mirador-viewer.component";
 import {
   animate,
   state,
@@ -30,6 +30,7 @@ import {
   transition,
   trigger,
 } from "@angular/animations";
+import { MiradorViewerComponent } from "../../components/mirador-viewer/mirador-viewer.component";
 
 @Component({
   selector: "preview-record",
@@ -102,7 +103,6 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
             this.recordURL = window.location.href;
             this._scrollToService.scrollTo({ offset: 0 });
             this.book = data;
-            console.log(this.book);
             this.setMetaTags();
             this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
             if (this.book.items && this.book.items.length > 0) {
@@ -216,7 +216,6 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
       //      this._metaService.setTag(t.property, t.content);
     }
   }
-
 
   public setMiradorViewer(miradorViewer) {
     this.miradorViewer = miradorViewer;

@@ -14,6 +14,19 @@ import { environment } from "./src/environments/environment";
 (global as any).self = { fetch: require("node-fetch") };
 (global as any).WebSocket = require("ws");
 (global as any).XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+(global as any).crypto = (global as any).crypto ||
+  (global as any).msCrypto || {
+    getRandomValues: (array) => {
+      for (let i = 0, l = array.length; i < l; i++) {
+        array[i] = Math.floor(Math.random() * 256);
+      }
+      return array;
+    },
+  };
+
+if (crypto.getRandomValues === undefined) {
+  throw new Error("crypto is not supported on this browser");
+}
 
 (global as any).crypto = (global as any).crypto ||
   (global as any).msCrypto || {
@@ -136,14 +149,9 @@ export function app(): express.Express {
   app.get("*", (req, res) => {
     //console.log(req);
     console.log(APP_BASE_HREF);
-    if (!detectBot(req.headers["user-agent"])) {
-      console.log("USAOOOOO");
-      res.render("index", {
-        req,
-      });
-    } else if (isExternalHit(req.headers["user-agent"])) {
-      console.log("external HITT!");
-      const urlParam = generateUrl(req);
+    const urlParam = generateUrl(req);
+    if (isExternalHit(req.headers["user-agent"]) && urlParam.indexOf("book") > -1) {
+      console.log("external HITT!, ua,", req.headers["user-agent"]);
       axios
         .get(`https://app.bisis.rs/bisisWS/external_hit?url=${urlParam}`)
         .then((response) => {
@@ -153,6 +161,11 @@ export function app(): express.Express {
         })
         .catch((error) => {
           //console.log(error);
+        });
+    } else {
+        console.log("No bot, ua:", req.headers["user-agent"]);
+        res.render("index", {
+          req,
         });
     }
     // else {

@@ -17,4 +17,21 @@ export class ArrayUtils {
       arr.push(element);
     }
   }
+
+  public static updateArray(editedItem, array) {
+    const idx: number = array.findIndex(item => item._id === editedItem._id);
+    let newArray = [...array];
+    newArray[idx] = editedItem;
+    return newArray;
+  }
+
+
+  public static deleteItemFromArray(deletedItem, array) {
+    const idx: number = array.findIndex(item => item._id === deletedItem._id);
+    if (idx !== -1) {
+      array.splice(idx, 1);
+      array = [...array]
+    }
+    return array;
+  }
 }

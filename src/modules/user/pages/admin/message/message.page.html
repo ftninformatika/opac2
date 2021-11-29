@@ -1,0 +1,147 @@
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
+    <span class="sr-only">Учитавање...</span>
+  </div>
+</div>
+
+<mdb-card class="chat-room" *ngIf="!loading">
+  <mdb-card-body class="lighten-3">
+
+    <!-- Grid row -->
+    <div class="row px-lg-2 px-2">
+
+      <!-- Grid column -->
+      <div class="col-md-6 col-xl-4 px-0">
+        <div class="header-div">
+          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">
+            Разговори</h6>
+          <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="refreshPage()" mdbWavesEffect>
+            <i class="fas fa-sync-alt refresh-icon"></i>
+          </a>
+        </div>
+        <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1 scrollbar-light-blue">
+          <ul class="list-unstyled friend-list">
+            <li class="p-2" *ngFor="let sender of senders ">
+              <a href="javascript:void(0)" (click)="getMessagesByUsername(sender)">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="../../../../../assets/users/user.png" alt="avatar"
+                           class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <strong>{{sender?.memberCardDTO.firstName}} {{sender?.memberCardDTO.lastName}}</strong>
+                        </div>
+                        <div class="col-md-4 msg-date">
+                          <p class="text-smaller text-muted mb-0">
+                            {{sender?.message.date | date:'dd.MM.yyyy. hh:mm'}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <div class="last-message text-muted" *ngIf="sender?.message.idReceiver">
+                            Библиотека: {{sender?.message.content | slice: 0:78}}
+                            <div class="read-more"
+                                 *ngIf="sender?.message.content && sender?.message.content.length >= 78">
+                              ...
+                            </div>
+                          </div>
+
+                          <div class="last-message text-muted" *ngIf="!sender?.message.idReceiver">
+                            {{sender?.message.content | slice: 0:90}}
+                            <div class="read-more"
+                                 *ngIf="sender?.message.content && sender?.message.content.length >= 90">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <span *ngIf="sender?.message.idReceiver"
+                                class="text-muted float-right msg-icon">
+                            <mdb-icon fas icon="reply" aria-hidden="true"></mdb-icon>
+                          </span>
+                          <span *ngIf="sender?.message.seen === false"
+                                class="text-muted float-right msg-icon">
+                          <mdb-badge danger="true">{{sender?.unseenMsgCount}}</mdb-badge>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
+        <div class="chat-message" *ngIf="this.member">
+
+          <ul class="list-unstyled chat-1 scrollbar-light-blue" #conversationList>
+            <div *ngFor="let messageDTO of conversation">
+              <li class="d-flex justify-content-end mb-4"
+                  *ngIf="checkIfLibrarian(messageDTO)">
+                <div class="chat-body white p-3 z-depth-1">
+                  <div class="header">
+                    <strong class="primary-font">{{messageDTO.senderFirstname}} {{messageDTO.senderLastname}}</strong>
+                    <small class="pull-right text-muted clock-icon">
+                      <mdb-icon far icon="clock"></mdb-icon>
+                      {{messageDTO.message.date | date: 'dd.MM.yyyy. hh:mm'}}
+                    </small>
+                  </div>
+                  <hr class="w-100">
+                  <p class="mb-0">
+                    {{messageDTO.message.content}}
+                  </p>
+                </div>
+                <img src="../../../../../assets/users/librarian.png"
+                     alt="avatar"
+                     class="avatar rounded-circle mr-0 ml-3 z-depth-1">
+              </li>
+
+              <li class="d-flex justify-content-start mb-4"
+                  *ngIf="checkIfUser(messageDTO)">
+                <img src="../../../../../assets/users/user.png" alt="avatar"
+                     class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                <div class="chat-body white p-3 ml-2 z-depth-1">
+                  <div class="header">
+                    <strong class="primary-font">{{member.memberCardDTO.firstName}} {{member.memberCardDTO.lastName}}</strong>
+                    <small class="pull-right text-muted clock-icon">
+                      <mdb-icon far icon="clock"></mdb-icon>
+                      {{messageDTO.message.date | date: 'dd.MM.yyyy. hh:mm'}}
+                    </small>
+                  </div>
+                  <hr class="w-100">
+                  <p class="mb-0">
+                    {{messageDTO.message.content}}
+                  </p>
+                </div>
+              </li>
+            </div>
+          </ul>
+
+          <div class="white">
+            <div class="form-group basic-textarea">
+              <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
+                        placeholder="Овде унесите поруку ..." [(ngModel)]="message"></textarea>
+            </div>
+          </div>
+          <button id="btn-send-msg" type="button" mdbBtn color="default" data-toggle="modal"
+                  data-target="#basicExample" (click)="sendMessage()" mdbWavesEffect>Пошаљи
+          </button>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </mdb-card-body>
+</mdb-card>

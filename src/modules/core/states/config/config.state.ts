@@ -57,6 +57,13 @@ export class ConfigState {
   }
 
   @Selector()
+  public static getLibConfig(state: IConfigStateModel) {
+    if (state.libConfig) {
+      return state.libConfig;
+    }
+  }
+
+  @Selector()
   public static fullLibName(state: IConfigStateModel) {
     if (state && state.libConfig.libraryName) {
       return state.libConfig.libraryFullName;

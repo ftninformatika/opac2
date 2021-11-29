@@ -13,7 +13,7 @@
         (click)="miradorClosed()"
         class="closebtn"
         id="closeNav"
-      >&times;</a
+        >&times;</a
       >
       <div class="overlay-content">
         <app-mirador-viewer
@@ -71,7 +71,7 @@
           <h1>
             {{book.title}}
             <label *ngIf="book | recordFormat:RecordFormatType.TOME"
-            >, {{book | recordFormat:RecordFormatType.TOME}}
+              >, {{book | recordFormat:RecordFormatType.TOME}}
             </label>
           </h1>
         </div>
@@ -120,7 +120,7 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
                 >
-                  <dt class="col-sm-3 align-middle">Дигитална књига&nbsp;</dt>
+                  <dt class="col-sm-3 align-middle">Дигитални приказ&nbsp;</dt>
                   <dd class="col-sm-9">
                     <a
                       href="javascript:void(0)"

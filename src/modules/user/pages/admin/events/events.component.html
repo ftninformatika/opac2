@@ -1,0 +1,308 @@
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
+    <span class="sr-only">Учитавање...</span>
+  </div>
+</div>
+
+<div id="div-add-event" *ngIf="!loading">
+  <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
+          data-target="#basicExample" (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect>Додај дешавање
+  </button>
+</div>
+
+<div class="container py-5 div-search" *ngIf="!loading">
+  <div class="row" style="margin-top: 8px;">
+    <div class="col-md-2 col-xs-2 div-from">
+      <div class="md-form">
+        <mdb-date-picker [inline]="true"
+                         [options]="myDatePickerOptions"
+                         [placeholder]="'Од'"
+                         [locale]="'sr'"
+                         [(ngModel)]="filter.from"
+                         data-cy="filter-from"
+                         required>
+        </mdb-date-picker>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-2 div-to">
+      <div class="md-form">
+        <mdb-date-picker [inline]="true"
+                         [options]="myDatePickerOptions"
+                         [placeholder]="'До'"
+                         [locale]="'sr'"
+                         [(ngModel)]="filter.to"
+                         data-cy="filter-to"
+                         required>
+        </mdb-date-picker>
+      </div>
+    </div>
+
+    <div class="col-md-7 col-xs-7 text-right">
+      <div class="md-form">
+        <input mdbInput mdbValidate
+               type="text"
+               class="form-control"
+               placeholder="Унесите наслов или садржај ..."
+               data-cy="search-text"
+               [(ngModel)]="filter.searchText">
+      </div>
+    </div>
+
+    <div class="col-md-1 col-xs-1 text-center search-btn-div">
+      <a class="search-btn-link" (click)="searchEvents(0, this.pageOptions.pageSize)" role="button">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-5 div-search" *ngIf="noEvents && !loading">
+  <h4>Нема резултата за задати критеријум претраге</h4>
+</div>
+
+<main>
+  <div class="container py-5">
+    <!--Section: Blog v.3-->
+    <section
+      class="section extra-margins pb-3 text-center text-lg-left wow fadeIn py-3"
+      data-wow-delay="0.3s"
+      style="animation-name: none; visibility: visible;"
+      *ngIf="!loading"
+    >
+      <hr class="mb-5"/>
+
+      <!--Grid row-->
+      <div *ngFor="let event of events | paginate:
+          {id: 'paginatorId',
+          itemsPerPage: pageOptions?.pageSize,
+          currentPage: pageOptions?.currentPage,
+          totalItems: resultPage?.totalElements}">
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-4 mb-5">
+            <!--Featured image-->
+            <div class="view overlay z-depth-1">
+              <img *ngIf="!this.event.image; else downloadedImage"
+                   src="../../../../../assets/eventDefaultLogo.png"
+                   style='height: 100%; width: 100%; object-fit: fill'
+                   alt="Фотографија"
+                   class="img-fluid">
+              <ng-template #downloadedImage>
+                <img src="{{this.event.image}}"
+                     style='height: 100%; width: 100%; object-fit: fill'
+                     alt="Фотографија"
+                     class="img-fluid">
+              </ng-template>
+              <a>
+                <div
+                  class="mask rgba-white-slight waves-effect waves-light"
+                  mdbWavesEffect>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-7 mb-4">
+            <h6 class="pb-1" style="color: #009688">
+              <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
+              <strong>{{ event.date | date: 'dd.MM.yyyy.'}} {{event.time}}</strong>
+            </h6>
+            <h4 class="mb-4">
+              <strong data-cy="title">{{ event.title }}</strong>
+            </h4>
+            <div id="event-content">
+              {{event.content | slice:0:410}}
+              <div class="read-more" *ngIf="event.content && event.content.length >= 410">
+                ...
+              </div>
+            </div>
+            <br>
+            <button
+              mdbBtn
+              id="btn-read-more"
+              *ngIf="event.content && event.content.length >= 410"
+              class="waves-effect waves-light"
+              mdbWavesEffect
+              (click)="onExpandText(event); expandModal.show();">
+              Опширније
+            </button>
+          </div>
+
+          <!--Grid column-->
+          <div class="col-md-1 mb-5 table-column-btns">
+            <div class="div-edit" mdbTooltip="Измени" placement="left" style="cursor: pointer"
+                 (click)="setEditEvent(event);"
+                 data-cy="edit-btn">
+              <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
+            </div>
+            <div class="div-delete" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
+                 (click)="setEventForDelete(event); deleteModal.show();">
+              <i class="fas fa-trash red-text fa-2x"></i>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-5"/>
+        <!--Grid row-->
+      </div>
+
+      <!--Pagination-->
+      <pagination-controls [id]="'paginatorId'"
+                           [maxSize]="5"
+                           [directionLinks]="true"
+                           [responsive]="true"
+                           [previousLabel]="'Претходна'"
+                           [nextLabel]="'Следећа'"
+                           (pageChange)="onPageChange($event)"
+                           [ngx-scroll-to]="'#app-page-wrapper'">
+      </pagination-controls>
+    </section>
+  </div>
+</main>
+
+
+<div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title center" id="myModalLabel">Брисање дешавања</h4>
+      </div>
+      <div class="modal-body">
+        <label>Да ли сте сигурни да желите да обришете дешавање са насловом <i>{{eventToDelete?.title}}</i> ?</label>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                (click)="deleteModal.hide();">Затвори
+        </button>
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
+                (click)="remove(); deleteModal.hide()">Избриши
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title w-100 font-weight-bold">
+          <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
+          Дешавање
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5 title-field">
+          <input type="text" id="orangeForm-name" class="form-control" [formControl]="title" [(ngModel)]="event.title"
+                 data-cy="title-modal" mdbInput mdbValidate>
+          <label for="orangeForm-name">* Наслов</label>
+          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
+            Наслов је обавезан
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5 content-field">
+          <textarea class="md-textarea form-control" rows="2" id="content" type="text"
+                    [(ngModel)]="event.content" [formControl]="content" data-cy="content-modal" mdbInput
+                    mdbValidate></textarea>
+          <label for="content">* Садржај</label>
+          <mdb-error
+            *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
+          </mdb-error>
+        </div>
+
+        <div class="md-form mb-4 date-field">
+          <mdb-date-picker name="date" #datePicker
+                           [options]="myDatePickerOptions"
+                           [placeholder]="'* Изаберите датум'"
+                           id="date"
+                           [locale]="'sr'"
+                           [formControl]="date"
+                           [(ngModel)]="event.date"
+                           data-cy="date-modal"
+                           required>
+          </mdb-date-picker>
+          <mdb-error
+            *ngIf="date.invalid && (date.dirty || date.touched)">
+            Датум је обавезан
+          </mdb-error>
+        </div>
+        <div class="md-form mb-4 time-field">
+          <mdb-time-picker [twelvehour]="false"
+                           [darktheme]="false"
+                           [placeholder]="'Изаберите време'"
+                           [buttonClearLabel]="'Обриши'"
+                           [showClock]="false"
+                           [(ngModel)]="event.time"
+                           [buttonLabel]="'Изабери'">
+          </mdb-time-picker>
+        </div>
+
+        <div class="file-field md-form">
+          <label for="file" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Изаберите фотографију
+          </label>
+          <input id="file" #file type="file" accept='image/*' (change)="onImageUpload(file.files)"
+                 data-buttonText="Izaberite"/>
+        </div>
+
+        <div class="md-form mb-4">
+          <img *ngIf="this.selectedImage && imgURL; else editingEvent"
+               src="{{imgURL}}" height="100" width="100" alt="Фотографија">
+
+          <ng-template #editingEvent>
+            <img *ngIf="this.event.image; else defaultPhoto"
+                 src="{{this.event.image}}" height="100" width="100" alt="Фотографија">
+          </ng-template>
+
+          <ng-template #defaultPhoto>
+            <img src="../../../../../assets/eventDefaultLogo.png" height="100" width="100" alt="Фотографија">
+          </ng-template>
+
+          <input [disabled] class="file-path" type="text" placeholder="Назив фотографије"
+                 [value]="this.selectedImage?.name">
+
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();"
+                data-cy="event-submit-btn">
+          Сачувај
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #expandModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="expandModalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close"
+                (click)="onCloseExpandText(); expandModal.hide();">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100">{{event.title}}</h4>
+      </div>
+      <div class="modal-body" id="expandModalBody">
+        {{event.content}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                (click)="onCloseExpandText(); expandModal.hide();" mdbWavesEffect>Затвори
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

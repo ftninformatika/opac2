@@ -1,0 +1,47 @@
+#btn-add-library {
+  float: right;
+  cursor: pointer;
+}
+
+
+.title {
+  font-weight: bold;
+  color: #00b2d1;
+}
+
+.fa-map-marker-alt, .fa-map-marked-alt, .fa-phone-alt, .fa-phone-alt, .fa-envelope, .fa-clock, .fa-globe {
+  margin-right: 10px;
+}
+
+.table-column-btns {
+  float: right;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  font-size: 0.6em;
+}
+
+.div-delete {
+  margin-top: 10px;
+}
+
+
+@media (max-width: 1100px) {
+  .table-column-btns {
+    display: flex;
+  }
+
+  .div-delete {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+}
+
+
+pagination-controls {
+  text-align: center;
+}
+
+td {
+  padding: 5px !important;
+}

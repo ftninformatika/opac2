@@ -20,3 +20,18 @@ export enum EAuthority {
   LibraryMember = 'ROLE_USER',
   LibraryAdmin = 'ROLE_ADMIN'
 }
+
+export interface LibraryMemberCard {
+  userId?: string;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  membershipUntil?: Date;
+  libraryMemberId?: String;
+}
+
+export class LoggedUser {
+  username: string;
+  firstName?: string;
+  lastName?: string;
+}
