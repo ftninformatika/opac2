@@ -51,6 +51,10 @@ export const UserRoutes: Routes = [
     component: RegisterInfoPage
   },
   {
+    path: 'register-info/bgb',
+    component: RegisterInfoPage
+  },
+  {
     path: 'change-password',
     component: ChangePasswordPage,
     canActivate: [AuthGuard]

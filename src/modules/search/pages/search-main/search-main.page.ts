@@ -1,4 +1,4 @@
-import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
+import {IResultPageOptionsInitial, IResultPageSearchRequest} from '../../../../models/search/result-page-options.model';
 import { SearchFormModel, SearchFormModelInitial } from '../../../../models/search-form-model';
 import { ISearchModel, ISearchModelInitial } from '../../../../models/search/search.model';
 import { EAutoCompletePrefixes } from '../../../../models/prefix-value.model';
@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import {SignOutAction} from '../../../core/states/user/user.state';
 
 @Component({
   selector: 'app-search-main',
@@ -45,7 +46,17 @@ export class SearchMainPage implements OnInit {
     this._store = store;
   }
 
-  public ngOnInit() {
+  public async ngOnInit() {
+    const lib = this._activatedRoute.snapshot.paramMap.get('lib');
+    if (lib) {
+      const currentLibrary = this._store.selectSnapshot(ConfigState.library);
+      if (currentLibrary !== lib) {
+        await this._router.navigate([`lib/${lib}`],
+          {state: {proceedUrl: `/search/advanced-search/${lib}`}});
+        return;
+      }
+    }
+
     this.searchModel = {...ISearchModelInitial};
     this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
     this.operatorList = [{value: 'AND', label: 'И'}, {value: 'OR', label: 'ИЛИ'}, {value: 'NOT', label: 'НЕ'}];
