@@ -61,6 +61,7 @@
     "ngx-pagination": "^4.1.0",
     "node-fetch": "^2.6.0",
     "print-js": "^1.0.63",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~6.6.7",
     "screenfull": "^3.3.3",
     "tslib": "^2.0.0",
