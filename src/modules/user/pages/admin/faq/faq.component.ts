@@ -48,6 +48,7 @@ export class FaqComponent implements OnInit {
     this.faqForm = new FormGroup({
       question: new FormControl('', Validators.required),
       answer: new FormControl('', Validators.required),
+      index: new FormControl('', Validators.required),
     });
   }
 
@@ -57,6 +58,10 @@ export class FaqComponent implements OnInit {
 
   get answer() {
     return this.faqForm.get('answer');
+  }
+
+  get index() {
+    return this.faqForm.get('index');
   }
 
   onBtnCreteNewFaq() {
@@ -113,6 +118,7 @@ export class FaqComponent implements OnInit {
         this.toastService.success("Успешно сте изменили питање");
         this.editing = false;
         this.createModal.hide();
+        this.getAll(this.pageOptions.currentPage - 1);
       } else {
         this.toastService.error("Дошло је до грешке приликом измене питања. Покушајте поново")
       }

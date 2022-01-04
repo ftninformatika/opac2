@@ -4,6 +4,7 @@ export class Faq {
   _id?: string;
   question?: string;
   answer?: string;
+  index?: number;
 }
 
 export class FAQResultPage {

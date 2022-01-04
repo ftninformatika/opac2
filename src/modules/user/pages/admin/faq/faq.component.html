@@ -13,7 +13,8 @@
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
           totalItems: resultPage?.totalElements}; let i = index">
-      <mdb-card-header>{{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
+      <mdb-card-header>
+        {{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
         <div class="btns">
           <div class="edit-div" mdbTooltip="Измени" placement="left" data-cy="edit-btn"
                (click)="onBtnEditFaq(faq);">
@@ -26,7 +27,9 @@
         </div>
       </mdb-card-header>
       <mdb-card-body>
-        <mdb-card-text data-cy="card-text">{{ faq.answer }}</mdb-card-text>
+        <mdb-card-text data-cy="card-text">{{ faq.answer }}
+        </mdb-card-text>
+        <mdb-card-text data-cy="card-text">Редни број питања: {{ faq.index }} </mdb-card-text>
       </mdb-card-body>
     </mdb-card>
 
@@ -75,7 +78,6 @@
                     rows="2"
                     id="content"
                     type="text"
-                    length="120"
                     [(ngModel)]="faq.answer"
                     [formControl]="answer"
                     data-cy="answer"
@@ -84,6 +86,22 @@
           <label for="content">* Одговор</label>
           <mdb-error
             *ngIf="answer.invalid && (answer.dirty || answer.touched)">Одговор је обавезан
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5">
+          <textarea class="md-textarea form-control"
+                    rows="2"
+                    id="index"
+                    type="text"
+                    length="120"
+                    [(ngModel)]="faq.index"
+                    [formControl]="index"
+                    data-cy="index"
+                    mdbCharCounter mdbInput mdbValidate>
+          </textarea>
+          <label for="content">* Редни број питања</label>
+          <mdb-error
+            *ngIf="index.invalid && (index.dirty || index.touched)">Обавезно је унети редни број питања
           </mdb-error>
         </div>
       </div>
