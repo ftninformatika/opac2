@@ -75,13 +75,12 @@
         </div>
         <div class="md-form mb-5">
           <textarea class="md-textarea form-control"
-                    rows="2"
                     id="content"
                     type="text"
                     [(ngModel)]="faq.answer"
                     [formControl]="answer"
                     data-cy="answer"
-                    mdbCharCounter mdbInput mdbValidate>
+                    mdbInput mdbValidate>
           </textarea>
           <label for="content">* Одговор</label>
           <mdb-error
@@ -89,16 +88,13 @@
           </mdb-error>
         </div>
         <div class="md-form mb-5">
-          <textarea class="md-textarea form-control"
-                    rows="2"
-                    id="index"
-                    type="text"
-                    length="120"
-                    [(ngModel)]="faq.index"
-                    [formControl]="index"
-                    data-cy="index"
-                    mdbCharCounter mdbInput mdbValidate>
-          </textarea>
+          <input type="number"
+                 id="index"
+                 class="form-control"
+                 [formControl]="index"
+                 [(ngModel)]="faq.index"
+                 data-cy="index"
+                 mdbInput mdbValidate>
           <label for="content">* Редни број питања</label>
           <mdb-error
             *ngIf="index.invalid && (index.dirty || index.touched)">Обавезно је унети редни број питања
