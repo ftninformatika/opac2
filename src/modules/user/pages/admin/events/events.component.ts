@@ -87,6 +87,10 @@ export class EventsComponent implements OnInit {
       this.events[i] = await this.downloadImage(this.events[i]);
     }
     this.events.map(event => event.date = new Date(event.date));
+    this.events.map(event => event.time = event.date.toLocaleTimeString(navigator.language, {
+      hour: '2-digit',
+      minute: '2-digit'
+    }));
     window.scroll(0, 0);
   }
 
@@ -144,6 +148,7 @@ export class EventsComponent implements OnInit {
     this.eventService.create(this.createFormData(this.event)).subscribe(async savedEvent => {
       if (savedEvent) {
         savedEvent.date = new Date(savedEvent.date);
+        savedEvent.time = savedEvent.date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit'});
         if (this.selectedImage) {
           savedEvent.image = this.imgURL;
         }
@@ -161,11 +166,11 @@ export class EventsComponent implements OnInit {
     formData.append('file', this.selectedImage);
     formData.append('title', event.title);
     formData.append('content', event.content);
-    event.date = DateUtils.convertStringToDate(event.date);
-    formData.append('date', event.date.toUTCString());
-    if (event.time){
-      formData.append('time', event.time);
+    if (!event.time) {
+      event.time = "23:59"
     }
+    event.date = DateUtils.convertStringToDate(event.date, event.time);
+    formData.append('date', event.date.toUTCString());
     return formData;
   }
 
@@ -191,6 +196,10 @@ export class EventsComponent implements OnInit {
       if (editedEvent) {
         editedEvent = await this.setImage(editedEvent);
         editedEvent.date = new Date(editedEvent.date);
+        editedEvent.time = editedEvent.date.toLocaleTimeString(navigator.language, {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
         this.events = ArrayUtils.updateArray(editedEvent, this.events);
         this.toastService.success("Успешно сте изменили дешавање")
         this.closeDialog();
@@ -239,8 +248,12 @@ export class EventsComponent implements OnInit {
   }
 
   searchEvents(pageNum: number, pageSize: number) {
-    this.filter.from = DateUtils.convertStringToDate(this.filter.from);
-    this.filter.to = DateUtils.convertStringToDate(this.filter.to);
+    if (this.filter.from) {
+      this.filter.from = DateUtils.convertStringToDate(this.filter.from, "00:00");
+    }
+    if (this.filter.to) {
+      this.filter.to = DateUtils.convertStringToDate(this.filter.to, "23:59");
+    }
     if (this.filter.from > this.filter.to) {
       this.toastService.error("Датум почетка мора да буде пре датума завршетка")
       return;
