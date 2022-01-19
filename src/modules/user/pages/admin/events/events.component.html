@@ -110,6 +110,10 @@
               <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
               <strong>{{ event.date | date: 'dd.MM.yyyy. HH:mm'}}</strong>
             </h6>
+            <h6 class="pb-1" style="color: #963d00" *ngIf="isLocationCreated(event)">
+              <i class="fas fa-map-marker-alt"></i>
+              <strong>{{event.location}}</strong>
+            </h6>
             <h4 class="mb-4">
               <strong data-cy="title">{{ event.title }}</strong>
             </h4>
@@ -129,7 +133,16 @@
               (click)="onExpandText(event); expandModal.show();">
               Опширније
             </button>
+            <div *ngIf="isLinkCreated(event)" id="link-display">
+              <div *ngIf="event.linkName; else noName">
+                <a href="{{event.link}}">{{event.linkName}}</a>
+              </div>
+              <ng-template #noName>
+                <a href="{{event.link}}">{{event.link}}</a>
+              </ng-template>
+            </div>
           </div>
+
 
           <!--Grid column-->
           <div class="col-md-1 mb-5 table-column-btns">
@@ -249,12 +262,12 @@
         </div>
         <div class="md-form location-field">
           <input type="text" class="form-control" [(ngModel)]="event.location"
-                 data-cy="title-modal" mdbInput>
+                 data-cy="location-modal" mdbInput>
           <label for="orangeForm-name">Локација дешавања</label>
         </div>
         <div class="md-form mb-3 additional-field">
-          <input type="text" class="form-control" [(ngModel)]="event.link"  [formControl]="link"
-                 data-cy="title-modal" mdbInput mdbValidate>
+          <input type="text" class="form-control" [(ngModel)]="event.link" [formControl]="link"
+                 data-cy="link-modal" mdbInput mdbValidate>
           <label for="orangeForm-name">Линк</label>
           <mdb-error
             *ngIf="link.invalid && (link.dirty || link.touched)">
@@ -263,7 +276,7 @@
         </div>
         <div class="md-form mb-5 additional-field">
           <input type="text" class="form-control" [(ngModel)]="event.linkName"
-                 data-cy="title-modal" mdbInput>
+                 data-cy="link-name-modal" mdbInput [mdbTooltip]="'Приказује се само ако је и линк унет'">
           <label for="orangeForm-name">Наслов линка</label>
         </div>
 

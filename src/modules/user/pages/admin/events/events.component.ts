@@ -180,9 +180,15 @@ export class EventsComponent implements OnInit {
     }
     event.date = DateUtils.convertStringToDate(event.date, event.time);
     formData.append('date', event.date.toUTCString());
-    formData.append('location', event.location);
-    formData.append('link', event.link);
-    formData.append('linkName', event.linkName);
+    if (event.location) {
+      formData.append('location', event.location);
+    }
+    if (event.link) {
+      formData.append('link', event.link);
+    }
+    if (event.linkName) {
+      formData.append('linkName', event.linkName);
+    }
     return formData;
   }
 
@@ -298,5 +304,13 @@ export class EventsComponent implements OnInit {
     this.event = {};
     this.createModal.hide();
     this.editing = false;
+  }
+
+  isLinkCreated(event: Event): boolean {
+    return (event.link !== null && event.link !== undefined)
+  }
+
+  isLocationCreated(event: Event): boolean {
+    return (event.location !== null && event.location !== undefined)
   }
 }
