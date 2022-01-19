@@ -112,11 +112,16 @@ export class EventsComponent implements OnInit {
   }
 
   createForm() {
+    const urlRegex = "(https?://|www).+"
+
     this.validatingForm = new FormGroup({
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
-      time: new FormControl('')
+      time: new FormControl(''),
+      location: new FormControl(''),
+      link: new FormControl('', Validators.pattern(urlRegex)),
+      linkName: new FormControl('')
     });
   }
 
@@ -132,9 +137,13 @@ export class EventsComponent implements OnInit {
     return this.validatingForm.get('date');
   }
 
+  get link() {
+    return this.validatingForm.get('link');
+  }
+
   onBtnCreateEvent() {
     if (this.validatingForm.invalid) {
-      this.toastService.warning("Проверите да ли сте попунили обавезна поља");
+      this.toastService.warning("Проверите да ли сте исправно попунили сва обавезна поља");
       return;
     }
     if (!this.editing) {
@@ -171,6 +180,9 @@ export class EventsComponent implements OnInit {
     }
     event.date = DateUtils.convertStringToDate(event.date, event.time);
     formData.append('date', event.date.toUTCString());
+    formData.append('location', event.location);
+    formData.append('link', event.link);
+    formData.append('linkName', event.linkName);
     return formData;
   }
 

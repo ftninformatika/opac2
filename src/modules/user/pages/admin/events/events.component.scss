@@ -7,7 +7,7 @@
 }
 
 .file-field {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
   margin-top: 10px !important;
 }
 
@@ -96,8 +96,14 @@ pagination-controls {
   display: inline-block;
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 0;
 }
 
 .title-field, .content-field {
   margin-bottom: 10px !important;
+}
+
+.location-field {
+  margin-top: 0;
+  margin-bottom: 16px;
 }

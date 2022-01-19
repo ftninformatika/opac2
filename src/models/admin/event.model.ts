@@ -5,6 +5,9 @@ export class Event {
   content?: string;
   title?: string;
   image?: string | ArrayBuffer;
+  location?: string;
+  link?: string;
+  linkName?: string;
 }
 
 export class EventFilter {

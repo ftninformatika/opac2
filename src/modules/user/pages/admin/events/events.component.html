@@ -237,7 +237,7 @@
             Датум је обавезан
           </mdb-error>
         </div>
-        <div class="md-form mb-4 time-field">
+        <div class="md-form time-field">
           <mdb-time-picker [twelvehour]="false"
                            [darktheme]="false"
                            [placeholder]="'Изаберите време'"
@@ -246,6 +246,25 @@
                            [(ngModel)]="event.time"
                            [buttonLabel]="'Изабери'">
           </mdb-time-picker>
+        </div>
+        <div class="md-form location-field">
+          <input type="text" class="form-control" [(ngModel)]="event.location"
+                 data-cy="title-modal" mdbInput>
+          <label for="orangeForm-name">Локација дешавања</label>
+        </div>
+        <div class="md-form mb-3 additional-field">
+          <input type="text" class="form-control" [(ngModel)]="event.link"  [formControl]="link"
+                 data-cy="title-modal" mdbInput mdbValidate>
+          <label for="orangeForm-name">Линк</label>
+          <mdb-error
+            *ngIf="link.invalid && (link.dirty || link.touched)">
+            Формат линка није добар
+          </mdb-error>
+        </div>
+        <div class="md-form mb-5 additional-field">
+          <input type="text" class="form-control" [(ngModel)]="event.linkName"
+                 data-cy="title-modal" mdbInput>
+          <label for="orangeForm-name">Наслов линка</label>
         </div>
 
         <div class="file-field md-form">
