@@ -56,7 +56,7 @@ export const UserRoutes: Routes = [
     component: RegisterInfoPage
   },
   {
-    path: 'register-info/bgb',
+    path: 'register-info/:lib',
     component: RegisterInfoPage
   },
   {
