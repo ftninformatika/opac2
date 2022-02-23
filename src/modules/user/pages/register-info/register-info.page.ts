@@ -21,11 +21,10 @@ export class RegisterInfoPage implements OnInit {
     const currentLibrary = this._store.selectSnapshot(ConfigState.library);
     const isSignedIn = this._store.selectSnapshot(UserState.username) != null;
     const lib = this._activatedRoute.snapshot.paramMap.get('lib');
-
+    if (lib === 'bgb' || currentLibrary === 'bgb') {
+      this.bgbRegister = true;
+    }
     if (lib) {
-      if (lib === 'bgb') {
-        this.bgbRegister = true;
-      }
       if (isSignedIn) {
         await this._store.dispatch(new SignOutAction());
       }
