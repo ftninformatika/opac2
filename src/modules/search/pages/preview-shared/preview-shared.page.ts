@@ -49,7 +49,7 @@ export class PreviewSharedPage implements OnInit {
       }
       this.searchByIds(req);
     } catch (e) {
-      this._toastService.warning('Линк је неважећи, преусмерени сте на почетну страницу.');
+      this._toastService.warning($localize`:@@greskaLinkNevazeci:Линк је неважећи, преусмерени сте на почетну страницу.`);
       await this._router.navigate(['/']);
       return;
     }
@@ -58,7 +58,7 @@ export class PreviewSharedPage implements OnInit {
   private async initFromState() {
     const recordIds = this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords);
     if (!recordIds || recordIds.length === 0) {
-      this._toastService.warning('Неуспело учитавање књига');
+      this._toastService.warning($localize`:@@greskaNeuspeloUcitavenjeKnjiga:Неуспело учитавање књига`);
       await this._router.navigate(['/']);
     }
     const req: IResultPageSearchRequest = {
@@ -74,13 +74,13 @@ export class PreviewSharedPage implements OnInit {
       .subscribe(
         async res => {
           if (!res || !res.content || res.content.length === 0) {
-            this._toastService.error('Грешка при учитавању књига!');
+            this._toastService.error($localize`:@@greskaUcitavenjeKnjiga:Грешка при учитавању књига!`);
             await this._router.navigate(['/']);
           }
           this.books = res.content;
         },
         async () => {
-          this._toastService.error('Серверска грешка, при учитавању књига!');
+          this._toastService.error($localize`:@@serverskaGreskaUcitavenjeKnjiga:Серверска грешка, при учитавању књига!`);
           await this._router.navigate(['/']);
         }
       );

@@ -10,12 +10,12 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { ShelfPage } from './pages/shelf/shelf.page';
 import { LoginPage } from './pages/login/login.page';
 import { Routes } from '@angular/router';
-import {ActiveReservationsPage} from "./pages/active-reservations/active-reservations.page";
-import {EventsComponent} from "./pages/admin/events/events.component";
-import {FaqComponent} from "./pages/admin/faq/faq.component";
-import {MessagePage} from "./pages/admin/message/message.page";
-import {NotificationComponent} from "./pages/admin/notifications/notification.component";
-import {LocationComponent} from "./pages/admin/location/location.component";
+import {ActiveReservationsPage} from './pages/active-reservations/active-reservations.page';
+import {EventsComponent} from './pages/admin/events/events.component';
+import {FaqComponent} from './pages/admin/faq/faq.component';
+import {MessagePage} from './pages/admin/message/message.page';
+import {NotificationComponent} from './pages/admin/notifications/notification.component';
+import {LocationComponent} from './pages/admin/location/location.component';
 
 export const UserRoutes: Routes = [
   {

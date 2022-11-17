@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { PrefixModel } from "../../../models/prefix.model";
-import { PrefixUtils } from "../../../utils/prefix.utils";
+import { Injectable } from '@angular/core';
+import { PrefixModel } from '../../../models/prefix.model';
+import { PrefixUtils } from '../../../utils/prefix.utils';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PrefixesService {
   private prefixes = PrefixUtils.Prefixes;

@@ -1,15 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
-import {NotificationService} from "../../../../core/services/notification.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ModalDirective, ToastService} from 'ng-uikit-pro-standard';
+import {NotificationService} from '../../../../core/services/notification.service';
 import {
   INotificationPageOptions,
   INotificationPageOptionsInitial,
   Notification, NotificationResultPage
-} from "../../../../../models/admin/notification.model";
-import {UserState} from "../../../../core/states/user/user.state";
-import {Store} from "@ngxs/store";
-import {LoggedUser} from "../../../../../models/library-member.model";
+} from '../../../../../models/admin/notification.model';
+import {UserState} from '../../../../core/states/user/user.state';
+import {Store} from '@ngxs/store';
+import {LoggedUser} from '../../../../../models/library-member.model';
 
 @Component({
   selector: 'app-notification',
@@ -36,7 +36,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLoggedUser();
-    this.pageOptions = {...INotificationPageOptionsInitial}
+    this.pageOptions = {...INotificationPageOptionsInitial};
     let pageNum = 0;
     if (this.pageOptions.currentPage > 0) {
       pageNum = this.pageOptions.currentPage - 1;
@@ -47,11 +47,11 @@ export class NotificationComponent implements OnInit {
     this.notifications = [];
     this.notificationTypes = [
       { value: 'info', label: 'Обавештење'},
-      { value: 'event', label: 'Дешавање'}]
+      { value: 'event', label: 'Дешавање'}];
   }
 
   setLoggedUser(): void {
-    this.loggedAdmin = new LoggedUser;
+    this.loggedAdmin = new LoggedUser();
     this.loggedAdmin.username = this._store.selectSnapshot(UserState.username);
     this.loggedAdmin.firstName = this._store.selectSnapshot(UserState.firstname);
     this.loggedAdmin.lastName = this._store.selectSnapshot(UserState.lastname);
@@ -93,7 +93,7 @@ export class NotificationComponent implements OnInit {
 
   onBtnSaveFaq() {
     if (this.notificationForm.invalid) {
-      this.toastService.warning("Наслов, садржај и тип су обавезна поља");
+      this.toastService.warning($localize`:@@notifikacijeObaveznaPolja:Наслов, садржај и тип су обавезна поља`);
       return;
     }
     this.add();
@@ -105,18 +105,18 @@ export class NotificationComponent implements OnInit {
       if (savedNotification) {
         this.notifications = [savedNotification, ...this.notifications];
         this.createModal.hide();
-        this.toastService.success("Успешно сте послали ново обавештење")
+        this.toastService.success($localize`:@@uspesnoPoslatoObavestenje:Успешно сте послали ново обавештење`);
       } else {
-        this.toastService.error("Дошло је до грешке приликом слања обавештења. Покушајте поново")
+        this.toastService.error($localize`:@@greskaSlanjeObavestenja:Дошло је до грешке приликом слања обавештења. Покушајте поново`);
       }
     }, () => {
-      this.toastService.error("Дошло је до грешке приликом слања обавештења. Покушајте поново")
-    })
+      this.toastService.error($localize`:@@greskaSlanjeObavestenja:Дошло је до грешке приликом слања обавештења. Покушајте поново`);
+    });
   }
 
   setNotificationData(): void {
     this.notification.sentDate = new Date();
-    this.notification.sender = this.loggedAdmin.firstName + " " + this.loggedAdmin.lastName;
+    this.notification.sender = this.loggedAdmin.firstName + ' ' + this.loggedAdmin.lastName;
   }
 
   onPageChange($event) {

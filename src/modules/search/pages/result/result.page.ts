@@ -1,4 +1,13 @@
-import { Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {
   IResultPageOptions,
   IResultPageOptionsInitial,
@@ -18,7 +27,7 @@ import { IResultPage } from '../../../../models/page.model';
 import { ArrayUtils } from '../../../../utils/array.utils';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Book } from '../../../../models/book.model';
-import { ToastService } from 'ng-uikit-pro-standard';
+import {ModalDirective, ToastService} from 'ng-uikit-pro-standard';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { Select, Store } from '@ngxs/store';
 import { PreviewSharedPage } from '../preview-shared/preview-shared.page';
@@ -71,6 +80,8 @@ export class ResultPage implements OnInit, OnDestroy {
   public tableView: boolean;
   public shareSelectedLink: string;
   public kioskFilter: ISelectedFilter;
+
+  @ViewChild('shareLinkModal') shareLinkModal: ModalDirective;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, @Inject(PLATFORM_ID) private platformId,
                      router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
@@ -169,14 +180,14 @@ export class ResultPage implements OnInit, OnDestroy {
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);
-    this._toastService.success('Линк за дељење је смештен у клипборд');
+    this._toastService.success($localize`:@@linkZaDeljenjeSmesten:Линк за дељење је смештен у клипборд`);
   }
 
-  public generateShareLink(): string {
+  public generateShareLink() {
     try {
       const selectedRecIds = this._store.selectSnapshot(AppOptionsState.getShareSelectionRecords);
       if (!selectedRecIds || selectedRecIds.length === 0) {
-        return null;
+        this._toastService.warning($localize`:@@nijednaKnjigaNijeOdabrana:Ниједна књига није одабрана`);
       }
       const req: IResultPageSearchRequest = {
         searchModel: null,
@@ -187,9 +198,9 @@ export class ResultPage implements OnInit, OnDestroy {
       this.shareSelectedLink =
         // tslint:disable-next-line:max-line-length
         `${window.location.protocol}//${window.location.hostname}/search/${PreviewSharedPage.PagePathChunk + CryptoUtils.encryptData(JSON.stringify(req))}`;
-      return this.shareSelectedLink;
+      this.shareLinkModal.show();
     } catch (e) {
-      return null;
+      this._toastService.warning($localize`:@@nijednaKnjigaNijeOdabrana:Ниједна књига није одабрана`);
     }
   }
 
@@ -361,7 +372,7 @@ export class ResultPage implements OnInit, OnDestroy {
 
   private async populateResultPage(res: IResultPage): Promise<void> {
     if (!res) {
-      this._toastService.warning('Нема резултата за задате параметре претраге!');
+      this._toastService.warning($localize`:@@nemaRezultataZaZadateParametre:Нема резултата за задате параметре претраге!`);
       await this._router.navigate(['/']);
     } else {
       this.resultPage = res;

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
-import {Faq, FAQResultPage} from "../../../models/admin/faq.model";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ApiEndpointConfig} from '../../../config/api-endpoint.config';
+import {Faq, FAQResultPage} from '../../../models/admin/faq.model';
 
 @Injectable({
   providedIn: 'root'

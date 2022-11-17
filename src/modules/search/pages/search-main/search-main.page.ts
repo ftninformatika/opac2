@@ -77,7 +77,7 @@ export class SearchMainPage implements OnInit {
   public onSubmit() {
     this.populateSearchModel();
     if (!this.validateSearchModel()) {
-      this._toastService.warning('Молимо вас унесите вредности претраге.');
+      this._toastService.warning($localize`:@@molimoVasUnesiteVrednostiPretrage:Молимо вас унесите вредности претраге.`);
       return;
     }
     const pageOptions = {...IResultPageOptionsInitial};
