@@ -59,7 +59,10 @@ export class SearchMainPage implements OnInit {
 
     this.searchModel = {...ISearchModelInitial};
     this.prefixList = this._prefixesService.getPrefixes().map(prefix => ({ value: prefix.code, label: prefix.name}));
-    this.operatorList = [{value: 'AND', label: 'И'}, {value: 'OR', label: 'ИЛИ'}, {value: 'NOT', label: 'НЕ'}];
+    this.operatorList = [
+      {value: 'AND', label: $localize`:@@I:И` },
+      {value: 'OR', label: $localize`:@@ILI:ИЛИ`},
+      {value: 'NOT', label: $localize`:@@NE:НЕ`}];
     this.inputSm$ = this._activatedRoute.paramMap.pipe( map(() => window.history.state as ISearchModel));
     this.initSearchForm();
   }

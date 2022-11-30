@@ -1835,6 +1835,1838 @@ export class PrefixUtils {
       }
     ];
 
+  static _coderLA_lat: Coder[] =
+    [
+      {
+        code: 'srp' ,
+        name: 'Srpski'
+      },
+      {
+        code: 'scc' ,
+        name: 'Srpski - ćirilica'
+      },
+      {
+        code: 'scr' ,
+        name: 'Srpski - latinica'
+      },
+      {
+        code: 'eng' ,
+        name: 'Engleski'
+      },
+      {
+        code: 'ger' ,
+        name: 'Nemački'
+      },
+      {
+        code: 'ita' ,
+        name: 'Italijanski'
+      },
+      {
+        code: 'spa' ,
+        name: 'Španski / Kastiljanski'
+      },
+      {
+        code: 'hun' ,
+        name: 'Mađarski'
+      },
+      {
+        code: 'slo' ,
+        name: 'Slovački'
+      },
+      {
+        code: 'slv' ,
+        name: 'Slovenački'
+      },
+      {
+        code: 'bul' ,
+        name: 'Bugarski'
+      },
+      {
+        code: 'scn' ,
+        name: 'Sicilijanski'
+      },
+      {
+        code: 'sco' ,
+        name: 'Škotski'
+      },
+      {
+        code: 'aar' ,
+        name: 'Afar'
+      },
+      {
+        code: 'abk' ,
+        name: 'Abhaski'
+      },
+      {
+        code: 'ace' ,
+        name: 'Akineze'
+      },
+      {
+        code: 'ach' ,
+        name: 'Ačoli'
+      },
+      {
+        code: 'ada' ,
+        name: 'Adangme'
+      },
+      {
+        code: 'ady' ,
+        name: 'Adyghe'
+      },
+      {
+        code: 'afa' ,
+        name: 'Afroazijski (ostali)'
+      },
+      {
+        code: 'afh' ,
+        name: 'Afrihili'
+      },
+      {
+        code: 'afr' ,
+        name: 'Afrikaans'
+      },
+      {
+        code: 'ain' ,
+        name: 'Ainu'
+      },
+      {
+        code: 'ajm' ,
+        name: 'Aljamia'
+      },
+      {
+        code: 'aka' ,
+        name: 'Akan'
+      },
+      {
+        code: 'akk' ,
+        name: 'Akadski'
+      },
+      {
+        code: 'alb' ,
+        name: 'Albanski'
+      },
+      {
+        code: 'ale' ,
+        name: 'Aleutski'
+      },
+      {
+        code: 'alg' ,
+        name: 'Algonkinski jezici'
+      },
+      {
+        code: 'alt' ,
+        name: 'Altai'
+      },
+      {
+        code: 'amh' ,
+        name: 'Amharski'
+      },
+      {
+        code: 'ang' ,
+        name: 'Anglosaksonski (450-1100)'
+      },
+      {
+        code: 'anp' ,
+        name: 'Angika'
+      },
+      {
+        code: 'apa' ,
+        name: 'Apaški'
+      },
+      {
+        code: 'ara' ,
+        name: 'Arapski'
+      },
+      {
+        code: 'arc' ,
+        name: 'Aramejski'
+      },
+      {
+        code: 'arg' ,
+        name: 'Aragonski'
+      },
+      {
+        code: 'arm' ,
+        name: 'Jermenski'
+      },
+      {
+        code: 'arn' ,
+        name: 'Araukanski'
+      },
+      {
+        code: 'arp' ,
+        name: 'Arapaho'
+      },
+      {
+        code: 'art' ,
+        name: 'Veštački (drugi)'
+      },
+      {
+        code: 'arw' ,
+        name: 'Aravak'
+      },
+      {
+        code: 'asm' ,
+        name: 'Asamski'
+      },
+      {
+        code: 'ast' ,
+        name: 'Asturian; Bable'
+      },
+      {
+        code: 'ath' ,
+        name: 'Athapaskanski jezici'
+      },
+      {
+        code: 'aus' ,
+        name: 'Australijski jezici'
+      },
+      {
+        code: 'ava' ,
+        name: 'Avarski'
+      },
+      {
+        code: 'ave' ,
+        name: 'Avestički'
+      },
+      {
+        code: 'awa' ,
+        name: 'Avadhi'
+      },
+      {
+        code: 'aym' ,
+        name: 'Ajmara'
+      },
+      {
+        code: 'aze' ,
+        name: 'Azerbejdžanski'
+      },
+      {
+        code: 'bad' ,
+        name: 'Banda'
+      },
+      {
+        code: 'bai' ,
+        name: 'Bamileke languages'
+      },
+      {
+        code: 'bak' ,
+        name: 'Baškirski'
+      },
+      {
+        code: 'bal' ,
+        name: 'Baluči'
+      },
+      {
+        code: 'bam' ,
+        name: 'Bambara'
+      },
+      {
+        code: 'ban' ,
+        name: 'Bali'
+      },
+      {
+        code: 'baq' ,
+        name: 'Baskijski'
+      },
+      {
+        code: 'bas' ,
+        name: 'Basa'
+      },
+      {
+        code: 'bat' ,
+        name: 'Baltički (ostali)'
+      },
+      {
+        code: 'bej' ,
+        name: 'Bedža'
+      },
+      {
+        code: 'bel' ,
+        name: 'Beloruski'
+      },
+      {
+        code: 'bem' ,
+        name: 'Bemba'
+      },
+      {
+        code: 'ben' ,
+        name: 'Bengalski'
+      },
+      {
+        code: 'ber' ,
+        name: 'Berberski jezici'
+      },
+      {
+        code: 'bho' ,
+        name: 'Bhodžpuri'
+      },
+      {
+        code: 'bih' ,
+        name: 'Bihari'
+      },
+      {
+        code: 'bik' ,
+        name: 'Bikol'
+      },
+      {
+        code: 'bin' ,
+        name: 'Bini'
+      },
+      {
+        code: 'bis' ,
+        name: 'Bislama'
+      },
+      {
+        code: 'bla' ,
+        name: 'Siksika / Blackfoot'
+      },
+      {
+        code: 'bnt' ,
+        name: 'Bantu (ostali)'
+      },
+      {
+        code: 'bos' ,
+        name: 'Bosanski (Bošnjački)'
+      },
+      {
+        code: 'bra' ,
+        name: 'Bradž'
+      },
+      {
+        code: 'bre' ,
+        name: 'Bretonski'
+      },
+      {
+        code: 'btk' ,
+        name: 'Batak (Indonezija)'
+      },
+      {
+        code: 'bua' ,
+        name: 'Buriat'
+      },
+      {
+        code: 'bug' ,
+        name: 'Bugi'
+      },
+      {
+        code: 'bur' ,
+        name: 'Burmanski'
+      },
+      {
+        code: 'byn' ,
+        name: 'Blin / Bilin'
+      },
+      {
+        code: 'cad' ,
+        name: 'Kado'
+      },
+      {
+        code: 'cai' ,
+        name: 'Centralnoamerički indijanski (ostali)'
+      },
+      {
+        code: 'cam' ,
+        name: 'Kmerski'
+      },
+      {
+        code: 'car' ,
+        name: 'Karipski'
+      },
+      {
+        code: 'cat' ,
+        name: 'Katalanski'
+      },
+      {
+        code: 'cau' ,
+        name: 'Kavkaski (ostali)'
+      },
+      {
+        code: 'ceb' ,
+        name: 'Kebuanski'
+      },
+      {
+        code: 'cha' ,
+        name: 'Chamorro'
+      },
+      {
+        code: 'chb' ,
+        name: 'Čibča'
+      },
+      {
+        code: 'che' ,
+        name: 'Čečenski'
+      },
+      {
+        code: 'chg' ,
+        name: 'Čagatai'
+      },
+      {
+        code: 'chi' ,
+        name: 'Kineski'
+      },
+      {
+        code: 'chk' ,
+        name: 'Chuukese'
+      },
+      {
+        code: 'chm' ,
+        name: 'Mari'
+      },
+      {
+        code: 'chn' ,
+        name: 'Činuk žargon'
+      },
+      {
+        code: 'cho' ,
+        name: 'Chocktaw'
+      },
+      {
+        code: 'chp' ,
+        name: 'Chipewyan'
+      },
+      {
+        code: 'chr' ,
+        name: 'Čeroki'
+      },
+      {
+        code: 'chu' ,
+        name: 'Crkvenoslovenski'
+      },
+      {
+        code: 'chv' ,
+        name: 'Čuvaški'
+      },
+      {
+        code: 'chy' ,
+        name: 'Čejenski'
+      },
+      {
+        code: 'cmc' ,
+        name: 'Chamic languages'
+      },
+      {
+        code: 'cop' ,
+        name: 'Koptski'
+      },
+      {
+        code: 'cor' ,
+        name: 'Cornish'
+      },
+      {
+        code: 'cos' ,
+        name: 'Korzikanski'
+      },
+      {
+        code: 'cpe' ,
+        name: 'Kreolski i pidgin, na osnovi engleskog (ostali)'
+      },
+      {
+        code: 'cpf' ,
+        name: 'Kreolski i pidgin, na osnovi francuskog (ostali)'
+      },
+      {
+        code: 'cpp' ,
+        name: 'Kreolski i pidgin, na osnovi portugalskog (ostali)'
+      },
+      {
+        code: 'cre' ,
+        name: 'Kri'
+      },
+      {
+        code: 'crh' ,
+        name: 'Krimski tatarski / krimski turski'
+      },
+      {
+        code: 'crp' ,
+        name: 'Kreolski i pidgin (ostali)'
+      },
+      {
+        code: 'csb' ,
+        name: 'Kashubian'
+      },
+      {
+        code: 'cus' ,
+        name: 'Kušitski (ostali)'
+      },
+      {
+        code: 'cze' ,
+        name: 'Češki'
+      },
+      {
+        code: 'dak' ,
+        name: 'Dakota'
+      },
+      {
+        code: 'dan' ,
+        name: 'Danski'
+      },
+      {
+        code: 'del' ,
+        name: 'Delaware'
+      },
+      {
+        code: 'den' ,
+        name: 'Slave (Athapascan)'
+      },
+      {
+        code: 'dgr' ,
+        name: 'Dogrib'
+      },
+      {
+        code: 'din' ,
+        name: 'Dinka'
+      },
+      {
+        code: 'div' ,
+        name: 'Divehi'
+      },
+      {
+        code: 'doi' ,
+        name: 'Dogri'
+      },
+      {
+        code: 'dra' ,
+        name: 'Dravidski (ostali)'
+      },
+      {
+        code: 'dsb' ,
+        name: 'Donji Lužičko-srpski - Lower Sorbian'
+      },
+      {
+        code: 'dua' ,
+        name: 'Duala'
+      },
+      {
+        code: 'dum' ,
+        name: 'Srednjoholandski (1050-1350)'
+      },
+      {
+        code: 'dut' ,
+        name: 'Holandski, Flamanski'
+      },
+      {
+        code: 'dyu' ,
+        name: 'Dyula'
+      },
+      {
+        code: 'dzo' ,
+        name: 'Dzongkha'
+      },
+      {
+        code: 'efi' ,
+        name: 'Efik'
+      },
+      {
+        code: 'egy' ,
+        name: 'Egipatski (stari)'
+      },
+      {
+        code: 'eka' ,
+        name: 'Ekajuk'
+      },
+      {
+        code: 'elx' ,
+        name: 'Elamitski'
+      },
+      {
+        code: 'enm' ,
+        name: 'Srednjoengleski (1100-1500)'
+      },
+      {
+        code: 'epo' ,
+        name: 'Esperanto'
+      },
+      {
+        code: 'esk' ,
+        name: 'Eskimski'
+      },
+      {
+        code: 'est' ,
+        name: 'Estonski'
+      },
+      {
+        code: 'eth' ,
+        name: 'Etiopski'
+      },
+      {
+        code: 'ewe' ,
+        name: 'Ewe'
+      },
+      {
+        code: 'ewo' ,
+        name: 'Ewondo'
+      },
+      {
+        code: 'fan' ,
+        name: 'Fang'
+      },
+      {
+        code: 'far' ,
+        name: 'Faroese'
+      },
+      {
+        code: 'fat' ,
+        name: 'Fanti'
+      },
+      {
+        code: 'fij' ,
+        name: 'Fijian'
+      },
+      {
+        code: 'fil' ,
+        name: 'Filipinski'
+      },
+      {
+        code: 'fin' ,
+        name: 'Finski'
+      },
+      {
+        code: 'fiu' ,
+        name: 'Ugrofinski (ostali)'
+      },
+      {
+        code: 'fon' ,
+        name: 'Fon'
+      },
+      {
+        code: 'fre' ,
+        name: 'Francuski'
+      },
+      {
+        code: 'frm' ,
+        name: 'Srednjofrancuski (1400-1600)'
+      },
+      {
+        code: 'fro' ,
+        name: 'Starofrancuski (842-1400)'
+      },
+      {
+        code: 'fry' ,
+        name: 'Frizijski'
+      },
+      {
+        code: 'frr' ,
+        name: 'North Frizian'
+      },
+      {
+        code: 'frs' ,
+        name: 'East Frizian'
+      },
+      {
+        code: 'ful' ,
+        name: 'Fulah'
+      },
+      {
+        code: 'fur' ,
+        name: 'Friulian'
+      },
+      {
+        code: 'gaa' ,
+        name: 'Ga'
+      },
+      {
+        code: 'gal' ,
+        name: 'Galla'
+      },
+      {
+        code: 'gay' ,
+        name: 'Gayo'
+      },
+      {
+        code: 'gba' ,
+        name: 'Gbaya'
+      },
+      {
+        code: 'gem' ,
+        name: 'Germanski (ostali)'
+      },
+      {
+        code: 'geo' ,
+        name: 'Gruzijski'
+      },
+      {
+        code: 'gez' ,
+        name: 'Geez'
+      },
+      {
+        code: 'gil' ,
+        name: 'Gilbertese'
+      },
+      {
+        code: 'gla' ,
+        name: 'Gelik / Å kotski gelik'
+      },
+      {
+        code: 'gle' ,
+        name: 'Irski'
+      },
+      {
+        code: 'glg' ,
+        name: 'Gallegan'
+      },
+      {
+        code: 'glv' ,
+        name: 'Manx'
+      },
+      {
+        code: 'gmh' ,
+        name: 'Srednjovisokonemački (1050-1500)'
+      },
+      {
+        code: 'goh' ,
+        name: 'Starovisokonemački (750-1050)'
+      },
+      {
+        code: 'gon' ,
+        name: 'Gondski'
+      },
+      {
+        code: 'gor' ,
+        name: 'Gorontalo'
+      },
+      {
+        code: 'got' ,
+        name: 'Gotski'
+      },
+      {
+        code: 'grb' ,
+        name: 'Grebo'
+      },
+      {
+        code: 'grc' ,
+        name: 'Starogrčki (-1453)'
+      },
+      {
+        code: 'gre' ,
+        name: 'Grčki (1453-)'
+      },
+      {
+        code: 'gsw' ,
+        name: 'Swiss German'
+      },
+      {
+        code: 'gua' ,
+        name: 'Guarani'
+      },
+      {
+        code: 'guj' ,
+        name: 'Gudžarati'
+      },
+      {
+        code: 'gwi' ,
+        name: 'Gwich'
+      },
+      {
+        code: 'hai' ,
+        name: 'Haida'
+      },
+      {
+        code: 'hat' ,
+        name: 'Haitian / Haitian Creole'
+      },
+      {
+        code: 'hau' ,
+        name: 'Hausa'
+      },
+      {
+        code: 'haw' ,
+        name: 'Havajski'
+      },
+      {
+        code: 'heb' ,
+        name: 'Hebrejski'
+      },
+      {
+        code: 'her' ,
+        name: 'Herero'
+      },
+      {
+        code: 'hil' ,
+        name: 'Hiligaynon'
+      },
+      {
+        code: 'him' ,
+        name: 'Himačali'
+      },
+      {
+        code: 'hin' ,
+        name: 'Hindi'
+      },
+      {
+        code: 'hit' ,
+        name: 'Hittite'
+      },
+      {
+        code: 'hmn' ,
+        name: 'Hmong'
+      },
+      {
+        code: 'hmo' ,
+        name: 'Hiri motu'
+      },
+      {
+        code: 'hrv' ,
+        name: 'Hrvatski'
+      },
+      {
+        code: 'hsb' ,
+        name: 'Gornji Lužičko-srpski (Upper Sorbian)'
+      },
+      {
+        code: 'hup' ,
+        name: 'Hupa'
+      },
+      {
+        code: 'iba' ,
+        name: 'Iban'
+      },
+      {
+        code: 'ibo' ,
+        name: 'Igbo'
+      },
+      {
+        code: 'ice' ,
+        name: 'Islandski'
+      },
+      {
+        code: 'ido' ,
+        name: 'Ido'
+      },
+      {
+        code: 'iii' ,
+        name: 'Sichuan Yi'
+      },
+      {
+        code: 'ijo' ,
+        name: 'Ijo'
+      },
+      {
+        code: 'iku' ,
+        name: 'Inuktitut'
+      },
+      {
+        code: 'ile' ,
+        name: 'Interlingue'
+      },
+      {
+        code: 'ilo' ,
+        name: 'Iloko'
+      },
+      {
+        code: 'ina' ,
+        name: 'Interlingua (International Auxiliary Language Association)'
+      },
+      {
+        code: 'inc' ,
+        name: 'Indijski (ostali)'
+      },
+      {
+        code: 'ind' ,
+        name: 'Indonezijski'
+      },
+      {
+        code: 'ine' ,
+        name: 'Indoevropski (ostali)'
+      },
+      {
+        code: 'inh' ,
+        name: 'Ingush'
+      },
+      {
+        code: 'ipk' ,
+        name: 'Inupiak'
+      },
+      {
+        code: 'ira' ,
+        name: 'Iranski (ostali)'
+      },
+      {
+        code: 'iro' ,
+        name: 'Irokeski jezici'
+      },
+      {
+        code: 'jav' ,
+        name: 'Javanski'
+      },
+      {
+        code: 'jbo' ,
+        name: 'Lojban'
+      },
+      {
+        code: 'jpn' ,
+        name: 'Japanski'
+      },
+      {
+        code: 'jpr' ,
+        name: 'Judeo-Persian'
+      },
+      {
+        code: 'jrb' ,
+        name: 'Judeo-Arabic'
+      },
+      {
+        code: 'kaa' ,
+        name: 'Kara-Kalpak'
+      },
+      {
+        code: 'kab' ,
+        name: 'Kabilski'
+      },
+      {
+        code: 'kac' ,
+        name: 'Kachin'
+      },
+      {
+        code: 'kal' ,
+        name: 'Kalaallisut / Greenlandic'
+      },
+      {
+        code: 'kam' ,
+        name: 'Kamba'
+      },
+      {
+        code: 'kan' ,
+        name: 'Kannada'
+      },
+      {
+        code: 'kar' ,
+        name: 'Karen'
+      },
+      {
+        code: 'kas' ,
+        name: 'Kašmirski'
+      },
+      {
+        code: 'kau' ,
+        name: 'Kanuri'
+      },
+      {
+        code: 'kaw' ,
+        name: 'Kavi'
+      },
+      {
+        code: 'kaz' ,
+        name: 'Kazahski'
+      },
+      {
+        code: 'kbd' ,
+        name: 'Kabardian'
+      },
+      {
+        code: 'kha' ,
+        name: 'Khasi'
+      },
+      {
+        code: 'khi' ,
+        name: 'Khoisan (other)'
+      },
+      {
+        code: 'khm' ,
+        name: 'Kmerski'
+      },
+      {
+        code: 'kho' ,
+        name: 'Khotanese'
+      },
+      {
+        code: 'kik' ,
+        name: 'Kikuyu'
+      },
+      {
+        code: 'kin' ,
+        name: 'Kinyarwanda'
+      },
+      {
+        code: 'kir' ,
+        name: 'Kirgiski'
+      },
+      {
+        code: 'kmb' ,
+        name: 'Kimbundu'
+      },
+      {
+        code: 'kok' ,
+        name: 'Konkani'
+      },
+      {
+        code: 'kom' ,
+        name: 'Komi'
+      },
+      {
+        code: 'kon' ,
+        name: 'Kongo'
+      },
+      {
+        code: 'kor' ,
+        name: 'Korejski'
+      },
+      {
+        code: 'kos' ,
+        name: 'Kosraean'
+      },
+      {
+        code: 'kpe' ,
+        name: 'Kpelle'
+      },
+      {
+        code: 'krc' ,
+        name: 'Karachay-Balkar'
+      },
+      {
+        code: 'krl' ,
+        name: 'Karelian'
+      },
+      {
+        code: 'kro' ,
+        name: 'Kru'
+      },
+      {
+        code: 'kru' ,
+        name: 'Kurukh'
+      },
+      {
+        code: 'kua' ,
+        name: 'Kuanyama / Kwanyama'
+      },
+      {
+        code: 'kur' ,
+        name: 'Kurdski'
+      },
+      {
+        code: 'kus' ,
+        name: 'Kusai'
+      },
+      {
+        code: 'kut' ,
+        name: 'Kutenai'
+      },
+      {
+        code: 'lad' ,
+        name: 'Ladino'
+      },
+      {
+        code: 'lah' ,
+        name: 'Lahnda'
+      },
+      {
+        code: 'lam' ,
+        name: 'Lamba'
+      },
+      {
+        code: 'lan' ,
+        name: 'Langdok (posle 1500)'
+      },
+      {
+        code: 'lao' ,
+        name: 'Lao'
+      },
+      {
+        code: 'lap' ,
+        name: 'Laponski'
+      },
+      {
+        code: 'lat' ,
+        name: 'Latinski'
+      },
+      {
+        code: 'lav' ,
+        name: 'Letonski'
+      },
+      {
+        code: 'lez' ,
+        name: 'Lezghian'
+      },
+      {
+        code: 'lim' ,
+        name: 'Limburgan / Limburgish'
+      },
+      {
+        code: 'lin' ,
+        name: 'Lingala'
+      },
+      {
+        code: 'lit' ,
+        name: 'Litvanski'
+      },
+      {
+        code: 'lol' ,
+        name: 'Mongo'
+      },
+      {
+        code: 'loz' ,
+        name: 'Lozi'
+      },
+      {
+        code: 'ltz' ,
+        name: 'Luxemburški'
+      },
+      {
+        code: 'lua' ,
+        name: 'Luba-Lulua'
+      },
+      {
+        code: 'lub' ,
+        name: 'Luba-Katanga'
+      },
+      {
+        code: 'lug' ,
+        name: 'Ganda'
+      },
+      {
+        code: 'lui' ,
+        name: 'Luiseno'
+      },
+      {
+        code: 'lun' ,
+        name: 'Lunda'
+      },
+      {
+        code: 'luo' ,
+        name: 'Luo (Kenija i Tanzanija)'
+      },
+      {
+        code: 'lus' ,
+        name: 'Lushai'
+      },
+      {
+        code: 'mac' ,
+        name: 'Makedonski'
+      },
+      {
+        code: 'mad' ,
+        name: 'Madurski'
+      },
+      {
+        code: 'mag' ,
+        name: 'Magahi'
+      },
+      {
+        code: 'mah' ,
+        name: 'Maršalski'
+      },
+      {
+        code: 'mai' ,
+        name: 'Maithili'
+      },
+      {
+        code: 'mak' ,
+        name: 'Makasar'
+      },
+      {
+        code: 'mal' ,
+        name: 'Malajalamski'
+      },
+      {
+        code: 'man' ,
+        name: 'Mandingo'
+      },
+      {
+        code: 'mao' ,
+        name: 'Maorski'
+      },
+      {
+        code: 'map' ,
+        name: 'Austronezijski (ostali)'
+      },
+      {
+        code: 'mar' ,
+        name: 'Marathi'
+      },
+      {
+        code: 'mas' ,
+        name: 'Masai'
+      },
+      {
+        code: 'max' ,
+        name: 'Manski'
+      },
+      {
+        code: 'may' ,
+        name: 'Malajski'
+      },
+      {
+        code: 'mdf' ,
+        name: 'Moksha'
+      },
+      {
+        code: 'mdr' ,
+        name: 'Mandar'
+      },
+      {
+        code: 'men' ,
+        name: 'Mende'
+      },
+      {
+        code: 'mga' ,
+        name: 'Srednjoirski (900-1200)'
+      },
+      {
+        code: 'mic' ,
+        name: 'Mikmak'
+      },
+      {
+        code: 'min' ,
+        name: 'Mingangkabau'
+      },
+      {
+        code: 'mis' ,
+        name: 'Ostali'
+      },
+      {
+        code: 'mkh' ,
+        name: 'Mon-Khmer (ostali)'
+      },
+      {
+        code: 'mla' ,
+        name: 'Malagaški'
+      },
+      {
+        code: 'mlt' ,
+        name: 'Malteški'
+      },
+      {
+        code: 'mnc' ,
+        name: 'Manču'
+      },
+      {
+        code: 'mni' ,
+        name: 'Manipuri'
+      },
+      {
+        code: 'mno' ,
+        name: 'Manobo jezici'
+      },
+      {
+        code: 'moh' ,
+        name: 'Mohawk'
+      },
+      {
+        code: 'mon' ,
+        name: 'Mongolski'
+      },
+      {
+        code: 'mos' ,
+        name: 'Mosi'
+      },
+      {
+        code: 'mul' ,
+        name: 'Višejezični'
+      },
+      {
+        code: 'mun' ,
+        name: 'Munda'
+      },
+      {
+        code: 'mus' ,
+        name: 'Creek / Muskogee'
+      },
+      {
+        code: 'mwl' ,
+        name: 'Mirandese'
+      },
+      {
+        code: 'mwr' ,
+        name: 'Marvari'
+      },
+      {
+        code: 'myn' ,
+        name: 'Maja jezici'
+      },
+      {
+        code: 'myv' ,
+        name: 'Erzya'
+      },
+      {
+        code: 'nah' ,
+        name: 'Nahuatl'
+      },
+      {
+        code: 'nai' ,
+        name: 'Severnoamerički indijanski (ostali)'
+      },
+      {
+        code: 'nap' ,
+        name: 'Napolitan'
+      },
+      {
+        code: 'nau' ,
+        name: 'Nauru'
+      },
+      {
+        code: 'nav' ,
+        name: 'Navaho'
+      },
+      {
+        code: 'nbl' ,
+        name: 'Ndebele, južni'
+      },
+      {
+        code: 'nde' ,
+        name: 'Ndebele, severni'
+      },
+      {
+        code: 'ndo' ,
+        name: 'Ndonga'
+      },
+      {
+        code: 'nds' ,
+        name: 'Niskonemački / Niskosaksonski'
+      },
+      {
+        code: 'nep' ,
+        name: 'Nepalski'
+      },
+      {
+        code: 'new' ,
+        name: 'Newari / Nepal Bhasa'
+      },
+      {
+        code: 'nia' ,
+        name: 'Nias'
+      },
+      {
+        code: 'nic' ,
+        name: 'Nigersko-kordofanski (ostali)'
+      },
+      {
+        code: 'niu' ,
+        name: 'Niuean'
+      },
+      {
+        code: 'nno' ,
+        name: 'Norwegian Nynorsk'
+      },
+      {
+        code: 'nob' ,
+        name: 'Norwegian Bokmal'
+      },
+      {
+        code: 'nog' ,
+        name: 'Nogai'
+      },
+      {
+        code: 'non' ,
+        name: 'Norse, Old'
+      },
+      {
+        code: 'nor' ,
+        name: 'Norveški'
+      },
+      {
+        code: 'nso' ,
+        name: 'Severni Sotho / Pedi / Sepedi'
+      },
+      {
+        code: 'nqo' ,
+        name: 'N Ko'
+      },
+      {
+        code: 'nub' ,
+        name: 'Nubijski jezici'
+      },
+      {
+        code: 'nwc' ,
+        name: 'Classical Newari / Old Newari / Classical Nepal Bhasa'
+      },
+      {
+        code: 'nya' ,
+        name: 'Chichewa / Chewa / Nyanja'
+      },
+      {
+        code: 'nym' ,
+        name: 'Nyamwezi'
+      },
+      {
+        code: 'nyn' ,
+        name: 'Nyankole'
+      },
+      {
+        code: 'nyo' ,
+        name: 'Nyoro'
+      },
+      {
+        code: 'nzi' ,
+        name: 'Nzima'
+      },
+      {
+        code: 'oci' ,
+        name: 'Occitan / Provansalski (posle 1500)'
+      },
+      {
+        code: 'oji' ,
+        name: 'Ojibwa'
+      },
+      {
+        code: 'ori' ,
+        name: 'Oriya'
+      },
+      {
+        code: 'orm' ,
+        name: 'Oromo'
+      },
+      {
+        code: 'osa' ,
+        name: 'Osage'
+      },
+      {
+        code: 'oss' ,
+        name: 'Osetski'
+      },
+      {
+        code: 'ota' ,
+        name: 'Otomanski turski (1500-1928)'
+      },
+      {
+        code: 'oto' ,
+        name: 'Otomski jezici'
+      },
+      {
+        code: 'paa' ,
+        name: 'Papuanski (ostali)'
+      },
+      {
+        code: 'pag' ,
+        name: 'Pangasinan'
+      },
+      {
+        code: 'pal' ,
+        name: 'Pahlavi'
+      },
+      {
+        code: 'pam' ,
+        name: 'Pampanga'
+      },
+      {
+        code: 'pan' ,
+        name: 'Panjabi / Punjabi'
+      },
+      {
+        code: 'pap' ,
+        name: 'Papiamento'
+      },
+      {
+        code: 'pau' ,
+        name: 'Palauan'
+      },
+      {
+        code: 'peo' ,
+        name: 'Staropersijski (600pne-400ne)'
+      },
+      {
+        code: 'per' ,
+        name: 'Persijski'
+      },
+      {
+        code: 'phi' ,
+        name: 'Filipinski (ostali)'
+      },
+      {
+        code: 'phn' ,
+        name: 'Feničanski'
+      },
+      {
+        code: 'pli' ,
+        name: 'Pali'
+      },
+      {
+        code: 'pol' ,
+        name: 'Poljski'
+      },
+      {
+        code: 'pon' ,
+        name: 'Pohnpeian'
+      },
+      {
+        code: 'por' ,
+        name: 'Portugalski'
+      },
+      {
+        code: 'pra' ,
+        name: 'Prakrit languages'
+      },
+      {
+        code: 'pro' ,
+        name: 'Provansalski (do 1500)'
+      },
+      {
+        code: 'pus' ,
+        name: 'Pushto'
+      },
+      {
+        code: 'que' ,
+        name: 'Quechua'
+      },
+      {
+        code: 'raj' ,
+        name: 'Rajasthani'
+      },
+      {
+        code: 'rap' ,
+        name: 'Rapanui'
+      },
+      {
+        code: 'rar' ,
+        name: 'Rarotongan'
+      },
+      {
+        code: 'roa' ,
+        name: 'Romanski (ostali)'
+      },
+      {
+        code: 'roh' ,
+        name: 'Retoromanski'
+      },
+      {
+        code: 'rom' ,
+        name: 'Romski'
+      },
+      {
+        code: 'rsi' ,
+        name: 'Rusinski'
+      },
+      {
+        code: 'rum' ,
+        name: 'Rumunski'
+      },
+      {
+        code: 'run' ,
+        name: 'Rundi'
+      },
+      {
+        code: 'rus' ,
+        name: 'Ruski'
+      },
+      {
+        code: 'rup' ,
+        name: 'Aromanian'
+      },
+      {
+        code: 'sad' ,
+        name: 'Sandawe'
+      },
+      {
+        code: 'sag' ,
+        name: 'Sango'
+      },
+      {
+        code: 'sah' ,
+        name: 'Yakut'
+      },
+      {
+        code: 'sai' ,
+        name: 'Južnoamerički indijanski (ostali)'
+      },
+      {
+        code: 'sal' ,
+        name: 'Sališki jezici'
+      },
+      {
+        code: 'sam' ,
+        name: 'Samaritanski aramejski'
+      },
+      {
+        code: 'san' ,
+        name: 'Sanskrt'
+      },
+      {
+        code: 'sas' ,
+        name: 'Sasak'
+      },
+      {
+        code: 'sat' ,
+        name: 'Santali'
+      },
+      {
+        code: 'sel' ,
+        name: 'Selkupski'
+      },
+      {
+        code: 'sem' ,
+        name: 'Semitski (ostali)'
+      },
+      {
+        code: 'sga' ,
+        name: 'Irski, stari (do 900)'
+      },
+      {
+        code: 'sgn' ,
+        name: 'Znakovni jezici'
+      },
+      {
+        code: 'shn' ,
+        name: 'Shan'
+      },
+      {
+        code: 'sid' ,
+        name: 'Sidamo'
+      },
+      {
+        code: 'sin' ,
+        name: 'Sinhala'
+      },
+      {
+        code: 'sio' ,
+        name: 'Siouan languages'
+      },
+      {
+        code: 'sit' ,
+        name: 'Sino-Tibetan (other)'
+      },
+      {
+        code: 'sla' ,
+        name: 'Slovenski (ostali)'
+      },
+      {
+        code: 'sma' ,
+        name: 'Southern Sami'
+      },
+      {
+        code: 'sme' ,
+        name: 'Northern Sami'
+      },
+      {
+        code: 'smi' ,
+        name: 'Sami languages (other)'
+      },
+      {
+        code: 'smj' ,
+        name: 'Lule Sami'
+      },
+      {
+        code: 'smn' ,
+        name: 'Inari Sami'
+      },
+      {
+        code: 'smo' ,
+        name: 'Samoanski'
+      },
+      {
+        code: 'sms' ,
+        name: 'Skolt Sami'
+      },
+      {
+        code: 'sna' ,
+        name: 'Shona'
+      },
+      {
+        code: 'snd' ,
+        name: 'Sindhi'
+      },
+      {
+        code: 'snk' ,
+        name: 'Soninke'
+      },
+      {
+        code: 'sog' ,
+        name: 'Sogdijski'
+      },
+      {
+        code: 'som' ,
+        name: 'Somalijski'
+      },
+      {
+        code: 'son' ,
+        name: 'Songhai'
+      },
+      {
+        code: 'sot' ,
+        name: 'Sotho, Southern'
+      },
+      {
+        code: 'srd' ,
+        name: 'Sardinijski'
+      },
+      {
+        code: 'srr' ,
+        name: 'Serer'
+      },
+      {
+        code: 'srn' ,
+        name: 'Sranan'
+      },
+      {
+        code: 'ssa' ,
+        name: 'Nilsko-saharski (ostali)'
+      },
+      {
+        code: 'suk' ,
+        name: 'Sukuma'
+      },
+      {
+        code: 'sun' ,
+        name: 'Sundski'
+      },
+      {
+        code: 'sus' ,
+        name: 'Susu'
+      },
+      {
+        code: 'sux' ,
+        name: 'Sumerijanski'
+      },
+      {
+        code: 'swa' ,
+        name: 'Svahili'
+      },
+      {
+        code: 'swe' ,
+        name: 'Švedski'
+      },
+      {
+        code: 'swz' ,
+        name: 'Swazi'
+      },
+      {
+        code: 'syr' ,
+        name: 'Sirijski'
+      },
+      {
+        code: 'syc' ,
+        name: 'Syriac'
+      },
+      {
+        code: 'tah' ,
+        name: 'Tahitski'
+      },
+      {
+        code: 'tai' ,
+        name: 'Tai (ostali)'
+      },
+      {
+        code: 'tam' ,
+        name: 'Tamilski'
+      },
+      {
+        code: 'tat' ,
+        name: 'Tatarski'
+      },
+      {
+        code: 'tel' ,
+        name: 'Telugu'
+      },
+      {
+        code: 'tem' ,
+        name: 'Timne'
+      },
+      {
+        code: 'ter' ,
+        name: 'Tereno'
+      },
+      {
+        code: 'tet' ,
+        name: 'Tetum'
+      },
+      {
+        code: 'tgk' ,
+        name: 'Tadžik'
+      },
+      {
+        code: 'tgl' ,
+        name: 'Tagalog'
+      },
+      {
+        code: 'tha' ,
+        name: 'Thai'
+      },
+      {
+        code: 'tib' ,
+        name: 'Tibetanski'
+      },
+      {
+        code: 'tig' ,
+        name: 'Tigre'
+      },
+      {
+        code: 'tir' ,
+        name: 'Tigrinya'
+      },
+      {
+        code: 'tiv' ,
+        name: 'Tiv'
+      },
+      {
+        code: 'tkl' ,
+        name: 'Tokelau'
+      },
+      {
+        code: 'tlh' ,
+        name: 'Klingon'
+      },
+      {
+        code: 'tli' ,
+        name: 'Tlingit'
+      },
+      {
+        code: 'tmh' ,
+        name: 'Tamashek'
+      },
+      {
+        code: 'tog' ,
+        name: 'Tonga (Nyasa)'
+      },
+      {
+        code: 'tsi' ,
+        name: 'Cimšijen'
+      },
+      {
+        code: 'tso' ,
+        name: 'Tsonga'
+      },
+      {
+        code: 'tup' ,
+        name: 'Tupi jezici'
+      },
+      {
+        code: 'tur' ,
+        name: 'Turski'
+      },
+      {
+        code: 'tut' ,
+        name: 'Altajski (ostali)'
+      },
+      {
+        code: 'tvl' ,
+        name: 'Tuvalu'
+      },
+      {
+        code: 'tyv' ,
+        name: 'Tuvinian'
+      },
+      {
+        code: 'udm' ,
+        name: 'Udmurt'
+      },
+      {
+        code: 'uga' ,
+        name: 'Ugaritic'
+      },
+      {
+        code: 'ukr' ,
+        name: 'Ukrajinski'
+      },
+      {
+        code: 'und' ,
+        name: 'Neodređeni'
+      },
+      {
+        code: 'urd' ,
+        name: 'Urdu'
+      },
+      {
+        code: 'vie' ,
+        name: 'Vijetnamski'
+      },
+      {
+        code: 'wel' ,
+        name: 'Velški'
+      },
+      {
+        code: 'yid' ,
+        name: 'Jidiš'
+      }
+    ];
+
    static _coderDT: Coder[] =
     [
       {
@@ -1872,6 +3704,46 @@ export class PrefixUtils {
       {
         code: 'z',
         name: 'Збирни',
+      }
+    ];
+
+  static _coderDT_lat: Coder[] =
+    [
+      {
+        code: '*',
+        name: 'Sva građa',
+      },
+      {
+        code: 'm',
+        name: 'Monografski',
+      },
+      {
+        code: 's',
+        name: 'Periodični',
+      },
+      {
+        code: 'a',
+        name: 'Analitički',
+      },
+      {
+        code: 'c',
+        name: 'Književna zbirka - numerisana',
+      },
+      {
+        code: 'd',
+        name: 'Izvedeni radovi',
+      },
+      {
+        code: 'e',
+        name: 'Književna zbirka - nenumerisana',
+      },
+      {
+        code: 'r',
+        name: 'Razglednice',
+      },
+      {
+        code: 'z',
+        name: 'Zbirni',
       }
     ];
 
@@ -2112,6 +3984,246 @@ export class PrefixUtils {
       {
         code: 'z2' ,
         name: 'Остало'
+      }
+    ];
+
+  static _coderCC_lat =
+    [
+      {
+        code: 'a' ,
+        name: 'Bibliografije'
+      },
+      {
+        code: 'b' ,
+        name: 'Katalozi'
+      },
+      {
+        code: 'c' ,
+        name: 'Kazala, indeksi'
+      },
+      {
+        code: 'd' ,
+        name: 'Apstrakt'
+      },
+      {
+        code: 'e' ,
+        name: 'Rečnici'
+      },
+      {
+        code: 'f' ,
+        name: 'Enciklopedije'
+      },
+      {
+        code: 'g' ,
+        name: 'Adresari'
+      },
+      {
+        code: 'h' ,
+        name: 'Letopisi'
+      },
+      {
+        code: 'i' ,
+        name: 'Statistički pregledi'
+      },
+      {
+        code: 'j' ,
+        name: 'Udžbenici'
+      },
+      {
+        code: 'k' ,
+        name: 'Patentni'
+      },
+      {
+        code: 'l' ,
+        name: 'Standardi'
+      },
+      {
+        code: 'm' ,
+        name: 'Disertacija, teze'
+      },
+      {
+        code: 'm1' ,
+        name: 'Master rad'
+      },
+      {
+        code: 'm2' ,
+        name: 'Magistarski radovi'
+      },
+      {
+        code: 'm3' ,
+        name: 'Specijalistički radovi'
+      },
+      {
+        code: 'm4' ,
+        name: 'Habilitacijski radovi'
+      },
+      {
+        code: 'm5' ,
+        name: 'Diplomski radovi'
+      },
+      {
+        code: 'm6' ,
+        name: 'Bačelor radovi'
+      },
+      {
+        code: 'm7' ,
+        name: 'Diplomski/završni radovi prvog stepena'
+      },
+      {
+        code: 'm8' ,
+        name: 'Bačelor radovi prvog stepena'
+      },
+      {
+        code: 'm9' ,
+        name: 'Specijalistički radovi strukovnih studija'
+      },
+      {
+        code: 'n' ,
+        name: 'Zakoni'
+      },
+      {
+        code: 'o' ,
+        name: 'NUmeričke tabele'
+      },
+      {
+        code: 'p' ,
+        name: 'Tehnički izveštaj'
+      },
+      {
+        code: 'q' ,
+        name: 'Ispitna građa'
+      },
+      {
+        code: 'r' ,
+        name: 'Istraživački radovi, bazična istraživanja'
+      },
+      {
+        code: 'r1' ,
+        name: 'Prikazi'
+      },
+      {
+        code: 'r2' ,
+        name: 'Naučno delo'
+      },
+      {
+        code: 'r3' ,
+        name: 'Prethondno saopštenje'
+      },
+      {
+        code: 'r4' ,
+        name: 'Stručno delo'
+      },
+      {
+        code: 'r5' ,
+        name: 'Izveštaj sa konferencije'
+      },
+      {
+        code: 'r6' ,
+        name: 'Delo nije kategorisano'
+      },
+      {
+        code: 's' ,
+        name: 'Ugovori'
+      },
+      {
+        code: 's01' ,
+        name: 'Spomenice'
+      },
+      {
+        code: 's02' ,
+        name: 'Programi'
+      },
+      {
+        code: 's03' ,
+        name: 'Poseban otisak'
+      },
+      {
+        code: 's04' ,
+        name: 'Slikovnice'
+      },
+      {
+        code: 's05' ,
+        name: 'Brošure'
+      },
+      {
+        code: 's06' ,
+        name: 'Monografije'
+      },
+      {
+        code: 's07' ,
+        name: 'Hronike'
+      },
+      {
+        code: 's08' ,
+        name: 'Studije'
+      },
+      {
+        code: 's09' ,
+        name: 'Istoriografija'
+      },
+      {
+        code: 's10' ,
+        name: 'Zbirke zadataka'
+      },
+      {
+        code: 't' ,
+        name: 'Istraživački radovi, razvojna istraživanja'
+      },
+      {
+        code: 'u' ,
+        name: 'Pravilnici'
+      },
+      {
+        code: 'v' ,
+        name: 'Priručnici'
+      },
+      {
+        code: 'w' ,
+        name: 'Istraživački radovi, aplikacijka istraživanja'
+      },
+      {
+        code: 'x1' ,
+        name: 'Atlasi'
+      },
+      {
+        code: 'x2' ,
+        name: 'Separati'
+      },
+      {
+        code: 'x3' ,
+        name: 'Arhivska građa'
+      },
+      {
+        code: 'x4' ,
+        name: 'Albumi'
+      },
+      {
+        code: 'x5' ,
+        name: 'Vodiči'
+      },
+      {
+        code: 'x6' ,
+        name: 'Leksikoni'
+      },
+      {
+        code: 'x7' ,
+        name: 'Statuti'
+      },
+      {
+        code: 'x8' ,
+        name: 'Antologije'
+      },
+      {
+        code: 'z' ,
+        name: 'Zbornici'
+      },
+      {
+        code: 'z1' ,
+        name: 'Stripovi'
+      },
+      {
+        code: 'z2' ,
+        name: 'Ostalo'
       }
     ];
 
@@ -3147,6 +5259,1038 @@ export class PrefixUtils {
       }
     ];
 
+  static _coderCO_lat =
+    [
+      {
+        code: 'KS' ,
+        name: 'Kraljevina Srbija'
+      },
+      {
+        code: 'KSHS' ,
+        name: 'Kraljevina Srba, Hrvata i Slovenaca'
+      },
+      {
+        code: 'abw' ,
+        name: 'Aruba'
+      },
+      {
+        code: 'afg' ,
+        name: 'Afganistan'
+      },
+      {
+        code: 'ago' ,
+        name: 'Angola'
+      },
+      {
+        code: 'aia' ,
+        name: 'Anguilla'
+      },
+      {
+        code: 'alb' ,
+        name: 'Albanija'
+      },
+      {
+        code: 'and' ,
+        name: 'Andora'
+      },
+      {
+        code: 'ant' ,
+        name: 'Holandski Antili'
+      },
+      {
+        code: 'are' ,
+        name: 'Ujedinjeni Arapski Emirati'
+      },
+      {
+        code: 'arg' ,
+        name: 'Argentina'
+      },
+      {
+        code: 'asm' ,
+        name: 'Američka samoa'
+      },
+      {
+        code: 'ata' ,
+        name: 'Antarktik (teritorija južno od 60-tog stepena JGŠ)'
+      },
+      {
+        code: 'atf' ,
+        name: 'Južne francuske teritorije'
+      },
+      {
+        code: 'atg' ,
+        name: 'Antigva i Barbuda'
+      },
+      {
+        code: 'atn' ,
+        name: 'Dronning Moud Land'
+      },
+      {
+        code: 'aus' ,
+        name: 'Australija'
+      },
+      {
+        code: 'aut' ,
+        name: 'Austrija'
+      },
+      {
+        code: 'aze' ,
+        name: 'Azerbejdžan'
+      },
+      {
+        code: 'bdi' ,
+        name: 'Burundi'
+      },
+      {
+        code: 'bel' ,
+        name: 'Belgija'
+      },
+      {
+        code: 'ben' ,
+        name: 'Benin'
+      },
+      {
+        code: 'bfa' ,
+        name: 'Burkina Faso'
+      },
+      {
+        code: 'bgd' ,
+        name: 'Bangladeš'
+      },
+      {
+        code: 'bgr' ,
+        name: 'Bugarska'
+      },
+      {
+        code: 'bhr' ,
+        name: 'Bahrein'
+      },
+      {
+        code: 'bhs' ,
+        name: 'Bahami'
+      },
+      {
+        code: 'bih' ,
+        name: 'Bosna i Hercegovina'
+      },
+      {
+        code: 'blr' ,
+        name: 'Belorusija'
+      },
+      {
+        code: 'blz' ,
+        name: 'Belize'
+      },
+      {
+        code: 'bmu' ,
+        name: 'Bermuda'
+      },
+      {
+        code: 'bol' ,
+        name: 'Bolivija'
+      },
+      {
+        code: 'bra' ,
+        name: 'Brazil'
+      },
+      {
+        code: 'brb' ,
+        name: 'Barbados'
+      },
+      {
+        code: 'brn' ,
+        name: 'Brunej'
+      },
+      {
+        code: 'bth' ,
+        name: 'Butan'
+      },
+      {
+        code: 'bur' ,
+        name: 'Burma'
+      },
+      {
+        code: 'bvt' ,
+        name: 'Bouvet Island (Bouvetoya)'
+      },
+      {
+        code: 'bwa' ,
+        name: 'Bocvana'
+      },
+      {
+        code: 'bys' ,
+        name: 'Bjelorusija SSR'
+      },
+      {
+        code: 'caf' ,
+        name: 'Centralnoafrička Republika'
+      },
+      {
+        code: 'can' ,
+        name: 'Kanada'
+      },
+      {
+        code: 'cck' ,
+        name: 'Cocos (Keeling) Islands'
+      },
+      {
+        code: 'che' ,
+        name: 'Švajcarska'
+      },
+      {
+        code: 'chl' ,
+        name: 'Čile'
+      },
+      {
+        code: 'chn' ,
+        name: 'Kina'
+      },
+      {
+        code: 'civ' ,
+        name: 'Obala Slonovače'
+      },
+      {
+        code: 'cmr' ,
+        name: 'Kamerun'
+      },
+      {
+        code: 'cod' ,
+        name: 'Demokratska Republika Kongo'
+      },
+      {
+        code: 'cog' ,
+        name: 'Narodna Republika Kongo'
+      },
+      {
+        code: 'cok' ,
+        name: 'Cook Islands'
+      },
+      {
+        code: 'col' ,
+        name: 'Kolumbija'
+      },
+      {
+        code: 'com' ,
+        name: 'Comoros'
+      },
+      {
+        code: 'cpv' ,
+        name: 'Zelenortska Ostrva'
+      },
+      {
+        code: 'cri' ,
+        name: 'Kostarika'
+      },
+      {
+        code: 'csk' ,
+        name: 'Čehoslovačka'
+      },
+      {
+        code: 'cte' ,
+        name: 'Canton and Enderbury Islands'
+      },
+      {
+        code: 'cub' ,
+        name: 'Kuba'
+      },
+      {
+        code: 'cxr' ,
+        name: 'Božićno Ostrvo'
+      },
+      {
+        code: 'cym' ,
+        name: 'Kajmanska Ostrva'
+      },
+      {
+        code: 'cyp' ,
+        name: 'Kipar'
+      },
+      {
+        code: 'cze' ,
+        name: 'Češka Republika'
+      },
+      {
+        code: 'ddr' ,
+        name: 'Nemačka Demokratska Republika'
+      },
+      {
+        code: 'deu' ,
+        name: 'Savezna Republika Nemačka'
+      },
+      {
+        code: 'dji' ,
+        name: 'Džibuti'
+      },
+      {
+        code: 'dma' ,
+        name: 'Dominika'
+      },
+      {
+        code: 'dnk' ,
+        name: 'Danska'
+      },
+      {
+        code: 'dom' ,
+        name: 'Dominikanska Republika'
+      },
+      {
+        code: 'dza' ,
+        name: 'Alžir'
+      },
+      {
+        code: 'ecu' ,
+        name: 'Ekvador'
+      },
+      {
+        code: 'egy' ,
+        name: 'Egipat'
+      },
+      {
+        code: 'eri' ,
+        name: 'Eritreja'
+      },
+      {
+        code: 'esh' ,
+        name: 'Zapadna Sahara'
+      },
+      {
+        code: 'esp' ,
+        name: 'Španija'
+      },
+      {
+        code: 'est' ,
+        name: 'Estonija'
+      },
+      {
+        code: 'eth' ,
+        name: 'Etiopija'
+      },
+      {
+        code: 'fin' ,
+        name: 'Finska'
+      },
+      {
+        code: 'fji' ,
+        name: 'Fiji'
+      },
+      {
+        code: 'flk' ,
+        name: 'Folklandska Ostrva (Malvinas)'
+      },
+      {
+        code: 'fra' ,
+        name: 'Francuska'
+      },
+      {
+        code: 'fro' ,
+        name: 'Farska Ostrva'
+      },
+      {
+        code: 'fsm' ,
+        name: 'Mikronezija'
+      },
+      {
+        code: 'gab' ,
+        name: 'Gabon'
+      },
+      {
+        code: 'gbr' ,
+        name: 'Velika Britanija'
+      },
+      {
+        code: 'geo' ,
+        name: 'Gruzija'
+      },
+      {
+        code: 'gha' ,
+        name: 'Gana'
+      },
+      {
+        code: 'gib' ,
+        name: 'Gibraltar'
+      },
+      {
+        code: 'gin' ,
+        name: 'Gvineja'
+      },
+      {
+        code: 'glp' ,
+        name: 'Gvadelupe'
+      },
+      {
+        code: 'gmb' ,
+        name: 'Gambia'
+      },
+      {
+        code: 'gnb' ,
+        name: 'Gvineja-Bisau'
+      },
+      {
+        code: 'gnq' ,
+        name: 'Ekvatorijalna Gvineja'
+      },
+      {
+        code: 'grc' ,
+        name: 'Grčka'
+      },
+      {
+        code: 'grd' ,
+        name: 'Grenada'
+      },
+      {
+        code: 'grl' ,
+        name: 'Grenland'
+      },
+      {
+        code: 'gtm' ,
+        name: 'Gvatemala'
+      },
+      {
+        code: 'guf' ,
+        name: 'Francuska Gvajana'
+      },
+      {
+        code: 'gum' ,
+        name: 'Guam'
+      },
+      {
+        code: 'guy' ,
+        name: 'Gvajana'
+      },
+      {
+        code: 'hkg' ,
+        name: 'Hong Kong'
+      },
+      {
+        code: 'hmd' ,
+        name: 'Heard and MC Donald Islands'
+      },
+      {
+        code: 'hnd' ,
+        name: 'Honduras'
+      },
+      {
+        code: 'hrv' ,
+        name: 'Hrvatska'
+      },
+      {
+        code: 'hti' ,
+        name: 'Haiti'
+      },
+      {
+        code: 'hun' ,
+        name: 'Mađarska'
+      },
+      {
+        code: 'idn' ,
+        name: 'Indonezija'
+      },
+      {
+        code: 'ind' ,
+        name: 'Indija'
+      },
+      {
+        code: 'iot' ,
+        name: 'British Indian Ocean Territory (Chagos Archipelago)'
+      },
+      {
+        code: 'irl' ,
+        name: 'Irska'
+      },
+      {
+        code: 'irn' ,
+        name: 'Iran'
+      },
+      {
+        code: 'irq' ,
+        name: 'Irak'
+      },
+      {
+        code: 'isl' ,
+        name: 'Island'
+      },
+      {
+        code: 'isr' ,
+        name: 'Izrael'
+      },
+      {
+        code: 'ita' ,
+        name: 'Italija'
+      },
+      {
+        code: 'jam' ,
+        name: 'Jamajka'
+      },
+      {
+        code: 'jor' ,
+        name: 'Jordan'
+      },
+      {
+        code: 'jpn' ,
+        name: 'Japan'
+      },
+      {
+        code: 'jtn' ,
+        name: 'Johnston Island'
+      },
+      {
+        code: 'kaz' ,
+        name: 'Kazahstan'
+      },
+      {
+        code: 'ken' ,
+        name: 'Kenija'
+      },
+      {
+        code: 'kgz' ,
+        name: 'Kirgistan'
+      },
+      {
+        code: 'khm' ,
+        name: 'Kampučija (Kambodža)'
+      },
+      {
+        code: 'kna' ,
+        name: 'St. Kitts and Nevis'
+      },
+      {
+        code: 'kor' ,
+        name: 'Koreja, Republika (JuÅ¾na)'
+      },
+      {
+        code: 'kwt' ,
+        name: 'Kuvajt'
+      },
+      {
+        code: 'lao' ,
+        name: 'Laos'
+      },
+      {
+        code: 'lbn' ,
+        name: 'Liban'
+      },
+      {
+        code: 'lbr' ,
+        name: 'Liberija'
+      },
+      {
+        code: 'lby' ,
+        name: 'Libija'
+      },
+      {
+        code: 'lca' ,
+        name: 'Sveta Lucija'
+      },
+      {
+        code: 'lie' ,
+        name: 'Lihtenštajn'
+      },
+      {
+        code: 'lki' ,
+        name: 'Šri Lanka'
+      },
+      {
+        code: 'lso' ,
+        name: 'Lesoto'
+      },
+      {
+        code: 'ltu' ,
+        name: 'Litvanija'
+      },
+      {
+        code: 'lux' ,
+        name: 'Luksemburg'
+      },
+      {
+        code: 'lva' ,
+        name: 'Letonija'
+      },
+      {
+        code: 'mac' ,
+        name: 'Makao'
+      },
+      {
+        code: 'mar' ,
+        name: 'Maroko'
+      },
+      {
+        code: 'mco' ,
+        name: 'Monako'
+      },
+      {
+        code: 'mda' ,
+        name: 'Moldavija'
+      },
+      {
+        code: 'mdg' ,
+        name: 'Madagaskar'
+      },
+      {
+        code: 'mdv' ,
+        name: 'Maldivi'
+      },
+      {
+        code: 'mex' ,
+        name: 'Meksiko'
+      },
+      {
+        code: 'mhl' ,
+        name: 'Maršalska Ostrva'
+      },
+      {
+        code: 'mid' ,
+        name: 'Midway Islands'
+      },
+      {
+        code: 'mkd' ,
+        name: 'Makedonija, Bivša Jugoslovenska Republika'
+      },
+      {
+        code: 'mli' ,
+        name: 'Mali'
+      },
+      {
+        code: 'mlt' ,
+        name: 'Malta'
+      },
+      {
+        code: 'mmr' ,
+        name: 'Myanmar'
+      },
+      {
+        code: 'mng' ,
+        name: 'Mongolija'
+      },
+      {
+        code: 'mne' ,
+        name: 'Crna gora'
+      },
+      {
+        code: 'mnp' ,
+        name: 'Nothern Mariana Islands'
+      },
+      {
+        code: 'moz' ,
+        name: 'Mozambik'
+      },
+      {
+        code: 'mrt' ,
+        name: 'Mauritania'
+      },
+      {
+        code: 'msr' ,
+        name: 'Montserrat'
+      },
+      {
+        code: 'mtq' ,
+        name: 'Martinik'
+      },
+      {
+        code: 'mus' ,
+        name: 'Mauricijus'
+      },
+      {
+        code: 'mwi' ,
+        name: 'Malavi'
+      },
+      {
+        code: 'mys' ,
+        name: 'Malezija'
+      },
+      {
+        code: 'myt' ,
+        name: 'Mayotte'
+      },
+      {
+        code: 'nam' ,
+        name: 'Nambija'
+      },
+      {
+        code: 'ncl' ,
+        name: 'Nova Kaledonija'
+      },
+      {
+        code: 'ner' ,
+        name: 'Niger'
+      },
+      {
+        code: 'nfk' ,
+        name: 'Norfolk Island'
+      },
+      {
+        code: 'nga' ,
+        name: 'Nigerija'
+      },
+      {
+        code: 'nic' ,
+        name: 'Nikaragva'
+      },
+      {
+        code: 'niu' ,
+        name: 'Niue'
+      },
+      {
+        code: 'nld' ,
+        name: 'Holandija'
+      },
+      {
+        code: 'nor' ,
+        name: 'Norveška'
+      },
+      {
+        code: 'npl' ,
+        name: 'Nepal'
+      },
+      {
+        code: 'nru' ,
+        name: 'Nauru'
+      },
+      {
+        code: 'ntz' ,
+        name: 'Neutral Zone'
+      },
+      {
+        code: 'nzl' ,
+        name: 'Novi Zeland'
+      },
+      {
+        code: 'omn' ,
+        name: 'Oman'
+      },
+      {
+        code: 'pak' ,
+        name: 'Pakistan'
+      },
+      {
+        code: 'pan' ,
+        name: 'Panama'
+      },
+      {
+        code: 'pci' ,
+        name: 'Pacific Islands (trust territory)'
+      },
+      {
+        code: 'pcn' ,
+        name: 'Pitcairn Island'
+      },
+      {
+        code: 'per' ,
+        name: 'Peru'
+      },
+      {
+        code: 'phl' ,
+        name: 'Filipini'
+      },
+      {
+        code: 'plw' ,
+        name: 'Palau'
+      },
+      {
+        code: 'png' ,
+        name: 'Papua New Guinea'
+      },
+      {
+        code: 'pol' ,
+        name: 'Poljska'
+      },
+      {
+        code: 'pri' ,
+        name: 'Portoriko'
+      },
+      {
+        code: 'prk' ,
+        name: 'Koreja, Demokratska Narodna Republika'
+      },
+      {
+        code: 'prt' ,
+        name: 'Portugal'
+      },
+      {
+        code: 'pry' ,
+        name: 'Paragvaj'
+      },
+      {
+        code: 'pus' ,
+        name: 'United States Miscellaneous Pacific Islands'
+      },
+      {
+        code: 'pyf' ,
+        name: 'Francuska Polinezija'
+      },
+      {
+        code: 'qat' ,
+        name: 'Katar'
+      },
+      {
+        code: 'reu' ,
+        name: 'Reunion'
+      },
+      {
+        code: 'rom' ,
+        name: 'Rumunija'
+      },
+      {
+        code: 'rus' ,
+        name: 'Rusija'
+      },
+      {
+        code: 'rwa' ,
+        name: 'Ruanda'
+      },
+      {
+        code: 'sau' ,
+        name: 'Saudijska Arabija'
+      },
+      {
+        code: 'scg' ,
+        name: 'Srbija i Crna Gora'
+      },
+      {
+        code: 'sdn' ,
+        name: 'Sudan'
+      },
+      {
+        code: 'sen' ,
+        name: 'Senegal'
+      },
+      {
+        code: 'sgp' ,
+        name: 'Singapur'
+      },
+      {
+        code: 'sgs' ,
+        name: 'South Georgia and the South Sandwich Islands'
+      },
+      {
+        code: 'shn' ,
+        name: 'St. Helena'
+      },
+      {
+        code: 'sjm' ,
+        name: 'Svalbard and Jan Mayen Islands'
+      },
+      {
+        code: 'slb' ,
+        name: 'Solomonska Ostrva'
+      },
+      {
+        code: 'sle' ,
+        name: 'Sijera Leone'
+      },
+      {
+        code: 'slv' ,
+        name: 'El Salvador'
+      },
+      {
+        code: 'smr' ,
+        name: 'San Marino'
+      },
+      {
+        code: 'som' ,
+        name: 'Somalia'
+      },
+      {
+        code: 'spm' ,
+        name: 'St. Pierre and Miquelon'
+      },
+      {
+        code: 'srb' ,
+        name: 'Srbija'
+      },
+      {
+        code: 'stp' ,
+        name: 'Sao Tome i Principe'
+      },
+      {
+        code: 'sun' ,
+        name: 'SSSR'
+      },
+      {
+        code: 'sur' ,
+        name: 'Suriname'
+      },
+      {
+        code: 'svk' ,
+        name: 'Slovačka'
+      },
+      {
+        code: 'svn' ,
+        name: 'Slovenija'
+      },
+      {
+        code: 'swe' ,
+        name: 'Švedska'
+      },
+      {
+        code: 'swz' ,
+        name: 'Svazilend'
+      },
+      {
+        code: 'syc' ,
+        name: 'Sejšeli'
+      },
+      {
+        code: 'syr' ,
+        name: 'Sirija'
+      },
+      {
+        code: 'tca' ,
+        name: 'Turks and Caicos Islands'
+      },
+      {
+        code: 'tcd' ,
+        name: 'Čad'
+      },
+      {
+        code: 'tgo' ,
+        name: 'Togo'
+      },
+      {
+        code: 'tha' ,
+        name: 'Tajland'
+      },
+      {
+        code: 'tjk' ,
+        name: 'Tadžikistan'
+      },
+      {
+        code: 'tkl' ,
+        name: 'Tokelau'
+      },
+      {
+        code: 'tkm' ,
+        name: 'Turkmenistan'
+      },
+      {
+        code: 'tls' ,
+        name: 'Timor-Leste'
+      },
+      {
+        code: 'tmp' ,
+        name: 'Istočni Timor'
+      },
+      {
+        code: 'ton' ,
+        name: 'Tonga'
+      },
+      {
+        code: 'tto' ,
+        name: 'Trinidad and Tobago'
+      },
+      {
+        code: 'tun' ,
+        name: 'Tunis'
+      },
+      {
+        code: 'tur' ,
+        name: 'Turska'
+      },
+      {
+        code: 'tuv' ,
+        name: 'Tivalu'
+      },
+      {
+        code: 'twn' ,
+        name: 'Tajvan'
+      },
+      {
+        code: 'tza' ,
+        name: 'Tanzanija'
+      },
+      {
+        code: 'uga' ,
+        name: 'Uganda'
+      },
+      {
+        code: 'ukr' ,
+        name: 'Ukrajina'
+      },
+      {
+        code: 'umi' ,
+        name: 'United States Minor Outlying Islands'
+      },
+      {
+        code: 'ury' ,
+        name: 'Urugvaj'
+      },
+      {
+        code: 'usa' ,
+        name: 'Sjedinjene Američke Države'
+      },
+      {
+        code: 'uzb' ,
+        name: 'Uzbekistan'
+      },
+      {
+        code: 'vat' ,
+        name: 'Vatikan'
+      },
+      {
+        code: 'vct' ,
+        name: 'Saint Vincet and the Grenadines'
+      },
+      {
+        code: 'ven' ,
+        name: 'Venecuela'
+      },
+      {
+        code: 'vgb' ,
+        name: 'British Virgin Islands'
+      },
+      {
+        code: 'vir' ,
+        name: 'United States Virgin Islands'
+      },
+      {
+        code: 'vnm' ,
+        name: 'Vijetnam'
+      },
+      {
+        code: 'vut' ,
+        name: 'Vanuatu'
+      },
+      {
+        code: 'wak' ,
+        name: 'Wake Island'
+      },
+      {
+        code: 'wlf' ,
+        name: 'Wallis and Futuna Islands'
+      },
+      {
+        code: 'wsm' ,
+        name: 'Samoa'
+      },
+      {
+        code: 'yem' ,
+        name: 'Jemen'
+      },
+      {
+        code: 'ymd' ,
+        name: 'Jemen, Demokratska Republika'
+      },
+      {
+        code: 'yug' ,
+        name: 'Jugoslavija'
+      },
+      {
+        code: 'zaf' ,
+        name: 'South Africa'
+      },
+      {
+        code: 'zar' ,
+        name: 'Zair'
+      },
+      {
+        code: 'zmb' ,
+        name: 'Zambija'
+      },
+      {
+        code: 'zwe' ,
+        name: 'Zimbabve'
+      }
+    ];
+
    static _coderRT =
     [
       {
@@ -3202,12 +6346,76 @@ export class PrefixUtils {
         name: 'Тродимензионалне ументнине и реалије'
       }
     ];
+
+  static _coderRT_lat =
+    [
+      {
+        code: 'a' ,
+        name: 'Tekstualna građa, štampana'
+      },
+      {
+        code: 'b' ,
+        name: 'Tekstualna građa, rukopis'
+      },
+      {
+        code: 'c' ,
+        name: 'Note, štampane'
+      },
+      {
+        code: 'd' ,
+        name: 'Note, rukopis'
+      },
+      {
+        code: 'e' ,
+        name: 'Kartografska građa, štampana'
+      },
+      {
+        code: 'f' ,
+        name: 'Kartografska građa, rukopis'
+      },
+      {
+        code: 'g' ,
+        name: 'Audiovizuelna građa'
+      },
+      {
+        code: 'i' ,
+        name: 'Zvučni zapisi, snimak nemuzičkih interpretacija'
+      },
+      {
+        code: 'j' ,
+        name: 'Zvučni zapisi, snimci muzičkih interpretacija'
+      },
+      {
+        code: 'k' ,
+        name: 'Dvodimenzionalne grafike (slike, skice)'
+      },
+      {
+        code: 'l' ,
+        name: 'Kompjuterski mediji'
+      },
+      {
+        code: 'm' ,
+        name: 'Multimediji'
+      },
+      {
+        code: 'r' ,
+        name: 'Trodimenzionalne umentnine i realije'
+      }
+    ];
+
    static _coder856u = [
      {
        code: '.*',
        name: 'Постоји'
      }
    ];
+
+  static _coder856u_lat = [
+    {
+      code: '.*',
+      name: 'Postoji'
+    }
+  ];
 
   public static Prefixes: PrefixModel[] = [
     {
@@ -3292,6 +6500,92 @@ export class PrefixUtils {
     {
       code: 'SD',
       name: 'Предметна пододредница'
+    }
+  ];
+
+  public static Prefixes_lat: PrefixModel[] = [
+    {
+      code: 'DT',
+      name: 'Vrsta građe',
+      coder: PrefixUtils._coderDT_lat
+    },
+    {
+      code: 'AU',
+      name: 'Autor'
+    },
+    {
+      code: 'TI',
+      name: 'Naslov'
+    },
+    {
+      code: 'KW',
+      name: 'Ključne reči'
+    },
+    {
+      code: 'PU',
+      name: 'Izdavač'
+    },
+    {
+      code: 'PY',
+      name: 'Godina izdavanja'
+    },
+    {
+      code: 'PP',
+      name: 'Mesto izdavanja'
+    },
+    {
+      code: 'LA',
+      name: 'Jezik',
+      coder: PrefixUtils._coderLA_lat,
+    },
+    {
+      code: 'CO',
+      name: 'Država izdavanja',
+      coder: PrefixUtils._coderCO_lat
+    },
+    {
+      code: 'IN',
+      name: 'Inventarni broj'
+    },
+    {
+      code: 'DC',
+      name: 'UDK'
+    },
+    {
+      code: 'BN',
+      name: 'ISBN'
+    },
+    {
+      code: 'SP',
+      name: 'ISSN'
+    },
+    {
+      code: 'RN',
+      name: 'Broj zapisa'
+    },
+    {
+      code: 'CC',
+      name: 'Kod za vrstu sadržaja',
+      coder: PrefixUtils._coderCC_lat
+    },
+    {
+      code: 'RT',
+      name: 'Kod za vrstu zapisa',
+      coder: PrefixUtils._coderRT_lat
+    },
+    {
+      code: '856u',
+      name: 'URL digitalni primerak',
+      coder: PrefixUtils._coder856u_lat
+    }
+    ,
+    {
+      code: 'SB',
+      name: 'Predmetna odrednica'
+    },
+    {
+      code: 'SD',
+      name: 'Predmetna pododrednica'
     }
   ];
 

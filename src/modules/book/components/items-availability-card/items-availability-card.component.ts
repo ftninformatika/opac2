@@ -79,9 +79,9 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
-  public async checkLoggedUser() {
+  public checkLoggedUser() {
     if (this.memberNo == null) {
-      await this._router.navigate(['/user/login'], {queryParams: {redirectURL: this._router.url}});
+      this._router.navigate(['/user/login'], {queryParams: {redirectURL: this._router.url}});
     }
     if (this.libConfig.reservation) {
       this.confirmModal.show();
