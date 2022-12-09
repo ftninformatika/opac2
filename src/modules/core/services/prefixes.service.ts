@@ -11,6 +11,8 @@ export class PrefixesService {
   constructor(@Inject(LOCALE_ID) public localeId: string) {
     if (localeId === 'sr-Latn'){
       this.prefixes = PrefixUtils.Prefixes_lat;
+    } else if (localeId === 'en'){
+      this.prefixes = PrefixUtils.Prefixes_en;
     } else {
       this.prefixes = PrefixUtils.Prefixes;
     }
