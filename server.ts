@@ -47,25 +47,16 @@ if (crypto.getRandomValues === undefined) {
 }
 
 // enableProdMode();
-export function app(): express.Express {
+export function app(distPath: string): express.Express {
   const app = express();
-  const distFolder = join(process.cwd(), 'dist/browser');
+  const distFolder = join(process.cwd(), distPath);
   const axios = require('axios');
-
   // CORS settings
   const cors = require('cors');
-
   app.use(cors());
-
-  // const appUrl = 'bisis5-opac2.firebaseapp.com';
-  // const appUrl = 'localhost:4000';
-  // const renderUrl = 'http://localhost:3000/render';
   const appUrl = 'opac.bisis.rs';
-  // const renderUrl = 'http://116.203.124.157/render';
-  // const renderUrl = 'https://polar-surfer-257418.appspot.com/render';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-
   app.engine(
     'html',
     ngExpressEngine({
@@ -74,8 +65,8 @@ export function app(): express.Express {
   );
 
   if (typeof window === 'undefined') {
-    global.window = {};
-    global.window.addEventListener = () => {};
+    (global as any).window = {};
+    (global as any).window.addEventListener = () => {};
   }
 
   app.set('view engine', 'html');
@@ -86,10 +77,9 @@ export function app(): express.Express {
   // Serve static files from /browser
   app.get(
     '*.*',
-    express.static(distFolder, {
-      maxAge: '1y',
-    })
-  );
+  express.static(distFolder, {
+    maxAge: '1y',
+  }));
 
   function generateUrl(request) {
     return url.format({
@@ -100,7 +90,7 @@ export function app(): express.Express {
   }
 
   // Helper function to check if user-agent is bot
-  function detectBot(userAgent) {
+  const detectBot = (userAgent) => {
     const bots = [
       // Crawler bots
       'googlebot',
@@ -134,18 +124,19 @@ export function app(): express.Express {
         return true;
       }
     }
-    console.log('No bots detected');
+    // console.log('No bots detected');
     return false;
   }
 
   // TODO: add other link-bots
-  function isExternalHit(userAgent: string) {
+  const isExternalHit = (userAgent: string) =>  {
     return (
       (userAgent &&
         userAgent.toLowerCase().indexOf('facebook') > -1) ||
       userAgent.toLowerCase().indexOf('viber') > -1 ||
       userAgent.toLowerCase().indexOf('linkedin') > -1 ||
-      userAgent.toLowerCase().indexOf('twitter') > -1
+      userAgent.toLowerCase().indexOf('twitter') > -1 ||
+      detectBot(userAgent)
     );
   }
 
@@ -164,28 +155,14 @@ export function app(): express.Express {
           res.send(response.data);
         })
         .catch((error) => {
-          // console.log(error);
+          console.log(error);
         });
     } else {
-        console.log('No bot, ua:', req.headers['user-agent']);
+        // console.log('No bot, ua:', req.headers['user-agent']);
         res.render('index', {
           req,
         });
     }
-    // else {
-    //   const botUrl  = generateUrl(req);
-    //   console.log('Sending route to Rendertron');
-    //   axios.get(`${renderUrl}/${botUrl}`)
-    //     .then(response => {
-    //       res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-    //       res.set('Vary', 'User-Agent');
-    //       const renderedHtml = response.data;
-    //       res.send(renderedHtml);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // }
   });
 
   return app;
@@ -195,7 +172,14 @@ function run(): void {
   const port = process.env.PORT || 4000;
 
   // Start up the Node server
-  const server = app();
+  const server = express();
+  // Paths to per locale builds
+  const app0 = app('dist/browser/sr-Cyrl');
+  const app1 = app('dist/browser/sr-Latn');
+  const app2 = app('dist/browser/en');
+  server.use('/sr-Cyrl', app0);
+  server.use('/sr-Latn', app1);
+  server.use('/en', app2);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
