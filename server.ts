@@ -180,6 +180,7 @@ function run(): void {
   server.use('/sr-Cyrl', app0);
   server.use('/sr-Latn', app1);
   server.use('/en', app2);
+  server.use('/', app0);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
