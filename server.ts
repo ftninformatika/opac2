@@ -74,8 +74,8 @@ export function app(): express.Express {
   );
 
   if (typeof window === 'undefined') {
-    global.window = {};
-    global.window.addEventListener = () => {};
+    (global as any).window = {};
+    (global as any).window.addEventListener = () => {};
   }
 
   app.set('view engine', 'html');

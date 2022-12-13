@@ -9,11 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:production": "ng build --aot --prod --source-map=false --extract-css=true --named-chunks=false --build-optimizer=false",
+    "build:production": "ng build --localize --aot --prod --source-map=false --extract-css=true --named-chunks=false --build-optimizer=false",
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "npm run build:production && ng run opac2:server:production --bundleDependencies all",
+    "build:client-and-server-bundles": "npm run build:production && ng run opac2:server:production --bundle-dependencies all",
     "ssr:dev": "ng build && ng run opac2:server --bundleDependencies all",
     "postinstall": "npm run build:ssr"
   },
