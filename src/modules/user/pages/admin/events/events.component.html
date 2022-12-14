@@ -5,8 +5,8 @@
 </div>
 
 <div id="div-add-event" *ngIf="!loading">
-  <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal"
-          data-target="#basicExample" (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect i18n="@@dodajDesavanje">Додај дешавање
+  <button id="btn-add-event" type="button" mdbBtn color="default" data-mdb-toggle="modal" data-mdb-target="#createModal"
+          (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect i18n="@@dodajDesavanje">Додај дешавање
   </button>
 </div>
 
@@ -152,6 +152,7 @@
           <div class="col-md-1 mb-5 table-column-btns">
             <div class="div-edit" mdbTooltip="Измени" i18n-mdbTooltip="@@izmeni" placement="left" style="cursor: pointer"
                  (click)="setEditEvent(event);"
+                 data-mdb-toggle="modal" data-mdb-target="#createModal"
                  data-cy="edit-btn">
               <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
             </div>
@@ -207,7 +208,8 @@
 </div>
 
 <div mdbModal #createModal="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()" data-mdb-target="#eventModal">
+     aria-labelledby="myModalLabel" aria-hidden="true" (close)="closeDialog()"
+     [config]="{backdrop: 'static'}">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
