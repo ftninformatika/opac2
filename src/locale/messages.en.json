@@ -428,6 +428,8 @@
     "registracija8": " Access to currently borrowed books and return deadlines.{$LINE_BREAK} The possibility to extend the deadline for borrowed books online.{$LINE_BREAK} The membership fee expiration date.{$LINE_BREAK} Access to the list of books you have read so far.{$LINE_BREAK} The possibility of rating books you have read.{$LINE_BREAK} The ability to create a personal online library - a virtual bookshelf with your favorite books that you have read or want to read.{$LINE_BREAK} The ability to reserve books online.{$LINE_BREAK}",
     "registracija9": "Registration process",
     "registracija10": " When you come to the library, ask the librarian to send you a registration link to your email address. {$LINE_BREAK} An activation link will be sent to your email. By clicking on the link, you will start the registration process.{$LINE_BREAK} Enjoy the possibilities offered by the BISIS catalog! ",
+    "registracija11": "User account deletion process",
+    "registracija12": " When you come to the library, ask the librarian to delete your user account. ",
     "skloni": "Remove",
     "poAutoruNaslovuIzdavacu": ", by: author, title, publisher and keywords"
   }
