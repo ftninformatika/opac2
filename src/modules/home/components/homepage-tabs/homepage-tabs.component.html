@@ -1,30 +1,30 @@
 <div class="homepage-tabs-component-wrapper row">
     <div class="homepage-card card-hover" (click)="onSearchTabClick()">
-      <div class="title">
+      <div class="title" i18n="@@pretraziNaslov">
           <mdb-icon fas icon="search"></mdb-icon>
           Претражи
       </div>
-      <div class="content">
+      <div class="content" i18n="@@pretragaSadrzaj">
         Овом универзалном претрагом добијате све резултате на основу уписаног текста. Приликом
         уписивања текста можете одабрати и појмове који ће вам аутоматски бити понуђени у
         падајућем менију. Добијене резултате можете додатно сузити помоћу филтера са леве стране.
       </div>
     </div>
   <div class="homepage-card card-hover" [routerLink]="['/search/advanced-search']">
-    <div class="title">
+    <div class="title" i18n="@@naprednaPretragaNaslov">
       <mdb-icon fas icon="tasks"></mdb-icon>
       Напредна претрага
     </div>
-    <div class="content">
+    <div class="content" i18n="@@naprednaPretragaSadrzaj">
       Избором више одговарајућих параметара за претраживање добијате прецизније резултате.
     </div>
   </div>
     <div class="homepage-card card-hover" [routerLink]="['/user/login']">
-    <div class="title">
+    <div class="title" i18n="@@prijavaNaslov">
       <mdb-icon fas icon="user-alt"></mdb-icon>
       Пријава
     </div>
-    <div class="content">
+    <div class="content" i18n="@@prijavaSadrzaj">
       Направите Ваш БИСИС кориснички профил и користите низ онлајн услуга: увид у позајмљену
       грађу и рокове за враћање, могућност да сами продужите рок враћања позајмљене грађе, увид у
       књиге које сте до сада прочитали, датум истека чланарине, оцењивање прочитаних књига…
@@ -32,14 +32,14 @@
   </div>
   <a href="//unikat.bisis.rs" target="_blank" style="text-decoration:none">
     <div class="homepage-card card-hover">
-          <div class="title">
+      <div class="title" i18n="@@uzajamniKatalogNaslov">
           <mdb-icon fas icon="external-link-alt"></mdb-icon>
           Узајамни каталог
-          </div>
-          <div class="content">
+      </div>
+      <div class="content" i18n="@@uzajamniKatalogSadrzaj">
           Путем узајамног каталога можете истовремено претражити фондове свих библиотека које
           користе систем БИСИС.
-         </div>
+      </div>
     </div>
   </a>
 </div>

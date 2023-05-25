@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
       password: this.loginForm.value.password.trim()
     };
     if (this.loginForm.invalid || !this.loginForm.touched) {
-      this._toastService.warning('Унесите исправну e-mail адресу и лозинку!');
+      this._toastService.warning($localize`:@@unesiteIspravanEmail:Унесите исправну e-mail адресу и лозинку!`);
       return;
     }
     this._store.dispatch(new SignInAction(loginDto.username, loginDto.password)).subscribe(
@@ -116,15 +116,15 @@ export class LoginPage implements OnInit {
   public forgotPassword(): void {
     this._toastService.clear();
     if (!this.validateEmail(this.forgotPassEmail)) {
-      this._toastService.warning('Унесите исправан формат e-mail адресе!');
+      this._toastService.warning($localize`:@@unesiteIspravanFormatEmail:Унесите исправан формат e-mail адресе!`);
       return;
     }
     this._usersService.forgotPassword(this.forgotPassEmail).subscribe(data => {
       if (data) {
-        this._toastService.success('Линк за промену лозинке је послат на вашу e-mail адресу!');
+        this._toastService.success($localize`:@@linkZaPromenuLozinkePoslat:Линк за промену лозинке је послат на вашу e-mail адресу!`);
         this._router.navigate(['/']);
       } else {
-        this._toastService.warning('Дошло је до грешке!');
+        this._toastService.warning($localize`:@@dosloJeDoGreske:Дошло је до грешке!`);
       }
     });
   }

@@ -65,11 +65,11 @@ export class UploadDescriptionCoverPage implements OnInit {
     }
     const mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Подржане су само слике.';
+      this.message = $localize`:@@podrzaneSamoSlike:Подржане су само слике.`;
       return;
     }
     if (files.item(0).size > 6000000) {
-      this.message = 'Фајл не сме бити већи од 6MB.';
+      this.message = $localize`:@@fajlNeSmeBitiVeci:Фајл не сме бити већи од 6MB.`;
       return;
     }
     const reader = new FileReader();
@@ -85,7 +85,7 @@ export class UploadDescriptionCoverPage implements OnInit {
 
   public saveChanges() {
     if (!this.imgURL && this.bookDescription === this.book.description) {
-      this._toastService.info('Нисте извршили никакве промене!');
+      this._toastService.info($localize`:@@nisteIzvrsiliNikakvePromene:Нисте извршили никакве промене!`);
       return;
     }
     const bookCommon: BookCommon = {
@@ -101,14 +101,14 @@ export class UploadDescriptionCoverPage implements OnInit {
         this._bookService.uploadBookCover(bookCommon.uid, this.coverFile).subscribe(
           resp => {
             if (!resp) {
-              this._toastService.warning('Није успело отпремање слике!');
+              this._toastService.warning($localize`:@@nijeUspeloOtpremanje:Није успело отпремање слике!`);
               return;
             }
-            this._toastService.success('Успешно је отпремљена слика корица!');
+            this._toastService.success($localize`:@@uspesnoJeOtpremljena:Успешно је отпремљена слика корица!`);
             this.previousFile = this.coverFile;
           },
           () => {
-            this._toastService.warning('Није успело отпремање слике!');
+            this._toastService.warning($localize`:@@nijeUspeloOtpremanje:Није успело отпремање слике!`);
             return;
           },
           () => {
@@ -122,13 +122,13 @@ export class UploadDescriptionCoverPage implements OnInit {
         this._bookService.createModifyBookCommon(bookCommon).subscribe(
           resp => {
             if (!resp) {
-              this._toastService.warning('Није успела промена описа!');
+              this._toastService.warning($localize`:@@nijeUspelaPromenaOpisa:Није успела промена описа!`);
               return;
             }
-            this._toastService.success('Успешно је промењен опис!');
+            this._toastService.success($localize`:@@uspesnoJePromenjenOpis:Успешно је промењен опис!`);
           },
           () => {
-            this._toastService.warning('Није успела промена описа!');
+            this._toastService.warning($localize`:@@nijeUspelaPromenaOpisa:Није успела промена описа!`);
             return;
           },
           () => this.routeToRecord()
@@ -140,7 +140,7 @@ export class UploadDescriptionCoverPage implements OnInit {
         .subscribe(
           resp => {
             if (!resp) {
-              this._toastService.warning('Чување није успело!');
+              this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`);
               return;
             }
             if (this.coverFile) {
@@ -148,18 +148,18 @@ export class UploadDescriptionCoverPage implements OnInit {
                 .subscribe(
                   resp1 => {
                     if (!resp1) {
-                      this._toastService.warning('Отпремање слике није успело!');
+                      this._toastService.warning($localize`:@@otpremanjeSlikeNijeUspelo:Отпремање слике није успело!`);
                       return;
                     }
                     this.routeToRecord();
                   }
                 );
             } else {
-              this._toastService.success('Успешно сте ажурирали податке о књизи!');
+              this._toastService.success($localize`:@@uspesnoAzuriraniPodaciOKnjizi:Успешно сте ажурирали податке о књизи!`);
               this.routeToRecord();
             }
           },
-          () => this._toastService.warning('Чување није успело!')
+          () => this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`)
         );
       }
     this.initBook();
@@ -173,7 +173,7 @@ export class UploadDescriptionCoverPage implements OnInit {
     this._bookService.getBook(this.recordId).subscribe(
       resp => {
         if (!resp.isbn || resp.isbn.trim() === '') {
-          this._toastService.error('Није могуће мењати опис и слику корица овог записа!');
+          this._toastService.error($localize`:@@nijeMoguceMenjatiOpis:Није могуће мењати опис и слику корица овог записа!`);
           this._router.navigate(['/book', this.lib, this.recordId]);
         }
         this.book = resp;

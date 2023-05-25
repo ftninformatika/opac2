@@ -1,20 +1,20 @@
 import {
   ILibraryMember,
   ILoginDto,
-} from "../../../models/library-member.model";
-import { BookCollectionModel } from "../../../models/book-collection.model";
-import { ApiEndpointConfig } from "../../../config/api-endpoint.config";
-import { IMemberWrapper } from "../../../models/member-wrapper.model";
-import { HttpClient } from "@angular/common/http";
-import { Book, Reservation } from "../../../models/book.model";
-import { BooksService } from "./books.service";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Report } from "../../../models/report.model";
-import { ProlongLendingDTO } from "../../../models/circ/lending/lending.model";
+} from '../../../models/library-member.model';
+import { BookCollectionModel } from '../../../models/book-collection.model';
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { IMemberWrapper } from '../../../models/member-wrapper.model';
+import { HttpClient } from '@angular/common/http';
+import { Book, Reservation } from '../../../models/book.model';
+import { BooksService } from './books.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Report } from '../../../models/report.model';
+import { ProlongLendingDTO } from '../../../models/circ/lending/lending.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UsersService {
   private readonly _httpClient: HttpClient;

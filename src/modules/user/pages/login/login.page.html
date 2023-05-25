@@ -6,37 +6,37 @@
           <div class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
             <div class="card-body">
               <div class="form-header login-header">
-                <h3><mdb-icon fas icon="user" class="mt-2 mb-2"></mdb-icon> Пријава</h3>
+                <h3 i18n="@@prijava"><mdb-icon fas icon="user" class="mt-2 mb-2"></mdb-icon>Пријава</h3>
               </div>
               <form [formGroup]="loginForm">
                 <div class="md-form">
 <!--                  <mdb-icon far icon="envelope" class="dark-grey-text"></mdb-icon>-->
                   <i class="fas fa-envelope prefix dark-grey-text"></i>
                   <input type="text" id="orangeForm-email" class="form-control" formControlName="email" mdbInput data-cy="email">
-                  <label for="orangeForm-email" class="">Email</label>
+                  <label for="orangeForm-email" class="" i18n="@@email">Email</label>
                   <span *ngIf="loginForm.get('email').errors && loginForm.get('email').touched"
-                    class="inputVal text-danger">Неисправан формат e-mail адресе</span>
+                    class="inputVal text-danger" i18n="@@neispravanFormatEmail">Неисправан формат e-mail адресе</span>
                   <span *ngIf="!loginForm.get('email').errors"
-                    class="inputVal text-success">Исправно</span>
+                    class="inputVal text-success" i18n="@@ispravno">Исправно</span>
                 </div>
                 <div class="md-form">
 <!--                  <mdb-icon fas icon="lock" class="dark-grey-text"></mdb-icon>-->
                   <i class="fas fa-lock prefix dark-grey-text"></i>
                   <input type="password" id="orangeForm-pass" class="form-control" formControlName="password" mdbInput data-cy="password-input">
-                  <label for="orangeForm-pass" class="">Лозинка</label>
+                  <label for="orangeForm-pass" class="" i18n="@@lozinka">Лозинка</label>
                   <span *ngIf="loginForm.get('password').errors && loginForm.get('email').touched"
-                        class="inputVal text-danger">Неисправан формат лозинке</span>
+                        class="inputVal text-danger" i18n="@@neispravanFormatLozinke">Неисправан формат лозинке</span>
                   <span *ngIf="!loginForm.get('password').errors"
-                        class="inputVal text-success">Исправно</span>
+                        class="inputVal text-success" i18n="@@ispravno">Исправно</span>
                 </div>
                 <div class="text-center">
                   <button class="btn login-btn white-text btn-lg waves-effect waves-light" mdbWavesEffect (click)="login()"
-                          data-cy="login-submit">Пријави се</button>
-                  <button class="btn forget-pass-btn btn-lg waves-effect waves-light" mdbWavesEffect (click)="basicModal.show();">Заборавих лозинку</button>
+                          data-cy="login-submit" i18n="@@prijaviSe">Пријави се</button>
+                  <button class="btn forget-pass-btn btn-lg waves-effect waves-light" mdbWavesEffect (click)="basicModal.show();" i18n="@@zaboravihLozinku">Заборавих лозинку</button>
                 </div>
               </form>
               <div class="text-center">
-                <a [routerLink]="['/user/register-info']">Како се регистровати?</a>
+                <a [routerLink]="['/user/register-info']" i18n="@@kakoSeRegistrovati">Како се регистровати?</a>
               </div>
             </div>
           </div>
@@ -52,13 +52,13 @@
             <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide()">
               <span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title w-100 center" id="myModalLabel">Унесите вашу e-mail адресу</h4>
+            <h4 class="modal-title w-100 center" id="myModalLabel" i18n="@@unesiteEmailAdresu">Унесите вашу e-mail адресу</h4>
           </div>
           <div class="modal-body">
             <input type="email" class="form-control" mdbInput email="true" [(ngModel)]="forgotPassEmail" (keydown.enter)="forgotPassword()">
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="forgotPassword()" >Пошаљи</button>
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="forgotPassword()" i18n="@@posalji">Пошаљи</button>
           </div>
         </div>
       </div>

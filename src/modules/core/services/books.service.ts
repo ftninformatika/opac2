@@ -1,19 +1,19 @@
-import { IResultPageSearchRequest } from "../../../models/search/result-page-options.model";
-import { ApiEndpointConfig } from "../../../config/api-endpoint.config";
-import { IPrefixValue } from "../../../models/prefix-value.model";
-import { IResultPage } from "../../../models/page.model";
+import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { IPrefixValue } from '../../../models/prefix-value.model';
+import { IResultPage } from '../../../models/page.model';
 import {
   AvgRecordRating,
   Book,
   BookCommon,
   RecordRating,
-} from "../../../models/book.model";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+} from '../../../models/book.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class BooksService {
   private readonly _httpClient: HttpClient;
@@ -83,7 +83,7 @@ export class BooksService {
 
   public uploadBookCover(uid: BigInteger, file: File): Observable<boolean> {
     const formData: FormData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     return this._httpClient.post(
       `${ApiEndpointConfig.Paths.bookCover.upload}/${uid}`,
       formData

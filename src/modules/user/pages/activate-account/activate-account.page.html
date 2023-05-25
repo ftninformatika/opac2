@@ -1,32 +1,32 @@
 <div class="activate-account-page-wrapper">
   <mdb-card>
     <mdb-card-header class="primary-color white-text text-center py-4">
-      <h5 *ngIf="!restartPasswordMode">
+      <h5 *ngIf="!restartPasswordMode" i18n="@@aktivacijaKorisnickogNaloga">
         Активација корисничког налога <strong>OPAC</strong>
       </h5>
-      <h5 *ngIf="restartPasswordMode">
+      <h5 *ngIf="restartPasswordMode" i18n="@@izmenaLozinke">
         Измена лозинке
       </h5>
     </mdb-card-header>
     <mdb-card-body class="px-lg-5 pt-0">
       <form class="text-center" style="color: #757575;">
-        <p class="mt-2">
+        <p class="mt-2" i18n="@@unesiteZeljenuLozinku">
           Унесите жељену лозинку за:<br> {{libraryMember?.username}}
         </p>
         <div class="md-form">
           <input type="password" id="materialLoginFormPassword1" class="form-control" mdbInput [(ngModel)]="this.pass1" name="pass1" (ngModelChange)="pass1Changed.next($event)">
-          <label for="materialLoginFormPassword1">Лозинка</label>
+          <label for="materialLoginFormPassword1" i18n="@@lozinka">Лозинка</label>
         </div>
         <div class="md-form">
           <input type="password" id="materialLoginFormPassword2" class="form-control" mdbInput [(ngModel)]="this.pass2" name="pass2" (ngModelChange)="pass2Changed.next($event)">
-          <label for="materialLoginFormPassword2">Поновите лозинку</label>
+          <label for="materialLoginFormPassword2" i18n="@@ponoviteLozinku">Поновите лозинку</label>
         </div>
         <button mdbBtn outline="false" rounded="true" block="true"
                 class="my-4 waves-effect z-depth-0"
                 [ngClass]="isValid ? 'btn-success' : 'btn-warning'"
                 type="submit" (click)="activateAccount()" >
-          <ng-container *ngIf="!restartPasswordMode">Активирајте налог</ng-container>
-          <ng-container *ngIf="restartPasswordMode">Промените лозинку</ng-container>
+          <ng-container *ngIf="!restartPasswordMode" i18n="@@aktivirajteNalog">Активирајте налог</ng-container>
+          <ng-container *ngIf="restartPasswordMode" i18n="@@promeniteLozinku">Промените лозинку</ng-container>
         </button>
       </form>
     </mdb-card-body>

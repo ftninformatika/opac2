@@ -13,6 +13,13 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "sr-Cyrl",
+        "locales": {
+          "sr-Latn": "src/locale/messages.sr-Latn.json",
+          "en": "src/locale/messages.en.json"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -73,6 +80,12 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "sr-Latn": {
+              "localize": ["sr-Latn"]
+            },
+            "en": {
+              "localize": ["en"]
             }
           }
         },
@@ -84,13 +97,21 @@
           "configurations": {
             "production": {
               "browserTarget": "opac2:build:production"
+            },
+            "sr-Latn": {
+              "browserTarget": "opac2:build:sr-Latn"
+            },
+            "en": {
+              "browserTarget": "opac2:build:en"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "opac2:build"
+            "browserTarget": "opac2:build",
+            "format": "json",
+            "outputPath": "src/locale"
           }
         },
         "test": {

@@ -23,6 +23,7 @@ export class BookStarRating implements OnInit {
   public starRate;
   public username: string;
   public libraryMemberId: string;
+  public noVotes = $localize`:@@knjigaNemaGlas:Књига нема ни један глас!`;
 
   public constructor(bookService: BooksService, toastService: ToastService, store: Store) {
     this._bookService = bookService;
@@ -49,7 +50,7 @@ export class BookStarRating implements OnInit {
       return;
     }
     if (!this.username) {
-      this._toastService.info('Морате бити пријављени како би оценили књигу!');
+      this._toastService.info($localize`:@@greskaOcenaKnjigePrijava:Морате бити пријављени како би оценили књигу!`);
       return;
     }
     const newRating: RecordRating = {
@@ -60,7 +61,7 @@ export class BookStarRating implements OnInit {
     this._bookService.rateRecord(newRating, this.recordId).subscribe(
       (resp) => {
         if (!resp) {
-          this._toastService.warning('Дошло је до грешке приликом оцењивања записа!');
+          this._toastService.warning($localize`:@@greskaOcenaKnjige:Дошло је до грешке приликом оцењивања записа!`);
           return;
         }
         this.totalRatings = resp.totalRates;

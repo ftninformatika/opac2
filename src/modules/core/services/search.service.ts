@@ -1,12 +1,12 @@
-import { IResultPageSearchRequest } from "../../../models/search/result-page-options.model";
-import { ApiEndpointConfig } from "../../../config/api-endpoint.config";
-import { IFiltersRes } from "../../../models/search/filter.model";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { IResultPageSearchRequest } from '../../../models/search/result-page-options.model';
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { IFiltersRes } from '../../../models/search/filter.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class SearchService {
   private readonly _httpClient: HttpClient;

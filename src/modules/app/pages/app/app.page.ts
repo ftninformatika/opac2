@@ -1,5 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ELocalizationLanguage} from '../../../../config/localization-laguage.enum';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngxs/store';
@@ -14,23 +13,18 @@ declare let gtag: Function;
   templateUrl: './app.page.html',
   styleUrls: ['./app.page.scss']
 })
-export class AppPage implements AfterViewInit {
-  private readonly _translateService: TranslateService;
+export class AppPage implements AfterViewInit, OnInit {
   private readonly _store: Store;
   private readonly _titleService: Title;
   private readonly _router: Router;
   showCookieDiv: boolean;
 
-  public constructor(translateService: TranslateService, titleService: Title, store: Store, router: Router) {
+  public constructor(titleService: Title, store: Store, router: Router) {
     this._titleService = titleService;
     this._store = store;
-    this._translateService = translateService;
     this._router = router;
     const title = this._store.selectSnapshot(ConfigState.fullLibName);
     this._titleService.setTitle(title);
-    this._translateService.addLangs([ELocalizationLanguage.SERBIAN_CYRILIC,
-      ELocalizationLanguage.US_ENGLISH, ELocalizationLanguage.SERBIAN_LATIN]);
-    this._translateService.setDefaultLang(ELocalizationLanguage.SERBIAN_CYRILIC);
     this.showCookieDiv = true;
 
   }
@@ -56,8 +50,9 @@ export class AppPage implements AfterViewInit {
   }
 
   checkIfCookieAccepted() {
-    if (this.readCookie('viewed_cookie_policy') != null)
+    if (this.readCookie('viewed_cookie_policy') != null) {
       this.showCookieDiv = false;
+    }
   }
 
   acceptCookie() {
@@ -70,12 +65,12 @@ export class AppPage implements AfterViewInit {
   }
 
   readCookie(name: any) {
-    const nameEQ = name + "=";
+    const nameEQ = name + '=';
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      while (c.charAt(0) === ' ') { c = c.substring(1, c.length); }
+      if (c.indexOf(nameEQ) === 0) { return c.substring(nameEQ.length, c.length); }
     }
     return null;
   }
