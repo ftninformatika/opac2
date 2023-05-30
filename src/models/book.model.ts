@@ -65,7 +65,7 @@ export interface Reservation {
   isBookPickedUp: boolean;
   reservationDate: Date;
   title: string;
-  authors:[];
+  authors: [];
   reservationStatus: ReservationStatus;
   pickUpDeadline: Date;
   locationDescription: string;
