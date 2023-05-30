@@ -32,20 +32,18 @@
         [lazyLoad]="book.imageUrl ? book.imageUrl : '../../../../assets/book/nocover.jpg'"
         [defaultImage]="'../../../../assets/book/book_cover_placeholder.jpeg'"
         offset="100"
-        alt="Слика корице" i18n-alt="@@slikaKorice"
+        alt="Слика корице"
       />
       <a
         *ngIf="isAdmin && (book.isbn && book.isbn.trim() != '')"
         [routerLink]="['/book/description-cover', lib, book._id]"
         class="ml-2"
-        i18n="@@menjajSliku"
         >Мењај слику и опис</a
       >
       <span
         *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')"
         class="ml-2"
         style="color: grey; font-weight: 500; cursor: default"
-        i18n="@@nijeMoguceMenjatiSliku"
         >Није могуће мењати слику или опис записа</span
       >
       <div class="social-share-buttons">
@@ -59,7 +57,7 @@
           ><mdb-icon fab icon="twitter"></mdb-icon
         ></a>
         <a
-          class="icons-sm email-ic" i18n-href="@@mailto"
+          class="icons-sm email-ic"
           href="mailto: ?body={{'Погледај књигу:' + (book.title ? book.title : 'запис нема наслов') + ', на БИСИС5 онлајн каталогу. Линк: ' + recordURL}}
              &subject={{(book.title ? book.title : 'запис нема наслов') + ' - БИСИС5 онлајн каталог'}}"
         >
@@ -122,13 +120,13 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_MIRADOR_URL"
                 >
-                  <dt class="col-sm-3 align-middle" i18n="@@digitalniPrikazSpace">Дигитални приказ&nbsp;</dt>
+                  <dt class="col-sm-3 align-middle">Дигитални приказ&nbsp;</dt>
                   <dd class="col-sm-9">
                     <a
                       href="javascript:void(0)"
                       (click)="miradorShow = !miradorShow"
                     >
-                      <div class="mirador-show" i18n="@@prikazi">
+                      <div class="mirador-show">
                         <mdb-icon
                           fas
                           icon="book-open"
@@ -143,7 +141,7 @@
                 <ng-container
                   *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''"
                 >
-                  <dt class="col-sm-3" i18n="@@autoriSpace">Аутори&nbsp;</dt>
+                  <dt class="col-sm-3">Аутори&nbsp;</dt>
                   <dd class="col-sm-9">
                     <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
                     <a
@@ -162,7 +160,7 @@
                 <ng-container
                   *ngIf="book.otherAuthors && book.otherAuthors.length > 0"
                 >
-                  <dt class="col-sm-3" i18n="@@ostaliAutoriSpace">Остали аутори&nbsp;</dt>
+                  <dt class="col-sm-3">Остали аутори&nbsp;</dt>
                   <dd class="col-sm-9">
                     <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
                     <a
@@ -184,14 +182,14 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.title">
-                  <dt class="col-sm-3" i18n="@@naslovSpace">Наслов&nbsp;</dt>
+                  <dt class="col-sm-3">Наслов&nbsp;</dt>
                   <dd class="col-sm-9">{{book.title}}</dd>
                 </ng-container>
 
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
                 >
-                  <dt class="col-sm-3" i18n="@@urlSpace">URL&nbsp;</dt>
+                  <dt class="col-sm-3">URL&nbsp;</dt>
                   <dd class="col-sm-9">
                     <span
                       [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
@@ -202,37 +200,37 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO"
                 >
-                  <dt class="col-sm-3" i18n="@@izdavacSpace">Издавач&nbsp;</dt>
+                  <dt class="col-sm-3">Издавач&nbsp;</dt>
                   <dd class="col-sm-9">
                     {{book |
                     recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}
                   </dd>
                 </ng-container>
 
-<!--                <ng-container *ngIf="book.refRecsBrief">-->
-<!--                  <ng-container-->
-<!--                    *ngFor="let recRef of book.refRecsBrief | keyvalue"-->
-<!--                  >-->
-<!--                    <dt class="col-sm-2">-->
-<!--                      {{book | recordFormat:-->
-<!--                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;-->
-<!--                    </dt>-->
-<!--                    <dd class="col-sm-10">-->
-<!--                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;-->
-<!--                      <span-->
-<!--                        [routerLink]="['/book',lib, recRef.key]"-->
-<!--                        style="-->
-<!--                          cursor: pointer;-->
-<!--                          color: darkblue;-->
-<!--                          text-decoration: underline;-->
-<!--                        " i18n="@@linkDoIzvora"-->
-<!--                      >-->
-<!--                        {{(recRef.value && recRef.value !== '') ? recRef.value :-->
-<!--                        'Линк до извора'}}-->
-<!--                      </span>-->
-<!--                    </dd>-->
-<!--                  </ng-container>-->
-<!--                </ng-container>-->
+                <ng-container *ngIf="book.refRecsBrief">
+                  <ng-container
+                    *ngFor="let recRef of book.refRecsBrief | keyvalue"
+                  >
+                    <dt class="col-sm-2">
+                      {{book | recordFormat:
+                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;
+                    </dt>
+                    <dd class="col-sm-10">
+                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;
+                      <span
+                        [routerLink]="['/book',lib, recRef.key]"
+                        style="
+                          cursor: pointer;
+                          color: darkblue;
+                          text-decoration: underline;
+                        "
+                      >
+                        {{(recRef.value && recRef.value !== '') ? recRef.value :
+                        'Линк до извора'}}
+                      </span>
+                    </dd>
+                  </ng-container>
+                </ng-container>
 
                 <ng-container *ngIf="book.refRecsBrief">
                   <ng-container
@@ -250,7 +248,7 @@
                           cursor: pointer;
                           color: darkblue;
                           text-decoration: underline;
-                        " i18n="@@linkDoIzvora"
+                        "
                       >
                         {{(recRef.value && recRef.value !== '') ? recRef.value :
                         'Линк до извора'}}
@@ -260,14 +258,14 @@
                 </ng-container>
 
                 <ng-container *ngIf="book.notes">
-                  <dt class="col-sm-3" i18n="@@napomeneSpace">Напомене&nbsp;</dt>
+                  <dt class="col-sm-3">Напомене&nbsp;</dt>
                   <dd class="col-sm-9">{{book.notes}}</dd>
                 </ng-container>
 
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType._324_SPECIAL"
                 >
-                  <dt class="col-sm-3" i18n="@@posebanOtisakSpace">Посебан отисак&nbsp;</dt>
+                  <dt class="col-sm-3">Посебан отисак&nbsp;</dt>
                   <dd class="col-sm-9">
                     {{book | recordFormat:RecordFormatType._324_SPECIAL}}
                   </dd>
@@ -276,31 +274,31 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType._327_CONTENT"
                 >
-                  <dt class="col-sm-3" i18n="@@sadrzajSpace">Садржај&nbsp;</dt>
+                  <dt class="col-sm-3">Садржај&nbsp;</dt>
                   <dd class="col-sm-9">
                     {{book | recordFormat:RecordFormatType._327_CONTENT}}
                   </dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.isbn">
-                  <dt class="col-sm-3" i18n="@@isbnSpace">ISBN&nbsp;</dt>
+                  <dt class="col-sm-3">ISBN&nbsp;</dt>
                   <dd class="col-sm-9">{{book.isbn}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.issn">
-                  <dt class="col-sm-3" i18n="@@issnSpace">ISSN&nbsp;</dt>
+                  <dt class="col-sm-3">ISSN&nbsp;</dt>
                   <dd class="col-sm-9">{{book.issn}}</dd>
                 </ng-container>
 
                 <ng-container *ngIf="book.udk">
-                  <dt class="col-sm-3" i18n="@@udkSpace">UDK&nbsp;</dt>
+                  <dt class="col-sm-3">UDK&nbsp;</dt>
                   <dd class="col-sm-9">{{book.udk}}</dd>
                 </ng-container>
 
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO"
                 >
-                  <dt class="col-sm-3" i18n="@@signaturaSpace">Сигнатура&nbsp;</dt>
+                  <dt class="col-sm-3">Сигнатура&nbsp;</dt>
                   <dd class="col-sm-9">
                     {{book |
                     recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
@@ -310,7 +308,7 @@
                           color: darkblue;
                           cursor: pointer;
                           font-size: 13px;
-                        " i18n="@@ostale"
+                        "
                         >...остале</strong
                       ></span
                     >
@@ -327,7 +325,7 @@
           <mdb-accordion *ngIf="showLocations">
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
-                <h5 class="mb-0" i18n="@@isbd">ISBD</h5>
+                <h5 class="mb-0">ISBD</h5>
               </mdb-accordion-item-head>
               <mdb-accordion-item-body>
                 <div class="row">
@@ -344,7 +342,7 @@
           <mdb-accordion *ngIf="showLocations">
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
-                <h5 class="mb-0" i18n="@@unimarc">UNIMARC</h5>
+                <h5 class="mb-0">UNIMARC</h5>
               </mdb-accordion-item-head>
               <mdb-accordion-item-body>
                 <div class="row">

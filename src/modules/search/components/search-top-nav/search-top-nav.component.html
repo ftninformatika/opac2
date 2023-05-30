@@ -3,19 +3,19 @@
     <div class="btn-group" role="group">
       <div class="view-type-button" (click)="onViewTypeChanged(false)"
               [ngClass]="!tableViewType ? 'view-type-button-selected' : ''"
-              mdbTooltip="Картични приказ" i18n-mdbTooltip="@@karticniPrikaz">
+              [mdbTooltip]="'Картични приказ'">
         <mdb-icon fas icon="list" ></mdb-icon>
       </div>
       <div class="view-type-button" (click)="onViewTypeChanged(true)"
               [ngClass]="tableViewType ? 'view-type-button-selected' : ''"
-              mdbTooltip="Табеларни приказ" i18n-mdbTooltip="@@tabelarniPrikaz">
+              [mdbTooltip]="'Табеларни приказ'">
         <mdb-icon fas icon="table"></mdb-icon>
       </div>
     </div>
   </div>
   <div class="btn-group" mdbDropdown>
     <div role="group">
-      <div class="label-sort" i18n="@@sortiraj">
+      <div class="label-sort">
         Сортирај
       </div>
       <div dropdownToggle class="dropdown-toggle waves-light no-caret sort-cmb">
@@ -29,38 +29,38 @@
     </div>
 
     <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_NONE, false)" i18n="@@bezSortiranjaSpace">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_NONE, false)">
         &nbsp;Без сортирања
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, false)" i18n="@@autorSilazno">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, false)">
         &nbsp;Аутор (силазно)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, true)" i18n="@@autorRastuce">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_AUTHOR, true)">
         &nbsp;Аутор (растуће)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_TITLE, false)" i18n="@@naslovSilazno">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_TITLE, false)">
         &nbsp;Наслов (силазно)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_TITLE, true)" i18n="@@naslovRastuce">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_TITLE, true)">
         &nbsp;Наслов (растуће)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_YEAR, false)" i18n="@@godinaSilazno">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_YEAR, false)">
         &nbsp;Година (силазно)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_YEAR, true)" i18n="@@godinaRastuce">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_YEAR, true)">
         &nbsp;Година (растуће)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_PUBLISHER, false)" i18n="@@izdavacSilazno">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_PUBLISHER, false)">
         &nbsp;Издавач (силазно)
       </a>
-      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_PUBLISHER, true)" i18n="@@izdavacRastuce">
+      <a class="dropdown-item waves-light" (click)="onSortChange(SortType.SORT_PUBLISHER, true)">
         &nbsp;Издавач (растуће)
       </a>
     </div>
   </div>
   <div class="btn-group" mdbDropdown>
     <div role="group">
-      <div class="per-page-label" i18n="@@poStrani">
+      <div class="per-page-label">
         По страни
       </div>
       <div dropdownToggle class="nav-link dropdown-toggle waves-light page-size-cmb no-caret" >

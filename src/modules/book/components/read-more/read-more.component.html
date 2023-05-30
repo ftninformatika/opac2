@@ -5,8 +5,8 @@
     </p>
     <div *ngIf="text && text.length > 800"
       (click)="isCollapsed = !isCollapsed; isCollapsed ? collapse() : expand()" class="expand">
-      <span *ngIf="isCollapsed" i18n="@@opsirnijeIcon">Опширније &nbsp;<i class="fas fa-chevron-down"></i></span>
-      <span *ngIf="!isCollapsed" i18n="@@sazetoIcon">Сажето &nbsp; <i class="fas fa-chevron-up"></i></span>
+      <span *ngIf="isCollapsed" >Опширније &nbsp;<i class="fas fa-chevron-down"></i></span>
+      <span *ngIf="!isCollapsed" >Сажето &nbsp; <i class="fas fa-chevron-up"></i></span>
     </div>
   </div>
 </div>

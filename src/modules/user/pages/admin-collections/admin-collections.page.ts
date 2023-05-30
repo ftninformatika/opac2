@@ -52,12 +52,12 @@ export class AdminCollectionsPage implements OnInit {
       const i1 = this.collections[event.currentIndex].index;
       const done = await this._userService.swapIndexes(i, i1).toPromise();
       if (!done) {
-        this._toastService.warning($localize`:@@serverskaGreska:Серверска грешка`);
+        this._toastService.warning('Серверска грешка');
         return;
       }
       this.loadCollectionsAndSelectIndex(i1);
     } catch (e) {
-      this._toastService.warning($localize`:@@dosloJeDoGreske:Дошло је до грешке!`);
+      this._toastService.warning('Дошло је до грешке');
       console.log(e.toString());
     }
   }
@@ -86,7 +86,7 @@ export class AdminCollectionsPage implements OnInit {
       return;
     }
     if (!this.newCollectionName || this.newCollectionName.trim() === '') {
-      this._toastService.warning($localize`:@@unesiteImeKolekcije:Унесите јединствено име нове колекције!`);
+      this._toastService.warning('Унесите јединствено име нове колекције!');
       return;
     }
     const newCollection: BookCollectionModel = {
@@ -99,13 +99,15 @@ export class AdminCollectionsPage implements OnInit {
     this._userService.adminCreateModifyCollection(newCollection).subscribe(
       (respondStatus) => {
         if (!respondStatus) {
-          this._toastService.warning($localize`:@@greskaKolekcijaSaIstimNazivom:Максималан број колекција је 15, а максималан број записа у колекцији 30. \nНе можете направити више колекција са истим насловом!`);
+          this._toastService.warning('Максималан број колекција је 15, а максималан број записа у колекцији 30.' +
+            '\nНе можете направити више колекција са истим насловом!');
         } else {
-          this._toastService.success($localize`:@@uspesnoKreiranaKolekcija:Успешно сте креирали колекцију: ${this.newCollectionName}`);
+          this._toastService.success(`Успешно сте креирали колекцију: ${this.newCollectionName}`);
           this.loadCollections();
         }
       },
-    () => this._toastService.warning($localize`:@@greskaNazivKolekcijeJeJedinstven:Максималан број колекција је 15, а максималан број записа у колекцији 30. \nНазив колекције је јединствен!`)
+    () => this._toastService.warning('Максималан број колекција је 15, а максималан број записа у колекцији 30.' +
+      ' Назив колекције је јединствен!')
     );
   }
 
@@ -113,15 +115,15 @@ export class AdminCollectionsPage implements OnInit {
     this._userService.deleteCollectionById(collId).subscribe(
       deleted => {
         if (!deleted) {
-          this._toastService.warning($localize`:@@greskaBrisanjeKolekcije:Дошло је до грешке, колекција није обрисана!`);
+          this._toastService.warning('Дошло је до грешке, колекција није обрисана!');
         } else {
-          this._toastService.success($localize`:@@kolekcijaObrisana:Колеција је обрисана!`);
+          this._toastService.success('Колеција је обрисана!');
           this.selectedCollection = null;
           this.selectedCollectionBooks = null;
           this.loadCollectionsAndSelectIndex();
         }
       },
-      () => this._toastService.warning($localize`:@@greskaBrisanjeKolekcije:Дошло је до грешке, колекција није обрисана!`)
+      () => this._toastService.warning('Дошло је до грешке, колекција није обрисана!')
     );
   }
 

@@ -1,41 +1,41 @@
 <div class="active-lendings-page-wrapper">
   <div class="">
-    <h2 align="center" class="mb-2" i18n="@@trenutnoNaZaduzenju">Тренутно на задужењу</h2>
+    <h2 align="center" class="mb-2">Тренутно на задужењу</h2>
     <ng-container *ngIf="lendingsReport">
       <table mdbTable class="table table-responsive-md table-responsive-sm">
         <thead >
         <tr>
           <th scope="col">
-            <a (click)="sortBy('property4')" i18n="@@naslovIcon">Наслов
+            <a (click)="sortBy('property4')">Наслов
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('property3')" i18n="@@autorIcon">Аутор
+            <a (click)="sortBy('property3')">Аутор
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('property1')" i18n="@@iznajmioIcon">Изнајмио
+            <a (click)="sortBy('property1')">Изнајмио
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('property7')" i18n="@@rokVracanjaIcon">Рок враћања
+            <a (click)="sortBy('property7')">Рок враћања
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('property5')" i18n="@@inventarniBrojIcon">Инвентарни број
+            <a (click)="sortBy('property5')">Инвентарни број
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('property10')" i18n="@@lokacijaIcon">Локација
+            <a (click)="sortBy('property10')">Локација
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
-          <th scope="col" i18n="@@produziZaduzenje">
+          <th scope="col">
             Продужи задужење
           </th>
         </tr>
@@ -55,17 +55,17 @@
           <td>{{r.property5 | shortenString: 20}}</td>
           <td>{{r.property10 }}</td>
           <td *ngIf="!r.property8 && !r.maxDatePassed">
-            <a style="color: #00b2d1;font-weight: 600;" (click)="prolongLending(r.property9)" i18n="@@produzi">
+            <a style="color: #00b2d1;font-weight: 600;" (click)="prolongLending(r.property9)">
               Продужи
             </a>
           </td>
           <td *ngIf="!r.property8 && r.maxDatePassed">
-            <span style="color: orangered;" i18n="@@prosaoRokZaVracanje">
+            <span style="color: orangered;">
               Прошао крајњи рок за враћање
             </span>
           </td>
           <td *ngIf="r.property8">
-            <span style="color: forestgreen;" i18n="@@vecProduzeno">
+            <span style="color: forestgreen;">
               Већ продужено
             </span>
           </td>

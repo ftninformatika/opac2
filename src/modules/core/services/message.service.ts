@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ApiEndpointConfig} from '../../../config/api-endpoint.config';
-import {Observable} from 'rxjs';
-import {Message, MessageDTO, MessageSenderDTO} from '../../../models/admin/message.model';
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
+import {Observable} from "rxjs";
+import {Message, MessageDTO, MessageSenderDTO} from "../../../models/admin/message.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MessageService {
   private readonly _httpClient: HttpClient;

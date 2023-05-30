@@ -68,18 +68,18 @@ export class ActiveLendingsPage implements OnInit {
     this._userService.prolongLending({email: this.memberUsername, lendingId: lendingId}).subscribe(
       resp => {
         if (!resp.prolongable) {
-          if (resp.message != null && resp.message !== '') {
+          if (resp.message != null && resp.message != "") {
             this._toastService.warning(resp.message);
           } else {
-            this._toastService.warning($localize`:@@nijeMoguceProduzitiZaduzenje:Није могуће продужити задужење`);
+            this._toastService.warning('Није могуће продужити задужење');
           }
         } else {
-          this._toastService.success($localize`:@@uspesnoSteProduziliZaduzenje:Успешно сте продужили задужење`);
+          this._toastService.success('Успешно сте продужили задужење');
         }
         this.loadLendings();
       },
       () =>
-        this._toastService.warning($localize`:@@nijeMoguceProduzitiZaduzenje:Није могуће продужити задужење`)
+        this._toastService.warning('Није могуће продужити позајмицу')
     );
   }
 

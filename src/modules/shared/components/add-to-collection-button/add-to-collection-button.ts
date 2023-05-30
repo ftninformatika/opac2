@@ -32,19 +32,19 @@ export class AddToCollectionButton implements OnInit {
       return;
     }
     if (this.collections && this.collections.find(coll => coll._id === collectionIdE).recordsIds.indexOf(recordIdE) >= 0) {
-      this._toastService.warning($localize`:@@knjigaPostojiUKolekciji:Књига већ постоји у одабраној колекцији!`);
+      this._toastService.warning('Књига већ постоји у одабраној колекцији!');
       return;
     }
     this._userService.addRecordToCollection({collectionId: collectionIdE, recordId: recordIdE})
       .subscribe(
         resp => {
           if (!resp) {
-            this._toastService.warning($localize`:@@nijeUspeloDodavanjeUKolekciju:Није успело додавање књиге у колекцију!`);
+            this._toastService.warning('Није успело додавање књиге у колекцију!');
           } else {
-            this._toastService.success($localize`:@@uspesnoSteDodaliUKolekciju:Успешно сте додали књигу у колекцију!`);
+            this._toastService.success('Успешно сте додали књигу у колекцију!');
           }
         },
-        () => this._toastService.warning($localize`:@@nijeUspeloDodavanjeUKolekciju:Није успело додавање књиге у колекцију!`)
+        () => this._toastService.warning('Није успело додавање књиге у колекцију!')
       );
   }
 

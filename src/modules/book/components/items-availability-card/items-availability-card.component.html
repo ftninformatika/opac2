@@ -1,17 +1,17 @@
 <div class="items-availability-card-wrapper">
   <mdb-card>
     <mdb-card-body>
-      <mdb-card-title><h5 style="cursor: default;" align="center" i18n="@@dostupnostPrimeraka">Доступност примерака</h5></mdb-card-title>
+      <mdb-card-title><h5 style="cursor: default;" align="center">Доступност примерака</h5></mdb-card-title>
       <ng-container *ngIf="containShowableItems">
       <mdb-card-text>
         <p class="mb-0" *ngIf="locations && locations.length > 0">
-          <strong i18n="@@odaberiteLokaciju">Одаберите локацију:</strong>
+          <strong>Одаберите локацију:</strong>
         </p>
         <select class="browser-default custom-select ml-2" *ngIf="locations && locations.length > 0"
                 [(ngModel)]="this.selectedLocation" (ngModelChange)="setAvailabilityValues()">
           <option *ngFor="let l of locations">{{l}}</option>
         </select>
-        <p class="items-availability-numbers" i18n="@@ukupnoSlobodnoRezervisano">
+        <p class="items-availability-numbers">
           укупно: <strong>{{totalItems ? totalItems : '0'}}</strong> &nbsp;
           слободно: <strong>{{availableItems ? availableItems : '0'}}</strong> &nbsp;
           резервисано: <strong>{{reservedItems ? reservedItems : '0'}}</strong>
@@ -21,7 +21,7 @@
         <div class="reserve-shelf-row">
           <div *ngIf="locations && locations.length > 0 && containShowableItems" (click)="checkLoggedUser()">
             <a>
-              <div class="reserve-shelf-buttons reserve" i18n="@@rezervisiIcon">
+              <div class="reserve-shelf-buttons reserve">
                 <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
                 Резервиши
               </div>
@@ -29,13 +29,13 @@
           </div>
           <div>
             <a>
-              <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1"  (click)="addToShelf()" i18n="@@naPolicuIcon">
+              <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(bookId) === -1"  (click)="addToShelf()">
                 <mdb-icon fas icon="list-ul" ></mdb-icon>
                 На полицу
               </div>
             </a>
             <a>
-              <div class="reserve-shelf-buttons on-shelf-btn" style="background: #c50000;color: white;" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()" i18n="@@saPoliceIcon">
+              <div class="reserve-shelf-buttons on-shelf-btn" style="background: #c50000;color: white;" *ngIf="booksOnShelf.indexOf(bookId) !== -1" (click)="removeFromShelf()">
                 <mdb-icon fas icon="list-ul" ></mdb-icon>
                 Са полице
               </div>
@@ -48,7 +48,7 @@
       <ng-container *ngIf="!containShowableItems">
         <mdb-card-text>
           <p style="color: brown; cursor: default;">
-            <strong i18n="@@nemaDostupnihPrimeraka">Нема доступних примерака за овај запис</strong>
+            <strong>Нема доступних примерака за овај запис</strong>
           </p>
         </mdb-card-text>
       </ng-container>
@@ -64,19 +64,20 @@
           <button type="button" class="close pull-right" aria-label="Затвори" (click)="successModal.hide(); ">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title center" id="myModalLabel" i18n="@@uspesnaRezervacija">Успешна резервација</h4>
+          <h4 class="modal-title center" id="myModalLabel">Успешна резервација</h4>
         </div>
         <div class="modal-body">
-          <label i18n="@@uspesnoSteRezervisali">Успешно сте резервисали књигу!
+          <label>Успешно сте резервисали књигу!
             Књигу можете подићи у року од 3 дана од тренутка када добијете
             e-mail да је књига слободна.</label>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" mdbBtn color="info" class="waves-light" aria-label="Success" style="cursor: pointer"
-                  (click)="navigateToReservations();" i18n="@@mojeRezervacije">Моје резервације
+                  (click)="navigateToReservations();">Моје резервације
           </button>
           <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" style="cursor: pointer"
-                  (click)="successModal.hide();" i18n="@@zatvori">Затвори</button>
+                  (click)="successModal.hide();">Затвори
+          </button>
         </div>
       </div>
     </div>
@@ -91,14 +92,14 @@
           <button type="button" class="close pull-right" aria-label="Затвори" (click)="messageModal.hide(); ">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title center" id="myMessageModalLabel" i18n="@@paznja">Пажња</h4>
+          <h4 class="modal-title center" id="myMessageModalLabel">Пажња</h4>
         </div>
         <div class="modal-body">
           <label>{{reservationResponseMessage}}</label>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" style="cursor: pointer"
-                  (click)="messageModal.hide();" i18n="@@ok">ОК
+                  (click)="messageModal.hide();">ОК
           </button>
         </div>
       </div>
@@ -114,17 +115,17 @@
           <button type="button" class="close pull-right" aria-label="Затвори" (click)="confirmModal.hide();">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title center" id="myConfirmModalLabel" i18n="@@potvrdaRezervacije">Потврда резервације</h4>
+          <h4 class="modal-title center" id="myConfirmModalLabel">Потврда резервације</h4>
         </div>
         <div class="modal-body">
-          <label i18n="@@daLiZeliteDaRezervisete">Да ли желите да резервишете књигу?</label>
+          <label>Да ли желите да резервишете књигу?</label>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" mdbBtn color="info" class="waves-light" aria-label="да" style="cursor: pointer"
-                  (click)="reserve();" i18n="@@da">Дa
+                  (click)="reserve();">Дa
           </button>
           <button type="button" mdbBtn color="light" class="waves-light" aria-label="Не" style="cursor: pointer"
-                  (click)="confirmModal.hide();" i18n="@@ne">Нe
+                  (click)="confirmModal.hide();">Нe
           </button>
         </div>
       </div>

@@ -35,22 +35,22 @@
       <div class="publisher" [mdbTooltip]="publishInfo">{{publishInfo | shortenString:35}}</div>
     </div>
     <div class="reserve-shelf-buttons ml-auto">
-      <a mdbTooltip="Резервиши" i18n-mdbTooltip="@@rezervisi" (click)="gotoBook(book._id);">
+      <a  [mdbTooltip]="'Резервиши'" (click)="gotoBook(book._id);">
         <div class="reserve">
           <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
-          <span i18n="@@rezervisi">Резервиши</span>
+          <span>Резервиши</span>
         </div>
       </a>
-      <a mdbTooltip="Стави на полицу" i18n-mdbTooltip="@@staviNaPolicu">
+      <a  [mdbTooltip]="'Стави на полицу'">
         <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) === -1"  (click)="onShelf(book._id)">
           <mdb-icon fas icon="list-ul" ></mdb-icon>
-          <span i18n="@@naPolicu">На полицу</span>
+          <span>На полицу</span>
         </div>
       </a>
-      <a mdbTooltip="Склони са полице" i18n-mdbTooltip="@@skloniSaPolice">
+      <a >
         <div class="reserve-shelf-buttons on-shelf-btn" *ngIf="booksOnShelf.indexOf(book._id) !== -1" (click)="removeFromShelf(book._id)">
           <mdb-icon fas icon="list-ul" ></mdb-icon>
-          <span i18n="@@saPolice">Са полице</span>
+          <span>Са полице</span>
         </div>
       </a>
       <ng-container *ngIf="isAdmin">

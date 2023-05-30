@@ -6,12 +6,12 @@ import {
 import {ERecordItemStatus, RecordItem} from '../../../../models/book.model';
 import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {BooksService} from '../../../core/services/books.service';
-import {Router} from '@angular/router';
-import {UsersService} from '../../../core/services/users.service';
-import {ModalDirective, ToastService} from 'ng-uikit-pro-standard';
-import {ConfigState} from '../../../core/states/config/config.state';
-import {ILibraryConfigurationModel} from '../../../../models/library-configuration.model';
+import {BooksService} from "../../../core/services/books.service";
+import {Router} from "@angular/router";
+import {UsersService} from "../../../core/services/users.service";
+import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
+import {ConfigState} from "../../../core/states/config/config.state";
+import {ILibraryConfigurationModel} from "../../../../models/library-configuration.model";
 
 @Component({
   selector: 'items-availability-card',
@@ -79,28 +79,30 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
   }
 
-  public checkLoggedUser() {
+  public async checkLoggedUser() {
     if (this.memberNo == null) {
-      this._router.navigate(['/user/login'], {queryParams: {redirectURL: this._router.url}});
+      await this._router.navigate(['/user/login'], {queryParams: {'redirectURL': this._router.url}});
     }
     if (this.libConfig.reservation) {
       this.confirmModal.show();
     } else {
-      this._toastService.warning($localize`:@@bibliotekaNePodrzavaFunkcionalnost:Библиотека не подржава ову функционалност!`);
+      this._toastService.warning('Библиотека не подржава ову функционалност');
     }
   }
 
   public async getSelectedLocationLode() {
-    const locationName = this.selectedLocation;
-    const location = this.recordItems.filter(recordItem => recordItem.location === locationName);
-    return location[0].locCode;
+    let locationName = this.selectedLocation;
+    let location = this.recordItems.filter(function (recordItem) {
+      return recordItem.location === locationName;
+    });
+    return location[0].locCode
   }
 
   public async reserve() {
     this.confirmModal.hide();
 
     // get the record for the selected location
-    const locationCode = await this.getSelectedLocationLode();
+    let locationCode = await this.getSelectedLocationLode()
 
     let response = null;
     try {
@@ -110,12 +112,12 @@ export class ItemsAvailabilityCardComponent implements OnInit {
         memberNo: this.memberNo
       }).toPromise();
     } catch (e) {
-      this._toastService.warning($localize`:@@greskaPriPokusajuRezervacije:Грешка при покушају резервисања књиге!`);
+      this._toastService.warning('Грешка при покушају резервисања књиге!');
       return;
     }
 
     if (response == null) {
-      this._toastService.warning($localize`:@@serverskaGreskaPriPokusajuRezervacije:Серверска грешка при покушају резервисања књиге!`);
+      this._toastService.warning('Серверска грешка при покушају резервисања књиге!');
       return;
     } else if ('message' in response) {
       this.reservationResponseMessage = response.message;
@@ -130,8 +132,8 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   }
 
   public setAvailabilityValues() {
-    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable && i.location === this.selectedLocation).length;
-    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free && i.location === this.selectedLocation).length;
-    this.reservedItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
+    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable && i.location == this.selectedLocation).length;
+    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free && i.location == this.selectedLocation).length;
+    this.reservedItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location == this.selectedLocation).length;
   }
 }

@@ -23,10 +23,8 @@
                  (keyup.enter)="search()"
                  (focusout)="init()"
                  placeholder="Претражи..."
-                 i18n-placeholder="@@pretraziTriTacke"
                  aria-label="Претражи"
-                 autocomplete="off"
-          >
+                 autocomplete="off">
           <div>
             <mdb-auto-completer #auto="mdbAutoCompleter"
                                 (select)="onAutoCompleteSelect($event)"
@@ -38,7 +36,7 @@
               <mdb-option *ngFor="let pv of results | async" [value]="pv.value">
                 <div class="ac-field">
                       <div>{{pv.value}}</div>
-                      <div class="type ml-auto"><strong><b>[{{pv.prefName}}]</b></strong></div>
+                      <div class="type ml-auto"><strong><b>[{{pv.prefName | translate}}]</b></strong></div>
                 </div>
               </mdb-option>
             </mdb-auto-completer>
@@ -49,59 +47,52 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link waves-light advanced-search-button" mdbWavesEffect [routerLink]="['search/advanced-search']">
-              <mdb-icon fas icon="tasks" [mdbTooltip]="'Напредна претрага'" i18n-md></mdb-icon>
-              <span class="adv-search-btn-text" i18n="@@naprednaPretraga">Напредна претрага</span>
+              <mdb-icon fas icon="tasks" [mdbTooltip]="'Напредна претрага'"></mdb-icon>
+              <span class="adv-search-btn-text">Напредна претрага</span>
             </a>
           </li>
-          <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light advanced-search-button language-button" mdbWavesEffect>
-              <mdb-icon fas icon="globe" [mdbTooltip]="'Језик'"></mdb-icon>
-            </a>
-            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect href="/sr-Cyrl">Ћирилица</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="/sr-Latn">Latinica</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="/en">English</a>
-            </div>
-          </li>
+<!--          TODO: put change language dropdown-->
+<!--          <button (click)="changeLanguage()">EN</button>-->
           <li class="nav-item dropdown" dropdown *ngIf="(user | async)?.userData != null">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light user-button">
               <mdb-icon fas icon="user"></mdb-icon>{{(user | async)?.userData?.firstName}}<span class="caret"></span>
             </a>
             <ng-container *ngIf="!kioskSubLocation">
               <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']" i18n="@@profil">Профил</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']" i18n="@@mojaPolica">Моја полица</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']" i18n="@@trenutnoZaduzeno">Тренутно задужено</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']" i18n="@@istorijaCitanja">Историја читања</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-reservations']" i18n="@@rezervacije">Резервације</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/profile']">Профил</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/shelf']">Моја полица</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-lendings']">Тренутно задужено</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/history']">Историја читања</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/active-reservations']">Резервације</a>
                 <div *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1" class="divider dropdown-divider"></div>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
-                  class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']" i18n="@@kolekcije">Колекције</a>
+                  class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-collections']">Колекције</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-chat']"
-                    data-cy="chat-nav-link" i18n="@@pitajBibliotekara">Питај библиотекара</a>
+                    data-cy="chat-nav-link">Питај библиотекара</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-events']"
-                    data-cy="event-nav-link" i18n="@@desavanja">Дешавања</a>
+                    data-cy="event-nav-link">Дешавања</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-faq']"
-                    data-cy="faq-nav-link" i18n="@@najcescaPitanja">Најчешћа питања</a>
+                    data-cy="faq-nav-link">Најчешћа питања</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-notifications']"
-                    data-cy="faq-nav-link" i18n="@@obavestenja">Обавештења</a>
+                    data-cy="faq-nav-link">Обавештења</a>
                 <a  *ngIf="(user | async)?.user?.authorities.indexOf('ROLE_ADMIN') !== -1"
                     class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/admin-locations']"
-                    data-cy="faq-nav-link" i18n="@@lokacije">Локације</a>
+                    data-cy="faq-nav-link">Локације</a>
                 <div class="divider dropdown-divider"></div>
-                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']" i18n="@@promenaLozinke">Промена лозинке</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()" i18n="@@odjava">Одјава</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user/change-password']">Промена лозинке</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="signOut()">Одјава</a>
               </div>
             </ng-container>
           </li>
           <li class="nav-item" *ngIf="((user | async)?.userData == null) && (!(configState | async)?.libConfig?.kioskSublocation)"
               data-cy="login-btn-nav">
-            <a class="nav-link waves-light sign-in-button" mdbWavesEffect [routerLink]="['user/login']" i18n="@@prijava">
-              <mdb-icon fas icon="user-alt"></mdb-icon>Пријава</a>
+            <a class="nav-link waves-light sign-in-button" mdbWavesEffect [routerLink]="['user/login']">
+              <mdb-icon fas icon="user-alt"></mdb-icon>Пријава
+            </a>
           </li>
         </ul>
       </links>
