@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center" *ngIf="loading">
   <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
-    <span class="sr-only">Учитавање...</span>
+    <span class="sr-only" i18n="@@ucitavanje">Учитавање...</span>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
       <!-- Grid column -->
       <div class="col-md-6 col-xl-4 px-0">
         <div class="header-div">
-          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;">
+          <h6 class="font-weight-bold mb-3 text-center text-lg-left" style="float: left; margin-bottom: 0 !important;" i18n="@@razgovori">
             Разговори</h6>
           <a mdbBtn floating="true" size="sm" class="refresh-a" (click)="refreshPage()" mdbWavesEffect>
             <i class="fas fa-sync-alt refresh-icon"></i>
@@ -42,7 +42,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-10">
-                          <div class="last-message text-muted" *ngIf="sender?.message.idReceiver">
+                          <div class="last-message text-muted" *ngIf="sender?.message.idReceiver" i18n="@@bibliotekaPoruka">
                             Библиотека: {{sender?.message.content | slice: 0:78}}
                             <div class="read-more"
                                  *ngIf="sender?.message.content && sender?.message.content.length >= 78">
@@ -129,12 +129,11 @@
           <div class="white">
             <div class="form-group basic-textarea">
               <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3"
-                        placeholder="Овде унесите поруку ..." [(ngModel)]="message"></textarea>
+                        placeholder="Овде унесите поруку ..." i18n-placeholder="@@ovdeUnesitePoruku" [(ngModel)]="message"></textarea>
             </div>
           </div>
           <button id="btn-send-msg" type="button" mdbBtn color="default" data-toggle="modal"
-                  data-target="#basicExample" (click)="sendMessage()" mdbWavesEffect>Пошаљи
-          </button>
+                  data-target="#basicExample" (click)="sendMessage()" mdbWavesEffect i18n="@@posalji">Пошаљи</button>
         </div>
 
       </div>

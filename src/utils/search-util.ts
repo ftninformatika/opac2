@@ -77,7 +77,7 @@ export class SearchUtil {
     if (!searchInputsArr.every((val, i, arr) => val === arr[0])) {
       return null;
     }
-    return this.spanText(sm.text1) + ', по: аутору, наслову, издавачу и кљ. речима';
+    return this.spanText(sm.text1) + $localize`:@@poAutoruNaslovuIzdavacu:, по: аутору, наслову, издавачу и кљ. речима`;
   }
 
   private static advancedSearchText(sm: ISearchModel): string {

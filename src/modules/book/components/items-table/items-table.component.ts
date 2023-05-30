@@ -55,9 +55,9 @@ export class ItemsTableComponent implements OnInit, OnDestroy {
       singleSelection: false,
       idField: 'value',
       textField: 'label',
-      selectAllText: 'Одабери све',
-      unSelectAllText: 'Поништи све',
-      searchPlaceholderText: 'Филтрирај',
+      selectAllText: $localize`:@@odaberiSve:Одабери све`,
+      unSelectAllText: $localize`:@@ponistiSve:Поништи све`,
+      searchPlaceholderText: $localize`:@@filtriraj:Филтрирај`,
       itemsShowLimit: 3,
       allowSearchFilter: true
     };

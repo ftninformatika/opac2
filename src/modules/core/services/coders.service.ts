@@ -1,11 +1,11 @@
-import { ApiEndpointConfig } from "../../../config/api-endpoint.config";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { ICoder } from "../../../models/coders/coder.model";
+import { ApiEndpointConfig } from '../../../config/api-endpoint.config';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ICoder } from '../../../models/coders/coder.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CodersService {
   private readonly _httpClient: HttpClient;

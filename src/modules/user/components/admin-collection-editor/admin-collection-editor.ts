@@ -65,12 +65,12 @@ export class AdminCollectionEditor implements OnDestroy {
     this._userService.adminCreateModifyCollection(this.collection).subscribe(
 resp => {
       if (!resp) {
-          this._toastService.warning('Није успело чување промеа у колекцији!');
+          this._toastService.warning($localize`:@@nijeUspeloCuvanjePromenaUKolekciji:Није успело чување промеа у колекцији!`);
         } else {
-          this._toastService.success('Успешно сте променили колецију!');
+          this._toastService.success($localize`:@@uspesnoStePromeniliKolokciju:Успешно сте променили колецију!`);
         }
       },
-() => this._toastService.warning('Није успело чување промеа у колекцији!')
+() => this._toastService.warning($localize`:@@nijeUspeloCuvanjePromenaUKolekciji:Није успело чување промеа у колекцији!`)
     );
   }
 

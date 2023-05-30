@@ -6,43 +6,43 @@ import {
   ViewEncapsulation,
   HostBinding,
   OnDestroy,
-} from "@angular/core";
-import { BooksService } from "../../../core/services/books.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Store } from "@ngxs/store";
-//import { MetaService } from "@ngx-meta/core";
-import { ScrollToService } from "@nicky-lenaers/ngx-scroll-to";
-import { BookCoverUtils } from "../../../../utils/book-cover.utils";
-import { UserState } from "../../../core/states/user/user.state";
-import { ERecordFormatType } from "../../../core/pipes/record-format.pipe";
-import { Book, ERecordItemStatus } from "../../../../models/book.model";
-import { ConfigState } from "../../../core/states/config/config.state";
-import { RecordUtils } from "../../../../utils/record-utils";
-import { IPrefixValue } from "../../../../models/prefix-value.model";
-import { SearchUtil } from "../../../../utils/search-util";
-import { IResultPageOptionsInitial } from "../../../../models/search/result-page-options.model";
-import { CryptoUtils } from "../../../../utils/crypto.utils";
-import * as Mirador from "../../../../assets/mirador/mirador.min.js";
+} from '@angular/core';
+import { BooksService } from '../../../core/services/books.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+// import { MetaService } from "@ngx-meta/core";
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+import { BookCoverUtils } from '../../../../utils/book-cover.utils';
+import { UserState } from '../../../core/states/user/user.state';
+import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
+import { Book, ERecordItemStatus } from '../../../../models/book.model';
+import { ConfigState } from '../../../core/states/config/config.state';
+import { RecordUtils } from '../../../../utils/record-utils';
+import { IPrefixValue } from '../../../../models/prefix-value.model';
+import { SearchUtil } from '../../../../utils/search-util';
+import { IResultPageOptionsInitial } from '../../../../models/search/result-page-options.model';
+import { CryptoUtils } from '../../../../utils/crypto.utils';
+import * as Mirador from '../../../../assets/mirador/mirador.min.js';
 import {
   animate,
   state,
   style,
   transition,
   trigger,
-} from "@angular/animations";
-import { MiradorViewerComponent } from "../../components/mirador-viewer/mirador-viewer.component";
+} from '@angular/animations';
+import { MiradorViewerComponent } from '../../components/mirador-viewer/mirador-viewer.component';
 
 @Component({
-  selector: "preview-record",
+  selector: 'preview-record',
   animations: [
-    trigger("openClose", [
-      state("true", style({ width: "0" })),
-      state("false", style({ width: "100%" })),
-      transition("false <=> true", animate(1500)),
+    trigger('openClose', [
+      state('true', style({ width: '0' })),
+      state('false', style({ width: '100%' })),
+      transition('false <=> true', animate(1500)),
     ]),
   ],
-  templateUrl: "preview-record.page.html",
-  styleUrls: ["preview-record.page.scss"],
+  templateUrl: 'preview-record.page.html',
+  styleUrls: ['preview-record.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class PreviewRecordPage implements OnInit, OnDestroy {
@@ -50,7 +50,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _store: Store;
-  //private readonly _metaService: MetaService;
+  // private readonly _metaService: MetaService;
   private readonly _scrollToService: ScrollToService;
   RecordFormatType = ERecordFormatType;
   private showLocations: boolean;
@@ -74,7 +74,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   ) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
-    //this._metaService = metaService;
+    // this._metaService = metaService;
     this._scrollToService = scrollToService;
     this._router = router;
     this._store = store;
@@ -86,8 +86,8 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this._activatedRoute.paramMap.subscribe(async (params) => {
-      const lib = params.get("lib");
-      const bookId = params.get("id");
+      const lib = params.get('lib');
+      const bookId = params.get('id');
       if (lib && lib !== this.lib) {
         await this._router.navigate([`lib/${lib}`], {
           state: { proceedUrl: `/book/${lib}/${bookId}` },
@@ -98,7 +98,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
         async (data) => {
           await data;
           if (!data) {
-            await this._router.navigate(["/error/not-found"]);
+            await this._router.navigate(['/error/not-found']);
           } else {
             this.recordURL = window.location.href;
             this._scrollToService.scrollTo({ offset: 0 });
@@ -114,7 +114,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
           }
         },
         async () => {
-          await this._router.navigate(["/error/not-found"]);
+          await this._router.navigate(['/error/not-found']);
         }
       );
     });
@@ -125,41 +125,41 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
 
   public share(socialNetwork: string) {
     switch (socialNetwork) {
-      case "fb":
+      case 'fb':
         {
-          const url = "http://www.facebook.com/sharer.php?u=" + this.recordURL;
+          const url = 'http://www.facebook.com/sharer.php?u=' + this.recordURL;
           const newWindow = window.open(
             url,
-            "name",
-            "height=500,width=520,top=200,left=300,resizable"
+            'name',
+            'height=500,width=520,top=200,left=300,resizable'
           );
           if (window.focus) {
             newWindow.focus();
           }
         }
         break;
-      case "tw":
+      case 'tw':
         {
-          const url = "https://twitter.com/intent/tweet?text=" + this.recordURL;
+          const url = 'https://twitter.com/intent/tweet?text=' + this.recordURL;
           const newWindow = window.open(
             url,
-            "name",
-            "height=500,width=520,top=200,left=300,resizable"
+            'name',
+            'height=500,width=520,top=200,left=300,resizable'
           );
           if (window.focus) {
             newWindow.focus();
           }
         }
         break;
-      case "li":
+      case 'li':
         {
           const url =
-            "https://www.linkedin.com/shareArticle?mini=true&url=" +
+            'https://www.linkedin.com/shareArticle?mini=true&url=' +
             this.recordURL;
           const newWindow = window.open(
             url,
-            "name",
-            "height=500,width=520,top=200,left=300,resizable"
+            'name',
+            'height=500,width=520,top=200,left=300,resizable'
           );
           if (window.focus) {
             newWindow.focus();
@@ -186,7 +186,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
       searchModel
     )}&pageOptions=${JSON.stringify(pageOptions)}`;
     const encodedURI = CryptoUtils.encryptData(uriChunk);
-    await this._router.navigate(["/search/result"], {
+    await this._router.navigate(['/search/result'], {
       queryParams: { s: encodedURI },
     });
   }
@@ -196,20 +196,20 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
       return;
     }
     const tags = [
-      { property: "og:title", content: this.book.title },
-      { property: "og:type", content: "book" },
-      { property: "og:url", content: window.location.href },
+      { property: 'og:title', content: this.book.title },
+      { property: 'og:type', content: 'book' },
+      { property: 'og:url', content: window.location.href },
       {
-        property: "og:image",
+        property: 'og:image',
         content: this.book.imageUrl
           ? this.book.imageUrl
-          : "../../../../assets/book/nocover/1.jpg",
+          : '../../../../assets/book/nocover/1.jpg',
       },
       {
-        property: "og:description",
+        property: 'og:description',
         content: this.book.description
           ? this.book.description
-          : "Није унет опис ове књиге",
+          : $localize`:@@nijeUnetOpisKnjige:Није унет опис ове књиге`,
       },
     ];
     for (const t of tags) {

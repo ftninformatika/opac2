@@ -60,19 +60,19 @@ export class ChangePasswordPage implements OnInit {
       this._userService.changePassword({newPassword: this.pass1, username: this.loggedInUsername}).subscribe(
         response => {
           if (response) {
-            this._toastService.success('Успешно сте променили лозинку!');
+            this._toastService.success($localize`:@@uspesnoPromenjenaLozinka:Успешно сте променили лозинку!`);
             this._router.navigate(['/']);
           } else {
-            this._toastService.warning('Дошло је до грешке приликом промене лозинке!');
+            this._toastService.warning($localize`:@@greskaPromenaLozinke:Дошло је до грешке приликом промене лозинке!`);
           }
         },
         () => {
-          this._toastService.warning('Дошло је до грешке приликом промене лозинке!');
+          this._toastService.warning($localize`:@@greskaPromenaLozinke:Дошло је до грешке приликом промене лозинке!`);
         }
       );
     } else {
       this._toastService
-        .info('Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!');
+        .info($localize`:@@unesiteLozinkuKriterijum:Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!`);
     }
   }
 
