@@ -1,26 +1,26 @@
 <div class="upload-description-cover-page-wrapper" *ngIf="book">
-  <h4 align="center" *ngIf="book.title" i18n="@@naslovDvotacka">Наслов: {{book.title}}</h4>
-  <h4 align="center" *ngIf="book.authors" i18n="@@autoriDvotacka">Аутори: {{book.authors}}</h4>
-  <h4 align="center" *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO" i18n="@@izdavacDvotacka">
+  <h4 align="center" *ngIf="book.title">Наслов: {{book.title}}</h4>
+  <h4 align="center" *ngIf="book.authors">Аутори: {{book.authors}}</h4>
+  <h4 align="center" *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
     Издавач: {{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}
   </h4>
-    <h4 align="center" *ngIf="book.isbn" i18n="@@isbnDvotacka">ISBN: {{book.isbn}}</h4>
-    <h4 align="center" *ngIf="book.issn" i18n="@@issnDvotacka">ISSN: {{book.issn}}</h4>
+    <h4 align="center" *ngIf="book.isbn">ISBN: {{book.isbn}}</h4>
+    <h4 align="center" *ngIf="book.issn">ISSN: {{book.issn}}</h4>
     <div class="desc-and-cover ml-2 mr-12">
       <div class="description">
         <div class="md-form">
-          <h4 i18n="@@opisKnjige">Опис књиге</h4>
+          <h4>Опис књиге</h4>
           <textarea type="text" id="form7" class="form-control"
                     [(ngModel)]="bookDescription" mdbInput></textarea>
         </div>
       </div>
       <div class="file-upload">
-        <div><h4 i18n="@@slikaKorica">Слика корица</h4></div>
+        <div><h4>Слика корица</h4></div>
         <div class="view overlay" style="width: 220px">
           <span style="color:red;" *ngIf="message">{{message}}</span>
 <!--          No picture container-->
           <div class="pattern6 waves-effect waves-light rgba-blue-strong drag-container dashed-border" *ngIf="!book.imageUrl && !imgURL" (drop)="onDrop($event)">
-            <p class="drag-text" align="center" i18n="@@klikniIliPrevuci">
+            <p class="drag-text" align="center">
               Кликни или превуци датотеку са сликом
             </p>
           </div>
@@ -32,14 +32,14 @@
           <div class="file-upload-panel overlay-content" (click)="file.click()" (drop)="onDrop($event)"
                (dragover)="onDragOver($event)">
             <div class="mask pattern6 waves-effect waves-light rgba-white-strong drag-container dashed-border">
-              <p class="drag-text" align="center" i18n="@@klikniIliPrevuci">
+              <p class="drag-text" align="center">
                 Кликни или превуци датотеку са сликом
               </p>
             </div>
           </div>
         </div>
         <div class="mt-4" align="center">
-          <label for="file" class="custom-file-upload" i18n="@@ucitajSliku">
+          <label for="file" class="custom-file-upload">
             <i class="fa fa-cloud-upload"></i> Учитај слику
           </label>
           <input id="file" #file class="mb-2" type="file" accept='image/*' (change)="previewImage(file.files)" />
@@ -47,7 +47,7 @@
       </div>
     </div>
   <div align="center" class="mb-4 mt-2">
-    <button mdbBtn type="button" color="light-blue" mdbWavesEffect [routerLink]="['/book', lib, book._id]" i18n="@@nazad">Назад</button>
-    <button mdbBtn type="button" color="dark-green" mdbWavesEffect (click)="saveChanges()" i18n="@@sacuvajPromene">Сачувај промене</button>
+    <button mdbBtn type="button" color="light-blue" mdbWavesEffect [routerLink]="['/book', lib, book._id]">Назад</button>
+    <button mdbBtn type="button" color="dark-green" mdbWavesEffect (click)="saveChanges()">Сачувај промене</button>
   </div>
 </div>

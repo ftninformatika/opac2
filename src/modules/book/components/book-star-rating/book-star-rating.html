@@ -8,8 +8,8 @@
     <ngb-rating [(rate)]="starRate" [starTemplate]="t" max="5" (rateChange)="rateBook($event)"></ngb-rating>
   </div>
   <div class="avg-rating">
-    <span *ngIf="bookRating" i18n="@@rejting">
-      Рејтинг:&nbsp;&nbsp;{{bookRating ? bookRating.avgRating : noVotes}} / {{bookRating ? bookRating.totalRates : 0}}
+    <span *ngIf="bookRating" >
+      Рејтинг:&nbsp;&nbsp;{{bookRating ? bookRating.avgRating : 'Књига нема ни један глас'}} / {{bookRating ? bookRating.totalRates : 0}}
     </span>
   </div>
 </div>

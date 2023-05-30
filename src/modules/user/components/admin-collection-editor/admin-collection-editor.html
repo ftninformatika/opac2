@@ -1,22 +1,21 @@
 <div class="admin-collection-editor-wrapper" xmlns="http://www.w3.org/1999/html">
   <div class="collection-present ml-4 mr-2" *ngIf="collection">
       <div class="top-panel mb-2 ml-4 mt-4">
-        <mdb-checkbox class="mr-2" *ngIf="collection.recordsIds && collection.recordsIds.length >0" [(ngModel)]="collection.showCollection" (change)="touchedEvent.emit(true);" i18n="@@prikaziNaNaslovnoj">
-          Прикажи на насловној страници
+        <mdb-checkbox class="mr-2" *ngIf="collection.recordsIds && collection.recordsIds.length >0" [(ngModel)]="collection.showCollection" (change)="touchedEvent.emit(true);">Прикажи на насловној страници
         </mdb-checkbox>
         <div class="row md-form md-outline">
-          <h5 class="ml-2" i18n="@@kolekcija">Колекција: </h5>
+          <h5 class="ml-2">Колекција: </h5>
           <input mdbInput type="text" class="form-control col ml-2 mr-2" [(ngModel)]="collection.title" (ngModelChange)="touchedEvent.emit(true);">
         </div>
         <div class="row">
-          <button type="button" mdbBtn color="info" mdbWavesEffect (click)="saveChanges()" i18n="@@sacuvajPromene">Сачувај промене</button>
-          <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="basicModal.show();" i18n="@@brisiKolekciju">Бриши колекцију</button>
+          <button type="button" mdbBtn color="info" mdbWavesEffect (click)="saveChanges()">Сачувај промене</button>
+          <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="basicModal.show();">Бриши колекцију</button>
         </div>
       </div>
     <ng-container *ngIf="books">
     <div class="books ml-3">
           <div class="book mr-2 mt-2" *ngFor="let b of books;let i = index" >
-            <div class="delete" (click)="removeBook(i)"><span i18n="@@ukloni">Уклони</span></div>
+            <div class="delete" (click)="removeBook(i)"><span>Уклони</span></div>
             <book-card  [book]="b" ></book-card>
             <div class="move-books">
               <span class="mr-1" *ngIf="i != 0" (click)="shiftBook(i, i - 1)">
@@ -34,7 +33,7 @@
     </ng-container>
     <ng-container *ngIf="!books">
       <div>
-        <h4 class="ml-1" i18n="@@nemateNiJednuKnjiguUKolekciji" >
+        <h4 class="ml-1">
           Немате ни једну књигу у одабраној колекцији.<br/> Додајте књиге из претраживања у колекцију, како би сте могли да је уређујете!
         </h4>
       </div>
@@ -49,14 +48,14 @@
             <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide(); ">
               <span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title center" i18n="@@brisanjeKolekcije">Брисање колекције</h4>
+            <h4 class="modal-title center" id="myModalLabel">Брисање колекције</h4>
           </div>
           <div class="modal-body">
-            <label i18n="@@daLiSteSigurniZaBrisanjeKolekcije">Да ли сте сигурни да желите да обришете колекцију: {{collection.title}} ?</label>
+            <label>Да ли сте сигурни да желите да обришете колекцију: {{collection.title}} ?</label>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="basicModal.hide();" i18n="@@zatvori">Затвори</button>
-            <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete" (click)="deleteBook(collection._id)" i18n="@@obrisi">Обриши</button>
+            <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="basicModal.hide();" >Затвори</button>
+            <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete" (click)="deleteBook(collection._id)">Обриши</button>
           </div>
         </div>
       </div>
@@ -84,7 +83,7 @@
 <!--      </div>-->
 <!--    </div>-->
 
-  <div class="collection-not-present" *ngIf="!collection" i18n="@@nemaNapravljenihKolekcija">
+  <div class="collection-not-present" *ngIf="!collection">
     Нема направљених колекција.
   </div>
 

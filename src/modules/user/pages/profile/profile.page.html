@@ -3,33 +3,33 @@
     <div class="col-md-12">
       <div class="card card-cascade narrower">
         <div class="view view-cascade gradient-card-header profile-table-header">
-          <h4 class="h4-responsive" i18n="@@licniPodaci">Лични подаци</h4>
+          <h4 class="h4-responsive">Лични подаци</h4>
         </div>
         <div class="card-body card-body-cascade text-center">
           <form>
             <div class="row">
               <div class="col-md-4">
                 <div class="md-form">
-                  <input placeholder="{{formatedSigningUntil ? ('Активна до:       ' + formatedSigningUntil ) : 'Истекла'}}" i18n-placeholder="@@statusClanarinePlacehoder" [disabled]='true' type="text" id="form0" class="form-control">
-                  <label class="active disabled" for="form0" i18n="@@statusClanarine">Статус чланарине</label>
+                  <input placeholder="{{formatedSigningUntil ? ('Активна до:       ' + formatedSigningUntil ) : 'Истекла'}}" [disabled]='true' type="text" id="form0" class="form-control">
+                  <label class="active disabled" for="form0">Статус чланарине</label>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.email}}" [disabled]='true' type="text" id="form11" class="form-control">
-                  <label class="active disabled" for="form11" i18n="@@email">Email</label>
+                  <label class="active disabled" for="form11">Email</label>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.firstName}}" [disabled]='true' type="text" id="form12" class="form-control">
-                  <label class="active disabled" for="form12" i18n="@@ime">Име</label>
+                  <label class="active disabled" for="form12">Име</label>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.lastName}}" [disabled]='true' type="text" id="form13" class="form-control">
-                  <label class="active disabled" for="form13" i18n="@@prezime">Презиме</label>
+                  <label class="active disabled" for="form13">Презиме</label>
                 </div>
               </div>
             </div>
@@ -37,13 +37,13 @@
               <div class="col-md-6">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.address}}" [disabled]='true' type="text" id="form21" class="form-control">
-                  <label class="active disabled" for="form21" i18n="@@adresa1">Адреса 1</label>
+                  <label class="active disabled" for="form21">Адреса 1</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.secAddress}}" [disabled]='true' type="text" id="form22" class="form-control">
-                  <label class="active disabled" for="form22" i18n="@@adresa2">Адреса 2</label>
+                  <label class="active disabled" for="form22">Адреса 2</label>
                 </div>
               </div>
             </div>
@@ -51,19 +51,19 @@
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.city}}" type="text" id="form31" [disabled]='true' class="form-control">
-                  <label class="active disabled" for="form31" i18n="@@mesto">Место</label>
+                  <label class="active disabled" for="form31">Место</label>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.zip}}" type="text" id="form32" [disabled]='true' class="form-control">
-                  <label class="active disabled" for="form32" i18n="@@pttBroj">ПТТ број</label>
+                  <label class="active disabled" for="form32">ПТТ број</label>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="md-form">
                   <input placeholder="{{(userState | async)?.userData?.country}}" type="text" [disabled]='true' id="form33" class="form-control">
-                  <label class="active disabled" for="form33" i18n="@@drzava">Држава</label>
+                  <label class="active disabled" for="form33">Држава</label>
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-  <p class="text-right" i18n="@@zaImenuLicnihPodataka">
+  <p class="text-right">
     За измену личних података потребно је да се јавите у Вашу библиотеку.
   </p>
 </div>

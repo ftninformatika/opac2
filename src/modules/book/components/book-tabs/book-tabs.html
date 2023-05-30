@@ -1,12 +1,12 @@
 <div class="book-tabs-wrapper">
   <div class="book-tabs">
     <mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3  blue'" (getActiveTab)="changeTab($event)">
-      <mdb-tab heading="ДЕТАЉНО" i18n-heading="@@detaljno">
+      <mdb-tab heading="ДЕТАЉНО">
         <div class="row">
           <div class="col-12 mt-2">
             <dl class="row">
               <ng-container *ngIf="book.authors && book.authors.length > 0 && book.authors[0].trim() !== ''">
-                <dt class="col-sm-2" i18n="@@autori">Аутори</dt>
+                <dt class="col-sm-2">Аутори</dt>
                 <dd class="col-sm-10">
                   <a (click)="linkedSearch('authors', book.authors[0])" style="cursor: pointer;color: darkblue; text-decoration: underline">
                   {{book.authors}}
@@ -15,7 +15,7 @@
               </ng-container>
 
               <ng-container *ngIf="book.otherAuthors && book.otherAuthors.length > 0">
-                <dt class="col-sm-2" i18n="@@ostaliAutori">Остали аутори</dt>
+                <dt class="col-sm-2">Остали аутори</dt>
                 <dd class="col-sm-10">
                   <a *ngFor="let oa of book.otherAuthors"
                      (click)="linkedSearch('authors', oa)"
@@ -29,50 +29,50 @@
               </ng-container>
 
               <ng-container *ngIf="book.title">
-                <dt class="col-sm-2"i18n="@@naslov">Наслов</dt>
+                <dt class="col-sm-2">Наслов</dt>
                 <dd class="col-sm-10">{{book.title}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL">
-                <dt class="col-sm-2" i18n="@@url">URL</dt>
+                <dt class="col-sm-2" >URL</dt>
                 <dd class="col-sm-10"><span [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"></span></dd>
               </ng-container>
 
               <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO">
-                <dt class="col-sm-2" i18n="@@izdavac">Издавач</dt>
+                <dt class="col-sm-2" >Издавач</dt>
                 <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_PUBLISHER_INFO}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO">
-                <dt class="col-sm-2" i18n="@@fizickiOpis">Физички опис</dt>
+                <dt class="col-sm-2" >Физички опис</dt>
                 <dd class="col-sm-10">{{book | recordFormat:RecordFormatType.FORMAT_BOOK_PHYSICAL_INFO}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book.notes">
-                <dt class="col-sm-2" i18n="@@napomene">Напомене</dt>
+                <dt class="col-sm-2">Напомене</dt>
                 <dd class="col-sm-10">{{book.notes}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book.isbn">
-                <dt class="col-sm-2" i18n="@@isbn">ISBN</dt>
+                <dt class="col-sm-2">ISBN</dt>
                 <dd class="col-sm-10">{{book.isbn}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book.issn">
-                <dt class="col-sm-2" i18n="@@issn">ISSN</dt>
+                <dt class="col-sm-2">ISSN</dt>
                 <dd class="col-sm-10">{{book.issn}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book.udk">
-                <dt class="col-sm-2" i18n="@@udk">UDK</dt>
+                <dt class="col-sm-2">UDK</dt>
                 <dd class="col-sm-10">{{book.udk}}</dd>
               </ng-container>
 
               <ng-container *ngIf="book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO">
-                <dt class="col-sm-2" i18n="@@signatura">Сигнатура</dt>
+                <dt class="col-sm-2">Сигнатура</dt>
                 <dd class="col-sm-10">
                   {{book | recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
-                  <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;" i18n="@@ostale">...остале</strong></span>
+                  <span [ngx-scroll-to]="'#end'"><strong style="color: darkblue; cursor: pointer; font-size: 13px;">...остале</strong></span>
                 </dd>
               </ng-container>
 
@@ -80,13 +80,13 @@
           </div>
         </div>
       </mdb-tab>
-      <mdb-tab heading="ISBD" i18n-heading="@@isbd" *ngIf="!book.isbdHtml || book.isbdHtml.trim() != ''">
+      <mdb-tab heading="ISBD" *ngIf="!book.isbdHtml || book.isbdHtml.trim() != ''">
         <div class="row">
           <div class="col-12 mt-2 isbd" [innerHTML]="book.isbdHtml">
           </div>
         </div>
       </mdb-tab>
-      <mdb-tab heading="UNIMARC" i18n-heading="@@unimarc">
+      <mdb-tab heading="UNIMARC">
         <div class="row">
           <div class="col-12 mt-2" *ngIf="book.record && book.record.fields">
             <p class="unimarc">

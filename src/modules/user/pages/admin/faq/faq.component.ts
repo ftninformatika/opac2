@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FaqService} from '../../../../core/services/faq.service';
-import {Faq, FAQResultPage, IFAQPageOptions, IFAQPageOptionsInitial} from '../../../../../models/admin/faq.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ModalDirective, ToastService} from 'ng-uikit-pro-standard';
-import {ArrayUtils} from '../../../../../utils/array.utils';
+import {FaqService} from "../../../../core/services/faq.service";
+import {Faq, FAQResultPage, IFAQPageOptions, IFAQPageOptionsInitial} from "../../../../../models/admin/faq.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ModalDirective, ToastService} from "ng-uikit-pro-standard";
+import {ArrayUtils} from "../../../../../utils/array.utils";
 
 @Component({
   selector: 'app-faq',
@@ -26,7 +26,7 @@ export class FaqComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pageOptions = {...IFAQPageOptionsInitial};
+    this.pageOptions = {...IFAQPageOptionsInitial}
     let pageNum = 0;
     if (this.pageOptions.currentPage > 0) {
       pageNum = this.pageOptions.currentPage - 1;
@@ -73,7 +73,7 @@ export class FaqComponent implements OnInit {
 
   onBtnSaveFaq() {
     if (this.faqForm.invalid) {
-      this.toastService.warning($localize`:@@pitanjeOdgovorObaveznaPolja:Питање и одговор су обавезна поља`);
+      this.toastService.warning("Питање и одговор су обавезна поља");
       return;
     }
     if (!this.editing) {
@@ -86,19 +86,19 @@ export class FaqComponent implements OnInit {
   add() {
     this.faqService.create(this.faq).subscribe(createdFaq => {
       if (createdFaq) {
-        this.addToList(createdFaq);
+        this.addToList(createdFaq)
         this.createModal.hide();
-        this.toastService.success($localize`:@@uspesnoDodatoPitanje:Успешно сте додали ново питање и одговор`);
+        this.toastService.success("Успешно сте додали ново питање и одговор")
       } else {
-        this.toastService.error($localize`:@@greskaDodavanjePitanja:Дошло је до грешке приликом додавања новог питања. Покушајте поново`);
+        this.toastService.error("Дошло је до грешке приликом додавања новог питања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error($localize`:@@greskaDodavanjePitanja:Дошло је до грешке приликом додавања новог питања. Покушајте поново`);
-    });
+      this.toastService.error("Дошло је до грешке приликом додавања новог питања. Покушајте поново")
+    })
   }
 
   addToList(createdFaq: Faq) {
-    if (this.faqs.length === this.pageOptions.pageSize) {
+    if (this.faqs.length == this.pageOptions.pageSize) {
       this.getAll(this.pageOptions.currentPage);
     } else {
       this.faqs = [...this.faqs, createdFaq];
@@ -114,17 +114,17 @@ export class FaqComponent implements OnInit {
   edit() {
     this.faqService.edit(this.faq).subscribe(response => {
       if (response) {
-        this.faqs = ArrayUtils.updateArray(this.faq, this.faqs);
-        this.toastService.success($localize`:@@uspesnoIzmenjenoPitanje:Успешно сте изменили питање`);
+        this.faqs = ArrayUtils.updateArray(this.faq, this.faqs)
+        this.toastService.success("Успешно сте изменили питање");
         this.editing = false;
         this.createModal.hide();
         this.getAll(this.pageOptions.currentPage - 1);
       } else {
-        this.toastService.error($localize`:@@greskaIzmenaPitanja:Дошло је до грешке приликом измене питања. Покушајте поново`);
+        this.toastService.error("Дошло је до грешке приликом измене питања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error($localize`:@@greskaIzmenaPitanja:Дошло је до грешке приликом измене питања. Покушајте поново`);
-    });
+      this.toastService.error("Дошло је до грешке приликом измене питања. Покушајте поново")
+    })
   }
 
   onBtnDeleteFaq(faq: Faq) {
@@ -136,12 +136,12 @@ export class FaqComponent implements OnInit {
     this.faqService.delete(this.faq._id).subscribe(response => {
       if (response) {
         this.faqs = ArrayUtils.deleteItemFromArray(this.faq, this.faqs);
-        this.toastService.success($localize`:@@uspesnoObrisanoPitanje:Успешно сте обрисали питање`);
+        this.toastService.success("Успешно сте обрисали питање")
       } else {
-        this.toastService.error($localize`:@@greskaBrisanjePitanja:Дошло је до грешке приликом брисања питања. Покушајте поново`);
+        this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error($localize`:@@greskaBrisanjePitanja:Дошло је до грешке приликом брисања питања. Покушајте поново`);
+      this.toastService.error("Дошло је до грешке приликом брисања питања. Покушајте поново")
     });
   }
 

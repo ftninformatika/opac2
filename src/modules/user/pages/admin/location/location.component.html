@@ -1,9 +1,9 @@
 <button id="btn-add-library" type="button" mdbBtn color="default" data-toggle="modal" data-cy="new-library"
-        data-target="#basicExample" (click)="onBtnCreteNewLocation();createModal.show()" mdbWavesEffect i18n="@@novaLokacija">Нова локација
+        data-target="#basicExample" (click)="onBtnCreteNewLocation();createModal.show()" mdbWavesEffect>Нова локација
 </button>
 
 <div class="text-center admin-page-title">
-  <h5 i18n="@@biblioteke">БИБЛИОТЕКЕ</h5><br>
+  <h5>БИБЛИОТЕКЕ</h5><br>
 </div>
 
 <main>
@@ -16,12 +16,12 @@
       <div class="media-body">
         <hr>
         <div class="table-column-btns">
-          <div class="div-edit" mdbTooltip="Измени" i18n-mdbTooltip="@@izmeni" placement="left" style="cursor: pointer"
+          <div class="div-edit" mdbTooltip="Измени" placement="left" style="cursor: pointer"
                (click)="setEditLibrary(library)"
                data-cy="edit-btn">
             <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
           </div>
-          <div class="div-delete" mdbTooltip="Избриши" i18n-mdbTooltip="@@izbrisi" placement="left" style="cursor: pointer"
+          <div class="div-delete" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
                (click)="setLibraryForDelete(library);  deleteModal.show();">
             <i class="fas fa-trash red-text fa-2x"></i>
           </div>
@@ -57,10 +57,8 @@
                      [maxSize]="5"
                      [directionLinks]="true"
                      [responsive]="true"
-                     previousLabel="Претходна"
-                     i18n-previousLabel="@@prethodna"
-                     nextLabel="Следећа"
-                     i18n-nextLabel="@@sledeca"
+                     [previousLabel]="'Претходна'"
+                     [nextLabel]="'Следећа'"
                      (pageChange)="onPageChange($event)"
                      *ngIf="libraries">
 </pagination-controls>
@@ -72,7 +70,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title w-100 font-weight-bold" i18n="@@lokacijaLocation">
+        <h5 class="modal-title w-100 font-weight-bold">
           <i class="fas fa-map-marker-alt"></i>
           Локација
         </h5>
@@ -90,8 +88,8 @@
                  [(ngModel)]="library.name"
                  data-cy="name"
                  mdbInput mdbValidate>
-          <label for="orangeForm-name" i18n="@@nazivZvezdica">* Назив</label>
-          <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)" i18n="@@nazivJeObavezan">
+          <label for="orangeForm-name">* Назив</label>
+          <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)">
             Назив је обавезан
           </mdb-error>
         </div>
@@ -103,8 +101,8 @@
                  [(ngModel)]="library.address"
                  data-cy="address"
                  mdbInput mdbValidate>
-          <label for="orangeForm-address" i18n="@@adresaZvezdica">* Адреса</label>
-          <mdb-error *ngIf="address.invalid && (address.dirty || address.touched)" i18n="@@adresaJeObavezna">
+          <label for="orangeForm-address">* Адреса</label>
+          <mdb-error *ngIf="address.invalid && (address.dirty || address.touched)">
             Адреса је обавезна
           </mdb-error>
         </div>
@@ -116,8 +114,8 @@
                  [(ngModel)]="library.longitude"
                  data-cy="longitude"
                  mdbInput mdbValidate>
-          <label for="orangeForm-longitude" i18n="@@longitudaZvezdica">* Лонгитуда</label>
-          <mdb-error *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)" i18n="@@longitudaJeObavezna">
+          <label for="orangeForm-longitude">* Лонгитуда</label>
+          <mdb-error *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)">
             Лонгитуда је обавезна. Унесите број
           </mdb-error>
         </div>
@@ -129,8 +127,8 @@
                  [(ngModel)]="library.latitude"
                  data-cy="latitude"
                  mdbInput mdbValidate>
-          <label for="orangeForm-latitude" i18n="@@latitudaZvezdica">* Латитуда</label>
-          <mdb-error *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)" i18n="@@latitudaJeObavezna">
+          <label for="orangeForm-latitude">* Латитуда</label>
+          <mdb-error *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)">
             Латитуда је обавезна. Унесите број
           </mdb-error>
         </div>
@@ -142,8 +140,8 @@
                  [(ngModel)]="library.phone"
                  data-cy="phone"
                  mdbInput mdbValidate>
-          <label for="orangeForm-phone" i18n="@@telefonZvezdica">* Телефон</label>
-          <mdb-error *ngIf="phone.invalid && (phone.dirty || phone.touched)" i18n="@@telefonJeObavezan">
+          <label for="orangeForm-phone">* Телефон</label>
+          <mdb-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">
             Телефон је обавезан
           </mdb-error>
         </div>
@@ -155,8 +153,8 @@
                  [(ngModel)]="library.email"
                  data-cy="email"
                  mdbInput mdbValidate>
-          <label for="orangeForm-email" i18n="@@emailZvezdica">* Е-mail</label>
-          <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)" i18n="@@emailJeObavezan">
+          <label for="orangeForm-email">* Е-mail</label>
+          <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">
             E-mail је обавезно унети у правилном формату
           </mdb-error>
         </div>
@@ -168,8 +166,8 @@
                  [(ngModel)]="library.webSite"
                  data-cy="webSite"
                  mdbInput mdbValidate>
-          <label for="orangeForm-webSite" i18n="@@websiteZvezdica">* Website</label>
-          <mdb-error *ngIf="webSite.invalid && (webSite.dirty || webSite.touched)" i18n="@@websiteJeObavezan">
+          <label for="orangeForm-webSite">* Website</label>
+          <mdb-error *ngIf="webSite.invalid && (webSite.dirty || webSite.touched)">
             Website је обавезан
           </mdb-error>
         </div>
@@ -181,15 +179,15 @@
                  [(ngModel)]="library.workingHours"
                  data-cy="workingHours"
                  mdbInput mdbValidate>
-          <label for="workingHours" i18n="@@radnoVremeZvezdica">* Радно време</label>
+          <label for="workingHours">* Радно време</label>
           <mdb-error
-            *ngIf="workingHours.invalid && (workingHours.dirty || workingHours.touched)" i18n="@@radnoVremeJeObavezno">Радно време је обавезно
+            *ngIf="workingHours.invalid && (workingHours.dirty || workingHours.touched)">Радно време је обавезно
           </mdb-error>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveLocation();"
-                data-cy="save-library-btn" i18n="@@sacuvaj">
+                data-cy="save-library-btn">
           Сачувај
         </button>
       </div>
@@ -207,16 +205,18 @@
         <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title center" id="myModalLabel" i18n="@@brisanjeBiblioteke">Брисање библиотеке</h4>
+        <h4 class="modal-title center" id="myModalLabel">Брисање библиотеке</h4>
       </div>
       <div class="modal-body">
-        <label i18n="@@potvrdaBrisanjaBiblioteke">Да ли сте сигурни да желите да обришете библиотеку <i>{{libraryToDelete?.name}}</i> ?</label>
+        <label>Да ли сте сигурни да желите да обришете библиотеку <i>{{libraryToDelete?.name}}</i> ?</label>
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
-                (click)="deleteModal.hide();" i18n="@@zatvori">Затвори</button>
+                (click)="deleteModal.hide();">Затвори
+        </button>
         <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
-                (click)="delete(); deleteModal.hide()" i18n="@@izbrisi">Избриши</button>
+                (click)="delete(); deleteModal.hide()">Избриши
+        </button>
       </div>
     </div>
   </div>

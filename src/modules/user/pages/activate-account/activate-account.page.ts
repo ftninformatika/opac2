@@ -91,20 +91,20 @@ export class ActivateAccountPage implements OnInit {
         response => {
           if (response) {
             this.restartPasswordMode ?
-              this._toastService.success($localize`:@@uspesnoStePromeniliLozinku:Успешно сте променили лозинку вашег налога, можете се пријавити!`)
-              : this._toastService.success($localize`:@@uspesnoSteAktiviraliNalog:Успешно сте активирали OPAC налог, можете се пријавити!`);
+              this._toastService.success('Успешно сте променили лозинку вашег налога, можете се пријавити!')
+              : this._toastService.success('Успешно сте активирали OPAC налог, можете се пријавити!');
             this._router.navigate(['/user/login']);
           } else {
-            this._toastService.warning($localize`:@@dosloJeDoGreske:Дошло је до грешке!`);
+            this._toastService.warning('Дошло је до грешке!');
           }
         },
         () => {
-          this._toastService.warning($localize`:@@dosloJeDoGreske:Дошло је до грешке!`);
+          this._toastService.warning('Дошло је до грешке!');
         }
       );
     } else {
       this._toastService
-        .info($localize`:@@lozinkaKriterijum:Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!`);
+        .info('Молимо вас унесите жељену лозинку, која ће задовољити критеријум: 6 знакова, минимум једно велико слово и један број!');
     }
   }
 }

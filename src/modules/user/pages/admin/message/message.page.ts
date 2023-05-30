@@ -1,11 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MessageService} from '../../../../core/services/message.service';
-import {LoggedUser} from '../../../../../models/library-member.model';
-import {Message, MessageDTO, MessageSenderDTO} from '../../../../../models/admin/message.model';
-import {Store} from '@ngxs/store';
-import {ToastService} from 'ng-uikit-pro-standard';
-import {UserState} from '../../../../core/states/user/user.state';
-import {interval} from 'rxjs';
+import {MessageService} from "../../../../core/services/message.service";
+import {LoggedUser} from "../../../../../models/library-member.model";
+import {Message, MessageDTO, MessageSenderDTO} from "../../../../../models/admin/message.model";
+import {Store} from "@ngxs/store";
+import {ToastService} from "ng-uikit-pro-standard";
+import {UserState} from "../../../../core/states/user/user.state";
+import {interval} from "rxjs";
 
 @Component({
   selector: 'app-message',
@@ -38,7 +38,7 @@ export class MessagePage implements OnInit {
   }
 
   setLoggedUser(): void {
-    this.loggedAdmin = new LoggedUser();
+    this.loggedAdmin = new LoggedUser;
     this.loggedAdmin.username = this._store.selectSnapshot(UserState.username);
     this.loggedAdmin.firstName = this._store.selectSnapshot(UserState.firstname);
     this.loggedAdmin.lastName = this._store.selectSnapshot(UserState.lastname);
@@ -74,7 +74,7 @@ export class MessagePage implements OnInit {
       this.conversation = messages;
       this.member.message = messages[messages.length - 1].message;
       this.openNewChat = false;
-    });
+    })
   }
 
   sendMessage(): void {
@@ -83,9 +83,9 @@ export class MessagePage implements OnInit {
       this.messageService.sendMessage(newMessage).subscribe(savedMessage => {
         savedMessage = this.convertMessageToMessageDTO(savedMessage);
         this.conversation.push(savedMessage);
-        this.message = '';
+        this.message = "";
         this.updateSendersList(newMessage);
-      }, () => this.toastService.error($localize`:@@greskaSlanjePoruke:Дошло је до грешке приликом слања поруке. Покушајте поново`));
+      }, () => this.toastService.error("Дошло је до грешке приликом слања поруке. Покушајте поново"));
     }
   }
 
@@ -110,7 +110,7 @@ export class MessagePage implements OnInit {
   deleteFromArray(idx: number) {
     if (idx !== -1) {
       this.senders.splice(idx, 1);
-      this.senders = [...this.senders];
+      this.senders = [...this.senders]
     }
   }
 
@@ -125,13 +125,13 @@ export class MessagePage implements OnInit {
   }
 
   checkIfLibrarian(messageDTO: MessageDTO) {
-    return messageDTO.message.idSender !== this.member.memberCardDTO.username ||
-      ((messageDTO.message.idSender === this.member.memberCardDTO.username)
-        && (messageDTO.message.idReceiver === this.member.memberCardDTO.username));
+    return messageDTO.message.idSender != this.member.memberCardDTO.username ||
+      ((messageDTO.message.idSender == this.member.memberCardDTO.username)
+        && (messageDTO.message.idReceiver == this.member.memberCardDTO.username));
   }
 
   checkIfUser(messageDTO: MessageDTO) {
-    return messageDTO.message.idSender === this.member.memberCardDTO.username && !messageDTO.message.idReceiver;
+    return messageDTO.message.idSender == this.member.memberCardDTO.username && !messageDTO.message.idReceiver;
   }
 
   ngAfterViewChecked() {

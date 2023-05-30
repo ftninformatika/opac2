@@ -1,10 +1,10 @@
 <div class="admin-collections-page-wrapper">
   <div class="left-panel">
-    <button mdbBtn type="button" color="default" (click)="basicModal.show()" i18n="@@dodajKolekciju">
+    <button mdbBtn type="button" color="default" (click)="basicModal.show()">
       Додај колекцију
     </button>
     <div class="collections-list">
-      <h5 class="ml-2 mt-2" i18n="@@listaKolekcija"><i class="fas fa-arrows-alt-v"></i>&nbsp;Листа колекција</h5>
+      <h5 class="ml-2 mt-2"><i class="fas fa-arrows-alt-v"></i>&nbsp;Листа колекција</h5>
       <ul class="list-group ml-1 collection-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <li *ngFor="let c of collections | orderBy: 'index'" class="collection-item list-group-item mt-1" [ngClass]="selectedCollection && selectedCollection._id === c._id ? 'active': ''"
             (click)="selectCollection(c.index)" style="cursor: pointer;" cdkDrag [cdkDragData]="c">
@@ -30,14 +30,14 @@
           <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide(); newCollectionName='';">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title center" id="myModalLabel" i18n="@@kreiranjeNoveKolekcije">Креирање нове колекције:</h4>
+          <h4 class="modal-title center" id="myModalLabel">Креирање нове колекције:</h4>
         </div>
         <div class="modal-body">
-          <label i18n="@@nazivNoveKolekcije">Назив нове колекције</label>
+          <label>Назив нове колекције</label>
           <input type="newCollectionName" class="form-control" mdbInput email="true" [(ngModel)]="newCollectionName" (keydown.enter)="createCollection();basicModal.hide();">
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection();basicModal.hide(); newCollectionName='';" i18n="@@napravi">Направи</button>
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createCollection();basicModal.hide(); newCollectionName='';">Направи</button>
         </div>
       </div>
     </div>

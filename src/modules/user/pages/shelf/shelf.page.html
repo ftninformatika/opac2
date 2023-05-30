@@ -1,8 +1,8 @@
 <div class="shelf-page-wrapper">
-  <h4 i18n="@@mojaPolica">Моја полица</h4>
+  <h4>Моја полица</h4>
   <div class="shelf-container">
     <mdb-card class="my-2 mr-2 fixed-height fixed-width" *ngFor="let book of shelf">
-      <div class="remove-from-shelf" (click)="removeFromShelf(book._id)" mdbTooltip="Склони" i18n-mdbTooltip="@@skloni" placement="left">
+      <div class="remove-from-shelf" (click)="removeFromShelf(book._id)" mdbTooltip="Склони" placement="left">
         <i class="fas fa-trash red-text fa-2x"></i>
       </div>
       <book-card [book]="book"></book-card>

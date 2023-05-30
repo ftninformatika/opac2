@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-center" *ngIf="loading">
   <div class="spinner-border" role="status" style="color:#00b2d1;width: 3rem; height: 3rem;">
-    <span class="sr-only" i18n="@@ucitavanje">Учитавање...</span>
+    <span class="sr-only">Учитавање...</span>
   </div>
 </div>
 
 <div id="div-add-event" *ngIf="!loading">
   <button id="btn-add-event" type="button" mdbBtn color="default" data-mdb-toggle="modal" data-mdb-target="#createModal"
-          (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect i18n="@@dodajDesavanje">Додај дешавање
+         (click)="createModal.show()" data-cy="add-new-event" mdbWavesEffect>Додај дешавање
   </button>
 </div>
 
@@ -14,10 +14,9 @@
   <div class="row" style="margin-top: 8px;">
     <div class="col-md-2 col-xs-2 div-from">
       <div class="md-form">
-        <mdb-date-picker i18n-placeholder="@@od"
-                         [inline]="true"
+        <mdb-date-picker [inline]="true"
                          [options]="myDatePickerOptions"
-                         placeholder="Од"
+                         [placeholder]="'Од'"
                          [locale]="'sr'"
                          [(ngModel)]="filter.from"
                          data-cy="filter-from"
@@ -27,10 +26,9 @@
     </div>
     <div class="col-md-2 col-xs-2 div-to">
       <div class="md-form">
-        <mdb-date-picker i18n-placeholder="@@do"
-                         [inline]="true"
+        <mdb-date-picker [inline]="true"
                          [options]="myDatePickerOptions"
-                         placeholder="До"
+                         [placeholder]="'До'"
                          [locale]="'sr'"
                          [(ngModel)]="filter.to"
                          data-cy="filter-to"
@@ -45,7 +43,6 @@
                type="text"
                class="form-control"
                placeholder="Унесите наслов или садржај ..."
-               i18n-placeholder="@@unesiteNaslovIliSadrzaj"
                data-cy="search-text"
                [(ngModel)]="filter.searchText">
       </div>
@@ -61,7 +58,7 @@
 
 
 <div class="container py-5 div-search" *ngIf="noEvents && !loading">
-  <h4 i18n="@@nemaRezultataZaPretragu">Нема резултата за задати критеријум претраге</h4>
+  <h4>Нема резултата за задати критеријум претраге</h4>
 </div>
 
 <main>
@@ -133,8 +130,7 @@
               *ngIf="event.content && event.content.length >= 410"
               class="waves-effect waves-light"
               mdbWavesEffect
-              (click)="onExpandText(event); expandModal.show();"
-              i18n="@@opsirnije">
+              (click)="onExpandText(event); expandModal.show();">
               Опширније
             </button>
             <div *ngIf="isLinkCreated(event)" id="link-display">
@@ -150,13 +146,13 @@
 
           <!--Grid column-->
           <div class="col-md-1 mb-5 table-column-btns">
-            <div class="div-edit" mdbTooltip="Измени" i18n-mdbTooltip="@@izmeni" placement="left" style="cursor: pointer"
+            <div class="div-edit" mdbTooltip="Измени" placement="left" style="cursor: pointer"
                  (click)="setEditEvent(event);"
                  data-mdb-toggle="modal" data-mdb-target="#createModal"
                  data-cy="edit-btn">
               <i id="edit-icon" class="fas fa-edit orange-text fa-2x"></i>
             </div>
-            <div class="div-delete" mdbTooltip="Избриши" i18n-mdbTooltip="izbrisi" placement="left" style="cursor: pointer"
+            <div class="div-delete" mdbTooltip="Избриши" placement="left" style="cursor: pointer"
                  (click)="setEventForDelete(event); deleteModal.show();">
               <i class="fas fa-trash red-text fa-2x"></i>
             </div>
@@ -171,10 +167,8 @@
                            [maxSize]="5"
                            [directionLinks]="true"
                            [responsive]="true"
-                           previousLabel="Претходна"
-                           i18n-previousLabel="@@prethodna"
-                           nextLabel="Следећа"
-                           i18n-nextLabel="@@sledeca"
+                           [previousLabel]="'Претходна'"
+                           [nextLabel]="'Следећа'"
                            (pageChange)="onPageChange($event)"
                            [ngx-scroll-to]="'#app-page-wrapper'">
       </pagination-controls>
@@ -192,16 +186,18 @@
         <button type="button" class="close pull-right" aria-label="Затвори" (click)="deleteModal.hide(); ">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title center" i18n="@@brisanjeDesavanja">Брисање дешавања</h4>
+        <h4 class="modal-title center" id="myModalLabel">Брисање дешавања</h4>
       </div>
       <div class="modal-body">
-        <label i18n="@@daLiSteSigurniDaBriseteDesavanje">Да ли сте сигурни да желите да обришете дешавање са насловом <i>{{eventToDelete?.title}}</i> ?</label>
+        <label>Да ли сте сигурни да желите да обришете дешавање са насловом <i>{{eventToDelete?.title}}</i> ?</label>
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
-                (click)="deleteModal.hide();" i18n="@@zatvori">Затвори</button>
+                (click)="deleteModal.hide();">Затвори
+        </button>
         <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
-                (click)="remove(); deleteModal.hide()" i18n="@@izbrisi">Избриши</button>
+                (click)="remove(); deleteModal.hide()">Избриши
+        </button>
       </div>
     </div>
   </div>
@@ -213,7 +209,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title w-100 font-weight-bold" i18n="@@desavanje">
+        <h5 class="modal-title w-100 font-weight-bold">
           <mdb-icon class="calendar-icon" far icon="calendar-alt"></mdb-icon>
           Дешавање
         </h5>
@@ -225,8 +221,8 @@
         <div class="md-form mb-5 title-field">
           <input type="text" id="orangeForm-name" class="form-control" [formControl]="title" [(ngModel)]="event.title"
                  data-cy="title-modal" mdbInput mdbValidate>
-          <label for="orangeForm-name" i18n="@@naslovSaZvezdom">* Наслов</label>
-          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)" i18n="@@naslovJeObavezan">
+          <label for="orangeForm-name">* Наслов</label>
+          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
             Наслов је обавезан
           </mdb-error>
         </div>
@@ -234,17 +230,16 @@
           <textarea class="md-textarea form-control" rows="2" id="content" type="text"
                     [(ngModel)]="event.content" [formControl]="content" data-cy="content-modal" mdbInput
                     mdbValidate></textarea>
-          <label for="content" i18n="@@sadrzajSaZvezdom">* Садржај</label>
+          <label for="content">* Садржај</label>
           <mdb-error
-            *ngIf="content.invalid && (content.dirty || content.touched)" i18n="@@sadrzajJeObavezan">Садржај је обавезан
+            *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
           </mdb-error>
         </div>
 
         <div class="md-form mb-4 date-field">
           <mdb-date-picker name="date" #datePicker
                            [options]="myDatePickerOptions"
-                           placeholder="* Изаберите датум"
-                           i18n-placeholder="@@izaberiteDatumSaZvezdom"
+                           [placeholder]="'* Изаберите датум'"
                            id="date"
                            [locale]="'sr'"
                            [formControl]="date"
@@ -253,49 +248,46 @@
                            required>
           </mdb-date-picker>
           <mdb-error
-            *ngIf="date.invalid && (date.dirty || date.touched)" i18n="@@datumJeObavezan">
+            *ngIf="date.invalid && (date.dirty || date.touched)">
             Датум је обавезан
           </mdb-error>
         </div>
         <div class="md-form time-field">
           <mdb-time-picker [twelvehour]="false"
                            [darktheme]="false"
-                           placeholder="Изаберите време"
-                           i18n-placeholder="@@izaberiteVreme"
-                           buttonClearLabel="Обриши"
-                           i18n-buttonClearLabel="@@obrisi"
+                           [placeholder]="'Изаберите време'"
+                           [buttonClearLabel]="'Обриши'"
                            [showClock]="false"
                            [(ngModel)]="event.time"
-                           buttonLabel="Изабери"
-                           i18n-buttonLabel="@@izaberi">
+                           [buttonLabel]="'Изабери'">
           </mdb-time-picker>
         </div>
         <div class="md-form location-field">
           <input type="text" class="form-control" [(ngModel)]="event.location"
                  data-cy="location-modal" mdbInput>
-          <label for="orangeForm-name" i18n="@@lokacijaDesavanja">Локација дешавања</label>
+          <label for="orangeForm-name">Локација дешавања</label>
         </div>
         <div class="md-form mb-3 additional-field">
           <input type="text" class="form-control" [(ngModel)]="event.link" [formControl]="link"
                  data-cy="link-modal" mdbInput mdbValidate>
-          <label for="orangeForm-name" i18n="@@link">Линк</label>
+          <label for="orangeForm-name">Линк</label>
           <mdb-error
-            *ngIf="link.invalid && (link.dirty || link.touched)" i18n="@@formatLinkaNijeDobar">
+            *ngIf="link.invalid && (link.dirty || link.touched)">
             Формат линка није добар
           </mdb-error>
         </div>
         <div class="md-form mb-5 additional-field">
           <input type="text" class="form-control" [(ngModel)]="event.linkName"
-                 data-cy="link-name-modal" mdbInput mdbTooltip="Приказује се само ако је и линк унет" i18n-mdbTooltip="@@prikazujeSeSamoAkoJeLinkUnet">
-          <label for="orangeForm-name" i18n="@@naslovLinka">Наслов линка</label>
+                 data-cy="link-name-modal" mdbInput [mdbTooltip]="'Приказује се само ако је и линк унет'">
+          <label for="orangeForm-name">Наслов линка</label>
         </div>
 
         <div class="file-field md-form">
-          <label for="file" class="custom-file-upload" i18n="@@izaberiteFotografiju">
+          <label for="file" class="custom-file-upload">
             <i class="fa fa-cloud-upload"></i> Изаберите фотографију
           </label>
           <input id="file" #file type="file" accept='image/*' (change)="onImageUpload(file.files)"
-                 data-buttonText="Izaberite" i18n-data-buttonText="@@izaberite"/>
+                 data-buttonText="Izaberite"/>
         </div>
 
         <div class="md-form mb-4">
@@ -311,14 +303,14 @@
             <img src="../../../../../assets/eventDefaultLogo.png" height="100" width="100" alt="Фотографија">
           </ng-template>
 
-          <input [disabled] class="file-path" type="text" placeholder="Назив фотографије" i18n-placeholder="@@nazivFotografije"
+          <input [disabled] class="file-path" type="text" placeholder="Назив фотографије"
                  [value]="this.selectedImage?.name">
 
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnCreateEvent();"
-                data-cy="event-submit-btn" i18n="@@sacuvaj">
+                data-cy="event-submit-btn">
           Сачувај
         </button>
       </div>
@@ -342,7 +334,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                (click)="onCloseExpandText(); expandModal.hide();" mdbWavesEffect i18n="@@zatvori">Затвори</button>
+                (click)="onCloseExpandText(); expandModal.hide();" mdbWavesEffect>Затвори
+        </button>
       </div>
     </div>
   </div>

@@ -45,17 +45,17 @@
   </div>
   </div>
   <div class="btns ml-2 mr-4" *ngIf="withButtonsAndInfo">
-    <a mdbTooltip="Резервиши" i18n-mdbTooltip="@@rezervisi" (click)="gotoBook(book._id);">
+    <a  [mdbTooltip]="'Резервиши'" (click)="gotoBook(book._id);">
       <div class="reserve">
         <mdb-icon fas icon="calendar-check" class="text-white"></mdb-icon>
       </div>
     </a>
-    <a mdbTooltip="Стави на полицу" i18n-mdbTooltip="@@staviNaPolicu" *ngIf="!isOnShelf"  (click)="onShelf(book._id)">
+    <a  [mdbTooltip]="'Стави на полицу'" *ngIf="!isOnShelf"  (click)="onShelf(book._id)">
       <div class="shelf mt-2">
         <mdb-icon fas icon="list-ul" ></mdb-icon>
       </div>
     </a>
-    <a  mdbTooltip="Склони са полице" i18n-mdbTooltip="@@skloniSaPolice" *ngIf="isOnShelf" (click)="removeFromShelf(book._id).then()">
+    <a  [mdbTooltip]="'Склони са полице'" *ngIf="isOnShelf" (click)="removeFromShelf(book._id).then()">
       <div class="shelf-off mt-2">
         <mdb-icon fas icon="list-ul" ></mdb-icon>
       </div>

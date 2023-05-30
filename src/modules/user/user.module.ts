@@ -17,12 +17,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ActiveLendingsPage } from './pages/active-lendings/active-lendings.page';
 import { RegisterInfoPage } from './pages/register-info/register-info.page';
 import { ActiveReservationsPage } from './pages/active-reservations/active-reservations.page';
-import {MessagePage} from './pages/admin/message/message.page';
-import {EventsComponent} from './pages/admin/events/events.component';
-import {FaqComponent} from './pages/admin/faq/faq.component';
-import {NgxPaginationModule} from 'ngx-pagination';
-import {NotificationComponent} from './pages/admin/notifications/notification.component';
-import {LocationComponent} from './pages/admin/location/location.component';
+import {MessagePage} from "./pages/admin/message/message.page";
+import {EventsComponent} from "./pages/admin/events/events.component";
+import {FaqComponent} from "./pages/admin/faq/faq.component";
+import {NgxPaginationModule} from "ngx-pagination";
+import {NotificationComponent} from "./pages/admin/notifications/notification.component";
+import {LocationComponent} from "./pages/admin/location/location.component";
 
 @NgModule({
     imports: [

@@ -5,16 +5,16 @@
   </ng-template>
   <div class="ml-2 mb-2">
     <span *ngIf="resultPage && resultPage.totalElements" class="total-results-label">
-      <span style="color: #00b2d1;" i18n="@@rezultata">Резултата:&nbsp;</span>{{resultPage.totalElements}}
+      <span style="color: #00b2d1;">Резултата:&nbsp;</span>{{resultPage.totalElements}}
     </span>
   </div>
   <div class="ml-2 mb-2">
-    <a  style="color: #00b2d1;" (click)="modifySearch()" i18n="@@izmenaPretrage">
-      <mdb-icon fas icon="search-plus" mdbTooltip="Измените параметре претраге" i18n-mdbTooltip="@@izmeniteParametrePretrage"></mdb-icon>
+    <a  style="color: #00b2d1;" (click)="modifySearch()">
+      <mdb-icon fas icon="search-plus" [mdbTooltip]="'Измените параметре претраге'"></mdb-icon>
       &nbsp;Измена претраге
     </a>
   </div>
-  <div class="ml-2 mb-2 d-flex flex-md-row" i18n="@@traziliSte">
+  <div class="ml-2 mb-2 d-flex flex-md-row">
       <span [innerHTML]="'Тражили сте: ' + youSearchedText"></span>
   </div>
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
@@ -23,14 +23,14 @@
     <ng-container *ngTemplateOutlet="deviceWidth == 'gt_sm' ? searchFilters : ''"></ng-container>
     <div class="flex-1 mr-4">
       <a class="btn filters-modal-btn" style="background-color: #00b2d1"
-         *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()" i18n="@@filteri">Филтери</a>
+         *ngIf="deviceWidth=='lte_sm'" (click)="filtersModal.show()">Филтери</a>
       <div class="separator" *ngIf="deviceWidth=='lte_sm'"></div>
       <ng-container *ngIf="resultPage">
         <div class="options-nav">
 
           <a class="remove-selected">
             <div (click)="clearSelection()"
-                 mdbTooltip="Поништи све селектоване записе" i18n-mdbTooltip="@@ponistiSelektovaneZapise" class="btn-designed">
+                 [mdbTooltip]="'Поништи све селектоване записе'" class="btn-designed">
               <mdb-icon fas icon="broom"></mdb-icon>
             </div>
           </a>
@@ -42,19 +42,20 @@
 <!--          </a>-->
           <a  class="selected-records" (click)="goToSelectedBooks()">
             <div>
-              <span style="color: #00b2d1;" i18n="@@odabraniZapisi">Одабрани записи</span>
+              <span style="color: #00b2d1;">Одабрани записи</span>
               ({{(appOptionsState | async)?.selectedShareRecords.length}})</div>
           </a>
 
 
           <a class="print-records" (click)="printThisPage()">
-            <div mdbTooltip="Штампај резулатате" i18n-mdbTooltip="@@stampajRezultate" class="btn-designed">
+            <div  [mdbTooltip]="'Штампај резулатате'" class="btn-designed">
               <mdb-icon fas icon="print"></mdb-icon>
             </div>
           </a>
           <a class="share-records">
-            <div (click)="generateShareLink()"
-                 mdbTooltip="Поделите одабране записе" i18n-mdbTooltip="@@podeliteOdabraneZapise" class="btn-designed">
+            <div (click)="generateShareLink() ? shareLinkModal.show() :
+             _toastService.warning('Ни једна књига није одабрана')"
+                 [mdbTooltip]="'Поделите одабране записе'" class="btn-designed">
               <mdb-icon fas icon="share-alt"></mdb-icon>
             </div>
           </a>
@@ -67,13 +68,12 @@
           >
           </search-top-nav>
         </div>
-        <pagination-controls i18n-previousLabel="@@prethodna" i18n-nextLabel="@@sledeca"
-                             [id]="'paginatorId'"
+        <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"
                              [responsive]="true"
-                             previousLabel="Претходна"
-                             nextLabel="Следећа"
+                             [previousLabel]="'Претходна'"
+                             [nextLabel]="'Следећа'"
                              (pageChange)="onPageChange($event)"
                              class="col">
         </pagination-controls>
@@ -98,13 +98,12 @@
           (shareChecked)="addRemoveIdToShareList($event)"
           ></result-table-view>
         </ng-container>
-        <pagination-controls i18n-previousLabel="@@prethodna" i18n-nextLabel="@@sledeca"
-                             [id]="'paginatorId'"
+        <pagination-controls [id]="'paginatorId'"
                              [maxSize]="5"
                              [directionLinks]="true"
                              [responsive]="true"
-                             previousLabel="Претходна"
-                             nextLabel="Следећа"
+                             [previousLabel]="'Претходна'"
+                             [nextLabel]="'Следећа'"
                              (pageChange)="onPageChange($event)"
                              [ngx-scroll-to]="'#app-page-wrapper'"
         >
@@ -120,13 +119,13 @@
           <button type="button" class="close pull-right" aria-label="Close" (click)="filtersModal.hide()">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title w-100" i18n="@@odaberiteFiltere">Одаберите филтере</h4>
+          <h4 class="modal-title w-100" id="myModalLabel">Одаберите филтере</h4>
         </div>
         <div class="modal-body">
           <ng-container *ngTemplateOutlet="searchFilters"></ng-container>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="filtersModal.hide()" mdbWavesEffect i18n="@@zatvori">Затвори</button>
+          <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="filtersModal.hide()" mdbWavesEffect>Затвори</button>
         </div>
       </div>
     </div>
@@ -139,16 +138,16 @@
           <button type="button" class="close pull-right" aria-label="Close" (click)="shareLinkModal.hide()">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title w-100" i18n="@@kopirajteLink">Копирајте линк како би сте поделили одабране записе</h4>
+          <h4 class="modal-title w-100" id="myModalLabel">Копирајте линк како би сте поделили одабране записе</h4>
         </div>
         <div class="modal-body">
           <div class="md-form md-outline">
             <input #shareLinkInput id="input-char-counter1" [value]="shareSelectedLink" type="text" class="form-control" (click)="$event.target.select()" mdbInput>
-            <label for="input-char-counter1" i18n="@@link">Линк</label>
+            <label for="input-char-counter1">Линк</label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="info-color-dark" class="waves-light"  mdbWavesEffect (click)="copyLinkToClipboard(shareLinkInput)" i18n="@@kopirajURL">Копирај URL</button>
+          <button type="button" mdbBtn color="info-color-dark" class="waves-light"  mdbWavesEffect (click)="copyLinkToClipboard(shareLinkInput)">Копирај URL</button>
         </div>
       </div>
     </div>

@@ -1,21 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventsService} from '../../../../core/services/events.service';
-import {Event, EventFilter, IEventFilter} from '../../../../../models/admin/event.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {EventsService} from "../../../../core/services/events.service";
+import {Event, EventFilter, IEventFilter} from "../../../../../models/admin/event.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
   IMyOptions,
   ModalDirective,
   UploadOutput
-} from 'ng-uikit-pro-standard';
-import {SR_LOCATE} from '../../../../../utils/consts';
+} from "ng-uikit-pro-standard";
+import {SR_LOCATE} from "../../../../../utils/consts";
 import {ToastService} from 'ng-uikit-pro-standard';
 import {
   EventsResultPage,
   IEventsPageOptions,
   IResultPageOptionsInitial,
-} from '../../../../../models/admin/events-page-options.model';
-import {DateUtils} from '../../../../../utils/date.utils';
-import {ArrayUtils} from '../../../../../utils/array.utils';
+} from "../../../../../models/admin/events-page-options.model";
+import {DateUtils} from "../../../../../utils/date.utils";
+import {ArrayUtils} from "../../../../../utils/array.utils";
 
 @Component({
   selector: 'app-events',
@@ -31,7 +31,7 @@ export class EventsComponent implements OnInit {
   imgURL: string | ArrayBuffer;
 
   validatingForm: FormGroup;
-  myDatePickerOptions: IMyOptions = SR_LOCATE;
+  myDatePickerOptions: IMyOptions = SR_LOCATE
   editing: boolean;
   filter: EventFilter;
   isFiltered: boolean;
@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit {
     this.editing = false;
     this.filter = {...IEventFilter};
     this.isFiltered = false;
-    this.pageOptions = {...IResultPageOptionsInitial};
+    this.pageOptions = {...IResultPageOptionsInitial}
     let pageNum = 0;
     if (this.pageOptions.currentPage > 0) {
       pageNum = this.pageOptions.currentPage - 1;
@@ -102,17 +102,17 @@ export class EventsComponent implements OnInit {
 
   async downloadImage(event: Event) {
     this.eventService.downloadPhoto(event._id).subscribe(photo => {
-      const reader = new FileReader();
+      var reader = new FileReader();
       reader.readAsDataURL(photo);
       reader.onload = () => {
         event.image = reader.result;
       };
-    });
+    })
     return event;
   }
 
   createForm() {
-    const urlRegex = '(https?://|www).+';
+    const urlRegex = "(https?://|www).+"
 
     this.validatingForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -143,7 +143,7 @@ export class EventsComponent implements OnInit {
 
   onBtnCreateEvent() {
     if (this.validatingForm.invalid) {
-      this.toastService.warning($localize`:@@proveriteDaLiSteIspravnoPopunili:Проверите да ли сте исправно попунили сва обавезна поља`);
+      this.toastService.warning("Проверите да ли сте исправно попунили сва обавезна поља");
       return;
     }
     if (!this.editing) {
@@ -163,11 +163,11 @@ export class EventsComponent implements OnInit {
         }
         this.events = [savedEvent, ...this.events];
         this.closeDialog();
-        this.toastService.success($localize`:@@uspesnoSteNapravliDesavanje:Успешно сте направили ново дешавање`);
+        this.toastService.success("Успешно сте направили ново дешавање")
       } else {
-        this.toastService.error($localize`:@@greskaPrilikomKreiranjaDesavanja:Дошло је до грешке приликом креирања новог дешавања. Покушајте поново.`);
+        this.toastService.error("Дошло је до грешке приликом креирања новог дешавања. Покушајте поново")
       }
-    });
+    })
   }
 
   createFormData(event: Event) {
@@ -176,7 +176,7 @@ export class EventsComponent implements OnInit {
     formData.append('title', event.title);
     formData.append('content', event.content);
     if (!event.time) {
-      event.time = '23:59';
+      event.time = "23:59"
     }
     event.date = DateUtils.convertStringToDate(event.date, event.time);
     formData.append('date', event.date.toUTCString());
@@ -219,20 +219,20 @@ export class EventsComponent implements OnInit {
           minute: '2-digit'
         });
         this.events = ArrayUtils.updateArray(editedEvent, this.events);
-        this.toastService.success($localize`:@@uspesnoSteIzmeniliDesavanje:Успешно сте изменили дешавање`);
+        this.toastService.success("Успешно сте изменили дешавање")
         this.closeDialog();
       } else {
-        this.toastService.error($localize`:@@greskaPrikomIzmeneDesavanja:Дошло је до грешке приликом измене дешавања. Покушајте поново.`);
+        this.toastService.error("Дошло је до грешке приликом измене дешавања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error($localize`:@@greskaPrikomIzmeneDesavanja:Дошло је до грешке приликом измене дешавања. Покушајте поново.`);
-    });
+      this.toastService.error("Дошло је до грешке приликом измене дешавања. Покушајте поново")
+    })
   }
 
   private async setImage(editedEvent: Event) {
     editedEvent.image = this.event.image;
     if (this.selectedImage) {
-      editedEvent = await this.downloadImage(editedEvent);
+      editedEvent = await this.downloadImage(editedEvent)
     }
     return editedEvent;
   }
@@ -245,12 +245,12 @@ export class EventsComponent implements OnInit {
     this.eventService.delete(this.eventToDelete._id).subscribe(response => {
       if (response) {
         this.events = ArrayUtils.deleteItemFromArray(this.eventToDelete, this.events);
-        this.toastService.success($localize`:@@uspesnoSteObrisaliDesavanje:Успешно сте обрисали дешавање`);
+        this.toastService.success("Успешно сте обрисали дешавање")
       } else {
-        this.toastService.error($localize`:@@greskaPrikomBrisanjaDesavanja:Дошло је до грешке приликом брисања дешавања. Покушајте поново.`);
+        this.toastService.error("Дошло је до грешке приликом брисања дешавања. Покушајте поново")
       }
     }, () => {
-      this.toastService.error($localize`:@@greskaPrikomBrisanjaDesavanja:Дошло је до грешке приликом брисања дешавања. Покушајте поново.`);
+      this.toastService.error("Дошло је до грешке приликом брисања дешавања. Покушајте поново")
     });
   }
 
@@ -267,13 +267,13 @@ export class EventsComponent implements OnInit {
 
   searchEvents(pageNum: number, pageSize: number) {
     if (this.filter.from) {
-      this.filter.from = DateUtils.convertStringToDate(this.filter.from, '00:00');
+      this.filter.from = DateUtils.convertStringToDate(this.filter.from, "00:00");
     }
     if (this.filter.to) {
-      this.filter.to = DateUtils.convertStringToDate(this.filter.to, '23:59');
+      this.filter.to = DateUtils.convertStringToDate(this.filter.to, "23:59");
     }
     if (this.filter.from > this.filter.to) {
-      this.toastService.error($localize`:@@datumPocetkaPreDatumaZavrsetka:Датум почетка мора да буде пре датума завршетка`);
+      this.toastService.error("Датум почетка мора да буде пре датума завршетка")
       return;
     }
     this.loading = true;
@@ -307,10 +307,10 @@ export class EventsComponent implements OnInit {
   }
 
   isLinkCreated(event: Event): boolean {
-    return (event.link !== null && event.link !== undefined);
+    return (event.link !== null && event.link !== undefined)
   }
 
   isLocationCreated(event: Event): boolean {
-    return (event.location !== null && event.location !== undefined);
+    return (event.location !== null && event.location !== undefined)
   }
 }
