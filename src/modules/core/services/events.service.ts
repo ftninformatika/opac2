@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ApiEndpointConfig} from "../../../config/api-endpoint.config";
-import {Event, EventFilter} from "../../../models/admin/event.model";
-import {EventsResultPage} from "../../../models/admin/events-page-options.model";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ApiEndpointConfig} from '../../../config/api-endpoint.config';
+import {Event, EventFilter} from '../../../models/admin/event.model';
+import {EventsResultPage} from '../../../models/admin/events-page-options.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,35 +1,35 @@
 <div class="active-lendings-page-wrapper">
   <div class="" *ngIf="noReservations">
-    <h4 align="center" class="mb-2">Тренутно немате активне резервације</h4>
+    <h4 align="center" class="mb-2" i18n="@@trenutnoNemateAktivneRezervacije">Тренутно немате активне резервације</h4>
   </div>
   <div class="" *ngIf="reservations.length !== 0">
-    <h2 align="center" class="mb-2">Резервације</h2>
+    <h2 align="center" class="mb-2" i18n="@@rezervacije">Резервације</h2>
     <ng-container>
       <table mdbTable class="table table-responsive-md table-responsive-sm">
         <thead>
         <tr>
           <th scope="col">
-            <a (click)="sortBy('title')">Наслов
+            <a (click)="sortBy('title')" i18n="@@naslovIcon">Наслов
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('authors')">Аутор
+            <a (click)="sortBy('authors')" i18n="@@autorIcon">Аутор
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('reservationDate')">Датум резервисања
+            <a (click)="sortBy('reservationDate')" i18n="@@datumRezervisanjaIcon">Датум резервисања
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('locationDescription')">Библиотека
+            <a (click)="sortBy('locationDescription')" i18n="@@bibliotekaIcon">Библиотека
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
           <th scope="col">
-            <a (click)="sortBy('reservationStatus')">Статус резервације
+            <a (click)="sortBy('reservationStatus')" i18n="@@statusRezervacijeIcon">Статус резервације
               <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
             </a>
           </th>
@@ -53,7 +53,7 @@
 
           <!--          Book is in the queue, but not assigned yet => user can delete reservation.             -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'WAITING_IN_QUEUE'">
-            <span>
+            <span i18n="@@cekaSeSlobodanPrimerak">
               Чека се слободан примерак
             </span>
           </td>
@@ -66,7 +66,7 @@
 
           <!--          Book is assigned => user cannot delete reservation.                                    -->
           <td *ngIf="!r.isBookPickedUp && r.reservationStatus === 'ASSIGNED_BOOK'">
-            <span>
+            <span i18n="@@rokZaPodizanjeKnjige">
               Рок за подизање књиге: {{r.pickUpDeadline | date: 'dd.MM.yyyy.'}}
 <!--              Можете преузети књигу у библиотеци-->
             </span>
@@ -88,18 +88,16 @@
                   <button type="button" class="close pull-right" aria-label="Затвори" (click)="basicModal.hide(); ">
                     <span aria-hidden="true">×</span>
                   </button>
-                  <h4 class="modal-title center" id="myModalLabel">Брисање резервације</h4>
+                  <h4 class="modal-title center" i18n="@@brisanjeRezervacije">Брисање резервације</h4>
                 </div>
                 <div class="modal-body">
-                  <label>Да ли сте сигурни да желите да избришете резервацију за књигу: <i>{{r.title}}</i> ?</label>
+                  <label i18n="@@daLiSteSigurniDaBriseteRezervaciju">Да ли сте сигурни да желите да избришете резервацију за књигу: <i>{{r.title}}</i> ?</label>
                 </div>
                 <div class="modal-footer justify-content-center">
                   <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
-                          (click)="basicModal.hide();">Затвори
-                  </button>
+                          (click)="basicModal.hide();" i18n="@@zatvori">Затвори</button>
                   <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Delete"
-                          (click)="deleteReservation(r)">Избриши
-                  </button>
+                          (click)="deleteReservation(r)" i18n="@@izbrisi">Избриши</button>
                 </div>
               </div>
             </div>

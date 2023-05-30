@@ -1,9 +1,9 @@
 <button id="btn-add-event" type="button" mdbBtn color="default" data-toggle="modal" data-cy="new-event"
-        data-target="#basicExample" (click)="onBtnCreteNewFaq();createModal.show()" mdbWavesEffect>Ново обавештење
+        data-target="#basicExample" (click)="onBtnCreteNewFaq();createModal.show()" mdbWavesEffect i18n="@@novoObavestenje">Ново обавештење
 </button>
 
 <div class="text-center admin-page-title">
-  <h5>ОБАВЕШТЕЊА</h5><br>
+  <h5 i18n="@@obavestenjaCAPS">ОБАВЕШТЕЊА</h5><br>
 </div>
 
 <main>
@@ -37,8 +37,10 @@
                      [maxSize]="5"
                      [directionLinks]="true"
                      [responsive]="true"
-                     [previousLabel]="'Претходна'"
-                     [nextLabel]="'Следећа'"
+                     previousLabel="Претходна"
+                     i18n-previousLabel="@@prethodna"
+                     nextLabel="Следећа"
+                     i18n-nextLabel="@@sledeca"
                      (pageChange)="onPageChange($event)"
                      *ngIf="notifications">
 </pagination-controls>
@@ -50,7 +52,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title w-100 font-weight-bold">
+        <h5 class="modal-title w-100 font-weight-bold" i18n="@@obavestenje">
           <i class="far fa-bell"></i>
           Обавештење
         </h5>
@@ -68,8 +70,8 @@
                  [(ngModel)]="notification.title"
                  data-cy="question"
                  mdbInput mdbValidate>
-          <label for="orangeForm-name">* Наслов</label>
-          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">
+          <label for="orangeForm-name" i18n="@@naslovZvezdica">* Наслов</label>
+          <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)" i18n="@@naslovJeObavezan">
             Наслов је обавезан
           </mdb-error>
         </div>
@@ -85,13 +87,13 @@
                     data-cy="answer"
                     mdbCharCounter mdbInput mdbValidate>
           </textarea>
-          <label for="content">* Садржај</label>
+          <label for="content" i18n="@@sadrzajZvezdica">* Садржај</label>
           <mdb-error
-            *ngIf="content.invalid && (content.dirty || content.touched)">Садржај је обавезан
+            *ngIf="content.invalid && (content.dirty || content.touched)" i18n="@@sadrzajJeObavezan">Садржај је обавезан
           </mdb-error>
         </div>
         <div>
-          <label class="mdb-main-label">Изаберите тип</label>
+          <label class="mdb-main-label" i18n="@@izaberiteTip">Изаберите тип</label>
           <select class="browser-default custom-select"
                   [formControl]="type"
                   [(ngModel)]="notification.type">
@@ -101,7 +103,7 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onBtnSaveFaq();"
-                data-cy="save-faq-btn">
+                data-cy="save-faq-btn" i18n="@@sacuvaj">
           Сачувај
         </button>
       </div>
