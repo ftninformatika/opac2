@@ -12,7 +12,6 @@ import {
 } from 'ng-uikit-pro-standard';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { LibraryRouteComponent } from './library-route.component';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ConfigState } from '../core/states/config/config.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { environment } from '../../environments/environment';
@@ -66,8 +65,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-    }),
-    ScrollToModule.forRoot(),
+    })
   ],
   providers: [
     LazyLoadImageDirective,

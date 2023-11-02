@@ -23,6 +23,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() bookId: string;
   @Input() recordItems: RecordItem[];
   @Input() containShowableItems: boolean;
+  @Input() totalReservations: number;
   private readonly _store: Store;
   private readonly _bookService: BooksService;
   private readonly _userService: UsersService;
@@ -132,6 +133,6 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public setAvailabilityValues() {
     this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable && i.location === this.selectedLocation).length;
     this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free && i.location === this.selectedLocation).length;
-    this.reservedItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
+    this.reservedItems = this.totalReservations + this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
   }
 }

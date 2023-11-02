@@ -13,6 +13,7 @@ export interface ISearchModel {
   oper2: string;
   oper3: string;
   oper4: string;
+  oper5: string;
   sort: string;
   departments: string[];
   branches: string[];
@@ -25,6 +26,7 @@ export const ISearchModelInitial: ISearchModel = {
   oper2: 'AND',
   oper3: 'AND',
   oper4: 'AND',
+  oper5: 'AND',
   pref1: '',
   pref2: '',
   pref3: '',

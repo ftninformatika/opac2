@@ -6,6 +6,7 @@ export class SearchFormModel {
   operator2 = ['', Validators.required];
   operator3 = ['', Validators.required];
   operator4 = ['', Validators.required];
+  operator5 = ['', Validators.required];
   prefix1 = ['', Validators.required];
   prefix2 = ['', Validators.required];
   prefix3 = ['', Validators.required];
@@ -23,11 +24,12 @@ export class SearchFormModel {
   content5 = '';
 
   public constructor(pref1?: any, pref2?: any, pref3?: any, pref4?: any, pref5?: any,
-                     operator1?: any, operator2?: any, operator3?: any, operator4?: any) {
+                     operator1?: any, operator2?: any, operator3?: any, operator4?: any, operator5?: any) {
     this.operator1 = operator1;
     this.operator2 = operator2;
     this.operator3 = operator3;
     this.operator4 = operator4;
+    this.operator5 = operator5;
     this.prefix1 = pref1;
     this.prefix2 = pref2;
     this.prefix3 = pref3;
@@ -40,6 +42,7 @@ export class SearchFormModel {
     this.operator2 = [sm.oper2, Validators.required];
     this.operator3 = [sm.oper3, Validators.required];
     this.operator4 = [sm.oper4, Validators.required];
+    this.operator5 = [sm.oper5, Validators.required];
     this.prefix1 = [sm.pref1, Validators.required];
     this.prefix2 = [sm.pref2, Validators.required];
     this.prefix3 = [sm.pref3, Validators.required];
@@ -51,5 +54,5 @@ export class SearchFormModel {
 export const SearchFormModelInitial: SearchFormModel = new SearchFormModel(['AU', Validators.required],
   ['TI', Validators.required], ['KW', Validators.required], ['PU', Validators.required],
   ['PY', Validators.required], ['AND', Validators.required], ['AND', Validators.required],
-  ['AND', Validators.required], ['AND', Validators.required]);
+  ['AND', Validators.required], ['AND', Validators.required], ['AND', Validators.required]);
 

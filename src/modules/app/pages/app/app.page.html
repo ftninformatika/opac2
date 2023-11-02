@@ -19,7 +19,7 @@
     mdbPageScroll
     mdbWavesEffect
     style="right: 35px; bottom: 35px"
-    [ngxScrollTo]="'#app-page-wrapper'"
+    (click)="scrollToElement('app-page-wrapper')"
   >
     <i class="fas fa-arrow-up" style="color: black"></i>
   </button>

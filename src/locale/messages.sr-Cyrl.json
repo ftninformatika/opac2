@@ -118,6 +118,7 @@
     "naslovSpace": "Наслов ",
     "urlSpace": "URL ",
     "izdavacSpace": "Издавач ",
+    "lokacijaSpace": "Локација ",
     "linkDoIzvora": " {$INTERPOLATION} ",
     "napomeneSpace": "Напомене ",
     "posebanOtisakSpace": "Посебан отисак ",

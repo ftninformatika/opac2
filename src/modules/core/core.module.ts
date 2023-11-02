@@ -11,7 +11,6 @@ import { FillArrayPipe } from './pipes/fill-array.pipe';
 import { MakeIndicatorPipe } from './pipes/make-indicator.pipe';
 import { BookCoverDirective } from './directives/book-cover.directive';
 import { RecordFormatPipe } from './pipes/record-format.pipe';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AdminGuard } from './guards/admin.guard';
 import { OrderModule } from 'ngx-order-pipe';
 import { CodersService } from './services/coders.service';
@@ -24,7 +23,7 @@ import { CodersService } from './services/coders.service';
     BookCoverDirective,
     RecordFormatPipe,
   ],
-  imports: [ScrollToModule.forRoot()],
+  imports: [],
   providers: [
     BooksService,
     PrefixesService,
@@ -49,8 +48,7 @@ import { CodersService } from './services/coders.service';
     MakeIndicatorPipe,
     OrderModule,
     BookCoverDirective,
-    RecordFormatPipe,
-    ScrollToModule,
+    RecordFormatPipe
   ],
 })
 export class CoreModule {}

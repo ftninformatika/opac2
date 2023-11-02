@@ -87,6 +87,9 @@
         <div class="subtitle" *ngIf="book.subtitle">
           <h2>{{book.subtitle}}</h2>
         </div>
+        <div class="subtitle" *ngIf="book.materialType">
+          <h2>[{{book.materialType}}]</h2>
+        </div>
         <div class="author" *ngIf="book.authors">
           <span>{{book.authors}}</span>
         </div>
@@ -259,6 +262,15 @@
                   </ng-container>
                 </ng-container>
 
+                <ng-container
+                  *ngIf="book | recordFormat:RecordFormatType.LOCATION"
+                >
+                  <dt class="col-sm-3" i18n="@@lokacijaSpace">Локација&nbsp;</dt>
+                  <dd class="col-sm-9">
+                    {{book | recordFormat:RecordFormatType.LOCATION}}
+                  </dd>
+                </ng-container>
+
                 <ng-container *ngIf="book.notes">
                   <dt class="col-sm-3" i18n="@@napomeneSpace">Напомене&nbsp;</dt>
                   <dd class="col-sm-9">{{book.notes}}</dd>
@@ -304,7 +316,7 @@
                   <dd class="col-sm-9">
                     {{book |
                     recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
-                    <span [ngx-scroll-to]="'#end'"
+                    <span (click)="scrollToElement('items')"
                       ><strong
                         style="
                           color: darkblue;
@@ -324,7 +336,7 @@
           class="isbd-collapse"
           *ngIf="book.isbdHtml && book.isbdHtml.trim() != ''"
         >
-          <mdb-accordion *ngIf="showLocations">
+          <mdb-accordion>
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
                 <h5 class="mb-0" i18n="@@isbd">ISBD</h5>
@@ -341,7 +353,7 @@
           </mdb-accordion>
         </div>
         <div class="unimarc-collapse">
-          <mdb-accordion *ngIf="showLocations">
+          <mdb-accordion>
             <mdb-accordion-item [collapsed]="true">
               <mdb-accordion-item-head style="padding: 0">
                 <h5 class="mb-0" i18n="@@unimarc">UNIMARC</h5>
@@ -393,11 +405,12 @@
         [bookId]="book._id"
         [recordItems]="book.items"
         [containShowableItems]="showLocations"
+        [totalReservations]="book.totalReservations"
       >
       </items-availability-card>
     </div>
   </div>
-  <div class="locations-table" *ngIf="book.items">
+  <div class="locations-table" *ngIf="book.items" id="items">
     <items-table [items]="book.items"></items-table>
   </div>
 </div>

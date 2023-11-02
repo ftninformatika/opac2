@@ -25,6 +25,7 @@
   <!--          </div>-->
   <!--        </div>-->
           <h5 *ngIf="book.subtitle" [routerLink]="['/book',lib,  book._id]" class="pointer book-subtitle" >{{book.subtitle | shortenString:40}}</h5>
+          <h5 *ngIf="book.materialType" class="book-subtitle" >[{{book.materialType}}]</h5>
           <p [mdbTooltip]="book.authors">
             <span class="book-author">
               {{authors | shortenString:25}}

@@ -92,7 +92,8 @@ export class UploadDescriptionCoverPage implements OnInit {
       title: this.book.title,
       isbn: this.book.isbn,
       issn: this.book.issn,
-      description: this.bookDescription
+      description: this.bookDescription,
+      record_id: this.book.record._id
     };
     // Update
     if (this.book.commonBookUID) {

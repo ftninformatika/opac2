@@ -31,8 +31,7 @@ import {ModalDirective, ToastService} from 'ng-uikit-pro-standard';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { Select, Store } from '@ngxs/store';
 import { PreviewSharedPage } from '../preview-shared/preview-shared.page';
-// import { printJS } from 'print-js';
-// @ts-ignore
+import * as printJS from 'print-js';
 import {
   AddMultipleIdsToSelectedAction,
   AddRemoveIdToSelectedAction,
@@ -166,7 +165,7 @@ export class ResultPage implements OnInit, OnDestroy {
   }
 
   public async clearSelection() {
-    await this._store.dispatch(OptionsToDefaultAction).toPromise();
+    this._store.dispatch(OptionsToDefaultAction);
   }
 
   public async addRemoveIdToShareList(recordId: string) {
@@ -485,11 +484,11 @@ export class ResultPage implements OnInit, OnDestroy {
         transformToPrint.push(x);
       }
       // TODO: fix "window not defined" bug
-      // printJS({
-      //   printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-      //     + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
-      //   type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']
-      // });
+      printJS({
+        printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
+          + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+        type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']
+      });
     }
   }
 }

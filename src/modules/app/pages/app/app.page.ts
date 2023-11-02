@@ -5,6 +5,7 @@ import {Store} from '@ngxs/store';
 import {ConfigState} from '../../../core/states/config/config.state';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {ViewportScroller} from '@angular/common';
 // tslint:disable-next-line:ban-types
 declare let gtag: Function;
 
@@ -17,16 +18,17 @@ export class AppPage implements AfterViewInit, OnInit {
   private readonly _store: Store;
   private readonly _titleService: Title;
   private readonly _router: Router;
+  private readonly _viewportScroller: ViewportScroller;
   showCookieDiv: boolean;
 
-  public constructor(titleService: Title, store: Store, router: Router) {
+  public constructor(titleService: Title, store: Store, router: Router, viewportScroller: ViewportScroller) {
     this._titleService = titleService;
     this._store = store;
     this._router = router;
     const title = this._store.selectSnapshot(ConfigState.fullLibName);
     this._titleService.setTitle(title);
     this.showCookieDiv = true;
-
+    this._viewportScroller = viewportScroller;
   }
 
   ngOnInit() {
@@ -73,5 +75,9 @@ export class AppPage implements AfterViewInit, OnInit {
       if (c.indexOf(nameEQ) === 0) { return c.substring(nameEQ.length, c.length); }
     }
     return null;
+  }
+
+  scrollToElement(target: string){
+    this._viewportScroller.scrollToAnchor(target);
   }
 }

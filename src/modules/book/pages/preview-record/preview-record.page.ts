@@ -1,17 +1,12 @@
 import {
-  AfterViewInit,
   Component,
-  HostListener,
   OnInit,
   ViewEncapsulation,
-  HostBinding,
   OnDestroy,
 } from '@angular/core';
 import { BooksService } from '../../../core/services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-// import { MetaService } from "@ngx-meta/core";
-import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { BookCoverUtils } from '../../../../utils/book-cover.utils';
 import { UserState } from '../../../core/states/user/user.state';
 import { ERecordFormatType } from '../../../core/pipes/record-format.pipe';
@@ -31,6 +26,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { MiradorViewerComponent } from '../../components/mirador-viewer/mirador-viewer.component';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'preview-record',
@@ -50,8 +46,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   private readonly _activatedRoute: ActivatedRoute;
   private readonly _router: Router;
   private readonly _store: Store;
-  // private readonly _metaService: MetaService;
-  private readonly _scrollToService: ScrollToService;
+  private readonly _viewportScroller: ViewportScroller;
   RecordFormatType = ERecordFormatType;
   private showLocations: boolean;
   public book: Book;
@@ -69,13 +64,11 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
     activatedRoute: ActivatedRoute,
     router: Router,
     store: Store,
-    //    metaService: MetaService,
-    scrollToService: ScrollToService
+    viewportScroller: ViewportScroller
   ) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
-    // this._metaService = metaService;
-    this._scrollToService = scrollToService;
+    this._viewportScroller = viewportScroller;
     this._router = router;
     this._store = store;
     this.errImgUrl = BookCoverUtils.getBlankBookCover();
@@ -101,7 +94,7 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
             await this._router.navigate(['/error/not-found']);
           } else {
             this.recordURL = window.location.href;
-            this._scrollToService.scrollTo({ offset: 0 });
+            // this._scrollToService.scrollTo({ offset: 0 });
             this.book = data;
             this.setMetaTags();
             this.book.isbdHtml = RecordUtils.reformatISBD(this.book.isbdHtml);
@@ -243,5 +236,9 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
       this.miradorViewer.unmount();
       MiradorViewerComponent.unmounted = true;
     }
+  }
+
+  scrollToElement(target: string){
+    this._viewportScroller.scrollToAnchor(target);
   }
 }

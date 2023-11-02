@@ -1,6 +1,7 @@
 export interface Book {
   _id?: string; // mongoId of record
   pubType?: EPubType;
+  materialType?: string;
   authors?: string[];
   otherAuthors?: string[];
   title: string;
@@ -20,6 +21,7 @@ export interface Book {
   items?: RecordItem[];
   record?: Record;
   commonBookUID?: BigInteger;
+  totalReservations?: number;
   totalRatings?: number;
   avgRating?: AvgRecordRating;
   refRecsBrief?: any;
@@ -33,6 +35,7 @@ export interface BookCommon {
   issn?: string;
   imageUrl?: string;
   description?: string;
+  record_id?: string;
 }
 
 export interface RecordItem {

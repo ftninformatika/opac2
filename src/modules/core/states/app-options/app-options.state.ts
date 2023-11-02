@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { ISelectedFilter } from "../../../../models/search/filter.model";
+import { Injectable } from '@angular/core';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ISelectedFilter } from '../../../../models/search/filter.model';
 import {
   AddMultipleIdsToSelectedAction,
   AddRemoveIdToSelectedAction,
@@ -8,12 +8,12 @@ import {
   AddRemoveSubLocationsAction,
   ClearLocationFiltersAction,
   OptionsToDefaultAction,
-} from "./app-options.actions";
+} from './app-options.actions';
 
 // Model -------------------------------------------------- TODO: put these where they belong
 export enum ESearchResultsViewType {
-  Card = "card",
-  Table = "table",
+  Card = 'card',
+  Table = 'table',
 }
 
 export interface IAppOptionsState {
@@ -33,7 +33,7 @@ const InitialAppOptionsState: IAppOptionsState = {
 // State  -------------------------------------------------
 // @ts-ignore
 @State<IAppOptionsState>({
-  name: "APP_OPTIONS_STATE",
+  name: 'APP_OPTIONS_STATE',
   defaults: InitialAppOptionsState,
 })
 @Injectable()
@@ -147,7 +147,7 @@ export class AppOptionsState {
       return;
     }
     const index = state.selectedSubLocations.findIndex(
-      (s) => s.item.value == action.subLocationFilter.item.value
+      (s) => s.item.value === action.subLocationFilter.item.value
     );
     // const index = state.selectedSubLocations.indexOf(action.subLocationFilter);
     if (index === -1) {
@@ -163,6 +163,11 @@ export class AppOptionsState {
     ctx: StateContext<IAppOptionsState>,
     action: OptionsToDefaultAction
   ) {
-    ctx.setState({ ...InitialAppOptionsState });
+    ctx.setState({
+      searchResultsViewType: ESearchResultsViewType.Card,
+      selectedShareRecords: [],
+      selectedLocations: [],
+      selectedSubLocations: [],
+    });
   }
 }

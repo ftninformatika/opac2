@@ -40,6 +40,7 @@ export class SearchUtil {
 
       retVal.pref5 = 'PU';
       retVal.text5 = text + '';
+      retVal.oper5 = 'OR';
       return retVal;
     }
   }

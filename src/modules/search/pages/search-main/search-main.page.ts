@@ -148,10 +148,12 @@ export class SearchMainPage implements OnInit {
     if (this.isPrefixCoded[4]) {
       if (this.searchForm.value.content5coder) {
         this.searchModel.text5 = this.searchForm.value.content5coder;
+        this.searchModel.oper5 = this.searchForm.value.operator5;
       }
     } else {
       if (this.searchForm.value.content5.trim()) {
         this.searchModel.text5 = this.searchForm.value.content5.trim();
+        this.searchModel.oper5 = this.searchForm.value.operator5;
       }
     }
   }

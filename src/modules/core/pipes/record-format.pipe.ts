@@ -13,7 +13,8 @@ export enum ERecordFormatType {
   _001C_REFERENCE = '_001C_REFERENCE',
   _327_CONTENT = '_327_CONTENT',
   TOME = 'TOME',
-  NOTE = 'NOTE'
+  NOTE = 'NOTE',
+  LOCATION = 'LOCATION'
 }
 
 @Pipe({
@@ -33,6 +34,8 @@ export class RecordFormatPipe implements PipeTransform {
         }
         if (book.publisher && book.publisher.trim() !== '') {
           pi.push(book.publisher);
+        } else {
+          pi.push('-');
         }
         if (book.publishYear && book.publishYear.trim() !== '') {
           pi.push(book.publishYear);
@@ -63,7 +66,7 @@ export class RecordFormatPipe implements PipeTransform {
         if (!book.record || _856u == null) {
           return null;
         }
-        const urlHtml = `<a href="${_856u}" target="_blank">линк</a>`;
+        const urlHtml = `<a href="${_856u}" target="_blank">погледај</a>`;
         return urlHtml;
       }
       case ERecordFormatType.CONTAINS_856_MIRADOR_URL: {
@@ -135,6 +138,33 @@ export class RecordFormatPipe implements PipeTransform {
         } else {
           return $localize`:@@clanak:Чланак`;
         }
+      }
+      case ERecordFormatType.LOCATION: {
+        const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
+        let content = '';
+        if (_001c === 'a') {
+          const _215g = RecordUtils.getSubfieldContent(book.record, '215g');
+          if (_215g && _215g.trim() !== '') {
+            content = content + _215g;
+          }
+          const _215i = RecordUtils.getSubfieldContent(book.record, '215i');
+          if (_215i && _215i.trim() !== '') {
+            content = content + ', ' + _215i;
+          }
+          const _215h = RecordUtils.getSubfieldContent(book.record, '215h');
+          if (_215h && _215h.trim() !== '') {
+            content = content + ', ' + _215h;
+          }
+          const _215k = RecordUtils.getSubfieldContent(book.record, '215k');
+          if (_215k && _215k.trim() !== '') {
+            content = content + ', ' + _215k;
+          }
+          const _215a = RecordUtils.getSubfieldContent(book.record, '215a');
+          if (_215a && _215a.trim() !== '') {
+            content = content + ', ' + _215a;
+          }
+        }
+        return content;
       }
     }
   }
