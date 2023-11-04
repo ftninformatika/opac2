@@ -25,6 +25,7 @@ export interface Book {
   totalRatings?: number;
   avgRating?: AvgRecordRating;
   refRecsBrief?: any;
+  digitalUrls?: string[];
 }
 
 export interface BookCommon {

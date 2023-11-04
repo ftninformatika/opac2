@@ -62,12 +62,21 @@ export class RecordFormatPipe implements PipeTransform {
         }
       }
       case ERecordFormatType.CONTAINS_856_URL: {
-        const _856u = RecordUtils.getSubfieldContent(book.record, '856u');
-        if (!book.record || _856u == null) {
-          return null;
+        // const _856u = RecordUtils.getSubfieldContent(book.record, '856u');
+        // if (!book.record || _856u == null) {
+        //   return null;
+        // }
+        if (book.digitalUrls) {
+          let urlHtml = '';
+          for (let i = 0; i < book.digitalUrls.length; i++) {
+            urlHtml = urlHtml + `<a href="${book.digitalUrls[i]}" target="_blank">погледај</a>`;
+            if (i < book.digitalUrls.length - 1) {
+              urlHtml = urlHtml + '; ';
+            }
+          }
+          return urlHtml;
         }
-        const urlHtml = `<a href="${_856u}" target="_blank">погледај</a>`;
-        return urlHtml;
+        return null;
       }
       case ERecordFormatType.CONTAINS_856_MIRADOR_URL: {
         const _856d = RecordUtils.getSubfieldContent(book.record, '856d');
@@ -149,19 +158,31 @@ export class RecordFormatPipe implements PipeTransform {
           }
           const _215i = RecordUtils.getSubfieldContent(book.record, '215i');
           if (_215i && _215i.trim() !== '') {
-            content = content + ', ' + _215i;
+            if (content.length > 0) {
+              content = content + ', ';
+            }
+            content = content + _215i;
           }
           const _215h = RecordUtils.getSubfieldContent(book.record, '215h');
           if (_215h && _215h.trim() !== '') {
-            content = content + ', ' + _215h;
+            if (content.length > 0) {
+              content = content + ', ';
+            }
+            content = content + _215h;
           }
           const _215k = RecordUtils.getSubfieldContent(book.record, '215k');
           if (_215k && _215k.trim() !== '') {
-            content = content + ', ' + _215k;
+            if (content.length > 0) {
+              content = content + ', ';
+            }
+            content = content + _215k;
           }
           const _215a = RecordUtils.getSubfieldContent(book.record, '215a');
           if (_215a && _215a.trim() !== '') {
-            content = content + ', ' + _215a;
+            if (content.length > 0) {
+              content = content + ', ';
+            }
+            content = content + _215a;
           }
         }
         return content;

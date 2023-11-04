@@ -149,15 +149,22 @@
                   <dt class="col-sm-3" i18n="@@autoriSpace">Аутори&nbsp;</dt>
                   <dd class="col-sm-9">
                     <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
+<!--                    <a-->
+<!--                      (click)="linkedSearch('authors', book.authors[0])"-->
+<!--                      style="-->
+<!--                        cursor: pointer;-->
+<!--                        color: darkblue;-->
+<!--                        text-decoration: underline;-->
+<!--                      "-->
+<!--                    >-->
+<!--                      {{book.authors}}-->
+<!--                    </a>-->
                     <a
-                      (click)="linkedSearch('authors', book.authors[0])"
-                      style="
-                        cursor: pointer;
-                        color: darkblue;
-                        text-decoration: underline;
-                      "
-                    >
-                      {{book.authors}}
+                      *ngFor="let a of book.authors; let i = index"
+                      (click)="linkedSearch('authors', a)"
+                      href="javascript:void(0)">
+                      <ng-container *ngIf="i > 0"> ,&nbsp; </ng-container>
+                        {{a}}
                     </a>
                   </dd>
                 </ng-container>
@@ -165,23 +172,15 @@
                 <ng-container
                   *ngIf="book.otherAuthors && book.otherAuthors.length > 0"
                 >
-                  <dt class="col-sm-3" i18n="@@ostaliAutoriSpace">Остали аутори&nbsp;</dt>
+                  <dt class="col-sm-3" i18n="@@ostaliAutoriSpace">Остала ауторства&nbsp;</dt>
                   <dd class="col-sm-9">
                     <!--                    <mdb-icon fab icon="searchengin"></mdb-icon> &nbsp;-->
                     <a
                       *ngFor="let oa of book.otherAuthors; let i = index"
                       (click)="linkedSearch('authors', oa)"
-                    >
-                      <span
-                        style="
-                          cursor: pointer;
-                          color: darkblue;
-                          text-decoration: underline;
-                        "
-                      >
-                        <ng-container *ngIf="i > 0"> ,&nbsp; </ng-container>
+                      href="javascript:void(0)">
+                      <ng-container *ngIf="i > 0"> ,&nbsp; </ng-container>
                         {{oa}}
-                      </span>
                     </a>
                   </dd>
                 </ng-container>
@@ -247,17 +246,10 @@
                     </dt>
                     <dd class="col-sm-9">
                       <mdb-icon far icon="eye"></mdb-icon> &nbsp;
-                      <span
-                        [routerLink]="['/book',lib, recRef.key]"
-                        style="
-                          cursor: pointer;
-                          color: darkblue;
-                          text-decoration: underline;
-                        " i18n="@@linkDoIzvora"
-                      >
+                      <a [routerLink]="['/book',lib, recRef.key]" href="javascript:void(0)" i18n="@@linkDoIzvora">
                         {{(recRef.value && recRef.value !== '') ? recRef.value :
                         'Линк до извора'}}
-                      </span>
+                      </a>
                     </dd>
                   </ng-container>
                 </ng-container>
@@ -316,16 +308,9 @@
                   <dd class="col-sm-9">
                     {{book |
                     recordFormat:RecordFormatType.FORMAT_FIRST_SIGNATURE_INFO}}
-                    <span (click)="scrollToElement('items')"
-                      ><strong
-                        style="
-                          color: darkblue;
-                          cursor: pointer;
-                          font-size: 13px;
-                        " i18n="@@ostale"
-                        >...остале</strong
-                      ></span
-                    >
+                    <a (click)="scrollToElement('items')" href="javascript:void(0)" i18n="@@ostale">
+                        ...остале
+                      </a>
                   </dd>
                 </ng-container>
               </dl>
