@@ -17,11 +17,12 @@ export interface Book {
   udk?: string;
   imageUrl?: string;
   description?: string;
+  useBookCommonUid: boolean;
   isbdHtml?: string;
   items?: RecordItem[];
   record?: Record;
   commonBookUID?: BigInteger;
-  totalReservations?: number;
+  reservations?: ReservationInQueue[];
   totalRatings?: number;
   avgRating?: AvgRecordRating;
   refRecsBrief?: any;
@@ -37,6 +38,7 @@ export interface BookCommon {
   imageUrl?: string;
   description?: string;
   record_id?: string;
+  useBookCommonUid: boolean;
 }
 
 export interface RecordItem {
@@ -74,6 +76,14 @@ export interface Reservation {
   pickUpDeadline: Date;
   locationDescription: string;
   locationCode: string;
+}
+
+export interface ReservationInQueue {
+  _id: string;
+  reservationDate: Date;
+  pickUpDeadline: Date;
+  coderId: string;
+  userId: string;
 }
 
 export enum EPubType {

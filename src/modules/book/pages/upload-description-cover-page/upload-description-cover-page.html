@@ -13,6 +13,9 @@
           <textarea type="text" id="form7" class="form-control"
                     [(ngModel)]="bookDescription" mdbInput></textarea>
         </div>
+        <div>
+          <mdb-checkbox [(ngModel)]="useBookCommonUid" i18n="@@useBookCommonUid">Генериши идентификатор иако постоји ИСБН број</mdb-checkbox>
+        </div>
       </div>
       <div class="file-upload">
         <div><h4 i18n="@@slikaKorica">Слика корица</h4></div>

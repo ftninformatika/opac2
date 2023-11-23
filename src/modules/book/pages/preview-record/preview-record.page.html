@@ -35,19 +35,19 @@
         alt="Слика корице" i18n-alt="@@slikaKorice"
       />
       <a
-        *ngIf="isAdmin && (book.isbn && book.isbn.trim() != '')"
+        *ngIf="isAdmin"
         [routerLink]="['/book/description-cover', lib, book._id]"
         class="ml-2"
         i18n="@@menjajSliku"
         >Мењај слику и опис</a
       >
-      <span
-        *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')"
-        class="ml-2"
-        style="color: grey; font-weight: 500; cursor: default"
-        i18n="@@nijeMoguceMenjatiSliku"
-        >Није могуће мењати слику или опис записа</span
-      >
+<!--      <span-->
+<!--        *ngIf="isAdmin && (!book.isbn || book.isbn.trim() == '')"-->
+<!--        class="ml-2"-->
+<!--        style="color: grey; font-weight: 500; cursor: default"-->
+<!--        i18n="@@nijeMoguceMenjatiSliku"-->
+<!--        >Није могуће мењати слику или опис записа</span-->
+<!--      >-->
       <div class="social-share-buttons">
         <a class="icons-sm fb-ic mr-2" (click)="share('fb')"
           ><mdb-icon fab icon="facebook-f"></mdb-icon
@@ -115,6 +115,7 @@
             [bookId]="book._id"
             [recordItems]="book.items"
             [containShowableItems]="showLocations"
+            [reservations]="book.reservations"
           >
           </items-availability-card>
         </div>
@@ -193,7 +194,7 @@
                 <ng-container
                   *ngIf="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
                 >
-                  <dt class="col-sm-3" i18n="@@urlSpace">URL&nbsp;</dt>
+                  <dt class="col-sm-3" i18n="@@urlSpace">Линк(-ови)&nbsp;</dt>
                   <dd class="col-sm-9">
                     <span
                       [innerHTML]="book | recordFormat:RecordFormatType.CONTAINS_856_URL"
@@ -390,7 +391,7 @@
         [bookId]="book._id"
         [recordItems]="book.items"
         [containShowableItems]="showLocations"
-        [totalReservations]="book.totalReservations"
+        [reservations]="book.reservations"
       >
       </items-availability-card>
     </div>

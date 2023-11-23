@@ -116,7 +116,7 @@
     "autoriSpace": "Autori ",
     "ostaliAutoriSpace": "Ostala autorstva ",
     "naslovSpace": "Naslov ",
-    "urlSpace": "URL ",
+    "urlSpace": "Link(-ovi) ",
     "izdavacSpace": "Izdavač ",
     "lokacijaSpace": "Lokacija ",
     "linkDoIzvora": " {$INTERPOLATION} ",
@@ -432,6 +432,9 @@
     "registracija11": "Proces brisanja korisničkog naloga",
     "registracija12": " Kada dođete u biblioteku zatražite od bibliotekara da Vam obriše korisnički nalog. ",
     "skloni": "Skloni",
-    "poAutoruNaslovuIzdavacu": ", po: autoru, naslovu, izdavaču i klj. rečima"
+    "poAutoruNaslovuIzdavacu": ", po: autoru, naslovu, izdavaču i klj. rečima",
+    "opacEmail": "Email adresa za obaveštenja o novim porukama",
+    "sacuvano": "Sačuvano!",
+    "useBookCommonUid": "Generiši identifikator iako postoji ISBN broj"
   }
 }

@@ -3,7 +3,7 @@ import {
   RemoveFromShelfAction,
   UserState
 } from '../../../core/states/user/user.state';
-import {ERecordItemStatus, RecordItem} from '../../../../models/book.model';
+import {ERecordItemStatus, RecordItem, ReservationInQueue} from '../../../../models/book.model';
 import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {BooksService} from '../../../core/services/books.service';
@@ -23,7 +23,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() bookId: string;
   @Input() recordItems: RecordItem[];
   @Input() containShowableItems: boolean;
-  @Input() totalReservations: number;
+  @Input() reservations: ReservationInQueue[];
   private readonly _store: Store;
   private readonly _bookService: BooksService;
   private readonly _userService: UsersService;
@@ -91,7 +91,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     }
   }
 
-  public async getSelectedLocationLode() {
+  public getSelectedLocationLode() {
     const locationName = this.selectedLocation;
     const location = this.recordItems.filter(recordItem => recordItem.location === locationName);
     return location[0].locCode;
@@ -101,7 +101,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
     this.confirmModal.hide();
 
     // get the record for the selected location
-    const locationCode = await this.getSelectedLocationLode();
+    const locationCode = this.getSelectedLocationLode();
 
     let response = null;
     try {
@@ -131,8 +131,11 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   }
 
   public setAvailabilityValues() {
-    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable && i.location === this.selectedLocation).length;
-    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free && i.location === this.selectedLocation).length;
-    this.reservedItems = this.totalReservations + this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
+    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable
+      && i.location === this.selectedLocation).length;
+    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free
+      && i.location === this.selectedLocation).length;
+    this.reservedItems = this.reservations.filter(i => i.coderId === this.getSelectedLocationLode()).length
+      + this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
   }
 }

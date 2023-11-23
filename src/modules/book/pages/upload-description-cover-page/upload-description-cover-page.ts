@@ -31,6 +31,7 @@ export class UploadDescriptionCoverPage implements OnInit {
   public lib: string;
   public imagePath;
   public imgURL: any;
+  public useBookCommonUid = false;
 
   public constructor(store: Store, activatedRoute: ActivatedRoute, bookService: BooksService, toastService: ToastService, router: Router) {
     this._store = store;
@@ -84,7 +85,7 @@ export class UploadDescriptionCoverPage implements OnInit {
   }
 
   public saveChanges() {
-    if (!this.imgURL && this.bookDescription === this.book.description) {
+    if (!this.imgURL && this.bookDescription === this.book.description && this.useBookCommonUid === this.book.useBookCommonUid) {
       this._toastService.info($localize`:@@nisteIzvrsiliNikakvePromene:Нисте извршили никакве промене!`);
       return;
     }
@@ -93,7 +94,8 @@ export class UploadDescriptionCoverPage implements OnInit {
       isbn: this.book.isbn,
       issn: this.book.issn,
       description: this.bookDescription,
-      record_id: this.book.record._id
+      record_id: this.book.record._id,
+      useBookCommonUid: this.useBookCommonUid
     };
     // Update
     if (this.book.commonBookUID) {
@@ -173,12 +175,13 @@ export class UploadDescriptionCoverPage implements OnInit {
   private initBook(): void {
     this._bookService.getBook(this.recordId).subscribe(
       resp => {
-        if (!resp.isbn || resp.isbn.trim() === '') {
-          this._toastService.error($localize`:@@nijeMoguceMenjatiOpis:Није могуће мењати опис и слику корица овог записа!`);
-          this._router.navigate(['/book', this.lib, this.recordId]);
-        }
+        // if (!resp.isbn || resp.isbn.trim() === '') {
+        //   this._toastService.error($localize`:@@nijeMoguceMenjatiOpis:Није могуће мењати опис и слику корица овог записа!`);
+        //   this._router.navigate(['/book', this.lib, this.recordId]);
+        // }
         this.book = resp;
         this.bookDescription = this.book.description;
+        this.useBookCommonUid = this.book.useBookCommonUid;
       }
     );
   }

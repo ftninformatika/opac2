@@ -116,7 +116,7 @@
     "autoriSpace": "Authors ",
     "ostaliAutoriSpace": "Other authors ",
     "naslovSpace": "Title ",
-    "urlSpace": "URL ",
+    "urlSpace": "Links ",
     "izdavacSpace": "Publisher ",
     "lokacijaSpace": "Location ",
     "linkDoIzvora": " {$INTERPOLATION} ",
@@ -432,6 +432,9 @@
     "registracija11": "User account deletion process",
     "registracija12": " When you come to the library, ask the librarian to delete your user account. ",
     "skloni": "Remove",
-    "poAutoruNaslovuIzdavacu": ", by: author, title, publisher and keywords"
+    "poAutoruNaslovuIzdavacu": ", by: author, title, publisher and keywords",
+    "opacEmail": "Email address for notifications about new messages",
+    "sacuvano": "Saved!",
+    "useBookCommonUid": "Generate an identifier even though an ISBN exists"
   }
 }

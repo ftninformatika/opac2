@@ -18,7 +18,15 @@ export class MessageService {
     return this._httpClient.get(ApiEndpointConfig.Paths.admin.getSenders) as Observable<MessageSenderDTO[]>;
   }
 
-  getMessagesByUsername(username: String): Observable<MessageDTO[]> {
+  getLibrarianEmail() {
+    return this._httpClient.get(ApiEndpointConfig.Paths.admin.getLibrarianMail);
+  }
+
+  saveLibrarianEmail(email: string) {
+    return this._httpClient.post(ApiEndpointConfig.Paths.admin.getLibrarianMail, email);
+  }
+
+  getMessagesByUsername(username: string): Observable<MessageDTO[]> {
     return this._httpClient.get(`${ApiEndpointConfig.Paths.admin.messages}/${username}`) as Observable<MessageDTO[]>;
   }
 

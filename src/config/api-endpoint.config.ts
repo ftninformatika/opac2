@@ -35,6 +35,7 @@ export class ApiEndpointConfig {
       messages: `${ApiEndpointConfig.Origin}/messages/all`,
       addMessage: `${ApiEndpointConfig.Origin}/messages/add`,
       getSenders: `${ApiEndpointConfig.Origin}/messages/all-senders`,
+      getLibrarianMail: `${ApiEndpointConfig.Origin}/messages/librarian_email`,
       notifications: `${ApiEndpointConfig.Origin}/notifications`,
       library: `${ApiEndpointConfig.Origin}/libraries`
     },

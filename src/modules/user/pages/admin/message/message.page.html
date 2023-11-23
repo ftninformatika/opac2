@@ -142,5 +142,20 @@
     </div>
     <!-- Grid row -->
 
+    <div class="row px-2 mt-5 align-items-end">
+      <div class="col-4">
+        <div class="md-form my-2">
+          <input mdbInput type="text" id="emailopac" class="form-control" [(ngModel)]="email">
+          <label for="emailopac" i18n="@@emailOpac">Имејл адреса за обавештења о новим порукама</label>
+        </div>
+      </div>
+      <div class="col-1">
+        <button id="btn-save" type="button" mdbBtn color="default" outline="true" rounded="true" size="sm"
+                (click)="saveLibrarianEmail()" mdbWavesEffect>
+          <mdb-icon fas icon="check"></mdb-icon>
+        </button>
+      </div>
+    </div>
+
   </mdb-card-body>
 </mdb-card>

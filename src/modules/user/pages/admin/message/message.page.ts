@@ -22,6 +22,7 @@ export class MessagePage implements OnInit {
   message: string;
   loading: boolean;
   openNewChat: boolean;
+  email: string;
 
 
   constructor(private messageService: MessageService, private _store: Store, private toastService: ToastService) {
@@ -31,6 +32,7 @@ export class MessagePage implements OnInit {
     this.loading = true;
     this.setLoggedUser();
     this.loadSenders();
+    this.loadLibrarian();
     interval(120000).subscribe(
       (val) => {
         this.refreshPage();
@@ -143,5 +145,19 @@ export class MessagePage implements OnInit {
       this.conversationList.nativeElement.scrollTop = this.conversationList.nativeElement.scrollHeight;
     } catch (err) {
     }
+  }
+
+  saveLibrarianEmail() {
+    this.messageService.saveLibrarianEmail(this.email).subscribe(status => {
+      this.toastService.info($localize`:@@sacuvano:Сачувано!`);
+    }, () =>  this.toastService.error($localize`:@@greska:Дошло је до грешке!`));
+  }
+
+  loadLibrarian() {
+    this.messageService.getLibrarianEmail().subscribe(librarian  => {
+      if ((librarian as any).email) {
+        this.email = (librarian as any).email;
+      }
+    });
   }
 }
