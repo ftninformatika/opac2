@@ -14,7 +14,7 @@
                     [(ngModel)]="bookDescription" mdbInput></textarea>
         </div>
         <div>
-          <mdb-checkbox [(ngModel)]="useBookCommonUid" i18n="@@useBookCommonUid">Генериши идентификатор иако постоји ИСБН број</mdb-checkbox>
+          <mdb-checkbox [(ngModel)]="useBookCommonUid" [disabled]="book.useBookCommonUid" i18n="@@useBookCommonUid">Генериши идентификатор иако постоји ИСБН број</mdb-checkbox>
         </div>
       </div>
       <div class="file-upload">

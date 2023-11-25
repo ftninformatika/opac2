@@ -100,73 +100,32 @@ export class UploadDescriptionCoverPage implements OnInit {
     // Update
     if (this.book.commonBookUID) {
       bookCommon.uid = this.book.commonBookUID;
-      if (this.coverFile && this.coverFile !== this.previousFile) {
-        this._bookService.uploadBookCover(bookCommon.uid, this.coverFile).subscribe(
-          resp => {
-            if (!resp) {
-              this._toastService.warning($localize`:@@nijeUspeloOtpremanje:Није успело отпремање слике!`);
-              return;
-            }
-            this._toastService.success($localize`:@@uspesnoJeOtpremljena:Успешно је отпремљена слика корица!`);
-            this.previousFile = this.coverFile;
-          },
-          () => {
-            this._toastService.warning($localize`:@@nijeUspeloOtpremanje:Није успело отпремање слике!`);
-            return;
-          },
-          () => {
-            if (this.book.description === this.bookDescription) {
-              this.routeToRecord();
-            }
-          }
-        );
-      }
-      if (this.book.description !== this.bookDescription) {
-        this._bookService.createModifyBookCommon(bookCommon).subscribe(
-          resp => {
-            if (!resp) {
-              this._toastService.warning($localize`:@@nijeUspelaPromenaOpisa:Није успела промена описа!`);
-              return;
-            }
-            this._toastService.success($localize`:@@uspesnoJePromenjenOpis:Успешно је промењен опис!`);
-          },
-          () => {
-            this._toastService.warning($localize`:@@nijeUspelaPromenaOpisa:Није успела промена описа!`);
-            return;
-          },
-          () => this.routeToRecord()
-        );
-      }
-      // Create
-    } else {
-      this._bookService.createModifyBookCommon(bookCommon)
-        .subscribe(
-          resp => {
-            if (!resp) {
-              this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`);
-              return;
-            }
-            if (this.coverFile) {
-              this._bookService.uploadBookCover(resp.uid, this.coverFile)
-                .subscribe(
-                  resp1 => {
-                    if (!resp1) {
-                      this._toastService.warning($localize`:@@otpremanjeSlikeNijeUspelo:Отпремање слике није успело!`);
-                      return;
-                    }
-                    this.routeToRecord();
-                  }
-                );
-            } else {
-              this._toastService.success($localize`:@@uspesnoAzuriraniPodaciOKnjizi:Успешно сте ажурирали податке о књизи!`);
-              this.routeToRecord();
-            }
-          },
-          () => this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`)
-        );
-      }
-    this.initBook();
     }
+    this._bookService.createModifyBookCommon(bookCommon).subscribe(res => {
+        if (this.coverFile && (this.coverFile !== this.previousFile)) {
+          this.uplaodImage(res.uid, this.coverFile);
+        } else {
+          this._toastService.success($localize`:@@uspesnoAzuriraniPodaciOKnjizi:Успешно сте ажурирали податке о књизи!`);
+          // this.routeToRecord();
+        }
+      },
+      () => {
+        this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`);
+      }
+    );
+  }
+
+  private uplaodImage(bookCommonUid, file) {
+    this._bookService.uploadBookCover(bookCommonUid, file).subscribe(
+      resp => {
+        this._toastService.success($localize`:@@uspesnoAzuriraniPodaciOKnjizi:Успешно сте ажурирали податке о књизи!`);
+        this.previousFile = this.coverFile;
+      },
+      () => {
+        this._toastService.warning($localize`:@@cuvanjeNijeUspelo:Чување није успело!`);
+      }
+    );
+  }
 
   private routeToRecord() {
     this._router.navigate(['/book', this.lib, this.recordId]);
