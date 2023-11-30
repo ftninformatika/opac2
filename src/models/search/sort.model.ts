@@ -12,6 +12,6 @@ export interface ISort {
 }
 
 export const ISortInitial: ISort = {
-  type: ESortType.SORT_NONE,
+  type: ESortType.SORT_YEAR,
   ascending: false,
 };
