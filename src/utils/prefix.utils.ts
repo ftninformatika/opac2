@@ -3,6 +3,114 @@ import {Coder, PrefixModel} from '../models/prefix.model';
 // TODO: Razmotriti ima li uopste smisla da se sifarnici vuku sa bekenda, obzirom da ih ima samo 5
 export class PrefixUtils {
 
+  static field100e: Coder[] =
+    [
+    {
+      code: 'a',
+      name: 'дечја, општа'
+    },
+    {
+      code: 'b',
+      name: 'предшколска, 0-5 година'
+    },
+    {
+      code: 'c',
+      name: 'школска, 5-10 година'
+    },
+    {
+      code: 'd',
+      name: 'дечја, 9-14 година'
+    },
+    {
+      code: 'e',
+      name: 'омладинска, 14-20 година'
+    },
+    {
+      code: 'k',
+      name: 'за одрасле, озбиљна'
+    },
+    {
+      code: 'm',
+      name: 'за одрасле, општа'
+    },
+    {
+      code: 'u',
+      name: 'непознато'
+    }
+  ];
+
+  static field100e_lat: Coder[] =
+    [
+      {
+        code: 'a',
+        name: 'dečja, opšta'
+      },
+      {
+        code: 'b',
+        name: 'predškolska, 0-5 godina'
+      },
+      {
+        code: 'c',
+        name: 'školska, 5-10 godina'
+      },
+      {
+        code: 'd',
+        name: 'dečja, 9-14 godina'
+      },
+      {
+        code: 'e',
+        name: 'omladinska, 14-20 godina'
+      },
+      {
+        code: 'k',
+        name: 'za odrasle, ozbiljna'
+      },
+      {
+        code: 'm',
+        name: 'za odrasle, opšta'
+      },
+      {
+        code: 'u',
+        name: 'nepoznato'
+      }
+    ];
+
+  static field100e_en: Coder[] =
+    [
+      {
+        code: 'a',
+        name: 'children, general'
+      },
+      {
+        code: 'b',
+        name: 'preschool, 0-5 years'
+      },
+      {
+        code: 'c',
+        name: 'school age, 5-10 years'
+      },
+      {
+        code: 'd',
+        name: 'children, 9-14 years'
+      },
+      {
+        code: 'e',
+        name: 'youth, 14-20 years'
+      },
+      {
+        code: 'k',
+        name: 'for adults, serious'
+      },
+      {
+        code: 'm',
+        name: 'adult, general'
+      },
+      {
+        code: 'u',
+        name: 'unknown'
+      }
+    ];
+
   static _coderLA: Coder[] =
     [
       {
@@ -9719,6 +9827,11 @@ export class PrefixUtils {
     {
       code: 'SD',
       name: 'Предметна пододредница'
+    },
+    {
+      code: '100e',
+      name: 'Код за намену',
+      coder: PrefixUtils.field100e
     }
   ];
 
@@ -9806,6 +9919,11 @@ export class PrefixUtils {
     {
       code: 'SD',
       name: 'Predmetna pododrednica'
+    },
+    {
+      code: '100e',
+      name: 'Kod za namenu',
+      coder: PrefixUtils.field100e_lat
     }
   ];
 
@@ -9893,6 +10011,11 @@ export class PrefixUtils {
     {
       code: 'SD',
       name: 'Subject subheading'
+    },
+    {
+      code: '100e',
+      name: 'Purpose code',
+      coder: PrefixUtils.field100e_en
     }
   ];
 
