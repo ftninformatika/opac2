@@ -435,6 +435,7 @@
     "poAutoruNaslovuIzdavacu": ", by: author, title, publisher and keywords",
     "opacEmail": "Email address for notifications about new messages",
     "sacuvano": "Saved!",
+    "clanci": "Articles",
     "useBookCommonUid": "Generate an identifier even though an ISBN exists"
   }
 }
