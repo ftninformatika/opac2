@@ -212,32 +212,7 @@
                   </dd>
                 </ng-container>
 
-<!--                <ng-container *ngIf="book.refRecsBrief">-->
-<!--                  <ng-container-->
-<!--                    *ngFor="let recRef of book.refRecsBrief | keyvalue"-->
-<!--                  >-->
-<!--                    <dt class="col-sm-2">-->
-<!--                      {{book | recordFormat:-->
-<!--                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;-->
-<!--                    </dt>-->
-<!--                    <dd class="col-sm-10">-->
-<!--                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;-->
-<!--                      <span-->
-<!--                        [routerLink]="['/book',lib, recRef.key]"-->
-<!--                        style="-->
-<!--                          cursor: pointer;-->
-<!--                          color: darkblue;-->
-<!--                          text-decoration: underline;-->
-<!--                        " i18n="@@linkDoIzvora"-->
-<!--                      >-->
-<!--                        {{(recRef.value && recRef.value !== '') ? recRef.value :-->
-<!--                        'Линк до извора'}}-->
-<!--                      </span>-->
-<!--                    </dd>-->
-<!--                  </ng-container>-->
-<!--                </ng-container>-->
-
-                <ng-container *ngIf="book.refRecsBrief">
+              <ng-container *ngIf="book.refRecsBrief && ((book | recordFormat:RecordFormatType._001C_VALUE) === 'a')">
                   <ng-container
                     *ngFor="let recRef of book.refRecsBrief | keyvalue"
                   >
@@ -318,6 +293,35 @@
             </div>
           </div>
         </div>
+
+        <ng-container *ngIf="book.refRecsBrief && ((book | recordFormat:RecordFormatType._001C_VALUE) !== 'a')">
+          <mdb-accordion>
+            <mdb-accordion-item [collapsed]="true">
+              <mdb-accordion-item-head style="padding: 0">
+                <h5 class="mb-0" i18n="@@clanci">Članci</h5>
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ng-container
+                  *ngFor="let recRef of book.refRecsBrief | keyvalue"
+                >
+                  <div class="row">
+                    <dt class="col-sm-3">
+                      {{book | recordFormat:
+                      RecordFormatType._464_SOURCE_CONTENT_TITLE}} &nbsp;
+                    </dt>
+                    <dd class="col-sm-9">
+                      <mdb-icon far icon="eye"></mdb-icon> &nbsp;
+                      <a [routerLink]="['/book',lib, recRef.key]" href="javascript:void(0)" i18n="@@linkDoIzvora">
+                        {{(recRef.value && recRef.value !== '') ? recRef.value :
+                        'Линк до извора'}}
+                      </a>
+                    </dd>
+                  </div>
+                </ng-container>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+          </mdb-accordion>
+        </ng-container>
         <div
           class="isbd-collapse"
           *ngIf="book.isbdHtml && book.isbdHtml.trim() != ''"

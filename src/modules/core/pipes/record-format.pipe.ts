@@ -14,7 +14,8 @@ export enum ERecordFormatType {
   _327_CONTENT = '_327_CONTENT',
   TOME = 'TOME',
   NOTE = 'NOTE',
-  LOCATION = 'LOCATION'
+  LOCATION = 'LOCATION',
+  _001C_VALUE = '001C_VALUE'
 }
 
 @Pipe({
@@ -93,6 +94,9 @@ export class RecordFormatPipe implements PipeTransform {
       case ERecordFormatType.NOTE: {
         const retVal = RecordUtils.getSubfieldContent(book.record, '330a');
         return retVal;
+      }
+      case ERecordFormatType._001C_VALUE: {
+        return RecordUtils.getSubfieldContent(book.record, '001c');
       }
       case ERecordFormatType._001C_REFERENCE: {
         const _001c = RecordUtils.getSubfieldContent(book.record, '001c');
