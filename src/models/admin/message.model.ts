@@ -1,4 +1,4 @@
-import {LibraryMemberCard} from "../library-member.model";
+import {LibraryMemberCard} from '../library-member.model';
 
 export class Message {
   _id?: string;

@@ -12,7 +12,7 @@
           {id: 'paginatorId',
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
-          totalItems: resultPage?.totalElements}; let i = index">
+          totalItems: resultPage?.page.totalElements}; let i = index">
       <mdb-card-header>
         {{pageOptions.pageSize * (pageOptions.currentPage - 1) + i + 1}}. {{ faq.question }}
         <div class="btns">
