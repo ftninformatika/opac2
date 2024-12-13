@@ -1,4 +1,4 @@
-import {IPage} from "../page.model";
+import {IPageable, ISort} from './events-page-options.model';
 
 export class Library {
   _id?: string;
@@ -16,7 +16,16 @@ export class Library {
 
 export class LibraryResultPage {
   content: Library[];
-  page: IPage;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+  first: boolean;
+  numberOfElements: number;
+  size: number;
+  number: number;
+  empty: boolean;
+  sort: ISort;
+  pageable: IPageable;
 }
 
 export interface ILibraryPageOptions {
@@ -26,5 +35,5 @@ export interface ILibraryPageOptions {
 
 export const ILibraryPageOptionsInitial: ILibraryPageOptions = {
   pageSize: 5,
-  currentPage: 1
+  currentPage: 1,
 };

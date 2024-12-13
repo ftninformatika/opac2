@@ -1,5 +1,4 @@
-import {IPage} from '../page.model';
-
+import {IPageable, ISort} from "./events-page-options.model";
 
 export class Notification {
   _id?: string;
@@ -12,7 +11,16 @@ export class Notification {
 
 export class NotificationResultPage {
   content: Notification[];
-  page: IPage;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+  first: boolean;
+  numberOfElements: number;
+  size: number;
+  number: number;
+  empty: boolean;
+  sort: ISort;
+  pageable: IPageable;
 }
 
 export interface INotificationPageOptions {

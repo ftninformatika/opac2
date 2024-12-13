@@ -4,8 +4,8 @@
                     (filterSelected)="filterResults($event)"></search-filters>
   </ng-template>
   <div class="ml-2 mb-2">
-    <span *ngIf="resultPage && resultPage.page.totalElements" class="total-results-label">
-      <span style="color: #00b2d1;" i18n="@@rezultata">Резултата:&nbsp;</span>{{resultPage.page.totalElements}}
+    <span *ngIf="resultPage && resultPage.totalElements" class="total-results-label">
+      <span style="color: #00b2d1;" i18n="@@rezultata">Резултата:&nbsp;</span>{{resultPage.totalElements}}
     </span>
   </div>
   <div class="ml-2 mb-2">
@@ -82,7 +82,7 @@
           {id: 'paginatorId',
           itemsPerPage: pageOptions.pageSize,
           currentPage: pageOptions.currentPage,
-          totalItems: resultPage.page.totalElements}"
+          totalItems: resultPage.totalElements}"
                     class="mb-3">
               <book-result-brief [book]= "book"
                                  [checked] = "(appOptionsState | async)?.selectedShareRecords.indexOf(book._id) > -1"
@@ -94,7 +94,7 @@
           <result-table-view id="resultTableView"
           [books]="searchResult"
           [pageOptions]="pageOptions"
-          [totalItems]="resultPage.page.totalElements"
+          [totalItems]="resultPage.totalElements"
           (shareChecked)="addRemoveIdToShareList($event)"
           ></result-table-view>
         </ng-container>

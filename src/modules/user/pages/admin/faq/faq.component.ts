@@ -40,7 +40,7 @@ export class FaqComponent implements OnInit {
     this.faqService.getAll(pageNum, this.pageOptions.pageSize).subscribe(data => {
       this.resultPage = data;
       this.faqs = this.resultPage.content;
-      this.pageOptions.currentPage = this.resultPage.page.number + 1;
+      this.pageOptions.currentPage = this.resultPage.number + 1;
     });
   }
 

@@ -97,7 +97,7 @@ export class EventsComponent implements OnInit {
   private async populateResultPage(data: EventsResultPage): Promise<void> {
     this.resultPage = data;
     this.events = this.resultPage.content;
-    this.pageOptions.currentPage = this.resultPage.page.number + 1;
+    this.pageOptions.currentPage = this.resultPage.number + 1;
   }
 
   async downloadImage(event: Event) {
