@@ -3,9 +3,9 @@
     <div class="md-form">
       <ng-multiselect-dropdown i18n-placeholder="@@odaberiteFilterePoLokacijama"
         placeholder="Одаберите филтере по локацијама"
+        [settings]="dropdownSettings"
         [data]="allAvailableLocations"
         [(ngModel)]="allSelectedLocations"
-        [settings]="dropdownSettings"
         (ngModelChange)="filterBySelectedLocations()"
       >
       </ng-multiselect-dropdown>

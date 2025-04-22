@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableModule,
     SharedModule,
     NgbModule,
-    NgMultiSelectDropDownModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   declarations: [
     ItemsAvailabilityCardComponent,

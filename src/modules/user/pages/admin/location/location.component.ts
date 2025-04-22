@@ -50,6 +50,8 @@ export class LocationComponent implements OnInit {
       this.resultPage = data;
       this.libraries = this.resultPage.content;
       this.pageOptions.currentPage = this.resultPage.number + 1;
+    }, error => {
+      // console.log(error);
     });
   }
 
