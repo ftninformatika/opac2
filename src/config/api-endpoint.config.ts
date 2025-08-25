@@ -50,6 +50,7 @@ export class ApiEndpointConfig {
       getMultiple: `${ApiEndpointConfig.Origin}/book/multiple`,
       getByCollectionId: `${ApiEndpointConfig.Origin}/book/collection`,
       rateRecord: `${ApiEndpointConfig.Origin}/records/rate_record`,
+      availability: `${ApiEndpointConfig.Origin}/book/availability`
     },
     bookCommon: {
       main: `${ApiEndpointConfig.Origin}/book_common`

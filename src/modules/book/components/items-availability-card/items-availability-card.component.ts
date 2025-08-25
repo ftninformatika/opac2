@@ -3,7 +3,7 @@ import {
   RemoveFromShelfAction,
   UserState
 } from '../../../core/states/user/user.state';
-import {ERecordItemStatus, RecordItem, ReservationInQueue} from '../../../../models/book.model';
+import {ERecordItemStatus, RecordItem, ReservationInformation, ReservationInQueue} from '../../../../models/book.model';
 import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {BooksService} from '../../../core/services/books.service';
@@ -25,7 +25,7 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   @Input() containShowableItems: boolean;
   @Input() reservations: ReservationInQueue[];
   private readonly _store: Store;
-  private readonly _bookService: BooksService;
+  private readonly _booksService: BooksService;
   private readonly _userService: UsersService;
   private readonly _router: Router;
   private readonly _toastService: ToastService;
@@ -42,18 +42,19 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   public availableItems: number;
   public reservedItems: number;
   public locations: string[];
+  public reservationInformation: ReservationInformation[];
 
   public selectedLocation: string;
   public reservationResponseMessage: string;
 
-  public constructor(store: Store, bookService: BooksService, userService: UsersService, router: Router, toast: ToastService) {
+  public constructor(store: Store, booksService: BooksService, userService: UsersService, router: Router, toast: ToastService) {
     this._store = store;
     this.booksOnShelf = this._store.selectSnapshot(UserState.bookshelfBooksIds);
     this.memberNo = this._store.selectSnapshot(UserState.memberNo);
     this.lib = this._store.selectSnapshot(ConfigState.library);
     this.libConfig = this._store.selectSnapshot(ConfigState.getLibConfig);
 
-    this._bookService = bookService;
+    this._booksService = booksService;
     this._userService = userService;
     this._router = router;
     this._toastService = toast;
@@ -64,10 +65,27 @@ export class ItemsAvailabilityCardComponent implements OnInit {
       return;
     }
     this.isAdmin = this._store.selectSnapshot(UserState.admin);
-    this.locations = [...new Set(this.recordItems.map(i => i.location))];
-    this.selectedLocation = this.locations[0];        // first location is selected by default
+    this._booksService.getBookAvailabilityInformation(this.bookId).subscribe(
+      async (data) => {
+        await data;
+        if (!data) {
+          await this._router.navigate(['/error/not-found']);
+        } else {
+          this.reservationInformation = data.sort((a , b) =>  a.locationCode.localeCompare(b.locationCode));
+          this.locations = [...this.reservationInformation.map(i => i.locationDescription)];
+          this.selectedLocation = this.locations[0];        // first location is selected by default
+          this.setAvailabilityValues();
+        }
+      },
+      async () => {
+        await this._router.navigate(['/error/not-found']);
+      }
+    );
 
-    this.setAvailabilityValues();
+    // this.locations = [...new Set(this.recordItems.map(i => i.location))];
+    // this.selectedLocation = this.locations[0];        // first location is selected by default
+    //
+    // this.setAvailabilityValues();
   }
 
   public async addToShelf() {
@@ -131,11 +149,17 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   }
 
   public setAvailabilityValues() {
-    this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable
-      && i.location === this.selectedLocation).length;
-    this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free
-      && i.location === this.selectedLocation).length;
-    this.reservedItems = this.reservations.filter(i => i.coderId === this.getSelectedLocationLode()).length
-      + this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
+    const item = this.reservationInformation.find(i => i.locationDescription === this.selectedLocation);
+    this.totalItems = item.total;
+    this.availableItems = item.free;
+    this.reservedItems = item.reserved;
   }
+  // public setAvailabilityValues() {
+  //   this.totalItems = this.recordItems.filter(i => i.status !== ERecordItemStatus.NotShowable
+  //     && i.location === this.selectedLocation).length;
+  //   this.availableItems = this.recordItems.filter(i => i.status === ERecordItemStatus.Free
+  //     && i.location === this.selectedLocation).length;
+  //   this.reservedItems = this.reservations.filter(i => i.coderId === this.getSelectedLocationLode()).length
+  //     + this.recordItems.filter(i => i.status === ERecordItemStatus.Reserved && i.location === this.selectedLocation).length;
+  // }
 }

@@ -6,7 +6,7 @@ import {
   AvgRecordRating,
   Book,
   BookCommon,
-  RecordRating,
+  RecordRating, ReservationInformation,
 } from '../../../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -98,5 +98,12 @@ export class BooksService {
       `${ApiEndpointConfig.Paths.book.rateRecord}/${recordId}`,
       recordRating
     ) as Observable<AvgRecordRating>;
+  }
+
+  public getBookAvailabilityInformation(_id: string) {
+    return this._httpClient.post(
+      ApiEndpointConfig.Paths.book.availability,
+      _id
+    ) as Observable<ReservationInformation[]>;
   }
 }

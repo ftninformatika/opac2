@@ -65,6 +65,15 @@ export interface AvgRecordRating {
   totalRates: number;
 }
 
+export interface ReservationInformation {
+  recordId: string;
+  locationDescription: string;
+  locationCode: string;
+  total: number;
+  free: number;
+  reserved: number;
+}
+
 export interface Reservation {
   _id: string;
   record_id: string;
