@@ -99,10 +99,10 @@ export class ItemsAvailabilityCardComponent implements OnInit {
   }
 
   public checkLoggedUser() {
-    if (this.memberNo == null) {
-      this._router.navigate(['/user/login'], {queryParams: {redirectURL: this._router.url}});
-    }
     if (this.libConfig.reservation) {
+      if (this.memberNo == null) {
+        this._router.navigate(['/user/login'], {queryParams: {redirectURL: this._router.url}});
+      }
       this.confirmModal.show();
     } else {
       this._toastService.warning($localize`:@@bibliotekaNePodrzavaFunkcionalnost:Библиотека не подржава ову функционалност!`);
