@@ -6,6 +6,7 @@ export interface Book {
   otherAuthors?: string[];
   title: string;
   subtitle?: string;
+  tom?: string;
   publisher?: string;
   publishYear?: string;
   publishPlace?: string;
