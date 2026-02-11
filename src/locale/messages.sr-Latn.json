@@ -163,7 +163,7 @@
     "knjigaSklonjenaSaPolice": "Knjiga sklonjena sa police",
     "accessDeniedPage": " Zabranjen pristup...{$LINE_BREAK} Dizajn u izradi...\n",
     "internalServerErrorPage": " Došlo je do serverske greške...{$LINE_BREAK} Dizajn u izradi\n",
-    "notFoundPage": " Putanja nije pronađena...{$LINE_BREAK} Duzajn u izradi...\n",
+    "notFoundPage": " Putanja nije pronađena...",
     "rezervisi": "Rezerviši",
     "staviNaPolicu": "Stavi na policu",
     "skloniSaPolice": "Skloni sa police",

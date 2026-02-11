@@ -163,7 +163,7 @@
     "knjigaSklonjenaSaPolice": "The book removed from the shelf",
     "accessDeniedPage": " Access denied...{$LINE_BREAK} Design in progress...\n",
     "internalServerErrorPage": " A server error has occurred...{$LINE_BREAK} Design in progress\n",
-    "notFoundPage": " Path not found...{$LINE_BREAK} Design in progress...\n",
+    "notFoundPage": " Path not found...",
     "rezervisi": "Reserve",
     "staviNaPolicu": "Add to bookshelf",
     "skloniSaPolice": "Remove from the bookshelf",

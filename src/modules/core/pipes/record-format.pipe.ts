@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Book, Field, RecordItem } from '../../../models/book.model';
+import {Book, ERecordItemStatus, Field, RecordItem} from '../../../models/book.model';
 import { RecordUtils } from '../../../utils/record-utils';
 
 export enum ERecordFormatType {
@@ -128,7 +128,7 @@ export class RecordFormatPipe implements PipeTransform {
       }
       case ERecordFormatType.FORMAT_FIRST_SIGNATURE_INFO: {
         let fs = '';
-        const items: RecordItem[] = book.items;
+        const items: RecordItem[] = book.items.filter(i => i.status !== ERecordItemStatus.NotShowable);
         if (items && items.length > 0) {
           const p: RecordItem = items.sort((p0, p1) =>
             p0.invNum.localeCompare(p1.invNum)
