@@ -27,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     MainPage
   ],
   exports: [
-    BookCardComponent
+    BookCardComponent,
+    CollectionCarouselComponent
   ]
 })
 export class HomeModule { }

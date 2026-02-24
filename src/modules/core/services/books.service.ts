@@ -106,4 +106,24 @@ export class BooksService {
       _id
     ) as Observable<ReservationInformation[]>;
   }
+
+  public getRecommendationsByAuthor(_id: string): Observable<Book[]> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.recommend.byAuthor}?id=${_id}`
+    ) as Observable<Book[]>;
+  }
+
+  public getRecommendationsByGenres(_id: string): Observable<Book[]> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.recommend.byGenres}?id=${_id}`
+    ) as Observable<Book[]>;
+  }
+
+  public getRecommendationsByOtherReaders(_id: string): Observable<Book[]> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.recommend.byOtherReaders}?id=${_id}`
+    ) as Observable<Book[]>;
+  }
+
+  public getRecommendationsBySimilarity(_id: string): Observable<Book[]> {
+    return this._httpClient.get(`${ApiEndpointConfig.Paths.recommend.bySimilarity}?id=${_id}`
+    ) as Observable<Book[]>;
+  }
 }

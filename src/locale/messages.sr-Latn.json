@@ -436,6 +436,11 @@
     "opacEmail": "Email adresa za obaveštenja o novim porukama",
     "sacuvano": "Sačuvano!",
     "clanci": "Članci",
-    "useBookCommonUid": "Generiši identifikator iako postoji ISBN broj"
+    "useBookCommonUid": "Generiši identifikator iako postoji ISBN broj",
+    "preporuke": "Preporuke",
+    "poAutoru": "Od istog autora",
+    "poOblasti": "Iz iste oblasti/žanra",
+    "iDrugi": "I drugi su čitali",
+    "poSlicnosti": "Slične knjige"
   }
 }

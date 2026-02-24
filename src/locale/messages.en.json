@@ -436,6 +436,11 @@
     "opacEmail": "Email address for notifications about new messages",
     "sacuvano": "Saved!",
     "clanci": "Articles",
-    "useBookCommonUid": "Generate an identifier even though an ISBN exists"
+    "useBookCommonUid": "Generate an identifier even though an ISBN exists",
+    "preporuke": "Recommendations",
+    "poAutoru": "By the same author",
+    "poOblasti": "From the same genre",
+    "iDrugi": "Others also read",
+    "poSlicnosti": "Similar books"
   }
 }

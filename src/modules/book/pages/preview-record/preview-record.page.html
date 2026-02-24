@@ -403,4 +403,12 @@
   <div class="locations-table" *ngIf="book.items" id="items">
     <items-table [items]="book.items"></items-table>
   </div>
+
+  <div class="recommendation-title" i18n="@@preporuke">
+      Препоруке
+  </div>
+  <collection-carousel *ngIf="recommendationsByAuthor" [books]="recommendationsByAuthor" [title]="recommendationTitle('author')"></collection-carousel>
+  <collection-carousel *ngIf="recommendationsByGenres" [books]="recommendationsByGenres" [title]="recommendationTitle('genres')"></collection-carousel>
+  <collection-carousel *ngIf="recommendationsByOtherReaders" [books]="recommendationsByOtherReaders" [title]="recommendationTitle('others')"></collection-carousel>
+  <collection-carousel *ngIf="recommendationsBySimilarity" [books]="recommendationsBySimilarity" [title]="recommendationTitle('similarity')"></collection-carousel>
 </div>
