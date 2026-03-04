@@ -117,22 +117,22 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
       );
 
       this._booksService.getRecommendationsByAuthor(bookId).subscribe(
-        (data) => {
+        async (data) => {
           this.recommendationsByAuthor = data;
         }
       );
       this._booksService.getRecommendationsByGenres(bookId).subscribe(
-        (data) => {
+        async (data) => {
           this.recommendationsByGenres = data;
         }
       );
       this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
-        (data) => {
+        async (data) => {
           this.recommendationsByOtherReaders = data;
         }
       );
       this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
-        (data) => {
+        async (data) => {
           this.recommendationsBySimilarity = data;
         }
       );

@@ -102,6 +102,7 @@ export class UploadDescriptionCoverPage implements OnInit {
       bookCommon.uid = this.book.commonBookUID;
     }
     this._bookService.createModifyBookCommon(bookCommon).subscribe(res => {
+        this.book.commonBookUID = res.uid;
         if (this.coverFile && (this.coverFile !== this.previousFile)) {
           this.uplaodImage(res.uid, this.coverFile);
         } else {
