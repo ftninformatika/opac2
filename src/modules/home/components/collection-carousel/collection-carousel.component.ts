@@ -84,6 +84,7 @@ export class CollectionCarouselComponent implements OnInit {
   public previousSlide() {
     if (this.activeSlideIndex > 0) { this.activeSlideIndex--; }
     this.animateDirection = ANIMATE_DIRECTION.RIGHT;
+    this.onWindowResize();
   }
 
   public nextSlide() {

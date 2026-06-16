@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngxs/store';
 import {ConfigState} from '../../../core/states/config/config.state';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {ViewportScroller} from '@angular/common';
-import 'deep-chat';
+import {ViewportScroller, isPlatformBrowser} from '@angular/common';
 import { ApiEndpointConfig } from 'src/config/api-endpoint.config';
 declare let gtag: Function;
 
@@ -39,7 +38,7 @@ export class AppPage implements AfterViewInit, OnInit {
     headers: {'Content-Type': 'application/json'}
   }
 
-  public constructor(titleService: Title, store: Store, router: Router, viewportScroller: ViewportScroller) {
+  public constructor(titleService: Title, store: Store, router: Router, viewportScroller: ViewportScroller, @Inject(PLATFORM_ID) private platformId: Object) {
     this._titleService = titleService;
     this._store = store;
     this._router = router;
@@ -51,6 +50,9 @@ export class AppPage implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.checkIfCookieAccepted();
+    if (isPlatformBrowser(this.platformId)) {
+      import('deep-chat');   // runs only in the browser, never on the server
+    }
   }
 
   ngAfterViewInit() {
