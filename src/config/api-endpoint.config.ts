@@ -70,6 +70,9 @@ export class ApiEndpointConfig {
       byGenres: `${ApiEndpointConfig.Origin}/recommend/byGenres`,
       byOtherReaders: `${ApiEndpointConfig.Origin}/recommend/byOtherReaders`,
       bySimilarity: `${ApiEndpointConfig.Origin}/recommend/bySimilarity`
+    },
+    chat: {
+      ask: `${ApiEndpointConfig.Origin}/chat/ask`,
     }
   };
 }

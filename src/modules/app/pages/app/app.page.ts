@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ELocalizationLanguage} from '../../../../config/localization-laguage.enum';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngxs/store';
 import {ConfigState} from '../../../core/states/config/config.state';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {ViewportScroller} from '@angular/common';
-// tslint:disable-next-line:ban-types
+import 'deep-chat';
+import { ApiEndpointConfig } from 'src/config/api-endpoint.config';
 declare let gtag: Function;
 
 @Component({
@@ -19,7 +19,25 @@ export class AppPage implements AfterViewInit, OnInit {
   private readonly _titleService: Title;
   private readonly _router: Router;
   private readonly _viewportScroller: ViewportScroller;
-  showCookieDiv: boolean;
+  public showCookieDiv: boolean;
+  public isChatOpen = false;
+  public placeholderStyle = {
+    placeholder: {
+      text: "Постави питање...",
+      style: { color: '#888' }
+    }
+  }
+  public messageStyles = {
+    default: {
+      user: { bubble: { backgroundColor: '#0099CC', color: 'white' } },
+      ai: { bubble: { backgroundColor: '#f4f4f4' } }
+    }
+  }
+  public request = {
+    url: ApiEndpointConfig.Paths.chat.ask,
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'}
+  }
 
   public constructor(titleService: Title, store: Store, router: Router, viewportScroller: ViewportScroller) {
     this._titleService = titleService;
@@ -79,5 +97,9 @@ export class AppPage implements AfterViewInit, OnInit {
 
   scrollToElement(target: string){
     this._viewportScroller.scrollToAnchor(target);
+  }
+
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen;
   }
 }
