@@ -213,7 +213,7 @@
     "rezultata": "Резултата: ",
     "izmenaPretrage": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON}  Измена претраге ",
     "izmeniteParametrePretrage": "Измените параметре претраге",
-    "traziliSte": "{$START_TAG_SPAN}{$CLOSE_TAG_SPAN}",
+    "traziliSte": "Тражили сте: ",
     "ponistiSelektovaneZapise": "Поништи све селектоване записе",
     "odabraniZapisi": "Одабрани записи",
     "stampajRezultate": "Штампај резулатате",

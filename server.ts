@@ -177,9 +177,11 @@ function run(): void {
   const app0 = app('dist/browser/sr-Cyrl');
   const app1 = app('dist/browser/sr-Latn');
   const app2 = app('dist/browser/en');
+  const app3 = app('dist/browser/hu');
   server.use('/sr-Cyrl', app0);
   server.use('/sr-Latn', app1);
   server.use('/en', app2);
+  server.use('/hu', app3);
   server.use('/', app0);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);

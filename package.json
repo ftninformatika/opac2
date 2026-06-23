@@ -96,7 +96,8 @@
     "xmlhttprequest": "^1.8.0"
   },
   "resolutions": {
-    "https-proxy-agent": "^3.0.0"
+    "https-proxy-agent": "^3.0.0",
+    "picomatch": "^2.3.2"
   },
   "engines": {
     "node": "~10.11.0",

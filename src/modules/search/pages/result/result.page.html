@@ -14,8 +14,8 @@
       &nbsp;Измена претраге
     </a>
   </div>
-  <div class="ml-2 mb-2 d-flex flex-md-row" i18n="@@traziliSte">
-      <span [innerHTML]="'Тражили сте: ' + youSearchedText"></span>
+  <div class="ml-2 mb-2 d-flex flex-md-row">
+      <span i18n="@@traziliSte">Тражили сте:&nbsp;</span><span [innerHTML]="youSearchedText"></span>
   </div>
   <selected-filters [selectedFilters]="selectedFilters" (removeSelectedFilter)="removeSelectedFilter($event)"></selected-filters>
 

@@ -213,7 +213,7 @@
     "rezultata": "Results: ",
     "izmenaPretrage": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON}  Change search ",
     "izmeniteParametrePretrage": "Change the search parameters",
-    "traziliSte": "{$START_TAG_SPAN}{$CLOSE_TAG_SPAN}",
+    "traziliSte": "You searched for: ",
     "ponistiSelektovaneZapise": "Clear all selected records",
     "odabraniZapisi": "Selected records",
     "stampajRezultate": "Print the results",
