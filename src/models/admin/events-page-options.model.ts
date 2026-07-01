@@ -2,13 +2,12 @@ import {Event} from "./event.model";
 
 export class EventsResultPage {
   content: Event[];
-  totalElements: number;
+  total: number;
   totalPages: number;
   last: boolean;
   first: boolean;
   numberOfElements: number;
   size: number;
-  number: number;
   empty: boolean;
   sort: ISort;
   pageable: IPageable;
@@ -22,6 +21,7 @@ export interface ISort {
 
 export interface IPageable {
   sort: ISort;
+  pageNumber: number;
   pageSize: number;
   offset: number;
   paged: boolean;

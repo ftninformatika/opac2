@@ -9,13 +9,12 @@ export class Faq {
 
 export class FAQResultPage {
   content: Faq[];
-  totalElements: number;
+  total: number;
   totalPages: number;
   last: boolean;
   first: boolean;
   numberOfElements: number;
   size: number;
-  number: number;
   empty: boolean;
   sort: ISort;
   pageable: IPageable;

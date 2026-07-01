@@ -16,13 +16,12 @@ export class Library {
 
 export class LibraryResultPage {
   content: Library[];
-  totalElements: number;
+  total: number;
   totalPages: number;
   last: boolean;
   first: boolean;
   numberOfElements: number;
   size: number;
-  number: number;
   empty: boolean;
   sort: ISort;
   pageable: IPageable;

@@ -385,6 +385,8 @@
     "novoObavestenje": "Ново обавештење\n",
     "obavestenjaCAPS": "ОБАВЕШТЕЊА",
     "obavestenje": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Обавештење ",
+    "tipObavestenjeLabel": "Обавештење",
+    "tipDesavanjaLabel": "Дешавање",
     "naslovZvezdica": "* Наслов",
     "sadrzajZvezdica": "* Садржај",
     "izaberiteTip": "Изаберите тип",

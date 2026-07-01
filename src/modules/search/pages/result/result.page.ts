@@ -378,7 +378,7 @@ export class ResultPage implements OnInit, OnDestroy {
     } else {
       this.resultPage = res;
       this.searchResult = res.content;
-      this.pageOptions.currentPage = this.resultPage.number + 1;
+      this.pageOptions.currentPage = (this.resultPage.pageable?.pageNumber ?? 0) + 1;
       this.populateLocation();
       window.scroll(0, 0);
     }

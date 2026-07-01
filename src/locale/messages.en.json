@@ -385,6 +385,8 @@
     "novoObavestenje": "New notification\n",
     "obavestenjaCAPS": "NOTIFICATIONS",
     "obavestenje": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Notification ",
+    "tipObavestenjeLabel": "Notification",
+    "tipDesavanjaLabel": "Event",
     "naslovZvezdica": "* Title",
     "sadrzajZvezdica": "* Content",
     "izaberiteTip": "Select type",

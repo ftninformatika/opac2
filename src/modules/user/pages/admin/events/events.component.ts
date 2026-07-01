@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {LOCALE_ID} from '@angular/core';
 import {EventsService} from '../../../../core/services/events.service';
 import {Event, EventFilter, IEventFilter} from '../../../../../models/admin/event.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -7,7 +8,7 @@ import {
   ModalDirective,
   UploadOutput
 } from 'ng-uikit-pro-standard';
-import {SR_LOCATE} from '../../../../../utils/consts';
+import {EN_LOCATE, HU_LOCATE, SR_LATN_LOCATE, SR_LOCATE} from '../../../../../utils/consts';
 import {ToastService} from 'ng-uikit-pro-standard';
 import {
   EventsResultPage,
@@ -31,7 +32,8 @@ export class EventsComponent implements OnInit {
   imgURL: string | ArrayBuffer;
 
   validatingForm: FormGroup;
-  myDatePickerOptions: IMyOptions = SR_LOCATE;
+  myDatePickerOptions: IMyOptions;
+  datePickerLocale: string;
   editing: boolean;
   filter: EventFilter;
   isFiltered: boolean;
@@ -42,7 +44,26 @@ export class EventsComponent implements OnInit {
   pageOptions: IEventsPageOptions;
   resultPage: EventsResultPage;
 
-  constructor(private eventService: EventsService, private toastService: ToastService) {
+  constructor(
+    private eventService: EventsService,
+    private toastService: ToastService,
+    @Inject(LOCALE_ID) private localeId: string
+  ) {
+    this.myDatePickerOptions = this.resolveOptions(localeId);
+    this.datePickerLocale = this.resolveLocale(localeId);
+  }
+
+  private resolveOptions(localeId: string): IMyOptions {
+    if (localeId.startsWith('hu')) return HU_LOCATE;
+    if (localeId === 'sr-Latn') return SR_LATN_LOCATE;
+    if (localeId.startsWith('en')) return EN_LOCATE;
+    return SR_LOCATE;
+  }
+
+  private resolveLocale(localeId: string): string {
+    if (localeId.startsWith('hu')) return 'hu';
+    if (localeId.startsWith('en')) return 'en';
+    return 'sr';
   }
 
   ngOnInit(): void {
@@ -97,7 +118,7 @@ export class EventsComponent implements OnInit {
   private async populateResultPage(data: EventsResultPage): Promise<void> {
     this.resultPage = data;
     this.events = this.resultPage.content;
-    this.pageOptions.currentPage = this.resultPage.number + 1;
+    this.pageOptions.currentPage = (this.resultPage.pageable?.pageNumber ?? 0) + 1;
   }
 
   async downloadImage(event: Event) {
