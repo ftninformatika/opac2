@@ -1,8 +1,10 @@
-import {AfterViewInit, Component, OnInit, Inject, PLATFORM_ID} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, OnDestroy, Inject, PLATFORM_ID, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngxs/store';
 import {ConfigState} from '../../../core/states/config/config.state';
+import {UserState} from '../../../core/states/user/user.state';
 import {NavigationEnd, Router} from '@angular/router';
+import {combineLatest, Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {ViewportScroller, isPlatformBrowser} from '@angular/common';
 import { ApiEndpointConfig } from 'src/config/api-endpoint.config';
@@ -13,7 +15,7 @@ declare let gtag: Function;
   templateUrl: './app.page.html',
   styleUrls: ['./app.page.scss']
 })
-export class AppPage implements AfterViewInit, OnInit {
+export class AppPage implements AfterViewInit, OnInit, OnDestroy {
   private readonly _store: Store;
   private readonly _titleService: Title;
   private readonly _router: Router;
@@ -32,11 +34,17 @@ export class AppPage implements AfterViewInit, OnInit {
       ai: { bubble: { backgroundColor: '#f4f4f4' } }
     }
   }
-  public request = {
+  public request: {url: string; method: string; headers: Record<string, string>} = {
     url: ApiEndpointConfig.Paths.chat.ask,
     method: 'POST',
     headers: {'Content-Type': 'application/json'}
   }
+  private _chatRequestSubscription?: Subscription;
+  private _currentToken: string | null = null;
+  private _currentLibrary: string | null = null;
+  private _chatId: string;
+  public deepChatLoaded = false;
+  @ViewChild('deepChatEl') deepChatEl?: ElementRef;
 
   public constructor(titleService: Title, store: Store, router: Router, viewportScroller: ViewportScroller, @Inject(PLATFORM_ID) private platformId: Object) {
     this._titleService = titleService;
@@ -46,13 +54,59 @@ export class AppPage implements AfterViewInit, OnInit {
     this._titleService.setTitle(title);
     this.showCookieDiv = true;
     this._viewportScroller = viewportScroller;
+    this._chatId = this.generateUuid();
   }
 
   ngOnInit() {
     this.checkIfCookieAccepted();
     if (isPlatformBrowser(this.platformId)) {
-      import('deep-chat');   // runs only in the browser, never on the server
+      import('deep-chat').then(() => { this.deepChatLoaded = true; });   // runs only in the browser, never on the server
+      this._chatRequestSubscription = combineLatest([
+        this._store.select(UserState.token),
+        this._store.select(UserState.library),
+        this._store.select(ConfigState.library)
+      ]).subscribe(([token, memberLibrary, configLibrary]) => {
+        this._currentToken = token;
+        this._currentLibrary = memberLibrary || configLibrary;
+        this.request = this.buildChatRequest(this._chatId);
+      });
     }
+  }
+
+  ngOnDestroy() {
+    this._chatRequestSubscription?.unsubscribe();
+  }
+
+  startNewConversation() {
+    this._chatId = this.generateUuid();
+    this.request = this.buildChatRequest(this._chatId);
+    const deepChat: any = this.deepChatEl?.nativeElement;
+    deepChat?.clearMessages?.();
+  }
+
+  private buildChatRequest(chatId: string): {url: string; method: string; headers: Record<string, string>} {
+    return {
+      url: ApiEndpointConfig.Paths.chat.ask,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Library: this._currentLibrary || '',
+        'X-Chat-Id': chatId,
+        ...(this._currentToken ? {Authorization: `Bearer ${this._currentToken}`} : {})
+      }
+    };
+  }
+
+  private generateUuid(): string {
+    const cryptoObj: any = typeof crypto !== 'undefined' ? crypto : undefined;
+    if (cryptoObj && typeof cryptoObj.randomUUID === 'function') {
+      return cryptoObj.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
   ngAfterViewInit() {
