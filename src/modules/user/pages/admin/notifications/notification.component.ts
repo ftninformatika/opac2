@@ -61,7 +61,7 @@ export class NotificationComponent implements OnInit {
     this.notificationService.getAll(pageNum, this.pageOptions.pageSize).subscribe(data => {
       this.resultPage = data;
       this.notifications = this.resultPage.content;
-      this.pageOptions.currentPage = (this.resultPage.pageable?.pageNumber ?? 0) + 1;
+      this.pageOptions.currentPage = this.resultPage.page.number + 1;
     });
   }
 

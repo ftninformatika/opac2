@@ -1,4 +1,4 @@
-import {IPageable, ISort} from "./events-page-options.model";
+import {IPage} from '../page.model';
 
 export class Faq {
   _id?: string;
@@ -9,15 +9,7 @@ export class Faq {
 
 export class FAQResultPage {
   content: Faq[];
-  total: number;
-  totalPages: number;
-  last: boolean;
-  first: boolean;
-  numberOfElements: number;
-  size: number;
-  empty: boolean;
-  sort: ISort;
-  pageable: IPageable;
+  page: IPage;
 }
 
 export interface IFAQPageOptions {
