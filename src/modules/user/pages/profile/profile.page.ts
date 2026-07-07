@@ -15,6 +15,7 @@ export class ProfilePage implements OnInit {
   @Select(UserState) userState;
   public signing: ISigningModel;
   public formatedSigningUntil: string;
+  public membershipPlaceholder: string;
 
   public constructor(store: Store) {
     this._store = store;
@@ -23,6 +24,9 @@ export class ProfilePage implements OnInit {
       const datePart: string[] = this.signing.untilDate.toString().split('T');
       const parts: string[] = datePart[0].split('-');
       this.formatedSigningUntil = parts[2] + '.' + parts[1] + '.' + parts[0];
+      this.membershipPlaceholder = $localize`:@@aktivaDo:Активна до:` + '       ' + this.formatedSigningUntil;
+    } else {
+      this.membershipPlaceholder = $localize`:@@istekla:Истекла`;
     }
   }
 
