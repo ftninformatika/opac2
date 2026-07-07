@@ -46,7 +46,7 @@
    <!-- Deep Chat (Fills all remaining vertical and horizontal space). -->
    <deep-chat *ngIf="deepChatLoaded" #deepChatEl
      style="flex: 1 1 auto; width: 100%; height: 100%; border: none;"
-     [request]="request" [textInput]="placeholderStyle" [messageStyles]="messageStyles"
+     [connect]="request" [textInput]="placeholderStyle" [messageStyles]="messageStyles"
    >
    </deep-chat>
  </div>

@@ -378,7 +378,7 @@ export class ResultPage implements OnInit, OnDestroy {
     } else {
       this.resultPage = res;
       this.searchResult = res.content;
-      this.pageOptions.currentPage = (this.resultPage.pageable?.pageNumber ?? 0) + 1;
+      this.pageOptions.currentPage = this.resultPage.page.number + 1;
       this.populateLocation();
       window.scroll(0, 0);
     }
@@ -488,7 +488,7 @@ export class ResultPage implements OnInit, OnDestroy {
       // TODO: fix "window not defined" bug
       printJS({
         printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-          + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+          + this.pageOptions.currentPage + '/' + this.resultPage.page.totalPages + '(' + this.pageOptions.pageSize + ')',
         type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']
       });
     }
