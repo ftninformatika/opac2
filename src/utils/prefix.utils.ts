@@ -10126,7 +10126,7 @@ export class PrefixUtils {
 
   // tslint:disable-next-line:variable-name
   static _coder856u_hu = [
-    { code: '.*', name: 'Létezik' }
+    { code: '.*', name: 'URL címmel rendelkező dokumentum' }
   ];
 
   // tslint:disable-next-line:variable-name
@@ -10867,7 +10867,7 @@ export class PrefixUtils {
     { code: 'SP', name: 'ISSN' },
     { code: 'RN', name: 'Rekordazonosító' },
     { code: 'CC', name: 'Tartalomtípus', coder: PrefixUtils._coderCC_hu },
-    { code: 'RT', name: 'Rekordtípus', coder: PrefixUtils._coderRT_hu },
+    { code: 'RT', name: 'Bibliográfiai rekord típusa', coder: PrefixUtils._coderRT_hu },
     { code: '856u', name: 'Digitális példány URL-je', coder: PrefixUtils._coder856u_hu },
     { code: 'SB', name: 'Tárgyszó' },
     { code: 'SD', name: 'Tárgyszó-alcsoport' },

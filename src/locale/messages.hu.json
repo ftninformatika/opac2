@@ -49,7 +49,7 @@
     "promenaLozinke": "Jelszó módosítása",
     "odjava": "Kijelentkezés",
     "prijava": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON} Bejelentkezés",
-    "kolacici": " A www.opac.bisis.rs saját és harmadik féltől származó sütiket használ a böngészési élmény javítása és a szolgáltatások biztosítása érdekében. A sütik használatához kattintson az \"Elfogadom\" gombra. {$START_TAG_BUTTON}Elfogadom{$CLOSE_TAG_BUTTON}",
+    "kolacici": " A www.opac.bisis.rs saját és harmadik féltől származó sütiket használ a böngészési élmény javítása és a szolgáltatások biztosítása érdekében. A sütik használatához kattintson az „Elfogadom” gombra. {$START_TAG_BUTTON}Elfogadom{$CLOSE_TAG_BUTTON}",
     "rejting": " Értékelés:  {$INTERPOLATION} / {$INTERPOLATION_1} ",
     "knjigaNemaGlas": "A könyvnek nincs értékelése",
     "greskaOcenaKnjigePrijava": "A könyv értékeléséhez be kell jelentkezni",
