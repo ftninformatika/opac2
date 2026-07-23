@@ -69,6 +69,7 @@
     "ostale": "...остале",
     "isbd": "ISBD",
     "unimarc": "UNIMARC",
+    "primerciPoLokacijama": "Примерци по локацијама",
     "dostupnostPrimeraka": "Доступност примерака",
     "odaberiteLokaciju": "Одаберите локацију:",
     "ukupnoSlobodnoRezervisano": " укупно: {$START_TAG_STRONG}{$INTERPOLATION}{$CLOSE_TAG_STRONG}   слободно: {$START_TAG_STRONG}{$INTERPOLATION_1}{$CLOSE_TAG_STRONG}   резервисано: {$START_TAG_STRONG}{$INTERPOLATION_2}{$CLOSE_TAG_STRONG}",
@@ -444,7 +445,7 @@
     "preporuke": "Препоруке",
     "poAutoru": "Од истог аутора",
     "poOblasti": "Из исте области/жанра",
-    "iDrugi": "И други су читали",
-    "poSlicnosti": "Сличне књиге"
+    "iDrugi": "Други су читали и",
+    "poSlicnosti": "Можда ће Вас занимати"
   }
 }

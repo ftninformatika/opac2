@@ -116,26 +116,26 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
         }
       );
 
-      this._booksService.getRecommendationsByAuthor(bookId).subscribe(
-        async (data) => {
-          this.recommendationsByAuthor = data;
-        }
-      );
-      this._booksService.getRecommendationsByGenres(bookId).subscribe(
-        async (data) => {
-          this.recommendationsByGenres = data;
-        }
-      );
-      this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
-        async (data) => {
-          this.recommendationsByOtherReaders = data;
-        }
-      );
-      this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
-        async (data) => {
-          this.recommendationsBySimilarity = data;
-        }
-      );
+      // this._booksService.getRecommendationsByAuthor(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByAuthor = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsByGenres(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByGenres = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByOtherReaders = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsBySimilarity = data;
+      //   }
+      // );
     });
 
     this.miradorShow = false;
@@ -272,8 +272,8 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
     switch (title) {
       case 'author': return $localize`:@@poAutoru:Од истог аутора`;
       case 'genres': return $localize`:@@poOblasti:Из исте области/жанра`;
-      case 'others': return $localize`:@@iDrugi:И други су читали`;
-      case 'similarity': return $localize`:@@poSlicnosti:Сличне књиге`;
+      case 'others': return $localize`:@@iDrugi:Други су читали и`;
+      case 'similarity': return $localize`:@@poSlicnosti:Можда ће Вас занимати`;
     }
   }
 }
