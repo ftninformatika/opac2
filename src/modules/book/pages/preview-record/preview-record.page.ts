@@ -116,26 +116,26 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
         }
       );
 
-      // this._booksService.getRecommendationsByAuthor(bookId).subscribe(
-      //   async (data) => {
-      //     this.recommendationsByAuthor = data;
-      //   }
-      // );
-      // this._booksService.getRecommendationsByGenres(bookId).subscribe(
-      //   async (data) => {
-      //     this.recommendationsByGenres = data;
-      //   }
-      // );
-      // this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
-      //   async (data) => {
-      //     this.recommendationsByOtherReaders = data;
-      //   }
-      // );
-      // this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
-      //   async (data) => {
-      //     this.recommendationsBySimilarity = data;
-      //   }
-      // );
+      this._booksService.getRecommendationsByAuthor(bookId).subscribe(
+        async (data) => {
+          this.recommendationsByAuthor = data;
+        }
+      );
+      this._booksService.getRecommendationsByGenres(bookId).subscribe(
+        async (data) => {
+          this.recommendationsByGenres = data;
+        }
+      );
+      this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
+        async (data) => {
+          this.recommendationsByOtherReaders = data;
+        }
+      );
+      this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
+        async (data) => {
+          this.recommendationsBySimilarity = data;
+        }
+      );
     });
 
     this.miradorShow = false;
