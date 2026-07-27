@@ -153,6 +153,7 @@
     "reference": "Reference",
     "clanak": "Članak",
     "izvor": "Izvor",
+    "pogledaj": "pogledaj",
     "greskaEmailLozinka": "Pogrešna e-mail adresa ili lozinka!",
     "greska": "Došlo je do greške!",
     "greskaDodavanjeNaPolicu": "Greška pri pokušaju dodavanja knjige na policu!",
@@ -213,7 +214,7 @@
     "rezultata": "Rezultata: ",
     "izmenaPretrage": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON}  Izmena pretrage ",
     "izmeniteParametrePretrage": "Izmenite parametre pretrage",
-    "traziliSte": "{$START_TAG_SPAN}{$CLOSE_TAG_SPAN}",
+    "traziliSte": "Tražili ste: ",
     "ponistiSelektovaneZapise": "Poništi sve selektovane zapise",
     "odabraniZapisi": "Odabrani zapisi",
     "stampajRezultate": "Štampaj rezulatate",
@@ -385,6 +386,8 @@
     "novoObavestenje": "Novo obaveštenje\n",
     "obavestenjaCAPS": "OBAVEŠTENjA",
     "obavestenje": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Obaveštenje ",
+    "tipObavestenjeLabel": "Obaveštenje",
+    "tipDesavanjaLabel": "Dešavanje",
     "naslovZvezdica": "* Naslov",
     "sadrzajZvezdica": "* Sadržaj",
     "izaberiteTip": "Izaberite tip",
@@ -409,7 +412,8 @@
     "unesiteIspravanFormatEmail": "Unesite ispravan format e-mail adrese!",
     "linkZaPromenuLozinkePoslat": "Link za promenu lozinke je poslat na vašu e-mail adresu!",
     "licniPodaci": "Lični podaci",
-    "statusClanarinePlacehoder": "{$INTERPOLATION}",
+    "aktivaDo": "Aktivna do:",
+    "istekla": "Istekla",
     "statusClanarine": "Status članarine",
     "ime": "Ime",
     "prezime": "Prezime",
@@ -436,6 +440,11 @@
     "opacEmail": "Email adresa za obaveštenja o novim porukama",
     "sacuvano": "Sačuvano!",
     "clanci": "Članci",
-    "useBookCommonUid": "Generiši identifikator iako postoji ISBN broj"
+    "useBookCommonUid": "Generiši identifikator iako postoji ISBN broj",
+    "preporuke": "Preporuke",
+    "poAutoru": "Od istog autora",
+    "poOblasti": "Iz iste oblasti/žanra",
+    "iDrugi": "Drugi su čitali i",
+    "poSlicnosti": "Možda će Vas zanimati"
   }
 }

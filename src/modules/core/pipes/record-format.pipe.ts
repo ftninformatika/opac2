@@ -70,7 +70,7 @@ export class RecordFormatPipe implements PipeTransform {
         if (book.digitalUrls) {
           let urlHtml = '';
           for (let i = 0; i < book.digitalUrls.length; i++) {
-            urlHtml = urlHtml + `<a href="${book.digitalUrls[i]}" target="_blank">погледај</a>`;
+            urlHtml = urlHtml + `<a href="${book.digitalUrls[i]}" target="_blank">${$localize`:@@pogledaj:погледај`}</a>`;
             if (i < book.digitalUrls.length - 1) {
               urlHtml = urlHtml + '; ';
             }

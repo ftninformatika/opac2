@@ -24,7 +24,11 @@ export enum ANIMATE_DIRECTION {
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollectionCarouselComponent implements OnInit {
-  @Input() books: Book[];
+  // @Input() books: Book[];
+  @Input() set books(value: Book[]) {
+    this._books = value;
+    this.onWindowResize();
+  }
   @Input() title: string;
   public slides: any = [[]];
   public chunkSize = 7;
@@ -32,6 +36,7 @@ export class CollectionCarouselComponent implements OnInit {
   public lastSlide = 0;
   public flexStartLayout: boolean;
   public animateDirection;
+  private _books: Book[] = [];
 
   public ngOnInit(): void {
     this.onWindowResize();
@@ -56,10 +61,10 @@ export class CollectionCarouselComponent implements OnInit {
     } else {
       this.chunkSize = 1;
     }
-    this.slides = this.chunk(this.books, this.chunkSize);
+    this.slides = this.chunk(this._books, this.chunkSize);
     this.lastSlide = this.slides.length - 1;
     if (this.lastSlide < this.activeSlideIndex) { this.activeSlideIndex = this.lastSlide; }
-    this.flexStartLayout = ((this.books.length < 8) || (this.activeSlideIndex === this.lastSlide));
+    this.flexStartLayout = ((this._books.length < 8) || (this.activeSlideIndex === this.lastSlide));
   }
 
   public chunk(arr, chunkSize) {
@@ -79,6 +84,7 @@ export class CollectionCarouselComponent implements OnInit {
   public previousSlide() {
     if (this.activeSlideIndex > 0) { this.activeSlideIndex--; }
     this.animateDirection = ANIMATE_DIRECTION.RIGHT;
+    this.onWindowResize();
   }
 
   public nextSlide() {

@@ -153,6 +153,7 @@
     "reference": "References",
     "clanak": "Article",
     "izvor": "Source",
+    "pogledaj": "view",
     "greskaEmailLozinka": "Incorrect username or password!",
     "greska": "An error has occurred!",
     "greskaDodavanjeNaPolicu": "Error adding book to the bookshelf!",
@@ -213,7 +214,7 @@
     "rezultata": "Results: ",
     "izmenaPretrage": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON}  Change search ",
     "izmeniteParametrePretrage": "Change the search parameters",
-    "traziliSte": "{$START_TAG_SPAN}{$CLOSE_TAG_SPAN}",
+    "traziliSte": "You searched for: ",
     "ponistiSelektovaneZapise": "Clear all selected records",
     "odabraniZapisi": "Selected records",
     "stampajRezultate": "Print the results",
@@ -385,6 +386,8 @@
     "novoObavestenje": "New notification\n",
     "obavestenjaCAPS": "NOTIFICATIONS",
     "obavestenje": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Notification ",
+    "tipObavestenjeLabel": "Notification",
+    "tipDesavanjaLabel": "Event",
     "naslovZvezdica": "* Title",
     "sadrzajZvezdica": "* Content",
     "izaberiteTip": "Select type",
@@ -409,7 +412,8 @@
     "unesiteIspravanFormatEmail": "Please enter the correct email address format!",
     "linkZaPromenuLozinkePoslat": "A link to change your password has been sent to your e-mail address!",
     "licniPodaci": "Personal data",
-    "statusClanarinePlacehoder": "{$INTERPOLATION}",
+    "aktivaDo": "Active until:",
+    "istekla": "Expired",
     "statusClanarine": "Membership fee status",
     "ime": "Name",
     "prezime": "Surname",
@@ -436,6 +440,11 @@
     "opacEmail": "Email address for notifications about new messages",
     "sacuvano": "Saved!",
     "clanci": "Articles",
-    "useBookCommonUid": "Generate an identifier even though an ISBN exists"
+    "useBookCommonUid": "Generate an identifier even though an ISBN exists",
+    "preporuke": "Recommendations",
+    "poAutoru": "By the same author",
+    "poOblasti": "From the same genre",
+    "iDrugi": "Others also read",
+    "poSlicnosti": "You might be interested"
   }
 }

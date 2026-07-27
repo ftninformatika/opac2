@@ -2,6 +2,7 @@ import {
   Component,
   HostListener,
   Inject,
+  LOCALE_ID,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
@@ -83,7 +84,8 @@ export class ResultPage implements OnInit, OnDestroy {
   @ViewChild('shareLinkModal') shareLinkModal: ModalDirective;
 
   public constructor(booksService: BooksService, activatedRoute: ActivatedRoute, @Inject(PLATFORM_ID) private platformId,
-                     router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store) {
+                     router: Router, toastService: ToastService, location: Location, searchService: SearchService, store: Store,
+                     @Inject(LOCALE_ID) private localeId: string) {
     this._booksService = booksService;
     this._activatedRoute = activatedRoute;
     this._router = router;
@@ -125,7 +127,7 @@ export class ResultPage implements OnInit, OnDestroy {
         if (this.kioskFilter) {
           this.pageOptions.filters.subLocations = [{...this.kioskFilter}];
         }
-        this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel);
+        this.youSearchedText = SearchUtil.getYouSearchedStringFromSearchModel(this.searchModel, this.localeId);
         let pageNum = 0;
         let pageSize = 10;
         if (this.pageOptions.currentPage > 0) {
@@ -140,7 +142,7 @@ export class ResultPage implements OnInit, OnDestroy {
             this.filtersLoaded = false;
             this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
               .subscribe(a => {
-                this.resultedFilters = a;
+                this.resultedFilters = SearchUtil.localizeFiltersRes(a, this.localeId);
                 this.filtersLoaded = true;
                 this.initSelectedFilters();
               });
@@ -333,7 +335,7 @@ export class ResultPage implements OnInit, OnDestroy {
         this.filtersLoaded = false;
         this._searchService.getFilters({searchModel: this.searchModel, options: this.pageOptions})
           .subscribe(a => {
-            this.resultedFilters = a;
+            this.resultedFilters = SearchUtil.localizeFiltersRes(a, this.localeId);
             this.filtersLoaded = true;
           });
       },
@@ -376,7 +378,7 @@ export class ResultPage implements OnInit, OnDestroy {
     } else {
       this.resultPage = res;
       this.searchResult = res.content;
-      this.pageOptions.currentPage = this.resultPage.number + 1;
+      this.pageOptions.currentPage = this.resultPage.page.number + 1;
       this.populateLocation();
       window.scroll(0, 0);
     }
@@ -486,7 +488,7 @@ export class ResultPage implements OnInit, OnDestroy {
       // TODO: fix "window not defined" bug
       printJS({
         printable: transformToPrint, header: 'Претрага: ' + this.youSearchedText + '. Страница: '
-          + this.pageOptions.currentPage + '/' + this.resultPage.totalPages + '(' + this.pageOptions.pageSize + ')',
+          + this.pageOptions.currentPage + '/' + this.resultPage.page.totalPages + '(' + this.pageOptions.pageSize + ')',
         type: 'json', properties: ['naslov', 'autor', 'izdao', 'mesto', 'godina']
       });
     }

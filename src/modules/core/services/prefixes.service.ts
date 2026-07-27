@@ -13,6 +13,8 @@ export class PrefixesService {
       this.prefixes = PrefixUtils.Prefixes_lat;
     } else if (localeId === 'en'){
       this.prefixes = PrefixUtils.Prefixes_en;
+    } else if (localeId === 'hu'){
+      this.prefixes = PrefixUtils.Prefixes_hu;
     } else {
       this.prefixes = PrefixUtils.Prefixes;
     }

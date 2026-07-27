@@ -17,7 +17,8 @@
         "sourceLocale": "sr-Cyrl",
         "locales": {
           "sr-Latn": "src/locale/messages.sr-Latn.json",
-          "en": "src/locale/messages.en.json"
+          "en": "src/locale/messages.en.json",
+          "hu": "src/locale/messages.hu.json"
         }
       },
       "root": "",
@@ -86,6 +87,9 @@
             },
             "en": {
               "localize": ["en"]
+            },
+            "hu": {
+              "localize": ["hu"]
             }
           }
         },
@@ -103,6 +107,9 @@
             },
             "en": {
               "browserTarget": "opac2:build:en"
+            },
+            "hu": {
+              "browserTarget": "opac2:build:hu"
             }
           }
         },

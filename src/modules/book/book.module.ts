@@ -20,21 +20,22 @@ import {
 import { PreviewRecordPage } from './pages/preview-record/preview-record.page';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MiradorViewerComponent } from './components/mirador-viewer/mirador-viewer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HomeModule} from '../home/home.module';
 
 @NgModule({
-  imports: [
-    LazyLoadImageModule.forRoot({
-      preset: intersectionObserverPreset,
-    }),
-    RouterModule.forChild(BookRoutes),
-    CommonUiModule,
-    CoreModule,
-    TableModule,
-    SharedModule,
-    NgbModule,
-    NgMultiSelectDropDownModule.forRoot(),
-  ],
+    imports: [
+        RouterModule.forChild(BookRoutes),
+        CommonUiModule,
+        CoreModule,
+        TableModule,
+        SharedModule,
+        NgbModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        HomeModule,
+        LazyLoadImageModule.forRoot({
+          preset: intersectionObserverPreset,
+      }),
+    ],
   declarations: [
     ItemsAvailabilityCardComponent,
     ItemsTableComponent,

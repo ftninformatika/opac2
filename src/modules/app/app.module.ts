@@ -3,7 +3,7 @@ import {
   HAMMER_GESTURE_CONFIG,
   HammerGestureConfig,
 } from '@angular/platform-browser';
-import { NgModule, Injectable } from '@angular/core';
+import { NgModule, Injectable, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -76,5 +76,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     },
   ],
   bootstrap: [AppPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

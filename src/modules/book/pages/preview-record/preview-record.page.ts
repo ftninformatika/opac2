@@ -38,8 +38,8 @@ import {ViewportScroller} from '@angular/common';
     ]),
   ],
   templateUrl: 'preview-record.page.html',
-  styleUrls: ['preview-record.page.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['preview-record.page.scss']
+  // encapsulation: ViewEncapsulation.None,
 })
 export class PreviewRecordPage implements OnInit, OnDestroy {
   private readonly _booksService: BooksService;
@@ -58,6 +58,11 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
   public miradorShow: boolean;
   public miradorShown: boolean;
   public miradorViewer: any;
+
+  public recommendationsByAuthor: Book[];
+  public recommendationsByGenres: Book[];
+  public recommendationsByOtherReaders: Book[];
+  public recommendationsBySimilarity: Book[];
 
   public constructor(
     booksService: BooksService,
@@ -110,6 +115,27 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
           await this._router.navigate(['/error/not-found']);
         }
       );
+
+      // this._booksService.getRecommendationsByAuthor(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByAuthor = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsByGenres(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByGenres = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsByOtherReaders(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsByOtherReaders = data;
+      //   }
+      // );
+      // this._booksService.getRecommendationsBySimilarity(bookId).subscribe(
+      //   async (data) => {
+      //     this.recommendationsBySimilarity = data;
+      //   }
+      // );
     });
 
     this.miradorShow = false;
@@ -240,5 +266,14 @@ export class PreviewRecordPage implements OnInit, OnDestroy {
 
   scrollToElement(target: string){
     this._viewportScroller.scrollToAnchor(target);
+  }
+
+  recommendationTitle(title: string) {
+    switch (title) {
+      case 'author': return $localize`:@@poAutoru:Од истог аутора`;
+      case 'genres': return $localize`:@@poOblasti:Из исте области/жанра`;
+      case 'others': return $localize`:@@iDrugi:Други су читали и`;
+      case 'similarity': return $localize`:@@poSlicnosti:Можда ће Вас занимати`;
+    }
   }
 }

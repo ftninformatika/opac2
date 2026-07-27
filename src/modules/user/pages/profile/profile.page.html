@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="md-form">
-                  <input placeholder="{{formatedSigningUntil ? ('Активна до:       ' + formatedSigningUntil ) : 'Истекла'}}" i18n-placeholder="@@statusClanarinePlacehoder" [disabled]='true' type="text" id="form0" class="form-control">
+                  <input [placeholder]="membershipPlaceholder" [disabled]='true' type="text" id="form0" class="form-control">
                   <label class="active disabled" for="form0" i18n="@@statusClanarine">Статус чланарине</label>
                 </div>
               </div>

@@ -64,6 +64,15 @@ export class ApiEndpointConfig {
     },
     config: {
       getAll: `${ApiEndpointConfig.Origin}/library_configuration/allConfigsBrief`,
+    },
+    recommend: {
+      byAuthor: `${ApiEndpointConfig.Origin}/recommend/byAuthor`,
+      byGenres: `${ApiEndpointConfig.Origin}/recommend/byGenres`,
+      byOtherReaders: `${ApiEndpointConfig.Origin}/recommend/byOtherReaders`,
+      bySimilarity: `${ApiEndpointConfig.Origin}/recommend/bySimilarity`
+    },
+    chat: {
+      ask: `${ApiEndpointConfig.Origin}/chat/ask`,
     }
   };
 }

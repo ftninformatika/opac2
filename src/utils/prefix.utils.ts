@@ -3844,7 +3844,7 @@ export class PrefixUtils {
         name: 'Akinesis'
       },
       {
-        code: 'ah',
+        code: 'ach',
         name: 'Acholi'
       },
       {
@@ -3888,7 +3888,7 @@ export class PrefixUtils {
         name: 'Albanian'
       },
       {
-        code: 'but',
+        code: 'ale',
         name: 'Aleutian'
       },
       {
@@ -4012,7 +4012,7 @@ export class PrefixUtils {
         name: 'Basque'
       },
       {
-        code: 'bass',
+        code: 'bas',
         name: 'Basa'
       },
       {
@@ -4020,11 +4020,11 @@ export class PrefixUtils {
         name: 'Baltic (other)'
       },
       {
-        code: 'bey',
+        code: 'bej',
         name: 'Beja'
       },
       {
-        code: 'white',
+        code: 'bel',
         name: 'Belarusian'
       },
       {
@@ -4048,7 +4048,7 @@ export class PrefixUtils {
         name: 'Bihari'
       },
       {
-        code: 'bull',
+        code: 'bik',
         name: 'Bicol'
       },
       {
@@ -4056,11 +4056,11 @@ export class PrefixUtils {
         name: 'Benny'
       },
       {
-        code: 'encore',
+        code: 'bis',
         name: 'Bislama'
       },
       {
-        code: 'blah',
+        code: 'bla',
         name: 'Siksika / Blackfoot'
       },
       {
@@ -4240,7 +4240,7 @@ export class PrefixUtils {
         name: 'Dakota'
       },
       {
-        code: 'day',
+        code: 'dan',
         name: 'Danish'
       },
       {
@@ -4440,7 +4440,7 @@ export class PrefixUtils {
         name: 'Gaelic / Scottish Gaelic'
       },
       {
-        code: 'look',
+        code: 'gle',
         name: 'Irish'
       },
       {
@@ -4472,7 +4472,7 @@ export class PrefixUtils {
         name: 'Gothic'
       },
       {
-        code: 'coat of arms',
+        code: 'grb',
         name: 'Grebo'
       },
       {
@@ -4524,7 +4524,7 @@ export class PrefixUtils {
         name: 'Herero'
       },
       {
-        code: 'hill',
+        code: 'hil',
         name: 'Hiligaynon'
       },
       {
@@ -4556,7 +4556,7 @@ export class PrefixUtils {
         name: 'Upper Sorbian'
       },
       {
-        code: 'hoop',
+        code: 'hup',
         name: 'Hupa'
       },
       {
@@ -4732,11 +4732,11 @@ export class PrefixUtils {
         name: 'Konkani'
       },
       {
-        code: 'com',
+        code: 'kom',
         name: 'Komi'
       },
       {
-        code: 'con',
+        code: 'kon',
         name: 'Congo'
       },
       {
@@ -4812,7 +4812,7 @@ export class PrefixUtils {
         name: 'Latin'
       },
       {
-        code: 'lion',
+        code: 'lav',
         name: 'Latvian'
       },
       {
@@ -4916,7 +4916,7 @@ export class PrefixUtils {
         name: 'Marathi'
       },
       {
-        code: 'mass',
+        code: 'mas',
         name: 'Masai'
       },
       {
@@ -5068,7 +5068,7 @@ export class PrefixUtils {
         name: 'Nias'
       },
       {
-        code: 'nothing',
+        code: 'nic',
         name: 'Nigero-Kordofan (other)'
       },
       {
@@ -5132,7 +5132,7 @@ export class PrefixUtils {
         name: 'Nzima'
       },
       {
-        code: 'eyes',
+        code: 'oci',
         name: 'Occitan / Provençal (after 1500)'
       },
       {
@@ -5216,7 +5216,7 @@ export class PrefixUtils {
         name: 'Polish'
       },
       {
-        code: 'mon',
+        code: 'pon',
         name: 'Pohnpeian'
       },
       {
@@ -5280,11 +5280,11 @@ export class PrefixUtils {
         name: 'Russian'
       },
       {
-        code: 'hole',
+        code: 'rup',
         name: 'Aromanian'
       },
       {
-        code: 'now',
+        code: 'sad',
         name: 'Sandawe'
       },
       {
@@ -5316,7 +5316,7 @@ export class PrefixUtils {
         name: 'Sasak'
       },
       {
-        code: 'hour',
+        code: 'sat',
         name: 'Santali'
       },
       {
@@ -5344,7 +5344,7 @@ export class PrefixUtils {
         name: 'Sidamo'
       },
       {
-        code: 'son',
+        code: 'sin',
         name: 'Sinhala'
       },
       {
@@ -5388,7 +5388,7 @@ export class PrefixUtils {
         name: 'Skolt Sami'
       },
       {
-        code: 'dream',
+        code: 'sna',
         name: 'Shona'
       },
       {
@@ -5404,11 +5404,11 @@ export class PrefixUtils {
         name: 'Sogdian'
       },
       {
-        code: 'catfish',
+        code: 'som',
         name: 'Somali'
       },
       {
-        code: 'dream',
+        code: 'son',
         name: 'Songhai'
       },
       {
@@ -5460,7 +5460,7 @@ export class PrefixUtils {
         name: 'Swazi'
       },
       {
-        code: 'cheese',
+        code: 'syr',
         name: 'Syrian'
       },
       {
@@ -5476,7 +5476,7 @@ export class PrefixUtils {
         name: 'Tai (others)'
       },
       {
-        code: 'there',
+        code: 'tam',
         name: 'Tamil'
       },
       {
@@ -5488,7 +5488,7 @@ export class PrefixUtils {
         name: 'Telugu'
       },
       {
-        code: 'them',
+        code: 'tem',
         name: 'Timne'
       },
       {
@@ -5556,11 +5556,11 @@ export class PrefixUtils {
         name: 'Tsonga'
       },
       {
-        code: 'dull',
+        code: 'tup',
         name: 'Dull tongues'
       },
       {
-        code: 'tour',
+        code: 'tur',
         name: 'Turkish'
       },
       {
@@ -5596,7 +5596,7 @@ export class PrefixUtils {
         name: 'Urdu'
       },
       {
-        code: 'more',
+        code: 'vie',
         name: 'Vietnamese'
       },
       {
@@ -8590,7 +8590,7 @@ export class PrefixUtils {
         name: 'Australia'
       },
       {
-        code: 'out',
+        code: 'aut',
         name: 'Austria'
       },
       {
@@ -8602,7 +8602,7 @@ export class PrefixUtils {
         name: 'Burundi'
       },
       {
-        code: 'white',
+        code: 'bel',
         name: 'Belgium'
       },
       {
@@ -8646,7 +8646,7 @@ export class PrefixUtils {
         name: 'Bermuda'
       },
       {
-        code: 'pain',
+        code: 'bol',
         name: 'Bolivia'
       },
       {
@@ -8682,7 +8682,7 @@ export class PrefixUtils {
         name: 'Belarusian SSR'
       },
       {
-        code: 'cafe',
+        code: 'caf',
         name: 'Central African Republic'
       },
       {
@@ -8714,7 +8714,7 @@ export class PrefixUtils {
         name: 'Cameroon'
       },
       {
-        code: 'code',
+        code: 'cod',
         name: 'Democratic Republic of the Congo'
       },
       {
@@ -8790,7 +8790,7 @@ export class PrefixUtils {
         name: 'Denmark'
       },
       {
-        code: 'home',
+        code: 'dom',
         name: 'Dominican Republic'
       },
       {
@@ -8826,7 +8826,7 @@ export class PrefixUtils {
         name: 'Ethiopia'
       },
       {
-        code: 'fine',
+        code: 'fin',
         name: 'Finland'
       },
       {
@@ -8894,7 +8894,7 @@ export class PrefixUtils {
         name: 'Greece'
       },
       {
-        code: 'ugly',
+        code: 'grd',
         name: 'Grenada'
       },
       {
@@ -9062,7 +9062,7 @@ export class PrefixUtils {
         name: 'Luxembourg'
       },
       {
-        code: 'lion',
+        code: 'lva',
         name: 'Latvia'
       },
       {
@@ -9122,7 +9122,7 @@ export class PrefixUtils {
         name: 'Mongolia'
       },
       {
-        code: 'me',
+        code: 'mne',
         name: 'Montenegro'
       },
       {
@@ -9134,7 +9134,7 @@ export class PrefixUtils {
         name: 'Mozambique'
       },
       {
-        code: 'dead',
+        code: 'mrt',
         name: 'Mauritania'
       },
       {
@@ -9182,7 +9182,7 @@ export class PrefixUtils {
         name: 'Nigeria'
       },
       {
-        code: 'nothing',
+        code: 'nic',
         name: 'Nicaragua'
       },
       {
@@ -9250,7 +9250,7 @@ export class PrefixUtils {
         name: 'Papua New Guinea'
       },
       {
-        code: 'sex',
+        code: 'pol',
         name: 'Poland'
       },
       {
@@ -9270,7 +9270,7 @@ export class PrefixUtils {
         name: 'Paraguay'
       },
       {
-        code: 'kiss',
+        code: 'pus',
         name: 'United States Miscellaneous Pacific Islands'
       },
       {
@@ -9346,7 +9346,7 @@ export class PrefixUtils {
         name: 'San Marino'
       },
       {
-        code: 'catfish',
+        code: 'som',
         name: 'Somalia'
       },
       {
@@ -9390,7 +9390,7 @@ export class PrefixUtils {
         name: 'Seychelles'
       },
       {
-        code: 'cheese',
+        code: 'syr',
         name: 'Syria'
       },
       {
@@ -9402,7 +9402,7 @@ export class PrefixUtils {
         name: 'Chad'
       },
       {
-        code: 'that',
+        code: 'tgo',
         name: 'Togo'
       },
       {
@@ -9430,7 +9430,7 @@ export class PrefixUtils {
         name: 'East Timor'
       },
       {
-        code: 'tone',
+        code: 'ton',
         name: 'Tonga'
       },
       {
@@ -9442,7 +9442,7 @@ export class PrefixUtils {
         name: 'Tunisia'
       },
       {
-        code: 'tour',
+        code: 'tur',
         name: 'Turkey'
       },
       {
@@ -9482,7 +9482,7 @@ export class PrefixUtils {
         name: 'Uzbekistan'
       },
       {
-        code: 'watt',
+        code: 'vat',
         name: 'Vatican'
       },
       {
@@ -9490,7 +9490,7 @@ export class PrefixUtils {
         name: 'Saint Vincent and the Grenadines'
       },
       {
-        code: 'out',
+        code: 'ven',
         name: 'Venezuela'
       },
       {
@@ -9538,7 +9538,7 @@ export class PrefixUtils {
         name: 'South Africa'
       },
       {
-        code: 'is',
+        code: 'zar',
         name: 'Zaire'
       },
       {
@@ -10019,4 +10019,858 @@ export class PrefixUtils {
     }
   ];
 
+// tslint:disable-next-line:variable-name
+  static field100e_hu: Coder[] = [
+    { code: 'a', name: 'gyermekeknek, általános' },
+    { code: 'b', name: 'óvodásoknak, 0-5 év' },
+    { code: 'c', name: 'iskolásoknak, 5-10 év' },
+    { code: 'd', name: 'gyermekeknek, 9-14 év' },
+    { code: 'e', name: 'fiataloknak, 14-20 év' },
+    { code: 'k', name: 'felnőtteknek, tudományos/ismeretterjesztő' },
+    { code: 'm', name: 'felnőtteknek, általános' },
+    { code: 'u', name: 'nem meghatározott' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coderDT_hu: Coder[] = [
+    { code: '*', name: 'Minden dokumentum' },
+    { code: 'm', name: 'Monográfia' },
+    { code: 's', name: 'Folyóirat' },
+    { code: 'a', name: 'Analitika' },
+    { code: 'c', name: 'Számozott könyvsorozat' },
+    { code: 'd', name: 'Származékos mű, átdolgozás' },
+    { code: 'e', name: 'Számozatlan könyvsorozat' },
+    { code: 'r', name: 'Képeslapok' },
+    { code: 'z', name: 'Gyűjteményes művek' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coderCC_hu = [
+    { code: 'a', name: 'Bibliográfiák' },
+    { code: 'b', name: 'Katalógusok' },
+    { code: 'c', name: 'Mutatók, indexek' },
+    { code: 'd', name: 'Absztrakt (kivonat)' },
+    { code: 'e', name: 'Szótárak' },
+    { code: 'f', name: 'Enciklopédiák' },
+    { code: 'g', name: 'Címtárak' },
+    { code: 'h', name: 'Évkönyvek' },
+    { code: 'i', name: 'Statisztikai áttekintők' },
+    { code: 'j', name: 'Tankönyvek' },
+    { code: 'k', name: 'Szabadalmak' },
+    { code: 'l', name: 'Szabványok' },
+    { code: 'm', name: 'Disszertációk, dolgozatok' },
+    { code: 'm1', name: 'Mesterdolgozatok' },
+    { code: 'm2', name: 'Magiszteri dolgozatok' },
+    { code: 'm3', name: 'Szakdolgozatok' },
+    { code: 'm4', name: 'Habilitációs munkák' },
+    { code: 'm5', name: 'Diplomadolgozatok' },
+    { code: 'm6', name: 'Alapképzési szakdolgozatok' },
+    { code: 'm7', name: 'Alapképzési/záróvizsga-dolgozatok (első fokozat)' },
+    { code: 'm8', name: 'Alapképzési szakdolgozatok (első fokozat)' },
+    { code: 'm9', name: 'Szakirányú továbbképzési szakdolgozatok' },
+    { code: 'n', name: 'Törvények, jogszabályok' },
+    { code: 'o', name: 'Számtáblázatok' },
+    { code: 'p', name: 'Műszaki jelentések' },
+    { code: 'q', name: 'Vizsgamunkák' },
+    { code: 'r', name: 'Kutatási munkák, alapkutatás' },
+    { code: 'r1', name: 'Áttekintő tanulmányok' },
+    { code: 'r2', name: 'Tudományos munkák' },
+    { code: 'r3', name: 'Előzetes közlemények' },
+    { code: 'r4', name: 'Szakmai munkák' },
+    { code: 'r5', name: 'Konferencia-jelentések' },
+    { code: 'r6', name: 'Nem kategorizált dokumentum' },
+    { code: 's', name: 'Szerződések' },
+    { code: 's01', name: 'Emlékkönyvek' },
+    { code: 's02', name: 'Programok' },
+    { code: 's03', name: 'Különnyomat' },
+    { code: 's04', name: 'Képeskönyvek' },
+    { code: 's05', name: 'Brosúrák' },
+    { code: 's06', name: 'Monográfiák' },
+    { code: 's07', name: 'Krónikák' },
+    { code: 's08', name: 'Tanulmányok' },
+    { code: 's09', name: 'Historiográfia' },
+    { code: 's10', name: 'Munkafüzetek' },
+    { code: 't', name: 'Kutatói munkák, fejlesztési kutatások' },
+    { code: 'u', name: 'Szabályzatok' },
+    { code: 'v', name: 'Kézikönyvek' },
+    { code: 'w', name: 'Kutatói munkák, alkalmazott kutatások' },
+    { code: 'x1', name: 'Atlaszok' },
+    { code: 'x2', name: 'Különlenyomatok' },
+    { code: 'x3', name: 'Levéltári dokumentumok' },
+    { code: 'x4', name: 'Albumok' },
+    { code: 'x5', name: 'Útmutatók' },
+    { code: 'x6', name: 'Lexikonok' },
+    { code: 'x7', name: 'Alapszabályok' },
+    { code: 'x8', name: 'Antológiák' },
+    { code: 'z', name: 'Konferenciakötetek' },
+    { code: 'z1', name: 'Képregények' },
+    { code: 'z2', name: 'Egyéb' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coderRT_hu = [
+    { code: 'a', name: 'Nyomtatott szöveg' },
+    { code: 'b', name: 'Kéziratos szöveg' },
+    { code: 'c', name: 'Nyomtatott kotta' },
+    { code: 'd', name: 'Kéziratos kotta' },
+    { code: 'e', name: 'Nyomtatott térképészeti dokumentum' },
+    { code: 'f', name: 'Kéziratos térképészeti dokumentum' },
+    { code: 'g', name: 'Audiovizuális dokumentum' },
+    { code: 'i', name: 'Nem zenei hangfelvétel' },
+    { code: 'j', name: 'Zenei hangfelvétel' },
+    { code: 'k', name: 'Kétdimenziós grafikai dokumentum (képek, vázlatok)' },
+    { code: 'l', name: 'Számítógépes adathordozók' },
+    { code: 'm', name: 'Multimédia' },
+    { code: 'r', name: 'Háromdimenziós műtárgyak és reáliák' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coder856u_hu = [
+    { code: '.*', name: 'URL címmel rendelkező dokumentum' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coderLA_hu: Coder[] = [
+    { code: 'srp', name: 'Szerb' },
+    { code: 'scc', name: 'Szerb - cirill' },
+    { code: 'scr', name: 'Szerb - latin' },
+    { code: 'eng', name: 'Angol' },
+    { code: 'ger', name: 'Német' },
+    { code: 'ita', name: 'Olasz' },
+    { code: 'spa', name: 'Spanyol / Kasztíliai' },
+    { code: 'hun', name: 'Magyar' },
+    { code: 'slo', name: 'Szlovák' },
+    { code: 'slv', name: 'Szlovén' },
+    { code: 'bul', name: 'Bolgár' },
+    { code: 'scn', name: 'Szicíliai' },
+    { code: 'sco', name: 'Skót' },
+    { code: 'aar', name: 'Afár' },
+    { code: 'abk', name: 'Abház' },
+    { code: 'ace', name: 'Aceh' },
+    { code: 'ach', name: 'Acholi' },
+    { code: 'ada', name: 'Adangme' },
+    { code: 'ady', name: 'Adyghe' },
+    { code: 'afa', name: 'Afro-ázsiai (egyéb)' },
+    { code: 'afh', name: 'Afrihili' },
+    { code: 'afr', name: 'Afrikaans' },
+    { code: 'ain', name: 'Ainu' },
+    { code: 'ajm', name: 'Aljamia' },
+    { code: 'aka', name: 'Akan' },
+    { code: 'akk', name: 'Akkád' },
+    { code: 'alb', name: 'Albán' },
+    { code: 'ale', name: 'Aleut' },
+    { code: 'alg', name: 'Algonkin nyelvek' },
+    { code: 'alt', name: 'Altaji' },
+    { code: 'amh', name: 'Amhara' },
+    { code: 'ang', name: 'Angolszász (450-1100)' },
+    { code: 'anp', name: 'Angika' },
+    { code: 'apa', name: 'Apache' },
+    { code: 'ara', name: 'Arab' },
+    { code: 'arc', name: 'Arámi' },
+    { code: 'arg', name: 'Aragóniai' },
+    { code: 'arm', name: 'Örmény' },
+    { code: 'arn', name: 'Araukán' },
+    { code: 'arp', name: 'Arapaho' },
+    { code: 'art', name: 'Mesterséges (egyéb)' },
+    { code: 'arw', name: 'Arawak' },
+    { code: 'asm', name: 'Asszámi' },
+    { code: 'ast', name: 'Asztúriai; bable' },
+    { code: 'ath', name: 'Atapaszk nyelvek' },
+    { code: 'aus', name: 'Ausztráliai nyelvek' },
+    { code: 'ava', name: 'Avar' },
+    { code: 'ave', name: 'Aveszta' },
+    { code: 'awa', name: 'Avadhi' },
+    { code: 'aym', name: 'Ajmara' },
+    { code: 'aze', name: 'Azerbajdzsáni' },
+    { code: 'bad', name: 'Gang' },
+    { code: 'bai', name: 'Bamileke nyelvek' },
+    { code: 'bak', name: 'Baskír' },
+    { code: 'bal', name: 'Balucs' },
+    { code: 'bam', name: 'Bambara' },
+    { code: 'ban', name: 'Balinéz' },
+    { code: 'baq', name: 'Baszk' },
+    { code: 'bas', name: 'Basa' },
+    { code: 'bat', name: 'Balti (egyéb)' },
+    { code: 'bej', name: 'Beja' },
+    { code: 'bel', name: 'Belorusz' },
+    { code: 'bem', name: 'Bemba' },
+    { code: 'ben', name: 'Bengáli' },
+    { code: 'ber', name: 'Berber nyelvek' },
+    { code: 'bho', name: 'Bhojpuri' },
+    { code: 'bih', name: 'Bihari' },
+    { code: 'bik', name: 'Bikol' },
+    { code: 'bin', name: 'Beny' },
+    { code: 'bis', name: 'Biszlama' },
+    { code: 'bla', name: 'Sziksika / Feketeláb' },
+    { code: 'bnt', name: 'Bantu (egyéb)' },
+    { code: 'bos', name: 'Bosnyák' },
+    { code: 'bra', name: 'Bradzsb' },
+    { code: 'bre', name: 'Breton' },
+    { code: 'btk', name: 'Batak (Indonézia)' },
+    { code: 'bua', name: 'Burját' },
+    { code: 'bug', name: 'Bugis' },
+    { code: 'bur', name: 'Burmai' },
+    { code: 'byn', name: 'Blin / Bilin' },
+    { code: 'cad', name: 'Kaddo' },
+    { code: 'cai', name: 'Közép-amerikai indián (egyéb)' },
+    { code: 'cam', name: 'Khmer' },
+    { code: 'car', name: 'Karibi' },
+    { code: 'cat', name: 'Katalán' },
+    { code: 'cau', name: 'Kaukázusi (egyéb)' },
+    { code: 'ceb', name: 'Cebuano' },
+    { code: 'cha', name: 'Chamorro' },
+    { code: 'chb', name: 'Csibcsa' },
+    { code: 'che', name: 'Csecsen' },
+    { code: 'chg', name: 'Csagatáj' },
+    { code: 'chi', name: 'Kínai' },
+    { code: 'chk', name: 'Chuuk' },
+    { code: 'chm', name: 'Mari' },
+    { code: 'chn', name: 'Chinook zsargon' },
+    { code: 'cho', name: 'Csoktaw' },
+    { code: 'chp', name: 'Csipevján' },
+    { code: 'chr', name: 'Cseroki' },
+    { code: 'chu', name: 'Egyházi szláv' },
+    { code: 'chv', name: 'Csuvas' },
+    { code: 'chy', name: 'Csejen' },
+    { code: 'cmc', name: 'Csami nyelvek' },
+    { code: 'cop', name: 'Kopt' },
+    { code: 'cor', name: 'Korni' },
+    { code: 'cos', name: 'Korzikai' },
+    { code: 'cpe', name: 'Kreol és pidgin, angol alapú (egyéb)' },
+    { code: 'cpf', name: 'Kreol és pidgin, francia alapú (egyéb)' },
+    { code: 'cpp', name: 'Kreol és pidgin, portugál alapú (egyéb)' },
+    { code: 'cre', name: 'Kri' },
+    { code: 'crh', name: 'Krími tatár / Krími török' },
+    { code: 'crp', name: 'Kreol és pidgin (egyéb)' },
+    { code: 'csb', name: 'Kasub' },
+    { code: 'cus', name: 'Kusita (egyéb)' },
+    { code: 'cze', name: 'Cseh' },
+    { code: 'dak', name: 'Dakota' },
+    { code: 'dan', name: 'Dán' },
+    { code: 'del', name: 'Delaware' },
+    { code: 'den', name: 'Slave (atapaszk)' },
+    { code: 'dgr', name: 'Dogrib' },
+    { code: 'din', name: 'Dinka' },
+    { code: 'div', name: 'Divehi' },
+    { code: 'doi', name: 'Dogri' },
+    { code: 'dra', name: 'Dravida (egyéb)' },
+    { code: 'dsb', name: 'Alsó-szorb' },
+    { code: 'dua', name: 'Duala' },
+    { code: 'dum', name: 'Közép-holland (1050-1350)' },
+    { code: 'dut', name: 'Holland / Flamand' },
+    { code: 'dyu', name: 'Djula' },
+    { code: 'dzo', name: 'Dzongkha' },
+    { code: 'efi', name: 'Efik' },
+    { code: 'egy', name: 'Egyiptomi (ókori)' },
+    { code: 'eka', name: 'Ekajuk' },
+    { code: 'elx', name: 'Elami' },
+    { code: 'enm', name: 'Közép-angol (1100-1500)' },
+    { code: 'epo', name: 'Eszperantó' },
+    { code: 'esk', name: 'Eszkimó' },
+    { code: 'est', name: 'Észt' },
+    { code: 'eth', name: 'Etióp' },
+    { code: 'ewe', name: 'Ewe' },
+    { code: 'ewo', name: 'Ewondo' },
+    { code: 'fan', name: 'Fang' },
+    { code: 'far', name: 'Feröeri' },
+    { code: 'fat', name: 'Fanti' },
+    { code: 'fij', name: 'Fidzsi' },
+    { code: 'fil', name: 'Filippínó' },
+    { code: 'fin', name: 'Finn' },
+    { code: 'fiu', name: 'Finn (egyéb)' },
+    { code: 'fon', name: 'Fon' },
+    { code: 'fre', name: 'Francia' },
+    { code: 'frm', name: 'Közép-francia (1400-1600)' },
+    { code: 'fro', name: 'Ófrancia (842-1400)' },
+    { code: 'fry', name: 'Fríz' },
+    { code: 'frr', name: 'Észak-fríz' },
+    { code: 'frs', name: 'Kelet-fríz' },
+    { code: 'ful', name: 'Fula' },
+    { code: 'fur', name: 'Friuli' },
+    { code: 'gaa', name: 'Ga' },
+    { code: 'gal', name: 'Galla' },
+    { code: 'gay', name: 'Gajo' },
+    { code: 'gba', name: 'Gbaja' },
+    { code: 'gem', name: 'Germán (egyéb)' },
+    { code: 'geo', name: 'Grúz' },
+    { code: 'gez', name: 'Geez' },
+    { code: 'gil', name: 'Kiribati' },
+    { code: 'gla', name: 'Gael / Skót gael' },
+    { code: 'gle', name: 'Ír' },
+    { code: 'glg', name: 'Galíciai' },
+    { code: 'glv', name: 'Manx' },
+    { code: 'gmh', name: 'Közép-felnémet (1050-1500)' },
+    { code: 'goh', name: 'Ófelnémet (750-1050)' },
+    { code: 'gon', name: 'Gondi' },
+    { code: 'gor', name: 'Gorontalo' },
+    { code: 'got', name: 'Gót' },
+    { code: 'grb', name: 'Grebo' },
+    { code: 'grc', name: 'Ógörög (-1453)' },
+    { code: 'gre', name: 'Görög (1453-)' },
+    { code: 'gsw', name: 'Svájci német' },
+    { code: 'gua', name: 'Guaraní' },
+    { code: 'guj', name: 'Gudzsaráti' },
+    { code: 'gwi', name: 'Gwich\'in' },
+    { code: 'hai', name: 'Haida' },
+    { code: 'hat', name: 'Haiti / Haiti kreol' },
+    { code: 'hau', name: 'Hausza' },
+    { code: 'haw', name: 'Hawaii' },
+    { code: 'heb', name: 'Héber' },
+    { code: 'her', name: 'Herero' },
+    { code: 'hil', name: 'Hiligaynon' },
+    { code: 'him', name: 'Himácsali' },
+    { code: 'hin', name: 'Hindi' },
+    { code: 'hit', name: 'Hettita' },
+    { code: 'hmn', name: 'Hmong' },
+    { code: 'hmo', name: 'Hiri motu' },
+    { code: 'hrv', name: 'Horvát' },
+    { code: 'hsb', name: 'Felső-szorb' },
+    { code: 'hup', name: 'Hupa' },
+    { code: 'iba', name: 'Iban' },
+    { code: 'ibo', name: 'Igbo' },
+    { code: 'ice', name: 'Izlandi' },
+    { code: 'ido', name: 'Ido' },
+    { code: 'iii', name: 'Szecsuáni ji' },
+    { code: 'ijo', name: 'Ijo' },
+    { code: 'iku', name: 'Inuktitut' },
+    { code: 'ile', name: 'Interlingue' },
+    { code: 'ilo', name: 'Ilokano' },
+    { code: 'ina', name: 'Interlingua' },
+    { code: 'inc', name: 'Indiai (egyéb)' },
+    { code: 'ind', name: 'Indonéz' },
+    { code: 'ine', name: 'Indoeurópai (egyéb)' },
+    { code: 'inh', name: 'Ingus' },
+    { code: 'ipk', name: 'Inupiaq' },
+    { code: 'ira', name: 'Iráni (egyéb)' },
+    { code: 'iro', name: 'Irokéz nyelvek' },
+    { code: 'jav', name: 'Jávai' },
+    { code: 'jbo', name: 'Lojban' },
+    { code: 'jpn', name: 'Japán' },
+    { code: 'jpr', name: 'Judeo-perzsa' },
+    { code: 'jrb', name: 'Judeo-arab' },
+    { code: 'kaa', name: 'Karakalpak' },
+    { code: 'kab', name: 'Kabyl' },
+    { code: 'kac', name: 'Kacsin' },
+    { code: 'kal', name: 'Kalaallit / Grönlandi' },
+    { code: 'kam', name: 'Kamba' },
+    { code: 'kan', name: 'Kannada' },
+    { code: 'kar', name: 'Karen' },
+    { code: 'kas', name: 'Kashmiri' },
+    { code: 'kau', name: 'Kanuri' },
+    { code: 'kaw', name: 'Kawi' },
+    { code: 'kaz', name: 'Kazah' },
+    { code: 'kbd', name: 'Kabard' },
+    { code: 'kha', name: 'Khasi' },
+    { code: 'khi', name: 'Khoiszán (egyéb)' },
+    { code: 'khm', name: 'Khmer' },
+    { code: 'kho', name: 'Hotanéz' },
+    { code: 'kik', name: 'Kikuyu' },
+    { code: 'kin', name: 'Kinyarwanda' },
+    { code: 'kir', name: 'Kirgiz' },
+    { code: 'kmb', name: 'Kimbundu' },
+    { code: 'kok', name: 'Konkani' },
+    { code: 'kom', name: 'Komi' },
+    { code: 'kon', name: 'Kongói' },
+    { code: 'kor', name: 'Koreai' },
+    { code: 'kos', name: 'Kosraei' },
+    { code: 'kpe', name: 'Kpelle' },
+    { code: 'krc', name: 'Karacsáj-balkár' },
+    { code: 'krl', name: 'Kareliai' },
+    { code: 'kro', name: 'Kru' },
+    { code: 'kru', name: 'Kurukh' },
+    { code: 'kua', name: 'Kuanyama / Kwanyama' },
+    { code: 'kur', name: 'Kurd' },
+    { code: 'kus', name: 'Kusaie' },
+    { code: 'kut', name: 'Kutenai' },
+    { code: 'lad', name: 'Ladino' },
+    { code: 'lah', name: 'Lahnda' },
+    { code: 'lam', name: 'Lamba' },
+    { code: 'lan', name: 'Langue d\'oc (1500 után)' },
+    { code: 'lao', name: 'Lao' },
+    { code: 'lap', name: 'Lapp' },
+    { code: 'lat', name: 'Latin' },
+    { code: 'lav', name: 'Lett' },
+    { code: 'lez', name: 'Lezg' },
+    { code: 'lim', name: 'Limburgi' },
+    { code: 'lin', name: 'Lingala' },
+    { code: 'lit', name: 'Litván' },
+    { code: 'lol', name: 'Mongo' },
+    { code: 'loz', name: 'Lozi' },
+    { code: 'ltz', name: 'Luxemburgi' },
+    { code: 'lua', name: 'Luba-Lulua' },
+    { code: 'lub', name: 'Luba-Katanga' },
+    { code: 'lug', name: 'Luganda' },
+    { code: 'lui', name: 'Luiseño' },
+    { code: 'lun', name: 'Lunda' },
+    { code: 'luo', name: 'Luo (Kenya és Tanzánia)' },
+    { code: 'lus', name: 'Lushai' },
+    { code: 'mac', name: 'Macedón' },
+    { code: 'mad', name: 'Maduréz' },
+    { code: 'mag', name: 'Magahi' },
+    { code: 'mah', name: 'Marshalli' },
+    { code: 'mai', name: 'Maithili' },
+    { code: 'mak', name: 'Makassar' },
+    { code: 'mal', name: 'Malajálam' },
+    { code: 'man', name: 'Mandingo' },
+    { code: 'mao', name: 'Maori' },
+    { code: 'map', name: 'Auszronéziai (egyéb)' },
+    { code: 'mar', name: 'Marathi' },
+    { code: 'mas', name: 'Maszáj' },
+    { code: 'max', name: 'Manx' },
+    { code: 'may', name: 'Maláj' },
+    { code: 'mdf', name: 'Moksa' },
+    { code: 'mdr', name: 'Mandar' },
+    { code: 'men', name: 'Mende' },
+    { code: 'mga', name: 'Közép-ír (900-1200)' },
+    { code: 'mic', name: 'Micmac' },
+    { code: 'min', name: 'Minangkabau' },
+    { code: 'mis', name: 'Egyéb' },
+    { code: 'mkh', name: 'Mon-khmer (egyéb)' },
+    { code: 'mla', name: 'Madagaszkári' },
+    { code: 'mlt', name: 'Máltai' },
+    { code: 'mnc', name: 'Mandzsu' },
+    { code: 'mni', name: 'Manipuri' },
+    { code: 'mno', name: 'Manobo nyelvek' },
+    { code: 'moh', name: 'Mohawk' },
+    { code: 'mon', name: 'Mongol' },
+    { code: 'mos', name: 'Mosi' },
+    { code: 'mul', name: 'Többnyelvű' },
+    { code: 'mun', name: 'Munda' },
+    { code: 'mus', name: 'Creek / Muskogee' },
+    { code: 'mwl', name: 'Mirandéz' },
+    { code: 'mwr', name: 'Marwari' },
+    { code: 'myn', name: 'Maja nyelvek' },
+    { code: 'myv', name: 'Erza' },
+    { code: 'nah', name: 'Nahuatl' },
+    { code: 'nai', name: 'Észak-amerikai indián (egyéb)' },
+    { code: 'nap', name: 'Nápolyi' },
+    { code: 'nau', name: 'Nauru' },
+    { code: 'nav', name: 'Navaho' },
+    { code: 'nbl', name: 'Ndebele, déli' },
+    { code: 'nde', name: 'Ndebele, északi' },
+    { code: 'ndo', name: 'Ndonga' },
+    { code: 'nds', name: 'Alnémet / Alsász' },
+    { code: 'nep', name: 'Nepáli' },
+    { code: 'new', name: 'Newari / Nepál Bhasa' },
+    { code: 'nia', name: 'Nias' },
+    { code: 'nic', name: 'Nigero-kordofániai (egyéb)' },
+    { code: 'niu', name: 'Niuei' },
+    { code: 'nno', name: 'Norvég nynorsk' },
+    { code: 'nob', name: 'Norvég bokmål' },
+    { code: 'nog', name: 'Nogai' },
+    { code: 'non', name: 'Óészaki' },
+    { code: 'nor', name: 'Norvég' },
+    { code: 'nso', name: 'Északi szotho / Pedi / Szepedi' },
+    { code: 'nqo', name: 'N\'Ko' },
+    { code: 'nub', name: 'Núbiai nyelvek' },
+    { code: 'nwc', name: 'Klasszikus Newari' },
+    { code: 'nya', name: 'Chichewa / Chewa / Nyanja' },
+    { code: 'nym', name: 'Nyamwezi' },
+    { code: 'nyn', name: 'Nyankole' },
+    { code: 'nyo', name: 'Nyoro' },
+    { code: 'nzi', name: 'Nzima' },
+    { code: 'oci', name: 'Okszitán / Provanszál (1500 után)' },
+    { code: 'oji', name: 'Ojibwa' },
+    { code: 'ori', name: 'Orija' },
+    { code: 'orm', name: 'Oromo' },
+    { code: 'osa', name: 'Osage' },
+    { code: 'oss', name: 'Oszét' },
+    { code: 'ota', name: 'Oszmán török (1500-1928)' },
+    { code: 'oto', name: 'Oto-mangue nyelvek' },
+    { code: 'paa', name: 'Pápua (egyéb)' },
+    { code: 'pag', name: 'Pangasinan' },
+    { code: 'pal', name: 'Pahlavi' },
+    { code: 'pam', name: 'Pampanga' },
+    { code: 'pan', name: 'Pandzsábi' },
+    { code: 'pap', name: 'Papiamento' },
+    { code: 'pau', name: 'Palaui' },
+    { code: 'peo', name: 'Óperzsa (i.e. 600 - i.sz. 400)' },
+    { code: 'per', name: 'Perzsa' },
+    { code: 'phi', name: 'Filippínó (egyéb)' },
+    { code: 'phn', name: 'Főníciai' },
+    { code: 'pli', name: 'Páli' },
+    { code: 'pol', name: 'Lengyel' },
+    { code: 'pon', name: 'Pohnpei' },
+    { code: 'por', name: 'Portugál' },
+    { code: 'pra', name: 'Prákrit nyelvek' },
+    { code: 'pro', name: 'Provanszál (1500-ig)' },
+    { code: 'pus', name: 'Pastu' },
+    { code: 'que', name: 'Kecsua' },
+    { code: 'raj', name: 'Radzsasztáni' },
+    { code: 'rap', name: 'Rapanui' },
+    { code: 'rar', name: 'Rarotongai' },
+    { code: 'roa', name: 'Újlatin (egyéb)' },
+    { code: 'roh', name: 'Román' },
+    { code: 'rom', name: 'Roma' },
+    { code: 'rsi', name: 'Ruszin' },
+    { code: 'rum', name: 'Román' },
+    { code: 'run', name: 'Rundi' },
+    { code: 'rus', name: 'Orosz' },
+    { code: 'rup', name: 'Aromán' },
+    { code: 'sad', name: 'Sandawe' },
+    { code: 'sag', name: 'Sango' },
+    { code: 'sah', name: 'Jakut' },
+    { code: 'sai', name: 'Dél-amerikai indián (egyéb)' },
+    { code: 'sal', name: 'Szalisi nyelvek' },
+    { code: 'sam', name: 'Szamaritánus arámi' },
+    { code: 'san', name: 'Szanszkrit' },
+    { code: 'sas', name: 'Sasak' },
+    { code: 'sat', name: 'Santali' },
+    { code: 'sel', name: 'Szelkup' },
+    { code: 'sem', name: 'Sémi (egyéb)' },
+    { code: 'sga', name: 'Ír, ókori (900-ig)' },
+    { code: 'sgn', name: 'Jelnyelv' },
+    { code: 'shn', name: 'Shan' },
+    { code: 'sid', name: 'Sidamo' },
+    { code: 'sin', name: 'Szingaléz' },
+    { code: 'sio', name: 'Szioux nyelvek' },
+    { code: 'sit', name: 'Szino-tibeti (egyéb)' },
+    { code: 'sla', name: 'Szláv (egyéb)' },
+    { code: 'sma', name: 'Déli számi' },
+    { code: 'sme', name: 'Északi számi' },
+    { code: 'smi', name: 'Számi nyelvek (egyéb)' },
+    { code: 'smj', name: 'Lule számi' },
+    { code: 'smn', name: 'Inari számi' },
+    { code: 'smo', name: 'Szamoai' },
+    { code: 'sms', name: 'Skolt számi' },
+    { code: 'sna', name: 'Shona' },
+    { code: 'snd', name: 'Szindhi' },
+    { code: 'snk', name: 'Soninke' },
+    { code: 'sog', name: 'Szogd' },
+    { code: 'som', name: 'Szomáli' }, { code: 'son', name: 'Szongáj' },
+    { code: 'sot', name: 'Szotho, déli' },
+    { code: 'srd', name: 'Szardíniai' },
+    { code: 'srr', name: 'Szerer' },
+    { code: 'srn', name: 'Sranan' },
+    { code: 'ssa', name: 'Nílus-szaharai (egyéb)' },
+    { code: 'suk', name: 'Szukuma' },
+    { code: 'sun', name: 'Szunda' },
+    { code: 'sus', name: 'Szuszu' },
+    { code: 'sux', name: 'Sumér' },
+    { code: 'swa', name: 'Szuahéli' },
+    { code: 'swe', name: 'Svéd' },
+    { code: 'swz', name: 'Szvázi' },
+    { code: 'syr', name: 'Szír' },
+    { code: 'syc', name: 'Sziriai' },
+    { code: 'tah', name: 'Tahiti' },
+    { code: 'tai', name: 'Taj (egyéb)' },
+    { code: 'tam', name: 'Tamil' },
+    { code: 'tat', name: 'Tatár' },
+    { code: 'tel', name: 'Telugu' },
+    { code: 'tem', name: 'Timne' },
+    { code: 'ter', name: 'Tereno' },
+    { code: 'tet', name: 'Tetum' },
+    { code: 'tgk', name: 'Tádzsik' },
+    { code: 'tgl', name: 'Tagalog' },
+    { code: 'tha', name: 'Thai' },
+    { code: 'tib', name: 'Tibeti' },
+    { code: 'tig', name: 'Tigré' },
+    { code: 'tir', name: 'Tigrinya' },
+    { code: 'tiv', name: 'Tiv' },
+    { code: 'tkl', name: 'Tokelau' },
+    { code: 'tlh', name: 'Klingon' },
+    { code: 'tli', name: 'Tlingit' },
+    { code: 'tmh', name: 'Tamashek' },
+    { code: 'tog', name: 'Tonga (Nyasa)' },
+    { code: 'tsi', name: 'Tsimshian' },
+    { code: 'tso', name: 'Tsonga' },
+    { code: 'tup', name: 'Tswana' },
+    { code: 'tur', name: 'Török' },
+    { code: 'tut', name: 'Altaji (egyéb)' },
+    { code: 'tvl', name: 'Tuvalu' },
+    { code: 'tyv', name: 'Tuvai' },
+    { code: 'udm', name: 'Udmurt' },
+    { code: 'uga', name: 'Ugariti' },
+    { code: 'ukr', name: 'Ukrán' },
+    { code: 'und', name: 'Meghatározatlan' },
+    { code: 'urd', name: 'Urdu' },
+    { code: 'vie', name: 'Vietnami' },
+    { code: 'wel', name: 'Walesi' },
+    { code: 'yid', name: 'Jiddis' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  static _coderCO_hu = [
+    { code: 'KS', name: 'Szerb Királyság' },
+    { code: 'KSHS', name: 'Szerb-Horvát-Szlovén Királyság' },
+    { code: 'abw', name: 'Aruba' },
+    { code: 'afg', name: 'Afganisztán' },
+    { code: 'ago', name: 'Angola' },
+    { code: 'aia', name: 'Anguilla' },
+    { code: 'alb', name: 'Albánia' },
+    { code: 'and', name: 'Andorra' },
+    { code: 'ant', name: 'Holland Antillák' },
+    { code: 'are', name: 'Egyesült Arab Emírségek' },
+    { code: 'arg', name: 'Argentína' },
+    { code: 'asm', name: 'Amerikai Szamoa' },
+    { code: 'ata', name: 'Antarktika (a 60. szélességi foktól délre eső terület)' },
+    { code: 'atf', name: 'Francia Déli Területek' },
+    { code: 'atg', name: 'Antigua és Barbuda' },
+    { code: 'atn', name: 'Dronning Maud Land' },
+    { code: 'aus', name: 'Ausztrália' },
+    { code: 'aut', name: 'Ausztria' },
+    { code: 'aze', name: 'Azerbajdzsán' },
+    { code: 'bdi', name: 'Burundi' },
+    { code: 'bel', name: 'Belgium' },
+    { code: 'ben', name: 'Benin' },
+    { code: 'bfa', name: 'Burkina Faso' },
+    { code: 'bgd', name: 'Banglades' },
+    { code: 'bgr', name: 'Bulgária' },
+    { code: 'bhr', name: 'Bahrein' },
+    { code: 'bhs', name: 'Bahama-szigetek' },
+    { code: 'bih', name: 'Bosznia-Hercegovina' },
+    { code: 'blr', name: 'Fehéroroszország' },
+    { code: 'blz', name: 'Belize' },
+    { code: 'bmu', name: 'Bermuda' },
+    { code: 'bol', name: 'Bolívia' },
+    { code: 'bra', name: 'Brazília' },
+    { code: 'brb', name: 'Barbados' },
+    { code: 'brn', name: 'Brunei' },
+    { code: 'bth', name: 'Bhután' },
+    { code: 'bur', name: 'Burma' },
+    { code: 'bvt', name: 'Bouvet-sziget' },
+    { code: 'bwa', name: 'Botswana' },
+    { code: 'bys', name: 'Belorusz SZSZK' },
+    { code: 'caf', name: 'Közép-afrikai Köztársaság' },
+    { code: 'can', name: 'Kanada' },
+    { code: 'cck', name: 'Kókusz (Keeling)-szigetek' },
+    { code: 'che', name: 'Svájc' },
+    { code: 'chl', name: 'Chile' },
+    { code: 'chn', name: 'Kína' },
+    { code: 'civ', name: 'Elefántcsontpart' },
+    { code: 'cmr', name: 'Kamerun' },
+    { code: 'cod', name: 'Kongói Demokratikus Köztársaság' },
+    { code: 'cog', name: 'Kongói Népköztársaság' },
+    { code: 'cok', name: 'Cook-szigetek' },
+    { code: 'col', name: 'Kolumbia' },
+    { code: 'com', name: 'Comore-szigetek' },
+    { code: 'cpv', name: 'Zöld-foki Köztársaság' },
+    { code: 'cri', name: 'Costa Rica' },
+    { code: 'csk', name: 'Csehszlovákia' },
+    { code: 'cte', name: 'Canton és Enderbury-szigetek' },
+    { code: 'cub', name: 'Kuba' },
+    { code: 'cxr', name: 'Karácsony-sziget' },
+    { code: 'cym', name: 'Kajmán-szigetek' },
+    { code: 'cyp', name: 'Ciprus' },
+    { code: 'cze', name: 'Cseh Köztársaság' },
+    { code: 'ddr', name: 'Német Demokratikus Köztársaság' },
+    { code: 'deu', name: 'Németországi Szövetségi Köztársaság' },
+    { code: 'dji', name: 'Dzsibuti' },
+    { code: 'dma', name: 'Dominika' },
+    { code: 'dnk', name: 'Dánia' },
+    { code: 'dom', name: 'Dominikai Köztársaság' },
+    { code: 'dza', name: 'Algéria' },
+    { code: 'ecu', name: 'Ecuador' },
+    { code: 'egy', name: 'Egyiptom' },
+    { code: 'eri', name: 'Eritrea' },
+    { code: 'esh', name: 'Nyugat-Szahara' },
+    { code: 'esp', name: 'Spanyolország' },
+    { code: 'est', name: 'Észtország' },
+    { code: 'eth', name: 'Etiópia' },
+    { code: 'fin', name: 'Finnország' },
+    { code: 'fji', name: 'Fidzsi' },
+    { code: 'flk', name: 'Falkland-szigetek (Malvinas)' },
+    { code: 'fra', name: 'Franciaország' },
+    { code: 'fro', name: 'Feröer-szigetek' },
+    { code: 'fsm', name: 'Mikronézia' },
+    { code: 'gab', name: 'Gabon' },
+    { code: 'gbr', name: 'Nagy-Britannia' },
+    { code: 'geo', name: 'Grúzia' },
+    { code: 'gha', name: 'Ghána' },
+    { code: 'gib', name: 'Gibraltár' },
+    { code: 'gin', name: 'Guinea' },
+    { code: 'glp', name: 'Guadeloupe' },
+    { code: 'gmb', name: 'Gambia' },
+    { code: 'gnb', name: 'Bissau-Guinea' },
+    { code: 'gnq', name: 'Egyenlítői-Guinea' },
+    { code: 'grc', name: 'Görögország' },
+    { code: 'grd', name: 'Grenada' },
+    { code: 'grl', name: 'Grönland' },
+    { code: 'gtm', name: 'Guatemala' },
+    { code: 'guf', name: 'Francia Guyana' },
+    { code: 'gum', name: 'Guam' },
+    { code: 'guy', name: 'Guyana' },
+    { code: 'hkg', name: 'Hongkong' },
+    { code: 'hmd', name: 'Heard és McDonald-szigetek' },
+    { code: 'hnd', name: 'Honduras' },
+    { code: 'hrv', name: 'Horvátország' },
+    { code: 'hti', name: 'Haiti' },
+    { code: 'hun', name: 'Magyarország' },
+    { code: 'idn', name: 'Indonézia' },
+    { code: 'ind', name: 'India' },
+    { code: 'iot', name: 'Brit Indiai-óceáni Terület' },
+    { code: 'irl', name: 'Írország' },
+    { code: 'irn', name: 'Irán' },
+    { code: 'irq', name: 'Irak' },
+    { code: 'isl', name: 'Izland' },
+    { code: 'isr', name: 'Izrael' },
+    { code: 'ita', name: 'Olaszország' },
+    { code: 'jam', name: 'Jamaica' },
+    { code: 'jor', name: 'Jordánia' },
+    { code: 'jpn', name: 'Japán' },
+    { code: 'jtn', name: 'Johnston-sziget' },
+    { code: 'kaz', name: 'Kazahsztán' },
+    { code: 'ken', name: 'Kenya' },
+    { code: 'kgz', name: 'Kirgizisztán' },
+    { code: 'khm', name: 'Kambodzsa' },
+    { code: 'kna', name: 'Saint Kitts és Nevis' },
+    { code: 'kor', name: 'Koreai Köztársaság (Dél-Korea)' },
+    { code: 'kwt', name: 'Kuvait' },
+    { code: 'lao', name: 'Laosz' },
+    { code: 'lbn', name: 'Libanon' },
+    { code: 'lbr', name: 'Libéria' },
+    { code: 'lby', name: 'Líbia' },
+    { code: 'lca', name: 'Saint Lucia' },
+    { code: 'lie', name: 'Liechtenstein' },
+    { code: 'lki', name: 'Srí Lanka' },
+    { code: 'lso', name: 'Lesotho' },
+    { code: 'ltu', name: 'Litvánia' },
+    { code: 'lux', name: 'Luxemburg' },
+    { code: 'lva', name: 'Lettország' },
+    { code: 'mac', name: 'Makaó' },
+    { code: 'mar', name: 'Marokkó' },
+    { code: 'mco', name: 'Monaco' },
+    { code: 'mda', name: 'Moldova' },
+    { code: 'mdg', name: 'Madagaszkár' },
+    { code: 'mdv', name: 'Maldív-szigetek' },
+    { code: 'mex', name: 'Mexikó' },
+    { code: 'mhl', name: 'Marshall-szigetek' },
+    { code: 'mid', name: 'Midway-szigetek' },
+    { code: 'mkd', name: 'Macedónia, Jugoszlávia volt köztársasága' },
+    { code: 'mli', name: 'Mali' },
+    { code: 'mlt', name: 'Málta' },
+    { code: 'mmr', name: 'Mianmar' },
+    { code: 'mng', name: 'Mongólia' },
+    { code: 'mne', name: 'Montenegró' },
+    { code: 'mnp', name: 'Északi Mariana-szigetek' },
+    { code: 'moz', name: 'Mozambik' },
+    { code: 'mrt', name: 'Mauritánia' },
+    { code: 'msr', name: 'Montserrat' },
+    { code: 'mtq', name: 'Martinique' },
+    { code: 'mus', name: 'Mauritius' },
+    { code: 'mwi', name: 'Malawi' },
+    { code: 'mys', name: 'Malajzia' },
+    { code: 'myt', name: 'Mayotte' },
+    { code: 'nam', name: 'Namíbia' },
+    { code: 'ncl', name: 'Új-Kaledónia' },
+    { code: 'ner', name: 'Niger' },
+    { code: 'nfk', name: 'Norfolk-sziget' },
+    { code: 'nga', name: 'Nigéria' },
+    { code: 'nic', name: 'Nicaragua' },
+    { code: 'niu', name: 'Niue' },
+    { code: 'nld', name: 'Hollandia' },
+    { code: 'nor', name: 'Norvégia' },
+    { code: 'npl', name: 'Nepál' },
+    { code: 'nru', name: 'Nauru' },
+    { code: 'ntz', name: 'Semleges övezet' },
+    { code: 'nzl', name: 'Új-Zéland' },
+    { code: 'omn', name: 'Omán' },
+    { code: 'pak', name: 'Pakisztán' },
+    { code: 'pan', name: 'Panama' },
+    { code: 'pci', name: 'Csendes-óceáni szigetek (gyámterület)' },
+    { code: 'pcn', name: 'Pitcairn-sziget' },
+    { code: 'per', name: 'Peru' },
+    { code: 'phl', name: 'Fülöp-szigetek' },
+    { code: 'plw', name: 'Palau' },
+    { code: 'png', name: 'Pápua Új-Guinea' },
+    { code: 'pol', name: 'Lengyelország' },
+    { code: 'pri', name: 'Puerto Rico' },
+    { code: 'prk', name: 'Koreai Népi Demokratikus Köztársaság' },
+    { code: 'prt', name: 'Portugália' },
+    { code: 'pry', name: 'Paraguay' },
+    { code: 'pus', name: 'Egyesült Államok különféle csendes-óceáni szigetei' },
+    { code: 'pyf', name: 'Francia Polinézia' },
+    { code: 'qat', name: 'Katar' },
+    { code: 'reu', name: 'Réunion' },
+    { code: 'rom', name: 'Románia' },
+    { code: 'rus', name: 'Oroszország' },
+    { code: 'rwa', name: 'Ruanda' },
+    { code: 'sau', name: 'Szaúd-Arábia' },
+    { code: 'scg', name: 'Szerbia és Montenegró' },
+    { code: 'sdn', name: 'Szudán' },
+    { code: 'sen', name: 'Szenegál' },
+    { code: 'sgp', name: 'Szingapúr' },
+    { code: 'sgs', name: 'Dél-Georgia és Déli Sandwich-szigetek' },
+    { code: 'shn', name: 'Szent Ilona' },
+    { code: 'sjm', name: 'Svalbard és Jan Mayen-szigetek' },
+    { code: 'slb', name: 'Salamon-szigetek' },
+    { code: 'sle', name: 'Sierra Leone' },
+    { code: 'slv', name: 'El Salvador' },
+    { code: 'smr', name: 'San Marino' },
+    { code: 'som', name: 'Szomália' },
+    { code: 'spm', name: 'Saint-Pierre és Miquelon' },
+    { code: 'srb', name: 'Szerbia' },
+    { code: 'stp', name: 'São Tomé és Príncipe' },
+    { code: 'sun', name: 'Szovjetunió' },
+    { code: 'sur', name: 'Suriname' },
+    { code: 'svk', name: 'Szlovákia' },
+    { code: 'svn', name: 'Szlovénia' },
+    { code: 'swe', name: 'Svédország' },
+    { code: 'swz', name: 'Szváziföld' },
+    { code: 'syc', name: 'Seychelle-szigetek' },
+    { code: 'syr', name: 'Szíria' },
+    { code: 'tca', name: 'Turks és Caicos-szigetek' },
+    { code: 'tcd', name: 'Csád' },
+    { code: 'tgo', name: 'Togo' },
+    { code: 'tha', name: 'Thaiföld' },
+    { code: 'tjk', name: 'Tádzsikisztán' },
+    { code: 'tkl', name: 'Tokelau' },
+    { code: 'tkm', name: 'Türkmenisztán' },
+    { code: 'tls', name: 'Kelet-Timor' },
+    { code: 'tmp', name: 'Kelet-Timor (régi)' },
+    { code: 'ton', name: 'Tonga' },
+    { code: 'tto', name: 'Trinidad és Tobago' },
+    { code: 'tun', name: 'Tunézia' },
+    { code: 'tur', name: 'Törökország' },
+    { code: 'tuv', name: 'Tuvalu' },
+    { code: 'twn', name: 'Tajvan' },
+    { code: 'tza', name: 'Tanzánia' },
+    { code: 'uga', name: 'Uganda' },
+    { code: 'ukr', name: 'Ukrajna' },
+    { code: 'umi', name: 'Egyesült Államok kisebb külső szigetei' },
+    { code: 'ury', name: 'Uruguay' },
+    { code: 'usa', name: 'Egyesült Államok' },
+    { code: 'uzb', name: 'Üzbegisztán' },
+    { code: 'vat', name: 'Vatikán' },
+    { code: 'vct', name: 'Saint Vincent és a Grenadine-szigetek' },
+    { code: 'ven', name: 'Venezuela' },
+    { code: 'vgb', name: 'Brit Virgin-szigetek' },
+    { code: 'vir', name: 'Egyesült Államok Virgin-szigetei' },
+    { code: 'vnm', name: 'Vietnám' },
+    { code: 'vut', name: 'Vanuatu' },
+    { code: 'wak', name: 'Wake-sziget' },
+    { code: 'wlf', name: 'Wallis és Futuna' },
+    { code: 'wsm', name: 'Szamoa' },
+    { code: 'yem', name: 'Jemen' },
+    { code: 'ymd', name: 'Jemen, Demokratikus Köztársaság' },
+    { code: 'yug', name: 'Jugoszlávia' },
+    { code: 'zaf', name: 'Dél-Afrika' },
+    { code: 'zar', name: 'Zaire' },
+    { code: 'zmb', name: 'Zambia' },
+    { code: 'zwe', name: 'Zimbabwe' }
+  ];
+
+// tslint:disable-next-line:variable-name
+  public static Prefixes_hu: PrefixModel[] = [
+    { code: 'DT', name: 'Dokumentumtípus', coder: PrefixUtils._coderDT_hu },
+    { code: 'AU', name: 'Szerző' },
+    { code: 'TI', name: 'Cím' },
+    { code: 'KW', name: 'Kulcsszavak' },
+    { code: 'PU', name: 'Kiadó' },
+    { code: 'PY', name: 'Kiadás éve' },
+    { code: 'PP', name: 'Kiadás helye' },
+    { code: 'LA', name: 'Nyelv', coder: PrefixUtils._coderLA_hu },
+    { code: 'CO', name: 'Kiadás országa', coder: PrefixUtils._coderCO_hu },
+    { code: 'IN', name: 'Leltári szám' },
+    { code: 'DC', name: 'ETO' },
+    { code: 'BN', name: 'ISBN' },
+    { code: 'SP', name: 'ISSN' },
+    { code: 'RN', name: 'Rekordazonosító' },
+    { code: 'CC', name: 'Tartalomtípus', coder: PrefixUtils._coderCC_hu },
+    { code: 'RT', name: 'Bibliográfiai rekord típusa', coder: PrefixUtils._coderRT_hu },
+    { code: '856u', name: 'Digitális példány URL-je', coder: PrefixUtils._coder856u_hu },
+    { code: 'SB', name: 'Tárgyszó' },
+    { code: 'SD', name: 'Tárgyszó-alcsoport' },
+    { code: '100e', name: 'Célközönség', coder: PrefixUtils.field100e_hu }
+  ];
 }

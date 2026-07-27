@@ -90,11 +90,14 @@ export class AdminCollectionsPage implements OnInit {
       return;
     }
     const newCollection: BookCollectionModel = {
+      _id: undefined,
       recordsIds: [],
       creatorUsername: this.username,
       title: this.newCollectionName,
       creationDate: new Date(),
-      index: -2
+      lastModified: undefined,
+      index: -2,
+      showCollection: true,
     };
     this._userService.adminCreateModifyCollection(newCollection).subscribe(
       (respondStatus) => {

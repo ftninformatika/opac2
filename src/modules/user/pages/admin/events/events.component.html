@@ -18,7 +18,7 @@
                          [inline]="true"
                          [options]="myDatePickerOptions"
                          placeholder="Од"
-                         [locale]="'sr'"
+                         [locale]="datePickerLocale"
                          [(ngModel)]="filter.from"
                          data-cy="filter-from"
                          required>
@@ -31,7 +31,7 @@
                          [inline]="true"
                          [options]="myDatePickerOptions"
                          placeholder="До"
-                         [locale]="'sr'"
+                         [locale]="datePickerLocale"
                          [(ngModel)]="filter.to"
                          data-cy="filter-to"
                          required>
@@ -80,7 +80,7 @@
           {id: 'paginatorId',
           itemsPerPage: pageOptions?.pageSize,
           currentPage: pageOptions?.currentPage,
-          totalItems: resultPage?.totalElements}">
+          totalItems: resultPage?.page.totalElements}">
         <div class="row">
           <!--Grid column-->
           <div class="col-lg-4 mb-5">
@@ -246,7 +246,7 @@
                            placeholder="* Изаберите датум"
                            i18n-placeholder="@@izaberiteDatumSaZvezdom"
                            id="date"
-                           [locale]="'sr'"
+                           [locale]="datePickerLocale"
                            [formControl]="date"
                            [(ngModel)]="event.date"
                            data-cy="date-modal"
