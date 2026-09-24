@@ -39,6 +39,20 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
     method: 'POST',
     headers: {'Content-Type': 'application/json'}
   }
+
+  public requestInterceptor = (details: {body?: any; headers?: Record<string, string>}) => {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      Library: this._currentLibrary || '',
+      'X-Chat-Id': this._chatId
+    };
+    if (this._currentToken) {
+      headers.Authorization = `Bearer ${this._currentToken}`;
+    }
+    details.headers = headers;
+    return details;
+  }
+
   private _chatRequestSubscription?: Subscription;
   private _currentToken: string | null = null;
   private _currentLibrary: string | null = null;
@@ -60,7 +74,7 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
   ngOnInit() {
     this.checkIfCookieAccepted();
     if (isPlatformBrowser(this.platformId)) {
-      import('deep-chat').then(() => { this.deepChatLoaded = true; });   // runs only in the browser, never on the server
+      import('deep-chat').then(() => { this.deepChatLoaded = true; }); 
       this._chatRequestSubscription = combineLatest([
         this._store.select(UserState.token),
         this._store.select(UserState.library),
@@ -68,7 +82,6 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
       ]).subscribe(([token, memberLibrary, configLibrary]) => {
         this._currentToken = token;
         this._currentLibrary = memberLibrary || configLibrary;
-        this.request = this.buildChatRequest(this._chatId);
       });
     }
   }
@@ -79,22 +92,8 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
 
   startNewConversation() {
     this._chatId = this.generateUuid();
-    this.request = this.buildChatRequest(this._chatId);
     const deepChat: any = this.deepChatEl?.nativeElement;
     deepChat?.clearMessages?.();
-  }
-
-  private buildChatRequest(chatId: string): {url: string; method: string; headers: Record<string, string>} {
-    return {
-      url: ApiEndpointConfig.Paths.chat.ask,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Library: this._currentLibrary || '',
-        'X-Chat-Id': chatId,
-        ...(this._currentToken ? {Authorization: `Bearer ${this._currentToken}`} : {})
-      }
-    };
   }
 
   private generateUuid(): string {
