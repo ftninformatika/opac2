@@ -169,7 +169,7 @@
     "staviNaPolicu": "Polcra helyezés",
     "skloniSaPolice": "Eltávolítás a polcról",
     "pretraziNaslov": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON} Keresés ",
-    "pretragaSadrzaj": " Az egyszerű keresés lehetővé teszi a katalógusban való gyors kersést. Gépelés közben a rendszer automatikusan keresési javaslatokat kínál fel. A találati lista a bal oldali szűrők segítségével tovább pontosítható. ",
+    "pretragaSadrzaj": " Az egyszerű keresés lehetővé teszi a katalógusban való gyors keresést. Gépelés közben a rendszer automatikusan keresési javaslatokat kínál fel. A találati lista a bal oldali szűrők segítségével tovább pontosítható. ",
     "naprednaPretragaNaslov": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON} Részletes keresés ",
     "naprednaPretragaSadrzaj": " A részletes keresésben több keresési feltétel együttes megadásával pontosabban szűkítheti a találatokat. ",
     "prijavaNaslov": "{$START_TAG_MDB_ICON}{$CLOSE_TAG_MDB_ICON} Bejelentkezés ",
