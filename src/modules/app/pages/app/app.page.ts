@@ -24,7 +24,7 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
   public isChatOpen = false;
   public placeholderStyle = {
     placeholder: {
-      text: "Постави питање...",
+      text: $localize`:@@postaviPitanje:Постави питање`,
       style: { color: '#888' }
     }
   }
@@ -74,7 +74,7 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
   ngOnInit() {
     this.checkIfCookieAccepted();
     if (isPlatformBrowser(this.platformId)) {
-      import('deep-chat').then(() => { this.deepChatLoaded = true; }); 
+      import('deep-chat').then(() => { this.deepChatLoaded = true; });
       this._chatRequestSubscription = combineLatest([
         this._store.select(UserState.token),
         this._store.select(UserState.library),
