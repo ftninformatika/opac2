@@ -28,6 +28,12 @@ export class AppPage implements AfterViewInit, OnInit, OnDestroy {
       style: { color: '#888' }
     }
   }
+  public introMessage = {
+    text: 'Dobro došli! Ja sam Čitko, vaš BISIS AI asistent!\n\n' +
+      'Tu sam da vam pomognem u pronalaženju knjiga, preporučim zanimljive naslove i pružim korisne informacije o biblioteci.\n\n' +
+      'Još uvek sam u fazi razvoja, pa moji odgovori mogu sadržati greške.\n\n' +
+      'Kako vam mogu pomoći?'
+  }
   public messageStyles = {
     default: {
       user: { bubble: { backgroundColor: '#0099CC', color: 'white' } },

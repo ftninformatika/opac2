@@ -52,3 +52,36 @@
 .bisis-blue {
   background-color: #0099CC;
 }
+
+.chat-fab {
+  position: fixed;
+  bottom: 38px;
+  right: 90px;
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 400px;
+  height: 600px;
+  max-width: calc(100vw - 60px);
+  max-height: calc(100vh - 60px);
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 1040;
+  flex-direction: column;
+
+  @media (max-width: 767px) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+  }
+}
